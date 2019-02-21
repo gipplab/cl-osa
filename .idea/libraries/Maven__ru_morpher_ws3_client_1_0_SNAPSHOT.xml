@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: ru.morpher:ws3.client:1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/ru/morpher/ws3.client/1.0-SNAPSHOT/ws3.client-1.0-20171210.170511-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/ru/morpher/ws3.client/1.0-SNAPSHOT/ws3.client-1.0-20171210.170511-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/ru/morpher/ws3.client/1.0-SNAPSHOT/ws3.client-1.0-20171210.170511-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
