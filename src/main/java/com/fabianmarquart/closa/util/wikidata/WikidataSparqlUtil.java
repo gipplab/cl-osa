@@ -178,7 +178,7 @@ public class WikidataSparqlUtil {
      */
     @Deprecated
     public static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode) {
-        return getEntitiesByToken(token, languageCode, TextClassificationUtil.Topic.None);
+        return getEntitiesByToken(token, languageCode, TextClassificationUtil.Category.neutral);
     }
 
 
@@ -189,10 +189,10 @@ public class WikidataSparqlUtil {
      *
      * @param token        : the token to find, by lemma.
      * @param languageCode : the label language.
-     * @param topic        : the text's topic from which the token was taken.
+     * @param category     : the text's category from which the token was taken.
      * @return the results as Wikidata entities.
      */
-    public static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode, TextClassificationUtil.Topic topic) {
+    public static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode, TextClassificationUtil.Category category) {
         if (token.getLemma() == null) {
             throw new IllegalArgumentException("The token lemma is null");
         } else if (token.getLemma().equals("")) {
@@ -256,7 +256,7 @@ public class WikidataSparqlUtil {
                                 && entity.getDescriptions() != null && !entity.getDescriptions().isEmpty())
                 .filter(entity ->
                         // TODO: check if all proteins have the word "protein" in their description
-                        !topic.equals(TextClassificationUtil.Topic.Health)
+                        !category.equals(TextClassificationUtil.Category.biology)
                                 || results.size() <= 50
                                 || entity.getDescriptions().getOrDefault("en", "").contains("protein")
                                 || entity.getDescriptions().getOrDefault("en", "").contains("gene"))
@@ -826,6 +826,7 @@ public class WikidataSparqlUtil {
             e.printStackTrace();
         }
     }
+
 
 
 }
