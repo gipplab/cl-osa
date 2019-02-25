@@ -26,7 +26,7 @@ import java.util.stream.Stream;
  */
 public class WordNetUtil {
 
-    private static final String morphosemanticLinksPath = "/morphosemantic-links.csv";
+    private static final String morphosemanticLinksPath = "/wordnet/morphosemantic-links.csv";
     private static Map<String, List<String>> morphosemanticMap;
     private static Dictionary dictionary;
 

@@ -1,8 +1,14 @@
 package com.fabianmarquart.closa.util;
 
+import com.fabianmarquart.closa.model.Token;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import de.daslaboratorium.machinelearning.classifier.Classifier;
+import de.daslaboratorium.machinelearning.classifier.bayes.BayesClassifier;
+import org.apache.commons.io.Charsets;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -10,14 +16,17 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.reflections.Reflections;
+import org.reflections.scanners.ResourcesScanner;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
+import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 
 /**
@@ -30,17 +39,65 @@ public class TextClassificationUtil {
     private static final String baseUrl = "https://api.uclassify.com/v1/";
     private static final String userName = "uClassify";
     private static final String classifierName = "Topics";
-
-    private static final List<String> apiKeys = Arrays.asList("GQod5rweigdz", "pRh4lQEfx9tt", "L4YDONsJjtMw", "kxt4e1I52Pt8", "NLiolOwBVkbw");
+    private static final List<String> supportedLanguages = Arrays.asList("en", "fr", "es", "zh", "ja", "de");
+    private static final List<String> supportedCategories = Arrays.asList("biology", "fiction", "neutral");
+    private static final List<String> apiKeys = Arrays.asList(
+            "c3LtarI0DK1B",
+            "XRAkPoML5FH7", "XE4tzJVY85dj", "3Iehl2rAZdX0", "0SRglD0zYbWT", "4EGZdjVR0ogY",
+            "DR9Ix6mulbmP", "GQod5rweigdz", "pRh4lQEfx9tt", "L4YDONsJjtMw", "kxt4e1I52Pt8", "NLiolOwBVkbw"
+    );
     private static int currentApiKey = 0;
-
     private static HttpClient httpClient;
-    private static HttpPost post;
+
+    // classifier map
+    private static Map<String, Classifier<String, String>> classifierMap;
 
     static {
+        // initialize http client only once
         httpClient = HttpClientBuilder.create().build();
+
+        // initialize classifier map
+        classifierMap = new HashMap<>();
+
+        supportedLanguages.forEach(language -> {
+            Classifier<String, String> bayesClassifier = new BayesClassifier<>();
+
+            supportedCategories.forEach(category -> {
+                Reflections reflections = new Reflections(String.format("corpus/categorization/%s/%s/", language, category),
+                        new ResourcesScanner());
+                Set<String> resourceList = reflections.getResources(Pattern.compile(".*\\.txt"));
+
+                // System.out.println("resourceList = " + resourceList);
+
+                resourceList.stream()
+                        .map(resource ->  {
+                            InputStream inputStream = TextClassificationUtil.class.getClassLoader().getResourceAsStream(resource);
+                            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                            return reader.lines();
+                        })
+                        .map(stringStream -> stringStream.collect(Collectors.toList()))
+                        .forEach(tokenList -> {
+                            bayesClassifier.setMemoryCapacity(Integer.MAX_VALUE);
+                            bayesClassifier.learn(category, tokenList);
+                        });
+
+            });
+
+            classifierMap.put(language, bayesClassifier);
+        });
     }
 
+    public static Map<String, Classifier<String, String>> getClassifierMap() {
+        return classifierMap;
+    }
+
+    public static void setClassifierMap(Map<String, Classifier<String, String>> classifierMap) {
+        TextClassificationUtil.classifierMap = classifierMap;
+    }
+
+    public static List<String> getSupportedLanguages() {
+        return supportedLanguages;
+    }
 
     /**
      * Classify text into topic.
@@ -48,14 +105,36 @@ public class TextClassificationUtil {
      * @param textToClassify text to classify.
      * @return topic.
      */
-    public static Topic classifyText(String textToClassify, String language) {
-        if (!language.equals("en") && !language.equals("fr") && !language.equals("es") && !language.equals("sv")) {
+    public static Category classifyText(String textToClassify, String language) {
+        if (!supportedLanguages.contains(language)) {
+            throw new IllegalArgumentException("Language " + language + " is not supported.");
+        }
+
+        List<String> tokensToClassify = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(textToClassify, language)
+                .stream()
+                .map(Token::getToken)
+                .collect(Collectors.toList());
+
+        return Category.valueOf(classifierMap.get(language).classify(tokensToClassify).getCategory());
+    }
+
+    /**
+     * Classify text into topic, using uClassify API.
+     *
+     * @param textToClassify text to classify.
+     * @return topic.
+     * @deprecated relies on external classifier.
+     */
+    @Deprecated
+    public static Topic uClassifyText(String textToClassify, String language) {
+        if (!supportedLanguages.contains(language)) {
+
             language = "en";
+            //throw new IllegalArgumentException("Language " + language + " is not supported.");
         }
 
         for (int i = 0; i < apiKeys.size(); i++) {
             PrintStream originalStream = System.out;
-
             PrintStream dummyStream = new PrintStream(new OutputStream() {
                 public void write(int b) {
                     // NO-OP
@@ -64,9 +143,10 @@ public class TextClassificationUtil {
             System.setOut(dummyStream);
 
             try {
-                post = new HttpPost(String.format("%s%s/%s/%s/classify", baseUrl, userName, classifierName, language));
+                HttpPost post = new HttpPost(String.format("%s%s/%s/%s/classify", baseUrl, userName, classifierName, language));
                 post.addHeader("Content-Type", "application/json");
                 post.addHeader("Authorization", "Token " + apiKeys.get(currentApiKey));
+
 
                 JSONObject json = new JSONObject();
                 JSONArray textsArray = new JSONArray();
@@ -103,18 +183,31 @@ public class TextClassificationUtil {
         throw new IllegalStateException();
     }
 
-
     /**
      * Enum with all topics that are output by the API, with a null topic 'None' added.
+     *
+     * @deprecated used for external classifier.
      */
+    @Deprecated
     public enum Topic {
         Arts, Business, Computers, Games, Health, Home, Recreation, Science, Society, Sports, None
     }
 
 
     /**
-     * Inner class that is used for deserializing the JSON result.
+     * Enum with all categories.
      */
+    public enum Category {
+        biology, fiction, neutral
+    }
+
+
+    /**
+     * Inner class that is used for deserializing the JSON result.
+     *
+     * @deprecated used for external classifier.
+     */
+    @Deprecated
     private class ClassificationReport {
         private double textCoverage;
         private List<Classification> classification;

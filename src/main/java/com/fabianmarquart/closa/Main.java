@@ -1,6 +1,7 @@
 package com.fabianmarquart.closa;
 
 import com.fabianmarquart.closa.model.WikidataEntity;
+import com.fabianmarquart.closa.util.TextClassificationUtil;
 import com.fabianmarquart.closa.util.TokenUtil;
 import com.fabianmarquart.closa.util.wikidata.WikidataEntityExtractor;
 import org.apache.commons.io.FileUtils;
@@ -8,6 +9,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

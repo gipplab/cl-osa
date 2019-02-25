@@ -1,6 +1,6 @@
 package com.fabianmarquart.closa.util;
 
-import com.chenlb.mmseg4j.example.Simple;
+import com.fabianmarquart.closa.model.Token;
 import com.google.common.base.Optional;
 import com.optimaize.langdetect.LanguageDetector;
 import com.optimaize.langdetect.LanguageDetectorBuilder;
@@ -23,24 +23,20 @@ import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreeCoreAnnotations;
 import edu.stanford.nlp.util.CoreMap;
 import edu.stanford.nlp.util.PropertiesUtils;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.LineIterator;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 import org.atilika.kuromoji.Tokenizer;
 import org.languagetool.AnalyzedTokenReadings;
 import org.languagetool.tagging.de.GermanTagger;
-import com.fabianmarquart.closa.model.Token;
 import org.tartarus.snowball.SnowballProgram;
 import org.tartarus.snowball.ext.*;
 import ru.morpher.ws3.Client;
 import ru.morpher.ws3.ClientBuilder;
 
 import java.io.*;
-import java.net.URISyntaxException;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -214,7 +210,6 @@ public class TokenUtil {
             }
         }));
 
-
         List<List<Token>> tokensBySentence = new ArrayList<>();
 
         try {
@@ -296,7 +291,6 @@ public class TokenUtil {
                     throw new IllegalArgumentException("Language code '" + languageCode + "' not supported");
             }
 
-
             Annotation document = new Annotation(text);
 
             // run all Annotators on this text
@@ -337,7 +331,6 @@ public class TokenUtil {
                                 && partOfSpeech.equals(lastToken.getPartOfSpeech())
                                 && namedEntityType.equals(lastToken.getNamedEntityType())) {
 
-                            // FIXME: join tokens correctly here
                             String separator;
                             if (languageCode.equals("zh")) {
                                 if (isLatinAlphabet(tokenString) && isLatinAlphabet(tokens.get(lastTokenIndex))) {
@@ -367,7 +360,6 @@ public class TokenUtil {
                 System.out.println("Tree annotation:");
                 System.out.println(tree);
             }
-
         } finally {
             System.setOut(out);
         }
@@ -439,14 +431,10 @@ public class TokenUtil {
                 return tokenList;
             case "zh":
                 // Chinese
-                Simple simple = new Simple();
-                String segmentedText = "";
-                try {
-                    segmentedText = simple.segWords(textContent, " ");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return tokenize(segmentedText);
+                return namedEntityTokenize(textContent, "zh")
+                        .stream()
+                        .flatMap(Collection::stream)
+                        .collect(Collectors.toList());
             default:
                 // white-space separated language
                 return tokenize(textContent, false);
@@ -454,152 +442,6 @@ public class TokenUtil {
 
     }
 
-
-    /**
-     * Tokenize text into a list of paragraphs.
-     *
-     * @param textContent the text as string.
-     * @return a list of paragraphs, each paragraph is a list of tokens.
-     */
-    private static List<List<Token>> tokenizeIntoParagraphs(String textContent) {
-        PTBTokenizer<CoreLabel> tokenizer = new PTBTokenizer<>(new StringReader(textContent),
-                new CoreLabelTokenFactory(), "ptb3Escaping=false, tokenizeNLs=true," +
-                "untokenizable=noneDelete");
-        List<List<Token>> paragraphList = new ArrayList<>();
-        List<Token> currentParagraph = new ArrayList<>();
-
-        // always keep track of the previous label
-        CoreLabel previousLabel = new CoreLabel();
-        if (tokenizer.hasNext()) {
-            previousLabel = tokenizer.peek();
-        }
-
-        // iterate over all tokens
-        while (tokenizer.hasNext()) {
-            CoreLabel label = tokenizer.next();
-            int startCharacter = label.beginPosition();
-            int endCharacter = label.endPosition();
-
-            // separate at new line, but only if the paragraph has ended.
-            if (label.toString().equals("*NL*") &&
-                    (previousLabel.toString().equals(".") || previousLabel.toString().equals("。"))) {
-                paragraphList.add(currentParagraph);
-                currentParagraph = new ArrayList<>();
-            } else if (!label.toString().equals("*NL*") || !previousLabel.toString().equals("*NL*")) {
-                currentParagraph.add(new Token(label.toString(), startCharacter, endCharacter, label.index()));
-            }
-
-            previousLabel = label;
-        }
-
-        // if last sentence has no period
-        if (currentParagraph.size() > 0) {
-            paragraphList.add(currentParagraph);
-        }
-
-        paragraphList = paragraphList.stream()
-                .map(TokenUtil::removePunctuation).collect(Collectors.toList());
-
-
-        return paragraphList;
-    }
-
-    /**
-     * Tokenize a text into a list of paragraphs.
-     *
-     * @param textContent    the text as string.
-     * @param detectLanguage whether language should be detected
-     * @return a list of paragraphs, each paragraph is a list of tokens.
-     */
-    public static List<List<Token>> tokenizeIntoParagraphs(String textContent, boolean detectLanguage) {
-        List<List<Token>> tokenList = new ArrayList<>();
-
-        if (detectLanguage) {
-            String language = detectLanguage(textContent);
-
-            switch (language) {
-                case "ja":
-                    // Japanese tokenization
-                    Tokenizer japaneseTokenizer = Tokenizer.builder().build();
-
-                    int startCharacter = 0;
-                    int index = 0;
-
-                    List<Token> paragraphTokens = new ArrayList<>();
-
-                    for (org.atilika.kuromoji.Token kuromojiToken : japaneseTokenizer.tokenize(textContent)) {
-                        String surfaceForm = kuromojiToken.getSurfaceForm();
-                        Token token = new Token(surfaceForm, startCharacter, startCharacter
-                                + surfaceForm.length() - 1, index);
-
-                        // break at new paragraph marked by newline
-                        if (token.getToken().equals("\n")) {
-                            paragraphTokens = removePunctuation(paragraphTokens);
-                            paragraphTokens = removeStopwords(paragraphTokens, language);
-                            tokenList.add(paragraphTokens);
-                            paragraphTokens = new ArrayList<>();
-                        } else {
-                            paragraphTokens.add(token);
-                        }
-
-                        startCharacter += surfaceForm.length();
-                        index += 1;
-                    }
-
-                    // last paragraph
-                    if (!paragraphTokens.isEmpty()) {
-                        paragraphTokens = removePunctuation(paragraphTokens);
-                        paragraphTokens = removeStopwords(paragraphTokens, language);
-                        tokenList.add(paragraphTokens);
-                    }
-
-                    return tokenList;
-                case "zh":
-                    // Chinese tokenization
-                    Simple simple = new Simple();
-                    String segmentedText = "";
-                    try {
-                        segmentedText = simple.segWords(textContent, " ");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    tokenList = tokenizeIntoParagraphs(segmentedText);
-                    tokenList = tokenList.stream()
-                            .map(TokenUtil::removePunctuation).collect(Collectors.toList());
-                    tokenList = tokenList.stream()
-                            .map(list -> removeStopwords(list, language)).collect(Collectors.toList());
-                    return tokenList;
-                case "de":
-                    // German tokenization
-                    tokenList = tokenizeIntoParagraphs(textContent);
-                    tokenList = tokenList.stream()
-                            .map(TokenUtil::removePunctuation).collect(Collectors.toList());
-                    tokenList = tokenList.stream()
-                            .map(list -> removeStopwords(list, language)).collect(Collectors.toList());
-                    tokenList = tokenList.stream()
-                            .map(TokenUtil::germanLemmatize).collect(Collectors.toList());
-
-                    return tokenList;
-                default:
-                    // any white-space separated language
-                    tokenList = tokenizeIntoParagraphs(textContent);
-                    tokenList = tokenList.stream()
-                            .map(TokenUtil::removePunctuation).collect(Collectors.toList());
-                    // FIXME: no stopword removal ????
-                    tokenList = tokenList.stream()
-                            .map(list -> removeStopwords(list, language)).collect(Collectors.toList());
-                    return tokenList;
-            }
-        } else {
-            // English
-            tokenList = tokenizeIntoParagraphs(textContent);
-            tokenList = tokenList.stream()
-                    .map(TokenUtil::removePunctuation).collect(Collectors.toList());
-            tokenList = tokenList.stream()
-                    .map(list -> removeStopwords(list, "en")).collect(Collectors.toList());
-            return tokenList;
-        }
-    }
 
     /**
      * Take a German-language token list and lemmatize the nouns and adjectives.
@@ -653,7 +495,6 @@ public class TokenUtil {
                                         token = lemma.concat("es");
                                         break;
                                 }
-                                // System.out.println(lemma + " " + token + ", (" + noun + " " + gender + ")");
                             }
                             break;
                         }
@@ -678,48 +519,6 @@ public class TokenUtil {
         return tokens;
     }
 
-
-    /**
-     * Takes one token and returns a stemmed version.
-     *
-     * @param token    one token.
-     * @param language code, e.g. "de", "en".
-     * @return a list of stemmed tokens.
-     */
-    public static Token stem(Token token, String language) {
-        SnowballProgram stemmer = null;
-
-        switch (language) {
-            case "de":
-                stemmer = new GermanStemmer();
-                break;
-            case "en":
-                stemmer = new EnglishStemmer();
-                break;
-            case "ru":
-                stemmer = new RussianStemmer();
-                break;
-        }
-
-        if (stemmer == null) {
-            return token;
-        }
-
-        // copy token
-        Token stemmedToken = new Token(token);
-
-        // change its string
-        stemmer.setCurrent(token.getToken());
-        stemmer.stem();
-        stemmedToken.setToken(stemmer.getCurrent());
-
-        // normalize decades 50s, 60s to 1950s, 1960s etc.
-        if (stemmedToken.getToken().matches("^[0-9]0s$")) {
-            stemmedToken.setToken("19" + stemmedToken.getToken());
-        }
-
-        return stemmedToken;
-    }
 
     /**
      * Takes a list of tokens and returns a stemmed version.
@@ -855,7 +654,8 @@ public class TokenUtil {
      * @return list of punctuation symbols.
      */
     static List<String> getPunctuation() {
-        InputStream inputStream = WordNetUtil.class.getResourceAsStream("/punctuation.txt");
+        System.out.println(TokenUtil.class.getResource("."));
+        InputStream inputStream = TokenUtil.class.getResourceAsStream("/corpus/punctuation/punctuation.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
         // create list of punctuation symbols
@@ -870,7 +670,6 @@ public class TokenUtil {
      */
     public static List<Token> removePunctuation(List<Token> tokens) {
         List<Token> tokensWithoutPunctuation;
-
         List<String> punctuationSymbols = getPunctuation();
 
         String regex = "a-zA-Z\\.";
@@ -892,7 +691,7 @@ public class TokenUtil {
      * @return list of stop words.
      */
     public static List<String> getStopwords(String language) {
-        InputStream inputStream = WordNetUtil.class.getResourceAsStream(String.format("/stopwords_%s.txt", language));
+        InputStream inputStream = WordNetUtil.class.getResourceAsStream(String.format("/corpus/stopwords/stopwords_%s.txt", language));
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         return reader.lines().collect(Collectors.toList());
     }
@@ -909,7 +708,6 @@ public class TokenUtil {
 
         // read in stopwords to ArrayList
         List<String> stopwords = getStopwords(languageCode);
-
         // compare whether it is included
         tokens.forEach(token -> {
             if (!stopwords.contains(token.getToken())) {
@@ -928,11 +726,11 @@ public class TokenUtil {
      * @return repartitioned tokens
      */
     public static List<Token> nGramPartition(List<Token> originalTokens, int n) {
-        List<Token> nGrams = new ArrayList<>();
-
         if (originalTokens == null || originalTokens.isEmpty()) {
-            return nGrams;
+            return new ArrayList<>();
         }
+
+        List<Token> nGrams = new ArrayList<>();
 
         // split into uniGrams
         List<Token> uniGrams = new ArrayList<>();
@@ -964,14 +762,42 @@ public class TokenUtil {
 
 
     /**
-     * Returns true if the tokens contain only latin characters.
+     * Partition text into n-grams.
      *
-     * @param tokens tokens.
-     * @return true if the tokens contain only latin characters.
+     * @param text input
+     * @param n    n-gram length
+     * @return partitioned n-grams.
      */
-    public static boolean isLatinAlphabet(List<Token> tokens) {
-        return tokens.stream().allMatch(TokenUtil::isLatinAlphabet);
+    public static List<String> nGramPartition(String text, int n) {
+        if (text == null || text.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        List<String> nGrams = new ArrayList<>();
+
+        // split into uniGrams
+        List<String> uniGrams = new ArrayList<>();
+
+        for (int i = 0; i < text.length(); i++) {
+            uniGrams.add(text.substring(i, i + 1));
+        }
+
+        if (n == 1) {
+            return uniGrams;
+        }
+
+        // build nGrams from unigrams
+        for (int i = 0; i < uniGrams.size() - (n - 1); i++) {
+            StringBuilder currentUniGrams = new StringBuilder();
+            for (int j = 0; j < n; j++) {
+                currentUniGrams.append(uniGrams.get(i + j));
+            }
+            nGrams.add(currentUniGrams.toString());
+        }
+
+        return nGrams;
     }
+
 
     /**
      * Returns true if the token contains only latin characters.
@@ -982,6 +808,7 @@ public class TokenUtil {
     public static boolean isLatinAlphabet(Token token) {
         return isLatinAlphabet(token.getToken());
     }
+
 
     /**
      * Returns true if the string contains only latin characters.
@@ -1001,7 +828,6 @@ public class TokenUtil {
      * @return language code string.
      */
     public static String detectLanguage(String text) {
-
         // suppress printing of this method
         PrintStream out = System.out;
         System.setOut(new PrintStream(new OutputStream() {
@@ -1012,7 +838,7 @@ public class TokenUtil {
 
         try {
             // start
-            Optional<LdLocale> suspiciousLanguage = Optional.absent();
+            Optional<LdLocale> ldLocaleOptional = Optional.absent();
 
             try {
                 // load all languages
@@ -1026,15 +852,14 @@ public class TokenUtil {
                 TextObjectFactory textObjectFactory = CommonTextObjectFactories.forDetectingOnLargeText();
 
                 // detect the suspicious text's language, (translate) and tokenize it
-                suspiciousLanguage = languageDetector.detect(textObjectFactory.forText(text));
+                ldLocaleOptional = languageDetector.detect(textObjectFactory.forText(text));
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            if (suspiciousLanguage != null && suspiciousLanguage.isPresent()) {
-                return suspiciousLanguage.get().getLanguage();
+            if (ldLocaleOptional != null && ldLocaleOptional.isPresent()) {
+                return ldLocaleOptional.get().getLanguage();
             }
-
         } finally {
             System.setOut(out);
         }
@@ -1042,5 +867,4 @@ public class TokenUtil {
         // default
         return "en";
     }
-
 }

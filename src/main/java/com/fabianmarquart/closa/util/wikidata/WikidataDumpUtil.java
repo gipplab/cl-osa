@@ -237,8 +237,9 @@ public class WikidataDumpUtil {
      * @return the results as Wikidata entities.
      */
     public static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode) {
-        return getEntitiesByToken(token, languageCode, TextClassificationUtil.Topic.None);
+        return getEntitiesByToken(token, languageCode, TextClassificationUtil.Category.neutral);
     }
+
 
     /**
      * Retrieves the entity matching the token from MongoDB:
@@ -247,10 +248,10 @@ public class WikidataDumpUtil {
      *
      * @param token        : the token to find, by lemma.
      * @param languageCode : the label language.
-     * @param topic        : the text's topic from which the token was taken.
+     * @param category        : the text's category from which the token was taken.
      * @return the results as Wikidata entities.
      */
-    public static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode, TextClassificationUtil.Topic topic) {
+    public static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode, TextClassificationUtil.Category category) {
         if (token.getLemma() == null) {
             throw new IllegalArgumentException("The token lemma is null");
         } else if (token.getLemma().equals("")) {
@@ -310,7 +311,7 @@ public class WikidataDumpUtil {
                 })
                 .filter(entity -> entity.getId().contains("Q"))
                 .map(entity -> {
-                    entity = WikidataDumpUtil.getEntityById(entity.getId());
+                    entity = getEntityById(entity.getId());
                     entity.setOriginalLemma(token.getLemma());
                     return entity;
                 })
@@ -320,7 +321,7 @@ public class WikidataDumpUtil {
                                 && entity.getDescriptions() != null && !entity.getDescriptions().isEmpty())
                 .filter(entity ->
                         // TODO: check if all proteins have the word "protein" in their description
-                        !topic.equals(TextClassificationUtil.Topic.Health)
+                        !category.equals(TextClassificationUtil.Category.biology)
                                 || results.size() <= 50
                                 || entity.getDescriptions().getOrDefault("en", "").contains("protein")
                                 || entity.getDescriptions().getOrDefault("en", "").contains("gene"))

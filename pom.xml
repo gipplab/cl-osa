@@ -78,8 +78,8 @@
             <resource>
                 <directory>src/main/resources/</directory>
                 <includes>
-                    <include>*.txt</include>
-                    <include>*.csv</include>
+                    <include>**/*.txt</include>
+                    <include>**/*.csv</include>
                 </includes>
             </resource>
         </resources>
@@ -103,6 +103,10 @@
                 <enabled>true</enabled>
                 <updatePolicy>always</updatePolicy>
             </snapshots>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
 
@@ -292,6 +296,13 @@
             <version>1.2</version>
         </dependency>
 
+        <!-- Java Naive Bayes -->
+        <dependency>
+            <groupId>com.github.ptnplanet</groupId>
+            <artifactId>Java-Naive-Bayes-Classifier</artifactId>
+            <version>1.0.7</version>
+        </dependency>
+
         <!-- progress bar console output -->
         <dependency>
             <groupId>me.tongfei</groupId>
@@ -324,11 +335,10 @@
             <version>4.0</version>
         </dependency>
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.11</version>
         </dependency>
-
 
     </dependencies>
 

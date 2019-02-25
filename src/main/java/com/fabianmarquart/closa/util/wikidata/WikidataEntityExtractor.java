@@ -23,9 +23,8 @@ import static com.fabianmarquart.closa.util.wikidata.WikidataDumpUtil.*;
 public class WikidataEntityExtractor {
 
     // TODO: Entity nach Wikipedia Aufrufanzahl (oder Text)
-
     /**
-     * Extract Wikidata entities from given text and language.
+     * Extract Wikidata entities from given text, language.
      * <p>
      * Tokenization / POS-tagging / lemmatization / NER -> filter by POS -> entity extraction -> entity disambiguation
      *
@@ -34,8 +33,21 @@ public class WikidataEntityExtractor {
      * @return list of Wikidata entities found in the text
      */
     public static List<WikidataEntity> extractEntitiesFromText(String text, String languageCode) {
+        return extractEntitiesFromText(text, languageCode, TextClassificationUtil.classifyText(text, languageCode));
+    }
 
-        List<List<WikidataEntity>> extractedEntities = extractEntitiesFromTextWithoutDisambiguation(text, languageCode);
+    /**
+     * Extract Wikidata entities from given text, language and topic.
+     * <p>
+     * Tokenization / POS-tagging / lemmatization / NER -> filter by POS -> entity extraction -> entity disambiguation
+     *
+     * @param text         the text
+     * @param languageCode language
+     * @param category     category
+     * @return list of Wikidata entities found in the text
+     */
+    public static List<WikidataEntity> extractEntitiesFromText(String text, String languageCode, TextClassificationUtil.Category category) {
+        List<List<WikidataEntity>> extractedEntities = extractEntitiesFromTextWithoutDisambiguation(text, languageCode, category);
         List<WikidataEntity> disambiguatedEntities = new ArrayList<>();
 
         for (List<WikidataEntity> currentEntities : extractedEntities) {
@@ -50,17 +62,20 @@ public class WikidataEntityExtractor {
         return disambiguatedEntities;
     }
 
-
     /**
-     * Extract Wikidata entities from given text and language.
+     * Extract Wikidata entities from given text, language and topic.
      * <p>
      * Tokenization / POS-tagging / lemmatization / NER -> filter by POS -> entity extraction.
      *
      * @param text         the text
      * @param languageCode language
+     * @param category     category
      * @return list of Wikidata entity candidate lists found in the text
      */
-    public static List<List<WikidataEntity>> extractEntitiesFromTextWithoutDisambiguation(String text, String languageCode) {
+    public static List<List<WikidataEntity>> extractEntitiesFromTextWithoutDisambiguation(
+            String text,
+            String languageCode,
+            TextClassificationUtil.Category category) {
         // tokenize
         List<Token> tokenList = TokenUtil.namedEntityTokenize(text, languageCode).stream()
                 .flatMap(List::stream).collect(Collectors.toList());
@@ -77,10 +92,7 @@ public class WikidataEntityExtractor {
 
         List<List<WikidataEntity>> extractedEntities = new ArrayList<>();
 
-        // topic
-        TextClassificationUtil.Topic topic = TextClassificationUtil.classifyText(text, languageCode);
-
-        ProgressBar progressBar = new ProgressBar("Exctract entities from " + languageCode + " " + topic + " text.", subtokensLists.size(), ProgressBarStyle.ASCII);
+        ProgressBar progressBar = new ProgressBar(String.format("Extract entities from %s %s text.", languageCode, category), subtokensLists.size(), ProgressBarStyle.ASCII);
         progressBar.start();
 
         // TODO: use Java 8 streams
@@ -119,7 +131,7 @@ public class WikidataEntityExtractor {
                         // if english text bits are contained in a chinese text
                         languageCode.equals("zh") && TokenUtil.isLatinAlphabet(token)
                                 ? "en"
-                                : languageCode, topic)
+                                : languageCode, category)
                         .stream()
                         // no CJK character pages
                         .filter(entity ->
@@ -127,10 +139,11 @@ public class WikidataEntityExtractor {
                                         || !entity.getDescriptions().getOrDefault("en", "").contains("CJK character (hanzi/kanji/hanja)"))
                         // no Wikimedia disambiguation pages
                         .filter(entity -> !entity.getDescriptions().getOrDefault(languageCode, "").contains("Wikimedia "))
-                        // no pages about music, movies or tv shows (academic texts)
-                        .filter(entity ->
-                                topic.equals(TextClassificationUtil.Topic.Arts) || topic.equals(TextClassificationUtil.Topic.Games) || !isCreativeWork(entity))
-                        .filter(entity -> !topic.equals(TextClassificationUtil.Topic.Health) || !isGene(entity))
+                        // if text is not about fiction, remove pages about music, movies or tv shows
+                        .filter(entity -> category.equals(TextClassificationUtil.Category.fiction) || !isCreativeWork(entity))
+                        // if text is not about biology, remove pages about genes
+                        .filter(entity -> category.equals(TextClassificationUtil.Category.biology) || !isGene(entity))
+                        // only keep pages about numbers when the token is numeric
                         .filter(entity -> !StringUtils.isNumeric(entity.getOriginalLemma())
                                 || (StringUtils.isNumeric(entity.getOriginalLemma()) && isNaturalNumber(entity)))
                         .collect(Collectors.toList());
@@ -152,6 +165,19 @@ public class WikidataEntityExtractor {
         progressBar.stop();
 
         return extractedEntities;
+    }
+
+    /**
+     * Extract Wikidata entities from given text and language.
+     * <p>
+     * Tokenization / POS-tagging / lemmatization / NER -> filter by POS -> entity extraction.
+     *
+     * @param text         the text
+     * @param languageCode language
+     * @return list of Wikidata entity candidate lists found in the text
+     */
+    public static List<List<WikidataEntity>> extractEntitiesFromTextWithoutDisambiguation(String text, String languageCode) {
+        return extractEntitiesFromTextWithoutDisambiguation(text, languageCode, TextClassificationUtil.classifyText(text, languageCode));
     }
 
 
