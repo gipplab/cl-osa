@@ -654,7 +654,7 @@ public class TokenUtil {
      * @return list of punctuation symbols.
      */
     static List<String> getPunctuation() {
-        System.out.println(TokenUtil.class.getResource("."));
+        // System.out.println(TokenUtil.class.getResource("."));
         InputStream inputStream = TokenUtil.class.getResourceAsStream("/corpus/punctuation/punctuation.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 

@@ -1,14 +1,13 @@
 package com.fabianmarquart.closa.util;
 
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
 import com.fabianmarquart.closa.model.Token;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import de.daslaboratorium.machinelearning.classifier.Classifier;
 import de.daslaboratorium.machinelearning.classifier.bayes.BayesClassifier;
-import org.apache.commons.io.Charsets;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -18,11 +17,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -36,6 +33,8 @@ import java.util.stream.Collectors;
  */
 public class TextClassificationUtil {
 
+
+    // uClassify
     private static final String baseUrl = "https://api.uclassify.com/v1/";
     private static final String userName = "uClassify";
     private static final String classifierName = "Topics";
@@ -53,6 +52,10 @@ public class TextClassificationUtil {
     private static Map<String, Classifier<String, String>> classifierMap;
 
     static {
+        // logger
+        Logger logger = (Logger) LoggerFactory.getLogger(Reflections.class);
+        logger.setLevel(Level.ERROR);
+
         // initialize http client only once
         httpClient = HttpClientBuilder.create().build();
 
