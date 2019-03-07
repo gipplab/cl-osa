@@ -82,7 +82,7 @@ def wikidata_dump_mongo_import(host, port):
     db['entities'].create_index([('id', pymongo.ASCENDING)], unique=True)
 
     for language in languages:
-        db['entities'].create_index([('label.' + language + '.value', pymongo.ASCENDING)])
+        db['entities'].create_index([('labels.' + language + '.value', pymongo.ASCENDING)])
         db['entities'].create_index([('aliases.' + language + '.value', pymongo.ASCENDING)])
 
     # index for instanceOf and subclassOf
@@ -167,6 +167,7 @@ def wikidata_dump_mongo_import(host, port):
     print "Indexing " + host + ":" + str(port) + "[" + database_name + "]" + "[entitiesHierarchyPersistent] ..."
 
     db['entitiesHierarchyPersistent'].create_index([('id', pymongo.ASCENDING)], unique=True)
+    db['entitiesHierarchyPersistent'].create_index([('hierarchy', pymongo.ASCENDING)])
     db['entitiesHierarchyPersistent'].create_index([('hierarchy.id', pymongo.ASCENDING)])
     db['entitiesHierarchyPersistent'].create_index([('hierarchy.label', pymongo.ASCENDING)])
     db['entitiesHierarchyPersistent'].create_index([('hierarchy.depth', pymongo.ASCENDING)])
