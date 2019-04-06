@@ -7,7 +7,6 @@ import org.junit.Test;
 import java.util.List;
 
 
-
 /**
  * Created by Fabian Marquart on 2017/01/06.
  */

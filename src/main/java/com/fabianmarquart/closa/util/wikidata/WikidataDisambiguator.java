@@ -16,6 +16,7 @@ import static com.fabianmarquart.closa.util.wikidata.WikidataDumpUtil.*;
  */
 public class WikidataDisambiguator {
 
+
     /**
      * Gets the entity with the numerically smallest id.
      *
@@ -42,13 +43,14 @@ public class WikidataDisambiguator {
         }
 
         // replace instances in entities by their classes
-        entities = entities.stream().map(entity -> {
-            if (isInstance(entity)) {
-                return instanceOf(entity);
-            } else {
-                return Collections.singletonList(entity);
-            }
-        }).flatMap(List::stream)
+        entities = entities.stream()
+                .map(entity -> {
+                    if (isInstance(entity)) {
+                        return instanceOf(entity);
+                    } else {
+                        return Collections.singletonList(entity);
+                    }
+                }).flatMap(List::stream)
                 .collect(Collectors.toList());
 
         // stores current iteration's subclasses and instance of the entities,
@@ -68,7 +70,7 @@ public class WikidataDisambiguator {
             currentNextLevel = currentNextLevel.entrySet().stream()
                     .collect(Collectors.toMap(Map.Entry::getKey,
                             entry -> entry.getValue().stream()
-                                    .map(WikidataDumpUtil::subclassOf)
+                                    .map(WikidataSparqlUtil::subclassOf)
                                     .flatMap(Collection::stream)
                                     .collect(Collectors.toSet())))
                     .entrySet().stream().filter(entry -> !entry.getValue().isEmpty())
@@ -129,7 +131,8 @@ public class WikidataDisambiguator {
         });
 
         // the entity whose ancestors appear in the greatest number in the text wins
-        long max = entityOccurences.values().stream().max(Comparator.naturalOrder()).get();
+        long max = entityOccurences.values().stream()
+                .max(Comparator.naturalOrder()).get();
 
         Set<WikidataEntity> maxKeys = entityOccurences.entrySet().stream()
                 .filter(entry -> entry.getValue() == max)
@@ -154,7 +157,8 @@ public class WikidataDisambiguator {
     public static WikidataEntity disambiguateByDescription(List<WikidataEntity> entities, String text, String languageCode) {
         // TODO: disambiguate by alias
 
-        if (entities.stream().allMatch(entity -> entity.getDescriptions() == null || !entity.getDescriptions().containsKey(languageCode))) {
+        if (entities.stream()
+                .allMatch(entity -> entity.getDescriptions() == null || !entity.getDescriptions().containsKey(languageCode))) {
             throw new IllegalArgumentException("The entities need to contain a description to disambiguate from.");
         }
 
@@ -179,8 +183,14 @@ public class WikidataDisambiguator {
 
         Dictionary<String> dictionary = new Dictionary<>(idTokensMap);
 
-        String matchingId = dictionary.query(textTokens.stream().map(Token::getToken).collect(Collectors.toList()))
-                .stream().findFirst().orElse("");
+        List<String> queryTerms = textTokens.stream().map(Token::getToken).collect(Collectors.toList());
+
+        String matchingId = dictionary.query(queryTerms)
+                .entrySet()
+                .stream()
+                .max(Comparator.comparingDouble(Map.Entry::getValue))
+                .get()
+                .getKey();
 
         return entities.stream().filter(entity -> entity.getId().equals(matchingId)).findFirst().orElse(entities.get(0));
     }

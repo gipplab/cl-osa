@@ -2,13 +2,17 @@ package com.fabianmarquart.closa.util;
 
 import com.fabianmarquart.closa.model.Token;
 import edu.stanford.nlp.simple.Document;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
 
 /**
  * Test class for TokenUtil.
@@ -17,12 +21,6 @@ import java.util.stream.Collectors;
  */
 public class TokenUtilTest {
 
-    @Test
-    public void testLangDetect() {
-        Assert.assertEquals(TokenUtil.detectLanguage("Beispiel"), "de");
-        Assert.assertEquals(TokenUtil.detectLanguage("a text should have sufficient length in order to" +
-                "be detected correctly"), "en");
-    }
 
     @Test
     public void testTokenization() {
@@ -188,7 +186,7 @@ public class TokenUtilTest {
                 "supramaximale Aktivierungslösung einem pCa von 4.3. Die Berechnungen erfolgten nach der" +
                 "Formel von Fabiato und Fabiato (1979).";
 
-        Document doc = new Document(text);
+        edu.stanford.nlp.simple.Document doc = new Document(text);
         Assert.assertEquals(doc.sentence(0).posTags().get(0), "SYM");
 
         List<Token> tokens = TokenUtil.tokenize(text, true);

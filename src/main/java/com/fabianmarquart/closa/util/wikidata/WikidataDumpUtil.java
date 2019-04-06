@@ -3,16 +3,18 @@ package com.fabianmarquart.closa.util.wikidata;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
-import com.mongodb.MongoClient;
-import com.mongodb.client.*;
-import com.mongodb.client.model.Filters;
-import javafx.util.Pair;
-import org.apache.commons.lang3.StringUtils;
-import org.bson.Document;
-import org.bson.conversions.Bson;
+import com.fabianmarquart.closa.classification.Category;
 import com.fabianmarquart.closa.model.Token;
 import com.fabianmarquart.closa.model.WikidataEntity;
-import com.fabianmarquart.closa.util.TextClassificationUtil;
+import com.mongodb.MongoClient;
+import com.mongodb.client.AggregateIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.MutablePair;
+import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
@@ -150,10 +152,10 @@ public class WikidataDumpUtil {
     }
 
     /**
-     * Get sample Entities.
+     * Get sample entities.
      *
-     * @param sampleSize
-     * @return
+     * @param sampleSize number of entities to randomly take.
+     * @return a list of random entities of size sample size.
      */
     public static List<WikidataEntity> getRandomEntities(int sampleSize) {
         AggregateIterable<Document> result = entitiesCollection.aggregate(Collections.singletonList(
@@ -237,9 +239,8 @@ public class WikidataDumpUtil {
      * @return the results as Wikidata entities.
      */
     public static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode) {
-        return getEntitiesByToken(token, languageCode, TextClassificationUtil.Category.neutral);
+        return getEntitiesByToken(token, languageCode, Category.neutral);
     }
-
 
     /**
      * Retrieves the entity matching the token from MongoDB:
@@ -248,10 +249,10 @@ public class WikidataDumpUtil {
      *
      * @param token        : the token to find, by lemma.
      * @param languageCode : the label language.
-     * @param category        : the text's category from which the token was taken.
+     * @param category     : the text's category from which the token was taken.
      * @return the results as Wikidata entities.
      */
-    public static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode, TextClassificationUtil.Category category) {
+    public static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode, Category category) {
         if (token.getLemma() == null) {
             throw new IllegalArgumentException("The token lemma is null");
         } else if (token.getLemma().equals("")) {
@@ -293,6 +294,8 @@ public class WikidataDumpUtil {
             }
 
             if (results.size() == 0) {
+                // if no results are found, query aliases instead
+                // query = new Document("aliases." + languageCode + ".value", capitalizeIfFirstLetterIsUppercase(queryLemma));
                 // if no results are found for lemma, assume wrong lemmatization and query token instead
                 query = createLabelQuery(token.getToken(), languageCode);
             }
@@ -321,7 +324,7 @@ public class WikidataDumpUtil {
                                 && entity.getDescriptions() != null && !entity.getDescriptions().isEmpty())
                 .filter(entity ->
                         // TODO: check if all proteins have the word "protein" in their description
-                        !category.equals(TextClassificationUtil.Category.biology)
+                        !category.equals(Category.biology)
                                 || results.size() <= 50
                                 || entity.getDescriptions().getOrDefault("en", "").contains("protein")
                                 || entity.getDescriptions().getOrDefault("en", "").contains("gene"))
@@ -581,7 +584,7 @@ public class WikidataDumpUtil {
      * @param secondEntity second entity
      * @return the most specific parent entity with distances from first and second entity.
      */
-    public static Pair<WikidataEntity, List<Long>> getMostSpecificParentEntityWithDepth(WikidataEntity firstEntity, WikidataEntity secondEntity) {
+    public static org.apache.commons.lang3.tuple.Pair<WikidataEntity, List<Long>> getMostSpecificParentEntityWithDepth(WikidataEntity firstEntity, WikidataEntity secondEntity) {
         Document result = entitiesHierarchyCollection.aggregate(Arrays.asList(
                 new Document("$match",
                         new Document("$and",
@@ -609,13 +612,13 @@ public class WikidataDumpUtil {
         )).first();
 
         if (result == null) {
-            return new Pair<>(rootEntity, Arrays.asList(ontologyMaxDepth, ontologyMaxDepth));
+            return new MutablePair<>(rootEntity, Arrays.asList(ontologyMaxDepth, ontologyMaxDepth));
         }
 
         WikidataEntity mostSpecificParentEntity = new WikidataEntity(result.get("_id", Document.class).getString("hierarchyId"));
         List<Long> depths = (ArrayList<Long>) result.get("depth", ArrayList.class);
 
-        return new Pair<>(mostSpecificParentEntity, depths);
+        return new MutablePair<>(mostSpecificParentEntity, depths);
     }
 
 

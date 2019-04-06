@@ -1,8 +1,8 @@
 package com.fabianmarquart.closa.util.wikidata;
 
+import com.fabianmarquart.closa.classification.Category;
 import com.fabianmarquart.closa.model.Token;
 import com.fabianmarquart.closa.model.WikidataEntity;
-import com.fabianmarquart.closa.util.TextClassificationUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -178,7 +178,7 @@ public class WikidataSparqlUtil {
      */
     @Deprecated
     public static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode) {
-        return getEntitiesByToken(token, languageCode, TextClassificationUtil.Category.neutral);
+        return getEntitiesByToken(token, languageCode, Category.neutral);
     }
 
 
@@ -192,7 +192,7 @@ public class WikidataSparqlUtil {
      * @param category     : the text's category from which the token was taken.
      * @return the results as Wikidata entities.
      */
-    public static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode, TextClassificationUtil.Category category) {
+    public static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode, Category category) {
         if (token.getLemma() == null) {
             throw new IllegalArgumentException("The token lemma is null");
         } else if (token.getLemma().equals("")) {
@@ -256,7 +256,7 @@ public class WikidataSparqlUtil {
                                 && entity.getDescriptions() != null && !entity.getDescriptions().isEmpty())
                 .filter(entity ->
                         // TODO: check if all proteins have the word "protein" in their description
-                        !category.equals(TextClassificationUtil.Category.biology)
+                        !category.equals(Category.biology)
                                 || results.size() <= 50
                                 || entity.getDescriptions().getOrDefault("en", "").contains("protein")
                                 || entity.getDescriptions().getOrDefault("en", "").contains("gene"))

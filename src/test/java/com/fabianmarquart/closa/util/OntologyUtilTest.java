@@ -6,12 +6,13 @@ import org.junit.Test;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OntologyUtilTest {
 
     @Test
-    public void executeAlgorithmAndGetCandidatesTest() {
+    public void executeAlgorithmAndComputeScoresTest() {
         String suspiciousPath = "/Users/fabian/citeplag-dev-backend/pds-backend-core/src/test/resources/org/sciplore/pds/test-bbc/en/35157967/0.txt";
 
         String candidateFolderPath = "/Users/fabian/citeplag-dev-backend/pds-backend-core/src/test/resources/org/sciplore/pds/test-bbc/en/";
@@ -24,8 +25,8 @@ public class OntologyUtilTest {
                 .limit(3)
                 .collect(Collectors.toList());
 
-        List<String> candidates = OntologyUtil.executeAlgorithmAndGetCandidates(suspiciousPath, candidatePaths);
+        Map<String, Double> candidateScoreMap = OntologyUtil.executeAlgorithmAndComputeScores(suspiciousPath, candidatePaths);
 
-        System.out.println(candidates);
+        System.out.println(candidateScoreMap);
     }
 }

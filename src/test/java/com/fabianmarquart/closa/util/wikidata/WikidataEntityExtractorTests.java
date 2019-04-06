@@ -1,5 +1,6 @@
 package com.fabianmarquart.closa.util.wikidata;
 
+import com.fabianmarquart.closa.model.WikidataEntity;
 import com.google.common.collect.Sets;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -7,7 +8,6 @@ import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
-import com.fabianmarquart.closa.model.WikidataEntity;
 
 import java.io.File;
 import java.io.FileReader;
@@ -16,8 +16,6 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static com.fabianmarquart.closa.util.wikidata.WikidataEntityExtractor.*;
 
 public class WikidataEntityExtractorTests {
 
@@ -32,7 +30,7 @@ public class WikidataEntityExtractorTests {
     public void testExtractEntitiesFromSingleWord() {
         String textEn = "Auschwitz";
 
-        List<WikidataEntity> entitiesEn = extractEntitiesFromText(textEn, "en");
+        List<WikidataEntity> entitiesEn = WikidataEntityExtractor.extractEntitiesFromText(textEn, "en");
 
         System.out.println(entitiesEn);
 
@@ -42,7 +40,7 @@ public class WikidataEntityExtractorTests {
     @Test
     public void testResolveDemonyme() {
         String demonyme = "Chinese";
-        List<WikidataEntity> foundEntities = extractEntitiesFromTextWithoutDisambiguation(demonyme, "en")
+        List<WikidataEntity> foundEntities = WikidataEntityExtractor.extractEntitiesFromTextWithoutDisambiguation(demonyme, "en")
                 .stream().flatMap(List::stream).collect(Collectors.toList());
 
         WikidataEntity china = new WikidataEntity("Q29520", "China");
@@ -65,8 +63,8 @@ public class WikidataEntityExtractorTests {
 
         WikidataEntity creativeWork = new WikidataEntity("Q17537576");
 
-        Assert.assertFalse(WikidataDumpUtil.isCreativeWork(isna));
-        Assert.assertTrue(WikidataDumpUtil.isCreativeWork(starWars));
+        Assert.assertFalse(WikidataSparqlUtil.isCreativeWork(isna));
+        Assert.assertTrue(WikidataSparqlUtil.isCreativeWork(starWars));
     }
 
     @Test
@@ -126,7 +124,7 @@ public class WikidataEntityExtractorTests {
         entitiesToFind.add(new WikidataEntity("Q4729246", "regret"));
 
         for (String word : words) {
-            List<WikidataEntity> foundEntities = extractEntitiesFromTextWithoutDisambiguation(word, "en")
+            List<WikidataEntity> foundEntities = WikidataEntityExtractor.extractEntitiesFromTextWithoutDisambiguation(word, "en")
                     .stream().flatMap(List::stream).collect(Collectors.toList());
             System.out.println(foundEntities);
 
@@ -139,7 +137,7 @@ public class WikidataEntityExtractorTests {
     public void testExtractEntitiesFromComplexWord() {
         String textEn = "US Supreme Court";
 
-        List<WikidataEntity> entitiesEn = extractEntitiesFromText(textEn, "en");
+        List<WikidataEntity> entitiesEn = WikidataEntityExtractor.extractEntitiesFromText(textEn, "en");
 
         System.out.println(entitiesEn);
 
@@ -149,7 +147,7 @@ public class WikidataEntityExtractorTests {
     @Test
     public void testExtractEntitiesFromSentence() {
         String textEn = "A German man has been charged with incitement to hatred after he was pictured with a tattoo apparently of the Nazi death camp at Auschwitz.\n";
-        List<WikidataEntity> entitiesEn = extractEntitiesFromText(textEn, "en");
+        List<WikidataEntity> entitiesEn = WikidataEntityExtractor.extractEntitiesFromText(textEn, "en");
 
         System.out.println(entitiesEn);
     }
@@ -158,7 +156,7 @@ public class WikidataEntityExtractorTests {
     public void testExtractEntitiesFromJapaneseSentence() {
         String textJa = "ドイツ人男性が、ナチスドイツの強制収容所を描いたとされるタトゥーをプールでさらしたとして、憎悪扇動の罪で起訴された。";
 
-        List<WikidataEntity> entitiesJa = extractEntitiesFromText(textJa, "ja");
+        List<WikidataEntity> entitiesJa = WikidataEntityExtractor.extractEntitiesFromText(textJa, "ja");
         System.out.println(entitiesJa);
     }
 
@@ -166,7 +164,7 @@ public class WikidataEntityExtractorTests {
     public void testExtractEntitiesFromEnglishArticle() {
         try {
             String textEn = FileUtils.readFileToString(new File("src/test/resources/org/sciplore/pds/test-bbc/en/35157967/0.txt"), StandardCharsets.UTF_8);
-            List<WikidataEntity> entitiesEn = extractEntitiesFromText(textEn, "en");
+            List<WikidataEntity> entitiesEn = WikidataEntityExtractor.extractEntitiesFromText(textEn, "en");
 
             System.out.println(entitiesEn);
 
@@ -181,12 +179,59 @@ public class WikidataEntityExtractorTests {
     public void testExtractEntitiesFromChineseArticle() {
         try {
             String textZh = FileUtils.readFileToString(new File("src/test/resources/org/sciplore/pds/ECCE/zh/001052744.ZH.txt"), StandardCharsets.UTF_8);
-            List<WikidataEntity> entitiesZh = extractEntitiesFromText(textZh, "zh");
+            List<WikidataEntity> entitiesZh = WikidataEntityExtractor.extractEntitiesFromText(textZh, "zh");
 
             System.out.println(entitiesZh);
 
             Assert.assertTrue(entitiesZh.size() > 0);
             Assert.assertTrue(entitiesZh.stream().noneMatch(Objects::isNull));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testExtractionRuntime() {
+        // base number tokens: 222
+
+        /*
+            Parallel for extraction, querying and disambiguation only:
+            2^0 length: 20.601 seconds
+            2^1 length: 10.558 seconds
+            2^2 length: 17.335 seconds
+            2^3 length: 33.29 seconds
+            2^4 length: 65.056 seconds
+
+            Parallel for all streams:
+            2^0 length: 20.351 seconds
+            2^1 length: 10.339 seconds
+            2^2 length: 14.84 seconds
+            2^3 length: 29.323 seconds
+            2^4 length: 62.042 seconds
+
+            Single-threaded:
+            2^0 length: 21.795 seconds
+            2^1 length: 13.473 seconds
+            2^2 length: 28.428 seconds
+            2^3 length: 58.614 seconds
+            2^4 length: 106.6 seconds
+         */
+
+        try {
+            String textEn = FileUtils.readFileToString(new File("src/test/resources/org/sciplore/pds/test-bbc/en/35157967/0.txt"), StandardCharsets.UTF_8);
+
+            for (int k = 0; k <= 10; k++) {
+                long startTime = System.currentTimeMillis();
+
+                WikidataEntityExtractor.extractEntitiesFromText(textEn, "en");
+
+                long endTime = System.currentTimeMillis();
+                long timeElapsed = endTime - startTime;
+
+                System.out.printf("2^%d length: %s seconds%n", k, timeElapsed / 1000.0);
+
+                textEn = textEn + textEn;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -222,8 +267,8 @@ public class WikidataEntityExtractorTests {
         WikidataEntity three = new WikidataEntity("Q201", "3");
         WikidataEntity five = new WikidataEntity("Q203", "5");
 
-        Assert.assertTrue(extractEntitiesFromText(text1, "en").contains(three));
-        Assert.assertTrue(extractEntitiesFromText(text2, "en").contains(five));
+        Assert.assertTrue(WikidataEntityExtractor.extractEntitiesFromText(text1, "en").contains(three));
+        Assert.assertTrue(WikidataEntityExtractor.extractEntitiesFromText(text2, "en").contains(five));
     }
 
     @Test
@@ -232,7 +277,7 @@ public class WikidataEntityExtractorTests {
 
         WikidataEntity theMinisters = new WikidataEntity("Q7751572", "The Ministers");
 
-        Assert.assertFalse(extractEntitiesFromText(text, "en").contains(theMinisters));
+        Assert.assertFalse(WikidataEntityExtractor.extractEntitiesFromText(text, "en").contains(theMinisters));
     }
 
     @Test
@@ -241,14 +286,14 @@ public class WikidataEntityExtractorTests {
 
         WikidataEntity mp = new WikidataEntity("Q29732832", "mp");
 
-        Assert.assertFalse(extractEntitiesFromText(text, "en").contains(mp));
+        Assert.assertFalse(WikidataEntityExtractor.extractEntitiesFromText(text, "en").contains(mp));
     }
 
     @Test
     public void testExtractEnglishEntitiesInChineseText() {
         String text = "当今年7月菲利普•法尔科(Philip Falcone)同意支付1800万美元以了";
 
-        List<WikidataEntity> entities = extractEntitiesFromText(text, "zh");
+        List<WikidataEntity> entities = WikidataEntityExtractor.extractEntitiesFromText(text, "zh");
 
         System.out.println(entities);
     }
@@ -257,7 +302,7 @@ public class WikidataEntityExtractorTests {
     public void testGetSublistsOfSize() {
         List<Integer> list = Arrays.asList(1, 2, 3, 4);
 
-        List<List<List<Integer>>> result = getSublistsOfSize(list, 3);
+        List<List<List<Integer>>> result = WikidataEntityExtractor.getSublistsOfSize(list, 3);
         System.out.println(result);
 
         Assert.assertTrue(result.equals(Arrays.asList(
@@ -271,15 +316,14 @@ public class WikidataEntityExtractorTests {
     public void testGetSublistsOfSmallList() {
         List<Integer> list1 = Collections.singletonList(1);
 
-        List<List<List<Integer>>> result1 = getSublistsOfSize(list1, 3);
+        List<List<List<Integer>>> result1 = WikidataEntityExtractor.getSublistsOfSize(list1, 3);
         System.out.println(result1);
 
         Assert.assertTrue(result1.equals(Collections.singletonList(Collections.singletonList(list1))));
 
-
         List<Integer> list2 = Arrays.asList(1, 2);
 
-        List<List<List<Integer>>> result2 = getSublistsOfSize(list2, 3);
+        List<List<List<Integer>>> result2 = WikidataEntityExtractor.getSublistsOfSize(list2, 3);
         System.out.println(result2);
 
         Assert.assertTrue(result2.equals(Collections.singletonList(Arrays.asList(list2, Collections.singletonList(1), Collections.singletonList(2)))));
@@ -289,13 +333,14 @@ public class WikidataEntityExtractorTests {
     @Test
     public void testVerbHandling() {
         String text = "Plane lands on airport.";
-        Assert.assertTrue(extractEntitiesFromText(text, "en").contains(new WikidataEntity("Q844947", "landing")));
+        Assert.assertTrue(WikidataEntityExtractor.extractEntitiesFromText(text, "en")
+                .contains(new WikidataEntity("Q844947", "landing")));
     }
 
     @Test
     public void testNumberHandling() {
         String text = "9";
-        System.out.println(extractEntitiesFromText(text, "en"));
+        System.out.println(WikidataEntityExtractor.extractEntitiesFromText(text, "en"));
     }
 
     @Test
@@ -304,23 +349,39 @@ public class WikidataEntityExtractorTests {
 
         try {
             String text = FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8);
-            extractEntitiesFromText(text, "en");
+            WikidataEntityExtractor.extractEntitiesFromText(text, "en");
         } catch (IOException e) {
             Assert.fail();
             e.printStackTrace();
         }
+    }
 
+    @Test
+    public void testExtractEntitiesFromSpanishText() {
+        String textEs = "La enmienda n.º 7 propone ciertos cambios en las referencias a los párrafos.";
+        String textEn = "Amendment 7 changes in references to paragraphs.";
+
+        List<WikidataEntity> entities = WikidataEntityExtractor.extractEntitiesFromText(textEs, "es");
+
+        System.out.println(entities);
     }
 
     /**
+     * DumpUtil:
+     * <p>
      * Precision  = 0.6372093023255814
      * Recall     = 0.6061946902654868
      * F-Measure  = 0.6213151927437641
+     * <p>
+     * SparqlUtil:
+     * <p>
+     * Precision  = 0.6089108910891089
+     * Recall     = 0.5442477876106194
+     * F-Measure  = 0.5747663551401868
      */
     @Test
     public void testExtractEntitiesFromManuallyAnnotatedText() {
-        ClassLoader classLoader = WikidataEntityExtractorTests.class.getClassLoader();
-        File csvFile = new File(Objects.requireNonNull(classLoader.getResource("com/fabianmarquart/closa/util/wikidata/sts-hdl2016.csv")).getFile());
+        File csvFile = new File("src/test/resources/org/sciplore/pds/test-wikidata/sts-hdl2016.csv");
 
         int relevantElements = 0;
         int selectedElements = 0;
@@ -332,26 +393,19 @@ public class WikidataEntityExtractorTests {
             CSVFormat format = CSVFormat.DEFAULT;
             List<CSVRecord> records = CSVParser.parse(reader, format).getRecords();
 
-            // records: 22
-            // passing: 17, 18, 19, 20, 21
             for (int i = 0; i < records.size(); i++) {
-
                 System.out.println("////////////////// Pair " + i + " //////////////////");
                 CSVRecord record = records.get(i);
-                /*
-                if (i == 16 || i == 14) {
-                    continue;
-                }*/
 
                 // get information from csv and from SPARQL
                 String sentence1 = record.get(5);
                 System.out.println("Sentence 1: " + sentence1);
 
                 Set<WikidataEntity> manualEntities1 = Arrays.stream(record.get(9).split(" "))
-                        .map(WikidataDumpUtil::getEntityById)
+                        .map(WikidataSparqlUtil::getEntityById)
                         .collect(Collectors.toSet());
 
-                Set<WikidataEntity> extractedEntities1 = new HashSet<>(extractEntitiesFromText(sentence1, "en"));
+                Set<WikidataEntity> extractedEntities1 = new HashSet<>(WikidataEntityExtractor.extractEntitiesFromText(sentence1, "en"));
                 System.out.println("Manual:     " + Sets.intersection(manualEntities1, extractedEntities1)
                         + ANSI_BLUE + Sets.difference(manualEntities1, extractedEntities1) + ANSI_RESET);
                 System.out.println("Extracted:  " + ANSI_GREEN + Sets.intersection(manualEntities1, extractedEntities1)
@@ -362,10 +416,10 @@ public class WikidataEntityExtractorTests {
                 System.out.println("Sentence 2: " + sentence2);
 
                 Set<WikidataEntity> manualEntities2 = Arrays.stream(record.get(10).split(" "))
-                        .map(WikidataDumpUtil::getEntityById)
+                        .map(WikidataSparqlUtil::getEntityById)
                         .collect(Collectors.toSet());
 
-                Set<WikidataEntity> extractedEntities2 = new HashSet<>(extractEntitiesFromText(sentence2, "en"));
+                Set<WikidataEntity> extractedEntities2 = new HashSet<>(WikidataEntityExtractor.extractEntitiesFromText(sentence2, "en"));
 
                 System.out.println("Manual:     " + Sets.intersection(manualEntities2, extractedEntities2)
                         + ANSI_BLUE + Sets.difference(manualEntities2, extractedEntities2) + ANSI_RESET);
@@ -400,4 +454,5 @@ public class WikidataEntityExtractorTests {
 
 
     }
+
 }

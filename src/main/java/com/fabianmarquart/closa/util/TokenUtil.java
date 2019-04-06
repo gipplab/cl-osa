@@ -1,15 +1,8 @@
 package com.fabianmarquart.closa.util;
 
+import com.fabianmarquart.closa.classification.TextClassifier;
+import com.fabianmarquart.closa.language.LanguageDetector;
 import com.fabianmarquart.closa.model.Token;
-import com.google.common.base.Optional;
-import com.optimaize.langdetect.LanguageDetector;
-import com.optimaize.langdetect.LanguageDetectorBuilder;
-import com.optimaize.langdetect.i18n.LdLocale;
-import com.optimaize.langdetect.ngram.NgramExtractors;
-import com.optimaize.langdetect.profiles.LanguageProfile;
-import com.optimaize.langdetect.profiles.LanguageProfileReader;
-import com.optimaize.langdetect.text.CommonTextObjectFactories;
-import com.optimaize.langdetect.text.TextObjectFactory;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
 import edu.stanford.nlp.ling.CoreLabel;
@@ -25,11 +18,13 @@ import edu.stanford.nlp.util.CoreMap;
 import edu.stanford.nlp.util.PropertiesUtils;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.atilika.kuromoji.Tokenizer;
 import org.languagetool.AnalyzedTokenReadings;
 import org.languagetool.tagging.de.GermanTagger;
 import org.tartarus.snowball.SnowballProgram;
 import org.tartarus.snowball.ext.*;
+import postaggerspanishlanguage.POSTaggerSpanishLanguage;
 import ru.morpher.ws3.Client;
 import ru.morpher.ws3.ClientBuilder;
 
@@ -41,8 +36,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+
 /**
- * This class does everything related to tokenization, stop-word removal and punctation mark
+ * This class does everything related to tokenization, stop-word removal, punctuation mark
  * stripping and language detection.
  * <p>
  * Created by Fabian Marquart on 2016/12/13.
@@ -56,6 +52,15 @@ public class TokenUtil {
     private static final String symbolJa = "記号";
     private static final String verbJa = "動詞";
     private static final String fullStopJa = "句点";
+    private static Logger logger = Logger.getLogger(TokenUtil.class);
+
+    private static LanguageDetector languageDetector;
+    private static TextClassifier textClassifier;
+
+    static {
+        TokenUtil.languageDetector = new LanguageDetector();
+        TokenUtil.textClassifier = new TextClassifier();
+    }
 
     /**
      * Tokenize white-space separated text into one list of tokens.
@@ -118,6 +123,22 @@ public class TokenUtil {
         Client client = new ClientBuilder().build();
 
         throw new NotImplementedException("");
+    }
+
+    private static List<List<Token>> namedEntityTokenizeSpanish(String text) {
+        List<List<Token>> tokensBySentence = new ArrayList<>();
+        List<Token> tokens = new ArrayList<>();
+
+        POSTaggerSpanishLanguage posTaggerSpanishLanguage = new POSTaggerSpanishLanguage();
+
+        try {
+            posTaggerSpanishLanguage.tokenize(text, "", "");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return tokensBySentence;
     }
 
     /**
@@ -274,6 +295,8 @@ public class TokenUtil {
                                     "untokenizable", "noneDelete"));
                     break;
                 case "es":
+                    // TODO: lemmatize
+                    /*
                     pipeline = new StanfordCoreNLP(
                             PropertiesUtils.asProperties(
                                     "annotators", "tokenize, ssplit, pos, lemma, ner", //, parse",
@@ -283,6 +306,8 @@ public class TokenUtil {
                                     "ner.useSUTime", "false",
                                     "untokenizable", "noneDelete"));
                     break;
+                    */
+                    return namedEntityTokenizeSpanish(text);
                 case "ja":
                     return namedEntityTokenizeJapanese(text);
                 case "ru":
@@ -376,7 +401,7 @@ public class TokenUtil {
      */
     public static List<Token> tokenize(String textContent, boolean detectLanguage) {
         if (detectLanguage) {
-            String language = detectLanguage(textContent);
+            String language = languageDetector.detectLanguage(textContent);
             return tokenize(textContent, language);
         } else {
             // white-space separated language
@@ -654,8 +679,7 @@ public class TokenUtil {
      * @return list of punctuation symbols.
      */
     static List<String> getPunctuation() {
-        // System.out.println(TokenUtil.class.getResource("."));
-        InputStream inputStream = TokenUtil.class.getResourceAsStream("/corpus/punctuation/punctuation.txt");
+        InputStream inputStream = WordNetUtil.class.getResourceAsStream("/corpus/punctuation/punctuation.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
         // create list of punctuation symbols
@@ -821,50 +845,5 @@ public class TokenUtil {
     }
 
 
-    /**
-     * Detects a text's language.
-     *
-     * @param text the text.
-     * @return language code string.
-     */
-    public static String detectLanguage(String text) {
-        // suppress printing of this method
-        PrintStream out = System.out;
-        System.setOut(new PrintStream(new OutputStream() {
-            @Override
-            public void write(int b) {
-            }
-        }));
 
-        try {
-            // start
-            Optional<LdLocale> ldLocaleOptional = Optional.absent();
-
-            try {
-                // load all languages
-                List<LanguageProfile> languageProfiles = new LanguageProfileReader().readAllBuiltIn();
-                // build language detector
-                LanguageDetector languageDetector = LanguageDetectorBuilder.create(NgramExtractors.standard())
-                        .withProfiles(languageProfiles)
-                        .build();
-
-                // create a text object factory
-                TextObjectFactory textObjectFactory = CommonTextObjectFactories.forDetectingOnLargeText();
-
-                // detect the suspicious text's language, (translate) and tokenize it
-                ldLocaleOptional = languageDetector.detect(textObjectFactory.forText(text));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            if (ldLocaleOptional != null && ldLocaleOptional.isPresent()) {
-                return ldLocaleOptional.get().getLanguage();
-            }
-        } finally {
-            System.setOut(out);
-        }
-
-        // default
-        return "en";
-    }
 }

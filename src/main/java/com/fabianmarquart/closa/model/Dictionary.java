@@ -1,6 +1,6 @@
 package com.fabianmarquart.closa.model;
 
-import autovalue.shaded.com.google.common.common.collect.Ordering;
+import com.google.common.collect.Ordering;
 import org.apache.commons.math3.analysis.UnivariateFunction;
 import org.apache.commons.math3.linear.OpenMapRealVector;
 import org.apache.commons.math3.linear.SparseRealVector;
@@ -140,12 +140,12 @@ public class Dictionary<T> {
      * Queries the inverted index dictionary.
      *
      * @param queryTerms query
-     * @return the matching document ids.
+     * @return the document ids - score map.
      */
-    public List<String> query(final List<T> queryTerms) {
+    public Map<String, Double> query(final List<T> queryTerms) {
 
         if (queryTerms.isEmpty()) {
-            return new ArrayList<>();
+            return new HashMap<>();
         }
 
         // 1 vector building
@@ -232,7 +232,7 @@ public class Dictionary<T> {
 
 
         // 3 compare
-        Map<String, Double> docIdScoreMap = new HashMap<>();
+        Map<String, Double> documentIdScoreMap = new HashMap<>();
 
         for (Map.Entry<String, SparseRealVector> docIdVectorEntry : docIdVectorMap.entrySet()) {
             String docId = docIdVectorEntry.getKey();
@@ -260,24 +260,14 @@ public class Dictionary<T> {
             }
 
             // 3.4 put the score
-            docIdScoreMap.put(docId, score);
+            documentIdScoreMap.put(docId, score);
             // System.out.println(docId + ", " + score);
         }
 
-        List<Double> highestScores = Ordering.natural().greatestOf(docIdScoreMap.values(), 1);
+        List<Double> highestScores = Ordering.natural().greatestOf(documentIdScoreMap.values(), 1);
 
 
-        return docIdScoreMap.entrySet().stream()
-                .filter(entry -> //entry.getValue() > 0.34
-                                // &&
-                        {
-                            //System.out.println(entry.getKey() + ": " + entry.getValue());
-                            return entry.getValue() > 0.0 && highestScores.contains(entry.getValue());
-                        }
-                )
-                //.limit(1)
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
+        return documentIdScoreMap;
     }
 
 

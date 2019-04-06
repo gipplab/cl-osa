@@ -1,12 +1,13 @@
 package com.fabianmarquart.closa.util.wikidata;
 
-import com.fabianmarquart.closa.model.WikidataEntity;
 import com.fabianmarquart.closa.model.Dictionary;
-import javafx.util.Pair;
-import org.apache.commons.collections.map.SingletonMap;
+import com.fabianmarquart.closa.model.WikidataEntity;
+import com.fabianmarquart.closa.util.OntologyUtil;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.lang3.tuple.MutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -66,7 +67,7 @@ public class WikidataSimilarityUtilTest {
         List<WikidataEntity> entities2 = WikidataEntityExtractor.extractEntitiesFromText(text2, "en");
 
         System.out.println("Similarity Li:");
-        System.out.println(getDocumentSimilarity(entities1, entities2, WikidataSimilarityUtil.SimilarityFunction.LI));
+        System.out.println(getDocumentSimilarity(entities1, entities2, SimilarityFunction.LI));
 
         System.out.println("Enhanced cosine:");
         System.out.println(ontologyEnhancedCosineSimilarity(entities1, entities2));
@@ -94,7 +95,7 @@ public class WikidataSimilarityUtilTest {
                         .map(WikidataEntity::new)
                         .collect(Collectors.toList());
 
-                documents.put(record.get(3), new Pair<>(suspiciousEntities, candidateEntities));
+                documents.put(record.get(3), new MutablePair<>(suspiciousEntities, candidateEntities));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -129,78 +130,13 @@ public class WikidataSimilarityUtilTest {
     }
 
 
-    /**
-     * Measures runtime for similarity measures
-     * - cosine
-     * - Li
-     * - ontology enhanced cosine
-     * for sample sizes 100 to 1000.
-     */
-    @Test
-    public void testMeasuresRuntime() {
-        /*
-        {
-            100=[1.082, 1337.687, 978.729],
-            200=[1.006, 1334.732, 970.216],
-            300=[1.015, 1322.863, 991.236],
-            400=[1.004, 1355.287, 981.211],
-            500=[1.006, 1374.793, 989.928],
-            600=[1.004, 1398.279, 986.336],
-            700=[1.007, 1404.526, 1089.711,
-            800=[1.008, 1370.095, 987.008],
-            900=[1.004, 1344.846, 989.053]
-        }
-         */
-        int sampleSize = 1000;
-        List<WikidataEntity> firstTestEntities = WikidataDumpUtil.getRandomEntities(sampleSize);
-        List<WikidataEntity> secondTestEntities = WikidataDumpUtil.getRandomEntities(sampleSize);
-
-        Map<Integer, List<Double>> time = new HashMap<>();
-
-        for (int i = 100; i <= 1000; i = i + 100) {
-            System.out.println("Size = " + i);
-            List<Double> timeBySize = new ArrayList<>();
-
-            long startTime = System.currentTimeMillis();
-            WikidataSimilarityUtil.retrieveCandidateByDocumentSimilarity(firstTestEntities.subList(0, i),
-                    new SingletonMap("", secondTestEntities.subList(0, i)),
-                    SimilarityFunction.COSINE);
-            long endTime = System.currentTimeMillis();
-            long timeElapsed = endTime - startTime;
-            timeBySize.add(timeElapsed / 1000.0);
-            System.out.println("Cosine: " + timeElapsed + " seconds");
-
-            startTime = System.currentTimeMillis();
-            WikidataSimilarityUtil.retrieveCandidateByDocumentSimilarity(firstTestEntities.subList(0, i),
-                    new SingletonMap("", secondTestEntities.subList(0, i)),
-                    SimilarityFunction.ENHANCED_COSINE);
-            endTime = System.currentTimeMillis();
-            timeElapsed = endTime - startTime;
-            timeBySize.add(timeElapsed / 1000.0);
-            System.out.println("Enhanced cosine: " + timeElapsed + " seconds");
-
-            /*
-            startTime = System.currentTimeMillis();
-            WikidataSimilarityUtil.retrieveCandidateByDocumentSimilarity(firstTestEntities, secondTestMap, SimilarityFunction.LI);
-            endTime = System.currentTimeMillis();
-            timeElapsed = endTime - startTime;
-            timeBySize.add(timeElapsed / 1000.0);
-            System.out.println("Li: " + timeElapsed + " seconds");
-            */
-
-            time.put(i, timeBySize);
-        }
-
-        System.out.println(time);
-    }
-
     @Test
     public void testOntologyEnhancedCosine() {
         // retrieve manually annotated pairs of roughly equivalent wikidata entity documents
         File csvFile = new File("src/test/resources/org/sciplore/pds/test-wikidata/sts-hdl2016.csv");
 
-        Map<String, List<WikidataEntity>> suspiciousDocuments = new HashMap<>();
-        Map<String, List<WikidataEntity>> candidateDocuments = new HashMap<>();
+        Map<String, List<String>> suspiciousDocuments = new HashMap<>();
+        Map<String, List<String>> candidateDocuments = new HashMap<>();
 
         try (Reader reader = new FileReader(csvFile)) {
 
@@ -208,14 +144,14 @@ public class WikidataSimilarityUtilTest {
             List<CSVRecord> records = CSVParser.parse(reader, format).getRecords();
 
             for (CSVRecord record : records) {
-                List<WikidataEntity> suspiciousEntities = Arrays.stream(record.get(9).split(" "))
-                        .map(WikidataDumpUtil::getEntityById)
+                List<String> suspiciousEntities = Arrays.stream(record.get(9).split(" "))
                         .collect(Collectors.toList());
+
                 suspiciousDocuments.put(record.get(3), suspiciousEntities);
 
-                List<WikidataEntity> candidateEntities = Arrays.stream(record.get(10).split(" "))
-                        .map(WikidataDumpUtil::getEntityById)
+                List<String> candidateEntities = Arrays.stream(record.get(10).split(" "))
                         .collect(Collectors.toList());
+
                 candidateDocuments.put(record.get(3), candidateEntities);
             }
         } catch (IOException e) {
@@ -228,14 +164,19 @@ public class WikidataSimilarityUtilTest {
         int truePositives = 0;
         int falsePositives = 0;
 
-        for (Map.Entry<String, List<WikidataEntity>> suspiciousEntry : suspiciousDocuments.entrySet()) {
-            List<WikidataEntity> suspiciousDocument = suspiciousEntry.getValue();
 
-            List<String> detectedCandidateIds = retrieveCandidateByDocumentSimilarity(suspiciousDocument,
-                    candidateDocuments,
-                    SimilarityFunction.ENHANCED_COSINE);
+        Map<String, Map<String, Double>> candidateScoreMap = OntologyUtil.performEnhancedCosineSimilarityAnalysis(suspiciousDocuments,
+                candidateDocuments);
 
-            if (suspiciousEntry.getKey().equals(detectedCandidateIds.get(0))) {
+        for (Map.Entry<String, Map<String, Double>> candidateScoreEntry : candidateScoreMap.entrySet()) {
+            String suspiciousId = candidateScoreEntry.getKey();
+            String candidateId = candidateScoreEntry.getValue().entrySet()
+                    .stream()
+                    .max(Map.Entry.comparingByValue())
+                    .get()
+                    .getKey();
+
+            if (suspiciousId.equals(candidateId)) {
                 truePositives += 1;
             } else {
                 falsePositives += 1;
@@ -296,7 +237,6 @@ public class WikidataSimilarityUtilTest {
         Map<String, List<WikidataEntity>> candidateDocuments = new HashMap<>();
 
         try (Reader reader = new FileReader(csvFile)) {
-
             CSVFormat format = CSVFormat.DEFAULT;
             List<CSVRecord> records = CSVParser.parse(reader, format).getRecords();
 
@@ -330,40 +270,23 @@ public class WikidataSimilarityUtilTest {
         similarityFunctions.add(SimilarityFunction.RESNIK);
         similarityFunctions.add(SimilarityFunction.LIN);
 
-        for (SimilarityFunction similarityFunction : similarityFunctions) {
+    }
 
-            // initialize retrieval measures
-            int relevantElements = suspiciousDocuments.size();
-            int selectedElements = 0;
-            int truePositives = 0;
-            int falsePositives = 0;
+    @Test
+    public void secoIntrinsicInformationContent() {
+        WikidataEntity hill = new WikidataEntity("Q54050", "hill");
+        WikidataEntity coast = new WikidataEntity("Q93352", "coast");
 
-            for (Map.Entry<String, List<WikidataEntity>> suspiciousEntry : suspiciousDocuments.entrySet()) {
-                List<WikidataEntity> suspiciousDocument = suspiciousEntry.getValue();
+        Assert.assertTrue(WikidataSimilarityUtil.secoIntrinsicInformationContent(hill) == 0.2803218544469863);
+        Assert.assertTrue(WikidataSimilarityUtil.secoIntrinsicInformationContent(coast) == 0.4428415349722683);
+    }
 
-                List<String> detectedCandidateIds = retrieveCandidateByDocumentSimilarity(
-                        suspiciousDocument,
-                        candidateDocuments,
-                        similarityFunction);
+    @Test
+    public void zhouIntrinsicInformationContent() {
+        WikidataEntity hill = new WikidataEntity("Q54050", "hill");
+        WikidataEntity coast = new WikidataEntity("Q93352", "coast");
 
-                if (suspiciousEntry.getKey().equals(detectedCandidateIds.get(0))) {
-                    truePositives += 1;
-                } else {
-                    falsePositives += 1;
-                }
-                selectedElements += 1;
-            }
-
-            double precision = (double) truePositives / (selectedElements);
-            double recall = (double) truePositives / (relevantElements);
-            double fMeasure = 2 * (precision * recall) / (precision + recall);
-
-            System.out.println("Function: " + similarityFunction.name());
-            System.out.println();
-            System.out.println("Precision  = " + precision);
-            System.out.println("Recall     = " + recall);
-            System.out.println("F-Measure  = " + fMeasure);
-            System.out.println();
-        }
+        System.out.println(WikidataSimilarityUtil.zhouIntrinsicInformationContent(hill, 0.5));
+        System.out.println(WikidataSimilarityUtil.zhouIntrinsicInformationContent(coast, 0.5));
     }
 }

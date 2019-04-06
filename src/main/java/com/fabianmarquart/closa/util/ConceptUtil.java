@@ -2,6 +2,7 @@ package com.fabianmarquart.closa.util;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
+import com.fabianmarquart.closa.language.LanguageDetector;
 import com.fabianmarquart.closa.model.Token;
 import com.google.common.collect.Lists;
 import com.google.gson.*;
@@ -12,6 +13,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.slf4j.LoggerFactory;
 
@@ -37,6 +39,9 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  */
 public class ConceptUtil {
 
+
+    private static Logger logger = Logger.getLogger(TokenUtil.class);
+
     private static String wikipediaTitleQuery = ".wikipedia.org/w/api.php?action=query&titles=";
     private static String wikipediaPropsAndFormat = "&prop=pageprops&ppprop=disambiguation&format=json";
 
@@ -47,7 +52,12 @@ public class ConceptUtil {
     private static HttpClient client = HttpClientBuilder.create().build();
     private static JsonParser parser = new JsonParser();
 
+    private static LanguageDetector languageDetector;
+
+
     static {
+        ConceptUtil.languageDetector = new LanguageDetector();
+
         LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
         ch.qos.logback.classic.Logger apacheHttpLogger = loggerContext.getLogger("org.apache.http");
         apacheHttpLogger.setLevel(Level.OFF);
@@ -61,7 +71,7 @@ public class ConceptUtil {
      * @return the list of concepts.
      */
     public static List<Token> getConceptsFromString(String text, int n) {
-        String languageCode = TokenUtil.detectLanguage(text);
+        String languageCode = languageDetector.detectLanguage(text);
         return getConceptsFromString(text, n, languageCode);
     }
 
@@ -314,9 +324,9 @@ public class ConceptUtil {
 
 
         } catch (JsonSyntaxException | IllegalStateException e) {
-            e.printStackTrace();
+            logger.trace("Malformed json file: " + jsonFile);
         } catch (ClassCastException | NullPointerException e) {
-            e.printStackTrace();
+            logger.trace("Could not process json file: " + jsonFile);
         }
         return new HashMap<>();
     }
@@ -552,14 +562,17 @@ public class ConceptUtil {
                 requestSuccessful = true;
                 return response.toString();
             } catch (MalformedURLException e) {
+                logger.trace("Malformed URL: " + strURL);
                 return "missing";
             } catch (UnknownHostException e) {
+                logger.trace("Unknown host. Trying again…");
                 try {
                     TimeUnit.SECONDS.sleep(5);
                 } catch (InterruptedException ie) {
                     ie.printStackTrace();
                 }
             } catch (IOException e) {
+                logger.trace("HTTP response 503. Trying again: " + strURL);
                 e.printStackTrace();
                 try {
                     TimeUnit.SECONDS.sleep(5);
@@ -618,10 +631,10 @@ public class ConceptUtil {
             }
             return translations.get(0);
         } catch (ClassCastException | NullPointerException e) {
-            e.printStackTrace();
+
+            // else return null
+            logger.trace("Could not process json file: " + jsonFile);
+            return null;
         }
-
-        return null;
     }
-
 }

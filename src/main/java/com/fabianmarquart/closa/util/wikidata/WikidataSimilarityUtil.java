@@ -5,21 +5,21 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import com.fabianmarquart.closa.model.WikidataEntity;
-import javafx.util.Pair;
 import me.tongfei.progressbar.ProgressBar;
-import me.tongfei.progressbar.ProgressBarStyle;
 import org.apache.commons.collections4.SetUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.math3.linear.OpenMapRealVector;
 import org.apache.commons.math3.linear.SparseRealVector;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
-import java.util.function.ToDoubleFunction;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static com.fabianmarquart.closa.util.wikidata.WikidataDumpUtil.*;
-
 
 /**
  * Created by Fabian Marquart 2018/11/02.
@@ -30,78 +30,6 @@ public class WikidataSimilarityUtil {
         LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
         Logger mongoDbDriverLogger = loggerContext.getLogger("org.mongodb.driver");
         mongoDbDriverLogger.setLevel(Level.OFF);
-    }
-
-
-    /**
-     * Detects a source document for a suspicious document and an id - document map of candidate documents.
-     *
-     * @param suspiciousDocument suspicious document
-     * @param candidateDocuments id - document map of candidate documents.
-     * @param similarityFunction enum: function for document similarity
-     * @param numberOfCandidates how many candidates to retrieve.
-     * @return candidate id of source.
-     */
-    public static List<String> retrieveCandidatesByDocumentSimilarity(
-            List<WikidataEntity> suspiciousDocument,
-            Map<String, List<WikidataEntity>> candidateDocuments,
-            SimilarityFunction similarityFunction,
-            int numberOfCandidates) {
-        if (numberOfCandidates > candidateDocuments.size()) {
-            throw new IllegalArgumentException("Cannot retrieve more candidates than given.");
-        }
-
-        int stepsLinear = suspiciousDocument.size() + (candidateDocuments.values().stream().mapToInt(List::size).sum());
-        int stepsQuadratic = suspiciousDocument.size() * (candidateDocuments.values().stream().mapToInt(List::size).sum());
-
-        ProgressBar progressBar;
-        if (similarityFunction == SimilarityFunction.COSINE) {
-            progressBar = new ProgressBar("Retrieval with " + similarityFunction.name(), stepsLinear, ProgressBarStyle.ASCII).start();
-        } else {
-            progressBar = new ProgressBar("Retrieval with " + similarityFunction.name(), stepsQuadratic, ProgressBarStyle.ASCII).start();
-        }
-
-        List<String> retrievedCandidateIds = candidateDocuments.entrySet()
-                .stream()
-                .collect(Collectors.toMap(Map.Entry::getKey,
-                        candidateEntry -> {
-                            switch (similarityFunction) {
-                                case COSINE:
-                                    return cosineSimilarity(suspiciousDocument, candidateEntry.getValue(), progressBar);
-                                case ENHANCED_COSINE:
-                                    return ontologyEnhancedCosineSimilarity(suspiciousDocument, candidateEntry.getValue(), progressBar);
-                                default:
-                                    return getDocumentSimilarity(suspiciousDocument, candidateEntry.getValue(), similarityFunction, progressBar);
-                            }
-                        }))
-                .entrySet()
-                .stream()
-                .sorted(Comparator.comparingDouble((ToDoubleFunction<Map.Entry<String, Double>>) Map.Entry::getValue).reversed())
-                .map(Map.Entry::getKey)
-                .limit(numberOfCandidates)
-                .collect(Collectors.toList());
-
-        progressBar.stop();
-
-        return retrievedCandidateIds;
-    }
-
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Detects a source document for a suspicious document and an id - document map of candidate documents.
-     *
-     * @param suspiciousDocument suspicious document
-     * @param candidateDocuments id - document map of candidate documents.
-     * @param similarityFunction enum: function for document similarity
-     * @return candidate id of source.
-     */
-    public static List<String> retrieveCandidateByDocumentSimilarity(
-            List<WikidataEntity> suspiciousDocument,
-            Map<String, List<WikidataEntity>> candidateDocuments,
-            SimilarityFunction similarityFunction) {
-        return retrieveCandidatesByDocumentSimilarity(suspiciousDocument, candidateDocuments, similarityFunction, 1);
     }
 
 
@@ -124,6 +52,7 @@ public class WikidataSimilarityUtil {
         SparseRealVector firstVector = new OpenMapRealVector(union.size());
         SparseRealVector secondVector = new OpenMapRealVector(union.size());
 
+        // vector construction
         for (WikidataEntity firstEntity : firstEntities) {
             firstVector.addToEntry(union.indexOf(firstEntity), 1.0);
             if (progressBar != null) progressBar.step();
@@ -132,6 +61,16 @@ public class WikidataSimilarityUtil {
             secondVector.addToEntry(union.indexOf(secondEntity), 1.0);
             if (progressBar != null) progressBar.step();
         }
+
+        // weighing
+        for (int i = 0; i < firstVector.getDimension(); i++) {
+            firstVector.setEntry(i, firstVector.getEntry(i) > 0 ? 1 : 0);
+        }
+
+        for (int i = 0; i < secondVector.getDimension(); i++) {
+            secondVector.setEntry(i, secondVector.getEntry(i) > 0 ? 1 : 0);
+        }
+
 
         return firstVector.dotProduct(secondVector) / (firstVector.getNorm() * secondVector.getNorm());
     }
@@ -146,7 +85,7 @@ public class WikidataSimilarityUtil {
      */
     public static double cosineSimilarity(List<WikidataEntity> firstEntities,
                                           List<WikidataEntity> secondEntities) {
-        return cosineSimilarity(firstEntities, secondEntities);
+        return cosineSimilarity(firstEntities, secondEntities, null);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -174,14 +113,14 @@ public class WikidataSimilarityUtil {
             // for all entities in second document that are not in the first
             for (WikidataEntity secondEntity : secondEntities) {
                 // get their distance
-                long distance = distanceWithThreshold(firstEntity, secondEntity, 3);
+                long distance = distanceWithThreshold(firstEntity, secondEntity, 4);
 
                 // add the inverse of the shortest path to the second entity to the first vector and vice-versa
                 int firstIndex = union.indexOf(firstEntity);
                 int secondIndex = union.indexOf(secondEntity);
 
-                firstVector.addToEntry(secondIndex, (1.0 / Math.pow(1.0 + distance, 2.0)));
-                secondVector.addToEntry(firstIndex, (1.0 / Math.pow(1.0 + distance, 2.0)));
+                firstVector.addToEntry(secondIndex, 1.0 / Math.pow(1.0 + distance, 2.0));
+                secondVector.addToEntry(firstIndex, 1.0 / Math.pow(1.0 + distance, 2.0));
 
                 if (progressBar != null) progressBar.step();
             }

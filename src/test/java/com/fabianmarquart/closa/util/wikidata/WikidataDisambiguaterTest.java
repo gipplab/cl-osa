@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Collections;
 
+
 public class WikidataDisambiguaterTest {
 
     @Test
@@ -41,7 +42,6 @@ public class WikidataDisambiguaterTest {
 
         Assert.assertTrue(disambiguatedEntity.equals(tree1));
     }
-
 
 
     @Test

@@ -1,12 +1,14 @@
 CL-OSA (cross-language ontology-based similarity analysis) readme
 =================================================================
 
-Description
------------
+Plagiarism detection for Java
+-----------------------------
 
-CL-OSA is an algorithm to retrieve similar documents written in different languages by leveraging entity and ontology information from Wikidata.
+CL-OSA is an algorithm to retrieve similar documents written in different languages by leveraging entity and ontology
+information from a local Wikidata dump.
 
-The algorithm can be used to assist in plagiarism detection by performing ranked retrieval of potential source documents for a suspicious input document.
+The algorithm can be used to assist in plagiarism detection by performing ranked retrieval of potential source documents
+for a suspicious input document.
 
 The input is
 * a suspicious document (.txt)
@@ -15,13 +17,39 @@ The input is
 The output is
 * the most similar candidate document.
 
-Supported languages are:
+#### Plagiarism detection for your files
+
+To execute the application as a standalone, you need to
+
+* [Set up a MongoDB database](#setting-up-the-mongodb-database)
+* [Import the Java sources](#importing-the-java-sources)
+* [Use the OntologyUtil class](#how-to-use)
+
+Use the code snippet and adjust the file paths
+
+    String suspiciousPath = "~/documents/en/35157967/0.txt";
+    String candidateFolderPath = "~/documents/ja/";
+
+    List<String> candidatePaths = FileUtils.listFiles(new File(candidateFolderPath), TrueFileFilter.TRUE, TrueFileFilter.TRUE)
+         .stream()
+         .map(File::getPath)
+         .collect(Collectors.toList());
+
+    Map<String, Double> candidateScoresMap = OntologyUtil.executeAlgorithmAndComputeScores(suspiciousPath, candidatePaths);
+
+    System.out.println(candidateScoresMap);
+
+
+
+#### Supported languages
+
 * English (en)
 * French (fr)
 * German (de)
 * Spanish (es)
 * Chinese (zh)
 * Japanese (ja)
+
 
 
 ### What CL-OSA does
@@ -40,6 +68,7 @@ by Jérémy Ferrero.
 
 Also, CL-OSA does not search the internet
 for possible sources. This is addressed in different algorithms.
+
 
 
 Setting up the MongoDB database
@@ -111,12 +140,10 @@ If you do not need Japanese language support, you can remove the dependency from
 the method namedEntityTokenizeJapanese inside TokenUtil. 
 This does not affect the other languages.
 
-Usage
------
+How to use
+----------
 
-Now, you can test you text documents. 
-
-Use OntologyUtil's method "executeAlgorithmAndGetCandidates". First argument is the suspicious file path
+Use OntologyUtil's method "executeAlgorithmAndComputeScores". First argument is the suspicious file path
 and second argument is the candidate file path.
 
     String suspiciousPath = "~/documents/en/35157967/0.txt";
@@ -124,22 +151,16 @@ and second argument is the candidate file path.
 
     List<String> candidatePaths = FileUtils.listFiles(new File(candidateFolderPath), TrueFileFilter.TRUE, TrueFileFilter.TRUE)
          .stream()
-         .sorted()
-         .filter(file -> !file.getName().equals(".DS_Store"))
          .map(File::getPath)
          .collect(Collectors.toList());
 
-    List<String> candidates = OntologyUtil.executeAlgorithmAndGetCandidates(suspiciousPath, candidatePaths);
-
-    System.out.println(candidates);
+    Map<String, Double> candidateScoreMap = OntologyUtil.executeAlgorithmAndComputeScores(suspiciousPath, candidatePaths);
+    
+    System.out.println(candidateScoreMap);
     
 The output is a ranked list of candidates, with the first being the top-ranked document.
 By default, CL-OSA returns only the top-ranked document.
 
-<!--- VVV
-Good would be some result examples or even a reference/link to test class with which you can try a mini example.
-Units test with some resource files with a simple example would be perfect.
----> 
 
 Pre-processing steps will be saved to a directory named *preprocessed* which will be created in your
 home directory if the input documents are also in the home directory. Otherwise, the directory will be created in
@@ -204,6 +225,7 @@ omit the languages parameter, but then both file names have to be exactly the sa
 If you would like to increase the pool of possible candidate files that have no suspicious file associated,
 you can add a third directory parameter:
 
+
     try {
         EvaluationSet evaluationSetCLOSA = new CLOSAEvaluationSet(
                 new File("~/documents/en"), "en",
@@ -257,9 +279,9 @@ The classes of concern, sorted by decreasing order of relevance. For general use
 
 ### Stack trace
 
-The methods called, starting with the "main" method executeAlgorithmAndGetCandidates inside OntologyUtil:
+The methods called, starting with the "main" method executeAlgorithmAndComputeScores inside OntologyUtil:
 
-* OntologyUtil.executeAlgorithmAndGetCandidates
+* OntologyUtil.executeAlgorithmAndComputeScores
     * OntologyUtil.preProcess
         * OntologyUtil.extractEntitiesFromText
             * WikidataEntityExtractor.extractEntitiesFromText
@@ -282,41 +304,3 @@ The methods called, starting with the "main" method executeAlgorithmAndGetCandid
     * OntologyUtil.performCosineSimilarityAnalysis
         * Dictionary
         
-        
-### HyPlag integration
-
-When using CL-OSA as part of HyPlag, it can be used like any other heuristic algorithm that is included 
-with HyPlag:
-
-    curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{ \ 
-       "algorithmIds": [ \ 
-         "closa" \ 
-       ], \ 
-       "scopes": [ \ 
-         "0" \ 
-       ], \ 
-       "selectedDocumentIds": [ \ 
-         1, 2, 3 \ 
-       ], \ 
-       "sourceDocumentId": 0 \ 
-     }' 'http://localhost:8080/detection?external_id=1&resultTimeout=600'
-
-The result can be obtained like such:
-
-    curl -X GET --header 'Accept: application/json' 'http://localhost:8080/result/algorithm/closa?srcDocId=0&selectedDocIds=1%2C%202%2C%203'
-
-Integration into the current HyPlag system is not yet completed, but it works on the current configuration.
-Configuration will be moved to the *config/example.application.yaml* file, including the following parameters:
-
-* Choice of local MongoDB or SPARQL endpoint usage (default is MongoDB)
-* MongoDB server, port and database names (defaults are localhost, 27017, wikidata)
-* Number of output documents for ranked retrieval (default is 1)
-* API keys for TextClassificationUtil
-
-<!--- VVV 
-A small section on integration with HyPlag can still be done.
-In theory, the algorithms are also usable when the system is running as a server application and works
-with indexed documents from the DB / ES, correct?
-At least that's what it looks like to me, when I look at the algorithms.
-On the actual practical site a few changes are necessary, but that can be stated.
---->

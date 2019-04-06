@@ -1,13 +1,15 @@
 package com.fabianmarquart.closa.util;
 
+import com.fabianmarquart.closa.classification.Category;
+import com.fabianmarquart.closa.classification.TextClassifier;
+import com.fabianmarquart.closa.language.LanguageDetector;
+import com.fabianmarquart.closa.model.Dictionary;
+import com.fabianmarquart.closa.model.WikidataEntity;
+import com.fabianmarquart.closa.util.wikidata.WikidataEntityExtractor;
+import com.fabianmarquart.closa.util.wikidata.WikidataSimilarityUtil;
 import me.tongfei.progressbar.ProgressBar;
 import me.tongfei.progressbar.ProgressBarStyle;
 import org.apache.commons.io.FileUtils;
-import com.fabianmarquart.closa.model.Dictionary;
-import com.fabianmarquart.closa.model.WikidataEntity;
-import com.fabianmarquart.closa.util.wikidata.WikidataDumpUtil;
-import com.fabianmarquart.closa.util.wikidata.WikidataEntityExtractor;
-import com.fabianmarquart.closa.util.wikidata.WikidataSimilarityUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,10 +22,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.fabianmarquart.closa.util.wikidata.WikidataSimilarityUtil.retrieveCandidateByDocumentSimilarity;
 
 public class OntologyUtil {
 
+    private static LanguageDetector languageDetector;
+    private static TextClassifier textClassifier;
+
+    static {
+        OntologyUtil.languageDetector = new LanguageDetector();
+        OntologyUtil.textClassifier = new TextClassifier();
+    }
 
     /**
      * Whole CL-OSA pipeline.
@@ -32,19 +40,19 @@ public class OntologyUtil {
      * @param candidateDocumentPaths paths to the candidate documents (.txt)
      * @return list of candidate paths matching the suspicious
      */
-    public static List<String> executeAlgorithmAndGetCandidates(String suspiciousDocumentPath, List<String> candidateDocumentPaths) {
+    public static Map<String, Double> executeAlgorithmAndComputeScores(String suspiciousDocumentPath, List<String> candidateDocumentPaths) {
         Map<String, List<String>> suspiciousIdTokensMap = new HashMap<>();
         Map<String, List<String>> candidateIdTokensMap = new HashMap<>();
 
         try {
             suspiciousIdTokensMap.put(suspiciousDocumentPath,
                     preProcess(suspiciousDocumentPath,
-                            TokenUtil.detectLanguage(FileUtils.readFileToString(new File(suspiciousDocumentPath), StandardCharsets.UTF_8))));
+                            languageDetector.detectLanguage(FileUtils.readFileToString(new File(suspiciousDocumentPath), StandardCharsets.UTF_8))));
 
             for (String candidateDocumentPath : candidateDocumentPaths) {
                 candidateIdTokensMap.put(candidateDocumentPath,
                         preProcess(candidateDocumentPath,
-                                TokenUtil.detectLanguage(FileUtils.readFileToString(new File(candidateDocumentPath), StandardCharsets.UTF_8))));
+                                languageDetector.detectLanguage(FileUtils.readFileToString(new File(candidateDocumentPath), StandardCharsets.UTF_8))));
             }
 
             return performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
@@ -52,7 +60,7 @@ public class OntologyUtil {
             e.printStackTrace();
         }
 
-        return new ArrayList<>();
+        return new HashMap<>();
     }
 
     /**
@@ -67,20 +75,29 @@ public class OntologyUtil {
             // read in the file
             String documentText = FileUtils.readFileToString(new File(documentPath), StandardCharsets.UTF_8);
 
-            String documentEntitiesPath = documentPath.contains(System.getProperty("user.home"))
-                    ? documentPath.replace(System.getProperty("user.home"),
-                    System.getProperty("user.home") + "/preprocessed/" + OntologyUtil.class.getSimpleName() + "/")
-                    : Paths.get("preprocessed", documentPath).toAbsolutePath().toString();
-
-            // if the file has already been pre-processed
-            if (Files.exists(Paths.get(documentEntitiesPath)) // file exists and is not empty
-                    && !FileUtils.readLines(new File(documentEntitiesPath), StandardCharsets.UTF_8).isEmpty()) {
-                return new ArrayList<>(FileUtils.readLines(new File(documentEntitiesPath), StandardCharsets.UTF_8));
+            String documentEntitiesPath;
+            if (documentPath.contains("src/test/resources/org/sciplore/pds/")) {
+                documentEntitiesPath = documentPath.replace("pds", String.format("pds/preprocessed/%s", OntologyUtil.class.getSimpleName()));
+            } else if (documentPath.contains(System.getProperty("user.home"))) {
+                documentEntitiesPath = documentPath.replace(System.getProperty("user.home"),
+                        String.format("%s/preprocessed/%s/", System.getProperty("user.home"), OntologyUtil.class.getName()));
+            } else {
+                documentEntitiesPath = Paths.get("preprocessed", documentPath).toAbsolutePath().toString();
             }
 
-            // pre-process the file
-            List<String> documentEntities = preProcess(documentPath, documentText, documentLanguage);
-            FileUtils.writeLines(new File(documentEntitiesPath), documentEntities);
+            List<String> documentEntities;
+            Category documentCategory = textClassifier.classifyText(documentText, documentLanguage);
+
+            // document entities
+            if (Files.exists(Paths.get(documentEntitiesPath))) {
+                // if the file has already been pre-processed
+                documentEntities = new ArrayList<>(FileUtils.readLines(new File(documentEntitiesPath), StandardCharsets.UTF_8));
+            } else {
+                // pre-process the file
+                documentEntities = preProcess(documentPath, documentText, documentLanguage, documentCategory);
+                FileUtils.writeLines(new File(documentEntitiesPath), documentEntities);
+                System.out.println("Written entities to " + documentEntitiesPath);
+            }
 
             return documentEntities;
         } catch (IOException e) {
@@ -98,8 +115,8 @@ public class OntologyUtil {
      * @param documentLanguage the document's language
      * @return concepts.
      */
-    public static List<String> preProcess(String documentId, String documentText, String documentLanguage) {
-        return WikidataEntityExtractor.extractEntitiesFromText(documentText, documentLanguage)
+    public static List<String> preProcess(String documentId, String documentText, String documentLanguage, Category documentCategory) {
+        return WikidataEntityExtractor.extractEntitiesFromText(documentText, documentLanguage, documentCategory)
                 .stream()
                 .map(WikidataEntity::getId)
                 .collect(Collectors.toList());
@@ -112,7 +129,7 @@ public class OntologyUtil {
      * @param candidateIdTokensMap  map: candidate id -> tokens list
      * @return retrieved candidates.
      */
-    public static Map<String, List<String>> performCosineSimilarityAnalysis(
+    public static Map<String, Map<String, Double>> performCosineSimilarityAnalysis(
             Map<String, List<String>> suspiciousIdTokensMap,
             Map<String, List<String>> candidateIdTokensMap
     ) {
@@ -120,7 +137,7 @@ public class OntologyUtil {
         System.out.println("Create dictionary \n");
         Dictionary<String> dictionary = new Dictionary<>(candidateIdTokensMap);
 
-        Map<String, List<String>> suspiciousIdDetectedCandidateIdsMap = new HashMap<>();
+        Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap = new HashMap<>();
 
         // perform detailed analysis
         System.out.println("Perform detailed analysis \n");
@@ -135,14 +152,15 @@ public class OntologyUtil {
             List<String> suspiciousConcepts = entry.getValue();
 
             // look in dictionary
-            List<String> detectedSourceIds = dictionary.query(suspiciousConcepts);
+            Map<String, Double> detectedSourceIdScoreMap = dictionary.query(suspiciousConcepts);
 
             progressBar.step();
-            suspiciousIdDetectedCandidateIdsMap.put(suspiciousId, detectedSourceIds);
+            suspiciousIdCandidateScoresMap.put(suspiciousId, detectedSourceIdScoreMap);
         }
+
         progressBar.stop();
 
-        return suspiciousIdDetectedCandidateIdsMap;
+        return suspiciousIdCandidateScoresMap;
     }
 
 
@@ -153,23 +171,31 @@ public class OntologyUtil {
      * @param candidateIdTokensMap  map: candidate id -> tokens list
      * @return retrieved candidates.
      */
-    public static Map<String, List<String>> performEnhancedCosineSimilarityAnalysis(
+    public static Map<String, Map<String, Double>> performEnhancedCosineSimilarityAnalysis(
             Map<String, List<String>> suspiciousIdTokensMap,
-            Map<String, List<String>> candidateIdTokensMap
-    ) {
-        Map<String, List<String>> suspiciousIdDetectedCandidateIdsMap = new HashMap<>();
+            Map<String, List<String>> candidateIdTokensMap) {
+        Map<String, Map<String, Double>> suspiciousIdDetectedCandidateIdsMap = new HashMap<>();
 
         // perform detailed analysis
         System.out.println("Perform detailed analysis \n");
 
         for (Map.Entry<String, List<String>> suspiciousEntry : suspiciousIdTokensMap.entrySet()) {
+
+            Map<String, Double> candidateScoreMap = candidateIdTokensMap.entrySet()
+                    .stream()
+                    .collect(Collectors.toMap(Map.Entry::getKey,
+                            entry -> WikidataSimilarityUtil.cosineSimilarity(suspiciousEntry.getValue()
+                                            .stream()
+                                            .map(WikidataEntity::new)
+                                            .collect(Collectors.toList()),
+                                    entry.getValue()
+                                            .stream()
+                                            .map(WikidataEntity::new)
+                                            .collect(Collectors.toList()))));
+
             suspiciousIdDetectedCandidateIdsMap.put(
                     suspiciousEntry.getKey(),
-                    retrieveCandidateByDocumentSimilarity(
-                            suspiciousEntry.getValue().stream().map(WikidataDumpUtil::getEntityById).collect(Collectors.toList()),
-                            candidateIdTokensMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey,
-                                    entry -> entry.getValue().stream().map(WikidataDumpUtil::getEntityById).collect(Collectors.toList()))),
-                            WikidataSimilarityUtil.SimilarityFunction.ENHANCED_COSINE));
+                    candidateScoreMap);
         }
 
         return suspiciousIdDetectedCandidateIdsMap;

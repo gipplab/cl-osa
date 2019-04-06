@@ -1,17 +1,17 @@
 package com.fabianmarquart.closa.util.wikidata;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
+import com.fabianmarquart.closa.classification.Category;
+import com.fabianmarquart.closa.classification.TextClassifier;
+import com.fabianmarquart.closa.model.Token;
+import com.fabianmarquart.closa.model.WikidataEntity;
+import com.fabianmarquart.closa.util.TokenUtil;
+import com.fabianmarquart.closa.util.WordNetUtil;
 import me.tongfei.progressbar.ProgressBar;
 import me.tongfei.progressbar.ProgressBarStyle;
 import org.apache.commons.lang3.StringUtils;
-import com.fabianmarquart.closa.model.Token;
-import com.fabianmarquart.closa.model.WikidataEntity;
-import com.fabianmarquart.closa.util.TextClassificationUtil;
-import com.fabianmarquart.closa.util.TokenUtil;
-import com.fabianmarquart.closa.util.WordNetUtil;
 
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.fabianmarquart.closa.util.wikidata.WikidataDumpUtil.*;
 
@@ -22,7 +22,6 @@ import static com.fabianmarquart.closa.util.wikidata.WikidataDumpUtil.*;
  */
 public class WikidataEntityExtractor {
 
-    // TODO: Entity nach Wikipedia Aufrufanzahl (oder Text)
     /**
      * Extract Wikidata entities from given text, language.
      * <p>
@@ -33,8 +32,10 @@ public class WikidataEntityExtractor {
      * @return list of Wikidata entities found in the text
      */
     public static List<WikidataEntity> extractEntitiesFromText(String text, String languageCode) {
-        return extractEntitiesFromText(text, languageCode, TextClassificationUtil.classifyText(text, languageCode));
+        return extractEntitiesFromText(text, languageCode, new TextClassifier().classifyText(text, languageCode));
     }
+
+
 
     /**
      * Extract Wikidata entities from given text, language and topic.
@@ -46,7 +47,7 @@ public class WikidataEntityExtractor {
      * @param category     category
      * @return list of Wikidata entities found in the text
      */
-    public static List<WikidataEntity> extractEntitiesFromText(String text, String languageCode, TextClassificationUtil.Category category) {
+    public static List<WikidataEntity> extractEntitiesFromText(String text, String languageCode, Category category) {
         List<List<WikidataEntity>> extractedEntities = extractEntitiesFromTextWithoutDisambiguation(text, languageCode, category);
         List<WikidataEntity> disambiguatedEntities = new ArrayList<>();
 
@@ -62,6 +63,20 @@ public class WikidataEntityExtractor {
         return disambiguatedEntities;
     }
 
+
+    /**
+     * Extract Wikidata entities from given text, language.
+     * <p>
+     * Tokenization / POS-tagging / lemmatization / NER -> filter by POS -> entity extraction.
+     *
+     * @param text         the text
+     * @param languageCode language
+     * @return list of Wikidata entity candidate lists found in the text
+     */
+    public static List<List<WikidataEntity>> extractEntitiesFromTextWithoutDisambiguation(String text, String languageCode) {
+        return extractEntitiesFromTextWithoutDisambiguation(text, languageCode, new TextClassifier().classifyText(text, languageCode));
+    }
+
     /**
      * Extract Wikidata entities from given text, language and topic.
      * <p>
@@ -75,7 +90,7 @@ public class WikidataEntityExtractor {
     public static List<List<WikidataEntity>> extractEntitiesFromTextWithoutDisambiguation(
             String text,
             String languageCode,
-            TextClassificationUtil.Category category) {
+            Category category) {
         // tokenize
         List<Token> tokenList = TokenUtil.namedEntityTokenize(text, languageCode).stream()
                 .flatMap(List::stream).collect(Collectors.toList());
@@ -140,9 +155,10 @@ public class WikidataEntityExtractor {
                         // no Wikimedia disambiguation pages
                         .filter(entity -> !entity.getDescriptions().getOrDefault(languageCode, "").contains("Wikimedia "))
                         // if text is not about fiction, remove pages about music, movies or tv shows
-                        .filter(entity -> category.equals(TextClassificationUtil.Category.fiction) || !isCreativeWork(entity))
+                        .filter(entity -> category.equals(Category.fiction) || !isCreativeWork(entity))
                         // if text is not about biology, remove pages about genes
-                        .filter(entity -> category.equals(TextClassificationUtil.Category.biology) || !isGene(entity))
+                        .filter(entity -> category.equals(Category.biology) || !isGene(entity))
+                        // TODO: if category is not linguistics, remove entities like "the (definite article)"
                         // only keep pages about numbers when the token is numeric
                         .filter(entity -> !StringUtils.isNumeric(entity.getOriginalLemma())
                                 || (StringUtils.isNumeric(entity.getOriginalLemma()) && isNaturalNumber(entity)))
@@ -167,6 +183,7 @@ public class WikidataEntityExtractor {
         return extractedEntities;
     }
 
+
     /**
      * Extract Wikidata entities from given text and language.
      * <p>
@@ -176,8 +193,8 @@ public class WikidataEntityExtractor {
      * @param languageCode language
      * @return list of Wikidata entity candidate lists found in the text
      */
-    public static List<List<WikidataEntity>> extractEntitiesFromTextWithoutDisambiguation(String text, String languageCode) {
-        return extractEntitiesFromTextWithoutDisambiguation(text, languageCode, TextClassificationUtil.classifyText(text, languageCode));
+    public static List<List<WikidataEntity>> extractEntitiesFromTextWithoutDisambiguation(String text, String languageCode, TextClassifier textClassifier) {
+        return extractEntitiesFromTextWithoutDisambiguation(text, languageCode, textClassifier.classifyText(text, languageCode));
     }
 
 

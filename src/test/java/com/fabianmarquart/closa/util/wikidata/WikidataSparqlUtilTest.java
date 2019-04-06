@@ -227,6 +227,22 @@ public class WikidataSparqlUtilTest {
     }
 
     @Test
+    public void testGetMostSpecificParentEntity2() {
+        WikidataEntity lawnMower = new WikidataEntity("Q260521");
+        WikidataEntity snowBlower = new WikidataEntity("Q1351693");
+        WikidataEntity chainsaw = new WikidataEntity("Q208040");
+
+        WikidataEntity tool = new WikidataEntity("Q39546");
+
+        Assert.assertTrue(getMostSpecificParentEntity(getMostSpecificParentEntity(lawnMower, snowBlower), chainsaw).equals(tool));
+
+        // WikidataEntity bicycle = new WikidataEntity("Q11442");
+        WikidataEntity ski = new WikidataEntity("Q172226");
+
+        System.out.println(getMostSpecificParentEntity(tool, ski).equals(tool));
+    }
+
+    @Test
     public void testIsNumber() {
         WikidataEntity one = new WikidataEntity("Q199", "1");
         WikidataEntity pi = new WikidataEntity("Q167", "pi");
