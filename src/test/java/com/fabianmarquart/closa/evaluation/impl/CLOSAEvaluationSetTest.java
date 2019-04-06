@@ -1,6 +1,5 @@
 package com.fabianmarquart.closa.evaluation.impl;
 
-import com.fabianmarquart.closa.evaluation.EvaluationSet;
 import org.junit.Test;
 
 import java.io.File;

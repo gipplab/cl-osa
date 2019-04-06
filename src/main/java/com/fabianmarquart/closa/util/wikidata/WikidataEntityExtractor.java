@@ -36,7 +36,6 @@ public class WikidataEntityExtractor {
     }
 
 
-
     /**
      * Extract Wikidata entities from given text, language and topic.
      * <p>

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 /**
  * A class representing a word token.
  * Extends Stanford's HasWord to be compatible with its POS-tagger libraries.
- *
+ * <p>
  * Created by Fabian Marquart on 2016/12/12.
  */
 public class Token implements HasWord {
@@ -28,22 +28,13 @@ public class Token implements HasWord {
     private boolean isNamedEntity;
     private NamedEntityType namedEntityType;
 
-    public enum NamedEntityType {
-        // core
-        PERSON, LOCATION, ORGANIZATION, MISC,
-        MONEY, NUMBER, ORDINAL, PERCENT,
-        DATE, TIME, DURATION, SET,
-        O,
-        // chinese
-        GPE, CITY, FACILITY, DEMONYM
-    }
-
     /**
      * Initialize with token string and indices.
-     * @param token token string
+     *
+     * @param token          token string
      * @param startCharacter index of start character in text
-     * @param endCharacter index of end character in text
-     * @param index index of token in token list.
+     * @param endCharacter   index of end character in text
+     * @param index          index of token in token list.
      */
     public Token(String token, int startCharacter, int endCharacter, int index) {
         this.token = token;
@@ -54,6 +45,7 @@ public class Token implements HasWord {
 
     /**
      * Initialize with two tokens that should be joined into one.
+     *
      * @param token1 first token
      * @param token2 second token
      */
@@ -71,6 +63,7 @@ public class Token implements HasWord {
 
     /**
      * Initialize with many tokens that should be joined into one.
+     *
      * @param tokens    token list
      * @param separator the separator to join the tokens with
      */
@@ -87,6 +80,7 @@ public class Token implements HasWord {
 
     /**
      * Simple initialization with token only.
+     *
      * @param token token string.
      */
     public Token(String token) {
@@ -95,6 +89,7 @@ public class Token implements HasWord {
 
     /**
      * Initialization with token and lemma.
+     *
      * @param token token string.
      * @param lemma lemma string.
      */
@@ -105,6 +100,7 @@ public class Token implements HasWord {
 
     /**
      * For copying a token.
+     *
      * @param token the token.
      */
     public Token(Token token) {
@@ -116,9 +112,10 @@ public class Token implements HasWord {
 
     /**
      * Initalizes a token with part of speech tag and named entity type.
-     * @param token token
-     * @param lemma lemma
-     * @param partOfSpeech part of speech
+     *
+     * @param token           token
+     * @param lemma           lemma
+     * @param partOfSpeech    part of speech
      * @param namedEntityType named entity type.
      */
     public Token(String token, String lemma, String partOfSpeech, NamedEntityType namedEntityType) {
@@ -160,6 +157,10 @@ public class Token implements HasWord {
         return namedEntityType;
     }
 
+    public void setNamedEntityType(NamedEntityType namedEntityType) {
+        this.namedEntityType = namedEntityType;
+    }
+
     public boolean isPerson() {
         return namedEntityType == NamedEntityType.PERSON;
     }
@@ -182,10 +183,6 @@ public class Token implements HasWord {
 
     public void setOrganization() {
         this.namedEntityType = NamedEntityType.ORGANIZATION;
-    }
-
-    public void setNamedEntityType(NamedEntityType namedEntityType) {
-        this.namedEntityType = namedEntityType;
     }
 
     /**
@@ -248,7 +245,7 @@ public class Token implements HasWord {
         return "{" +
                 " " + token +
                 ", " + lemma +
-                ", " + partOfSpeech  +
+                ", " + partOfSpeech +
                 ", " + namedEntityType +
                 "}";
     }
@@ -277,5 +274,15 @@ public class Token implements HasWord {
     @Override
     public void setWord(String s) {
         setToken(s);
+    }
+
+    public enum NamedEntityType {
+        // core
+        PERSON, LOCATION, ORGANIZATION, MISC,
+        MONEY, NUMBER, ORDINAL, PERCENT,
+        DATE, TIME, DURATION, SET,
+        O,
+        // chinese
+        GPE, CITY, FACILITY, DEMONYM
     }
 }

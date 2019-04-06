@@ -15,7 +15,7 @@ The input is
 * a list of candidate documents (.txt)
 
 The output is
-* the most similar candidate document.
+* a score map of the suspicious id as key and a candidate id score map as value.
 
 #### Plagiarism detection for your files
 

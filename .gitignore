@@ -1,3 +1,5 @@
 target/
 out/
 .idea/
+target.zip
+.DS_Store

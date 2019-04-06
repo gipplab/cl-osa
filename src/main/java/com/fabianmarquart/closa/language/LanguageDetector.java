@@ -45,6 +45,7 @@ public class LanguageDetector {
 
     /**
      * Constructor for a subset of supported languages.
+     *
      * @param languageCodes languages to consider.
      */
     public LanguageDetector(List<String> languageCodes) {

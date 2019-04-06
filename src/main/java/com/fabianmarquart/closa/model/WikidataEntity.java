@@ -3,7 +3,8 @@ package com.fabianmarquart.closa.model;
 
 import com.google.common.base.Objects;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class representing an entity from Wikidata.

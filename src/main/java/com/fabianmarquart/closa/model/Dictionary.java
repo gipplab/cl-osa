@@ -50,8 +50,9 @@ public class Dictionary<T> {
 
     /**
      * Builds vectors from variable number of token lists.
+     *
      * @param tokenLists variable number of token lists.
-     * @param <T> type
+     * @param <T>        type
      * @return vectors
      */
     @SafeVarargs
@@ -80,6 +81,7 @@ public class Dictionary<T> {
 
     /**
      * Performs boolean weighing on a vector.
+     *
      * @param vector givne vector.
      * @return return booleanly weighted vector.
      */

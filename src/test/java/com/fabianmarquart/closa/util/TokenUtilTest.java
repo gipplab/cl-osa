@@ -2,14 +2,9 @@ package com.fabianmarquart.closa.util;
 
 import com.fabianmarquart.closa.model.Token;
 import edu.stanford.nlp.simple.Document;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

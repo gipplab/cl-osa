@@ -17,14 +17,6 @@ public class CLOSAEvaluationSet extends EvaluationSet {
 
     private boolean graphBasedAnalysis = false;
 
-    public boolean isGraphBasedAnalysis() {
-        return graphBasedAnalysis;
-    }
-
-    public void setGraphBasedAnalysis(boolean graphBasedAnalysis) {
-        this.graphBasedAnalysis = graphBasedAnalysis;
-    }
-
     public CLOSAEvaluationSet(File folder, String suspiciousSuffix, String candidateSuffix) {
         super(folder, suspiciousSuffix, candidateSuffix);
     }
@@ -49,6 +41,14 @@ public class CLOSAEvaluationSet extends EvaluationSet {
 
     public CLOSAEvaluationSet(File suspiciousFolder, File candidateFolder, int fileCountLimit) {
         super(suspiciousFolder, candidateFolder, fileCountLimit);
+    }
+
+    public boolean isGraphBasedAnalysis() {
+        return graphBasedAnalysis;
+    }
+
+    public void setGraphBasedAnalysis(boolean graphBasedAnalysis) {
+        this.graphBasedAnalysis = graphBasedAnalysis;
     }
 
     /**

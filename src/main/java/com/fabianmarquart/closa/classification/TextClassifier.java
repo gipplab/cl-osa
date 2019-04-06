@@ -125,7 +125,6 @@ public class TextClassifier {
     }
 
 
-
     /**
      * Classify text into topic.
      *
@@ -214,8 +213,6 @@ public class TextClassifier {
 
         throw new IllegalStateException();
     }
-
-
 
 
 }

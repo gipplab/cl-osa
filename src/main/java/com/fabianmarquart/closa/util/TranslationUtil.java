@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * This class contains everything related to online machine
  * translation.
- *
+ * <p>
  * Created by Fabian Marquart on 2017/01/06.
  */
 public class TranslationUtil {
@@ -35,7 +35,8 @@ public class TranslationUtil {
 
     /**
      * Takes a list of tokens and returns a list of translated tokens.
-     * @param tokens the tokens to be translated.
+     *
+     * @param tokens         the tokens to be translated.
      * @param sourceLanguage e.g. en
      * @param targetLanguage e.g. ja
      * @return the translated tokens.
@@ -64,7 +65,8 @@ public class TranslationUtil {
 
     /**
      * Use Yandex translate via HTTP Post request, and unpack xml response.
-     * @param text the text to be translated
+     *
+     * @param text           the text to be translated
      * @param sourceLanguage e.g. en
      * @param targetLanguage e.g. ja
      * @return translation or same text if failed.
@@ -75,7 +77,7 @@ public class TranslationUtil {
                 + sourceLanguage + "-" + targetLanguage + yandexText + text;
 
         try {
-            URL url = new URL(strURL.replaceAll("\\s+","%20"));
+            URL url = new URL(strURL.replaceAll("\\s+", "%20"));
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
             // add request header
@@ -103,10 +105,11 @@ public class TranslationUtil {
 
     /**
      * Get an XML top-level element by name.
+     *
      * @param xml xml as string
      * @return the element's content.
-     * @throws IOException input source cannot be accessed
-     * @throws SAXException input cannot be parsed
+     * @throws IOException                  input source cannot be accessed
+     * @throws SAXException                 input cannot be parsed
      * @throws ParserConfigurationException document cannot be parsed
      */
     private static String getXMLElement(String xml)
