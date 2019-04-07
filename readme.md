@@ -170,6 +170,14 @@ The [test class](/pds-backend-core/src/test/java/org/sciplore/pds/util/OntologyU
 contains unit tests as demonstration. It uses the test resource files that come with the Java project.
 
 
+###Entity extraction
+
+If you are interested in extracting Wikidata entities from a text, you can use WikidataEntityExtractor's
+methods "extractEntitiesFromText" or "annotateEntitiesInText".
+
+
+
+
 Evaluation
 ----------
 

@@ -65,7 +65,7 @@ public class WikidataEntityExtractor {
         Collections.reverse(tokensBackwards);
 
         for (Token token : tokensBackwards) {
-            annotatedText.insert(token.getEndCharacter(), "<span token=\"" + token.getToken() + "\" qid=\""+ tokenEntityMap.get(token).getId() + "\"/>");
+            annotatedText.insert(token.getEndCharacter(), "<span token=\"" + token.getToken() + "\" qid=\"" + tokenEntityMap.get(token).getId() + "\"/>");
         }
 
         return annotatedText.toString();
