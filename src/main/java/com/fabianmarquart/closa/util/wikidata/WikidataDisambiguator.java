@@ -119,7 +119,7 @@ public class WikidataDisambiguator {
                         entity -> new HashSet<>(getAllAncestors(entity))));
 
         // count the occurrences for all ancestors in the text per entity
-        Map<WikidataEntity, Integer> entityOccurences = new HashMap<>();
+        Map<WikidataEntity, Integer> entityOccurrences = new HashMap<>();
 
         entitiesSubclassOf.forEach((key, value) -> {
             int occurrences = Math.toIntExact(value.stream()
@@ -127,14 +127,17 @@ public class WikidataDisambiguator {
                     .filter(entity -> text.contains(entity.getLabels().get(languageCode)))
                     .count());
 
-            entityOccurences.put(key, occurrences);
+            entityOccurrences.put(key, occurrences);
         });
 
         // the entity whose ancestors appear in the greatest number in the text wins
-        long max = entityOccurences.values().stream()
-                .max(Comparator.naturalOrder()).get();
+        long max = entityOccurrences.values()
+                .stream()
+                .max(Comparator.naturalOrder())
+                .get();
 
-        Set<WikidataEntity> maxKeys = entityOccurences.entrySet().stream()
+        Set<WikidataEntity> maxKeys = entityOccurrences.entrySet()
+                .stream()
                 .filter(entry -> entry.getValue() == max)
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toSet());

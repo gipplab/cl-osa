@@ -1,11 +1,13 @@
 package com.fabianmarquart.closa.util.wikidata;
 
+import com.fabianmarquart.closa.classification.Category;
 import com.fabianmarquart.closa.model.WikidataEntity;
 import com.google.common.collect.Sets;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.io.FileUtils;
+import org.jsoup.Jsoup;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -150,6 +152,20 @@ public class WikidataEntityExtractorTests {
         List<WikidataEntity> entitiesEn = WikidataEntityExtractor.extractEntitiesFromText(textEn, "en");
 
         System.out.println(entitiesEn);
+    }
+
+    @Test
+    public void annotateEntitiesInText() {
+        String textEn = "A German man has been charged with incitement to hatred after he was pictured with a tattoo apparently of the Nazi death camp at Auschwitz.";
+        String annotatedText = WikidataEntityExtractor.annotateEntitiesInText(textEn, "en", Category.neutral);
+
+        System.out.println(annotatedText);
+
+        String htmlText = Jsoup.parse(annotatedText).text();
+
+        System.out.println(htmlText);
+
+        Assert.assertTrue(textEn.equals(htmlText));
     }
 
     @Test
@@ -454,5 +470,6 @@ public class WikidataEntityExtractorTests {
 
 
     }
+
 
 }

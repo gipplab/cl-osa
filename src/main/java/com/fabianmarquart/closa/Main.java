@@ -65,12 +65,21 @@ public class Main {
             String inputText = FileUtils.readFileToString(new File(inputPath), StandardCharsets.UTF_8);
             String inputTextLanguage = languageDetector.detectLanguage(inputText);
 
-            List<WikidataEntity> extractedEntities = WikidataEntityExtractor.extractEntitiesFromText(
-                    inputText,
-                    inputTextLanguage,
-                    textClassifier.classifyText(inputText, inputTextLanguage));
+            if (annotationOutput) {
+                String annotatedText = WikidataEntityExtractor.annotateEntitiesInText(
+                        inputText,
+                        inputTextLanguage,
+                        textClassifier.classifyText(inputText, inputTextLanguage));
 
-            FileUtils.writeLines(new File(outputPath), extractedEntities.stream().map(WikidataEntity::getId).collect(Collectors.toList()));
+                FileUtils.writeStringToFile(new File(outputPath), annotatedText);
+            } else {
+                List<WikidataEntity> extractedEntities = WikidataEntityExtractor.extractEntitiesFromText(
+                        inputText,
+                        inputTextLanguage,
+                        textClassifier.classifyText(inputText, inputTextLanguage));
+
+                FileUtils.writeLines(new File(outputPath), extractedEntities.stream().map(WikidataEntity::getId).collect(Collectors.toList()));
+            }
 
         } catch (ParseException e) {
             // oops, something went wrong

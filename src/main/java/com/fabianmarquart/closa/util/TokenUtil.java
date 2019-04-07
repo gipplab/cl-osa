@@ -326,19 +326,21 @@ public class TokenUtil {
             List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
 
             for (CoreMap sentence : sentences) {
-
                 List<Token> tokens = new ArrayList<>();
 
                 // traversing the words in the current sentence
                 // a CoreLabel is a CoreMap with additional token-specific methods
-                for (CoreLabel token : sentence.get(TokensAnnotation.class)) {
-
+                for (CoreLabel coreLabel : sentence.get(TokensAnnotation.class)) {
                     // get token, lemma, pos and ner
-                    String tokenString = token.get(CoreAnnotations.TextAnnotation.class);
-                    String lemma = token.get(CoreAnnotations.LemmaAnnotation.class);
-                    String partOfSpeech = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+                    String tokenString = coreLabel.get(CoreAnnotations.TextAnnotation.class);
+                    String lemma = coreLabel.get(CoreAnnotations.LemmaAnnotation.class);
+                    String partOfSpeech = coreLabel.get(CoreAnnotations.PartOfSpeechAnnotation.class);
                     Token.NamedEntityType namedEntityType = Token.NamedEntityType.valueOf(
-                            token.get(CoreAnnotations.NamedEntityTagAnnotation.class));
+                            coreLabel.get(CoreAnnotations.NamedEntityTagAnnotation.class));
+
+                    Token currentToken = new Token(tokenString, lemma, partOfSpeech, namedEntityType);
+                    currentToken.setStartCharacter(coreLabel.beginPosition());
+                    currentToken.setEndCharacter(coreLabel.endPosition());
 
                     // no punctuation
                     if (partOfSpeech.equals(".") || getPunctuation().contains(tokenString)) {
@@ -347,7 +349,6 @@ public class TokenUtil {
 
                     // join with previous token if POS and NE type is equal
                     if (!tokens.isEmpty()) {
-
                         int lastTokenIndex = tokens.size() - 1;
                         Token lastToken = tokens.get(lastTokenIndex);
 
@@ -367,12 +368,16 @@ public class TokenUtil {
                                 separator = " ";
                             }
 
-                            tokens.set(lastTokenIndex, new Token(lastToken, new Token(tokenString, lemma), separator));
+                            Token mergeToken = new Token(tokenString, lemma);
+                            mergeToken.setStartCharacter(coreLabel.beginPosition());
+                            mergeToken.setEndCharacter(coreLabel.endPosition());
+
+                            tokens.set(lastTokenIndex, new Token(lastToken, mergeToken, separator));
                         } else {
-                            tokens.add(new Token(tokenString, lemma, partOfSpeech, namedEntityType));
+                            tokens.add(currentToken);
                         }
                     } else {
-                        tokens.add(new Token(tokenString, lemma, partOfSpeech, namedEntityType));
+                        tokens.add(currentToken);
                     }
 
                 }

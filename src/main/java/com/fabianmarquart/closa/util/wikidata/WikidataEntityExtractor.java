@@ -35,6 +35,42 @@ public class WikidataEntityExtractor {
         return extractEntitiesFromText(text, languageCode, new TextClassifier().classifyText(text, languageCode));
     }
 
+    /**
+     * Annotate Wikidata entities in a given text, with language and topic.
+     * <p>
+     * Tokenization / POS-tagging / lemmatization / NER -> filter by POS -> entity extraction -> entity disambiguation
+     *
+     * @param text         the text
+     * @param languageCode language
+     * @param category     category
+     * @return list of Wikidata entities found in the text
+     */
+    public static String annotateEntitiesInText(String text, String languageCode, Category category) {
+        StringBuilder annotatedText = new StringBuilder(text);
+
+        LinkedHashMap<Token, List<WikidataEntity>> tokenEntitiesMap = buildTokenEntitiesMap(text, languageCode, category);
+
+        LinkedHashMap<Token, WikidataEntity> tokenEntityMap = new LinkedHashMap<>();
+
+        tokenEntitiesMap.forEach((token, entities) -> {
+            // disambiguate
+            if (entities.size() > 1) {
+                tokenEntityMap.put(token, WikidataDisambiguator.ancestorCountDisambiguate(entities, text, languageCode));
+            } else if (entities.size() == 1) {
+                tokenEntityMap.put(token, entities.get(0));
+            }
+        });
+
+        List<Token> tokensBackwards = new ArrayList<>(tokenEntityMap.keySet());
+        Collections.reverse(tokensBackwards);
+
+        for (Token token : tokensBackwards) {
+            annotatedText.insert(token.getEndCharacter(), "<span token=\"" + token.getToken() + "\" qid=\""+ tokenEntityMap.get(token).getId() + "\"/>");
+        }
+
+        return annotatedText.toString();
+    }
+
 
     /**
      * Extract Wikidata entities from given text, language and topic.
@@ -73,7 +109,10 @@ public class WikidataEntityExtractor {
      * @return list of Wikidata entity candidate lists found in the text
      */
     public static List<List<WikidataEntity>> extractEntitiesFromTextWithoutDisambiguation(String text, String languageCode) {
-        return extractEntitiesFromTextWithoutDisambiguation(text, languageCode, new TextClassifier().classifyText(text, languageCode));
+        return extractEntitiesFromTextWithoutDisambiguation(
+                text,
+                languageCode,
+                new TextClassifier().classifyText(text, languageCode));
     }
 
     /**
@@ -90,6 +129,24 @@ public class WikidataEntityExtractor {
             String text,
             String languageCode,
             Category category) {
+        return new ArrayList<>(buildTokenEntitiesMap(text, languageCode, category).values());
+    }
+
+    /**
+     * Extract Wikidata entities from given text, language and topic.
+     * <p>
+     * Tokenization / POS-tagging / lemmatization / NER -> filter by POS -> entity extraction.
+     *
+     * @param text         the text
+     * @param languageCode language
+     * @param category     category
+     * @return list of Wikidata entity candidate lists found in the text
+     */
+    public static LinkedHashMap<Token, List<WikidataEntity>> buildTokenEntitiesMap(
+            String text,
+            String languageCode,
+            Category category) {
+
         // tokenize
         List<Token> tokenList = TokenUtil.namedEntityTokenize(text, languageCode).stream()
                 .flatMap(List::stream).collect(Collectors.toList());
@@ -104,7 +161,7 @@ public class WikidataEntityExtractor {
         // filter
         List<String> forbiddenPartOfSpeechTags = Arrays.asList(",", ":", ".", "SYM", "TO", "IN", "PP", "PP$", "SENT");
 
-        List<List<WikidataEntity>> extractedEntities = new ArrayList<>();
+        LinkedHashMap<Token, List<WikidataEntity>> tokenEntitiesMap = new LinkedHashMap<>();
 
         ProgressBar progressBar = new ProgressBar(String.format("Extract entities from %s %s text.", languageCode, category), subtokensLists.size(), ProgressBarStyle.ASCII);
         progressBar.start();
@@ -165,7 +222,7 @@ public class WikidataEntityExtractor {
 
                 // System.out.println(currentEntities);
 
-                extractedEntities.add(currentEntities);
+                tokenEntitiesMap.put(token, currentEntities);
 
                 // if biggest group has result, don't consider smaller token groups anymore
                 if (currentEntities.size() > 0) {
@@ -179,7 +236,7 @@ public class WikidataEntityExtractor {
         }
         progressBar.stop();
 
-        return extractedEntities;
+        return tokenEntitiesMap;
     }
 
 

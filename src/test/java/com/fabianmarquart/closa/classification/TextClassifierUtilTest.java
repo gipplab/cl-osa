@@ -1,10 +1,12 @@
-package com.fabianmarquart.closa.util;
+package com.fabianmarquart.closa.classification;
 
 import com.fabianmarquart.closa.classification.Category;
 import com.fabianmarquart.closa.classification.TextClassifier;
 import com.fabianmarquart.closa.classification.Topic;
 import com.fabianmarquart.closa.language.LanguageDetector;
 import com.fabianmarquart.closa.model.Token;
+import com.fabianmarquart.closa.util.ConceptUtil;
+import com.fabianmarquart.closa.util.TokenUtil;
 import de.daslaboratorium.machinelearning.classifier.Classifier;
 import de.daslaboratorium.machinelearning.classifier.bayes.BayesClassifier;
 import me.tongfei.progressbar.ProgressBar;
@@ -23,7 +25,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-public class TextClassificationUtilTest {
+public class TextClassifierUtilTest {
 
     /**
      * Simple test for the bayesian classifier.

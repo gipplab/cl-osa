@@ -21,4 +21,17 @@ public class MainTests {
                 "-t", "neutral", "biology", "fiction",
                 "-l", "en", "es", "fr"});
     }
+
+
+    @Test
+    public void mainAnnotationTest() {
+        String inputPath = "src/test/resources/com/fabianmarquart/closa/test.txt";
+        String outputPath = "src/test/resources/com/fabianmarquart/closa/test-output.txt";
+        Main.main(new String[]{
+                "-i", inputPath,
+                "-o", outputPath,
+                "-t", "neutral", "biology", "fiction",
+                "-l", "en", "es", "fr",
+                "-a"});
+    }
 }
