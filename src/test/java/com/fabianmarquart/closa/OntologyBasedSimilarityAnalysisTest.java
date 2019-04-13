@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class OntologyUtilTest {
+public class OntologyBasedSimilarityAnalysisTest {
 
     @Test
     public void executeAlgorithmAndComputeScoresTest() {
@@ -27,7 +27,7 @@ public class OntologyUtilTest {
                 .limit(3)
                 .collect(Collectors.toList());
 
-        Map<String, Double> candidateScoreMap = new OntologyBasedSimilarityAnalysis(new LanguageDetector(), new TextClassifier())
+        Map<String, Double> candidateScoreMap = new OntologyBasedSimilarityAnalysis()
                 .executeAlgorithmAndComputeScores(suspiciousPath, candidatePaths);
 
         System.out.println(candidateScoreMap);

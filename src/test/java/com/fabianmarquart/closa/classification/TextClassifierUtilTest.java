@@ -24,6 +24,13 @@ import java.util.stream.Collectors;
 
 public class TextClassifierUtilTest {
 
+
+    @Test
+    public void testConstructor() {
+        TextClassifier classifier = new TextClassifier(Arrays.asList("fiction", "neutral"));
+
+    }
+
     /**
      * Simple test for the bayesian classifier.
      */
@@ -125,13 +132,13 @@ public class TextClassifierUtilTest {
 
         // test files
         List<File> files = new ArrayList<>();
-        /*
-        files.addAll(FileUtils.listFiles(new File("src/test/resources/org/sciplore/pds/test-vroniplag"), TrueFileFilter.TRUE, TrueFileFilter.TRUE));
-        files.addAll(FileUtils.listFiles(new File("src/test/resources/org/sciplore/pds/test-bbc/en"), TrueFileFilter.TRUE, TrueFileFilter.TRUE));
-        files.addAll(FileUtils.listFiles(new File("src/test/resources/org/sciplore/pds/test-bbc/ja"), TrueFileFilter.TRUE, TrueFileFilter.TRUE));
-        files.addAll(FileUtils.listFiles(new File("src/test/resources/org/sciplore/pds/ECCE"), TrueFileFilter.TRUE, TrueFileFilter.TRUE));
+
+        files.addAll(FileUtils.listFiles(new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-vroniplag"), TrueFileFilter.TRUE, TrueFileFilter.TRUE));
+        files.addAll(FileUtils.listFiles(new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/en"), TrueFileFilter.TRUE, TrueFileFilter.TRUE));
+        files.addAll(FileUtils.listFiles(new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/ja"), TrueFileFilter.TRUE, TrueFileFilter.TRUE));
+        files.addAll(FileUtils.listFiles(new File("src/test/resources/com/fabianmarquart/closa/evaluation/ECCE"), TrueFileFilter.TRUE, TrueFileFilter.TRUE));
         files.addAll(FileUtils.listFiles(new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"),
-                TrueFileFilter.TRUE, TrueFileFilter.TRUE));*/
+                TrueFileFilter.TRUE, TrueFileFilter.TRUE));
         files.addAll(FileUtils.listFiles(new File(System.getProperty("user.home") + "/sts2016/txt/"), TrueFileFilter.TRUE, TrueFileFilter.TRUE));
 
         List<String> languages = Arrays.asList("en", "fr", "es", "ja", "de", "zh");
@@ -193,16 +200,16 @@ public class TextClassifierUtilTest {
                                 correct.getAndIncrement();
                             } else {
                                 incorrect.getAndIncrement();
-                                // System.out.printf("Incorrect: Classified %s but should be %s%n", topic2, topic1);
-                                // System.out.println("File name: " + entry.getKey());
+                                System.out.printf("Incorrect: Classified %s but should be %s%n", topic2, topic1);
+                                System.out.println("File name: " + entry.getKey());
                             }
                         } else if ((topic1.equals(Topic.Arts) || topic1.equals(Topic.Games))) {
                             if (topic2.equals(Category.fiction)) {
                                 correct.getAndIncrement();
                             } else {
                                 incorrect.getAndIncrement();
-                                // System.out.printf("Incorrect: Classified %s but should be %s%n", topic2, topic1);
-                                // System.out.println("File name: " + entry.getKey());
+                                System.out.printf("Incorrect: Classified %s but should be %s%n", topic2, topic1);
+                                System.out.println("File name: " + entry.getKey());
                             }
                         } else {
                             correct.getAndIncrement();

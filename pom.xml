@@ -53,28 +53,8 @@
                     </archive>
                 </configuration>
             </plugin>
-            <plugin>
-                <!-- Build an executable entity extractor JAR -->
-                <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>wikidata-entity-extractor</id>
-                        <configuration>
-                            <archive>
-                                <manifest>
-                                    <addClasspath>true</addClasspath>
-                                    <mainClass>com.fabianmarquart.closa.commandLine.WikidataEntityExtraction</mainClass>
-                                    <classpathPrefix>dependency-jars/</classpathPrefix>
-                                </manifest>
-                            </archive>
-                            <descriptorRefs>
-                                <descriptorRef>wikidata-entity-extractor</descriptorRef>
-                            </descriptorRefs>
-                            <finalName>wikidata-entity-extractor.jar</finalName>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>

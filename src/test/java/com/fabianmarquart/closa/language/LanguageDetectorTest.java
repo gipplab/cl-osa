@@ -8,11 +8,17 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class LanguageDetectorTest {
 
+    @Test
+    public void testLangDetectConstructor() {
+        LanguageDetector languageDetector = new LanguageDetector(Arrays.asList("en", "ja"));
+        Assert.assertEquals(languageDetector.detectLanguage("Beispiel"), "en");
+    }
 
     @Test
     public void testLangDetect() {

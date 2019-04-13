@@ -35,7 +35,8 @@ Use the code snippet and adjust the file paths
          .map(File::getPath)
          .collect(Collectors.toList());
 
-    Map<String, Double> candidateScoresMap = OntologyUtil.executeAlgorithmAndComputeScores(suspiciousPath, candidatePaths);
+    Map<String, Double> candidateScoresMap = new OntologyBasedSimilarityAnalysis()
+        .executeAlgorithmAndComputeScores(suspiciousPath, candidatePaths);
 
     System.out.println(candidateScoresMap);
 
@@ -128,22 +129,14 @@ To get all dependencies running, run
 
     mvn install
     
-inside the *citeplag-dev-backend/pds-backend-core* directory. Due to a problem with Maven repositories,
-you might encounter the problem that the Atilika Kuromoji dependency could not be resolved. In this case,
-download it from [Atilika's GitHub repository](https://github.com/atilika/kuromoji/downloads) and
-import it into the Maven project manually:
-
-    mvn install:install-file -Dfile=~/kuromoji-0.7.7/lib/kuromoji-0.7.7.jar -DgroupId=org.atilika.kuromoji \
-        -DartifactId=kuromoji -Dversion=0.7.7 -Dpackaging=jar
-        
-If you do not need Japanese language support, you can remove the dependency from the .pom file and delete
-the method namedEntityTokenizeJapanese inside TokenUtil. 
-This does not affect the other languages.
+inside the *citeplag-dev-backend/pds-backend-core* directory. 
 
 How to use
 ----------
 
-Use OntologyUtil's method "executeAlgorithmAndComputeScores". First argument is the suspicious file path
+### API
+
+Instantiate OntologyBasedSimilarityAnalysis with a LanguageDetector and a TextClassifier and execute the method "executeAlgorithmAndComputeScores". First argument is the suspicious file path
 and second argument is the candidate file path.
 
     String suspiciousPath = "~/documents/en/35157967/0.txt";
@@ -154,20 +147,33 @@ and second argument is the candidate file path.
          .map(File::getPath)
          .collect(Collectors.toList());
 
-    Map<String, Double> candidateScoreMap = OntologyUtil.executeAlgorithmAndComputeScores(suspiciousPath, candidatePaths);
-    
+    Map<String, Double> candidateScoreMap = new OntologyBasedSimilarityAnalysis()
+         .executeAlgorithmAndComputeScores(suspiciousPath, candidatePaths);
+                                                            
     System.out.println(candidateScoreMap);
     
-The output is a ranked list of candidates, with the first being the top-ranked document.
-By default, CL-OSA returns only the top-ranked document.
-
+The output is a scored map of candidates.
 
 Pre-processing steps will be saved to a directory named *preprocessed* which will be created in your
 home directory if the input documents are also in the home directory. Otherwise, the directory will be created in
 the root directory.
 
-The [test class](/pds-backend-core/src/test/java/org/sciplore/pds/util/OntologyUtilTest.java)
+The [test class](/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysisTest.java)
 contains unit tests as demonstration. It uses the test resource files that come with the Java project.
+
+If you already know that your files are of a certain language or topic, instantiate a fitting
+LanguageDetector and TextClassifier and provide them to the OntologyBasedSimilarityAnalysis constructor:
+
+    LanguageDetector languageDetector = new LanguageDetector(Arrays.asList("en", "ja"));
+    TextClassifier textClassifier = new TextClassifier(Arrays.asList("fiction", "neutral"));
+
+    OntologyBasedSimilarityAnalysis analysis = new OntologyBasedSimilarityAnalysis(languageDetector, textClassifier);
+
+### .jar
+
+When working with the .jar package, usage is the following:
+
+    java -jar closa-1.0-SNAPSHOT.jar -s suspicious_file.txt -c candidate_folder -o output.txt [-l lang1 lang2 -t topic1 topic2]
 
 
 ###Entity extraction
@@ -176,7 +182,9 @@ If you are interested in extracting Wikidata entities from a text, you can use W
 methods "extractEntitiesFromText" or "annotateEntitiesInText".
 
 
+#### .jar
 
+    java -cp closa-1.0-SNAPSHOT.jar com.fabianmarquart.closa.commandLine.WikidataEntityExtraction -i input.txt -o output.txt [-l lang1 lang2 -t topic1 topic2]
 
 Evaluation
 ----------
@@ -274,7 +282,7 @@ Implementation details
 
 The classes of concern, sorted by decreasing order of relevance. For general use, the first is enough.
 
-1. **OntologyUtil**: main class
+1. **OntologyBasedSimilarityAnalysis**: main class
 2. **WikidataEntity**: represents a Wikidata entity
 3. **WikidataEntityExtractor**: converts a text to a list of Wikidata entities
 4. **WikidataDisambiguator**: resolves lists of Wikidata entity candidates to a single one
@@ -289,9 +297,9 @@ The classes of concern, sorted by decreasing order of relevance. For general use
 
 The methods called, starting with the "main" method executeAlgorithmAndComputeScores inside OntologyUtil:
 
-* OntologyUtil.executeAlgorithmAndComputeScores
-    * OntologyUtil.preProcess
-        * OntologyUtil.extractEntitiesFromText
+* OntologyBasedSimilarityAnalysis.executeAlgorithmAndComputeScores
+    * OntologyBasedSimilarityAnalysis.preProcess
+        * OntologyBasedSimilarityAnalysis.extractEntitiesFromText
             * WikidataEntityExtractor.extractEntitiesFromText
                 * extractEntitiesFromTextWithoutDisambiguation
                     * TokenUtil.namedEntityTokenize
@@ -309,6 +317,6 @@ The methods called, starting with the "main" method executeAlgorithmAndComputeSc
                     * WikidataSparqlUtil.isGene
                     * WikidataSparqlUtil.isNaturalNumber
                 * WikidataEntity.ancestorCountDisambiguate
-    * OntologyUtil.performCosineSimilarityAnalysis
+    * OntologyBasedSimilarityAnalysis.performCosineSimilarityAnalysis
         * Dictionary
         

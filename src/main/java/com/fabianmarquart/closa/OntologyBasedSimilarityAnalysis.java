@@ -33,6 +33,14 @@ public class OntologyBasedSimilarityAnalysis {
     private final Logger logger = LoggerFactory.getLogger(OntologyBasedSimilarityAnalysis.class);
 
     /**
+     * Simple constructor,
+     */
+    public OntologyBasedSimilarityAnalysis() {
+        this.languageDetector = new LanguageDetector();
+        this.textClassifier = new TextClassifier();
+    }
+
+    /**
      * Constructor.
      *
      * @param languageDetector language detector.
