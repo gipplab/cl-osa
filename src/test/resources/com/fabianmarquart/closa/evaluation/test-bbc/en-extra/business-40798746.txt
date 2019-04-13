@@ -1,0 +1,20 @@
+Why is Apple struggling in China?
+
+Apple has again posted strong quarterly earnings, but the one blemish on its stellar results is China.
+The company's revenues there slipped 9.5% from a year earlier to slightly more than $8bn (£6.1bn).
+Apple's flagship iPhone is losing market share to a slew of local competitors.
+The company also faces challenges in dealing with China's strict internet censorship regime.
+China is important for Apple because it makes much of its hardware there, and it's a major market for its products too.
+Globally, the company posted quarterly revenue of $45.4bn (£34.4bn), fuelled by the sale of 41 million iPhones.
+But research firm IDC said that iPhone shipments in China fell 27% year on year in the first quarter of 2017.
+The problem, it seems, is that local competitors like Oppo, Huawei and Xiaomi are cheaper, and their products have improved dramatically.
+Although the iPhone had the edge a few years ago, competitors like Huawei's P10 now represent a comparable product, according to Jake Saunders, an analyst with technology market intelligence company ABI Research.
+"You can buy a clone type phone for a price tag that's essentially about half as much," he said.
+Apple may now look to apps and services to bolster revenues from the mainland, and this could bring it into conflict with China's tightening censorship regime.
+Last month, Apple pulled more than 60 virtual private network (VPN) apps from its App Store in China, because of regulations that required all VPNs to licensed.
+VPNs allow users to skirt around China's censorship filters and gain access to websites and services that are restricted or banned there.
+During an earnings call, Apple CEO Tim Cook defended the decision, and said approved VPN apps were still available.
+"We would rather not remove the apps, but like in other countries, we obey the laws where we do business," he said.
+We are hopeful that over time, the restrictions we are seeing are loosened, because innovation really requires freedom to collaborate and communicate, and I know that is a major focus there."
+In July, Apple established its first data centre in China, in conjunction with a local company Guizhou-Cloud Big Data Industry.
+Although Apple said it would not compromise users' privacy, some critics believe housing data in China could create pressure for Apple to hand over data in future disputes.

@@ -1,0 +1,3 @@
+[ABBILDUNG, siehe hier] 
+
+Abbildung 10: Berechnung der maximalen lastfreien Verkürzungsgeschwindigkeit am Beispiel von 4 Patienten. Die Verkürzung wird in&nbsp;% der maximalen Länge (L max) / 3s, die Kraft als&nbsp;% der maximalen isometrischen Kraft ausgedrückt. Zur Berechnung der maximalen lastfreien Verkürzungsgeschwindigkeit wurde eine Exponentialfunktion an die Werte approximiert. Da die Verkürzung innerhalb von 3 Sekunden erfolgte wurden die Werte in Tabelle 7 durch 3 geteilt (%ML/s) 

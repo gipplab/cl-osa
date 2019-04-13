@@ -1,0 +1,21 @@
+ 4.1.2.5.1.4 Zustandsagenten 
+
+Ein weiter verfeinertes Konzept hinsichtlich der abstrakten Agentenarchitekturen stellt der Ansatz der Zustandsagenten dar, d.h. Agenten die eigene interne Zustände besitzen. Dies bedeutet, dass ein Agent eine interne Datenstruktur vorhält, die typischerweise Informationen über den Umweltzustand und die Historie beinhaltet. Dazu sei $ \mathcal{I} $ die Menge aller Zustände, in denen sich der Agent befinden kann. Die Perzeptionsfunktion bleibt unverändert $ see&nbsp;: \mathcal{S} \to \mathcal{P} $. Abhängig von der Perzeption und dem aktuellen Zustand des Agenten wird nun der neue Zustand des Agenten gebildet über die Funktion $ next&nbsp;: \mathcal{I} \times \mathcal{P} \to \mathcal{I} $. Die Aktion, die der Agent ausführt, ergibt sich abhängig von seinem Zustand gemäß $ action&nbsp;: \mathcal{I} \to \mathcal{A} $. Befindet sich die Umwelt 
+
+[S. 183] 
+
+beispielsweise im Zustand $ s \in \mathcal{S} $ und der Agent im Zustand $ i_k \in \mathcal{I} $, so perzipiert er die Umwelt gemäß $ see(s) $. Dies führt zum neuen Zustand $ i_{k+1} = next(i_k,see(s)) $ des Agenten, so dass er die Aktion $ action(i_{k+1}) = action(next(i_k,see(s))) $ ausführt. Eine grafische Illustration gibt der untere Teil von Abbildung 4.5. Der Zustandsagent und der Standard-Agent sind äquivalent, d.h. jeder Zustandsagent kann in einen verhaltensäquivalenten Standard-Agenten transformiert werden. 
+
+
+  
+ 
+  
+  
+   
+  
+
+Ah 2007, Abbildung S. 183 
+  
+ 
+
+] 

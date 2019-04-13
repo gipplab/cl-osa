@@ -17,7 +17,7 @@
     </properties>
 
 
-    <!--     creates uber-jar -->
+    <!-- creates uber-jar -->
     <build>
         <plugins>
             <plugin>
@@ -47,7 +47,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.fabianmarquart.closa.Main</mainClass>
+                            <mainClass>com.fabianmarquart.closa.commandLine.Main</mainClass>
                             <classpathPrefix>dependency-jars/</classpathPrefix>
                         </manifest>
                     </archive>
@@ -318,9 +318,9 @@
 
         <dependency>
             <groupId>com.shef.ac.uk</groupId>
-            <artifactId>uk</artifactId>
+            <artifactId>POSTaggerSpanishLanguage</artifactId>
             <scope>system</scope>
-            <version>0.0.1</version>
+            <version>1.0.0</version>
             <systemPath>${basedir}/lib/POSTaggerSpanishLanguage.jar</systemPath>
         </dependency>
     </dependencies>

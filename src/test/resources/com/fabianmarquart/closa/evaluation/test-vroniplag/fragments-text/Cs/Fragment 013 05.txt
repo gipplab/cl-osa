@@ -1,0 +1,9 @@
+Jensen/Meckling subdivide agency costs in to monitoring costs, bonding costs and residual losses.[FN 39] Monitoring costs are created when the owners of the business attempt to control the behaviour of the management.[FN 40] Bonding costs arise for the owners if for example premiums are paid to the management that are dependent on an increase in the RoI of the shareholders. The management may have so-called imaginary costs because of their commitment to increase the wealth of the shareholders, although this is not necessarily in their own interest.[FN 41] Residual losses develop because of the divergence of interests that never completely disappears between the shareholder and agent.[FN 42] 
+
+[FN 39: Jensen/Meckling (1976), p. 308. Agency costs can only be quantified according to the model.] 
+
+[FN 40: Gerke (1995), S. 21 f. An example for this are the remuneration expenses so that the management acts in the interest of the shareholder.] 
+
+[FN 41: Löhnert (1996), p. 32. An example for this is that the management takes out a loan to give to the shareholders in the form of dividends. Cf. ibid.] 
+
+[FN 42: Gerke (1995), p. 22.] 

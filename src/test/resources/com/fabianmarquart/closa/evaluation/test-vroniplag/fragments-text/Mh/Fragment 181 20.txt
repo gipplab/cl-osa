@@ -1,0 +1,7 @@
+4.1.2.5.1.2 Rein reaktive Agenten 
+
+Die einfachste Architektur bilden die rein reaktiven Agenten.[FN 98] Diese treffen ihre Entscheidung nicht aufgrund ihrer gesamten Erfahrung, sondern basierend auf dem aktuellen Umweltzustand. Sie reagieren somit lediglich direkt auf die Umwelt, in der sie leben. Damit kann ein rein reaktiver Agent durch die Funktion $ action&nbsp;: \mathcal{S}\rightarrow\mathcal{A} $ beschrieben werden. Offensichtlich existiert für jeden rein reaktiven Agenten ein verhaltensäquivalenter Standard-Agent, die Umkehrung gilt im Allgemeinen nicht.[FN 99] 
+
+[FN 98] Rüssel und Norvig (2003), S. 46f. verwenden den Begriff 'Simple Reflex Agents'. 
+
+[FN 99] D.h. die Menge der rein reaktiven Agenten ist eine (echte) Teilmenge der Menge der Standard-Agenten. 

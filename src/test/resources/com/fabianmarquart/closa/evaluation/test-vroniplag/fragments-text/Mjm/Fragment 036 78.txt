@@ -1,0 +1,3 @@
+2.7. Statistical analysis 
+
+For statistical analysis, SPSS software (version 13, SPSS Inc. Chicago, Illinois) was employed. The arithmetic means and standard deviation were calculated. The p-values were examined by the Analysis of Variance (ANOVA) and Kruskal-Wallis-Test. Results were considered as significant by a p-value &lt;0.05 and highly significant by a p-value &lt;0.01. p-values between 0.05 and 0.1 disclosed a possible trend. 

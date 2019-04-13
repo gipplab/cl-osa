@@ -1,0 +1,40 @@
+
+
+It's still unclear who hacked incoming French President Emmanuel Macron's emails. But what does the way they then spread across the internet tell us about the way hackers and political movements work in tandem?
+It was a huge story that broke in the very final hours of coverage of France's presidential election campaign. But whoever dumped the leaked Macron emails online, did not by themselves turn them into a global topic of discussion. That job was left to a network of political activists, aided by bots and automated accounts, and then ultimately signal boosted by the Twitter account of WikiLeaks.
+BBC Trending has spoken to the main activist who took the data dump from a fringe message board to the mainstream - and we've pieced together the story of how the hack came to light.
+Just before 19:00 BST on Friday 5 May, a huge trove of files appeared on the anonymous document sharing site Pastebin, under the title "EMLEAKS".
+They had first been posted on various threads on an online library site called archive.org. However, as these threads have since been deleted, it's not possible to gauge what time this first happened.
+The timing is crucial. It was just hours before the start of the pre-election news blackout within France, and so media outlets acted with extreme caution. However, a network of online actors moved quickly to spread the leaks.
+Those who monitor internet politics know all about "/pol/". It's the anarchic political discussion forum on the anonymous messaging board 4chan, and although frequented by video gamers and internet culture obsessives, it's also a favoured hangout for a number of political activists associated with extreme right-wing groups.
+By 19:35 on 5 May, a link to the Pastebin files appeared on /pol/. The only detail about the identity of posters on the forum is a flag signifying the country of their computer's registered IP address. However, these are easy to fake.
+The /pol/ forum is crucial to the story, because rumours of a data dump seem to have been circulating there for several days previously. On Wednesday 3 May, two days before the email leaks, a user on separate thread on the board posted a different set of documents - ones which suggested Macron had a secret bank account in the Cayman Islands.
+There was vigorous debate on the board about whether the documents had been doctored. Macron's political movement, En Marche!, said they were fake and filed a lawsuit over the online rumours.
+Those first documents were posted from a user who had a Latvian IP address. But it's likely they were faking their location.
+"This user is probably not from Latvia, and used a proxy to hide their identity from 4chan," says Jules Darmanin, a reporter at BuzzFeed News France.
+That account is backed up by a later post by the user themselves, who said "I am not in Latvia". The poster boasted of using proxy servers - a mechanism by which users can mask or fake their location online. "Seven proxies" is also a reference to an old 4chan joke about the ease of hiding online:
+The user who dumped the Macron emails on Friday had a US flag included in their post on 4chan. But of course, they too could have been using a proxy.
+The man who popularised the data dump says he was expecting it and was poised to spread it. Fourteen minutes after the Friday leaks on 4chan, at 19:49 BST, Jack Posobiec, a journalist who writes for far-right Canadian outlet Rebel Media, posted a link to the thread to Twitter using the hashtag #MacronLeaks.
+He told BBC Trending that the user with the Latvian IP address, responsible for the first anti-Macron leak, had alerted him to the upcoming dump.
+"The same poster of the financial documents said to stay tuned tomorrow for a bigger story - so I pretty much spent the next 24 hours hitting refresh on the site," he told us.
+How did Posobiec's tweet go viral so fast? It was reportedly retweeted 87 times in the first five minutes, suggesting, says Ben Nimmo at the Atlantic Council's Digital Forensic Research Lab, that the message was being boosted with the help of bots.
+"A bot is a Twitter profile which does not have a single human operator behind it," Nimmo tells BBC Trending, "For its profile picture it will have an image of someone else or a random picture like a mountain or a bird. it will be run by a computer programme, by an algorithm, which will essentially retweet everything from listed accounts or to retweet any tweets that mention certain words. So it is fully automated."
+BBC Trending documentary: How The ‘Great Meme War’ Moved To France
+Visit the Trending Facebook page
+There were some fully automated accounts spreading the tag - but it wasn't just bots. Thousands of real people shared the tweet too. Several accounts that specialise in political messaging, in this case linked to the US "alt-right" movement, shared Posobiec's tweet. It's notable that this happened mostly outside of France. Initially those sharing these messages were mostly English speakers, rather than French speakers.
+The biggest initial boost, however, came not with bots or alt-right activists, but in the form of the official WikiLeaks Twitter account, which shared the 4chan link in a cautiously worded post.
+The leaks then began being shared by well-known National Front accounts, this time in French. Around 47,000 tweets were posted in three hours and the hashtag #MacronLeaks began to trend in France. By Saturday morning, it had reached the worldwide trend list. Crucially, this meant the story was spreading, despite reporting restrictions in force in France.
+By this time, an informal and global network of political activists was working hard to spread the story. Conversations in private, English-speaking, pro-Le Pen groups on the messaging app Discord were discussing how to amplify Posobiec's hashtag and use internet-friendly memes to further discredit Macron.
+As the reporting restrictions approached and the hashtag reached full volume, politicians from both camps scrambled to respond. Florian Philippot, the vice president of Marine Le Pen's National Front, responded to the story at 22:40 BST (23:40 French time) by tweeting "Will #MacronLeaks teach us something that investigative journalism has deliberately killed?"
+Sylvain Fort, a campaign spokesman for Emmanuel Macron, responded by calling Philippot's tweet "vile".
+Five minutes before the restrictions were due to start, Macron's team released a press release condemning the leak, saying that they had been subject to a "massive and coordinated piracy action".
+4chan's owner Hiroyuki Nisimura tweeted, attempting to distance his site from the leaks.
+It still remains unclear who is behind the leaks. But the Macron campaign said that some of the sites spreading the leaks were "linked to Russian interests."
+Similar allegations have been made in the past. In March 2017, David Grout, from cybersecurity firm FireEye, told BBC Trending that there appeared to be "interest from Russian hacking group APT 28, also known as Fancy Bear, in influencing the French election." After the latest leak, a number of cybersecurity firms have also attributed it to the APT 28 group.
+The group has previously been accused of attacks on the Democratic National Committee during the US election.
+More from BBC Trending: Conversations with hacker Guccifer 2.0
+The Russian government has not commented on these allegations. In the past it's denied political meddling of this sort, saying they have "never interfered" with a foreign election.
+The leak, and similar online activity, will continue to have political ramifications. So far, however, it seems not to have swayed most voters. On Sunday, France chose Macron as their next president, with 66% of the vote.
+Blog by Megha Mohan
+Additional reporting by Mike Wendling
+You can follow BBC Trending on Twitter @BBCtrending, and find us on Facebook. All our stories are at bbc.com/trending.

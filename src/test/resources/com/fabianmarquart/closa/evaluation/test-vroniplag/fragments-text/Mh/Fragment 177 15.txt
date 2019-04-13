@@ -1,0 +1,3 @@
+Allerdings existieren auch eine Reihe von maßgeblichen Unterschieden zwischen Objekten und Agenten. Dazu lassen sich drei große Felder identifizieren, die die Differenzen zwischen Objekten und Agenten inkludieren. 
+
+Der erste Unterschied besteht in dem Ausmaß an Autonomie von Objekten und Agenten. Dies betrifft vor allem die von dem Objekt oder dem Agenten ausgeführten Aktionen. In der objektorientierten Programmierung besitzen Objekte in der Regel Methoden, die als 'public' deklariert werden und deren Aufruf eine bestimmte Aktion hervorruft. Das Objekt kapselt somit genau wie der Agent die Identität, den Zustand und insbesondere das vorgegebene, passive Verhalten, es besitzt jedoch keine wirkliche Kontrolle über sein [Verhalten]. 

@@ -1,0 +1,5 @@
+Vibrationsvermittelte "Force-clamping-Technik" 
+
+[...] 
+
+Bei der vibrationsvermittelten Force - clamping Technik wird das supramaximal aktivierte Muskelpräparat 4 Sekunden lang mit einer sinusoidalen Schwingung vibriert ( Frequenz&nbsp;: 65 Hz, Amplitude&nbsp;: 8.5&nbsp;% der Muskellänge ), was dazu führt, daß die Querbrücken vom Aktinfilament "abgeschüttelt" werden. Vibrationsfrequenz und -amplitude wurden so eingestellt, da8 sich die Kraft auf ca. 10% der Ausgangskraft reduzierte ("festklemmt"). Bei Beendigung der Vibration können sich die Querbrücken wieder am Aktinfilament anlagern und erneut Kraft generieren. Die [Geschwindigkeit und das Ausmaß des Kraftanstieges nach Vibration WI analysiert, indem eine Exponentialfunktion an den Kraftanstieg nach Vibration approximiert wurde.] 

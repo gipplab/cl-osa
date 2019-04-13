@@ -1,0 +1,9 @@
+Tabelle 7: Zusammenfassung der konfraktilen Parameter gehäuteter Papillarmuskelstreifen von verschiedenen Mitralklappenerkrankungen gemessen mittels nachbelasteter ("afterloaded") Kontraktionen 
+
+[TABELLE: mit denselben Messwerten wie in der Quelle, siehe hier] 
+
+KMV = Kombiniertes Mitralvitium, MKS = Mitralklappenstenose, MKI = Mitralklappeninsuffizienz, ML = Muskellänge bei einer Vordehnung von 2 mN, Vmax = maximale lastfreie Verkürzungsgeschwindigkeit, t:1/Vmax = Verhältnis der Zeitkonstante und dem Kraftwiederanstieg nach Vibration und dem inversen Wert von Vmax. Daten ± SEM *&lt;sup&gt;1&lt;/sup&gt;= p&lt;0.05 MKI vs. MKS, ***&lt;sup&gt;2&lt;/sup&gt; = p&lt;0.0001 MKI vs. MKS / KMV 
+
+3.7.4 Bezug von isometrischen und isotonen Messungen 
+
+Bei jeder gehäuteten Papillarmuskelfaser wurden sowohl isometrische als auch isotone Messungen durchgeführt, sodaß die Zeitkonstante des Kraftanstieges nach Vibration und die maximale Verkürzungsgeschwindigkeit am gleichen Präparat miteinander in Bezug gesetzt werden konnten. Die Zeitkonstante t ist mit Vmax invers korreliert (Klemt et al. 1981, Vahl et al. 1991). Die Meßwerte, die von den entsprechenden Papillarmuskelfasern eines jeden Mitralklappenfehlers erhalten wurden, zeigten eine charakteristisch lineare Beziehung zwischen beiden Parametern. Die Steilheit war je nach Mitralklappenfehler unterschiedlich (Abbildung 11). Somit war auch der Quotient von t und 1/Vmax zwischen den verschiedenen Mitralvitien signifikant verschieden. Bei Fasern von Mitralklappenstenosen lag das Verhältnis bei 23.72 ± 0.49, bei kombinierten Mitralklappenvitien bei 22.22 ± 0.57 und bei Mitralklappeninsuffizienzen bei 17.39 ± 0.29 (MKS vs MKI p&lt;0.001). 

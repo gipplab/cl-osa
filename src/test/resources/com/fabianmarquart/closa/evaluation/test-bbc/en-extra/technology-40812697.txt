@@ -1,0 +1,21 @@
+Facebook promises new fake news measures
+
+Facebook is to step up its efforts to fight fake news by sending more suspected hoax stories to fact-checkers and publishing their findings online.
+It follows mounting criticism of the social media firm for not doing enough to root out fake news on its platform.
+It has also just launched a new feature in four countries that will publish alternative news links beneath problematic articles.
+But several experts said the measures did not do go far enough.
+"Presenting audiences with context is helpful," said Tom Felle, a senior lecturer in digital journalism at City University.
+"But it does nothing to stop the spread of this material, or to stop traffic going to fake news peddlers who are making money out of creating this material."
+Facebook has been criticised as being one of the main distribution points for fake news, which many think influenced the 2016 US presidential election.
+Voters were also flooded with hoax stories during the French presidential election in May.
+The firm has previously been reluctant to take down potentially fake news stories, arguing that it does not want to be an "arbiter of truth".
+Instead it identifies potentially false stories through a mixture of artificial intelligence (AI) and user detection. These are then sent to independent fact-checkers who place a flag next to hoax stories to alert readers.
+On Thursday, however, the firm said it would start using "updated machine learning" to enhance detection.
+"If an article has been reviewed by fact checkers, we may show the fact-checking stories below the original post," added Sara Su, product manager of News Feed, in a blog.
+A spokesman later clarified that these stories would not be "direct responses" to fake articles, but factually accurate reports that offered an alternative.
+On Thursday, the firm rolled out a new "Related articles" feature in the US, France, Germany and the Netherlands.
+The feature, which the firm has been testing since April, places links to other news coverage beneath highly popular or questionable stories, offering users "more perspectives and additional information".
+Brooke Binkowski, managing editor of fact-checking magazine Snopes, told the BBC: "I applaud their efforts to 'flood out' fake news, a method of which I have been a proponent for a long time."
+However, she said that while AI was "a good tool, it is also a blunt one".
+Mr Felle said if the firm really wanted to stop fake news, it needed to back the news industry in a better way.
+"If Facebook wants to help journalism it needs to put its hand in its pocket and support quality, trusted news organisations to better reach audiences, and advertisers."

@@ -1,0 +1,25 @@
+Cyber-attack: Is my computer at risk?
+
+Experts are warning that there could be further ransomware cases this week after the global cyber-attack. So, what has happened and how can organisations and individuals protect themselves from such attacks?
+Ransomware - a malicious program that locks a computer's files until a ransom is paid - is not new but the size of this attack by the WannaCry malware is "unprecedented", according to EU police body Europol.
+It said on Sunday that there were believed to be more than 200,000 victims in 150 countries. However, that figure is likely to grow as people switch on their computers on Monday if their IT has not been updated and their security systems patched over the weekend.
+There are also many other strains of ransomware which cyber-security experts say they are seeing being given new leases of life.
+In the UK, the NHS was hit hard, but by Saturday morning the majority of the 48 affected health trusts in England had their machines back in operation. The NHS has not yet revealed what steps it took.
+The malware has not proved hugely profitable for its owners so far. The wallets set up to receive ransom payments - $300 (£230) in virtual currency Bitcoin was demanded for each infected machine - contained about $30,000 when seen by the BBC. This suggests that most victims have not paid up.
+WannaCry infects only machines running Windows operating systems. If you do not update Windows, and do not take care when opening and reading emails, then you could be at risk.
+However, home users are generally believed to be at low risk to this particular strain.
+You can protect yourself by running updates, using firewalls and anti-virus software and by being wary when reading emailed messages.
+Regularly back up your data so you can restore files without having to pay up should you be infected, as there is no guarantee that paying the ransom will result in your files being unlocked.
+The UK's National Cyber Security Centre website contains advice on how to apply the patch to stop the ransomware - MS17-010 - and what to do if you can't.
+The culprit is malware called WannaCry and seems to have spread via a type of computer malware known as a worm.
+Unlike many other malicious programs, this one has the ability to move around a network by itself. Most others rely on humans to spread by tricking them into clicking on an attachment harbouring the attack code.
+Once WannaCry is inside an organisation, it will hunt down vulnerable machines and infect them too. This perhaps explains why its impact is so public - because large numbers of machines at each victim organisation are being compromised.
+It has been described as spreading like the vomiting bug norovirus.
+In March, Microsoft issued a free patch for the weakness that has been exploited by the ransomware. WannaCry seems to be built to exploit a bug found by the US National Security Agency.
+When details of the bug were leaked, many security researchers predicted it would lead to the creation of self-starting ransomware worms. It may, then, have taken only a couple of months for malicious hackers to make good on that prediction.
+It was originally thought that a number of victims were using Windows XP, a very old version of the Windows operating system that is no longer supported by Microsoft.
+However, according to cyber-security expert Alan Woodward, from Surrey University, the latest statistics suggest this figure is actually very small.
+Large organisations have to test that security patches issued by the provider of their operating systems will not interfere with the running of their networks before they are applied, which can delay them being installed quickly.
+It's not yet known, but some experts are saying that it was not particularly sophisticated malware. The "kill switch" that stopped it spreading - accidentally discovered by a security researcher - may have been intended to stop the malware working if captured and put in what's called a sandbox - a safe place where security experts put computer malware to watch what they do - but not applied properly.
+Ransomware has been a firm favourite of cyber-thieves for some time as it lets them profit quickly from an infection. They can cash out easily thanks to the use of the Bitcoin virtual currency, which is difficult to trace.
+However it's unusual for an expert criminal gang to use so few Bitcoin wallets to collect their ransom demands - as in this case - as the more wallets there are, the more difficult the gang is to trace.

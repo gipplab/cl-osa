@@ -1,0 +1,40 @@
+Attractive, slavish and at your command: Is AI sexist?
+
+When Amazon first coined the strapline "Ask Alexa" for its virtual assistant, it couldn't have predicted the X-rated nature of some of the requests.
+"She" may boast an encyclopaedic knowledge, but research by consumer behaviour analysts Canvas8 reveals that some users are more interested in a virtual hook-up than fact finding.
+And she's not the only target: the equally smooth voice of Microsoft's Cortana is getting customers just as hot under the collar apparently.
+From perma-smiling avatars in traditionally female support roles, to hyper-sexualised "fembots" pandering to male fantasies, the female form is everywhere in techno-world - attractive, servile and at your command.
+Svedka - a pneumatic, strutting sexpot - fronted the eponymous Swedish vodka brand for years, boasting of "stimulating V-spots".
+A little more conservative, but just as eager to please, is virtual personal assistant Amy Ingram, the brainchild of New York start-up X.ai.
+"Always at your service", Amy the meeting scheduler has received gifts of flowers and chocolates from happy customers seemingly unaware that she's just a learning algorithm.
+Then there's Amelia, IPSoft's mellifluous chatbot. And a swell of female banking bots - the Ericas, Cleos, Pennys and Ninas - dispensing information about opening hours and your bank balance.
+Why does the tech industry appear so sexist?
+Women account for just 30% of the technology workforce, according to figures released collectively by Apple, Google, Facebook and Amazon. Is this imbalance being reflected in the products the industry is coming out with?
+Dr Ileana Stigliani, assistant professor of design and innovation at London's Imperial College Business School, says the answer is a resounding yes.
+"If those teaching computers to act like humans are only men, there is a strong likelihood that the resulting products will be gender biased," she says.
+"This could explain why we're seeing sexualised fembots with a view of the world that reflects the social norms of the group who created them - white men, for instance."
+Noel Sharkey, emeritus professor of artificial intelligence and robotics at the University of Sheffield, agrees.
+"It's actually not a great leap between some of the mainstream AI personas and the growing popularity of sexbots; one trend is definitely feeding the other," he says.
+"It objectifies women and perpetuates gender stereotypes, none of which is helpful in terms of getting more women into the industry, which we need to bring more balance and diversity."
+Missy Kelley, an AI product design director at New York-based digital agency Huge, believes young girls often have an appetite for technology but are let down by a male-centric learning culture in the classroom.
+Between 2000 and 2012, there was a 64% decline in undergraduate women interested in majoring in computer science, according to figures from the US-based National Center for Women and Information Technology.
+"From the start, AI was designed to prove something could be done, with a focus on the process. Men have been driving the way it is taught and continuing to inform it.
+"A lot of women, however, want to see a greater purpose in terms of how technology impacts others. Therefore the teaching needs to evolve from task-focused goals to one that looks at how AI can solve broader social issues."
+Educational institutions obviously have a role to play in trying to redress this gender imbalance.
+London's Imperial College Business School runs an MBA [Master of Business Administration] programme that considers the social impact of AI and how it can address fundamental human needs.
+This is backed by an annual competition in which female science and technology students compete for a £10,000 prize to devise business ideas that solve real societal issues.
+But the onus will also fall on tech companies to take a more gender-neutral approach to the robots they build.
+And a number of start-ups are already taking up the challenge.
+For example, cognitive reasoning platform Rainbird has decided not to give its company's chatbot a personality or avatar, having seen first-hand the offence that can be caused by cliched female personas.
+"Most progressive tech companies accept that if a bot is doing its job properly then there is no need to sell it as a blonde, smiling woman," says Rainbird chairman James Duez.
+"It just puts distance between the software we're creating and large swathes of the population, and as a tech provider we carry a great responsibility in terms of how we influence the younger generation."
+Leaving appearances aside, a learning machine pumped with sexist data is only ever going to be sexist.
+"Teaching the robot to ignore the bad ideas is critical," says Kriti Sharma, vice-president of bots and AI at financial services firm Sage Group.
+Ms Sharma led the design team that created Sage Peg, the firm's first chatbot that reminds customers if they're late paying a bill or blowing the budget.
+She made it clear from the outset that the bot would not have a female persona.
+"I didn't meet any resistance from male designers," she says. "I think the issue is more that people just follow the norm and do what they've always done without really thinking about the impact of certain AI personas.
+"But once a cultural framework was set, everyone was very receptive."
+And unlike some of the chatbots known to flirt and play along with sexual banter, Sage Peg directs any such digressions swiftly back to finances.
+And that's enough to dampen anyone's ardour.
+Follow Technology of Business editor Matthew Wall on Twitter
+Click here for more Technology of Business features

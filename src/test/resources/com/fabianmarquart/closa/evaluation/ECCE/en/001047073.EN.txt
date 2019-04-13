@@ -1,0 +1,24 @@
+Striking the right balance between protecting privacy and encouraging innovation is difficult in the rapidly changing world of the internet.
+But European regulators are right to increase the pressure by demanding that Google alter its controversial privacy policy, even if this could have consequences for all those offering internet services.
+Googleerred when it ignored the request of European regulators to delay its new privacy policy in March.
+This pools user data it gathers across 60 online services, allowing Google to offer advertisers a better way to target customers.
+Now it will have to introduce significant changes or face sanctions, hardly the best advertisement for its service.
+Google will have to show it has the “unambiguous consent” of users to combine data and better explain how, why and for how long it intends to hold on to this information.
+This is the right approach to data, which should be seen as the property of those from whom the details are obtained.
+The rule should apply to any company that collects personal information, whe-ther or not it operates on the net.
+But Google's approach has not been ruled entirely illegal and this is also to be welcomed.
+Google has a hefty development bill to pay and the personal information left behind by consumers is a valuable currency.
+Users must be aware that there is a price to be paid for the convenience of free services, whether with a web service provider or a social networking site, such as Facebook.
+But, given the scope for abuse, they must trust those who gather and keep the information.
+On this score, companies such as Google and Facebook still have much to prove.
+Both have been rebuked in the past for cavalier treatment of privacy issues.
+The road to building that trust lies in a more transparent and considered approach to the privacy trade-off.
+Simple, clear notifications about the purposes for which information is gathered is the bare minimum.
+It is encouraging that the industry is beginning to acknowledge concerns.
+Microsoft's new Internet Explorer package has an opt-out facility on default, so customers must choose to share information.
+This is to be applauded.
+Regulators also have a responsibility.
+Companies need reasonable and clear rules.
+EU member states should press ahead with harmonising their widely varying privacy laws.
+But the internet is a border- free world. Co-operation should go further.
+Otherwise, there is a risk that both privacy and innovation will suffer.

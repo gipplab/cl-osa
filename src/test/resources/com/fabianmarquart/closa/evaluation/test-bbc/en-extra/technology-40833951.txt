@@ -1,0 +1,48 @@
+Bail of $30,000 set for UK cyber expert Marcus Hutchins
+
+US prosecutors say a British computer expert has admitted to creating software that harvests bank details.
+But Marcus Hutchins' own lawyer says he denies six charges of creating and distributing the Kronos malware.
+The 23-year-old from Ilfracombe, Devon, who helped stall the WannaCry cyber-attack which hit the NHS, was arrested on Wednesday in Las Vegas.
+He was granted $30,000 (£23,000) bail, but will spend the weekend in prison after not being able to pay on Friday.
+As he left the courtroom Mr Hutchins was ordered to walk with his hands behind his back but he was not shackled.
+No members of his family were present, but defence lawyer Adrian Lobo presented the judge with a bundle of letters.
+She said they were from friends and relatives showing support for a client who had never been in trouble with the law in the US or the UK.
+Ms Lobo told the BBC: "He's pled not guilty. He is standing by that and he fights the charges and we intend to fight the case in Wisconsin."
+She described the federal indictment against him as "pretty flimsy, it's pretty slim compared to what we normally see in a United States indictment."
+Prosecutors told a Las Vegas court on Friday that Mr Hutchins had been caught in a sting operation when undercover officers bought the code.
+They claimed the software was sold for $2,000 in digital currency in June 2015.
+Dan Cowhig, prosecuting, also told the court that Mr Hutchins had made a confession during a police interview.
+"He admitted he was the author of the code of Kronos malware and indicated he sold it," said Mr Cowhig.
+The lawyer claimed there was evidence of chat logs between Mr Hutchins and an unnamed co-defendant - who has yet to be arrested - where the security researcher complained of not receiving a fair share of the money.
+There was no missing Marcus Hutchins as he was brought into courtroom 3C of the US District Court in Las Vegas.
+The "surfer who saved the world" was wearing a bright yellow custody-issue T-shirt and trousers along with luminous orange socks and sandals.
+Judge Nancy Kobbe was sympathetic to the defendant's plea to be released on bail, waving away a claim from a government lawyer that the cyber-security expert posed a risk to the public because he had gone shooting on a gun range popular with tourists.
+Mr Hutchins was so softly spoken that several times Ms Kobbe had to ask him to raise his voice.
+Ms Lobo said Mr Hutchins denied he was the author of the malware and said he would plead not guilty to all of the charges, which date between July 2014 and July 2015.
+"He has dedicated his life to researching malware, not trying to harm people," she said. "Use the internet for good is what he has done.
+"He was completely shocked, this isn't' something he anticipated. He came here for a work-related conference and he was fully anticipating to go back home and had no reason to be fearful of coming or going from the United States."
+Mr Hutchins came to prominence in May this year after finding a "kill switch" to stop the WannaCry ransomeware attack that hit the NHS, as well as other organisations in 150 countries.
+Also known as "MalwareTech" online, Mr Hutchins was hailed as an "accidental hero" after registering a domain name to track the spread of the virus, which actually ended up halting it.
+Mr Hutchins, who works for Los Angeles-based computer security firm Kryptos Logi, had been in Las Vegas to attend the Black Hat and Def Con cyber-security conferences.
+He was arrested at Las Vegas airport minutes before he was due to fly home.
+District judge Nancy Koppe, who was presented letters of support from Mr Hutchins' cyber-security colleagues, ordered his release on bail as he had no criminal history and because the allegations dated back two years.
+However, friends and family were unable to raise the bond money before the court closed on Friday, so he will not be released until Monday.
+The conditions of his bail include him not being allowed to access the internet and to stay in Clark County, Nevada, and within the Eastern District of Wisconsin, where he will appear in court on Tuesday.
+He must also be monitored by GPS and surrender his passport.
+Kronos is a type of malware known as a Trojan, meaning it disguises itself as legitimate software. It is thought to be named after a mythological creature.
+Kronos first came to light in July 2014, when it was advertised on a Russian underground forum for $7,000 (£5,330) - a relatively high figure at the time.
+It was marketed as way to steal logins for banking websites and other financial data.
+Its vendor boasted it could evade existing anti-virus software and said it worked with the latest versions of Internet Explorer, Firefox and Chrome web browsers. In an unusual step, the developer promised free upgrades and bug fixes and the option of a $1,000 one week trial.
+After much publicity it faded from view until October 2015, when IBM researchers reported that Kronos had been spotted in attacks on UK and Indian bank websites.
+Kronos then struck again in Canada in May 2016, and in November reports surfaced that it had been spotted being distributed via emails.
+IT security consultant Robin Edgar said Mr Hutchins' own code had been incorporated into the malware, but he had not done anything wrong.
+He told BBC Radio 4's Today programme: "Mr Hutchins posted a tweet saying, 'look, this Kronos thing has taken my code, stolen my code and used it in it'.
+"He was very unhappy his code had been stolen and used within Kronos. He didn't write Kronos, it looks like, but he wrote a little piece of code which was used in the malware."
+Mr Hutchins' local MP in North Devon, Peter Heaton-Jones, said he shared the "shock" of the local community over the charges.
+The Conservative politician has written to Foreign Office minister Sir Alan Duncan to seek assurance that Mr Hutchins is receiving adequate consular assistance.
+Whilst Mr Heaton-Jones acknowledged the UK cannot interfere with court proceedings in the US and said he has made no judgement about his constituent, adding: "People who know him in Ilfracombe, and in the wider cyber-community, are astounded at the allegations against him.
+"This is particularly so given his role in helping to protect the NHS and many other institutions from what could have been a devastating cyber-attack just a few months ago.
+"I will continue to monitor his case carefully and to seek the necessary assurances from the government that the UK is doing everything in its power to assist Marcus and his family at this very difficult time."
+Mr Hutchins' mother, Janet Hutchins, also said her son's involvement was "hugely unlikely" because he had spent "enormous amounts of time and even his free time" combating malware.
+Digital rights group the Electronic Frontier Foundation said it was "deeply concerned" with his arrest, whilst Naomi Colvin, from civil liberties campaign group Courage, said Mr Hutchins "did the world an enormous service" when he stopped the WannaCry attack.
+Get news from the BBC in your inbox, each weekday morning

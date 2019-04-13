@@ -134,7 +134,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="Maven: com.shef.ac.uk:uk:0.0.1">
+      <library name="Maven: com.shef.ac.uk:POSTaggerSpanishLanguage:1.0.0">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/POSTaggerSpanishLanguage.jar!/" />
         </CLASSES>

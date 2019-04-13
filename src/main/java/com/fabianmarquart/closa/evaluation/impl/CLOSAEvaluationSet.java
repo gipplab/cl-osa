@@ -1,7 +1,9 @@
 package com.fabianmarquart.closa.evaluation.impl;
 
+import com.fabianmarquart.closa.OntologyBasedSimilarityAnalysis;
+import com.fabianmarquart.closa.classification.TextClassifier;
 import com.fabianmarquart.closa.evaluation.EvaluationSet;
-import com.fabianmarquart.closa.util.OntologyUtil;
+import com.fabianmarquart.closa.language.LanguageDetector;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,6 +18,7 @@ import java.util.List;
 public class CLOSAEvaluationSet extends EvaluationSet {
 
     private boolean graphBasedAnalysis = false;
+    private final OntologyBasedSimilarityAnalysis analysis = new OntologyBasedSimilarityAnalysis(new LanguageDetector(), new TextClassifier());
 
     public CLOSAEvaluationSet(File folder, String suspiciousSuffix, String candidateSuffix) {
         super(folder, suspiciousSuffix, candidateSuffix);
@@ -57,9 +60,9 @@ public class CLOSAEvaluationSet extends EvaluationSet {
     @Override
     protected void performAnalysis() {
         if (!graphBasedAnalysis) {
-            suspiciousIdDetectedCandidateIdsMap = OntologyUtil.performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
+            suspiciousIdDetectedCandidateIdsMap = analysis.performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
         } else {
-            suspiciousIdDetectedCandidateIdsMap = OntologyUtil.performEnhancedCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
+            suspiciousIdDetectedCandidateIdsMap = analysis.performEnhancedCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
         }
     }
 
@@ -73,7 +76,7 @@ public class CLOSAEvaluationSet extends EvaluationSet {
      */
     @Override
     protected List<String> preProcess(String documentPath, String documentLanguage) {
-        return OntologyUtil.preProcess(documentPath, documentLanguage);
+        return analysis.preProcess(documentPath, documentLanguage);
     }
 
 

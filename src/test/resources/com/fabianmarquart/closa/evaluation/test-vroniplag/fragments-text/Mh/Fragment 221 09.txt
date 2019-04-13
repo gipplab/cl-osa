@@ -1,0 +1,8 @@
+Im Ergebnis zeigt dieses Modell, dass der genetische Algorithmus grundsätzlich in der Lage ist, den optimalen Aktienanteil im Portfolio zu lernen. Andererseits sind auch einige Einschränkungen zu betrachten. Zunächst scheint die Wahl von S einen wichtigen Effekt auszulösen. Es kann gezeigt werden, dass die Agenten systematisch ein zu hohes optimales $ \alpha $ schätzen, nämlich 
+
+$ \alpha^{**} = \arg\max\limits_{\alpha_i}\sum\limits_{j=1}^S U_{\alpha_i}(w_j) $ 
+
+mit $ E ( \alpha^{**} ) 
+eq \alpha^{*} $, d.h. die Agenten halten tendenziell zu viele Aktien in ihrem Portfolio. Dies erklärt sich daraus, dass risikoreichere Strategien entweder aufgrund besonderen Erfolges oder besonderen Misserfolges besonders hohe oder besonders niedrige Fitnesswerte aufweisen und konservative Strategien im mittleren Wertebereich zu finden sind. Daher werden durch den genetischen Algorithmus glückliche, jedoch nicht notwendigerweise gehaltvolle Strategien ausgewählt. Lässt man jedoch S gegen Unendlich gehen, so konvergiert auch dieser Bias gegen Null.[FN 254] 
+
+[FN 254] Solche Biases, die auf der Wahl bestimmter Größen von Stichproben basieren, sind auch in der Statistik wohl bekannt und schlagen sich natürlich auch in der Welt der Simulationen nieder; vgl. zu einem anderen Beispiel etwa Benink und Bossaerts (2001). 

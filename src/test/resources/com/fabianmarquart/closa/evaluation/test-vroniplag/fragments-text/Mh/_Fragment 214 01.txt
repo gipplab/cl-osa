@@ -1,0 +1,23 @@
+Die Erwartung der Portfoliomanager ergibt sich als gewichteter Durchschnitt der Erwartungen von Fundamentalisten und Chartisten gemäß 
+
+$ \Delta s_{t+1}^m = w_t\Delta s_{t+1}^f + (1-w)\Delta s_{t+1}^c $ $ = w_t v(\bar{s} - s_t) $ 
+
+Das Gewicht $ w_t $ ergibt sich gemäß 
+
+$ \Delta w_t = \delta(\hat{w}_{t-1}-w_t),\text{ mit }\delta\in [0,1] $ 
+
+wobei $ w_{t-1} $ definiert ist als dasjenige Gewicht, das, ex post berechnet, die realisierte Änderung des Wechselkurses perfekt vorhergesagt hätte, und sich daher berechnet gemäß 
+
+$ \delta s_t=\hat{w}_{t-1}v(\bar{s}-s_{t-1}) $. 
+
+Mit den letzten beiden Formeln ergibt sich damit die Änderung der Gewichte der Portfoliomanager für die Erwartungen der Fundamentalisten zu 
+
+$ \Delta w_t = \delta\left(\frac{\Delta s_t}{v(\bar{s} - t_{t-1}-w_{t-1})} \right), $ 
+
+wobei $ \delta $ die Geschwindigkeit der Adaption angibt. [FN 233] 
+
+Simulationen eines (erweiterten) Modells zeigen, dass temporäre Bubbles entstehen, während derer das Gewicht der Fundamentalisten gegen Null geht, zusammen mit einem stark ansteigenden Wechselkurs, jedoch wendet sich der Trend wieder zurück zum fundamentalen Wert: „Ironically, fundamentalists are initially driven out of the market as the dollar appreciates, even though they are ultimately right about its return to s." [FN 234] 
+
+[FN 233] Frankel und Froot (1990a) geben weiter Differentialgleichungen für wt und st an, die hier jedoch nicht näher erläutert werden sollen. 
+
+[FN 234] Frankel und Froot (1990a), S. 113. 

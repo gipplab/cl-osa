@@ -1,0 +1,5 @@
+Abb. 2A: 
+
+[TABELLE, siehe hier] 
+
+Abbildung 2A: Schematische Darstellung der Vibrationsmethode: Die Exponentialfunktion ist an den Zeitverlauf des Kraftanstieges approximiert. In dem Beispiel ist F die zum Zeitpunkt t nach Vibrationsende entwickelte Kraft, 4.13 der Meßwert der Zeitkonstante des Kraftanstieges. Die nach Vibrationsende erreichte aktive Kraft wurde mit 8.1 mN ermittelt. 

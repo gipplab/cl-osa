@@ -1,0 +1,20 @@
+If recent leaks about US internet surveillance spur Europe's political leaders to press ahead with a proposed privacy directive, so much the better.
+That looks like one potential outcome from disclosures about the National Security Agency's Prism program, with German chancellor Angela Merkel this week joining the chorus in favour of moving ahead with a privacy overhaul that was first put forward at the start of last year.
+There is a danger, however, that ill-considered responses to the Prism leaks will also risk Balkanising the internet and hampering companies that have been at the forefront of digital innovation.
+Protecting citizens' privacy is an important job for governments – but so is using the new tools of online surveillance to make those citizens secure.
+These two goals should not be confused, and knee-jerk responses to populist outrage could do more harm than good.
+International concern about Prism is understandable.
+The process of approving intelligence service surveillance requests looks like rubber-stamping: only 11 of nearly 34,000 applications have been rejected since 1979, according to privacy group Epic.
+Also, when it comes to surveillance, the US has clear home-field advantage, thanks to the dominance its companies enjoy over the global internet.
+Besides calling for higher Europe-wide privacy standards, Ms Merkel suggests that internet companies should reveal when they have bowed to surveillance orders from foreign governments.
+This is hardly practical, given that internet companies such as Google and Facebook are unable to ascertain users' nationality and would be caught in the middle by US rules preventing such disclosure.
+Other countries, such as Brazil and Russia, are proposing that data about their citizens should stay on servers located within their borders.
+Yet drawing strict digital borders, while bolstering governments' surveillance powers over their own citizens, could hamper the emerging cloud computing infrastructure and jeopardise international norms of openness that have characterised the internet.
+A better response would be for governments to agree on surveillance jurisdiction and data sharing through treaties, not by restrictions on the private sector.
+As with cyber war, the internet provides powerful new tools for surveillance.
+It is up to governments to agree the new norms for dealing with the results.
+Edward Snowden's ill-advised leaks could even produce some benefit if they lead to more openness with citizens about the extent of online surveillance.
+There are obvious limits to such disclosures: surveillance is by its nature a secret pursuit.
+But Germany has already set the lead in revealing broad details.
+US internet companies are now pressing their own government for the right to reveal more about the extent of Prism and similar programmes.
+Increased public awareness could in time lead to demands for more checks and balances to make sure that government surveillance powers are not abused.

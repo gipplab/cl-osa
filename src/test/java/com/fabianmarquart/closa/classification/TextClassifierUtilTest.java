@@ -1,8 +1,5 @@
 package com.fabianmarquart.closa.classification;
 
-import com.fabianmarquart.closa.classification.Category;
-import com.fabianmarquart.closa.classification.TextClassifier;
-import com.fabianmarquart.closa.classification.Topic;
 import com.fabianmarquart.closa.language.LanguageDetector;
 import com.fabianmarquart.closa.model.Token;
 import com.fabianmarquart.closa.util.ConceptUtil;

@@ -1,0 +1,29 @@
+Flash crash sees the pound gyrate in Asian trading
+
+The pound has dived on Asian markets with automated trading being blamed for the volatility.
+At one stage it fell as much as 6% to $1.1841 - the biggest move since the Brexit vote - before recovering. It was recently trading 2% lower at $1.2388.
+It is not clear what triggered the sudden sell-off. Analysts say it could have been automated trading systems reacting to a news report.
+The Bank of England said it was "looking into" the flash crash.
+The sharp drop came after the Financial Times published a story online about French President Francois Hollande demanding "tough Brexit negotiations".
+"It's difficult to know exactly what triggered it," Angus Nicholson, market analyst with IG in Melbourne, told the BBC.
+The pound has been volatile since the UK voted to leave the European Union.
+Analysts speculate that a computer may have been set to scan the news for negative Brexit stories, with the order to sell if it found any.
+The trigger could have also been a simple mistake, or what's know as a fat finger trade, when a trader enters a wrong number. Analysts at JP Morgan who have analysed the flash crash think that was unlikely to be the trigger.
+Live: Pound gyrates on the currency markets
+What happened to the pound overnight?
+Viewpoints: How low can the pound go?
+The incident happened at a time when there is very little pound trading going on - which means that any sell-off will have a bigger impact than during busy hours.
+The situation is likely to have been exacerbated by trading algorithms (sometimes know as algos) - software which is designed to trade automatically and can react much faster than human traders.
+"These days some algos trade on the back of news sites, and even what is trending on social media sites such as Twitter, so a deluge of negative Brexit headlines could have led to an algo taking that as a major sell signal for the pound," says Kathleen Brooks, research director at City Index.
+"Once the pound started moving lower then more technical algos could have followed suit, compounding the short, sharp, selling pressure."
+Ms Brooks thinks another flash crash could be on the cards for the pound.
+"This highlights the drawback of machines making trading decisions, however, it is the reality, and it is only getting more popular. Thus, another flash crash is possible," she said.
+Traders remain nervous about the fallout from the UK's talks with the EU over leaving the bloc.
+Last Sunday, the Prime Minister Theresa May said she would trigger Article 50, the clause needed to start the exit process, by the end of March 2017.
+Sterling has been "on a precipice" since then, according to Sean Callow, senior currency strategist at Australian bank, Westpac.
+"I think we've underestimated how many people had money positions for a very wishy-washy Brexit, or even none," he said.
+Analysts at HSBC are forecasting that the pound could fall to $1.10 and could be worth just one euro by the end of next year.
+"The argument which is still presented to us - that the UK and EU will resolve their difference and come to an amicable deal - appears a little surreal," said David Bloom, head of foreign exchange research at HSBC.
+"It is becoming clear that many European countries will come to the negotiation table looking for political damage limitation rather than economic damage limitation. A lose-lose situation is the inevitable outcome."
+Ms Brooks, from City Index said: "The big issue for the pound right now is that it has become detached from the economic fundamentals and politics have become king. This is where things will get dangerous for the currency going forward.
+"Theresa May's hard-line on Brexit negotiations and her insistence that negotiations will take place in private have only increased uncertainty for the market, with traders left combing news websites for the latest headlines to try and gauge for themselves the state of play between the UK and the EU."

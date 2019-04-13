@@ -1,8 +1,10 @@
 package com.fabianmarquart.closa.util.wikidata;
 
+import com.fabianmarquart.closa.OntologyBasedSimilarityAnalysis;
+import com.fabianmarquart.closa.classification.TextClassifier;
+import com.fabianmarquart.closa.language.LanguageDetector;
 import com.fabianmarquart.closa.model.Dictionary;
 import com.fabianmarquart.closa.model.WikidataEntity;
-import com.fabianmarquart.closa.util.OntologyUtil;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -165,8 +167,8 @@ public class WikidataSimilarityUtilTest {
         int falsePositives = 0;
 
 
-        Map<String, Map<String, Double>> candidateScoreMap = OntologyUtil.performEnhancedCosineSimilarityAnalysis(suspiciousDocuments,
-                candidateDocuments);
+        Map<String, Map<String, Double>> candidateScoreMap = new OntologyBasedSimilarityAnalysis(new LanguageDetector(), new TextClassifier())
+                .performEnhancedCosineSimilarityAnalysis(suspiciousDocuments, candidateDocuments);
 
         for (Map.Entry<String, Map<String, Double>> candidateScoreEntry : candidateScoreMap.entrySet()) {
             String suspiciousId = candidateScoreEntry.getKey();

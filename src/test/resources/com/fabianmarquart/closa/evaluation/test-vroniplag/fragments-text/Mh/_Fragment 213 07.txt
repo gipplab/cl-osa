@@ -1,0 +1,17 @@
+Die Autoren Frankel und Froot entwickelten verschiedene dynamische heterogene Agentenmodelle für Wechselkurse.[FN 231] Das grundlegende Modell beinhaltet drei Typen von Agenten: Fundamentalisten, Chartisten und Portfoliomanager. Die Fundamentalisten verwenden ein Modell für den Verlauf des Wechselkurses, das korrekt wäre, wenn es keine Chartisten geben würde. Die Chartisten verwenden autoregressive Zeitreihenmodelle, z. B. einfache Extrapolation, basierend auf vergangenen Wechselkursen. Die Erwartung der Portfoliomanager wird als gewichteter Durchschnitt der Erwartungen von Fundamentalisten und Chartisten berechnet. Diese Gewichte werden im Laufe der Zeit unter Verwendung einer rationalen, bayesschen Herangehensweise angepasst, d.h. es wird betrachtet, ob Fundamentalisten oder Chartisten eine bessere Vorhersage getroffen haben. [FN 232] 
+
+Ausgangspunkt des Modells ist die Ermittlung des Wechselkurses gemäß 
+
+$ s_{t+1} = c\Delta s^m_{t+1} + z_t $, mit $ c \geq 0 $, 
+
+wobei $ s_{t+1} $ den logarithmierten Wechselkurs, $ \Delta s_{t+1}^m $ die Änderungsrate, die vom Markt, d.h. von den Portfoliomanagern, erwartet wird, $ c $ eine Adjustierungskonstante und $ z_t $ fundamentale Daten darstellt. Die Fundamentalisten bestimmen ihre Vorhersage bzw. Erwartung gemäß 
+
+$ \Delta s^f_{t+1}= v(\bar{s}-s_t) $, 
+
+wobei $ \bar{s} $ den fundamentalen Wechselkurs darstellt und $ v $ die Anpassungsgeschwindigkeit repräsentiert. Zur Vereinfachung wird angenommen, dass die Chartisten einen Random Walk des Wechselkurses unterstellen, d.h. 
+
+$ \Delta s^c_{t+1} = 0 $. 
+
+[FN 231] Vgl. dazu Frankel und Froot (1986); Frankel und Froot (1990a) sowie Frankel und Froot (1990b). 
+
+[FN 232] D.h. alle Agenten handeln jeweils rational in Bezug auf ihre jeweiligen Beschränkungen. 
