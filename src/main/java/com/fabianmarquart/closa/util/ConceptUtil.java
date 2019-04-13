@@ -45,8 +45,10 @@ public class ConceptUtil {
     private static String wikipediaTitleQuery = ".wikipedia.org/w/api.php?action=query&titles=";
     private static String wikipediaPropsAndFormat = "&prop=pageprops&ppprop=disambiguation&format=json";
 
+    @SuppressWarnings("FieldCanBeLocal")
     private static int wikipediaRequestLimit = 50;
 
+    @SuppressWarnings("FieldCanBeLocal")
     private static String wikidataSiteQuery = "https://www.wikidata.org/w/api.php?action=wbgetentities&sites=";
 
     private static HttpClient client = HttpClientBuilder.create().build();
@@ -83,7 +85,7 @@ public class ConceptUtil {
      * @param languageCode the language code, e.g. "en", "de", "ja", "zh".
      * @return the list of concepts.
      */
-    public static List<Token> getConceptsFromString(String text, int n, String languageCode) {
+    private static List<Token> getConceptsFromString(String text, int n, String languageCode) {
         List<Token> tokens = TokenUtil.tokenize(text, true);
         return getConceptsFromTokens(tokens, n, languageCode);
     }
@@ -272,7 +274,7 @@ public class ConceptUtil {
      * @param language the langauge code, e.g. "en", "de", "ja"
      * @return true if it exists, false otherwise
      */
-    public static boolean titleExists(String title, String language) {
+    private static boolean titleExists(String title, String language) {
         String formattedString = title.replaceAll(" ", "_");
 
         String strURL = "https://" + language + wikipediaTitleQuery + formattedString + wikipediaPropsAndFormat;
@@ -340,7 +342,7 @@ public class ConceptUtil {
      * @param targetLanguage the target language's code (e.g. "ja").
      * @return the title in the target language.
      */
-    public static String translateTitle(String title, String sourceLanguage, String targetLanguage) {
+    private static String translateTitle(String title, String sourceLanguage, String targetLanguage) {
         String formattedString = title.substring(0, 1).toUpperCase() + title.substring(1);
         formattedString = formattedString.replaceAll(" ", "%20");
 

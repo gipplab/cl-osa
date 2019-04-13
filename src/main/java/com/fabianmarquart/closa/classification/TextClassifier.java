@@ -34,9 +34,6 @@ import java.util.stream.Collectors;
  */
 public class TextClassifier {
 
-    private final String baseUrl = "https://api.uclassify.com/v1/";
-    private final String userName = "uClassify";
-    private final String classifierName = "Topics";
     private final List<String> supportedLanguages = Arrays.asList("en", "fr", "es", "zh", "ja", "de");
     private final List<String> supportedCategories = Arrays.asList("biology", "fiction", "neutral");
     private final List<String> apiKeys = Arrays.asList(
@@ -173,6 +170,9 @@ public class TextClassifier {
             String responseBody = "";
 
             try {
+                String baseUrl = "https://api.uclassify.com/v1/";
+                String userName = "uClassify";
+                String classifierName = "Topics";
                 HttpPost post = new HttpPost(String.format("%s%s/%s/%s/classify", baseUrl, userName, classifierName, language));
                 post.addHeader("Content-Type", "application/json");
                 post.addHeader("Authorization", "Token " + apiKeys.get(currentApiKey));

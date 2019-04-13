@@ -1,12 +1,10 @@
 package com.fabianmarquart.closa.model;
 
-import com.google.common.collect.Ordering;
 import org.apache.commons.math3.analysis.UnivariateFunction;
 import org.apache.commons.math3.linear.OpenMapRealVector;
 import org.apache.commons.math3.linear.SparseRealVector;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Created by Fabian Marquart on 2017/07/15/
@@ -17,14 +15,7 @@ public class Dictionary<T> {
         if (v > 0.0) return 1.0;
         return 0.0;
     };
-    private static UnivariateFunction logNormalization = v -> {
-        if (v == 0.0) return 0.0;
-        return 1.0 + Math.log10(v);
-    };
-    private static UnivariateFunction augmentedWeighingAddition = v -> {
-        if (v == 0.0) return 0.0;
-        return 0.6 + v;
-    };
+
     private Double numberOfDocuments;
     private Set<T> terms;
     private Map<T, Map<String, Integer>> dictionary;
@@ -76,21 +67,6 @@ public class Dictionary<T> {
         });
 
         return vectors;
-    }
-
-
-    /**
-     * Performs boolean weighing on a vector.
-     *
-     * @param vector givne vector.
-     * @return return booleanly weighted vector.
-     */
-    public static SparseRealVector booleanWeighing(SparseRealVector vector) {
-        SparseRealVector booleanVector = new OpenMapRealVector(vector.getDimension());
-        booleanVector = (OpenMapRealVector)
-                booleanVector.add(vector.mapToSelf(booleanWeighing));
-
-        return booleanVector;
     }
 
 
@@ -192,45 +168,15 @@ public class Dictionary<T> {
 
         }
 
-        // 2.2.2 idf: every value
-        SparseRealVector inverseDocumentFrequencyVector = (SparseRealVector) documentFrequencyVector
-                .mapDivideToSelf(numberOfDocuments)
-                .mapAdd(1.0)
-                .mapToSelf(Math::log10);
-
-        double a = 0.6;
-
         // 2.3 weigh the document vectors
         for (Map.Entry<String, SparseRealVector> entry : docIdVectorMap.entrySet()) {
-            int documentLength = 0;
-            double maxTermFrequency = entry.getValue().getMaxValue();
-            for (int i = 0; i < dimension; i++) {
-                if (entry.getValue().getEntry(i) > 0) {
-                    documentLength += 1;
-                }
-            }
-
             entry.setValue((SparseRealVector) entry.getValue()
                     .map(booleanWeighing));
-            // .mapMultiply(1 - a)
-            // .mapDivide(maxTermFrequency)
-            // .map(augmentedWeightingAddition)
-            //.mapDivide(documentLength)
-            // .mapToSelf(logNormalization)
-            //.ebeMultiply(inverseDocumentFrequencyVector));
         }
 
         // 2.4 weigh the query vector
-        double maxQueryTermFrequency = queryVector.getMaxValue();
-
         queryVector = (OpenMapRealVector) queryVector
                 .map(booleanWeighing);
-        // .mapMultiply(1 - a)
-        //.mapDivide(maxQueryTermFrequency)
-        //.map(augmentedWeightingAddition)
-        //.mapDivide(queryTerms.size())
-        //.mapToSelf(logNormalization)
-        //.ebeMultiply(inverseDocumentFrequencyVector);
 
 
         // 3 compare
@@ -250,10 +196,6 @@ public class Dictionary<T> {
             queryVectorLength = Math.sqrt(queryVectorLength);
             documentVectorLength = Math.sqrt(documentVectorLength);
 
-            // 3.2 apply cosine normalization
-            // documentVector.mapDivide(documentVectorLength);
-            // queryVector.mapDivide(queryVectorLength);
-
             // 3.3 calculate the score
             Double score = 0.0;
             for (int i = 0; i < dimension; i++) {
@@ -263,43 +205,9 @@ public class Dictionary<T> {
 
             // 3.4 put the score
             documentIdScoreMap.put(docId, score);
-            // System.out.println(docId + ", " + score);
         }
-
-        List<Double> highestScores = Ordering.natural().greatestOf(documentIdScoreMap.values(), 1);
-
 
         return documentIdScoreMap;
-    }
-
-
-    /**
-     * Boolean query to the inverted index dictionary.
-     *
-     * @param queryTerms and query
-     * @return the matching document ids.
-     */
-    public List<String> booleanQuery(final List<Token> queryTerms, double threshold) {
-
-        if (queryTerms.isEmpty()) {
-            return new ArrayList<>();
-        }
-
-        // map term -> docId -> freq
-        return dictionary.entrySet().stream()
-                .filter(entry -> queryTerms.contains(entry.getKey()))
-                .map(Map.Entry::getValue)
-                .map(Map::entrySet)
-                .flatMap(Collection::stream)
-                .collect(Collectors.toMap( // to docId -> query term frequency sum
-                        Map.Entry::getKey,   // docId
-                        Map.Entry::getValue,
-                        Integer::sum))
-                .entrySet() // to list
-                .stream()
-                .filter(entry -> entry.getValue() > threshold)
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
     }
 
 }

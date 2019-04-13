@@ -25,8 +25,8 @@ import java.util.stream.Collectors;
 
 public class OntologyBasedSimilarityAnalysis {
 
-    private LanguageDetector languageDetector;
-    private TextClassifier textClassifier;
+    private final LanguageDetector languageDetector;
+    private final TextClassifier textClassifier;
 
     /**
      * Constructor.
@@ -47,7 +47,7 @@ public class OntologyBasedSimilarityAnalysis {
      * @param documentLanguage the document's language
      * @return concepts.
      */
-    public static List<String> preProcess(String documentId, String documentText, String documentLanguage, Category documentCategory) {
+    private static List<String> preProcess(String documentId, String documentText, String documentLanguage, Category documentCategory) {
         return WikidataEntityExtractor.extractEntitiesFromText(documentText, documentLanguage, documentCategory)
                 .stream()
                 .map(WikidataEntity::getId)
@@ -97,13 +97,14 @@ public class OntologyBasedSimilarityAnalysis {
             String documentText = FileUtils.readFileToString(new File(documentPath), StandardCharsets.UTF_8);
 
             String documentEntitiesPath;
-            if (documentPath.contains("src/test/resources/org/sciplore/pds/")) {
-                documentEntitiesPath = documentPath.replace("pds", String.format("pds/preprocessed/%s", this.getClass().getSimpleName()));
-            } else if (documentPath.contains(System.getProperty("user.home"))) {
-                documentEntitiesPath = documentPath.replace(System.getProperty("user.home"),
-                        String.format("%s/preprocessed/%s/", System.getProperty("user.home"), this.getClass().getName()));
+            String userHome = System.getProperty("user.home");
+
+            if (documentPath.contains(userHome)) {
+                documentEntitiesPath = Paths.get(userHome, "preprocessed", documentPath.replace(userHome, ""))
+                        .toAbsolutePath().toString();
             } else {
-                documentEntitiesPath = Paths.get("preprocessed", documentPath).toAbsolutePath().toString();
+                documentEntitiesPath = Paths.get("preprocessed", documentPath)
+                        .toAbsolutePath().toString();
             }
 
             List<String> documentEntities;

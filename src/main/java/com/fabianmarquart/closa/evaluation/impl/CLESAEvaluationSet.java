@@ -406,7 +406,8 @@ public class CLESAEvaluationSet extends EvaluationSet {
                             .findFirst().get();
 
                     // retrieve candidate with highest similarity to the suspicious document
-                    Map<String, Double> retrievedCandidateIds = candidateIdTokensMap.keySet().stream()
+
+                    return candidateIdTokensMap.keySet().stream()
                             .collect(Collectors.toMap(candidateId -> candidateId,
                                     candidateId -> {
                                         // 4.2 get candidate similarities vector
@@ -425,8 +426,6 @@ public class CLESAEvaluationSet extends EvaluationSet {
                             .sorted(Collections.reverseOrder(Map.Entry.comparingByValue())) // get maximum similarity value
                             .limit(retrievalCountLimit)
                             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-                    return retrievedCandidateIds;
                 }));
     }
 
@@ -531,12 +530,10 @@ public class CLESAEvaluationSet extends EvaluationSet {
      */
     private Document createSimilaritySubDocument(String id, String url, String title, double similarityValue) {
 
-        Document similaritySubDocument = new Document("id", id)
+        return new Document("id", id)
                 .append("url", url)
                 .append("title", title)
                 .append("value", similarityValue);
-
-        return similaritySubDocument;
     }
 
     /**

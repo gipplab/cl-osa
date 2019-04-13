@@ -21,6 +21,7 @@ import java.util.List;
  * <p>
  * Created by Fabian Marquart on 2017/01/06.
  */
+@SuppressWarnings("FieldCanBeLocal")
 public class TranslationUtil {
 
     private static String yandexApiCall = "https://translate.yandex.net/api/v1.5/tr/translate?";

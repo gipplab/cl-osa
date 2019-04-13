@@ -192,7 +192,7 @@ public class WikidataSparqlUtil {
      * @param category     : the text's category from which the token was taken.
      * @return the results as Wikidata entities.
      */
-    public static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode, Category category) {
+    private static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode, Category category) {
         if (token.getLemma() == null) {
             throw new IllegalArgumentException("The token lemma is null");
         } else if (token.getLemma().equals("")) {

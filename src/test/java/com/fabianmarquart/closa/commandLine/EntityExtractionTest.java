@@ -3,6 +3,7 @@ package com.fabianmarquart.closa.commandLine;
 import org.junit.Test;
 
 public class EntityExtractionTest {
+
     @Test
     public void mainTest() {
         String inputPath = "src/test/resources/com/fabianmarquart/closa/test.txt";

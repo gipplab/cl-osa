@@ -55,16 +55,14 @@ public class WikidataDumpUtil {
 
     private static MongoCollection<Document> entitiesCollection;
     private static MongoCollection<Document> entitiesHierarchyCollection;
-    private static MongoClient mongoClient;
-    private static MongoDatabase database;
 
     static {
         LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
         Logger rootLogger = loggerContext.getLogger("org.mongodb.driver");
         rootLogger.setLevel(Level.OFF);
 
-        mongoClient = new MongoClient(host);
-        database = mongoClient.getDatabase(databaseName);
+        MongoClient mongoClient = new MongoClient(host);
+        MongoDatabase database = mongoClient.getDatabase(databaseName);
         entitiesCollection = database.getCollection(entitiesCollectionName);
         entitiesHierarchyCollection = database.getCollection(entitiesHierarchyCollectionName);
     }
@@ -852,7 +850,7 @@ public class WikidataDumpUtil {
      * @param language language code.
      * @return list of printable entity strings.
      */
-    public static String getEntitiesForPrinting(List<String> entities, String language) {
+    private static String getEntitiesForPrinting(List<String> entities, String language) {
         return String.join(", \n", entities.stream()
                 .map(WikidataDumpUtil::getEntityById)
                 .map(entity -> "{ " + entity.getId() + ", "
