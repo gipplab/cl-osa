@@ -19,11 +19,22 @@ public class WikidataEntityExtraction {
     private static final Options options = new Options();
 
     static {
-        options.addOption(new Option("i", "inputPath", true, "Input file path."));
-        options.addOption(new Option("o", "outputPath", true, "Output file path (will be overwritten)."));
-        options.addOption(new Option("l", "languages", true, "Specify language codes to consider."));
-        options.addOption(new Option("t", "topics", true, "Specify topics to consider (biology, neutral, fiction)."));
-        options.addOption(new Option("a", "annotation", false, "Specify output of HTML annotated file."));
+        Option inputPath = new Option("i", "inputPath", true, "Input file path.");
+        inputPath.setRequired(true);
+        options.addOption(inputPath);
+
+        Option outputPath = new Option("o", "outputPath", true, "Output file path (will be overwritten).");
+        outputPath.setRequired(true);
+        options.addOption(outputPath);
+
+        Option languages = new Option("l", "languages", true, "Specify language codes to consider.");
+        options.addOption(languages);
+
+        Option topics = new Option("t", "topics", true, "Specify topics to consider (biology, neutral, fiction).");
+        options.addOption(topics);
+
+        Option annotation = new Option("a", "annotation", false, "Specify output of HTML annotated file.");
+        options.addOption(annotation);
     }
 
     /**

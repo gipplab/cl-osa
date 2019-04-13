@@ -20,11 +20,23 @@ public class Main {
     private static final Options options = new Options();
 
     static {
-        options.addOption(new Option("s", "suspiciousPath", true, "Suspicious file path."));
-        options.addOption(new Option("c", "candidateFolderPath", true, "Candidate folder path."));
-        options.addOption(new Option("o", "outputPath", true, "Output file path (will be overwritten)."));
-        options.addOption(new Option("l", "languages", false, "Specify language codes to consider."));
-        options.addOption(new Option("t", "topics", false, "Specify topics to consider (biology, neutral, fiction)."));
+        Option suspiciousPath = new Option("s", "suspiciousPath", true, "Suspicious file path.");
+        suspiciousPath.setRequired(true);
+        options.addOption(suspiciousPath);
+
+        Option candidateFolderPath = new Option("c", "candidateFolderPath", true, "Candidate folder path.");
+        candidateFolderPath.setRequired(true);
+        options.addOption(candidateFolderPath);
+
+        Option outputPath = new Option("o", "outputPath", true, "Output file path (will be overwritten).");
+        outputPath.setRequired(true);
+        options.addOption(outputPath);
+
+        Option languages = new Option("l", "languages", true, "Specify language codes to consider.");
+        options.addOption(languages);
+
+        Option topics = new Option("t", "topics", true, "Specify topics to consider (biology, neutral, fiction).");
+        options.addOption(topics);
     }
 
 
