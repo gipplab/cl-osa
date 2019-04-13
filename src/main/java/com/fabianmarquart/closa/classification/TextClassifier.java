@@ -100,7 +100,7 @@ public class TextClassifier {
                         .stream()
                         .map(resource -> resource.replace("com/fabianmarquart/closa/classification/", ""))
                         .collect(Collectors.toSet());
-                
+
                 resources.stream()
                         .map((String resource) -> this.getClass().getResourceAsStream(resource))
                         .map((InputStream stream) -> {

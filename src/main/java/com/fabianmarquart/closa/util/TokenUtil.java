@@ -1,6 +1,7 @@
 package com.fabianmarquart.closa.util;
 
-import com.fabianmarquart.closa.classification.TextClassifier;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.LoggerContext;
 import com.fabianmarquart.closa.language.LanguageDetector;
 import com.fabianmarquart.closa.model.Token;
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -12,20 +13,16 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.process.CoreLabelTokenFactory;
 import edu.stanford.nlp.process.PTBTokenizer;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
-import edu.stanford.nlp.trees.Tree;
-import edu.stanford.nlp.trees.TreeCoreAnnotations;
 import edu.stanford.nlp.util.CoreMap;
 import edu.stanford.nlp.util.PropertiesUtils;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.atilika.kuromoji.Tokenizer;
 import org.languagetool.AnalyzedTokenReadings;
 import org.languagetool.tagging.de.GermanTagger;
+import org.slf4j.LoggerFactory;
 import org.tartarus.snowball.SnowballProgram;
 import org.tartarus.snowball.ext.*;
-import postaggerspanishlanguage.POSTaggerSpanishLanguage;
 import ru.morpher.ws3.Client;
 import ru.morpher.ws3.ClientBuilder;
 
@@ -53,12 +50,15 @@ public class TokenUtil {
     private static final String symbolJa = "記号";
     private static final String verbJa = "動詞";
     private static final String fullStopJa = "句点";
-    private static Logger logger = Logger.getLogger(TokenUtil.class);
+
+    private static final LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
 
     private static LanguageDetector languageDetector;
 
     static {
-        logger.setLevel(Level.ERROR);
+        Logger stanfordNlpLogger = loggerContext.getLogger("edu.stanford.nlp");
+        stanfordNlpLogger.setLevel(ch.qos.logback.classic.Level.OFF);
+
         TokenUtil.languageDetector = new LanguageDetector();
     }
 
@@ -125,7 +125,10 @@ public class TokenUtil {
         throw new NotImplementedException("");
     }
 
+
     private static List<List<Token>> namedEntityTokenizeSpanish(String text) {
+        throw new NotImplementedException("");
+        /*
         List<List<Token>> tokensBySentence = new ArrayList<>();
         List<Token> tokens = new ArrayList<>();
 
@@ -139,6 +142,7 @@ public class TokenUtil {
         }
 
         return tokensBySentence;
+        */
     }
 
     /**
@@ -220,82 +224,70 @@ public class TokenUtil {
      * @param languageCode the language code.
      */
     public static List<List<Token>> namedEntityTokenize(String text, String languageCode) {
-        // TODO: parse the text to get POStags instead of using annotator.
-
-        // suppress printing of this method
-        PrintStream out = System.out;
-
-        System.setOut(new PrintStream(new OutputStream() {
-            @Override
-            public void write(int b) {
-            }
-        }));
-
         List<List<Token>> tokensBySentence = new ArrayList<>();
 
-        try {
-            StanfordCoreNLP pipeline;
+        StanfordCoreNLP pipeline;
 
-            switch (languageCode) {
-                case "en":
-                    pipeline = new StanfordCoreNLP(
-                            PropertiesUtils.asProperties(
-                                    "annotators", "tokenize, ssplit, pos, lemma, ner", //, parse",
-                                    "ssplit.isOneSentence", "false",
-                                    "parse.model", "edu/stanford/nlp/models/srparser/englishSR.ser.gz",
-                                    "tokenize.language", "en",
-                                    "untokenizable", "noneDelete",
-                                    "ner.useSUTime", "false"));
-                    break;
-                case "zh":
-                    pipeline = new StanfordCoreNLP(
-                            PropertiesUtils.asProperties(
-                                    "annotators", "tokenize, ssplit, pos, lemma, ner", //, parse",
-                                    "ssplit.isOneSentence", "false",
-                                    // "parse.model", "edu/stanford/nlp/models/srparser/chineseSR.ser.gz",
-                                    // segment
-                                    "tokenize.language", "zh",
-                                    "segment.model", "edu/stanford/nlp/models/segmenter/chinese/ctb.gz",
-                                    "segment.sighanCorporaDict", "edu/stanford/nlp/models/segmenter/chinese",
-                                    "segment.serDictionary", "edu/stanford/nlp/models/segmenter/chinese/dict-chris6.ser.gz",
-                                    "segment.sighanPostProcessing", "true",
-                                    // sentence split
-                                    "ssplit.boundaryTokenRegex", "[.。]|[!?！？]+",
-                                    // pos model
-                                    "pos.model", "edu/stanford/nlp/models/pos-tagger/chinese-distsim/chinese-distsim.tagger",
-                                    // ner
-                                    "ner.language", "chinese",
-                                    "ner.model", "edu/stanford/nlp/models/ner/chinese.misc.distsim.crf.ser.gz",
-                                    "ner.applyNumericClassifiers", "true",
-                                    "ner.useSUTime", "false",
-                                    // regexner
-                                    "regexner.mapping", "edu/stanford/nlp/models/kbp/cn_regexner_mapping.tab",
-                                    "regexner.validpospattern", "^(NR|NN|JJ).*",
-                                    "regexner.ignorecase", "true",
-                                    "regexner.noDefaultOverwriteLabels", "CITY"
-                            ));
-                    break;
-                case "de":
-                    pipeline = new StanfordCoreNLP(
-                            PropertiesUtils.asProperties(
-                                    "annotators", "tokenize, ssplit, pos, lemma, ner", //, parse",
-                                    "ssplit.isOneSentence", "false",
-                                    "parse.model", "edu/stanford/nlp/models/srparser/germanSR.ser.gz",
-                                    "tokenize.language", "de",
-                                    "ner.useSUTime", "false"));
-                    break;
-                case "fr":
-                    pipeline = new StanfordCoreNLP(
-                            PropertiesUtils.asProperties(
-                                    "annotators", "tokenize, ssplit, pos, lemma, ner", //, parse",
-                                    "ssplit.isOneSentence", "false",
-                                    "parse.model", "edu/stanford/nlp/models/srparser/frenchSR.beam.ser.gz",
-                                    "tokenize.language", "fr",
-                                    "ner.useSUTime", "false",
-                                    "untokenizable", "noneDelete"));
-                    break;
-                case "es":
-                    // TODO: lemmatize
+        switch (languageCode) {
+            case "en":
+                pipeline = new StanfordCoreNLP(
+                        PropertiesUtils.asProperties(
+                                "annotators", "tokenize, ssplit, pos, lemma, ner", //, parse",
+                                "ssplit.isOneSentence", "false",
+                                "parse.model", "edu/stanford/nlp/models/srparser/englishSR.ser.gz",
+                                "tokenize.language", "en",
+                                "untokenizable", "noneDelete",
+                                "ner.useSUTime", "false"));
+                break;
+            case "zh":
+                pipeline = new StanfordCoreNLP(
+                        PropertiesUtils.asProperties(
+                                "annotators", "tokenize, ssplit, pos, lemma, ner", //, parse",
+                                "ssplit.isOneSentence", "false",
+                                // "parse.model", "edu/stanford/nlp/models/srparser/chineseSR.ser.gz",
+                                // segment
+                                "tokenize.language", "zh",
+                                "segment.model", "edu/stanford/nlp/models/segmenter/chinese/ctb.gz",
+                                "segment.sighanCorporaDict", "edu/stanford/nlp/models/segmenter/chinese",
+                                "segment.serDictionary", "edu/stanford/nlp/models/segmenter/chinese/dict-chris6.ser.gz",
+                                "segment.sighanPostProcessing", "true",
+                                // sentence split
+                                "ssplit.boundaryTokenRegex", "[.。]|[!?！？]+",
+                                // pos model
+                                "pos.model", "edu/stanford/nlp/models/pos-tagger/chinese-distsim/chinese-distsim.tagger",
+                                // ner
+                                "ner.language", "chinese",
+                                "ner.model", "edu/stanford/nlp/models/ner/chinese.misc.distsim.crf.ser.gz",
+                                "ner.applyNumericClassifiers", "true",
+                                "ner.useSUTime", "false",
+                                // regexner
+                                "regexner.mapping", "edu/stanford/nlp/models/kbp/cn_regexner_mapping.tab",
+                                "regexner.validpospattern", "^(NR|NN|JJ).*",
+                                "regexner.ignorecase", "true",
+                                "regexner.noDefaultOverwriteLabels", "CITY"
+                        ));
+                break;
+            case "de":
+                pipeline = new StanfordCoreNLP(
+                        PropertiesUtils.asProperties(
+                                "annotators", "tokenize, ssplit, pos, lemma, ner", //, parse",
+                                "ssplit.isOneSentence", "false",
+                                "parse.model", "edu/stanford/nlp/models/srparser/germanSR.ser.gz",
+                                "tokenize.language", "de",
+                                "ner.useSUTime", "false"));
+                break;
+            case "fr":
+                pipeline = new StanfordCoreNLP(
+                        PropertiesUtils.asProperties(
+                                "annotators", "tokenize, ssplit, pos, lemma, ner", //, parse",
+                                "ssplit.isOneSentence", "false",
+                                "parse.model", "edu/stanford/nlp/models/srparser/frenchSR.beam.ser.gz",
+                                "tokenize.language", "fr",
+                                "ner.useSUTime", "false",
+                                "untokenizable", "noneDelete"));
+                break;
+            case "es":
+                // TODO: lemmatize
                     /*
                     pipeline = new StanfordCoreNLP(
                             PropertiesUtils.asProperties(
@@ -307,91 +299,83 @@ public class TokenUtil {
                                     "untokenizable", "noneDelete"));
                     break;
                     */
-                    return namedEntityTokenizeSpanish(text);
-                case "ja":
-                    return namedEntityTokenizeJapanese(text);
-                case "ru":
-                    return namedEntityTokenizeRussian(text);
-                default:
-                    throw new IllegalArgumentException("Language code '" + languageCode + "' not supported");
-            }
+                return namedEntityTokenizeSpanish(text);
+            case "ja":
+                return namedEntityTokenizeJapanese(text);
+            case "ru":
+                return namedEntityTokenizeRussian(text);
+            default:
+                throw new IllegalArgumentException("Language code '" + languageCode + "' not supported");
+        }
 
-            Annotation document = new Annotation(text);
+        Annotation document = new Annotation(text);
 
-            // run all Annotators on this text
-            pipeline.annotate(document);
+        // run all Annotators on this text
+        pipeline.annotate(document);
 
-            // these are all the sentences in this document
-            // a CoreMap is essentially a Map that uses class objects as keys and has values with custom types
-            List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
+        // these are all the sentences in this document
+        // a CoreMap is essentially a Map that uses class objects as keys and has values with custom types
+        List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
 
-            for (CoreMap sentence : sentences) {
-                List<Token> tokens = new ArrayList<>();
+        for (CoreMap sentence : sentences) {
+            List<Token> tokens = new ArrayList<>();
 
-                // traversing the words in the current sentence
-                // a CoreLabel is a CoreMap with additional token-specific methods
-                for (CoreLabel coreLabel : sentence.get(TokensAnnotation.class)) {
-                    // get token, lemma, pos and ner
-                    String tokenString = coreLabel.get(CoreAnnotations.TextAnnotation.class);
-                    String lemma = coreLabel.get(CoreAnnotations.LemmaAnnotation.class);
-                    String partOfSpeech = coreLabel.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-                    Token.NamedEntityType namedEntityType = Token.NamedEntityType.valueOf(
-                            coreLabel.get(CoreAnnotations.NamedEntityTagAnnotation.class));
+            // traversing the words in the current sentence
+            // a CoreLabel is a CoreMap with additional token-specific methods
+            for (CoreLabel coreLabel : sentence.get(TokensAnnotation.class)) {
+                // get token, lemma, pos and ner
+                String tokenString = coreLabel.get(CoreAnnotations.TextAnnotation.class);
+                String lemma = coreLabel.get(CoreAnnotations.LemmaAnnotation.class);
+                String partOfSpeech = coreLabel.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+                Token.NamedEntityType namedEntityType = Token.NamedEntityType.valueOf(
+                        coreLabel.get(CoreAnnotations.NamedEntityTagAnnotation.class));
 
-                    Token currentToken = new Token(tokenString, lemma, partOfSpeech, namedEntityType);
-                    currentToken.setStartCharacter(coreLabel.beginPosition());
-                    currentToken.setEndCharacter(coreLabel.endPosition());
+                Token currentToken = new Token(tokenString, lemma, partOfSpeech, namedEntityType);
+                currentToken.setStartCharacter(coreLabel.beginPosition());
+                currentToken.setEndCharacter(coreLabel.endPosition());
 
-                    // no punctuation
-                    if (partOfSpeech.equals(".") || getPunctuation().contains(tokenString)) {
-                        continue;
-                    }
+                // no punctuation
+                if (partOfSpeech.equals(".") || getPunctuation().contains(tokenString)) {
+                    continue;
+                }
 
-                    // join with previous token if POS and NE type is equal
-                    if (!tokens.isEmpty()) {
-                        int lastTokenIndex = tokens.size() - 1;
-                        Token lastToken = tokens.get(lastTokenIndex);
+                // join with previous token if POS and NE type is equal
+                if (!tokens.isEmpty()) {
+                    int lastTokenIndex = tokens.size() - 1;
+                    Token lastToken = tokens.get(lastTokenIndex);
 
-                        // O means not a named entity
-                        if ((namedEntityType != Token.NamedEntityType.O || languageCode.equals("zh"))
-                                && partOfSpeech.equals(lastToken.getPartOfSpeech())
-                                && namedEntityType.equals(lastToken.getNamedEntityType())) {
+                    // O means not a named entity
+                    if ((namedEntityType != Token.NamedEntityType.O || languageCode.equals("zh"))
+                            && partOfSpeech.equals(lastToken.getPartOfSpeech())
+                            && namedEntityType.equals(lastToken.getNamedEntityType())) {
 
-                            String separator;
-                            if (languageCode.equals("zh")) {
-                                if (isLatinAlphabet(tokenString) && isLatinAlphabet(tokens.get(lastTokenIndex))) {
-                                    separator = " ";
-                                } else {
-                                    separator = "";
-                                }
-                            } else {
+                        String separator;
+                        if (languageCode.equals("zh")) {
+                            if (isLatinAlphabet(tokenString) && isLatinAlphabet(tokens.get(lastTokenIndex))) {
                                 separator = " ";
+                            } else {
+                                separator = "";
                             }
-
-                            Token mergeToken = new Token(tokenString, lemma);
-                            mergeToken.setStartCharacter(coreLabel.beginPosition());
-                            mergeToken.setEndCharacter(coreLabel.endPosition());
-
-                            tokens.set(lastTokenIndex, new Token(lastToken, mergeToken, separator));
                         } else {
-                            tokens.add(currentToken);
+                            separator = " ";
                         }
+
+                        Token mergeToken = new Token(tokenString, lemma);
+                        mergeToken.setStartCharacter(coreLabel.beginPosition());
+                        mergeToken.setEndCharacter(coreLabel.endPosition());
+
+                        tokens.set(lastTokenIndex, new Token(lastToken, mergeToken, separator));
                     } else {
                         tokens.add(currentToken);
                     }
-
+                } else {
+                    tokens.add(currentToken);
                 }
 
-                // add the completed sentence
-                tokensBySentence.add(tokens);
-
-                // this is the parse tree of the current sentence
-                Tree tree = sentence.get(TreeCoreAnnotations.TreeAnnotation.class);
-                System.out.println("Tree annotation:");
-                System.out.println(tree);
             }
-        } finally {
-            System.setOut(out);
+
+            // add the completed sentence
+            tokensBySentence.add(tokens);
         }
 
         return tokensBySentence;
