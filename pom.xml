@@ -308,7 +308,21 @@
             <version>1.4</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.atilika.kuromoji</groupId>
+            <artifactId>kuromoji</artifactId>
+            <scope>system</scope>
+            <version>0.7.7</version>
+            <systemPath>${basedir}/lib/kuromoji-0.7.7.jar</systemPath>
+        </dependency>
 
+        <dependency>
+            <groupId>com.shef.ac.uk</groupId>
+            <artifactId>uk</artifactId>
+            <scope>system</scope>
+            <version>0.0.1</version>
+            <systemPath>${basedir}/lib/POSTaggerSpanishLanguage.jar</systemPath>
+        </dependency>
     </dependencies>
 
 </project>
