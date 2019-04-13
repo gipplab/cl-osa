@@ -10,6 +10,8 @@ import com.fabianmarquart.closa.util.wikidata.WikidataSimilarityUtil;
 import me.tongfei.progressbar.ProgressBar;
 import me.tongfei.progressbar.ProgressBarStyle;
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +29,8 @@ public class OntologyBasedSimilarityAnalysis {
 
     private final LanguageDetector languageDetector;
     private final TextClassifier textClassifier;
+
+    private final Logger logger = LoggerFactory.getLogger(OntologyBasedSimilarityAnalysis.class);
 
     /**
      * Constructor.
@@ -141,13 +145,13 @@ public class OntologyBasedSimilarityAnalysis {
             Map<String, List<String>> candidateIdTokensMap
     ) {
         // create dictionary
-        System.out.println("Create dictionary \n");
+        logger.info("Create dictionary");
         Dictionary<String> dictionary = new Dictionary<>(candidateIdTokensMap);
 
         Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap = new HashMap<>();
 
         // perform detailed analysis
-        System.out.println("Perform detailed analysis \n");
+        logger.info("Perform detailed analysis");
 
         // progress bar
         ProgressBar progressBar = new ProgressBar("Perform cosine similarity analysis", suspiciousIdTokensMap.entrySet().size(), ProgressBarStyle.ASCII);

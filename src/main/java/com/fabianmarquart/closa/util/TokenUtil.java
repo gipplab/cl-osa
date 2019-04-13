@@ -18,6 +18,7 @@ import edu.stanford.nlp.util.CoreMap;
 import edu.stanford.nlp.util.PropertiesUtils;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.atilika.kuromoji.Tokenizer;
 import org.languagetool.AnalyzedTokenReadings;
@@ -55,11 +56,10 @@ public class TokenUtil {
     private static Logger logger = Logger.getLogger(TokenUtil.class);
 
     private static LanguageDetector languageDetector;
-    private static TextClassifier textClassifier;
 
     static {
+        logger.setLevel(Level.ERROR);
         TokenUtil.languageDetector = new LanguageDetector();
-        TokenUtil.textClassifier = new TextClassifier();
     }
 
     /**
