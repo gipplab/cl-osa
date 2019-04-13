@@ -471,7 +471,4 @@ public class WikidataEntityExtractorTests {
     }
 
 
-
-
-
 }

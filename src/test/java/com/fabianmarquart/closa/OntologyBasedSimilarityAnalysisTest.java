@@ -1,7 +1,5 @@
 package com.fabianmarquart.closa;
 
-import com.fabianmarquart.closa.classification.TextClassifier;
-import com.fabianmarquart.closa.language.LanguageDetector;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.junit.Test;

@@ -1,6 +1,7 @@
 package com.fabianmarquart.closa.classification;
 
 import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import com.fabianmarquart.closa.model.Token;
 import com.fabianmarquart.closa.util.TokenUtil;
@@ -20,7 +21,6 @@ import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
 import org.reflections.util.FilterBuilder;
 import org.slf4j.LoggerFactory;
-import ch.qos.logback.classic.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;

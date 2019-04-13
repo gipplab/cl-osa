@@ -17,8 +17,8 @@ import java.util.List;
  */
 public class CLOSAEvaluationSet extends EvaluationSet {
 
-    private boolean graphBasedAnalysis = false;
     private final OntologyBasedSimilarityAnalysis analysis = new OntologyBasedSimilarityAnalysis(new LanguageDetector(), new TextClassifier());
+    private boolean graphBasedAnalysis = false;
 
     public CLOSAEvaluationSet(File folder, String suspiciousSuffix, String candidateSuffix) {
         super(folder, suspiciousSuffix, candidateSuffix);
