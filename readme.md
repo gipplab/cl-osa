@@ -184,7 +184,15 @@ methods "extractEntitiesFromText" or "annotateEntitiesInText".
 
 #### .jar
 
-    java -cp closa-1.0-SNAPSHOT.jar com.fabianmarquart.closa.commandLine.WikidataEntityExtraction -i input.txt -o output.txt [-l lang1 lang2 -t topic1 topic2]
+    java -cp closa-1.0-SNAPSHOT.jar com.fabianmarquart.closa.commandLine.WikidataEntityExtraction -i input.txt -o output.txt [-l lang1 lang2 -t topic1 topic2 -a]
+
+The -a flag switches from simple entity list output to entity annotations inside the text using xml-like tags, e.g.
+
+    Scientists prove there is water on Mars
+    
+becomes
+
+    Scientists<span token="Scientists" qid="Q901"/> prove there is water<span token="water" qid="Q283"/> on Mars<span token="Mars" qid="Q111"/>
 
 Evaluation
 ----------
