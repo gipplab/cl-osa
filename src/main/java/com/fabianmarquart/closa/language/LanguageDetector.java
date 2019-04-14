@@ -51,6 +51,7 @@ public class LanguageDetector {
     public LanguageDetector(List<String> languageCodes) {
         try {
             List<LdLocale> languages = languageCodes.stream()
+                    .map(languageCode -> languageCode.equals("zh") ? "zh-CN" : languageCode)
                     .map(LdLocale::fromString)
                     .collect(Collectors.toList());
 
