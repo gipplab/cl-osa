@@ -78,11 +78,10 @@ public class CLOSAEvaluationSetTest {
             F-Measure: [0.69480515]
         */
 
-        // TODO: compare server and macbook version
         try {
             CLOSAEvaluationSet vroniPlagEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File("src/test/resources/org/sciplore/pds/test-vroniplag/fragments-text"),
-                    new File("src/test/resources/org/sciplore/pds/test-vroniplag/sources-text")
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-vroniplag/fragments-text"),
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-vroniplag/sources-text")
             );
 
             vroniPlagEvaluationSetCLOSA.printEvaluation();
@@ -116,8 +115,8 @@ public class CLOSAEvaluationSetTest {
          */
         try {
             CLOSAEvaluationSet englishJapaneseBBCEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File("src/test/resources/org/sciplore/pds/test-bbc/en"), "en",
-                    new File("src/test/resources/org/sciplore/pds/test-bbc/ja"), "ja"
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/en"), "en",
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/ja"), "ja"
             );
 
             englishJapaneseBBCEvaluationSetCLOSA.printEvaluation();
@@ -154,8 +153,8 @@ public class CLOSAEvaluationSetTest {
 
         try {
             CLOSAEvaluationSet englishChineseECCEEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File("src/test/resources/org/sciplore/pds/ECCE/en"), "en",
-                    new File("src/test/resources/org/sciplore/pds/ECCE/zh"), "zh"
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/ECCE/en"), "en",
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/ECCE/zh"), "zh"
             );
             englishChineseECCEEvaluationSetCLOSA.printEvaluation();
         } catch (IOException e) {

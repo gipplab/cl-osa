@@ -35,8 +35,8 @@ public class CLESAEvaluationSetTest {
 
         try {
             EvaluationSet englishJapaneseBBCEvaluationSetCLESA = new CLESAEvaluationSet(
-                    new File("src/test/resources/org/sciplore/pds/preprocessed-t/test-bbc/en"), "en",
-                    new File("src/test/resources/org/sciplore/pds/preprocessed-t/test-bbc/ja"), "en"
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/preprocessed-t/test-bbc/en"), "en",
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/preprocessed-t/test-bbc/ja"), "en"
             );
 
             englishJapaneseBBCEvaluationSetCLESA.printEvaluation();
@@ -67,8 +67,8 @@ public class CLESAEvaluationSetTest {
          */
         try {
             EvaluationSet englishJapaneseBBCEvaluationSetCLESA = new CLESAEvaluationSet(
-                    new File("src/test/resources/org/sciplore/pds/test-bbc/en"), "en",
-                    new File("src/test/resources/org/sciplore/pds/test-bbc/ja"), "ja"
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/en"), "en",
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/ja"), "ja"
             );
 
             englishJapaneseBBCEvaluationSetCLESA.printEvaluation();

@@ -27,8 +27,8 @@ public class CLCNGEvaluationSetTest {
         */
         try {
             EvaluationSet englishJapaneseBBCEvaluationSetCLCNG = new CLCNGEvaluationSet(
-                    new File("src/test/resources/org/sciplore/pds/test-bbc/en"), "en",
-                    new File("src/test/resources/org/sciplore/pds/test-bbc/ja"), "ja");
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/en"), "en",
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/ja"), "ja");
 
             englishJapaneseBBCEvaluationSetCLCNG.printEvaluation();
         } catch (IOException e) {

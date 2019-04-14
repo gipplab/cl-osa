@@ -34,8 +34,8 @@ public class TOSAEvaluationSetTest {
         */
         try {
             TOSAEvaluationSet vroniPlagEvaluationSetTOSA = new TOSAEvaluationSet(
-                    new File("src/test/resources/org/sciplore/pds/test-vroniplag/fragments-text"),
-                    new File("src/test/resources/org/sciplore/pds/test-vroniplag/sources-text")
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-vroniplag/fragments-text"),
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-vroniplag/sources-text")
             );
 
             vroniPlagEvaluationSetTOSA.printEvaluation();
@@ -69,8 +69,8 @@ public class TOSAEvaluationSetTest {
 
         try {
             EvaluationSet englishJapaneseBBCEvaluationSetTOSA = new TOSAEvaluationSet(
-                    new File("src/test/resources/org/sciplore/pds/test-bbc/en"), "en",
-                    new File("src/test/resources/org/sciplore/pds/test-bbc/ja"), "ja"
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/en"), "en",
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/ja"), "ja"
             );
 
             englishJapaneseBBCEvaluationSetTOSA.printEvaluation();
@@ -90,9 +90,9 @@ public class TOSAEvaluationSetTest {
     public void testTOSAEnglishJapaneseWithExtraDocumentsCosineSimilarity() {
         try {
             EvaluationSet englishJapaneseBBCEvaluationSetCLOSA = new TOSAEvaluationSet(
-                    new File("src/test/resources/org/sciplore/pds/test-bbc/en"), "en",
-                    new File("src/test/resources/org/sciplore/pds/test-bbc/ja"), "ja",
-                    new File("src/test/resources/org/sciplore/pds/test-bbc/en-extra")
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/en"), "en",
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/ja"), "ja",
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/en-extra")
             );
 
             englishJapaneseBBCEvaluationSetCLOSA.printEvaluation();
@@ -125,8 +125,8 @@ public class TOSAEvaluationSetTest {
          */
         try {
             TOSAEvaluationSet englishChineseECCEEvaluationSetTOSA = new TOSAEvaluationSet(
-                    new File("src/test/resources/org/sciplore/pds/ECCE/en"), "en",
-                    new File("src/test/resources/org/sciplore/pds/ECCE/zh"), "zh");
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/ECCE/en"), "en",
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/ECCE/zh"), "zh");
 
             englishChineseECCEEvaluationSetTOSA.printEvaluation();
         } catch (IOException e) {

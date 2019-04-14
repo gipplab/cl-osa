@@ -30,8 +30,8 @@ public class CLCSAEvaluationSetTest {
          */
         try {
             EvaluationSet vroniPlagEvaluationSetCLCSA = new CLOSAEvaluationSet(
-                    new File("src/test/resources/org/sciplore/pds/test-vroniplag/fragments-text"),
-                    new File("src/test/resources/org/sciplore/pds/test-vroniplag/sources-text")
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-vroniplag/fragments-text"),
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-vroniplag/sources-text")
             );
 
             vroniPlagEvaluationSetCLCSA.printEvaluation();
@@ -60,8 +60,8 @@ public class CLCSAEvaluationSetTest {
         */
         try {
             EvaluationSet englishJapaneseBBCEvaluationSetCLCSA = new CLCSAEvaluationSet(
-                    new File("src/test/resources/org/sciplore/pds/test-bbc/en"), "en",
-                    new File("src/test/resources/org/sciplore/pds/test-bbc/ja"), "ja");
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/en"), "en",
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/ja"), "ja");
 
             englishJapaneseBBCEvaluationSetCLCSA.printEvaluation();
         } catch (IOException e) {
@@ -88,8 +88,8 @@ public class CLCSAEvaluationSetTest {
          */
         try {
             EvaluationSet englishChineseECCEEvaluationSetCLCSA = new CLCSAEvaluationSet(
-                    new File("src/test/resources/org/sciplore/pds/ECCE/en"), "en",
-                    new File("src/test/resources/org/sciplore/pds/ECCE/zh"), "zh");
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/ECCE/en"), "en",
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/ECCE/zh"), "zh");
 
             englishChineseECCEEvaluationSetCLCSA.printEvaluation();
         } catch (IOException e) {
