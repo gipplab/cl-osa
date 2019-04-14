@@ -1,5 +1,8 @@
 package com.fabianmarquart.closa.language;
 
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.LoggerContext;
 import com.google.common.base.Optional;
 import com.optimaize.langdetect.LanguageDetectorBuilder;
 import com.optimaize.langdetect.i18n.LdLocale;
@@ -8,22 +11,26 @@ import com.optimaize.langdetect.profiles.LanguageProfile;
 import com.optimaize.langdetect.profiles.LanguageProfileReader;
 import com.optimaize.langdetect.text.CommonTextObjectFactories;
 import com.optimaize.langdetect.text.TextObjectFactory;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LanguageDetector {
 
+    private static final LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+    private static final Logger optimaizeLogger = loggerContext.getLogger("com.optimaize.langdetect");
     private static com.optimaize.langdetect.LanguageDetector languageDetector;
+
 
     /**
      * Constructor for all supported languages.
      */
     public LanguageDetector() {
+        optimaizeLogger.setLevel(Level.ERROR);
+
         try {
             List<LdLocale> languages = Stream.of("en", "de", "fr", "es", "ja", "zh-CN", "zh-TW", "hi", "it", "ru")
                     .map(LdLocale::fromString)
@@ -49,6 +56,8 @@ public class LanguageDetector {
      * @param languageCodes languages to consider.
      */
     public LanguageDetector(List<String> languageCodes) {
+        optimaizeLogger.setLevel(Level.ERROR);
+
         try {
             List<LdLocale> languages = languageCodes.stream()
                     .map(languageCode -> languageCode.equals("zh") ? "zh-CN" : languageCode)
@@ -76,35 +85,23 @@ public class LanguageDetector {
      * @return language code string.
      */
     public String detectLanguage(String text) {
-        // suppress printing of this method
-        PrintStream out = System.out;
-        System.setOut(new PrintStream(new OutputStream() {
-            @Override
-            public void write(int b) {
-            }
-        }));
+        // start
+        Optional<LdLocale> ldLocaleOptional;
 
-        try {
-            // start
-            Optional<LdLocale> ldLocaleOptional;
+        // create a text object factory
+        TextObjectFactory textObjectFactory;
 
-            // create a text object factory
-            TextObjectFactory textObjectFactory;
+        if (text.length() <= 50) {
+            textObjectFactory = CommonTextObjectFactories.forDetectingShortCleanText();
+        } else {
+            textObjectFactory = CommonTextObjectFactories.forDetectingOnLargeText();
+        }
 
-            if (text.length() <= 50) {
-                textObjectFactory = CommonTextObjectFactories.forDetectingShortCleanText();
-            } else {
-                textObjectFactory = CommonTextObjectFactories.forDetectingOnLargeText();
-            }
+        // detect the suspicious text's language, (translate) and tokenize it
+        ldLocaleOptional = languageDetector.detect(textObjectFactory.forText(text));
 
-            // detect the suspicious text's language, (translate) and tokenize it
-            ldLocaleOptional = languageDetector.detect(textObjectFactory.forText(text));
-
-            if (ldLocaleOptional != null && ldLocaleOptional.isPresent()) {
-                return ldLocaleOptional.get().getLanguage();
-            }
-        } finally {
-            System.setOut(out);
+        if (ldLocaleOptional != null && ldLocaleOptional.isPresent()) {
+            return ldLocaleOptional.get().getLanguage();
         }
 
         // default

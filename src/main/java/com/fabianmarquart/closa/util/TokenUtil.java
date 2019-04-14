@@ -1,5 +1,6 @@
 package com.fabianmarquart.closa.util;
 
+import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import com.fabianmarquart.closa.language.LanguageDetector;
@@ -52,13 +53,12 @@ public class TokenUtil {
     private static final String fullStopJa = "句点";
 
     private static final LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+    private static final Logger stanfordNlpLogger = loggerContext.getLogger("edu.stanford.nlp");
 
     private static LanguageDetector languageDetector;
 
     static {
-        Logger stanfordNlpLogger = loggerContext.getLogger("edu.stanford.nlp");
-        stanfordNlpLogger.setLevel(ch.qos.logback.classic.Level.OFF);
-
+        stanfordNlpLogger.setLevel(Level.ERROR);
         TokenUtil.languageDetector = new LanguageDetector();
     }
 
