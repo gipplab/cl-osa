@@ -13,6 +13,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.MutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.slf4j.LoggerFactory;
@@ -195,6 +196,9 @@ public class WikidataDumpUtil {
      * @return the results as Wikidata entities.
      */
     public static List<WikidataEntity> getEntitiesByLabel(String label, String languageCode) {
+        if (!languages.contains(languageCode)) {
+            throw new IllegalArgumentException(String.format("Language code %s is not supported", languageCode));
+        }
         List<WikidataEntity> entities = new ArrayList<>();
 
         for (Document nextDocument : entitiesCollection
@@ -237,6 +241,9 @@ public class WikidataDumpUtil {
      * @return the results as Wikidata entities.
      */
     public static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode) {
+        if (!languages.contains(languageCode)) {
+            throw new IllegalArgumentException(String.format("Language code %s is not supported", languageCode));
+        }
         return getEntitiesByToken(token, languageCode, Category.neutral);
     }
 
@@ -251,6 +258,9 @@ public class WikidataDumpUtil {
      * @return the results as Wikidata entities.
      */
     public static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode, Category category) {
+        if (!languages.contains(languageCode)) {
+            throw new IllegalArgumentException(String.format("Language code %s is not supported", languageCode));
+        }
         if (token.getLemma() == null) {
             throw new IllegalArgumentException("The token lemma is null");
         } else if (token.getLemma().equals("")) {
@@ -582,7 +592,7 @@ public class WikidataDumpUtil {
      * @param secondEntity second entity
      * @return the most specific parent entity with distances from first and second entity.
      */
-    public static org.apache.commons.lang3.tuple.Pair<WikidataEntity, List<Long>> getMostSpecificParentEntityWithDepth(WikidataEntity firstEntity, WikidataEntity secondEntity) {
+    public static Pair<WikidataEntity, List<Long>> getMostSpecificParentEntityWithDepth(WikidataEntity firstEntity, WikidataEntity secondEntity) {
         Document result = entitiesHierarchyCollection.aggregate(Arrays.asList(
                 new Document("$match",
                         new Document("$and",
@@ -644,9 +654,6 @@ public class WikidataDumpUtil {
         }
 
         return getMostSpecificParentEntityWithDepth(firstEntity, secondEntity).getValue().stream().mapToLong(l -> l).sum();
-
-        // WikidataEntity mostSpecificParentEntity = getMostSpecificParentEntity(firstEntity, secondEntity);
-        // return getDistanceToAncestor(firstEntity, mostSpecificParentEntity) + getDistanceToAncestor(secondEntity, mostSpecificParentEntity);
     }
 
     /**
@@ -803,7 +810,7 @@ public class WikidataDumpUtil {
      */
     private static Document createLabelQuery(String queryString, String languageCode) {
         if (!languages.contains(languageCode)) {
-            throw new IllegalArgumentException("Language is not supported.");
+            throw new IllegalArgumentException(String.format("Language code %s is not supported", languageCode));
         }
 
         return new Document("$or", Arrays.asList(
@@ -836,26 +843,33 @@ public class WikidataDumpUtil {
     /**
      * Printing function for entity list.
      *
-     * @param entities entities to print.
-     * @param language language code.
+     * @param entities     entities to print.
+     * @param languageCode language code.
      */
-    public static void printEntities(List<String> entities, String language) {
-        System.out.println(getEntitiesForPrinting(entities, language));
+    public static void printEntities(List<String> entities, String languageCode) {
+        if (!languages.contains(languageCode)) {
+            throw new IllegalArgumentException(String.format("Language code %s is not supported", languageCode));
+        }
+        System.out.println(getEntitiesForPrinting(entities, languageCode));
     }
 
     /**
      * Printing helper function to pretty print entities.
      *
-     * @param entities entities to print.
-     * @param language language code.
+     * @param entities     entities to print.
+     * @param languageCode language code.
      * @return list of printable entity strings.
      */
-    private static String getEntitiesForPrinting(List<String> entities, String language) {
+    private static String getEntitiesForPrinting(List<String> entities, String languageCode) {
+        if (!languages.contains(languageCode)) {
+            throw new IllegalArgumentException(String.format("Language code %s is not supported", languageCode));
+        }
+
         return String.join(", \n", entities.stream()
                 .map(WikidataDumpUtil::getEntityById)
                 .map(entity -> "{ " + entity.getId() + ", "
-                        + (entity.getLabels() != null ? entity.getLabels().getOrDefault(language, "") : "") + ", "
-                        + (entity.getDescriptions() != null ? entity.getDescriptions().getOrDefault(language, "") : "") + " }")
+                        + (entity.getLabels() != null ? entity.getLabels().getOrDefault(languageCode, "") : "") + ", "
+                        + (entity.getDescriptions() != null ? entity.getDescriptions().getOrDefault(languageCode, "") : "") + " }")
                 .collect(Collectors.toList()));
     }
 
