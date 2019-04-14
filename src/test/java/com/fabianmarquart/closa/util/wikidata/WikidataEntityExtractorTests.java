@@ -177,6 +177,17 @@ public class WikidataEntityExtractorTests {
     }
 
     @Test
+    public void testExtractEntitiesFromChineseSentence() {
+        String textZh = "有些事预料得到，但并不会减弱其破坏力。\n" +
+                "巴拉克•奥巴马(Barack Obama)决定对中国输美轮胎开征特保关税，这似乎表明，当被迫在贸易政策上作出决断时，他一般都会采取错误的立场。\n" +
+                "为什么这是一个糟糕的决定？ 论据多得很。\n" +
+                "首先，它涉及一个本身不想得到保护的产业。";
+
+        List<WikidataEntity> entitiesZh = WikidataEntityExtractor.extractEntitiesFromText(textZh, "zh");
+        System.out.println(entitiesZh);
+    }
+
+    @Test
     public void testExtractEntitiesFromEnglishArticle() {
         try {
             String textEn = FileUtils.readFileToString(new File("src/test/resources/org/sciplore/pds/test-bbc/en/35157967/0.txt"), StandardCharsets.UTF_8);
