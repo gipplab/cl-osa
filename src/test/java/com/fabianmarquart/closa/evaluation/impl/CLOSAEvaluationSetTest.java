@@ -257,7 +257,8 @@ public class CLOSAEvaluationSetTest {
         try {
             CLOSAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr"
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr",
+                    1000
             );
             englishFrenchJrcAcquisEvaluationSetCLOSA.printEvaluation();
         } catch (Exception e) {
@@ -286,7 +287,8 @@ public class CLOSAEvaluationSetTest {
         try {
             CLOSAEvaluationSet englishFrenchEuroparlEvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr"
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
+                    1000
             );
             englishFrenchEuroparlEvaluationSetCLOSA.printEvaluation();
         } catch (Exception e) {

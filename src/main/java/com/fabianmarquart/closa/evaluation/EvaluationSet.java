@@ -234,7 +234,7 @@ public abstract class EvaluationSet {
      */
     private void initializeOneFilePair(File suspiciousFile, String suspiciousLanguage, File candidateFile, String candidateLanguage) {
         System.out.println("Preprocessing \t" + suspiciousFile.getPath());
-        System.out.println("and \t\t\t" + candidateFile.getPath());
+        System.out.println("and \t\t" + candidateFile.getPath());
 
         documentLanguages.add(suspiciousLanguage);
         documentLanguages.add(candidateLanguage);

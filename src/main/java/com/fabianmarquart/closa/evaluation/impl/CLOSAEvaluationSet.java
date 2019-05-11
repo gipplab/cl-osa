@@ -66,7 +66,6 @@ public class CLOSAEvaluationSet extends EvaluationSet {
         }
     }
 
-
     /**
      * CL-OSA preprocessing: translation -> entity extraction
      *
@@ -76,6 +75,7 @@ public class CLOSAEvaluationSet extends EvaluationSet {
      */
     @Override
     protected List<String> preProcess(String documentPath, String documentLanguage) {
+        System.out.println("documentPath = " + documentPath);
         return analysis.preProcess(documentPath, documentLanguage);
     }
 
