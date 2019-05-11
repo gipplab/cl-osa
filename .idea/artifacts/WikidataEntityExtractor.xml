@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/WikidataEntityExtractor</output-path>
     <root id="archive" name="WikidataEntityExtractor.jar">
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/manifests/wikidata-entity-extractor/META-INF/MANIFEST.MF" />
       </element>
     </root>
   </artifact>

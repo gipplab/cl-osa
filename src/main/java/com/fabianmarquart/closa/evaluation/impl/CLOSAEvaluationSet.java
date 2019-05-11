@@ -17,7 +17,8 @@ import java.util.List;
  */
 public class CLOSAEvaluationSet extends EvaluationSet {
 
-    private final OntologyBasedSimilarityAnalysis analysis = new OntologyBasedSimilarityAnalysis(new LanguageDetector(), new TextClassifier());
+    private OntologyBasedSimilarityAnalysis analysis;
+
     private boolean graphBasedAnalysis = false;
 
     public CLOSAEvaluationSet(File folder, String suspiciousSuffix, String candidateSuffix) {
@@ -75,7 +76,7 @@ public class CLOSAEvaluationSet extends EvaluationSet {
      */
     @Override
     protected List<String> preProcess(String documentPath, String documentLanguage) {
-        System.out.println("documentPath = " + documentPath);
+        this.analysis = new OntologyBasedSimilarityAnalysis(new LanguageDetector(), new TextClassifier());
         return analysis.preProcess(documentPath, documentLanguage);
     }
 
