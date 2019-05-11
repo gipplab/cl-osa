@@ -301,9 +301,11 @@ public abstract class EvaluationSet {
 
         StringBuilder evaluation = new StringBuilder();
 
-        int maximumRank = suspiciousIdDetectedCandidateIdsMap.entrySet().iterator().next().getValue().size();
+        int maximumRank = 50;
 
-        for (int lowestRank = 0; lowestRank < maximumRank; lowestRank++) {
+        List<Integer> ranks = Arrays.asList(1, 2, 3, 5, 10, 20, 50);
+
+        for (int lowestRank : ranks) {
 
             System.out.println();
             evaluation.append("Values for ranks 1 to ").append(lowestRank + 1).append(":\n\n");
