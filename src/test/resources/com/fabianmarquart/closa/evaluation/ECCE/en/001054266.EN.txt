@@ -1,29 +1,251 @@
-In January 1914 few Europeans imagined that, seven months later, their political and military leaders would plunge the world into a cataclysmic war.
-Public attention in most capitals was elsewhere.
-Britain was preoccupied with the Irish home rule crisis and other domestic troubles.
-Le tout Paris was about to engross itself in the Caillaux affair, in which a French politician's wife shot dead Le Figaro's editor, stood trial for murder and was acquitted.
-According to the memoirs of Vladimir Kokovtsov, Russia's premier in early 1914, politics in St Petersburg revolved around the personality of Grigory Rasputin, the tsarist court's hypnotic holy man.
-Meanwhile, a penniless 24-year-old Austrian painter mooched about Munich, desperate to avoid his native country's military draft.
-His name was Adolf Hitler.
-Little more than a month after the June 28 assassination in Sarajevo of the archduke Franz Ferdinand, heir to the Habsburg throne, fighting erupted on multiple fronts.
-By the time the conflict ended in November 1918, the war had resulted in tens of millions of military and civilian casualties.
-While there is no reason to fear that the world in 2014 is on the edge of such an epochal disaster, there are some disquieting similarities between then and now.
-It will be incumbent this year on governments and peoples to commemorate the outbreak of the first world war with dignified ceremonies and respect for the dead, but also with sober consideration of the lessons to be drawn from the catastrophe of 1914-18.
-One lesson is that the contingent causes of conflict should not be confused with more deeply rooted tensions in international relations, or in the internal affairs of nations, that lead to war.
-Many seeds of the first world war were sown well before the killings in Sarajevo.
-Such acts of terrorism are notoriously difficult to prevent, in our era as in the early 20th century, but global military, political and economic tensions are matters that statesmen can and should address.
-It is their responsibility to act within accepted international rules and to ensure that competition among states and peoples remains orderly.
-Another lesson is that the frictions of rival nationalisms, fuelled by pride, ambition, ignorance and lovingly nursed historical grievances, are no less capable of causing war today than they were in 1914.
-The risks are especially acute if the international system is being reordered by the rise of new great powers and the relative decline of older ones.
-One hundred years ago it was Germany seeking its place in the sun at the British empire's expense.
-Now it is, increasingly, China and the US.
-Recent tensions in the East China Sea between Beijing and its neighbours, which rely on US support, recall Germany's strained relations with Britain, France and Russia before 1914.
-A certain brinkmanship is inevitable in international relations, but appreciation of the other side's motives and legitimate interests is essential.
-In this respect the measured progress towards a settlement of the dispute over Iran's nuclear programme is promising.
-A third lesson is that it is foolish to go to war in the belief that it is bound to be short, inexpensive and with manageable consequences.
-In 1914 some European politicians and generals, their outlook shaped by the limited wars that had unified Germany and Italy half a century earlier, harboured this illusion.
-So did Washington and London when they invaded Iraq in 2003.
-How wrong these war leaders were on both occasions.
-A final lesson is that, if war does break out, it is vital at its conclusion to construct a secure peace.
-The 1919-23 Paris peace conferences did not achieve this.
-By 1939 the Austrian draft-dodger was at the height of his powers in Berlin and the world was paying an even heavier price than in 1914.
+Q16644902
+Q12681670
+Q5413709
+Q34516
+Q23350
+Q5151
+Q1402561
+Q32518
+Q906997
+Q16502
+Q16502
+Q198
+Q7257279
+Q6501338
+Q5119
+Q690213
+Q9142
+Q7743
+Q104555
+Q381072
+Q19357595
+Q2510063
+Q90
+Q3123740
+Q56245352
+Q1772698
+Q32
+Q82955
+Q188830
+Q260899
+Q4
+Q131212
+Q1510380
+Q2142560
+Q132821
+Q1454723
+Q438448
+Q159
+Q959664
+Q40719727
+Q12681670
+Q7163
+Q656
+Q10931
+Q641118
+Q12731
+Q62962
+Q8441
+Q781770
+Q1028181
+Q1726
+Q1717246
+Q169480
+Q6256
+Q8473
+Q31603
+Q352
+Q47035128
+Q5151
+Q2660
+Q3882219
+Q11194
+Q154615
+Q43063
+Q675316
+Q64131
+Q189233
+Q650711
+Q653197
+Q1055293
+Q11471
+Q198
+Q5375780
+Q13068472
+Q12681683
+Q198
+Q2995644
+Q23806
+Q38526
+Q8473
+Q206887
+Q1056901
+Q178354
+Q44619
+Q16502
+Q16502
+Q5371769
+Q26382
+Q3839081
+Q254465
+Q42841
+Q577
+Q7188
+Q5
+Q525356
+Q44512
+Q103495
+Q198
+Q2627975
+Q28510
+Q4
+Q1344851
+Q337921
+Q1137224
+Q1121708
+Q199
+Q337921
+Q2574811
+Q198
+Q557945
+Q1134817
+Q908584
+Q166542
+Q203066
+Q1772698
+Q6266
+Q32518
+Q198
+Q40763
+Q103495
+Q198
+Q22085061
+Q844482
+Q11194
+Q5710433
+Q7283
+Q1717246
+Q630830
+Q578
+Q8473
+Q908584
+Q35758
+Q372436
+Q28008314
+Q188473
+Q845956
+Q104555
+Q45767
+Q7275
+Q5
+Q55082364
+Q12177489
+Q337921
+Q82580
+Q6235
+Q42501
+Q187234
+Q1300785
+Q815577
+Q186360
+Q3042652
+Q198
+Q3151690
+Q12681670
+Q104493
+Q216042
+Q845956
+Q1139344
+Q1954125
+Q185145
+Q25107
+Q171318
+Q5249503
+Q199
+Q37413
+Q577
+Q183
+Q82794
+Q876237
+Q8680
+Q48349
+Q240673
+Q148
+Q30
+Q30
+Q908584
+Q45341
+Q956
+Q1986893
+Q21092971
+Q30
+Q1058733
+Q18733
+Q183
+Q203066
+Q690213
+Q142
+Q159
+Q12681670
+Q917519
+Q166542
+Q203066
+Q2728730
+Q840594
+Q170924
+Q28510
+Q192276
+Q247792
+Q167412
+Q180684
+Q794
+Q19753332
+Q1371819
+Q337921
+Q750997
+Q198
+Q34394
+Q256817
+Q24862
+Q733541
+Q12681670
+Q82955
+Q83460
+Q207961
+Q2247326
+Q198
+Q609057
+Q183
+Q38
+Q2114394
+Q578
+Q283202
+Q182593
+Q23
+Q84
+Q796
+Q841787
+Q29485
+Q198
+Q32518
+Q1366722
+Q337921
+Q198
+Q50388354
+Q20665666
+Q1049476
+Q55707349
+Q454
+Q199820
+Q7157512
+Q625994
+Q12681685
+Q781770
+Q4877042
+Q190200
+Q25107
+Q64
+Q16502
+Q16502
+Q160151
+Q12681670

@@ -1,30 +1,237 @@
-Much of the motivation for Abenomics, Japan's bold gambit to breathe life into its economy, comes courtesy of Beijing.
-It was fear of a rising, more assertive China that led the Liberal Democratic party to turn to the jingoistic Shinzo Abe in the first place and convinced many Japanese to hold their nose and vote for him.
-It was the same conviction that persuaded Mr Abe himself that something had to be done to rid the country of 15 years of deflation and to build a prosperous country capable of defending its interests.
-For a while Mr Abe, a revisionist who thinks Japan has been unfairly singled out for criticism about wartime atrocities, concentrated on getting his economic plan up and running.
-Now, more than a year into a premiership likely to last at least until 2016, he is pushing his nationalist agenda more forcefully – with some worrying implications for Japanese democracy.
-In December Mr Abe visited the controversial Yasukuni shrine against the advice of Washington and in defiance of diplomatic sense.
-The prospects of dialogue with Beijing – and perhaps even South Korea – have sharply receded as a result.
-Before his visit to Yasukuni, the government rammed home a secrecy bill that is too draconian.
-There is always a balance between security and freedom of speech. But Japan's law tilts too far towards secrecy.
-Suspicions about the state secrets law have been reinforced by Mr Abe's clumsy attempt to rein in NHK, the national broadcaster that is Japan's equivalent of the BBC.
-In December the NHK board appointed Katsuto Momii as president.
-He has alarmed many by suggesting that NHK should not challenge the government on important issues.
-“We cannot say left when the government says right,” is how he put it.
-Mr Momii has also raised concerns by endorsing – before retracting – the standard rightwing line denying that tens of thousands of Korean and other Asian women were dragooned into prostitution during the war.
-One of Mr Abe's four appointees to the 12-member NHK board went one worse by suggesting the Nanjing Massacre of 1937 was fabricated.
-Another board member said women's “rational” place was in the home.
-NHK also appears to have stifled criticism of the nuclear industry ahead of elections for Tokyo governor in which the use of nuclear power was high on the agenda.
-Mr Abe's party is pro-nuclear but the public has become more wary after the 2011 meltdown at Fukushima.
-Mr Abe's government is seeking to narrow the scope of public debate.
-Beijing is making his task easier by its constant hectoring of Japan.
-A recent Pew poll found that only 5 per cent of Japanese had a positive opinion of China.
-But Mr Abe's manipulation of events to further his agenda is dangerous in a country where the public is, if anything, too passive, not too boisterous.
-The Japanese people have much to discuss.
-It may be reasonable, for example, to change Japan's interpretation of “collective self-defence” such that its military could come to allies' aid.
-It is even legitimate to debate the possibility of amending article nine of Japan's constitution, which – virtually alone among nations – forbids it from the right to wage war.
-The inconvenient truth for Mr Abe, however, is that a majority of Japanese are strong supporters of Japan's postwar pacifism and significantly less conservative than the prime minister.
-Mr Abe's plan seems to be to shift opinion in his direction through the steady erosion of debate.
-China's claim that Mr Abe is a danger to Japan's neighbours is mostly nonsense.
-But he could be a danger to Japan itself.
-It would be a tragedy if the threat of China were used as an excuse to mount an attack on Japan's relatively open society.
+Q644302
+Q17
+Q208544
+Q14293544
+Q3
+Q159810
+Q137
+Q16515017
+Q956
+Q44619
+Q148
+Q32518
+Q232595
+Q1686000
+Q304479
+Q132345
+Q33965709
+Q82794
+Q884
+Q196431
+Q7363
+Q42904171
+Q2916183
+Q34833
+Q6256
+Q38701
+Q577
+Q161081
+Q1340643
+Q6256
+Q38118448
+Q170924
+Q34833
+Q17
+Q17955
+Q38000397
+Q864446
+Q611203
+Q105674
+Q47035128
+Q577
+Q18122778
+Q12681716
+Q1758159
+Q7881229
+Q884
+Q7174
+Q126
+Q34833
+Q830719
+Q242803
+Q697295
+Q2132873
+Q23
+Q24276534
+Q173253
+Q131395
+Q956
+Q884
+Q176494
+Q2995644
+Q6163881
+Q7188
+Q611035
+Q7743
+Q1503443
+Q134566
+Q169489
+Q22692
+Q315
+Q17
+Q7748
+Q2433737
+Q23257209
+Q1503443
+Q516519
+Q7275
+Q4116373
+Q7748
+Q852520
+Q34833
+Q46999885
+Q29142
+Q2196000
+Q212128
+Q15265344
+Q17
+Q36384
+Q9531
+Q126
+Q212128
+Q520096
+Q15649229
+Q30461
+Q945434
+Q212128
+Q2988681
+Q7188
+Q86447
+Q7429143
+Q5338673
+Q7188
+Q7429143
+Q14565199
+Q884353
+Q206361
+Q317623
+Q37105
+Q23806
+Q43016
+Q9176
+Q7974
+Q467
+Q194199
+Q36633
+Q198
+Q199
+Q34833
+Q202
+Q212128
+Q520096
+Q199
+Q21255921
+Q16666
+Q3199915
+Q6876110
+Q5428139
+Q2824523
+Q379825
+Q7429143
+Q467
+Q47005650
+Q82794
+Q7743
+Q212128
+Q3620816
+Q17955
+Q4072210
+Q8148
+Q40231
+Q1490
+Q48352
+Q1724915
+Q12739
+Q25107
+Q5754843
+Q1758159
+Q34833
+Q200538
+Q2388316
+Q211198
+Q851312
+Q976350
+Q161176
+Q34833
+Q7188
+Q174320
+Q14850922
+Q179875
+Q956
+Q759676
+Q186509
+Q17
+Q37487445
+Q49958
+Q203
+Q58093
+Q884
+Q1413646
+Q3962655
+Q148
+Q34833
+Q1190554
+Q1758159
+Q6256
+Q2388316
+Q211198
+Q884
+Q5
+Q3030248
+Q12335479
+Q1150070
+Q17
+Q210439
+Q694268
+Q40283
+Q8473
+Q3612401
+Q8043
+Q2827815
+Q179875
+Q21170479
+Q103184
+Q19108
+Q17
+Q7755
+Q6266
+Q14565199
+Q6821213
+Q198
+Q7949
+Q34833
+Q18000
+Q884
+Q10940
+Q17
+Q58848
+Q7169
+Q14212
+Q83307
+Q34833
+Q611203
+Q1604733
+Q3962655
+Q2151613
+Q5788637
+Q80026
+Q179875
+Q148
+Q836925
+Q1101080
+Q13582404
+Q17
+Q1986893
+Q151501
+Q13582404
+Q17
+Q3123740
+Q80930
+Q707125
+Q148
+Q278368
+Q552754
+Q14713
+Q81672
+Q17
+Q505605

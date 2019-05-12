@@ -1,25 +1,242 @@
-All in all, 2010 was not a good year for the global governance industry.
-With the financial crisis pivoting from the private financial system to sovereign debt, and global current account imbalances starting to re-emerge, the world needed robust mechanisms to cope with both.
-Instead it got a series of inadequate short-term deals that staved off immediate crisis while leaving the bigger problems in place.
-In spite of the talk of reform to the international financial and policy architecture, and particularly the continued shift towards the G20 as a forum of governance, countries have yet to show that they have the political courage to form a consensus and take tough decisions.
-In response to the sovereign debt crisis that began in Greece early in the year, for example, the eurozone authorities appeared in denial for months.
-Finally they cobbled together a rescue package that could have been far smaller had it come earlier.
-While it helped with liquidity, it ignored whether Greece had a solvency problem.
-And although the EU has slowly and unevenly groped its way to creating a sustainable mechanism for rescue and restructuring, the eurozone's leaders have signally failed to show the determination to deal with the problems in front of their noses.
-Germany has talked a good game about making private investors share the cost of any rescues in the future.
-But following the Greece experience, it acquiesced to the Irish rescue package, which similarly bought short-term stability at the expense of longer-term equilibrium by failing to reduce the debt owed by the country's tottering banks.
-It was the G20 meeting in Seoul in November where divisions were most clear.
-The US was instrumental in creating the G20 after the Asian financial crisis in 1999 and subsequently elevated it to heads of government status in 2008.
-It attempted to use the forum as a vehicle for global rebalancing – specifically pressing China to let its currency rise and reducing trade surpluses and deficits.
-Washington did get China to allow the renminbi to crawl a couple of percentage points upwards and apparently made some progress on setting targets for current account imbalances.
-But the US campaign was undermined by fears it was trying to push down the dollar by the Federal Reserve's return to quantitative easing.
-Barack Obama's administration and the Fed were fatally slow in countering the accusation.
-In the end the G20 avoided public disagreement only by backing away from binding goals and resorting to a familiar cop-out: punting the issue to the International Monetary Fund.
-The problem is wider than the specifics of financial rescues and current account balances.
-Both advanced and emerging market countries must take some blame.
-With the US declining in relative terms as a hegemon, the days have passed when it could turn up to international summits and railroad through decisions without bothering to win the argument in advance.
-While emerging markets have shown their willingness to veto policies they do not like, they have generally yet to put forward coherent alternatives.
-The Bric nations (Brazil, Russia, India and China) hold heads of government summits but, divided by evident yet unacknowledged divergences of interest, they agree on little except attacking richer countries.
-Creating new structures is all very well, but structures do not make policy.
-Governments cannot avoid addressing differences of opinion by appealing to process or shuffling off the responsibility to agencies such as the IMF, which have plenty of technical expertise but a shortage of political heft.
-Governments in 2011 need less talk about the potential for the G20 to revolutionise global governance and more focus on what it can actually achieve right now.
+Q30603043
+Q851662
+Q15290
+Q577
+Q1524235
+Q1553864
+Q8148
+Q114380
+Q381072
+Q158668
+Q1416617
+Q584496
+Q3196867
+Q746687
+Q508295
+Q16502
+Q16502
+Q190258
+Q517596
+Q849829
+Q170198
+Q321839
+Q192193
+Q381072
+Q21171241
+Q621184
+Q82794
+Q2143576
+Q603773
+Q900406
+Q845956
+Q1156854
+Q12271
+Q1604733
+Q19771
+Q123550
+Q1553864
+Q6256
+Q7502926
+Q208160
+Q200446
+Q202722
+Q732833
+Q1920566
+Q584496
+Q3196867
+Q381072
+Q23759131
+Q41
+Q40719727
+Q577
+Q12335479
+Q174834
+Q3620816
+Q1343202
+Q5151
+Q1527595
+Q1341429
+Q2046602
+Q23257209
+Q23835475
+Q1827667
+Q815577
+Q41
+Q1137437
+Q621184
+Q458
+Q25932227
+Q17641254
+Q11398090
+Q517596
+Q1341429
+Q1376796
+Q32518
+Q7502926
+Q21168708
+Q321839
+Q621184
+Q7363
+Q183
+Q603773
+Q15290
+Q7889
+Q778274
+Q557880
+Q11692
+Q240673
+Q17126809
+Q344
+Q47436102
+Q41
+Q164359
+Q342522
+Q9142
+Q1341429
+Q2046602
+Q1308239
+Q903517
+Q240673
+Q2648729
+Q912546
+Q3196867
+Q6256
+Q21984376
+Q22687
+Q19771
+Q625994
+Q8684
+Q125
+Q38348
+Q306484
+Q30
+Q30
+Q11398090
+Q19771
+Q7974
+Q114380
+Q381072
+Q842838
+Q302334
+Q2285706
+Q7188
+Q813912
+Q1069941
+Q29142
+Q278368
+Q123550
+Q42889
+Q1650142
+Q148
+Q9788
+Q8142
+Q1139344
+Q601401
+Q268617
+Q444600
+Q23
+Q148
+Q1962593
+Q39099
+Q1154385
+Q191290
+Q1049848
+Q44946
+Q26186900
+Q247792
+Q466845
+Q170212
+Q746687
+Q508295
+Q30
+Q30
+Q831663
+Q44619
+Q53536
+Q283976
+Q21087400
+Q76
+Q3754526
+Q53536
+Q24249439
+Q19357312
+Q5375780
+Q19771
+Q1717246
+Q211198
+Q1255828
+Q3306907
+Q510878
+Q18530
+Q86447
+Q7804
+Q621184
+Q17126809
+Q746687
+Q508295
+Q134566
+Q546395
+Q37654
+Q6256
+Q621695
+Q30
+Q30
+Q171318
+Q1071233
+Q573
+Q1142227
+Q304479
+Q845956
+Q8502
+Q22667
+Q732833
+Q18560095
+Q186619
+Q546395
+Q37654
+Q7502926
+Q178074
+Q1156854
+Q3249878
+Q280658
+Q11366
+Q6266
+Q155
+Q159
+Q668
+Q148
+Q196431
+Q2285706
+Q7188
+Q8502
+Q152005
+Q189000
+Q170924
+Q93288
+Q6256
+Q1954125
+Q517966
+Q517966
+Q26186900
+Q1156854
+Q7188
+Q1717246
+Q845126
+Q3962655
+Q205663
+Q1930567
+Q327333
+Q7804
+Q569612
+Q644238
+Q1337691
+Q7188
+Q851312
+Q190258
+Q603773
+Q2296856
+Q19771
+Q1524235
+Q1553864
+Q3568
+Q193168

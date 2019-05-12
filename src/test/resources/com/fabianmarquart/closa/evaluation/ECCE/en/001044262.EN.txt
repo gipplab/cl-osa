@@ -1,40 +1,222 @@
-Christine Lagarde, managing director of the International Monetary Fund, is a happy woman: her institution will receive at least an extra $430bn in resources.
-This will substantially increase the IMF's capacity to help if the eurozone crisis takes a turn for the worse.
-Should the world welcome this success?
-Yes, alas, with equal emphasis on both words.
-It is appalling that the eurozone should need such a backup.
-Yet it does.
-It is vital, however, that the IMF ensures that any support be well used.
-That means tough conditions for the eurozone as a whole.
-In all this is an impressive gesture of international solidarity.
-It is also an indication of how worried outsiders must be over the ability of the eurozone's crisis to shake the world and the inability of the eurozone alone to manage it.
-Originally, the IMF had asked for another $500bn in loans.
-It looks as though it will end up with something very close to that.
-By Friday, it had obtained €150bn (about $200bn) from the eurozone, $60bn from Japan and $15bn each from South Korea, Saudi Arabia and the UK.
-Other donors include Sweden, Switzerland, Norway, Poland, Australia, Denmark, Singapore, the Czech Republic, China and Russia.
-Only the US and Canada are conspicuously absent.
-Europeans are also making a very substantial contribution, separately: the new European Stability Mechanism will have a fresh lending capacity of €500bn.
-The combined lending ceiling of the ESM and the European Financial Stability Facility will be raised to €700bn.
-“The overall firewall,” stated Olli Rehn, vice president of the European Commission, at the meeting of the IMF's International Monetary and Finance Committee in Washington last week, “including the amounts already committed under the Greek Loan Facility and the European Financial Stability Mechanism, amounts to approximately €800bn ($1,060bn).”
-In total, then, the sums available amount to some $1,500bn, quite apart from whatever the European Central Bank contributes.
-That is enough to rescue Spain.
-It ought to be enough to ensure liquidity for Italy in anything but the most devastating circumstances.
-Raising such a sum is a big achievement for Ms Lagarde.
-Yet it is also extraordinary that it should be thought necessary.
-The role of the IMF has always been to provide foreign currency to countries running out of curency reserves.
-But the euro is the second of the world's reserve currencies.
-That the eurozone needs this money shows how totally dysfunctional it is.
-Both need and dysfunction und-erline the case for a transformation of voting weights in the IMF.
-More immediately, how should this money be used?
-The first part of the answer is: independently.
-The IMF must reach its own judgments.
-For this reason, non-eurozone members should decide on whether a programme for any eurozone member makes sense.
-Recipients cannot set the terms of bailouts, as Jim Flaherty, Canada's finance minister noted.
-In this case, it is the eurozone as a whole that is being rescued, not the member in trouble.
-The second part is: with tough conditionality for the eurozone itself.
-In judging whether to support a programme, the IMF always seeks agreement with the relevant monetary and fiscal authorities: the monetary authority is the ECB, and the fiscal authority includes the Commission and other member states.
-If the policies being imposed make adjustment by crisis-hit member states impossible, the IMF must insist on change.
-In fact, the programmes now being forced on countries such as Spain are highly likely to fail.
-By driving economies into recessions and even deflation, they will make their debt burdens worse, not better.
-The IMF must insist on programmes actually likely to work.
-If the eurozone cannot ensure that, the IMF should dare to walk away.
+Q484605
+Q2462658
+Q42178
+Q7804
+Q1101080
+Q8
+Q467
+Q178706
+Q159391
+Q658371
+Q4917
+Q210947
+Q17281278
+Q7804
+Q584804
+Q23835475
+Q381072
+Q304479
+Q21255921
+Q16502
+Q16502
+Q13109234
+Q50000
+Q306574
+Q181767
+Q8171
+Q190258
+Q194274
+Q7804
+Q1058733
+Q278368
+Q19033
+Q12136
+Q21503252
+Q371174
+Q845956
+Q815726
+Q29812613
+Q1347367
+Q381072
+Q29811654
+Q16502
+Q16502
+Q338754
+Q53737447
+Q7804
+Q4917
+Q189539
+Q5375780
+Q21818619
+Q130
+Q4917
+Q4917
+Q4917
+Q17
+Q4917
+Q884
+Q851
+Q145
+Q1968442
+Q728944
+Q34
+Q39
+Q20
+Q36
+Q408
+Q35
+Q334
+Q213
+Q148
+Q159
+Q30
+Q30
+Q16
+Q12887025
+Q5413709
+Q1992300
+Q1954125
+Q1130098
+Q41446476
+Q584804
+Q4917
+Q2275139
+Q221706
+Q1970759
+Q259397
+Q884353
+Q4917
+Q1077396
+Q898405
+Q613299
+Q294411
+Q42178
+Q30461
+Q8880
+Q625994
+Q7804
+Q15906392
+Q23
+Q23387
+Q189539
+Q13226383
+Q309314
+Q5727902
+Q4917
+Q4917
+Q668
+Q16868672
+Q218005
+Q4917
+Q668
+Q8901
+Q27865861
+Q20204892
+Q1341429
+Q29
+Q1827667
+Q38
+Q3629141
+Q7285140
+Q218005
+Q1101080
+Q2532754
+Q1951543
+Q21949
+Q9420
+Q214339
+Q7804
+Q26271812
+Q8142
+Q6256
+Q105674
+Q2088231
+Q4916
+Q11574
+Q16502
+Q16502
+Q756202
+Q8142
+Q190258
+Q1368
+Q7502926
+Q190258
+Q1269239
+Q3975
+Q461499
+Q189760
+Q25288
+Q7804
+Q1368
+Q278368
+Q18689797
+Q1920566
+Q7804
+Q489398
+Q1720612
+Q178354
+Q379825
+Q732833
+Q1371819
+Q379825
+Q26186900
+Q173253
+Q36161
+Q1071233
+Q44312
+Q644783
+Q16
+Q7614320
+Q83307
+Q47433
+Q3975
+Q17126809
+Q379825
+Q19357595
+Q11574
+Q3123740
+Q10940
+Q1371819
+Q7804
+Q30269216
+Q93288
+Q174834
+Q66344
+Q174834
+Q8901
+Q174834
+Q728944
+Q1646605
+Q7275
+Q1156854
+Q779970
+Q26186900
+Q1714153
+Q1646605
+Q7275
+Q19357621
+Q7804
+Q1150070
+Q188572
+Q1371819
+Q11402
+Q6256
+Q29
+Q18122778
+Q628839
+Q159810
+Q176494
+Q161081
+Q26186900
+Q3196867
+Q1078386
+Q21255921
+Q21255605
+Q7804
+Q1371819
+Q18122778
+Q327055
+Q7804
+Q19357892
+Q587180
+Q3306907

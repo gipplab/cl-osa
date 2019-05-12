@@ -1,25 +1,193 @@
-Central banks can only delay market price adjustments.
-Only days ago, policymakers were executing their responsibility for the economy by fighting one another.
-Now the battle has been joined with securities traders in central banks' effort to stamp out a combustion of market panic.
-The firefighting is unlikely to be any more effective than the infighting.
-International financial markets have been upended by three sweeping shifts in just a few weeks.
-The first is in stock markets, which have been sliding fast.
-The S&amp;P500 has fallen on eight of the past nine trading days, losing almost one-10th of its value in the process.
-Europe looks no better: the FTSE100 is down by almost seven and the DAX by 11 per cent since the beginning of the month.
-Second, currency markets have seen their own shifts.
-For weeks, the yen and the Swiss franc, traditional havens for fearful investors, had been pushing upward relative to the world's major currencies.
-The appreciation did not stop until the two countries' central banks abruptly acted to halt it on Wednesday and Thursday.
-Third, markets for bank funding are sputtering, particularly in Europe.
-With falling prices for Italian and Spanish government debt, those countries' banks find it hard to finance themselves in private debt markets, and their share values have sunk like stones.
-Overnight deposits at the European Central Bank have doubled in less than a week: banks are nervous about lending excess funds to their peers in the interbank market.
-If these swings were due to shallow liquidity of August markets, as some say, one might expect things soon to return to normal.
-But this seems unlikely.
-In some markets – for big American stocks, for instance – volumes have grown in step with prices falling.
-In others – notably sovereign debt markets – information on volumes is hard to get.
-And foreign exchange markets are the most liquid of all.
-Instead, the market shifts seem plainly driven by a wave of pessimism and fear about the economic outlook.
-This seems justified given hapless policy responses to US and eurozone debt woes and accumulating evidence of slowing growth.
-Except for easing liquidity conditions for banks, central banks can hardly stop market prices from reflecting market sentiment.
-Swiss and Japanese attempts to stem currency appreciation will at best delay price shifts; the same is true for the ECB's return to buying stressed sovereign debt.
-Only politicians and the Treasuries they control have tools to turn economic fear into hope.
-Their recent form is reason enough to remain scared.
+Q66344
+Q22687
+Q1426138
+Q180107
+Q160151
+Q1714153
+Q573
+Q29818766
+Q159810
+Q650711
+Q199
+Q178561
+Q326358
+Q169489
+Q1424605
+Q66344
+Q22687
+Q8043
+Q14536140
+Q37930
+Q133235
+Q37654
+Q208450
+Q897825
+Q15820347
+Q16980630
+Q208697
+Q37654
+Q201
+Q667704
+Q1604733
+Q23387
+Q18689797
+Q475000
+Q37654
+Q44602
+Q242345
+Q207742
+Q11921529
+Q23355
+Q192630
+Q19108
+Q601401
+Q573
+Q28942369
+Q19426
+Q205663
+Q46
+Q21255605
+Q466496
+Q23350
+Q155718
+Q37136
+Q58093
+Q40719727
+Q5151
+Q11574
+Q66076
+Q37654
+Q2191756
+Q1604733
+Q23387
+Q8146
+Q124216
+Q63300
+Q56260622
+Q283202
+Q557880
+Q171318
+Q16502
+Q16502
+Q613617
+Q8142
+Q2728730
+Q51597
+Q200
+Q6256
+Q8043
+Q66344
+Q22687
+Q188473
+Q55678
+Q128
+Q129
+Q21924000
+Q37654
+Q22687
+Q6055890
+Q46
+Q333495
+Q160151
+Q652
+Q27942639
+Q12695
+Q3196867
+Q6256
+Q8043
+Q22687
+Q5655097
+Q43015
+Q158668
+Q540626
+Q37654
+Q11692
+Q19426
+Q140565
+Q22731
+Q2063826
+Q8901
+Q27865861
+Q191290
+Q23387
+Q22687
+Q19357421
+Q25392373
+Q7160407
+Q37654
+Q123704
+Q2168243
+Q1827667
+Q122
+Q37654
+Q7429143
+Q199
+Q1362683
+Q35120
+Q283976
+Q202785
+Q37654
+Q463257
+Q909380
+Q1664689
+Q39297
+Q131512
+Q3289701
+Q160151
+Q333495
+Q584496
+Q540626
+Q37654
+Q11028
+Q39297
+Q5655097
+Q66076
+Q179076
+Q37654
+Q11435
+Q37654
+Q1604733
+Q216541
+Q37172
+Q484954
+Q44619
+Q1156854
+Q1920566
+Q30
+Q3196867
+Q21142566
+Q176763
+Q1342838
+Q1827667
+Q12136
+Q22687
+Q66344
+Q22687
+Q51597
+Q180107
+Q160151
+Q440364
+Q124216
+Q884
+Q29142
+Q210523
+Q8142
+Q2728730
+Q26132734
+Q1426138
+Q160151
+Q1604733
+Q16751793
+Q8901
+Q283976
+Q584496
+Q3196867
+Q82955
+Q865422
+Q39546
+Q304479
+Q44619
+Q190507
+Q18193
+Q178354
+Q24759380

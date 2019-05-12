@@ -1,39 +1,227 @@
-Something is somewhat amiss in China.
-As export markets stuttered in the aftermath of the financial crisis, the country turned to credit to fuel its growth.
-Total debt owed by Chinese households, companies and governments now stands at almost 200 per cent of gross domestic product, up from 130 per cent in 2008.
-Much of this has been squandered.
-In this week's three-part series, the Financial Times reports vividly on the unused factories, unfinished roads and unlived-in apartments that are the economic detritus left behind by the binge.
-Such rapid increases in borrowing usually end in tears.
-Time and again in emerging economies from Argentina to South Korea, and recently across the developed world, credit booms have spawned an unmanageable load of bad debt, triggering a crisis when creditors eventually took flight.
-In China, however, this is an unlikely outcome.
-Stringent capital controls insulate the Chinese financial system.
-Household savers cannot run, for they have nowhere else to go.
-The economy's other large creditor – the Chinese government – controls the country's currency and owns much of its wealth, including huge foreign exchange reserves.
-The chance of an uncontrollable financial meltdown seems remote.
-Nevertheless, the looming hangover may be painful.
-China's economy is highly dependent on credit.
-This was true even before indebtedness began to spiral in the years following the crisis.
-Both the official banking sector and informal sources of credit play a large role.
-Since much of their lending in recent years funded investment that has turned out to be less productive than hoped, much of it can be expected to sour.
-While there is no threat to the solvency of the financial system taken as a whole, some lenders will struggle, disrupting the supply of credit.
-This could seriously impede growth.
-Lenders' distress must not be allowed to restrict the flow of credit to the real economy, if there are profitable loans to be made.
-Yet the real worry about China's debt overhang is not the disruption it might wreak but the deeper imbalance of which it is a symptom.
-The economy is excessively skewed towards investment.
-It was already so in 2007, when investment accounted for 42 per cent of GDP.
-The credit boom has driven that number still higher, to 48 per cent in 2010.
-It is impossible to find enough productive investment opportunities to absorb all of these resources, as China's bridges to nowhere eloquently testify.
-This presents the government with a macroeconomic quandary.
-In the short term, growth could be sustained by employing old methods with even greater enthusiasm, allowing continued credit growth to feed the investment frenzy.
-Even if this is economically feasible, however, it cannot long continue.
-Chinese citizens are hankering for a better life.
-Their government cannot afford to be seen as an orchestrator of grand follies.
-A more sustainable course would be to rebalance the economy away from investment and towards consumption.
-Since savings rates are high and the habit of thrift dies hard, that would require a rise in either personal incomes or government spending.
-There is plenty of scope for the latter.
-Public health services are starved of cash; poorly equipped, and staffed by underpaid doctors who are prone to negligence and corruption.
-They are no longer adequate.
-Other services, such as social care for children and the elderly, have improved little even as China has grown richer.
-In a country whose cities are often shrouded by smog and whose food is sometimes tainted by deadly contaminants, more could usefully be spent on environmental protection.
-Unusually, this is an economic problem that can be solved by spending more on living better.
-This is a sugared pill that the Chinese government should help its people to take.
+Q148
+Q57495410
+Q37654
+Q114380
+Q381072
+Q6256
+Q304479
+Q182076
+Q42501
+Q1342838
+Q16868672
+Q3196867
+Q148
+Q259059
+Q102538
+Q7188
+Q1510380
+Q713744
+Q724178
+Q1547498
+Q40276
+Q721070
+Q58093
+Q1069941
+Q23387
+Q170198
+Q10870555
+Q83405
+Q34442
+Q188507
+Q736879
+Q5338673
+Q695793
+Q17281278
+Q103808
+Q28962312
+Q5375780
+Q76469
+Q493981
+Q159810
+Q414
+Q884
+Q16502
+Q182076
+Q179057
+Q815284
+Q3566043
+Q3196867
+Q381072
+Q157165
+Q206021
+Q148
+Q21503252
+Q2995644
+Q1946428
+Q11175
+Q178150
+Q148
+Q1416617
+Q10854954
+Q174493
+Q159810
+Q520952
+Q157165
+Q936190
+Q7188
+Q865422
+Q6256
+Q8142
+Q618532
+Q200535
+Q179076
+Q2088231
+Q7722063
+Q3851114
+Q976350
+Q185091
+Q207334
+Q148
+Q159810
+Q4198163
+Q182076
+Q16751793
+Q23759131
+Q189114
+Q577
+Q47436102
+Q381072
+Q382887
+Q3435731
+Q219858
+Q128751
+Q182076
+Q4197743
+Q520952
+Q214339
+Q577
+Q25392373
+Q88272
+Q304479
+Q190507
+Q1362683
+Q1928899
+Q707125
+Q1137437
+Q1416617
+Q26726369
+Q14536140
+Q542869
+Q182076
+Q264661
+Q1342838
+Q8043
+Q186302
+Q1962593
+Q1308999
+Q493615
+Q182076
+Q3578774
+Q159810
+Q189539
+Q26186900
+Q286583
+Q1436482
+Q148
+Q3196867
+Q7113677
+Q4697206
+Q5282724
+Q1101080
+Q169872
+Q159810
+Q88272
+Q907344
+Q88272
+Q508295
+Q812996
+Q58093
+Q12638
+Q182076
+Q179057
+Q216541
+Q11563
+Q712764
+Q58093
+Q851662
+Q19357621
+Q88272
+Q1499569
+Q11189951
+Q210947
+Q148
+Q2297251
+Q464980
+Q7188
+Q57055076
+Q1071233
+Q1342838
+Q815844
+Q47035128
+Q840407
+Q182076
+Q1342838
+Q88272
+Q153641
+Q23090331
+Q148
+Q1020994
+Q21255605
+Q3
+Q7188
+Q2191756
+Q3355249
+Q180174
+Q600134
+Q159810
+Q3306907
+Q88272
+Q12204
+Q736288
+Q5754843
+Q12029
+Q45089
+Q5655097
+Q774228
+Q1139344
+Q7170591
+Q850210
+Q1929688
+Q174320
+Q30299491
+Q12147
+Q906066
+Q853930
+Q1368
+Q16798631
+Q192193
+Q39631
+Q160070
+Q366
+Q906066
+Q1642542
+Q2421951
+Q7569
+Q2191986
+Q148
+Q131512
+Q6256
+Q7930989
+Q1365316
+Q169994
+Q2095
+Q105499
+Q2995424
+Q832237
+Q2251595
+Q21503252
+Q3539169
+Q621184
+Q28640
+Q21255605
+Q1101080
+Q206077
+Q936190
+Q7188
+Q23835475
+Q5

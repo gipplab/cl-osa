@@ -1,24 +1,196 @@
-Hardly a week goes by these days without some startling new development in the fields of cyberwarfare and cyberespionage.
-This month senior US officials let it be known that President Barack Obama had personally authorised the deployment of the Stuxnet computer worm against Iran's nuclear programme.
-At about the same time, stories emerged about Flame, an even more sophisticated virus that in May 2012 penetrated the computers of high-ranking Iranian officials.
-This week the head of Britain's security service MI5 sounded the alarm about growing cyberespionage by Russia and China against western governments and companies.
-In his view the amount of activity being undertaken by these states – and by other actors – is “astonishing”.
-These developments can only add to the perception many have had for some time: that aggressive cyberactivity – whether it involves espionage or the destruction of infrastructure – is now becoming one of the world's biggest security threats.
-Military chiefs today describe cyber as the fifth domain of warfare after land, sea, air and space.
-The idea that a nation could one day cripple another state's infrastructure through cyberwarfare is not inconceivable.
-But what can the world do to stop this new arms race spinning out of control before it is too late?
-The instinctive response of many is that world powers must club together and agree some rules of the cybergame.
-The world clearly needs such rules, mirroring those that have for decades governed the use and development of nuclear and conventional arms.
-In recent years, several attempts at writing international cyberlaws have been made. But there has been little success.
-In part, this is because China and Russia want to use such norms to control the flow of information over the web, an idea the US rightly abhors.
-But the biggest difficulty establishing any rules is that the source of most cyberattacks is anonymous.
-The Stuxnet story provides the only example we have of a nation bragging about its cyberwarfare operations.
-These obstacles do not mean nations should stop trying to establish rules.
-They could, for example, start defining some critical infrastructures that they would vow never to attack.
-But for now, the only hope for governments and businesses is to continue boosting resilience against the unknown.
-Companies, in particular, need to know just how much intellectual property is being lost to Chinese and Russian espionage.
-What is also needed, however, is some honesty.
-In his speech this week, Jonathan Evans, the MI5 chief, lamented the way “vulnerabilities in the internet are being exploited aggressively by . . . states”.
-He was clearly pointing the finger at Russia and China.
-But after Stuxnet, such criticism could just as easily be directed at the US, Britain's chief ally.
-Until governments start to address these tricky questions – and be more open about their capabilities – the struggle to agree the terms of engagement in cyberspace will not advance very far.
+Q23387
+Q573
+Q1954125
+Q2843407
+Q185674
+Q849340
+Q5151
+Q332209
+Q30
+Q382887
+Q9788
+Q76
+Q76
+Q1229245
+Q180712
+Q180712
+Q794
+Q19753332
+Q1371819
+Q11471
+Q217086
+Q301172
+Q485
+Q815737
+Q1489579
+Q25351855
+Q794
+Q382887
+Q23387
+Q23640
+Q690213
+Q42276510
+Q906066
+Q210175
+Q11461
+Q945434
+Q159
+Q148
+Q7988576
+Q7188
+Q102538
+Q1329910
+Q317949
+Q7275
+Q33999
+Q2843407
+Q32043
+Q160402
+Q11471
+Q11849872
+Q36949023
+Q165950
+Q17781833
+Q121359
+Q199
+Q16502
+Q16502
+Q169489
+Q707125
+Q8473
+Q1162163
+Q3151690
+Q1780466
+Q5447453
+Q146481
+Q12786121
+Q40924
+Q165
+Q406714
+Q107
+Q131841
+Q6266
+Q199
+Q573
+Q1790733
+Q7275
+Q121359
+Q849340
+Q4697206
+Q16502
+Q16502
+Q51597
+Q1954125
+Q322348
+Q878123
+Q59172
+Q11175
+Q40719766
+Q1920566
+Q16502
+Q25107
+Q392326
+Q93288
+Q104555
+Q16502
+Q16502
+Q190258
+Q104555
+Q350865
+Q39911
+Q48352
+Q1724915
+Q2843407
+Q728
+Q577
+Q29142
+Q37260
+Q845956
+Q26186900
+Q50000
+Q148
+Q159
+Q26256512
+Q278368
+Q367293
+Q865422
+Q493615
+Q11028
+Q466
+Q131841
+Q30
+Q30
+Q28026336
+Q104555
+Q128751
+Q4071928
+Q4233718
+Q217086
+Q12335479
+Q6266
+Q849340
+Q362482
+Q264661
+Q19033
+Q6266
+Q51597
+Q574562
+Q104555
+Q12335479
+Q529711
+Q9203276
+Q21604267
+Q121359
+Q21645213
+Q1144504
+Q81672
+Q190507
+Q7188
+Q2912172
+Q23090331
+Q466303
+Q3457762
+Q4233718
+Q102538
+Q190258
+Q131257
+Q937228
+Q20861252
+Q148
+Q159
+Q165950
+Q190258
+Q337349
+Q315
+Q23387
+Q93698
+Q210175
+Q1162163
+Q1471717
+Q17641254
+Q631425
+Q75
+Q7275
+Q1137711
+Q335320
+Q159
+Q148
+Q17955
+Q42178
+Q30
+Q30
+Q690213
+Q1162163
+Q3612401
+Q7188
+Q557828
+Q28008314
+Q189756
+Q2735683
+Q1347367
+Q14536140
+Q93288
+Q1071233
+Q157512
+Q204606
+Q23257209

@@ -1,31 +1,234 @@
-As the year draws to an end for Wall Street and the City of London, there is still little sign of the financial services industry managing to restore its reputation in the eyes of taxpayers who bailed out banks two years ago.
-Having grown to outsize proportions in the economies of the US and UK, investment banks are finding it hard and painful to shrink.
-But shrink they must, both in terms of leverage and the risks they take, if they are to regain their legitimacy.
-Many bankers still struggle to accept the enormity of what happened, and the implications of having had to be rescued by governments.
-They would like simply to return to the old bonus culture, with few questions asked.
-Some, notably Goldman Sachs, have recognised the damage it could cause to them in the long term if they fail this challenge.
-Goldman has just completed a review of its business practices aimed at persuading investors and clients of its worth.
-But Goldman and others still hope to have their cake and eat it – to reduce their leverage, eliminate their most awkward conflicts of interest, and still to restore profitability to the elevated levels of 2007.
-They also aspire to be rewarded by investors with higher ratings for their depressed shares.
-The reality is that this will be hard, if not impossible, to achieve.
-For a time following the 2008 crisis, banks' trading divisions made windfall profits as interest rates fell and they enjoyed explicit subsidies from the state.
-But long-term rates are rising, imposing pressures on revenues.
-In 2011, banks will be tested by the “new normal”.
-Instead of being able to offset a squeeze on margins with higher leverage and a rush into complex credit derivatives, they will have to operate in straitened circumstances, under tighter and more intrusive global regulatory oversight.
-The Dodd-Frank Act, which contains a raft of new rules and restrictions, will start to bite next year.
-Some Wall Street banks have already shed proprietary trading desks in response, and many over-the-counter derivatives will be pushed on to exchanges, taking away fat profit margins.
-Meanwhile, European countries such as Ireland are struggling to refinance the public debt burden brought on by past bank bail-outs.
-In those circumstances, it is not surprising that higher taxes on banks and bankers' bonuses enjoy strong public support.
-Above all, regulators do not want to be fooled again.
-The deregulatory consensus of the 1990s and 2000s has given way to a more stringent approach that is bound to last for several years.
-Memories are often short in financial markets but those of 2008 will take some time to fade.
-In policy terms, there is no reason why the financial services industry need occupy such a prominent role as in recent history.
-Adair Turner, chairman of the UK's Financial Services Authority, has raised appropriate questions about the usefulness of the explosion of financial innovation.
-Banks need to adjust to this combination of regulatory and financial pressure.
-They must demonstrate to a broad constituency – beyond their own employees and investors – that they do a useful job.
-Retail banks can achieve that by starting to loosen their tight restrictions on mortgages and small business loans.
-For Wall Street, it will be harder to restore legitimacy.
-Although investment banks oil the wheels of global trade and help multinationals to operate, the average taxpayer still wonders what they are there for.
-Unless they can demonstrate a good answer, they will remain popular villains.
-The challenge is to adjust gracefully to being more modest and transparent businesses.
-Their employees may not enjoy it but that is their best hope.
+Q577
+Q1137224
+Q5375780
+Q11690
+Q927450
+Q23311
+Q7930989
+Q84
+Q262246
+Q837171
+Q55638
+Q8148
+Q446966
+Q478594
+Q7364
+Q1938414
+Q162351
+Q22687
+Q200
+Q577
+Q29818766
+Q131512
+Q47694
+Q159810
+Q30
+Q30
+Q145
+Q319845
+Q22687
+Q5655097
+Q1071233
+Q1148384
+Q104493
+Q207982
+Q806798
+Q14536140
+Q29466402
+Q7881229
+Q17126809
+Q7188
+Q21645213
+Q3249878
+Q283976
+Q4942650
+Q11042
+Q189756
+Q193326
+Q481609
+Q179289
+Q57055328
+Q1071233
+Q2988681
+Q1088567
+Q2990590
+Q265158
+Q2912172
+Q334600
+Q4503831
+Q557880
+Q528166
+Q1088567
+Q190507
+Q13276
+Q3395974
+Q912546
+Q1148384
+Q211067
+Q170924
+Q446966
+Q26911
+Q207988
+Q907344
+Q1321905
+Q557880
+Q7295719
+Q11692
+Q9510
+Q5655097
+Q19357621
+Q11471
+Q47436102
+Q1069941
+Q381072
+Q22687
+Q8043
+Q601401
+Q38348
+Q26186900
+Q26911
+Q179179
+Q736288
+Q11921529
+Q1384510
+Q193219
+Q7275
+Q736288
+Q39552
+Q850210
+Q851312
+Q22687
+Q27318
+Q1954125
+Q202785
+Q1156822
+Q29814939
+Q625360
+Q1148384
+Q744865
+Q238156
+Q182076
+Q29175
+Q131030
+Q3629141
+Q4013945
+Q187956
+Q200433
+Q1954125
+Q104555
+Q1308999
+Q557828
+Q866650
+Q577
+Q11690
+Q927450
+Q22687
+Q721931
+Q601401
+Q1064858
+Q1920566
+Q66320
+Q29175
+Q179076
+Q3306907
+Q127980
+Q1187906
+Q625360
+Q6256
+Q27
+Q2388316
+Q12695
+Q3196867
+Q1078386
+Q192630
+Q22687
+Q3629141
+Q4697206
+Q8161
+Q22687
+Q806798
+Q8043
+Q4942650
+Q211198
+Q1058733
+Q1639780
+Q26256512
+Q215548
+Q202722
+Q17641254
+Q1801985
+Q256817
+Q577
+Q19038388
+Q24862
+Q208697
+Q37654
+Q1069941
+Q11471
+Q331408
+Q1156854
+Q1071233
+Q178354
+Q837171
+Q55638
+Q8148
+Q190258
+Q28640
+Q214339
+Q309
+Q346975
+Q140686
+Q145
+Q638053
+Q884353
+Q189756
+Q21263262
+Q179057
+Q174165
+Q22687
+Q190258
+Q1714153
+Q202805
+Q4013945
+Q39552
+Q184848
+Q4097090
+Q192611
+Q703534
+Q557880
+Q21263262
+Q192581
+Q126793
+Q22687
+Q1308999
+Q184260
+Q1109680
+Q2912172
+Q189539
+Q11690
+Q927450
+Q446966
+Q207982
+Q319845
+Q22687
+Q42962
+Q446
+Q601401
+Q1643184
+Q131030
+Q19033
+Q1938414
+Q333173
+Q184848
+Q15290
+Q1920566
+Q24759380
+Q290691
+Q18456057
+Q2988681
+Q1714153
+Q487623
+Q2912172
+Q703534
+Q26132734
+Q190507

@@ -1,44 +1,271 @@
-The agreement that broke the impasse over the US debt ceiling came with hours to spare before the Treasury's deadline.
-From today, had no agreement been reached, the US government would have had to stop meeting some of its obligations.
-This months-long pantomime may call to mind Winston Churchill's remark that Amer- icans can always be counted on to do the right thing, after all other possibilities have been exhausted.
-That judgment would be too kind.
-Avoiding default had become the overriding priority, and that has been achieved.
-The deal fails to put US budget policy on a sustainable path, however: despite all the tearing of hair and beating of breasts, the fiscal adjustment is modest and by no means guaranteed.
-The budget quarrels will go on – in a political atmosphere more poisonous than before, if that were possible.
-The debt-ceiling agreement is complicated and opaque.
-Critics in both parties complain that, after frantic private negotiations among a handful of participants, Congress was presented with a fait accompli.
-Voters should feel equally aggriev- ed.
-This was the very opposite of the public debate that the US needs on budgetary ends and means.
-As for the details, the plan calls for spending cuts of roughly $900bn over 10 years, followed by a second phase of cuts to bring the 10-year total to about $2,400bn.
-If achieved in full, this is only a little more than half of what is required to stabilise the ratio of public debt to gross domestic product at a safe level.
-Worse, most of these cuts are still unspecified.
-The second instalment is a mere instruction to a new bipartisan committee of Congress to propose deficit reductions sufficient to meet the target.
-There is no agreement on what form these should take.
-If the committee deadlocks, the deal provides for automatic cuts to programmes cherished by one party or the other – including, notably, cuts in defence, which Republicans are traditionally keen to protect.
-This calls to mind another Churchillian maxim: however beautiful the strategy, occasionally look at the results.
-What reason is there to suppose, if both parties face deep cuts in programmes they especially wish to protect, that Congress will let the automatic mechanism proceed?
-What Congress gives, Congress can take away.
-The designers of the so-called trigger say their deliberately unacceptable automatic cuts give both sides an incentive to reach agreement in the committee.
-Maybe.
-But if the committee fails, both sides in Congress have an even bigger incentive to cancel the trigger.
-And one can be reasonably confident that the committee will indeed deadlock.
-Already, arguments have begun about who will be appointed to this panel.
-Both parties are insisting that hard-liners get the job, so that their respective policy priorities will not be bargained away.
-Renewed paralysis is about to be designed back into the process.
-One of the most consequential disagreements over US fiscal policy is about the role, if any, that tax increases should play alongside spending cuts.
-Most Republicans are celebrating victory in the debt deal, and Democrats lamenting a crushing defeat, because tax increases are not in the plan.
-But this vital question is not settled, merely evaded.
-The White House says the deal improves the chances of increasing taxes on “millionaires and billionaires” starting in 2013.
-The GOP says the opposite.
-Neither side has yet turned serious attention to where it belongs – comprehensive tax reform.
-In one way, it is a blessing that the deal is timid, especially in 2012 and 2013.
-With the economy showing worsening signs of weakness, medium-term fiscal consolidation should have been combined with further short-term stimulus: renewed payroll tax-relief and extended unemployment benefits.
-Deficit reduction phases in slowly under the agreement, which is something, but those needed temporary provisions are nowhere to be seen.
-One could go on.
-The labours of the past several months have avoided what would have been the greatest unforced error in the history of economic policy.
-Congratulations on that.
-But they have settled almost nothing, and have prepared the way for more of the same.
-It is a dismal and confidence-sapping prospect.
-President Barack Obama and the parties' leaders in Congress should stop and think.
-What the world has witnessed is a serious failure of governance.
-If the US cannot mend what is broken in its politics, the consequences for itself and the world will be grave.
+Q93288
+Q903577
+Q12731
+Q30
+Q30
+Q3196867
+Q221706
+Q5025838
+Q25235
+Q1364774
+Q578269
+Q3277092
+Q1465133
+Q3151690
+Q93288
+Q489398
+Q30
+Q30
+Q7188
+Q51597
+Q625994
+Q2648051
+Q13409536
+Q450
+Q8016
+Q13022
+Q247299
+Q14565199
+Q35120
+Q21170479
+Q9690
+Q1720612
+Q21146257
+Q281782
+Q11888847
+Q321839
+Q30
+Q41263
+Q1156854
+Q817765
+Q28472
+Q9103
+Q1714153
+Q21162272
+Q41263
+Q891691
+Q8104
+Q30230067
+Q93288
+Q1346149
+Q6430706
+Q200538
+Q26254008
+Q158668
+Q202875
+Q56512863
+Q10225
+Q464980
+Q17444370
+Q2540351
+Q131779
+Q2388316
+Q14850922
+Q179875
+Q30
+Q30
+Q190258
+Q5375780
+Q21162272
+Q611203
+Q27038146
+Q320553
+Q4917
+Q23806
+Q577
+Q31888506
+Q11574
+Q104837
+Q320553
+Q16868672
+Q4917
+Q668
+Q47035128
+Q2114394
+Q774228
+Q3481047
+Q12695
+Q3196867
+Q1547498
+Q40276
+Q471898
+Q207988
+Q21255921
+Q320553
+Q11574
+Q1101080
+Q1421509
+Q925783
+Q1954125
+Q865588
+Q10225
+Q3918409
+Q444600
+Q912546
+Q170212
+Q93288
+Q200446
+Q865588
+Q623276
+Q321839
+Q320553
+Q1371819
+Q199
+Q200538
+Q320553
+Q838247
+Q29468
+Q53737447
+Q6658033
+Q450
+Q1374354
+Q24248408
+Q185451
+Q2995644
+Q178354
+Q200538
+Q37017
+Q2431801
+Q320553
+Q1371819
+Q241625
+Q6658033
+Q10225
+Q9788
+Q517596
+Q898830
+Q10225
+Q10225
+Q3306907
+Q5322166
+Q336751
+Q7429143
+Q320553
+Q1414816
+Q489398
+Q93288
+Q865588
+Q6796910
+Q865588
+Q10225
+Q1414816
+Q4066775
+Q336751
+Q91533
+Q199
+Q865588
+Q623276
+Q186619
+Q23759131
+Q55439
+Q200538
+Q192581
+Q1156854
+Q11888847
+Q3306907
+Q2144402
+Q107231
+Q82604
+Q205663
+Q199
+Q1255828
+Q30
+Q187021
+Q1156854
+Q214339
+Q8161
+Q17281278
+Q4197743
+Q27038146
+Q320553
+Q29468
+Q50000
+Q3196867
+Q321839
+Q29552
+Q2991605
+Q14631121
+Q8161
+Q17281278
+Q4697206
+Q611203
+Q189756
+Q4697206
+Q1818899
+Q5416089
+Q35525
+Q7429143
+Q321839
+Q3851114
+Q8161
+Q1075912
+Q1062083
+Q1489644
+Q29468
+Q7429143
+Q131779
+Q304479
+Q6501338
+Q8161
+Q900406
+Q199
+Q17641254
+Q1101080
+Q626510
+Q321839
+Q1489579
+Q1489644
+Q159810
+Q23306633
+Q262246
+Q633403
+Q452440
+Q26886
+Q859031
+Q2144402
+Q184148
+Q311255
+Q2383321
+Q444600
+Q912546
+Q104837
+Q25932227
+Q93288
+Q190258
+Q47001369
+Q703087
+Q2191756
+Q199
+Q34581
+Q5151
+Q1717246
+Q29485
+Q309
+Q582577
+Q1156854
+Q1818899
+Q227552
+Q17641254
+Q1101080
+Q76
+Q76
+Q200538
+Q8043
+Q32518
+Q10225
+Q51597
+Q16502
+Q16502
+Q196939
+Q1101080
+Q1121708
+Q1553864
+Q30
+Q30
+Q903577
+Q7163
+Q733541
+Q3123740
+Q16502
+Q16502
+Q173387

@@ -1,32 +1,303 @@
-“Tuesday September 11 2001 dawned temperate and nearly cloudless in the eastern United States.
-Millions of men and women readied themselves for work.
-Some made their way to the Twin Towers, the signature structures of the World Trade Center complex in New York City. Others went to Arlington, Virginia, to the Pentagon . . . ”
-So begins the 9/11 Commission report, the US government's official investigation into the worst terrorist attacks in US history.
-Almost 3,000 people were killed on that day.
-The Twin Towers are no more.
-So grave were the wounds to the American psyche that the phrase 9/11 became a permanent fixture of the English language.
-It follows that the US, its friends and Barack Obama, its president, have every right to feel lifted by the news that, after a manhunt lasting nine-and-a-half years, US forces have finally killed Osama bin Laden, the unrepentant mastermind of the 9/11 attacks.
-The success of the operation testifies to America's unmatched military reach, its formidable intelligence capabilities and – for a country often suspected of having too short an attention span to pursue long-term national goals – its grim determination to track down its most elusive enemies.
-Yet bin Laden's elimination also offers the Obama administration a golden opportunity to press ahead with the reshaping of US foreign policy on which the president embarked upon taking office in 2009.
-The 9/11 attacks prompted George W. Bush, Mr Obama's predecessor, to launch two immensely expensive invasions of Afghanistan and Iraq.
-Neither went according to plan, and the occupation of Iraq proved exceptionally controversial.
-Having made “the war on terror” the cornerstone of US strategy, Mr Bush greatly over-simplified the issues at stake by insisting that other nations should be either “with us or against us” in the struggle against terrorism.
-Now that bin Laden is dead, Mr Obama has a chance to advance the cause of reconciliation with the Islamic world which he first defined in a landmark speech at Cairo's al-Azhar university in June 2009.
-For bin Laden's death coincides with the momentous political awakening of the Arab world that started in Tunisia last December and then spread to Egypt, Libya, Syria, Bahrain, Yemen and beyond.
-Al-Qaeda, the terrorist network that bin Laden founded more than 20 years ago, has played little part in the Arab spring.
-The group's message of pitiless violence against western targets has fallen largely on deaf ears in societies where the burning grievances are political repression, injustice, official corruption, youth unemployment and poverty.
-For too long, the US and its allies propped up autocrats for the sake of stability in the Middle East and north Africa.
-Bin Laden's demise and the decline of al-Qaeda's ideological influence create a powerful incentive for the US to support the region's progressive forces in their quest for political pluralism and human rights.
-Bin Laden's death may also unlock new options for the US as it prepares to disengage from Afghanistan over coming years.
-The original justification for the war was that the Afghan Taliban provided a shelter for al-Qaeda and its leader.
-Almost 10 years later, it seems as if Nato's forces are spending more time on an effort to turn Afghanistan into a modern, well-governed state than on the primary task of defending western countries and their citizens from attack.
-The US and its allies should treat bin Laden's death as an opportunity to step up contacts with Taliban representatives with a view to a phased withdrawal of Nato forces over the next four years.
-No longer can it be argued that the military mission in Afghanistan is a matter of life and death for western civilisation.
-By contrast, the fact that bin Laden was discovered to be living in the Pakistani city of Abbottabad, a short distance from the nation's military academy, raises disturbing questions.
-It appears inconceivable that no one in Pakistani intelligence knew of bin Laden's hide-out.
-This underlines the degree of support for Islamist extremism in the nation's security apparatus.
-Recent frictions in the US-Pakistani relationship are unlikely to disappear quickly.
-As for Mr Obama's political prospects, it is unwise to read too much into the killing of bin Laden.
-Even victory in the first Gulf war was not enough to secure the elder George Bush re-election in 1992.
-But foreign and security policy successes deserve to be celebrated in their own right.
-A world without bin Laden is emphatically a safer and better place.
+Q11326182
+Q30
+Q21609594
+Q38526
+Q8441
+Q467
+Q28640
+Q26186900
+Q17641254
+Q7858312
+Q7829820
+Q188675
+Q517966
+Q11235
+Q238156
+Q60
+Q750997
+Q17943
+Q1370
+Q11209
+Q11208
+Q23759131
+Q1250400
+Q10870555
+Q30
+Q30
+Q7188
+Q382887
+Q21004260
+Q5710433
+Q81672
+Q30
+Q309
+Q5
+Q931260
+Q573
+Q28451200
+Q7858312
+Q7829820
+Q173387
+Q184753
+Q463257
+Q194034
+Q187931
+Q20742557
+Q42406
+Q1860
+Q315
+Q31888506
+Q30
+Q30
+Q3276720
+Q76
+Q30461
+Q14565199
+Q132911
+Q17502905
+Q38926
+Q989278
+Q52053360
+Q577
+Q30
+Q11402
+Q931260
+Q29818726
+Q81672
+Q50000
+Q362482
+Q30
+Q8473
+Q489398
+Q83500
+Q1347367
+Q6256
+Q516519
+Q24862
+Q6501338
+Q185759
+Q468489
+Q18530
+Q29820024
+Q21168708
+Q34442
+Q289891
+Q1193004
+Q76
+Q3754526
+Q208045
+Q1499569
+Q1193236
+Q30
+Q181648
+Q1156854
+Q30461
+Q182060
+Q51134
+Q81672
+Q1126281
+Q207
+Q76
+Q361945
+Q200
+Q467011
+Q889
+Q796
+Q611203
+Q28640
+Q796
+Q26186900
+Q198
+Q516626
+Q1133673
+Q30
+Q185451
+Q247949
+Q86447
+Q468455
+Q6266
+Q14536140
+Q7283
+Q4
+Q76
+Q3851114
+Q2574811
+Q378529
+Q16502
+Q101072
+Q2319498
+Q315
+Q85
+Q3918
+Q235735
+Q51134
+Q4
+Q1530412
+Q20821954
+Q143487
+Q16502
+Q557828
+Q948
+Q126
+Q611035
+Q79
+Q1016
+Q858
+Q398
+Q805
+Q14886050
+Q141488
+Q19435686
+Q47035128
+Q40292
+Q577
+Q29818766
+Q4197743
+Q33761
+Q1312
+Q2411795
+Q83306
+Q628523
+Q124490
+Q7988576
+Q170212
+Q11921529
+Q7362
+Q8425
+Q133235
+Q3042652
+Q1899269
+Q770480
+Q382887
+Q366
+Q4261734
+Q41171
+Q10294
+Q30
+Q30
+Q3612401
+Q59163
+Q170219
+Q903517
+Q7204
+Q659
+Q15
+Q5249503
+Q34490
+Q18603649
+Q386724
+Q1414816
+Q30
+Q30
+Q10940
+Q36784
+Q11402
+Q735234
+Q333024
+Q333024
+Q8458
+Q780687
+Q4
+Q1954125
+Q187860
+Q30
+Q30
+Q227552
+Q889
+Q577
+Q23013268
+Q525361
+Q198
+Q383029
+Q42418
+Q7493941
+Q34490
+Q32518
+Q23806
+Q577
+Q6038735
+Q11402
+Q11471
+Q14536140
+Q304479
+Q889
+Q7275
+Q2110192
+Q759676
+Q38118448
+Q7988576
+Q6256
+Q1020994
+Q81672
+Q30
+Q30
+Q3612401
+Q26256310
+Q4
+Q1499569
+Q3289701
+Q23797
+Q42418
+Q19602879
+Q1329910
+Q1760704
+Q6038735
+Q11402
+Q202
+Q577
+Q19076241
+Q8473
+Q51647
+Q889
+Q1101080
+Q35758
+Q3
+Q4
+Q7988576
+Q8432
+Q690182
+Q188572
+Q1344452
+Q28640
+Q23198197
+Q7930989
+Q170315
+Q28778414
+Q126017
+Q6266
+Q917182
+Q162633
+Q884353
+Q189756
+Q3620816
+Q199
+Q23198197
+Q83500
+Q11199
+Q28390
+Q1058733
+Q466439
+Q6266
+Q169489
+Q620681
+Q82580
+Q7310741
+Q3030513
+Q76
+Q1433533
+Q844482
+Q50000
+Q37643
+Q198
+Q55707349
+Q1155908
+Q207
+Q481394
+Q858275
+Q169489
+Q1156854
+Q50000
+Q14565199
+Q16502
+Q21255605
+Q82794

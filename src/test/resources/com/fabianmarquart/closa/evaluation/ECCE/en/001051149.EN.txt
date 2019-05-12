@@ -1,22 +1,167 @@
-The revelation that Italy's Treasury is sitting on at least €8bn of mark-to-market losses on derivatives gone sour is politically awkward but of little economic significance.
-It need not get worse than that, provided Rome now handles the issue openly and competently.
-As the Financial Times reported on Wednesday, Rome appears to have entered into interest rate swaps with investment banks in the mid-1990s.
-These flattered public finance figures through upfront cash payments from the counterparties, by stretching out the government's debt service over a longer period and by hedging against higher borrowing costs.
-It was known that one such contract with Morgan Stanley was settled early last year for a cash payment of €2.6bn from Rome to the bank.
-It now appears derivatives worth €32bn were restructured in the first half of 2012.
-At current market prices, the restructuring may have cost the Italian Treasury about €8bn.
-That is a big loss as a share of the contracts' value.
-As a share of the Italian economy, however, it is a small one-off hit.
-It is also in part down to bad luck rather than error.
-It was impossible to predict today's extreme market conditions in the mid-1990s, in particular that swap rates would be so low just as Italian borrowing costs are high.
-That the intended hedging did not work out as planned does not mean Italy's Treasury, then headed by current European Central Bank president Mario Draghi, was wrong to try.
-As the Treasury pointed out on Wednesday, there are perfectly legitimate economic reasons for entering such swaps.
-There were also, however, illegitimate ones.
-Rome rejects that the swaps served the political purpose of bringing its public finances in line with the criteria for entering the euro.
-That denial rings hollow.
-What is true is that the practice was understood and condoned both by the EU's formal accounting rules and by the judgment of its most influential political leaders.
-Politically, the revelation helps Italy neither at home nor abroad.
-A Rome prosecutor is complicating life for the government by launching an inquiry.
-In Brussels and Berlin, the losses will weaken Rome's hand, even if using swaps to embellish public finance figures before euro accession was a matter of pan-European connivance.
-Rome is right to play down the significance of the cost to the Treasury. But it should show that it has nothing to hide.
-An effort to make public accounts more transparent would not come before time.
+Q192906
+Q38
+Q3277092
+Q1144593
+Q4917
+Q1121708
+Q29175
+Q1928899
+Q21075805
+Q190258
+Q21255921
+Q220
+Q1205349
+Q86447
+Q10870555
+Q128
+Q220
+Q3620816
+Q57699905
+Q179179
+Q736288
+Q656083
+Q319845
+Q22687
+Q274490
+Q43015
+Q1412049
+Q1368
+Q1148747
+Q1783272
+Q475091
+Q7188
+Q3196867
+Q906066
+Q12171
+Q103808
+Q240673
+Q199
+Q93288
+Q334204
+Q1818899
+Q40719727
+Q577
+Q1368
+Q1148747
+Q4917
+Q668
+Q220
+Q22687
+Q3620816
+Q29175
+Q4917
+Q40719687
+Q2114394
+Q1489579
+Q11651
+Q180107
+Q160151
+Q1376796
+Q240673
+Q652
+Q3277092
+Q4917
+Q1101080
+Q1121708
+Q11692
+Q93288
+Q8043
+Q19426
+Q11692
+Q652
+Q159810
+Q1101080
+Q24245823
+Q713493
+Q56239685
+Q1970348
+Q29485
+Q19357621
+Q3151690
+Q37654
+Q12136
+Q656083
+Q736288
+Q209190
+Q652
+Q103808
+Q240673
+Q5754843
+Q28640
+Q611203
+Q19033
+Q38
+Q3277092
+Q23640
+Q11651
+Q8901
+Q27865861
+Q30461
+Q294460
+Q29485
+Q578508
+Q578269
+Q3277092
+Q44946
+Q128
+Q178354
+Q656083
+Q199
+Q220
+Q656083
+Q44127
+Q231823
+Q211198
+Q37105
+Q1789452
+Q4916
+Q1343202
+Q45926
+Q28367692
+Q16751793
+Q334600
+Q3686453
+Q458
+Q2144456
+Q4116214
+Q104555
+Q1720612
+Q82955
+Q32518
+Q192906
+Q23835475
+Q38
+Q7743
+Q220
+Q600751
+Q3
+Q7188
+Q21004260
+Q239
+Q64
+Q1121708
+Q220
+Q33767
+Q656083
+Q5284180
+Q274490
+Q43015
+Q1412049
+Q4916
+Q35758
+Q220
+Q14565199
+Q11410
+Q21075805
+Q240673
+Q578269
+Q3277092
+Q7502926
+Q15627872
+Q44315
+Q14536140
+Q26186900
+Q211198
+Q508295
+Q487623
+Q11471

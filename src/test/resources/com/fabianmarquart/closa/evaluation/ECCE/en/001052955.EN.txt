@@ -1,32 +1,245 @@
-For more than a year after David Cameron provoked China's wrath by meeting the Dalai Lama, Beijing was a forbidden city for British ministers.
-Now that the palace gates are finally ajar George Osborne, the UK chancellor, is eyeing the jewels inside.
-The common theme running through this week's announcements is Mr Osborne's determination to channel Chinese wealth to British shores.
-Barriers are being removed, in the shape of visa restrictions that have prevented Chinese consumers from setting foot inside British shops.
-Elsewhere the government has been more active, engineering Chinese participation in the revival of nuclear generation in Britain.
-The most significant of Mr Osborne's initiatives, however, is his bid to place Britain at the centre of the nascent global market for Chinese securities.
-This is a far-sighted move to harness tides of change that might otherwise sweep away the foundations of City finance.
-If he succeeds, the chancellor will have preserved London's position as clearing house to the world.
-Mr Osborne announced two steps forward.
-Sterling will be allowed to trade directly against the renminbi, only the fourth currency to do so after the US dollar, the yen and the Australian dollar.
-This will help London become the natural home for offshore trading in China's currency.
-Second, British institutions will be allowed to apply for licences to make limited investments in Chinese shares and bonds, giving them direct access to the market for the first time.
-Yet this is no great leap.
-China maintains tight controls on its financial markets to defend against potentially destabilising capital flows.
-The initial British quota of Rmb80bn (£8.2bn) is barely a drop in the ocean of Chinese finance.
-The market capitalisation of the Shanghai Stock Exchange alone is Rmb15.8tn.
-A third initiative may turn out to be a retrograde step.
-The Prudential Regulation Authority, which is responsible for making sure that financial institutions do not unbalance the economy, will begin discussions with Chinese banks that may enable them to establish branches in the UK for the first time.
-The PRA had previously been pushing foreign banks to operate through local subsidiaries, which unlike branches must submit to regulation by UK authorities and meet capital adequacy criteria without relying on the resources of foreign parents.
-This raised the ire of a number of state-owned Chinese banks, which last year complained to the UK Treasury.
-Several have shifted towards Luxembourg, where regulations are laxer.
-Mr Osborne wants to entice them back, fearing that Britain might otherwise miss out on a securitisation business that could prove as lucrative as the Eurodollar trade pioneered in London in the 1960s.
-Yet there are risks.
-Mr Osborne insists that these will be “wholesale branches” that have no dealings with consumers and hence pose no risk to British depositors.
-But that is no guarantee of safety.
-UK branches of foreign banks made some of the deepest cuts to private sector lending during the crisis.
-Banks can grow entangled with ordinary businesses in unpredictable ways.
-Nor is it wise for the chancellor to be seen to be leaning on the PRA.
-He sought to insulate the regulator from political influence by embedding it within the Bank of England, a signal that the government would no longer seek short-term gain by competing in a race to the bottom of the international league of regulatory prudence.
-That credibility should not be squandered.
-Mr Osborne has made a bold bid on the City's behalf for pre-eminence in the emerging financial order.
-But economic stability is too high a price to pay, even for such a glittering prize.
+Q47035128
+Q577
+Q192
+Q257931
+Q148
+Q79871
+Q625994
+Q956
+Q7930989
+Q842438
+Q83307
+Q16560
+Q53060
+Q71795
+Q145
+Q61061
+Q83437
+Q24037718
+Q1120307
+Q184148
+Q105674
+Q23387
+Q567303
+Q2124504
+Q21168708
+Q733553
+Q148
+Q200535
+Q842438
+Q468756
+Q264661
+Q23009442
+Q207961
+Q170404
+Q1308999
+Q1717246
+Q148
+Q22855
+Q466845
+Q3710
+Q842438
+Q213441
+Q7188
+Q29415466
+Q11023
+Q148
+Q1773152
+Q2568341
+Q213381
+Q690213
+Q1300244
+Q2124504
+Q660064
+Q51081147
+Q82794
+Q690213
+Q23595
+Q2894265
+Q37654
+Q148
+Q169489
+Q1101080
+Q485027
+Q23384
+Q1150070
+Q195742
+Q3306907
+Q157031
+Q18662
+Q43015
+Q61061
+Q830393
+Q84
+Q192388
+Q1609677
+Q3947
+Q16502
+Q16502
+Q2124504
+Q1371925
+Q200
+Q3289701
+Q280658
+Q482691
+Q1962593
+Q1424605
+Q39099
+Q267984
+Q8142
+Q30
+Q30
+Q8146
+Q2872152
+Q23835475
+Q84
+Q747691
+Q7743
+Q601401
+Q148
+Q8142
+Q11574
+Q842438
+Q178706
+Q1962593
+Q11348
+Q79719
+Q26186900
+Q88272
+Q148
+Q11692
+Q11693
+Q15304504
+Q29466124
+Q37654
+Q11471
+Q1151752
+Q148
+Q11175
+Q208697
+Q37654
+Q159394
+Q5119
+Q493615
+Q378408
+Q842438
+Q2123632
+Q175743
+Q54605285
+Q668
+Q185789
+Q9430
+Q148
+Q43015
+Q1373418
+Q37654
+Q425951
+Q739514
+Q948
+Q660064
+Q304479
+Q3289701
+Q7252987
+Q650241
+Q178706
+Q159810
+Q23759131
+Q3030248
+Q148
+Q22687
+Q574562
+Q268592
+Q145
+Q11471
+Q680974
+Q57775028
+Q22687
+Q131030
+Q658255
+Q268592
+Q196092
+Q428148
+Q145
+Q174834
+Q2914988
+Q3394043
+Q1789452
+Q210947
+Q7566
+Q884353
+Q11563
+Q148
+Q22687
+Q577
+Q145
+Q3277092
+Q1604733
+Q32
+Q428148
+Q2124504
+Q26256512
+Q690213
+Q2912172
+Q1374984
+Q601401
+Q151197
+Q84
+Q12681698
+Q104493
+Q2124504
+Q220695
+Q268592
+Q22855
+Q1671968
+Q104493
+Q842438
+Q24994
+Q145
+Q268592
+Q57775028
+Q22687
+Q26186900
+Q320553
+Q591763
+Q219858
+Q381072
+Q22687
+Q131512
+Q1076566
+Q2912172
+Q17641254
+Q799
+Q61061
+Q2191756
+Q680974
+Q30269216
+Q178150
+Q1639780
+Q3150770
+Q18603649
+Q980509
+Q26487354
+Q21
+Q174984
+Q7188
+Q30269216
+Q854659
+Q841654
+Q878123
+Q845956
+Q170156
+Q4013945
+Q1165788
+Q1530061
+Q2124504
+Q26186900
+Q51081147
+Q23311
+Q18662
+Q22670946
+Q36602
+Q903517
+Q5754843
+Q160151
+Q1640172
+Q618779

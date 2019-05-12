@@ -1,16 +1,157 @@
-The award of the Nobel memorial prize in economics to Lloyd Shapley and Alvin Roth is overdue: Mr Shapley should have shared the 1994 prize with John Nash and others, while Mr Roth has been a leading contender in recent years.
-The choice is a particularly good one because economists have acquired some bad habits, and Mr Roth's example may serve to break them.
-Mr Shapley is one of the key figures in co-operative game theory, which for decades looked both abstract and pointless, a poor relation to regular game theory.
-However, co-operative game theory is finally coming into its own in a world where computerised auctions are used to award assets or contracts in clusters.
-Mr Shapley has added a new page to the thick catalogue of useless ideas that turned out to be useful after all.
-In contrast, the practical application of Mr Roth's ideas has never been in doubt.
-Building on work by Mr Shapley and David Gale, Mr Roth designs algorithms for matching things.
-Mr Gale and Mr Shapley considered a whimsical problem: how to design a centralised system for allocating husbands and wives in a way that there is no possible male-female combination with a mutual desire to elope.
-Mr Roth has developed this theory, but he has also put it into practice, allocating medical students to teaching hospitals and children to schools.
-Along the way he has resolved difficulties such as the fact that some pairs of medical students are married couples and want to live in the same city.
-Most famously of all, he is part of a team that has designed kidney exchanges.
-If a person with kidney failure has a willing donor who is not a biological match, Mr Roth's kidney exchange finds another pair in a similar situation – or however many pairs are necessary to find everyone a compatible organ.
-Mr Roth's work is clever and useful but he is an example to his fellow economists in other ways.
-While others argued that it should be legal to buy and sell organs,Mr Roth tried to understand why we find such transactions repugnant, and designed a practical alternative.
-He has also advocated an engineering approach to economics: rather than simply proving that something can or cannot be done, his ideas on matching ask fuzzier questions such as “will this work in most cases?” or “is this as good as we can get?”
-Above all, Mr Roth has understood that if you test theory in a real-world environment, the theory will improve. So may the world itself.
+Q618779
+Q23810
+Q1417046
+Q618779
+Q8134
+Q244739
+Q28542
+Q1138478
+Q11692
+Q860677
+Q618779
+Q128736
+Q10451
+Q11348765
+Q577
+Q19082047
+Q1775867
+Q1101080
+Q15290
+Q199
+Q188094
+Q27454075
+Q3566043
+Q12029
+Q10451
+Q12335479
+Q44127
+Q903577
+Q1138478
+Q199
+Q23445
+Q1412049
+Q44455
+Q17737
+Q39911
+Q333291
+Q16738028
+Q203066
+Q2566598
+Q44455
+Q17737
+Q44455
+Q17737
+Q16502
+Q177923
+Q278368
+Q618779
+Q46737
+Q93288
+Q206637
+Q1138478
+Q32043
+Q1954125
+Q361698
+Q2352616
+Q131841
+Q304479
+Q21263262
+Q690182
+Q11348
+Q10451
+Q131841
+Q34302
+Q41176
+Q28640
+Q1138478
+Q1174503
+Q10451
+Q82604
+Q8366
+Q1065144
+Q35120
+Q622221
+Q1138478
+Q1344851
+Q621184
+Q82604
+Q3046146
+Q188830
+Q17641254
+Q30230067
+Q202805
+Q775842
+Q2812388
+Q10451
+Q2843407
+Q17737
+Q334600
+Q21263917
+Q48282
+Q1813474
+Q16917
+Q7569
+Q3914
+Q17641254
+Q16515105
+Q188572
+Q191290
+Q21263917
+Q48282
+Q191290
+Q26256512
+Q9368
+Q7930989
+Q327245
+Q82604
+Q9377
+Q179076
+Q5
+Q476921
+Q1121708
+Q1968442
+Q4697206
+Q37507
+Q10451
+Q9377
+Q179076
+Q191290
+Q26256352
+Q2141565
+Q191290
+Q1444
+Q10451
+Q28640
+Q21263262
+Q21503252
+Q12335479
+Q1404101
+Q188094
+Q17641254
+Q105210
+Q1308239
+Q1081889
+Q1444
+Q10451
+Q578508
+Q601401
+Q82604
+Q11366
+Q380075
+Q11023
+Q1801985
+Q8134
+Q131841
+Q1065144
+Q23258835
+Q189756
+Q28640
+Q3975
+Q15290
+Q27318
+Q17737
+Q2249676
+Q17737
+Q16502
+Q16502
+Q3123740

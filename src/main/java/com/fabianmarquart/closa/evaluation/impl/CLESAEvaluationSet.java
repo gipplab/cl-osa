@@ -391,7 +391,7 @@ public class CLESAEvaluationSet extends EvaluationSet {
 
 
         // 4 compare document vector pairs again using cosine similarity:
-        suspiciousIdDetectedCandidateIdsMap = suspiciousIdTokensMap.entrySet()
+        suspiciousIdCandidateScoresMap = suspiciousIdTokensMap.entrySet()
                 .stream()
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toMap(suspiciousId -> suspiciousId, suspiciousId -> {

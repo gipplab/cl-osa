@@ -1,44 +1,263 @@
-The Barclays affair may lack the spice of some recent banking scandals, involving as it does the rather dry “crime” of misreporting interest rates.
-But few have shone such an unsparing light on the rotten heart of the financial system.
-Behind the technical language, what has been exposed by British and American regulators is nothing less than a long-running confidence trick played on the public for personal and institutional advantage.
-Putting that right will take more than a few paltry acts of contrition by Barclays' bosses and a bit of hand-wringing from the authorities.
-The bankers involved have betrayed an important public trust – that of keeping an accurate public record of the key market rates that are used to value contracts worth trillions of dollars.
-They did so to make money and to conceal from the wider world their true cost of borrowing.
-This was market-rigging on a grand scale.
-It is hard to think of anything more damning – or more corrosive of the reputation of capitalism.
-What is shocking is the casual way in which this con was perpetrated, and how few checks were in place to stop it.
-The messages swapped between traders – with their promises to reward fiddled figures with bottles of champagne – breathe an easy sense of entitlement.
-They also speak volumes about the rotten culture at Barclays.
-Bob Diamond, the bank's chief executive, gave a lecture last year in which he stressed the importance of culture in establishing an ethos of trust and integrity.
-“Culture is difficult to define,” he explained, “but for me the evidence of culture is how people behave when no one is watching.”
-Well, now we know.
-The bank's response has been inadequate.
-While it has instigated disciplinary action against some individuals, there has been no proper accounting for what went on.
-For instance, the legal settlement does not reveal how high up the bank the abuses went.
-This must now be corrected.
-Barclays should immediately appoint an independent figure with unfettered access to all the information to investigate the rate-rigging.
-The conclusions must then be published without interference.
-In the absence of this, the authorities must find another way.
-As for Mr Diamond, he may not have been the top boss at the time but as the bank's dominant executive he was clearly responsible for its hard-driving culture.
-If he had an ounce of shame, he would immediately step down.
-Barclays will not be the last bank to be collared for rate-rigging.
-Investigations involve regulators on three continents, who are looking into the behaviour of more than 20 banks involved in rate-setting processes.
-This cannot have been an isolated act of wrongdoing.
-It looks more like a systemic problem afflicting a broad swath of the industry.
-The restoration of public confidence clearly requires changes to the way rates are regulated and computed.
-The British Banking Association, a bankers' trade body that has hitherto enjoyed responsibility for the London interbank offered rate, has now asked for this function to be put under an independent regulator.
-That is a step in the right direction.
-Libor and other key rates should also be based on actual transactions, not the banks' easily fiddled estimates of their own borrowing costs.
-It would also help if individual bankers were held more firmly to account for their actions.
-In Barclays' case it is astonishing that no senior figure has paid with their job.
-It is also absurd that in the UK almost no bankers have been prosecuted for their role in the crisis and its fallout.
-The chancellor, George Osborne, told MPs yesterday that the Financial Services Authority did not have the power to prosecute Barclays bankers for their role in mis-setting rates.
-This gap must be filled.
-But beyond questions about legality there is a bigger worry about the wayward behaviour of the financial sector.
-The pursuit of unrealistic returns seems to have entrenched a culture of recklessness.
-This is not something that can be fixed by a few rule-tweaks, or by bolstering the capital that banks have to hold.
-It is about culture and morality.
-If, as now seems likely, many banks were involved in fiddling rates, this raises questions not just about the leadership of one institution but that of the whole industry.
-For there to be a real change of heart and expectation, it may therefore be necessary to retire this generation of flawed leaders.
-The FT does not endorse banker-bashing for its own sake.
-But if the bashing is to stop, the banks themselves must change.
+Q3109268
+Q245343
+Q1772698
+Q6468673
+Q42527
+Q3435731
+Q192909
+Q56300805
+Q83267
+Q179179
+Q736288
+Q9128
+Q1072
+Q1416617
+Q569612
+Q315
+Q842438
+Q463257
+Q1639780
+Q52834024
+Q7023752
+Q2452746
+Q4197743
+Q2388316
+Q211198
+Q4686406
+Q14565199
+Q47035128
+Q49371
+Q245343
+Q8043
+Q468388
+Q8805
+Q174834
+Q806798
+Q36949023
+Q2166722
+Q211198
+Q659974
+Q272035
+Q211198
+Q178588
+Q23445
+Q37654
+Q736288
+Q278368
+Q19426
+Q93288
+Q319582
+Q26186900
+Q1368
+Q30301727
+Q16502
+Q16751793
+Q240673
+Q103808
+Q179651
+Q5655097
+Q478594
+Q6206
+Q17641254
+Q25551003
+Q80042
+Q82794
+Q51597
+Q628523
+Q656083
+Q1424605
+Q1425577
+Q1321905
+Q1412049
+Q80228
+Q5069879
+Q14293544
+Q173253
+Q18284625
+Q570
+Q39297
+Q11042
+Q245343
+Q664725
+Q22687
+Q1162163
+Q35798
+Q603773
+Q577
+Q39552
+Q16886469
+Q11042
+Q659974
+Q461671
+Q11042
+Q101072
+Q7958
+Q199
+Q176763
+Q11042
+Q5
+Q199
+Q17643783
+Q22687
+Q1920566
+Q188473
+Q795052
+Q1867823
+Q4116214
+Q1664689
+Q167412
+Q167412
+Q192906
+Q5754843
+Q22687
+Q600571
+Q1414531
+Q245343
+Q625303
+Q1412049
+Q29466124
+Q11028
+Q30093123
+Q20665666
+Q2085381
+Q136980
+Q16120406
+Q174834
+Q17641254
+Q500039
+Q468388
+Q11471
+Q22687
+Q384561
+Q35798
+Q11042
+Q48013
+Q152282
+Q3289701
+Q245343
+Q22687
+Q481243
+Q21004260
+Q36949023
+Q1639780
+Q201
+Q5107
+Q9332
+Q47035128
+Q40292
+Q22687
+Q36949023
+Q205663
+Q275473
+Q49371
+Q6765918
+Q621184
+Q4097090
+Q8148
+Q846848
+Q217102
+Q211198
+Q4116378
+Q774228
+Q1150070
+Q17641254
+Q736288
+Q1639780
+Q68
+Q842438
+Q806798
+Q8043
+Q601401
+Q48422
+Q84
+Q1193004
+Q736288
+Q11348
+Q625303
+Q1639780
+Q1101080
+Q3289701
+Q14565199
+Q2151613
+Q207351
+Q1210392
+Q736288
+Q11193
+Q601401
+Q22687
+Q8043
+Q965330
+Q103808
+Q240673
+Q23835475
+Q795052
+Q806798
+Q196431
+Q508295
+Q188473
+Q245343
+Q8043
+Q3975
+Q332209
+Q1412049
+Q1640172
+Q192581
+Q145
+Q806798
+Q600751
+Q214339
+Q381072
+Q61061
+Q71795
+Q806805
+Q1187312
+Q638053
+Q25107
+Q600751
+Q245343
+Q806798
+Q214339
+Q736288
+Q4153227
+Q905592
+Q189756
+Q2307054
+Q1101080
+Q1436482
+Q9332
+Q57774188
+Q219858
+Q7098963
+Q283976
+Q23498051
+Q11042
+Q7302543
+Q4697206
+Q3073127
+Q5119
+Q22687
+Q196431
+Q11042
+Q48324
+Q18122778
+Q22687
+Q36949023
+Q736288
+Q884353
+Q189756
+Q484275
+Q199
+Q178706
+Q8148
+Q286583
+Q1150070
+Q1072
+Q1362683
+Q1358789
+Q213381
+Q32518
+Q900831
+Q170219
+Q51597
+Q22687
+Q1150070

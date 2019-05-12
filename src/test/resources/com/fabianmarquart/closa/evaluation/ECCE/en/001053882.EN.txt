@@ -1,23 +1,144 @@
-When President Barack Obama announced that banks would no longer be allowed to bet their own money on the securities markets, he pledged that American taxpayers would never again be held hostage by a financial institution that is too big to fail.
-Mr Obama was right that the rules needed to change.
-Investors knew that, in a crisis, the government would write large cheques to keep systemically important institutions afloat.
-This open-ended insurance dulled bankers' sensitivity to risk and weakened institutional culture.
-In good years traders posted huge profits, leapfrogging less prolific colleagues in divisions such as retail banking.
-Once buccaneering investment bankers occupied the commanding heights of financial institutions, many banks came to seem more like casinos.
-Lax regulation did little to discourage rash behaviour.
-But turning a well-intentioned presidential gesture into a workable law has proved to be a fiendishly difficult task.
-It took nearly four years for the agencies charged with filling in the details of the so-called Volcker rule to come up with a final draft.
-Few observers are satisfied with the result.
-Some complain that useful activities could be prohibited by the new regulations.
-It may become harder for banks to lubricate markets by snapping up assets for which they have yet to find a buyer.
-Some hedging trades, which are supposed to reduce risk, will also be curbed.
-But zealots argue that, on the contrary, regulators have made so many concessions that the rules will have little effect.
-The difficulty of weighing these competing critiques points to the basic flaw in the Volcker rule.
-It is easy to identify the imprudent risk-taking that led to the crisis, but harder to spot such recklessness in advance.
-It is impossible to say with much confidence whether an individual trade adds to or subtracts from the risk lurking in the labyrinthine balance sheet of a universal bank.
-Yet it will now be incumbent on regulators to make such judgments.
-It is hardly surprising that they have had difficulty explaining how they will do this in practice.
-A better way to make banks safer is to ban them from certain kinds of risky activity altogether.
-This was the approach taken by the repealed Glass-Steagall act, which separated banks from securities firms.
-While the financial system is now safer than it was four years ago, much work remains to be done.
-The publication of an ineffective rule should not be mistaken for genuine progress.
+Q76
+Q76
+Q1371925
+Q22687
+Q1962593
+Q2565881
+Q1368
+Q169489
+Q37654
+Q463257
+Q1938414
+Q17996230
+Q196431
+Q192620
+Q650241
+Q178706
+Q76
+Q14565199
+Q104555
+Q190258
+Q1150070
+Q557880
+Q381072
+Q7188
+Q28389
+Q520952
+Q80042
+Q172964
+Q178706
+Q43183
+Q806798
+Q436048
+Q1295020
+Q104493
+Q11042
+Q15290
+Q577
+Q1424605
+Q429785
+Q26911
+Q18029574
+Q38348
+Q1548025
+Q3435731
+Q2883465
+Q806798
+Q28640
+Q190200
+Q650241
+Q178706
+Q22687
+Q5025838
+Q133215
+Q3003796
+Q428148
+Q653197
+Q9332
+Q258127
+Q371174
+Q7748
+Q759676
+Q202
+Q577
+Q327333
+Q198976
+Q104555
+Q1366722
+Q31603
+Q830077
+Q2995644
+Q26254008
+Q21263262
+Q317949
+Q1751943
+Q1954125
+Q428148
+Q22687
+Q37654
+Q7547253
+Q46737
+Q1308239
+Q601401
+Q912546
+Q104493
+Q37442
+Q1498321
+Q1639780
+Q26186900
+Q327209
+Q104555
+Q926230
+Q25288
+Q841654
+Q17955
+Q44946
+Q5801290
+Q104555
+Q2039217
+Q871232
+Q381072
+Q3967224
+Q7302543
+Q19357621
+Q7429143
+Q4116378
+Q795052
+Q601401
+Q32043
+Q40754
+Q104493
+Q46834
+Q196878
+Q6497530
+Q22687
+Q42841
+Q1639780
+Q26186900
+Q1720612
+Q334600
+Q28226177
+Q21255605
+Q17641254
+Q26186900
+Q22687
+Q324923
+Q21146257
+Q317949
+Q1801985
+Q20683640
+Q4590027
+Q49371
+Q20598
+Q22687
+Q169489
+Q1416617
+Q202
+Q577
+Q29818766
+Q28640
+Q55082364
+Q732577
+Q104555
+Q29485
+Q247792

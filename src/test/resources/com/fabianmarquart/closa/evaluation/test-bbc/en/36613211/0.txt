@@ -1,58 +1,510 @@
-Pound plunges after Leave vote
-
-The pound has fallen to levels not seen since 1985 following the UK's referendum vote to leave the EU.
-Shares have also been hit. The FTSE 100 index began the day by falling more than 8%, then regained some ground to stand 2.5% lower.
-The more UK-focused FTSE 250 fared even worse, down 8% in early afternoon trading.
-Banks were hard hit, with Barclays and RBS falling about 30%, although they later pared losses to below 20%.
-The FTSE 100 ended the day 3.15% or 199.41 points lower.
-The pound's dramatic fall started overnight as the outcome of the referendum became clear. At one stage, it hit $1.3236, a fall of more than 10%.
-By early afternoon, it had partially recovered, but was still nearly 8% down on the day.
-As well as the banks, the housebuilding sector was also badly hit, with shares in Bovis Homes down more than 20% in afternoon trading.
-"Financials and housebuilders are bearing the brunt of the pain, with Lloyds Bank being one of the biggest fallers," said Laith Khalaf, senior analyst at Hargreaves Lansdown, highlighting Lloyds' 21% slump.
-"It's probably safe to say the public sale of the bank is now firmly in the long grass, and the return to full private ownership of both Lloyds and RBS has been knocked off course."
-The Bank of England said it was "monitoring developments closely" and would take "all necessary steps" to support monetary stability.
-In New York, the Dow Jones fell 2.6%, more than 400 points, in the opening minutes.
-Brexit reaction: Business live
-Brexit: Five areas to watch on the economy
-Jack: The great business referendum snub
-City shock at referendum result
-UK interest rate 'likely to hit zero'
-Bank of England statement
-How will Brexit affect your finances?
-Property market lull may follow EU vote
-Drivers 'face rising petrol prices'
-Business calls for stability and direction
-Thomas Cook halts online currency sales
-Referendum results in full
-"This is simply unprecedented, the pound has fallen off a cliff and the FTSE is now following suit," said Dennis de Jong, managing director of UFX.com.
-"Britain's EU referendum has been a cloud hanging over the global economy for the past few months and that cloud has got very dark this morning.
-"The markets despise uncertainty, yet that is exactly what they're faced with this morning. The shockwaves are likely to reverberate for some time and the warning lights are flashing brighter now than ever."
-The FTSE 100's initial slump was its biggest one-day fall since the collapse of Lehman Brothers in October 2008.
-UK government bond yields hit a new record low, with 10-year yields down more than 30 basis points to 1.018%, according to Reuters data.
-Two-year yields fell more than 20 basis points to their lowest levels since mid-2013, at 0.233%.
-The impact of the vote was also felt in other European countries. The Frankfurt and Paris indexes were both down more than 7% and 8% respectively, while the Swiss central bank intervened on the money markets to steady the Swiss franc after it appreciated in value.
-Oil prices have also fallen sharply in the wake of the referendum outcome, with Brent crude down 4.6%.
-The price of Brent crude fell by $2.34 to $48.57 a barrel, its biggest fall since February. At the same time, US crude was down 4.4%, or $2.22, to $47.89 a barrel.
-Before the results started to come in, the pound had risen as high as $1.50, as traders bet on a Remain victory.
-But following early strong Leave votes in north-east England, it tumbled to $1.43 and then took another dive after 03:00 BST as Leave maintained its lead.
-The move in sterling is the biggest one-day fall ever seen.
-A weaker pound buys fewer dollars or other foreign currencies, which makes it more expensive to buy products from abroad. However, it should benefit exporters as it makes their goods cheaper abroad.
-Against the euro, the pound dropped 7% to about €1.2085. By Friday lunchtime, it had risen again but was still 5.3% down on the day.
-At one point, the euro was 3.3% lower against the dollar, its biggest one-day fall since the currency's inception.
-Currency traders say these moves are more extreme than those seen during the financial crisis of 2008.
-"Leave's victory has delivered one of the biggest market shocks of all time," said Joe Rundle, head of trading at ETX Capital.
-"The pound has collapsed to its lowest level in over 30 years, suffering its biggest one-day fall in living memory.
-"Panic may not be too strong a word - the pound could have further to go over the next couple of days as markets digest the news.
-"It's fair to say we've never seen anything like it and the chances are markets will remain highly volatile over the coming hours and days."
-IAG, which owns British Airways and Iberia, issued a statement saying the result of the vote would hit its profits.
-"Following the outcome of the referendum, and given current market volatility, while IAG continues to expect a significant increase in operating profit this year, it no longer expects to generate an absolute operating profit increase similar to 2015," it said.
-David Tinsley at UBS said there would be "a significant rise in economic uncertainty" and that the Bank of England's Monetary Policy Committee (MPC) was expected to take action, including interest rate cuts and an extension of its quantitative easing programme.
-"We expect the MPC will cut policy rates to zero and make further asset purchases, in the first instance of £50-75bn, not later than February 2017," he said.
-In a statement, Bank of England governor Mark Carney said the Bank would "pursue relentlessly" its responsibilities for monetary and financial stability, which were unchanged.
-He said the Bank had put in place "extensive contingency plans" to mitigate the risks associated with the referendum, adding that it stood ready to provide more than £250bn of additional funds to banks through its normal facilities.
-"In the coming weeks, the Bank will assess economic conditions and will consider any additional policy responses," he said.
-The European Central Bank (ECB) also issued a statement saying it was closely monitoring financial markets and was in close contact with other central banks.
-"The ECB stands ready to provide additional liquidity, if needed, in euro and foreign currencies," it added.
-The managing director of the International Monetary Fund (IMF), Christine Lagarde, said the Fund had taken note of the referendum decision.
-"We urge the authorities in the UK and Europe to work collaboratively to ensure a smooth transition to a new economic relationship between the UK and the EU, including by clarifying the procedures and broad objectives that will guide the process," she added.
-Source: Bank of New York Mellon
+Q25224
+Q906997
+Q5338673
+Q42904171
+Q21942556
+Q25224
+Q11921529
+Q207988
+Q2191756
+Q5371778
+Q47436102
+Q145
+Q43109
+Q42904171
+Q5338673
+Q458
+Q11692
+Q810927
+Q466496
+Q37413
+Q184848
+Q23759131
+Q573
+Q333495
+Q47035128
+Q23355
+Q1349417
+Q1510380
+Q7752234
+Q466496
+Q756130
+Q736288
+Q21255921
+Q23355
+Q40719727
+Q283102
+Q601401
+Q22687
+Q5655097
+Q810927
+Q245343
+Q160126
+Q333495
+Q42817
+Q193811
+Q1121708
+Q40292
+Q466496
+Q37413
+Q5375780
+Q573
+Q44946
+Q21942556
+Q25224
+Q1314
+Q557828
+Q2995644
+Q43109
+Q306484
+Q199
+Q4809
+Q810927
+Q4917
+Q1314
+Q47035128
+Q23806
+Q40719727
+Q283102
+Q23355
+Q573
+Q22687
+Q219858
+Q810927
+Q11692
+Q37559944
+Q37048459
+Q47035128
+Q40292
+Q283102
+Q601401
+Q190100
+Q81938
+Q1151815
+Q199
+Q11921529
+Q7429143
+Q332209
+Q485178
+Q3127437
+Q14679277
+Q8043
+Q712477
+Q2509873
+Q18122778
+Q471898
+Q7429143
+Q2388316
+Q211198
+Q194189
+Q22687
+Q43238
+Q283976
+Q158668
+Q6498684
+Q14679277
+Q160126
+Q600134
+Q17643783
+Q26487354
+Q21
+Q7429143
+Q1421432
+Q2843407
+Q3289701
+Q10940
+Q903517
+Q60
+Q180816
+Q11921529
+Q47035128
+Q1535396
+Q44946
+Q1471749
+Q7727
+Q7888194
+Q192957
+Q11418769
+Q9368
+Q7888194
+Q203
+Q11500
+Q28973077
+Q159810
+Q45963
+Q2912172
+Q43109
+Q7548771
+Q18662
+Q129302
+Q43109
+Q2995644
+Q145
+Q179179
+Q736288
+Q627319
+Q18122778
+Q810927
+Q8043
+Q26487354
+Q21
+Q613299
+Q159904
+Q159904
+Q937228
+Q37654
+Q31888506
+Q458
+Q42904171
+Q216541
+Q627319
+Q37017
+Q39558
+Q160151
+Q8043
+Q2912172
+Q903517
+Q2151613
+Q328725
+Q55678
+Q73368
+Q8142
+Q194189
+Q43109
+Q2995644
+Q25224
+Q1314
+Q107679
+Q466496
+Q47436102
+Q27905
+Q7429143
+Q639292
+Q20085849
+Q2462658
+Q42178
+Q690213
+Q458
+Q43109
+Q8074
+Q175111
+Q473750
+Q159810
+Q5151
+Q8074
+Q204170
+Q7722
+Q37654
+Q21089155
+Q1403517
+Q37017
+Q7722
+Q18122778
+Q11471
+Q1759104
+Q9128
+Q466496
+Q37413
+Q378408
+Q2509873
+Q1314
+Q1309431
+Q212900
+Q990817
+Q234698
+Q1069941
+Q6063
+Q2324820
+Q11693
+Q2383321
+Q810927
+Q1954125
+Q178588
+Q209190
+Q2383321
+Q47035128
+Q42817
+Q750178
+Q44946
+Q130879
+Q1502887
+Q2383321
+Q11921529
+Q47035128
+Q40292
+Q750178
+Q44946
+Q207988
+Q4115667
+Q42904171
+Q189964
+Q6256
+Q1794
+Q90
+Q184848
+Q47035128
+Q23350
+Q23355
+Q124216
+Q66344
+Q22687
+Q627543
+Q37654
+Q5788637
+Q124216
+Q63300
+Q19426
+Q297279
+Q160151
+Q11921529
+Q1362362
+Q43109
+Q2995644
+Q1270246
+Q160151
+Q1270246
+Q11921529
+Q4917
+Q4917
+Q10289
+Q1314
+Q109
+Q11471
+Q30
+Q4917
+Q4917
+Q10289
+Q2995644
+Q557828
+Q25224
+Q1139344
+Q5754843
+Q4917
+Q1424605
+Q15049
+Q50000
+Q47436102
+Q40719727
+Q5338673
+Q42904171
+Q6497686
+Q21
+Q4917
+Q179643
+Q55527754
+Q2723683
+Q5338673
+Q708
+Q1133828
+Q1314
+Q2191756
+Q25224
+Q1308239
+Q26271812
+Q8142
+Q26186900
+Q1308239
+Q40276
+Q2383321
+Q26186900
+Q28877
+Q4916
+Q25224
+Q185789
+Q23350
+Q4917
+Q130
+Q1139344
+Q573
+Q199
+Q44946
+Q4916
+Q1314
+Q8142
+Q24574747
+Q50673671
+Q1424605
+Q7429143
+Q114380
+Q381072
+Q1069941
+Q5338673
+Q50000
+Q199
+Q37654
+Q129302
+Q11471
+Q7429143
+Q23640
+Q601401
+Q5324505
+Q21942556
+Q25224
+Q1309431
+Q207988
+Q42817
+Q577
+Q5780945
+Q1314
+Q28640
+Q492
+Q208450
+Q8171
+Q25224
+Q573
+Q37654
+Q12764655
+Q17502905
+Q38926
+Q288514
+Q7429143
+Q3851114
+Q37654
+Q24759380
+Q25235
+Q573
+Q8774
+Q618532
+Q8766
+Q12837
+Q86447
+Q613299
+Q3026787
+Q2995644
+Q42904171
+Q810927
+Q26911
+Q5464790
+Q2995644
+Q43109
+Q11651
+Q37654
+Q756115
+Q8774
+Q23090331
+Q1362683
+Q17281278
+Q26911
+Q577
+Q1362683
+Q643669
+Q332340
+Q26911
+Q17281278
+Q26256352
+Q11187127
+Q7429143
+Q193199
+Q7429143
+Q1139344
+Q1403517
+Q26487354
+Q21
+Q846262
+Q522039
+Q1362683
+Q188473
+Q179179
+Q736288
+Q320553
+Q184148
+Q21087400
+Q1371819
+Q1362683
+Q522039
+Q44364
+Q1156854
+Q736288
+Q26186900
+Q46737
+Q1369832
+Q21503252
+Q175743
+Q23419257
+Q12681718
+Q7429143
+Q613299
+Q26487354
+Q21
+Q48352
+Q192533
+Q7429143
+Q502117
+Q468489
+Q31275820
+Q903517
+Q5688911
+Q7429143
+Q502117
+Q82794
+Q2340208
+Q611203
+Q6881762
+Q104493
+Q48204
+Q43109
+Q32043
+Q1510380
+Q47035128
+Q175743
+Q25392373
+Q22687
+Q202785
+Q13226383
+Q23387
+Q502117
+Q335757
+Q12136
+Q1344851
+Q1156854
+Q1920566
+Q7429143
+Q8901
+Q27865861
+Q8901
+Q86447
+Q613299
+Q3026787
+Q1421432
+Q208697
+Q37654
+Q12731
+Q23797
+Q66344
+Q22687
+Q8901
+Q1510380
+Q1827667
+Q190258
+Q4916
+Q26271812
+Q8142
+Q32043
+Q2462658
+Q42178
+Q7804
+Q7804
+Q484605
+Q7429143
+Q2620430
+Q47433
+Q43109
+Q732833
+Q174834
+Q145
+Q46
+Q327055
+Q19861550
+Q1606712
+Q1954125
+Q7310741
+Q145
+Q458
+Q15262084
+Q4097090
+Q3880557
+Q1039099
+Q205663
+Q32043
+Q128751
+Q502117

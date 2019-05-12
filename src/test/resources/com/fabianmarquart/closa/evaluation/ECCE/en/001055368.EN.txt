@@ -1,32 +1,246 @@
-Since taking off five years ago, China's debt market has had the appearance of a one-way bet. 
-The country's turbocharged growth meant corporations were typically in good enough financial health to pay back their loans. 
-But even those companies that ran into trouble did not face the risk of default, since the government would order state-owned banks to ride to their rescue. 
-The same principle applied to local authorities, which were put in the position to borrow large sums of money via off-balance sheet financial vehicles.
-The era of riskless borrowing came to an abrupt end this month, when the authorities decided to let Chaori, a solar-cell maker, miss an interest payment on a bond, triggering the first default in China's modern history. 
-It will not be the last. 
-Li Keqiang, premier, has since made it clear that more defaults are “unavoidable” in the Chinese economy. 
-The authorities are now mulling over the fate of Zhejiang Xingrun Real Estate, a provincial developer that is struggling to repay Rmb3.5bn ($569m) of debt.
-Beijing's willingness to allow defaults to happen is welcome. 
-Widespread moral hazard across borrowers and lenders is one of the reasons credit growth in China has spiralled out of control, with total debt rising sharply from 130 per cent to 210 per cent of national income in just five years. 
-Fearing for their money, investors will now be more careful about whom they lend to. 
-Forcing operators to differentiate among companies is a necessary step on the road to interest rate liberalisation. 
-In a market where the government bails out all lossmaking institutions, the cost of credit will not reflect true economic conditions.
-However, a more laisser faire approach towards defaults carries risks, both politically and economically. 
-China's corporations are deeply interconnected via long credit chains. 
-Large state-owned corporations often act as guarantor for the debt of smaller companies in a region. 
-Letting a giant fail could trigger a cascade of bad loans, which would severely hurt the banking system. 
-Furthermore, many retail investors have lent their money with the implicit understanding that the state would step in to help if needed. 
-Breaching this unwritten contract in order to enforce market discipline could lead to a political backlash.
-There are three ways in which Beijing can minimise the risks of bankruptcies having damaging spillovers. 
-One is to boost transparency in the credit market, forcing banks to shrink their large shadow banking vehicles and bring more loans on to their balance sheet. 
-Banks should also be more open about where savers' cash is invested. 
-Too often depositors are unaware that their money is funding high-risk bets, especially in the property market.
-Second, Beijing must be careful when picking which corporations are allowed to go bust. 
-So far, the authorities have been wary of letting institutions that pose systemic risk default. 
-Last January they rescued China Credit Trust, a Rmb3bn high-yield investment trust. 
-This caution makes sense. 
-Yet the decision to save a troubled company must hinge purely on systemic considerations, rather than on the strength of its connections to the government.
-Finally, the authorities should equip China with a bankruptcy regime that can handle failures both of financial and non-financial institutions in an orderly manner. 
-These regulations will take time to set up, but one of their guiding principles must be that the investors that took the greatest risk suffer the biggest losses. 
-The danger, of course, is that political considerations will trump the rule of law. 
-But if China is serious about diversifying the pool of available lenders away from its state-owned banks, investors must be given guarantees that they will not be defrauded.
+Q203
+Q577
+Q29818766
+Q148
+Q540626
+Q37654
+Q3620816
+Q15049
+Q6256
+Q1342838
+Q19033
+Q167037
+Q28962312
+Q15290
+Q12147
+Q1640172
+Q189539
+Q102538
+Q1210151
+Q19357595
+Q37017
+Q104493
+Q281782
+Q7188
+Q36602
+Q22687
+Q352858
+Q1341429
+Q7762159
+Q158646
+Q11348
+Q837766
+Q174834
+Q192388
+Q25702570
+Q520952
+Q218005
+Q1368
+Q196878
+Q42889
+Q25222110
+Q630830
+Q103808
+Q5025838
+Q29812509
+Q5375780
+Q5151
+Q174834
+Q732833
+Q9788
+Q170924
+Q1148747
+Q11693
+Q281782
+Q148
+Q3281534
+Q309
+Q18111
+Q959664
+Q26186900
+Q306484
+Q281782
+Q148
+Q159810
+Q174834
+Q216774
+Q5482740
+Q2114394
+Q668
+Q4917
+Q3196867
+Q956
+Q1962593
+Q281782
+Q13109234
+Q44454
+Q753552
+Q25702570
+Q26726369
+Q199
+Q178354
+Q182076
+Q1342838
+Q148
+Q189114
+Q11175
+Q16868672
+Q3196867
+Q721070
+Q724178
+Q646181
+Q724178
+Q1057397
+Q850210
+Q203
+Q577
+Q1256110
+Q1368
+Q557880
+Q26726369
+Q5467584
+Q131030
+Q102538
+Q1101080
+Q3289701
+Q34442
+Q179179
+Q736288
+Q746418
+Q37654
+Q7188
+Q162351
+Q178706
+Q240673
+Q182076
+Q35221
+Q16751793
+Q12136
+Q3064531
+Q1801985
+Q281782
+Q499193
+Q104493
+Q148
+Q167037
+Q182076
+Q369377
+Q520952
+Q270791
+Q167037
+Q49371
+Q4373466
+Q3196867
+Q102538
+Q36784
+Q2152413
+Q336751
+Q357384
+Q3566043
+Q189539
+Q5413585
+Q806737
+Q16889909
+Q126793
+Q557880
+Q26726369
+Q1368
+Q46744
+Q7275
+Q3289701
+Q23835475
+Q190258
+Q93288
+Q36602
+Q166104
+Q37654
+Q1315911
+Q32518
+Q584028
+Q201
+Q17641254
+Q956
+Q6865248
+Q104493
+Q152074
+Q199
+Q487623
+Q540626
+Q37654
+Q1003136
+Q22687
+Q520952
+Q57774254
+Q3435731
+Q42889
+Q189539
+Q46834
+Q196878
+Q22687
+Q2735683
+Q8043
+Q1368
+Q557880
+Q1368
+Q6055890
+Q15049
+Q937228
+Q37654
+Q11574
+Q956
+Q167037
+Q1962593
+Q241045
+Q23257209
+Q174834
+Q157171
+Q178706
+Q1671968
+Q1369234
+Q104493
+Q281782
+Q108
+Q17126809
+Q88272
+Q659974
+Q10566551
+Q26186900
+Q173253
+Q732833
+Q1377846
+Q102538
+Q244330
+Q1344851
+Q605035
+Q31924
+Q7188
+Q174834
+Q16798631
+Q148
+Q152074
+Q5589178
+Q1205349
+Q1121708
+Q178706
+Q12177489
+Q367293
+Q428148
+Q11471
+Q36161
+Q199
+Q158646
+Q557880
+Q104493
+Q1121708
+Q13582404
+Q600134
+Q1344851
+Q727407
+Q44918
+Q7748
+Q148
+Q11020
+Q26726369
+Q3306907
+Q22687
+Q557880

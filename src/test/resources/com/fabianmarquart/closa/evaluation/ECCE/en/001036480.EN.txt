@@ -1,26 +1,165 @@
-Renault claims to have fallen victim to a sophisticated case of industrial espionage.
-Last week, the carmaker, which is part owned by the French government, suspended three executives following an internal investigation into the suspected theft of secrets from its electric vehicle programme.
-Suspicion has fallen on Chinese companies, even though Beijing has vigorously protested its innocence.
-There is nothing new about industrial espionage.
-As long as trade has existed, merchants have sought to gain an edge on their rivals by fair means and foul.
-And states have also often played a role.
-In the 1980s, France itself was involved in spying on high-technology companies in the US.
-But the level of illicit activity seems to be rising.
-In 2009, top- secret data relating to the Pentagon's Joint Strike Fighter project were stolen.
-And the same year, about 30 companies were targeted in a highly sophisticated cyber- attack originating in China, during which sensitive data was stolen and e-mail accounts were hacked.
-In itself, the dispersal of know-ledge is a good thing.
-Theoretically, business innovations would be as widely available as possible.
-Individual companies would lose out; but overall, the global economy would benefit.
-The problem with the instant dissemination of ideas, however, is that it would weaken the incentive for companies to innovate in the first place.
-It is for this reason that property rights must be protected.
-That is easier said than done.
-Technological advance has made life simpler for the James Bonds of the corporate world.
-As the recent WikiLeaks scandal shows, huge amounts of data can now be stored on a small, transportable memory stick.
-And as more computers become networked, secret information can be accessed remotely.
-Companies can respond by policing better who has access to what information, by ensuring that computers containing sensitive data are not linked to networks, and by sweeping offices for bugs.
-But they will always be fighting a rearguard action.
-The greatest vulnerability of most businesses, as the Renault case may yet reveal, is their staff.
-Personal grievances or financial inducements will always lure some off the straight and narrow.
-Given these challenges, countries – both developed and developing – must uphold and enforce intellectual property laws.
-China has been lobbying hard for market economy status.
-Clamping down on intellectual property theft would be a good way to prove Beijing deserves such recognition.
+Q6686
+Q836925
+Q11921529
+Q1851760
+Q3975
+Q1160650
+Q165950
+Q19114386
+Q23387
+Q618532
+Q121842
+Q32
+Q7188
+Q35855188
+Q201
+Q35798
+Q47436102
+Q21004260
+Q516519
+Q1220097
+Q1503443
+Q13629441
+Q42889
+Q1371819
+Q516519
+Q11921529
+Q148
+Q102538
+Q956
+Q273120
+Q359385
+Q1954125
+Q1160650
+Q165950
+Q601401
+Q468777
+Q215536
+Q30269216
+Q854659
+Q26382
+Q54894664
+Q288514
+Q21162272
+Q265777
+Q7275
+Q4197743
+Q214339
+Q34644
+Q142
+Q3123740
+Q36949023
+Q165950
+Q102538
+Q30
+Q30
+Q207988
+Q317949
+Q51134
+Q1503443
+Q1502887
+Q11209
+Q11208
+Q29261
+Q1446110
+Q629425
+Q170584
+Q1722555
+Q577
+Q42817
+Q102538
+Q170212
+Q81672
+Q148
+Q2587068
+Q1502887
+Q1722555
+Q9158
+Q508295
+Q11185
+Q3123740
+Q1101080
+Q15290
+Q35120
+Q2912172
+Q174165
+Q30230067
+Q795052
+Q102538
+Q20861252
+Q1077396
+Q473750
+Q159810
+Q2383321
+Q621184
+Q840576
+Q131841
+Q1414816
+Q102538
+Q3492227
+Q33965709
+Q82794
+Q178354
+Q937228
+Q780687
+Q7429143
+Q11016
+Q26186900
+Q3
+Q16502
+Q192909
+Q7502926
+Q1502887
+Q213441
+Q24245823
+Q492
+Q121650
+Q1503443
+Q11028
+Q29466124
+Q102538
+Q21255605
+Q29466124
+Q11028
+Q2587068
+Q1502887
+Q4697206
+Q102014
+Q141488
+Q667704
+Q182060
+Q252
+Q650711
+Q188473
+Q631425
+Q2912172
+Q6686
+Q3975
+Q192906
+Q192193
+Q1544312
+Q3042652
+Q1539954
+Q778999
+Q1035954
+Q2988681
+Q6256
+Q2843407
+Q166104
+Q131257
+Q1149275
+Q7748
+Q148
+Q187117
+Q5655097
+Q179522
+Q159810
+Q813912
+Q5125465
+Q131257
+Q937228
+Q1220097
+Q15290
+Q17641254
+Q956
+Q7302600

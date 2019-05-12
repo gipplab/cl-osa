@@ -1,22 +1,153 @@
-JPMorgan Chase's performance in the crisis gave it and Jamie Dimon, its boss, a claim to being better bankers than their rivals.
-The beaching of the “London whale”, a trader whose positions have been implicated in a $2bn loss reported by the bank, suggests it had more to do with better luck than greater skill.
-The luck has now run out, as it always does in the end.
-JPMorgan's shareholders will take the pain.
-For others the episode should serve as a spur to getting bank regulation right.
-His bank's good performance until now has allowed Mr Dimon to push back against ambitious regulatory reform.
-The argument is that reining in reckless practices to reduce risk should not get in the way of the business models of more prudent bankers.
-JPMorgan's whale-size loss – and Mr Dimon's original dismissal of it as “a tempest in a teapot” – undermines his case.
-That “value at risk”, a measure JPMorgan pioneered, failed to flag the impending loss shows how hard it is to keep risk in check, even for the most diligent banker.
-More fundamentally, the episode brings home that risk is the price for the outsize returns banks now expect.
-Until banks become more like utilities – predictable businesses with low, stable returns – regular wipeouts of profits will be the rule.
-The regulatory response must be twofold: restricting the risks banks take on, and limiting their impact on the economy through taxpayer bailouts or market panics.
-JPMorgan's bad bet gives ammunition to efforts at the former, such as the “Volcker rule” to ban proprietary trading by deposit-taking banks.
-Such rules will not hurt, but are unlikely to make banks much less risky.
-JPMorgan's bet may not even have been caught by the Volcker rule as currently envisaged.
-Even well-designed rules will be a step behind financial innovation.
-And a bank can lose its shirt on traditional banking assets without resorting to financial engineering.
-Restraints on what banks can do must therefore not distract attention from the need to insulate the economy from the risks that banks will continue to take.
-This means making it possible for them to fail by ensuring in advance that risks gone bad fall on investors, not taxpayers.
-Progress is being made on this, with steps towards greater capital requirements and resolution regimes able to convert debt into equity to recapitalise insolvent banks.
-The goal remains distant, even if governments have more tools than before.
-They must show they also have the political will to use them.
+Q192314
+Q35140
+Q381072
+Q922169
+Q468388
+Q836925
+Q21255605
+Q806798
+Q54894664
+Q729298
+Q84
+Q1448281
+Q1424605
+Q192388
+Q7881229
+Q4917
+Q1121708
+Q10870555
+Q22687
+Q21255605
+Q1970348
+Q47035128
+Q205961
+Q1970348
+Q7379580
+Q5375780
+Q381136
+Q81938
+Q1347347
+Q44127
+Q740732
+Q173800
+Q428148
+Q14565199
+Q22687
+Q15290
+Q35140
+Q1962593
+Q36661023
+Q4013945
+Q900406
+Q186619
+Q334600
+Q912546
+Q104493
+Q17641254
+Q815823
+Q193946
+Q806798
+Q1121708
+Q36661023
+Q23013268
+Q178146
+Q245005
+Q3975
+Q19426
+Q104493
+Q192276
+Q151197
+Q14660
+Q1121708
+Q7502926
+Q5655097
+Q172964
+Q104493
+Q80042
+Q806798
+Q1347347
+Q7743
+Q104493
+Q160151
+Q283976
+Q22687
+Q1362683
+Q22687
+Q312466
+Q2912172
+Q209190
+Q214252
+Q283976
+Q2566598
+Q26911
+Q104555
+Q4013945
+Q1920566
+Q104493
+Q22687
+Q4115667
+Q159810
+Q1938414
+Q44312
+Q37654
+Q208450
+Q3566043
+Q15049
+Q185785
+Q14536140
+Q104555
+Q324923
+Q601401
+Q22687
+Q104555
+Q5413585
+Q26186900
+Q22687
+Q15049
+Q1050571
+Q104555
+Q104555
+Q3289701
+Q174165
+Q22687
+Q20861252
+Q76768
+Q56260622
+Q3435731
+Q46737
+Q11023
+Q22687
+Q3030775
+Q6501338
+Q190258
+Q178150
+Q159810
+Q104493
+Q22687
+Q23090331
+Q19033
+Q30230067
+Q104493
+Q3566043
+Q1314
+Q557880
+Q1938414
+Q309363
+Q26186900
+Q3289701
+Q47035128
+Q2914988
+Q774228
+Q210521
+Q5589178
+Q2415537
+Q3196867
+Q827451
+Q22687
+Q22687
+Q18530
+Q55082364
+Q7188
+Q39546
+Q7502926
+Q278368

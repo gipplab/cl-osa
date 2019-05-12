@@ -1,42 +1,272 @@
-Not for the first time during the crisis, the eurozone is looking short of ideas to stimulate growth.
-Last week, the European Central Bank declined to relax monetary policy, in contrast to the forceful example set by the Bank of Japan.
-Yet the recovery will not come of its own accord.
-Without creative thinking, the currency bloc risks drifting into prolonged stagnation.
-There is also a growing sense that policy makers are being held hostage by the German elections, scheduled for next September.
-The optimists are prone to think that a newly minted government in Berlin is bound to show greater flexibility towards its eurozone partners.
-This almost certaintly underestimates the forces of continuity in German economic policy.
-Anyway, Europe cannot afford to wait six more months for action.
-The recovery, which policy makers were predicting for the second half of this year, now looks fanciful.
-The latest data on industrial production, which will be out this Friday, are expected to make for yet more gloomy reading.
-Unemployment in the periphery is soaring.
-Even the German economy, which some thought would rebound strongly after shrinking late last year, has run out of steam.
-There is a widespread belief, particularly in the rich countries of the European core, that growth will come from structural reforms, such as liberalised labour laws and freed up closed-shop professions.
-But, while necessary, these measures will necessarily take time to produce the desired effects.
-In countries such as Italy, reform fatigue is kicking in as a result of the widening economic malaise.
-The European Commission is rightly shifting its stance on fiscal policy, giving governments in difficulty more time to meet their targets.
-But this is tinkering at the margin.
-What is needed is for Germany and other countries with fiscal space to expand demand to provide breathing space to their struggling eurozone partners.
-For now, this is regrettably off the table.
-Which leaves monetary policy.
-During his tenure, Mario Draghi, president of the European Central Bank, has shown himself capable of exercising decisive leadership, which has saved the eurozone from collapse.
-He has kept the banking system afloat by providing lenders with cheap loans.
-His commitment to buy sovereign debt of distressed countries in unlimited quantities has all but removed the convertibility risk and lowered interest rates on peripheral bonds.
-Yet, these measures have had only a limited impact on getting credit flowing to businesses, especially in the eurozone periphery.
-The problem is acute for small and medium enterprises, which form the backbone of the eurozone economy.
-In peripheral countries such as Spain and Italy, SMEs are the engine of job creation.
-Yet, they find it increasingly hard to get access to loans.
-When they do, the price they pay is significantly above what is asked from their German competitors.
-The ECB should start by lowering its policy rate.
-With headline inflation at 1.7 per cent and economic activity stagnant, a cut should be incontestable. But since the monetary transmission mechanism is not working, Mr Draghi should do more, seeking ways to target SMEs more directly.
-One option is to adopt something similar to the UK's Funding for Lending Scheme, offering cheap loans to banks which should be used to finance commercial and mortgage lending at reduced rates.
-There is a risk, however, that lenders use the cash to fund loans that would have happened anyway.
-In Britain, the initiative has so far failed to get credit to businesses, while proving useful for a still overvalued housing market.
-Another option for the ECB is to continue to relax its collateral eligibility rules on loans to SMEs.
-But if the ultimate credit risk remains with the banks, this is unlikely to spur lending significantly.
-A more effective step would be for the central bank to purchase securitised SME loans directly.
-The ECB would create liquidity in the market and favour the entry of more private players.
-True, this policy would transfer the credit risk of the loans on to the ECB balance sheet, a step the governing council appears to date reluctant to take.
-European governments could share some of the potential liabilities, for example via a more flexible use of the European Stability Mechanism.
-As policy makers across the world act ever more forcefully to help their economies, Europe cannot remain fixated on an orthodoxy which is not working.
-Nor can it wait for a new government in Berlin.
-In the name of jobs and growth, Europe should take a brave leap forward.
+Q11471
+Q381072
+Q24862
+Q131841
+Q1342838
+Q19114386
+Q23387
+Q8901
+Q27865861
+Q188078
+Q646590
+Q178476
+Q1156854
+Q690182
+Q12335479
+Q36161
+Q502117
+Q17
+Q444184
+Q131569
+Q9420
+Q8142
+Q104493
+Q677423
+Q16294794
+Q173253
+Q1156854
+Q196431
+Q192620
+Q183
+Q40231
+Q221725
+Q123
+Q47859
+Q7188
+Q64
+Q256817
+Q7502926
+Q47035128
+Q852220
+Q728646
+Q11402
+Q559618
+Q183
+Q582577
+Q1156854
+Q46
+Q157195
+Q23488
+Q5151
+Q188473
+Q19097607
+Q444184
+Q1156854
+Q40719707
+Q2114394
+Q577
+Q1502887
+Q487965
+Q739302
+Q130
+Q1362683
+Q26186900
+Q199657
+Q41171
+Q183
+Q159810
+Q9420
+Q654355
+Q577
+Q7379580
+Q283
+Q1101080
+Q34394
+Q6256
+Q591707
+Q1342838
+Q900406
+Q746418
+Q628967
+Q7748
+Q1050390
+Q28640
+Q192276
+Q11471
+Q131427
+Q775842
+Q926230
+Q6256
+Q38
+Q900406
+Q9690
+Q206864
+Q2995644
+Q2673323
+Q8880
+Q172378
+Q187021
+Q1156854
+Q7188
+Q11471
+Q170212
+Q625360
+Q190258
+Q183
+Q6256
+Q107
+Q5420776
+Q4402708
+Q9530
+Q107
+Q728646
+Q14748
+Q5338673
+Q178476
+Q1156854
+Q294460
+Q30461
+Q8901
+Q27865861
+Q7502926
+Q484275
+Q1309431
+Q172964
+Q806737
+Q26726369
+Q189539
+Q17285911
+Q1308239
+Q584496
+Q3196867
+Q6256
+Q309314
+Q23009442
+Q104493
+Q179179
+Q736288
+Q178648
+Q11693
+Q192276
+Q4115667
+Q182076
+Q2912172
+Q621184
+Q24245823
+Q340169
+Q6881511
+Q200446
+Q482853
+Q159810
+Q178648
+Q6256
+Q29
+Q38
+Q44167
+Q192581
+Q386724
+Q5655097
+Q29466124
+Q189539
+Q160151
+Q1640172
+Q183
+Q18536342
+Q8901
+Q557828
+Q1156854
+Q736288
+Q1313396
+Q35865
+Q58093
+Q8187769
+Q317949
+Q320553
+Q118093
+Q517596
+Q37223985
+Q17641254
+Q170212
+Q199
+Q187860
+Q180472
+Q26256352
+Q145
+Q21859059
+Q431165
+Q189539
+Q22687
+Q278368
+Q43015
+Q2986261
+Q184260
+Q912546
+Q736288
+Q1101080
+Q104493
+Q26726369
+Q278368
+Q1368
+Q25392373
+Q189539
+Q690213
+Q660064
+Q23257209
+Q182076
+Q2912172
+Q21263262
+Q1496089
+Q37654
+Q187860
+Q8901
+Q23090331
+Q646590
+Q104555
+Q189539
+Q162714
+Q104493
+Q55082364
+Q22687
+Q740732
+Q3289701
+Q66344
+Q22687
+Q1369832
+Q189539
+Q622439
+Q189539
+Q8901
+Q386724
+Q1827667
+Q37654
+Q5380819
+Q158668
+Q4197743
+Q16751793
+Q1156854
+Q315364
+Q162714
+Q104493
+Q189539
+Q8901
+Q46834
+Q196878
+Q3289701
+Q4358176
+Q3620816
+Q205892
+Q7188
+Q11692
+Q2296856
+Q546972
+Q12335479
+Q1724915
+Q1130098
+Q1156854
+Q16502
+Q16502
+Q49371
+Q23835475
+Q159810
+Q46
+Q24759380
+Q848036
+Q157195
+Q1954125
+Q7188
+Q64
+Q192581
+Q1342838
+Q46
+Q1151752
+Q280658

@@ -1,44 +1,237 @@
-This week, most Americans will for the first time tune in seriously to Mitt Romney's presidential campaign at his convention in Tampa.
-Most conservatives will probably like what they see – a pro-family, strong defence and small-government ticket that offers a clear alternative to a second Barack Obama term.
-Most liberals, however, will probably recoil from the Republican party's demonisation of a president who took office in exceptionally tough circumstances.
-Weather permitting, the theatre should be compelling.
-More important than the spectacle itself is whether Mr Romney and Paul Ryan can persuade voters they have a credible plan to revive the US economy.
-Executive competence is the core theme of Mr Romney's biography.
-Taking the tough economic decisions is the hallmark of the Romney-Ryan campaign.
-On the evidence so far, the ticket deserves one and a half cheers.
-They are right to say 2012 is an “economy, stupid” election.
-But there is too much detail missing from the Romney-Ryan fiscal plan to give it a clean bill of health.
-Far from it.
-First, the plus points.
-In selecting Mr Ryan as his running mate, Mr Romney has placed fiscal responsibility at the heart of his campaign.
-Given that Mr Ryan is the only politician of note to have proposed a drastic cutback to Medicare, the largest and most popular item on the federal budget, his selection took courage.
-Some believe it was also a reckless attempt to restore the edge to a flagging campaign.
-Either way, the die is cast.
-A Romney-Ryan administration would take the axe to public spending and taxes.
-Mr Obama would not.
-Mr Romney is offering voters a clear choice.
-All the more reason, then, to put flesh on its bones.
-Mr Romney has pledged to do four things to “restore fiscal sanity”.
-First, he will cap federal spending at 20 per cent of gross domestic product.
-Second, he will restore the US budget to surplus by the end of his second term (in 2020) and sponsor a balanced-budget amendment.
-Third, he will spend at least four per cent of GDP annually on defence.
-And finally, he will reduce everyone's tax rate by a fifth and abolish the inheritance tax.
-It is a crisp and radical blueprint.
-Alas for Mr Romney, it lacks credibility.
-According to a consensus of studies, under his plan Mr Romney would be unable both to balance the budget and push through his intended tax cuts.
-One of them has to give.
-History tells us that, as a rule, Republican presidents care more about tax cuts than about deficits.
-Under Mr Romney's plan most of the tax cuts would be funded by broadening the base.
-However, he fails to spell out a single tax expenditure he would eliminate.
-This is unsurprising given the popularity of, say, the health insurance tax credit, or the mortgage interest subsidy.
-But it means the numbers just do not tally up.
-Failing that, evaluations show that Mr Romney would need to cut non-defence discretionary spending by between a half and two-thirds to meet his spending cap.
-It would end government as we know it.
-It seems far likelier that he would let the deficit soar.
-In addition to his fuzzy maths, Mr Romney is backtracking in his tough talk on Medicare.
-By attacking Mr Obama for having imposed more than $700bn of Medicare cuts, Mr Romney is as guilty of “Mediscare” as his opponent.
-Mr Obama's cuts, which were part of his healthcare law that Mr Romney has vowed to abolish, fall on providers, not retirees.
-Mr Romney knows this full well.
-His change of tack threatens to rob America of the straight debate it needs.
-In keeping with tradition, Americans are being told they can take dessert without first eating their vegetables.
-Mr Romney owes voters a more honest story than this.
+Q23387
+Q846570
+Q11471
+Q4496
+Q831663
+Q131569
+Q49255
+Q7169
+Q18122778
+Q3249878
+Q2191756
+Q838247
+Q1142227
+Q1193004
+Q306484
+Q11366
+Q11574
+Q76
+Q1071233
+Q1816490
+Q18122778
+Q29468
+Q1686000
+Q30461
+Q182060
+Q3629141
+Q11663
+Q11635
+Q224530
+Q3123740
+Q371280
+Q203966
+Q2540351
+Q611203
+Q2568341
+Q30
+Q30
+Q159810
+Q527091
+Q591707
+Q184148
+Q371280
+Q36279
+Q732833
+Q2118609
+Q831663
+Q176763
+Q23257209
+Q1142227
+Q199
+Q2114394
+Q14565199
+Q7429143
+Q1489579
+Q21503252
+Q159810
+Q26001360
+Q40231
+Q611203
+Q12997450
+Q12147
+Q23257209
+Q44946
+Q521423
+Q1339406
+Q203540
+Q371280
+Q82794
+Q1072
+Q831663
+Q521423
+Q82955
+Q47433
+Q3918409
+Q559392
+Q337060
+Q41263
+Q753651
+Q208160
+Q17573152
+Q29142
+Q446966
+Q26382
+Q5456937
+Q831663
+Q17641254
+Q45089
+Q496098
+Q3754526
+Q39397
+Q211198
+Q8161
+Q76
+Q371280
+Q2540351
+Q306484
+Q1775867
+Q178354
+Q1049658
+Q265868
+Q371280
+Q202
+Q35120
+Q446966
+Q2915214
+Q6147804
+Q40292
+Q58093
+Q1547498
+Q40276
+Q11574
+Q446966
+Q30
+Q30
+Q41263
+Q268617
+Q40719766
+Q11574
+Q1071233
+Q5978933
+Q152478
+Q1269627
+Q21924000
+Q202
+Q58093
+Q12638
+Q838247
+Q912546
+Q1128317
+Q736288
+Q5447453
+Q322732
+Q628413
+Q8161
+Q1101080
+Q173265
+Q170409
+Q422321
+Q252
+Q371280
+Q6468673
+Q1530061
+Q202722
+Q1298668
+Q611203
+Q371280
+Q134566
+Q41263
+Q8161
+Q320553
+Q199
+Q309
+Q806805
+Q104555
+Q248577
+Q30461
+Q2421951
+Q8161
+Q320553
+Q444600
+Q371280
+Q611203
+Q8161
+Q320553
+Q25392373
+Q11193
+Q1999796
+Q1057250
+Q8161
+Q760120
+Q1357284
+Q7429143
+Q334911
+Q43183
+Q8161
+Q182076
+Q184260
+Q170924
+Q193219
+Q19033
+Q11563
+Q933008
+Q36977674
+Q27318
+Q7502926
+Q371280
+Q190258
+Q44364
+Q2114394
+Q6147804
+Q5375780
+Q7188
+Q23257209
+Q9788
+Q444600
+Q32043
+Q29820056
+Q12087228
+Q371280
+Q798554
+Q603773
+Q559392
+Q76
+Q779970
+Q47035128
+Q4917
+Q559392
+Q320553
+Q371280
+Q30331417
+Q2027160
+Q76
+Q320553
+Q31207
+Q7748
+Q371280
+Q1144504
+Q322732
+Q11921529
+Q1358789
+Q371280
+Q1150070
+Q406839
+Q10659189
+Q30
+Q1035954
+Q179875
+Q190258
+Q82821
+Q846570
+Q806805
+Q182940
+Q213449
+Q11004
+Q371280
+Q2540351
+Q217086

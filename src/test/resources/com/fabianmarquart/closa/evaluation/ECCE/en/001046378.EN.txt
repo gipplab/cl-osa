@@ -1,29 +1,233 @@
-At a time when the UK government is casting around for growth, its attitude towards tertiary education is strangely equivocal.
-While it recognises that Britain's universities are a globally competitive export sector capable of making a significant contribution, its actions seem calculated to hinder rather than help their efforts overseas.
-Immigration policy lies at the root of the problem.
-The government cannot be criticised for seeking to apply its own rules in stripping London Metropolitan University of its right to bring in foreign students under a special visa regime.
-London Met, which has a history of shambolic administration, may well have infringed regulations obliging universities to keep records accounting for their foreign students' attendance.
-What is harder to justify is the punishment, which seems both arbitrary and disproportionate to the offence.
-It is one thing to strip London Met of its right to bring in new students until it has demonstrated an ability to comply with the regulations, or indeed to review the visas of those students already enrolled.
-It is quite another to do what the government is doing, which is to terminate the courses of several thousand foreign students, many of whom may be entirely legitimate and who have in many cases scraped together large sums to come to the UK.
-Quite apart from the injustice involved, the sanction threatens to cast a serious reputational blight over the wider sector.
-Foreign students may be deterred from applying to British universities if they fear their courses may be arbitrarily terminated should their alma mater fail at some point in its administrative obligations.
-It makes sense for other UK universities to seek to limit the fallout by taking in some of the waifs London Met is being forced to eject.
-A number seem willing to step forward, although it may be hard to accommodate students enrolled on courses specific to London Met.
-However, that is to treat the symptoms rather than the cause.
-The underlying problem is that the government has become a prisoner of its own flawed immigration policy.
-Having undertaken to reduce the net number of immigrants to 100,000 by 2015, it is casting around for ways to show its determination to reach this goal.
-The strike against London Met took place just as the Office for National Statistics announced that net migration remained high last year in spite of measures to restrict the entry of immigrants from outside the EU.
-Bearing down on non-EU foreign student numbers may seem an appealing expedient.
-It is, after all, one of the few big levers the government can pull.
-Foreign students make up 40 per cent of gross arrivals each year.
-But a better course would be for the government to rethink its policy of including students in the cap.
-The current approach risks simply sacrificing the prospects of Britain's universities on the altar of a probably unreachable goal.
-There is, after all, no good reason to treat students like permanent migrants.
-Polls suggest the public is not worried about the rising numbers of foreign students – and for good reason.
-Most leave the UK shortly after receiving their qualification, posing no threat to British jobseekers.
-International best practice is to exclude students from immigration caps.
-Australia, Canada and the US – Britain's main competitors in the market for higher education – all treat students as temporary rather than permanent admissions.
-As this newspaper has argued before, at a time of weak growth Britain must take full advantage of its competitive sectors.
-Tertiary education is one of them.
-By freeing students from the cap, the UK would be sending a signal that its doors are open to business and talent, wherever they come from.
+Q11471
+Q6063
+Q7188
+Q496098
+Q1342838
+Q622645
+Q136822
+Q7922
+Q690213
+Q3918
+Q57494645
+Q219858
+Q1992300
+Q188473
+Q31087
+Q1717246
+Q23835475
+Q14536140
+Q30678402
+Q1156854
+Q4925193
+Q41500
+Q621184
+Q7737401
+Q7188
+Q11348
+Q104555
+Q2178268
+Q1869028
+Q14565199
+Q48282
+Q7574446
+Q170404
+Q5589178
+Q1869028
+Q309
+Q3754526
+Q428148
+Q3918
+Q172964
+Q178588
+Q4116214
+Q48282
+Q8043
+Q659779
+Q186361
+Q83267
+Q199
+Q35120
+Q1381731
+Q1869028
+Q160236
+Q14565199
+Q1954125
+Q48282
+Q184848
+Q1347367
+Q633140
+Q428148
+Q51051312
+Q170404
+Q48282
+Q7188
+Q685744
+Q600134
+Q43016
+Q48282
+Q3975
+Q2605626
+Q520952
+Q218005
+Q145
+Q770480
+Q36949023
+Q32098
+Q496098
+Q4273292
+Q219858
+Q48282
+Q332142
+Q842438
+Q3918
+Q44619
+Q600134
+Q685744
+Q174376
+Q56009756
+Q44946
+Q2648051
+Q26186900
+Q173253
+Q145
+Q3918
+Q30269216
+Q177239
+Q1869028
+Q160236
+Q11402
+Q425705
+Q11563
+Q3289701
+Q280658
+Q5655097
+Q419793
+Q48282
+Q600134
+Q1869028
+Q160236
+Q26256310
+Q169872
+Q2574811
+Q621184
+Q7188
+Q1862087
+Q15064326
+Q1156854
+Q912546
+Q32032
+Q11563
+Q12547146
+Q720751
+Q11187127
+Q496098
+Q17641254
+Q7502926
+Q21168708
+Q489398
+Q18530
+Q49776
+Q1869028
+Q82794
+Q7079109
+Q1966886
+Q1371925
+Q32032
+Q177626
+Q5754843
+Q577
+Q2143576
+Q192276
+Q1308999
+Q5380819
+Q12547146
+Q458
+Q1425190
+Q48282
+Q11563
+Q199
+Q40164
+Q7188
+Q5306030
+Q48282
+Q131207
+Q42317
+Q58093
+Q1547498
+Q12769393
+Q577
+Q21255605
+Q600134
+Q7188
+Q1156854
+Q48282
+Q6147804
+Q6326982
+Q11651
+Q1801985
+Q104493
+Q690213
+Q3918
+Q101687
+Q18122778
+Q18530
+Q15290
+Q178354
+Q26256310
+Q48282
+Q20742557
+Q1932461
+Q49958
+Q690194
+Q2388316
+Q211198
+Q4697206
+Q1436482
+Q11563
+Q48282
+Q15290
+Q178354
+Q5338673
+Q145
+Q2122052
+Q707125
+Q842438
+Q16980630
+Q830382
+Q334600
+Q873222
+Q48282
+Q131288
+Q6147804
+Q408
+Q16
+Q30
+Q30
+Q690213
+Q3278265
+Q18536342
+Q37654
+Q136822
+Q7922
+Q26256310
+Q48282
+Q47001369
+Q20742557
+Q847337
+Q11032
+Q11471
+Q1342838
+Q690213
+Q4686406
+Q219858
+Q136822
+Q7922
+Q199
+Q48282
+Q6147804
+Q145
+Q174984
+Q36794
+Q2735683
+Q2912172
+Q190139

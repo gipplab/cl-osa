@@ -1,21 +1,143 @@
-The European parliament has opened a new front in its battle against bonuses in the financial sector.
-Having capped the ratio of variable to fixed pay for bankers, it now wants to extend this clampdown to fund managers.
-It may only be time before the net is widened to hedge funds and other financial institutions.
-Fund managers have often been criticised for charging high and murky fees.
-The incentive structure in their pay deals can be geared towards short-termism.
-But the maximum 1:1 cap that MEPs want to enforce is not the answer.
-It will simply lead the industry to circumvent the rules by offering higher fixed salaries, as is already happening with banks.
-Bonuses are a good way to link pay to performance in highly cyclical industries: lawmakers should ensure that they are awarded on the basis of transparent principles, rather than limiting their size.
-It is also questionable whether MEPs have the right to regulate pay across the financial sector.
-They argue that applying the rules designed for bankers to fund managers creates a level playing field in the industry.
-Yet, banks are different.
-Voters have an interest in ensuring they are properly run, since governments are often on the hook when things go wrong.
-But the same argument about public good does not apply to most fund managers or hedge funds.
-Regulating their pay is over-reach.
-The plan to cap fund managers' bonuses may face stiffer resistance from governments than was the case with banks.
-While the earlier decision primarily hit London, many European countries, including France and Luxembourg, are big hubs for the fund management industry.
-In the case of banks, MEPs attached the bonus cap to a directive on capital requirements, which governments were desperate to pass.
-Here, the lawmakers do not have the same leverage.
-Yet, ministers would be wise to take the European parliament more seriously than they have done in the past.
-MEPs are ever more willing to use the greater legislative powers they obtained thanks to the 2009 Lisbon treaty.
-Whether they do it for good or – as in the case of regulating pay in the financial sector – for ill, they are a force which can no longer be ignored.
+Q8889
+Q2735683
+Q1954125
+Q178561
+Q4942650
+Q57774188
+Q219858
+Q6147804
+Q3481047
+Q50701
+Q20742557
+Q1640172
+Q806798
+Q26256512
+Q184148
+Q6720521
+Q721834
+Q11471
+Q32032
+Q235779
+Q25392373
+Q650241
+Q178706
+Q6720521
+Q721834
+Q5074302
+Q5754843
+Q11765
+Q1414816
+Q517966
+Q1640172
+Q321839
+Q143828
+Q10578722
+Q6147804
+Q26256512
+Q166104
+Q1920566
+Q871232
+Q8148
+Q104555
+Q20742557
+Q194489
+Q108874
+Q22687
+Q4942650
+Q15290
+Q17641254
+Q102014
+Q1640172
+Q35140
+Q8148
+Q4175034
+Q618779
+Q189569
+Q487623
+Q158646
+Q322481
+Q14565199
+Q1639780
+Q1640172
+Q57774188
+Q219858
+Q104555
+Q82604
+Q806798
+Q25392373
+Q721834
+Q386724
+Q207988
+Q2310214
+Q185674
+Q8148
+Q22687
+Q51921823
+Q2540351
+Q170924
+Q174493
+Q7188
+Q127124
+Q35120
+Q29485
+Q186619
+Q272458
+Q15290
+Q11348
+Q6720521
+Q721834
+Q105611
+Q25392373
+Q1640172
+Q166259
+Q611203
+Q6147804
+Q6720521
+Q721834
+Q436048
+Q4942650
+Q37017
+Q138796
+Q7188
+Q3975
+Q22687
+Q732833
+Q810927
+Q84
+Q6256
+Q142
+Q32
+Q21073034
+Q25392373
+Q338754
+Q8148
+Q3975
+Q22687
+Q230629
+Q4942650
+Q6147804
+Q1121492
+Q2914988
+Q774228
+Q7188
+Q1142227
+Q4175034
+Q1148384
+Q83307
+Q799
+Q8889
+Q192630
+Q278368
+Q47035128
+Q25107
+Q19279214
+Q51134
+Q597
+Q131569
+Q15290
+Q3975
+Q1640172
+Q57774188
+Q219858
+Q11402
+Q815577

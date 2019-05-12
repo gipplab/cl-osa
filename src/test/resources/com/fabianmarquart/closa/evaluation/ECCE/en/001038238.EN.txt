@@ -1,44 +1,290 @@
-Extraordinary as the eurozone's efforts to fight the sovereign debt crisis have been, all they have so far achieved is to postpone a resolution.
-Events will soon impose their own solutions if policymakers do not act more decisively than they have yet been able to contemplate.
-They can still buy some time – but it must be wisely used.
-The inadequacy of the main crisis management tool – a European financial stability facility that extends loans to troubled sovereigns – was exposed both times its help has been called on.
-Neither the Irish rescue package nor Portugal's request for one did anything to calm sovereign bond markets.
-Nor has the EFSF's prototype – the International Monetary Fund-supported programme for Greece – managed to return Athens to debt markets beyond the very short term.
-Yields on Greek three-year debt now exceed 21 per cent.
-George Papaconstantinou, finance minister, admits that it looks difficult to raise as much on private markets next year as the IMF programme stipulates.
-This was not how things were meant to turn out.
-The Greek rescue, and then EFSF, were aimed at convincing markets that the eurozone had confidence in the ability of its troubled periphery to service its debt.
-Second, that it was willing to put up the money to back this confidence, so that private investors could continue lending without fearing for their investments.
-That goal is still worth pursuing.
-The peripheral trouble is in good part caused by countries' excessive borrowing.
-But it also reflects herd behaviour in financial markets.
-Investors fearing that a state cannot refinance itself on bearable terms will drive up yields and make their own fears come true.
-It is irresponsible to let this market failure run its course.
-Solvency is a function of interest cost, and it is the rate at which a country can borrow, not just what private markets are willing to lend at, that determines whether its debt is sustainable.
-Greek solvency is still within the eurozone's grasp.
-Yet markets do not believe this.
-Europe's leaders are to blame: they have willed the end but not the means.
-While putting up funds to meet periphery financing needs for three years if necessary, the countries from whose pockets the money comes have left no doubt that they will be less forthcoming after 2013.
-The EFSF's successor, the European stability mechanism, will scarcely have more funding than the EFSF itself; and private creditors have been put on alert for forced writedowns.
-The Franco-German entente on the ESM at Deauville led to a jump in peripheral bond yields and set Ireland on the path to a rescue.
-Recent musings from Berlin about a possible Greek debt restructuring was a new Deauville moment.
-Both reflect leaders' unwillingness or inability to bring investors back in instead of scaring them away.
-This must stop.
-The post-2013 plans are affecting markets now in ways that will continue to worsen until policymakers decide the transition from here to there.
-National politics has killed any chance of increased EFSF or ESM firepower, so the task now is to put existing money to the best possible use.
-This involves, first, preparing a Plan B for financing Greece if the country cannot raise the projected market funding in 2012.
-It should be put beyond doubt that the EFSF may fill the gap if Greece sticks to the programme.
-Second, the option of buying bonds on the secondary market must be reconsidered.
-German parliamentarians initially made Berlin rule this out for ESM. The German government needs to revisit the issue.
-In any case, the EFSF must be authorised to make secondary-market bond purchases.
-Done well, a big debt buy-back can pocket market discounts and reduce debt burdens.
-The problem is to encourage banks to sell: they would have to write down their holdings.
-Without forcibly cramming down the creditors, Europe could improve the incentives for debt buy-backs by finally instructing regulators to mark sovereign debt to market in bank stress tests.
-While banks cling on, the market for traded peripheral debt remains thin.
-But that means even small purchases can have big effects on yields.
-The EFSF could guarantee to buy, at a floor price, short-term bonds from programme countries.
-This could open up the short-dated market – and is preferable to the secretive bond purchases by the European Central Bank.
-These options will succeed only with a lot of luck and hard work.
-But they must be tried.
-It is premature to accept a default whose consequences would rage throughout and beyond the eurozone, and abort much-needed reforms in the periphery.
-Europe must decide what it wants before it is too late.
+Q14536140
+Q127771
+Q584496
+Q3196867
+Q381072
+Q23257209
+Q7234480
+Q210521
+Q1190554
+Q779970
+Q1879813
+Q188473
+Q1123855
+Q1308239
+Q11471
+Q278368
+Q3278265
+Q1141276
+Q24651263
+Q39546
+Q31275820
+Q903517
+Q13226383
+Q184148
+Q189539
+Q584496
+Q11471
+Q1643184
+Q9142
+Q1341429
+Q2046602
+Q45
+Q22445448
+Q199
+Q2324820
+Q10328804
+Q37654
+Q207977
+Q1371819
+Q41
+Q338754
+Q283976
+Q1524
+Q540626
+Q37654
+Q57055076
+Q1071233
+Q2383321
+Q3196867
+Q712477
+Q58093
+Q7614320
+Q83307
+Q847337
+Q884353
+Q158668
+Q37654
+Q577
+Q7804
+Q1371819
+Q35120
+Q19033
+Q304479
+Q1341429
+Q4503831
+Q37654
+Q4116378
+Q1347367
+Q906066
+Q3196867
+Q11574
+Q1368
+Q4116378
+Q778274
+Q557880
+Q23090331
+Q88272
+Q18530
+Q178648
+Q19357595
+Q15290
+Q179289
+Q6256
+Q8043
+Q21262209
+Q103808
+Q35221
+Q209542
+Q9332
+Q208697
+Q37654
+Q557880
+Q7275
+Q3123740
+Q1071233
+Q3039511
+Q2383321
+Q26186900
+Q44619
+Q16751793
+Q9788
+Q622657
+Q1121708
+Q174493
+Q600134
+Q1137437
+Q1101080
+Q11348
+Q170924
+Q240673
+Q736288
+Q6256
+Q25702570
+Q158668
+Q37654
+Q26726369
+Q21168708
+Q3196867
+Q1137437
+Q29822052
+Q37654
+Q17573152
+Q46
+Q32518
+Q621695
+Q155656
+Q5375780
+Q21162272
+Q25392373
+Q190258
+Q201
+Q577
+Q6256
+Q321767
+Q1368
+Q137
+Q5338673
+Q34302
+Q1489644
+Q1130098
+Q903517
+Q517596
+Q6055890
+Q3123740
+Q158668
+Q157165
+Q19869179
+Q1970759
+Q209021
+Q32518
+Q1151752
+Q178648
+Q11693
+Q2383321
+Q36161
+Q27
+Q817765
+Q1341429
+Q64
+Q30230067
+Q1364290
+Q1376796
+Q1954125
+Q209021
+Q48103
+Q35221
+Q32518
+Q8043
+Q557880
+Q3306907
+Q51597
+Q611203
+Q37654
+Q17641254
+Q23090331
+Q732833
+Q1606712
+Q1797541
+Q7163
+Q931260
+Q3851114
+Q17281278
+Q1970759
+Q1409574
+Q759676
+Q468777
+Q1368
+Q26132734
+Q30230067
+Q1724915
+Q36949023
+Q552341
+Q8805
+Q41
+Q6256
+Q884353
+Q186386
+Q37654
+Q6055890
+Q1489579
+Q34302
+Q905592
+Q4153227
+Q41
+Q2872553
+Q1371819
+Q11574
+Q187860
+Q11693
+Q2267334
+Q37654
+Q29581471
+Q183
+Q26186900
+Q64
+Q104555
+Q1970759
+Q21969585
+Q183
+Q7188
+Q190258
+Q86447
+Q3975
+Q26186900
+Q11693
+Q1369832
+Q3196867
+Q321767
+Q37654
+Q912546
+Q3196867
+Q1078386
+Q621184
+Q22687
+Q1081889
+Q21645213
+Q28389
+Q10494269
+Q157165
+Q46
+Q1414816
+Q3196867
+Q1493777
+Q1639780
+Q493615
+Q584496
+Q3196867
+Q37654
+Q22687
+Q39552
+Q27318
+Q22687
+Q37654
+Q1424605
+Q178648
+Q3196867
+Q55082364
+Q19033
+Q24245823
+Q1369832
+Q926230
+Q2383321
+Q1308239
+Q217164
+Q160151
+Q11693
+Q1371819
+Q6256
+Q2735683
+Q37654
+Q11693
+Q1369832
+Q8901
+Q27865861
+Q187860
+Q220998
+Q1970348
+Q5655097
+Q28640
+Q578508
+Q29466402
+Q281782
+Q733541
+Q153641
+Q8452
+Q900406
+Q46
+Q732833
+Q26256512
+Q40719766

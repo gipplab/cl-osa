@@ -1,31 +1,266 @@
-North Korea: US says 'no value' in UN security council meeting
-
-The US says it will not call for a UN Security Council meeting over North Korea's missile tests because it would produce "nothing of consequence".
-Such a meeting would send a message to North Korea that the international community was unwilling to challenge it, US Ambassador Nikki Haley said.
-Pyongyang said its tests proved that the entire US was within range.
-The US has responded by testing an anti-missile system and flying bombers over the Korean peninsula.
-On Monday, Japanese Prime Minister Shinzo Abe said he had spoken to US President Donald Trump and they agreed on the need for further action on North Korea given its most recent missile test on Friday.
-The two did not discuss any use of military action.
-Ms Haley said in a statement that North Korea was already subject to numerous Security Council resolutions that they "flout with impunity".
-"An additional Security Council resolution that does not significantly increase the international pressure on North Korea is of no value," she said.
-"In fact it is worse than nothing because it sends the message to the North Korean dictator that the international community is unwilling to seriously challenge him."
-She urged China to rein in North Korea.
-"China must decide whether it is finally willing to take this vital step. The time for talk is over," she added.
-On Friday, North Korea test-fired a second intercontinental ballistic missile (ICBM), claiming it proved that the entire US was within striking range.
-The launch came three weeks after the state's first ICBM test.
-Despite fierce objections from China, the US military recently began installing missile defences - the Terminal High Altitude Area Defense (Thaad) system - in South Korea, with the aim of shooting down any North Korean missiles fired in conflict.
-On Sunday, the US military said a test of the Thaad equipment in Alaska had successfully brought down a projectile fired by the US Air Force over the Pacific.
-US B-1 bombers also conducted exercises over the Korean peninsula with South Korean and Japanese planes on Sunday.
-'Spoiled child'
-US President Donald Trump has again criticised China for not doing enough to stop Pyongyang's weapons programme while making "hundreds of billions of dollars" in trade with the US.
-Mr Trump wrote on Twitter that he was "very disappointed" with China, adding that he would not allow it to "do nothing" about the isolated state.
-Victor Gao, a former diplomat and Chinese government adviser, said Mr Trump's comments were unhelpful, adding that the US was acting like a "spoiled child".
-China, which shares a land border with North Korea and is its closest economic ally, earlier condemned the North's test launch and urged restraint on all sides.
-Mr Trump and his Chinese counterpart Xi Jinping discussed North Korea earlier this year, after which US officials said they were working together on "a range of options".
-But South Korea said Friday's ICBM launch demonstrated a defiance from the North, showcasing "a significant advancement in technology".
-1. The enemy launches a missile
-2. The Thaad radar system detects the launch, which is relayed to command and control
-3. Thaad command and control instructs the launch of an interceptor missile
-4. The interceptor missile is fired at the enemy projectile
-5. The enemy projectile is destroyed in the terminal phase of flight
-The launcher trucks can hold up to eight interceptor missiles.
+Q423
+Q30
+Q7429143
+Q627319
+Q19426
+Q8043
+Q37470
+Q625994
+Q30
+Q30
+Q7429143
+Q37470
+Q29879246
+Q8896
+Q625994
+Q423
+Q974850
+Q27318
+Q131427
+Q733541
+Q625994
+Q877558
+Q628523
+Q423
+Q1774161
+Q177634
+Q2988681
+Q30
+Q409195
+Q11668
+Q7429143
+Q18808
+Q7429143
+Q27318
+Q30
+Q182995
+Q30
+Q30
+Q20180812
+Q765633
+Q170877
+Q483134
+Q34763
+Q105
+Q884
+Q432230
+Q6348972
+Q132345
+Q7429143
+Q570
+Q11696
+Q22686
+Q22686
+Q93288
+Q190258
+Q188473
+Q423
+Q974850
+Q27318
+Q130
+Q200
+Q3030248
+Q1724915
+Q15835236
+Q188473
+Q1951543
+Q13560510
+Q7429143
+Q613299
+Q423
+Q164573
+Q210521
+Q2745341
+Q210521
+Q17281278
+Q845956
+Q39552
+Q423
+Q19426
+Q7429143
+Q188572
+Q21255921
+Q877558
+Q628523
+Q183318
+Q1774161
+Q177634
+Q2988681
+Q148
+Q2196000
+Q423
+Q148
+Q732833
+Q3289701
+Q1571747
+Q11471
+Q603773
+Q32043
+Q130
+Q423
+Q27318
+Q11574
+Q177471
+Q179348
+Q974850
+Q177471
+Q30
+Q49642078
+Q182995
+Q34757398
+Q361945
+Q5025838
+Q201
+Q23387
+Q7275
+Q177471
+Q27318
+Q2090618
+Q148
+Q30
+Q30
+Q8473
+Q23759131
+Q1155630
+Q838247
+Q182610
+Q2596687
+Q4736726
+Q2703857
+Q5251349
+Q884
+Q4503831
+Q2154246
+Q974850
+Q3196
+Q198
+Q132
+Q30
+Q30
+Q8473
+Q7429143
+Q27318
+Q16798631
+Q797
+Q49393
+Q3196
+Q11223
+Q98
+Q30
+Q290653
+Q170877
+Q219067
+Q483134
+Q34763
+Q884
+Q197
+Q132
+Q627319
+Q331224
+Q7569
+Q8043
+Q11696
+Q22686
+Q22686
+Q148
+Q51597
+Q18808
+Q728
+Q1371819
+Q37413
+Q16021
+Q601401
+Q30
+Q30
+Q22686
+Q28389
+Q918
+Q148
+Q32043
+Q1962593
+Q275473
+Q7275
+Q7925916
+Q193391
+Q936190
+Q7188
+Q2994387
+Q7429143
+Q22686
+Q1141067
+Q32043
+Q30
+Q30
+Q222749
+Q331224
+Q7569
+Q148
+Q11692
+Q15104814
+Q133346
+Q423
+Q3612401
+Q214102
+Q502341
+Q27318
+Q361945
+Q22686
+Q148
+Q15031
+Q14259264
+Q3030248
+Q423
+Q577
+Q30
+Q382887
+Q7429143
+Q182995
+Q187860
+Q884
+Q7429143
+Q130
+Q177471
+Q361945
+Q184848
+Q24276534
+Q214102
+Q502341
+Q11016
+Q199
+Q2274943
+Q289891
+Q361945
+Q974850
+Q200
+Q47528
+Q167676
+Q361945
+Q174053
+Q1346923
+Q11175
+Q201
+Q1346923
+Q11175
+Q16358610
+Q361945
+Q320018
+Q974850
+Q202
+Q320018
+Q974850
+Q3196
+Q289891
+Q49393
+Q203
+Q2274943
+Q289891
+Q49393
+Q174736
+Q216640
+Q104837
+Q206021
+Q43193
+Q196431
+Q23355
+Q320018
+Q974850

@@ -1,31 +1,235 @@
-After four years of veering between panic and complacency during the interminable single-currency crisis, a new mood is sweeping across the eurozone: one of fatigue.
-While this may lack the drama of past phases, it could prove more politically corrosive.
-Stung by deep and persistent recessions in peripheral countries, politicians are increasingly clamouring for flexibility in the austerity agenda.
-José Manuel Barroso, president of the European Commission, added his voice to their number this week, warning that the focus on cuts had gone far enough.
-Enrico Letta, Italy's new prime minister, said hardship was driving voters into the arms of populist politicians.
-Mr Barroso's remarks have been viewed in some quarters as signalling a switch in direction.
-But this could not be more wrong.
-The commission president lacks the credibility to lead Europe from the front.
-Mr Letta's warning is unlikely to cut much ice either.
-While many governments might privately endorse his views, given Italy's recent muddled election and the rise of the extreme right in Greece, the fact remains that Germany has a jaundiced view of Italians keen to ease up on austerity when their structural reforms are at best half-complete, tax evasion remains rife and politics remains riddled with corruption.
-The weariness is worrying because it threatens to unravel the so-called “grand bargain” whereby the weaker peripheral countries cut deficits and undertake harsh structural reforms in return for financial support from the stronger core, led by Germany and the Netherlands.
-The risk is that the more peripheral countries kick against austerity, the more doubtful core countries will become about their commitment to reform, making those core countries cautious about sanctioning further assistance.
-And this in turn will only increase austerity fatigue in key peripheral countries, notably Italy and Spain.
-While a recovery might break this destructive cycle, there is none in sight, as the week's economic data showed.
-Unemployment is still soaring in both France and Spain, where the rate is now close to a terrifying 30 per cent.
-Nearly a tenth of Spanish households now have no wage-earner.
-While Mariano Rajoy, Spain's prime minister, clings to the idea of a turnround at the end of this year, weak German purchasing data suggest it will not pull the eurozone out of its rut.
-The picture is similarly bleak elsewhere.
-Nor do the markets seem likely to snap eurozone countries out of their introspection.
-Peripheral nations' bond yields are actually falling. In part, this is due to the success of the European Central Bank in calming fears of a eurozone break-up.
-But it also reflects the existence of the glut of liquidity unleashed by the world's central banks.
-Investors are parking a lot of it in peripheral sovereign debt because of the relatively high returns.
-Worryingly these include European banks, including those in peripheral nations.
-The core countries are still capable of showing pragmatism.
-There has been some selective easing on budget deficit targets in recent months – notably in the case of France.
-On this occasion, Angela Merkel, German chancellor, seems to be compromising in the hope that François Hollande, French president, will implement reforms and put the public finances in order.
-There needs to be more.
-France will always be a special case given its central role in the European project.
-But helping Paris is not enough.
-Europe is a place of weak growth, fragmented markets, impaired balance sheets and half-completed reforms, as David Lipton of the International Monetary Fund said this week.
-If the euro is to avoid a vicious cycle of mistrust, those with fiscal space must do more.
+Q202
+Q577
+Q208450
+Q24083211
+Q381072
+Q1954125
+Q184932
+Q667704
+Q199
+Q9690
+Q6468673
+Q11639
+Q192630
+Q104837
+Q657076
+Q2431801
+Q23611288
+Q176494
+Q178648
+Q6256
+Q82955
+Q852220
+Q2814650
+Q1758159
+Q15849
+Q30461
+Q8880
+Q32043
+Q7390
+Q11563
+Q23387
+Q1759104
+Q3568
+Q320553
+Q23257209
+Q674957
+Q38
+Q1954125
+Q14212
+Q83307
+Q7429143
+Q628839
+Q2540351
+Q728
+Q180490
+Q82955
+Q15849
+Q1329910
+Q253019
+Q14865172
+Q5320
+Q2151613
+Q29485
+Q2574435
+Q60918
+Q30461
+Q6468673
+Q1530061
+Q32518
+Q46
+Q12494598
+Q1759104
+Q44364
+Q23392
+Q7188
+Q1329910
+Q38
+Q40231
+Q1139344
+Q204481
+Q14565199
+Q41
+Q188572
+Q55082364
+Q183
+Q1329910
+Q50001
+Q19571551
+Q2814650
+Q900406
+Q4877042
+Q26132734
+Q6502151
+Q5416089
+Q55082364
+Q7163
+Q55082364
+Q366
+Q178648
+Q6256
+Q44364
+Q444600
+Q51267085
+Q900406
+Q283976
+Q1058733
+Q591707
+Q32518
+Q183
+Q55
+Q55
+Q55453026
+Q104493
+Q178648
+Q6256
+Q1638113
+Q2814650
+Q591707
+Q6256
+Q17285911
+Q900406
+Q591707
+Q6256
+Q304479
+Q17281278
+Q2814650
+Q9690
+Q23445
+Q178648
+Q6256
+Q38
+Q29
+Q444184
+Q903577
+Q11442
+Q162668
+Q23387
+Q1502887
+Q7502926
+Q41171
+Q142
+Q29
+Q736288
+Q21818619
+Q42817
+Q58093
+Q6984437
+Q28469720
+Q27942639
+Q259059
+Q10819
+Q29
+Q14212
+Q83307
+Q131841
+Q40719766
+Q577
+Q183
+Q1369832
+Q1502887
+Q690194
+Q5306030
+Q596937
+Q478798
+Q200473
+Q37654
+Q18122778
+Q139680
+Q6256
+Q210501
+Q178648
+Q6266
+Q8043
+Q11693
+Q2383321
+Q333495
+Q50000
+Q8901
+Q27865861
+Q44619
+Q767133
+Q35221
+Q468777
+Q1827667
+Q16502
+Q16502
+Q66344
+Q22687
+Q557880
+Q267917
+Q220998
+Q178648
+Q584496
+Q3196867
+Q5754843
+Q283976
+Q728944
+Q22687
+Q178648
+Q6266
+Q7727604
+Q591707
+Q6256
+Q126692
+Q41263
+Q444600
+Q170212
+Q5151
+Q3975
+Q142
+Q567
+Q183
+Q61061
+Q190507
+Q157
+Q32
+Q30461
+Q1183543
+Q900406
+Q2388316
+Q211198
+Q36602
+Q190258
+Q142
+Q2890061
+Q3975
+Q214339
+Q170584
+Q90
+Q4697206
+Q46
+Q1101080
+Q82794
+Q1342838
+Q37654
+Q46834
+Q196878
+Q900406
+Q7804
+Q7429143
+Q23387
+Q4916
+Q1717246
+Q11442
+Q107

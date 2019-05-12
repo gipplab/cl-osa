@@ -1,25 +1,173 @@
-It is not often the US Congress targets companies to be blacklisted.
-That, essentially, is what the US House Intelligence committee, recommended this week in its report on Huaweiand ZTE, the Chinese telecoms equipment suppliers with suspected military links. Much of the evidence in the report was classified.
-It will thus be hard to shake off the suspicion of protectionist undertones.
-Yet Huawei and ZTE are no ordinary companies.
-Nor is China a typical partner.
-At a time of rising fears about cyber warfare, the first onus must be on the companies to open up to greater scrutiny.
-Huawei in particular remains evasive about its ownership structure.
-Its founder is a former member of the People's Liberation Army and its chairman has been linked to the security services, which monitor everything from emails to texts on China's network.
-The company denies the link, but the assertions are discomfiting.
-Even those that have approved Huawei as a supplier, including the UK, are nervous about its pervasive presence in their networks.
-Huawei said this week's report was based on rumour.
-All the more reason to shed its opacity.
-But Congress and the White House must also keep a sense of proportion.
-The report recommends Huawei and ZTE be banned from US government procurement and any mergers and acquisition activity.
-That will leave slim pickings for the world's second- and fourth-largest telecoms equipment suppliers in the world's largest market.
-The prospect of Chinese countermeasures against US telecoms suppliers, such as Cisco, cannot be ruled out.
-Nor is the broader political climate helpful.
-China and the US are going through very different types of leadership transition amid the backdrop of a slowing world economy.
-Neither can afford these trade frictions.
-Last week, Barack Obama banned a Chinese company from acquiring four wind farms since they are close to a US drone testing facility – the first such action in 22 years.
-Two weeks earlier he issued a complaint on subsidies against Chinese car parts suppliers to the World Trade Organisation.
-Mitt Romney promises to brand China a currency manipulator on his first day in office.
-He accuses China of wholesale intellectual property theft.
-There is truth to some of this. But Washington should also keep the larger picture in mind.
-Whatever the merits of the case against Huawei and ZTE, the risks of a trade war must be contained.
+Q4697206
+Q30
+Q11268
+Q10225
+Q170212
+Q102538
+Q2535979
+Q30
+Q30
+Q2495362
+Q865588
+Q1120221
+Q23387
+Q10870555
+Q148
+Q12070726
+Q16798631
+Q1762621
+Q516519
+Q8473
+Q102014
+Q176763
+Q10870555
+Q63153
+Q5655097
+Q199388
+Q516519
+Q160120
+Q136484
+Q1076566
+Q102538
+Q148
+Q28962312
+Q728646
+Q11471
+Q44619
+Q12786121
+Q102538
+Q2735683
+Q47035128
+Q160120
+Q55082364
+Q6498684
+Q517966
+Q19435686
+Q1101080
+Q21503252
+Q5
+Q140686
+Q102014
+Q42276510
+Q906066
+Q5290
+Q9158
+Q234460
+Q148
+Q141488
+Q1685078
+Q102538
+Q1343202
+Q102014
+Q741248
+Q231043
+Q160120
+Q1762621
+Q145
+Q24255051
+Q141488
+Q160120
+Q7429143
+Q23387
+Q10870555
+Q11193
+Q878352
+Q178354
+Q721931
+Q691914
+Q10225
+Q35525
+Q172964
+Q173253
+Q47694
+Q10870555
+Q1120221
+Q160120
+Q136484
+Q324923
+Q30
+Q20665717
+Q829492
+Q452440
+Q1362753
+Q317949
+Q5338673
+Q29812705
+Q16502
+Q16502
+Q11574
+Q12070726
+Q16798631
+Q1762621
+Q16502
+Q16502
+Q37654
+Q26391804
+Q148
+Q1032176
+Q30
+Q1762621
+Q173395
+Q104555
+Q7937
+Q148
+Q30
+Q30
+Q51921823
+Q190087
+Q484275
+Q1606712
+Q43053217
+Q473750
+Q159810
+Q601401
+Q82580
+Q19114386
+Q23387
+Q76
+Q324923
+Q148
+Q102538
+Q202
+Q194356
+Q131596
+Q21818619
+Q30
+Q484000
+Q20180812
+Q13226383
+Q188473
+Q712488
+Q577
+Q200
+Q23387
+Q86447
+Q836925
+Q193219
+Q148
+Q1420
+Q1762621
+Q4496
+Q1425577
+Q431289
+Q148
+Q8142
+Q573
+Q182060
+Q148
+Q220695
+Q131257
+Q937228
+Q1220097
+Q7949
+Q23
+Q172964
+Q478798
+Q450
+Q3975
+Q160120
+Q136484
+Q104493
+Q692412
+Q198
+Q187956

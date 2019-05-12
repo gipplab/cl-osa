@@ -1,22 +1,168 @@
-""Uncontrolled acceleration"" is a euphemism for the disturbing problem — jammed accelerator pedals — at risk of afflicting millions of Toyota cars and trucks that the company has recalled in recent months.
-By unhappy coincidence it also describes the trajectory of Toyota itself.
-The carmaker's breakneck growth has allowed defects to come into both its manufacturing and its communication with customers.
-In the past decade Toyota has raised capacity by half to 10m units a year, overtaking General Motors as the world's largest carmaker.
-Some say this has been its downfall.
-Toyota let its much-vaunted quality slip by using more standardised parts across many models to make production leaner.
-In some markets, the company has recently had to recall cars faster than it produces them.
-Since November, it has identified 6m vehicles in North America whose accelerator pedals can jam, more than three times the number it sold there last year.
-Up to 1.8m are to be recalled in Europe.
-As Toyota halts further sales of affected models, rivals are swooping in to snatch its customers: GM, Ford, and Hyundai have offered $1,000 rebates for traded-in Toyotas.
-A recall is a routine occurrence in the industry.
-What is damaging for investors is that Toyota failed to prevent it from turning into a public relations disaster.
-Top executives were slow to appear in public to assuage customers' fears at the first sign of trouble.
-This may not be the Japanese way, but that is no excuse for a global company.
-What is more, Toyota's problems have been a slowly unfolding accident for which it should have prepared: it recalled more than 2m US cars as early as 2005.
-The current steady stream of new problems — a probe has been launched into the Prius' braking system — and speculation that more is to come fuel suspicions that Toyota is insufficiently forthcoming about defects.
-The public may forgive an honest mistake, but not what it sees — justifiably or not — as complacency or incompetence on safety.
-It need not have come to this.
-That Toyota now risks losing its reputation for quality for good is proof of inadequate management.
-In the midst of all this, Toyota incredibly raised its profit forecast yesterday.
-It said an estimated Y180bn loss on the recall and sales stop would not prevent a return to the black this year.
-There may be no exact Japanese word for chutzpah; but between daitan (boldness) and atsukamashii (shamelessness) investors must surely prefer rather less of the latter.
+Q11376
+Q1101080
+Q83464
+Q621184
+Q1269
+Q862880
+Q104493
+Q38526
+Q53268
+Q1420
+Q43193
+Q102538
+Q18733
+Q5151
+Q1530412
+Q1780466
+Q193139
+Q53268
+Q3123740
+Q1342838
+Q1962593
+Q831320
+Q187939
+Q11024
+Q247797
+Q192630
+Q39911
+Q53268
+Q884353
+Q584804
+Q2114394
+Q47574
+Q577
+Q1931051
+Q81965
+Q3325295
+Q16502
+Q16502
+Q7429143
+Q53268
+Q9788
+Q185957
+Q1971493
+Q193946
+Q26186900
+Q739302
+Q21984376
+Q37654
+Q102538
+Q18733
+Q1420
+Q131427
+Q125
+Q2039217
+Q42889
+Q49
+Q862880
+Q1269
+Q47035128
+Q201
+Q11471
+Q11563
+Q1081889
+Q577
+Q7727
+Q18733
+Q46
+Q53268
+Q55678
+Q194189
+Q159904
+Q193946
+Q54894664
+Q14786282
+Q247797
+Q81965
+Q44294
+Q29311
+Q1193004
+Q4917
+Q1259790
+Q18733
+Q1101080
+Q190686
+Q1190554
+Q8148
+Q557880
+Q53268
+Q1717246
+Q258127
+Q133080
+Q203066
+Q3839081
+Q35798
+Q24249439
+Q3620816
+Q211198
+Q247797
+Q8043
+Q44619
+Q262246
+Q19357595
+Q884
+Q17641254
+Q552754
+Q102538
+Q53268
+Q621184
+Q25932227
+Q171558
+Q227552
+Q18733
+Q47035128
+Q30
+Q1420
+Q40719727
+Q841374
+Q6326982
+Q11651
+Q5788637
+Q47521
+Q1954125
+Q621184
+Q361945
+Q213115
+Q8043
+Q7918429
+Q107885
+Q42501
+Q516519
+Q53268
+Q831320
+Q2388316
+Q211198
+Q29485
+Q2191756
+Q24083211
+Q24994
+Q190258
+Q53268
+Q104493
+Q28942369
+Q478594
+Q185957
+Q15290
+Q11538
+Q338754
+Q28485138
+Q53268
+Q884353
+Q26911
+Q748250
+Q1187312
+Q7429143
+Q965330
+Q1121708
+Q18733
+Q194189
+Q51597
+Q1717246
+Q283976
+Q23445
+Q577
+Q884
+Q8171
+Q362547
+Q557880
+Q908656

@@ -1,24 +1,182 @@
-It is no secret that the US and Britain collaborate closely on intelligence matters.
-Nor does any mystery surround the fact that their partnership is intense in the field of signals monitoring.
-Ever since the heroic efforts of the codebreakers at Bletchley Park, Britain has an acknowledged expertise in this field.
-Treaties in force since the end of the second world war provide for large-scale data-sharing between Britain's GCHQ and America's National Security Administration – and also the intelligence agencies of Australia, Canada and New Zealand.
-Fresh revelations from the cache of classified documents leaked by the US defector Edward Snowden contain revelations about this key intelligence relationship.
-The first is that the US funds certain projects undertaken by GCHQ.
-It paid a little more than £30m a year between 2010 and 2012, mostly relating to Nato operations in Afghanistan and a project concerning internet surveillance.
-This compares to a total annual UK secret intelligence budget for MI5, MI6 and GCHQ, of some £2.1bn.
-The second is that the UK agency feels an obligation to assist the Americans.
-One GCHQ strategy document observes that the agency “must pull its weight and be seen to pull its weight” when it came to dealings with the NSA.
-The first reaction to all this is simply to shrug.
-Given the closeness of the partnership, it is hardly surprising that the NSA might fund projects, especially in areas where it had a strong interest in the outcome.
-As to the willingness of British security officials to take American views into account, or to answer requests put to them: ditto.
-There are, of course, legitimate concerns about intelligence-sharing.
-Most countries apply tighter rules to the surveillance of their citizens than they do in the case of foreign nationals.
-Data-swapping should not allow an intelligence agency to achieve through a foreign agency what it could not achieve at home without leaping through high legal hoops.
-The leaked documents offer no proof of this however.
-True, one GCHQ document claims the agency made a “unique contribution” to the NSA's investigation into a 2010 bomb attack in New York.
-But there is no suggestion that this enabled the US agency to sidestep any laws.
-In any case co-operating in the fight against terrorism is precisely what the intelligence agencies should be doing.
-There are questions to ask about the activities of intelligence agencies in the internet age.
-Given the capacity to log and analyse vast amounts of data, vigilance is needed to ensure that this is not abused.
-Technology must not be used to circumvent legal process.
-Mr Snowden's latest documents contain juicy gossip. They contain little however that should cause anyone to lose much sleep.
+Q1503443
+Q30
+Q30
+Q690213
+Q83500
+Q35758
+Q1247195
+Q188572
+Q646164
+Q185674
+Q174984
+Q1421432
+Q14536140
+Q155921
+Q690213
+Q644238
+Q185674
+Q131569
+Q11402
+Q40719766
+Q11574
+Q103495
+Q198
+Q690213
+Q220798
+Q30
+Q47913
+Q327333
+Q408
+Q16
+Q664
+Q41446476
+Q192906
+Q165596
+Q63153
+Q49848
+Q1349983
+Q30
+Q30
+Q13424289
+Q187956
+Q192906
+Q23445
+Q83500
+Q7310741
+Q18689797
+Q30
+Q30
+Q25392373
+Q170584
+Q220798
+Q1640172
+Q47035128
+Q175743
+Q577
+Q851662
+Q1489579
+Q6038735
+Q362482
+Q889
+Q170584
+Q75
+Q334401
+Q16868672
+Q192691
+Q145
+Q1503443
+Q83500
+Q41263
+Q210175
+Q184560
+Q220798
+Q175743
+Q668
+Q11574
+Q145
+Q327333
+Q2648051
+Q1045147
+Q846570
+Q199
+Q220798
+Q185451
+Q49848
+Q830077
+Q327333
+Q5306030
+Q25288
+Q2191756
+Q5306030
+Q25288
+Q5025838
+Q121194
+Q18689797
+Q192957
+Q340709
+Q19267375
+Q646164
+Q121194
+Q25392373
+Q170584
+Q11500
+Q170924
+Q2995644
+Q842438
+Q169489
+Q382887
+Q463257
+Q1329910
+Q508295
+Q1920566
+Q22445448
+Q600134
+Q206361
+Q6256
+Q11348
+Q104555
+Q334401
+Q1020994
+Q3975
+Q1962593
+Q47913
+Q327333
+Q327333
+Q7743
+Q1151752
+Q5754843
+Q105210
+Q2283464
+Q1349983
+Q49848
+Q1193004
+Q11538
+Q16751793
+Q199
+Q220798
+Q49848
+Q836925
+Q327333
+Q26186900
+Q1992300
+Q121194
+Q21004260
+Q851662
+Q891854
+Q81672
+Q60
+Q690194
+Q29809684
+Q30
+Q30
+Q327333
+Q7748
+Q3975
+Q650711
+Q7283
+Q47913
+Q327333
+Q189756
+Q23258835
+Q317949
+Q47913
+Q327333
+Q75
+Q185836
+Q584804
+Q1124183
+Q1502887
+Q334401
+Q190258
+Q4697206
+Q11016
+Q278368
+Q1301203
+Q205663
+Q5936994
+Q49848
+Q187956
+Q854648
+Q187956
+Q179289
+Q20861252

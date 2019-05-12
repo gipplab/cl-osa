@@ -1,19 +1,166 @@
-Rupert Murdoch's effort to change the economics of the internet by stopping Google linking to stories in his newspapers looks, at first glance, like an act of self-destruction.
-That is how News Corp's negotiations on a deal to favour Microsoft's search engine Bing instead is viewed by many rivals and technology experts.
-On closer inspection, however, Mr Murdoch's initiative has an intriguing logic for other media groups facing the market power of Google.
-It may not achieve his desired result but it indicates how little he has to lose in revenue terms by experimenting.
-Most publishers, including newspapers, have so far made their stories available free online.
-Their strategy has been to make up for lost revenues from print subscriptions by gaining larger audiences online.
-The Guardian newspaper, for example, now reaches 30m unique users a month.
-Part of the strategy has been to achieve high rankings on Google and news aggregators so that people are drawn to them.
-This is what Jeff Jarvis, a professor at City University of New York, commends as ""the link economy"".
-Newspapers, however, face the painful reality that, while traffic from search engines is valuable in marketing terms, it has not produced the revenue for which they hoped.
-Online advertising rates are falling because of the mass of content on the web, and advertisers do not reward random clicks.
-Some 23 per cent of traffic to the online Wall Street Journal, Mr Murdoch's flagship property, comes through Google and yet it probably brings in the low millions of dollars of advertising revenue.
-Mr Murdoch, having considered this financial reality, hopes that Microsoft will offer more.
-His battle is part of a bigger contest over the future of newspapers online.
-Only the Journal and the Financial Times have so far managed to charge their readers online, although the New York Times is again considering it, and The Times is in the forefront of Mr Murdoch's efforts to charge.
-News is far from the online form of content that draws people to use search engines, so Microsoft is in a stronger bargaining position than News Corp.
-Yet even Mr Murdoch's rivals should welcome his attempt to shake things up.
-No one can predict what combination of subscription revenues and advertising publishers will be able to attract, and how many of them will survive the digital shake-out.
-It is clear, however, that they cannot rely on Google alone for their salvation.
+Q53944
+Q14536140
+Q1150070
+Q8134
+Q75
+Q1717246
+Q95
+Q11742780
+Q217086
+Q11032
+Q49371
+Q14289857
+Q202875
+Q321839
+Q2283
+Q19541
+Q44167
+Q182496
+Q1329910
+Q54894664
+Q11016
+Q381160
+Q997419
+Q1137655
+Q53944
+Q660064
+Q8078
+Q1331793
+Q83306
+Q3064135
+Q37654
+Q25107
+Q95
+Q775842
+Q2995644
+Q20861252
+Q850210
+Q1071233
+Q2085381
+Q11032
+Q23257209
+Q26186900
+Q217086
+Q1050390
+Q73368
+Q185451
+Q131207
+Q20861252
+Q850210
+Q11060274
+Q322948
+Q211198
+Q73368
+Q5614018
+Q1466608
+Q11032
+Q12335479
+Q489398
+Q186137
+Q278368
+Q5151
+Q185451
+Q5754843
+Q526719
+Q95
+Q498267
+Q393351
+Q5
+Q1137224
+Q1581997
+Q37226
+Q60
+Q102014
+Q159810
+Q11032
+Q37017
+Q9510
+Q4323994
+Q19541
+Q44167
+Q39809
+Q1071233
+Q4697206
+Q131427
+Q850210
+Q190507
+Q624902
+Q37038
+Q736288
+Q333495
+Q11423
+Q1260632
+Q466
+Q10355417
+Q1321905
+Q1774323
+Q48240
+Q724178
+Q4323994
+Q73368
+Q53944
+Q212357
+Q937228
+Q137
+Q95
+Q18122778
+Q209190
+Q38526
+Q37038
+Q850210
+Q53944
+Q1344851
+Q9510
+Q190507
+Q2283
+Q1193004
+Q178561
+Q476300
+Q344
+Q11032
+Q73368
+Q21147325
+Q23257209
+Q338754
+Q198976
+Q1433533
+Q73368
+Q7769392
+Q21147325
+Q53944
+Q14536140
+Q198976
+Q3339146
+Q23257209
+Q287539
+Q18193
+Q1260632
+Q1137224
+Q5
+Q278368
+Q19541
+Q44167
+Q2283
+Q1401706
+Q192388
+Q53944
+Q54894664
+Q13109234
+Q29142
+Q199388
+Q35120
+Q7044668
+Q199
+Q202805
+Q322948
+Q850210
+Q37038
+Q2085381
+Q2247133
+Q54311997
+Q47519884
+Q56085066
+Q306484
+Q21092971
+Q95
+Q192054

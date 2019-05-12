@@ -1,25 +1,194 @@
-The nervous fit that characterises US financial markets today illustrates how addicted they have become to the Federal Reserve's continuing injection of exceptional liquidity.
-But however upset financiers are that the Fed may soon “taper” the medication it is administering in the form of asset purchases, this move will only take place because the US economy is strong enough to stand on its own feet.
-That will be good for its financial markets too.
-The rest of the world has more cause to worry.
-Bond and stock investors both took fright this week.
-The S&amp;P 500 slid by 1.4 per cent on Thursday; 10-year Treasury bonds ended the week at their highest yield in two years.
-The trigger was a better than expected jobs report – first-time unemployment benefit claims were the lowest since before the crisis – and an uptick in inflation.
-This was another splash of the waves created by Ben Bernanke, the Fed's chairman, in June.
-Then, he said the Fed may start slowing the growth of its balance sheet by the end of the year, so long as the economy strengthened as expected.
-His intention was to stabilise the market by preparing it for the eventual policy change.
-The result was the opposite.
-Ever since, traders have been hanging on each data update, sending prices up or down depending on whether it was seen as making “tapering” more or less imminent.
-The overall trend has, however, been for funds to leave the bonds that served as havens when things looked bad.
-The market value of 10-year Treasuries fell by about 10 per cent in the two months to July.
-That is enough to count among the 15 worst sell-offs in half a century of Treasury market history.
-This volatility shows two things: that the Fed's “forward guidance” about its future policy intentions is a difficult tool to handle; but also that it was the right policy to adopt.
-Directly managing expectations of future policy amplifies the power of controlling the money supply – yet as the past few months have shown, this is a pendulum that can swing far away from the ultimate intended target.
-Even so, the Fed will get to where it wants eventually.
-Its guidance is explicitly tied to the state of the economy: if the expectations of tightening that are now priced in by markets even begin to hurt growth, those expectations will change.
-A built-in safety valve protects the recovery from being stifled.
-Other economies are not so lucky.
-Rising market interest rates in the US can do a lot of damage as they affect markets elsewhere.
-Credit conditions in Europe could tighten, complicating the job of European central banks.
-Emerging economies, which rode the wave of rich-country liquidity hard, are yet more exposed to sudden reversals in capital flows.
-There is a risk that when the US squeezes, the rest of the world stops cold.
+Q13357
+Q23404
+Q30
+Q208697
+Q37654
+Q3151690
+Q178659
+Q12029
+Q53536
+Q182003
+Q1827667
+Q2406791
+Q588378
+Q53536
+Q12140
+Q18193
+Q46737
+Q1369832
+Q82794
+Q30
+Q30
+Q159810
+Q1510380
+Q3710
+Q15290
+Q208697
+Q37654
+Q5710882
+Q879844
+Q16502
+Q16502
+Q2574811
+Q1436482
+Q29813288
+Q909380
+Q557880
+Q23387
+Q242345
+Q207742
+Q334747
+Q58093
+Q129
+Q3277092
+Q11693
+Q5375780
+Q23387
+Q2383321
+Q200
+Q577
+Q336751
+Q21255605
+Q1362683
+Q192581
+Q10870555
+Q311255
+Q2383321
+Q836925
+Q381072
+Q35865
+Q656906
+Q37172
+Q386724
+Q201795
+Q53536
+Q140686
+Q120
+Q7429143
+Q53536
+Q529711
+Q1342838
+Q46834
+Q196878
+Q40719766
+Q577
+Q159810
+Q1362683
+Q677393
+Q37654
+Q1156854
+Q1150070
+Q2995644
+Q131779
+Q1424605
+Q175111
+Q1502887
+Q160151
+Q2191756
+Q2393575
+Q1077396
+Q1514415
+Q25392373
+Q5338673
+Q11693
+Q44127
+Q283202
+Q35120
+Q3566043
+Q1373418
+Q370947
+Q19426
+Q1239455
+Q11921529
+Q23806
+Q58093
+Q200
+Q5151
+Q121
+Q247299
+Q38701
+Q2114394
+Q578
+Q3277092
+Q37654
+Q309
+Q756115
+Q7502926
+Q200
+Q35120
+Q53536
+Q280658
+Q344
+Q1156854
+Q677393
+Q1101080
+Q39546
+Q1205349
+Q14565199
+Q1156854
+Q180472
+Q1362683
+Q344
+Q1156854
+Q27094
+Q25107
+Q842206
+Q542869
+Q5151
+Q7502926
+Q1101080
+Q20702
+Q123704
+Q23257209
+Q3306907
+Q170212
+Q53536
+Q26256512
+Q44416
+Q7275
+Q159810
+Q1362683
+Q160151
+Q37654
+Q23759131
+Q5413585
+Q1342838
+Q1362683
+Q1150070
+Q730458
+Q208443
+Q444184
+Q159810
+Q4697206
+Q7336105
+Q37654
+Q179179
+Q736288
+Q30
+Q30
+Q220998
+Q481609
+Q159904
+Q37654
+Q182076
+Q12136
+Q46
+Q192581
+Q66344
+Q22687
+Q159810
+Q352858
+Q37172
+Q1827667
+Q5655097
+Q7907894
+Q5119
+Q493615
+Q1101080
+Q104493
+Q30
+Q30
+Q29814939
+Q879844
+Q16502
+Q51597

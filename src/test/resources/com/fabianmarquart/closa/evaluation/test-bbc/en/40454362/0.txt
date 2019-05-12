@@ -1,26 +1,234 @@
-Fukushima nuclear disaster: Tepco executives on trial
-
-Three former power company executives have gone on trial in Japan on charges linked to the Fukushima disaster.
-It is the first criminal trial over the 2011 meltdown at the nuclear plant.
-The meltdown, triggered by an earthquake which caused a massive tsunami, was the world's worst nuclear accident since Chernobyl in 1986.
-All three have pleaded not guilty to professional negligence resulting in death and injury of patients evacuated from a hospital near the plant.
-The quake and tsunami left about 18,500 people dead or missing and left large areas uninhabitable.
-The three former executives of Tokyo Electric Power (Tepco) are chairman Tsunehisa Katsumata, 77, and vice-presidents Sakae Muto, 66, and Ichiro Takekuro, 71.
-If found guilty, they could face up to five years in prison.
-The trial is the first and only one raising criminal charges related to the Fukushima disaster.
-Two previous attempts to press criminal charges against the former executives had been dismissed by the prosecution as having little chance of success.
-In 2015 however, a judicial review panel ruled the three men should be put on trial which meant the prosecution had to pick up the case.
-Other trials related to the Fukushima disaster have been, for instance, over compensation claims.
-No-one died directly in the Fukushima accident. The charges against the three men are linked to the deaths of more than 40 patients who had to be evacuated from a hospital in the area and later died.
-The patients had been critically ill already but their deaths have been attributed to the fact that they had to be hastily rushed out of the evacuation zone and into different hospitals.
-More than 200,000 people were forced to leave their homes because of nuclear contamination concerns when three reactors failed at the plant after it was flooded.
-There are also hopes that the trial will shed more light on the wider responsibilities around the disaster.
-"Since the accident, nobody has been held responsible nor has it been made clear why it happened," Ruiko Muto, who heads a group that pushed for the trial, told news agency AFP outside court.
-The accident let to a complete shutdown of all nuclear reactors in the country. Despite widespread anti-nuclear sentiment, several reactors have since resumed operations after passing special safety checks.
-The tsunami brought waves as high as 14m (46 feet) to parts of the east coast of Japan.
-The three accused are expected to argue they had no way of expecting a natural disaster of that magnitude and how it would affect the nuclear plant.
-"I apologise for the tremendous trouble to the residents in the area and around the country because of the serious accident that caused the release of radioactive materials," Mr Katsumata told the court but added that "I believe I don't have a criminal responsibility in the case".
-The prosecution, however, says studies conducted in the years before the accidents had been ignored by the company.
-An internal 2008 study by Tepco had reportedly simulated a similar scenario of an earthquake and tsunami but had not led to action by the management.
-"If they had fulfilled their responsibility to safety, the accident would have never occurred," the prosecution told the court.
-A parliamentary report compiled a year after the disaster said Fukushima was a man-made disaster caused by Japan's culture of reflexive obedience.
+Q161176
+Q15725976
+Q3839081
+Q35798
+Q2142560
+Q201
+Q25107
+Q102538
+Q35798
+Q2142560
+Q17
+Q73792
+Q102014
+Q161176
+Q3839081
+Q52348036
+Q2142560
+Q851312
+Q976350
+Q756
+Q976350
+Q336751
+Q7944
+Q179289
+Q8070
+Q16502
+Q16502
+Q171558
+Q129677
+Q2813507
+Q201
+Q359385
+Q30331417
+Q702269
+Q160070
+Q4
+Q193078
+Q170212
+Q606332
+Q16917
+Q756
+Q7944
+Q8070
+Q5338673
+Q5
+Q4
+Q5338673
+Q520952
+Q11500
+Q201
+Q35798
+Q140686
+Q6138184
+Q713167
+Q42178
+Q712966
+Q586651
+Q30331417
+Q37017
+Q203
+Q29053180
+Q40357
+Q322927
+Q2142560
+Q199
+Q2204480
+Q329525
+Q73792
+Q203066
+Q161176
+Q3839081
+Q200
+Q29142
+Q1193236
+Q329525
+Q73792
+Q35798
+Q178146
+Q6559173
+Q3851114
+Q50000
+Q11187127
+Q898871
+Q265158
+Q55439
+Q104555
+Q201
+Q8441
+Q2142560
+Q19033
+Q6559173
+Q55670909
+Q3975
+Q2142560
+Q203066
+Q161176
+Q3839081
+Q1664689
+Q1338171
+Q836925
+Q45089
+Q161176
+Q171558
+Q73792
+Q201
+Q8441
+Q102014
+Q4
+Q47035128
+Q42317
+Q170212
+Q606332
+Q16917
+Q11500
+Q45089
+Q170212
+Q4
+Q862990
+Q188572
+Q744865
+Q606332
+Q183366
+Q51921823
+Q16917
+Q47035128
+Q5
+Q11402
+Q5338673
+Q7743
+Q287903
+Q206361
+Q201
+Q756
+Q8068
+Q190507
+Q2142560
+Q721931
+Q9128
+Q3839081
+Q171558
+Q196431
+Q26186900
+Q306484
+Q23640
+Q83306
+Q1756083
+Q2142560
+Q806805
+Q192283
+Q327333
+Q40464
+Q12731
+Q171558
+Q9788
+Q16868672
+Q257506
+Q80877
+Q6256
+Q950511
+Q362482
+Q336215
+Q7574446
+Q4379618
+Q80042
+Q8070
+Q37172
+Q5754843
+Q712744
+Q3710
+Q684
+Q93352
+Q17
+Q201
+Q159394
+Q1362683
+Q17641254
+Q8065
+Q3839081
+Q2028919
+Q159904
+Q756
+Q199
+Q19357595
+Q572927
+Q11500
+Q6256
+Q171558
+Q179289
+Q2031291
+Q214609
+Q6378130
+Q806805
+Q12731
+Q32043
+Q30287466
+Q17573152
+Q56274075
+Q2159907
+Q3975
+Q15850535
+Q6559173
+Q7429143
+Q1298668
+Q577
+Q171558
+Q815577
+Q102538
+Q1069941
+Q1298668
+Q26256352
+Q103076
+Q7944
+Q8070
+Q32518
+Q188473
+Q338754
+Q24994
+Q171558
+Q6559173
+Q806805
+Q12731
+Q10870555
+Q1020767
+Q577
+Q3839081
+Q7429143
+Q161176
+Q2920615
+Q3839081
+Q179289
+Q17
+Q11042
+Q15841936
+Q908842

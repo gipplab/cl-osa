@@ -18,7 +18,6 @@ import java.util.List;
 public class CLOSAEvaluationSet extends EvaluationSet {
 
     private OntologyBasedSimilarityAnalysis analysis;
-
     private boolean graphBasedAnalysis = false;
 
     public CLOSAEvaluationSet(File folder, String suspiciousSuffix, String candidateSuffix) {
@@ -61,9 +60,9 @@ public class CLOSAEvaluationSet extends EvaluationSet {
     @Override
     protected void performAnalysis() {
         if (!graphBasedAnalysis) {
-            suspiciousIdDetectedCandidateIdsMap = analysis.performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
+            suspiciousIdCandidateScoresMap = analysis.performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
         } else {
-            suspiciousIdDetectedCandidateIdsMap = analysis.performEnhancedCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
+            suspiciousIdCandidateScoresMap = analysis.performEnhancedCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
         }
     }
 

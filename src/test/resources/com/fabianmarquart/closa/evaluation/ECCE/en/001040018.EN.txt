@@ -1,28 +1,227 @@
-Standard and Poor's downgrade of US Treasury obligations should not have come as a surprise and the move's direct implications for global financial markets should be limited.
-The agency had earlier served notice by putting US debt on negative watch; the downgrade gave investors no information about Washington's broken fiscal machinery they did not already have; and the other agencies have so far maintained their ratings.
-The indirect implications of the downgrade, though, may prove more troublesome.
-The Federal Reserve quickly announced that it will continue to accept Treasuries as collateral and that banks will suffer no capital-adequacy penalty as a result of the downgrade.
-Similar reassurances have begun to emerge from finance ministries of the Group of Seven and Group of 20 countries, whose officials were deep in conference calls this weekend.
-However, S&amp;P's decision will be followed as soon as today by ratings announcements for US government-related entities such as Fannie Mae and Freddie Mac.
-Further downgrades therefore look likely.
-The ratings of other borrowers, some corporate as well as public, may suffer knock-on downgrades as Friday's decision cascades across financial assets.
-The downgrade could intensify concerns about the risks that remain for US fiscal policy and for the economy as a whole.
-In part, this would be a good thing.
-With luck, it will spur US policymakers to act more responsibly and intelligently in confronting the country's long-term fiscal challenges.
-On the other hand, it may raise bond yields and stir exaggerated alarm at a time when economic confidence in the US and Europe is low, for good reason, to begin with.
-In terms of underlying servicing capacity, US Treasuries surely remain among the safest obligations in the world.
-In the long term, no doubt, US public debt is on a dangerous trajectory, meaning that it threatens higher interest rates and greater financial fragility.
-But there is no foreseeable danger that the US would ever be unable to service its debts.
-The S&amp;P analysis is therefore flawed, not just because of its embarrassing confusion over the correct baseline to use in projecting debt ratios, but also because it gives undue weight to an extremely improbable scenario: namely, that the US will one day be unable to pay its creditors.
-Where S&amp;P is right, however, is in stressing the new danger that the US government might actually choose not to service its debts – the brink of voluntary default that Washington blithely walked up to during the debt-ceiling pantomime.
-This precedent is set and cannot be undone.
-Congress should act to guarantee that this episode will never be repeated.
-The law creating the debt ceiling itself needs to be repealed.
-Meanwhile, other governments can strive at least to avoid making matters worse.
-As the Financial Times went to press, emergency talks were imminent between G7 economic officials and in the European Central Bank's governing council.
-Eurozone policymakers continue to wrestle ineffectively with their own still-escalating debt crisis.
-They must act far more decisively to inspire market confidence in their policies.
-China's intervention after the downgrade – a strongly-worded commentary by the official Xinhua news agency rebuking the US for its fiscal policy and calling for a new global reserve currency – was notably irresponsible.
-It was in nobody's interests, least of all China's given its massive holdings of US Treasuries, to roil the waters in that way.
-This is a moment for enhanced co-operation, domestically and internationally, not theatrical remonstration.
-A more enlightened Chinese currency policy is at least as important a component of that co-operation as greater probity in US fiscal policy.
+Q1390101
+Q5729485
+Q7430019
+Q2648051
+Q333173
+Q15304504
+Q7881229
+Q208697
+Q37654
+Q177239
+Q7712882
+Q327333
+Q44127
+Q7063001
+Q30
+Q3196867
+Q595597
+Q178794
+Q7430019
+Q557880
+Q11028
+Q23
+Q1229245
+Q327333
+Q23257209
+Q7295719
+Q15304518
+Q7881229
+Q7430019
+Q53536
+Q1371925
+Q23090331
+Q29466402
+Q22687
+Q2068602
+Q2995644
+Q7430019
+Q26256352
+Q23759131
+Q15711797
+Q192350
+Q16887380
+Q23350
+Q4150646
+Q40292
+Q6256
+Q382887
+Q2431801
+Q625994
+Q211391
+Q242345
+Q732833
+Q31888506
+Q3151690
+Q7295719
+Q567303
+Q30
+Q35120
+Q621096
+Q935969
+Q7430019
+Q18122778
+Q7295719
+Q25702570
+Q211198
+Q7430019
+Q130
+Q732833
+Q357384
+Q2823610
+Q46737
+Q7430019
+Q38178665
+Q206361
+Q104493
+Q24759380
+Q30
+Q187021
+Q1156854
+Q159810
+Q15290
+Q35120
+Q1970348
+Q740732
+Q30
+Q188473
+Q6256
+Q2988681
+Q33767
+Q884353
+Q11693
+Q2383321
+Q945434
+Q11471
+Q4116378
+Q30
+Q30
+Q46
+Q209190
+Q15290
+Q178354
+Q23759131
+Q1071233
+Q584804
+Q30
+Q24759380
+Q2648051
+Q16502
+Q16502
+Q57055328
+Q1071233
+Q34302
+Q30
+Q12695
+Q3196867
+Q193139
+Q101072
+Q179179
+Q736288
+Q47035128
+Q13582404
+Q30
+Q30
+Q906066
+Q3196867
+Q242345
+Q7754
+Q5801290
+Q557945
+Q56557591
+Q810247
+Q278368
+Q3196867
+Q3481047
+Q25288
+Q103076
+Q30
+Q30
+Q199
+Q573
+Q1640172
+Q157165
+Q242345
+Q14565199
+Q1954125
+Q13582404
+Q30
+Q30
+Q7188
+Q906066
+Q3196867
+Q3247534
+Q281782
+Q23
+Q1444064
+Q13409536
+Q665141
+Q36161
+Q10225
+Q188473
+Q1347347
+Q1274479
+Q582600
+Q7748
+Q11398090
+Q3196867
+Q221706
+Q3123740
+Q190258
+Q4590027
+Q7188
+Q1717246
+Q35758
+Q21255921
+Q750997
+Q1193236
+Q5070802
+Q603773
+Q382887
+Q8901
+Q27865861
+Q4358176
+Q8268
+Q23090331
+Q13474373
+Q3196867
+Q381072
+Q188473
+Q23257209
+Q840343
+Q37654
+Q4116378
+Q1156854
+Q148
+Q959298
+Q7430019
+Q1749541
+Q382887
+Q204839
+Q192283
+Q327333
+Q30
+Q30
+Q187021
+Q1156854
+Q1954125
+Q756202
+Q8142
+Q170924
+Q148
+Q10494269
+Q30
+Q283
+Q17641254
+Q1101080
+Q48103
+Q3312519
+Q273120
+Q592592
+Q148
+Q8142
+Q1156854
+Q4877042
+Q830414
+Q3312519
+Q47035128
+Q187021

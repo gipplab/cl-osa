@@ -1,20 +1,167 @@
-It had the flavour of panic: Chinese financial institutions scrambled for short-term interbank loans last week before the People's Bank of China released liquidity into the market.
-The episode highlights China's conundrum in managing a financial system that has racked up debts too liberally yet remains in need of further liberalisation.
-Interest rates on weekly interbank loans had approached 11 per cent on Thursday – up from only 3 per cent last month.
-Such rates, if sustained, could be lethal for many banks with businesses based on off-balance-sheet “wealth management products”.
-These offer short-term placements in opaque structures invested in projects, typically real estate, that are often illiquid and sometimes questionable.
-They are behind much of the recent 20-plus per cent growth rate in credit.
-Total credit outstanding is 200 per cent of China's annual output, up from 120 per cent five years ago.
-This problem simultaneously reflects the indomitable nature of financial capitalism and the unintended effects of central planning.
-Savers, frustrated with official interest rates artificially kept low by government policy, create huge demand for alternative savings products that financial companies have been all too happy to provide.
-At the same time, centrally mandated growth targets (and opportunities for graft) give local officials incentives to secure funds for construction by any means possible.
-The concern is not just about liquidity, serious as this is given the products' maturity mismatch.
-Many of these structures are also suspected of being fundamentally insolvent.
-This is the financial flip side of the questionable real return on the construction that has driven Chinese growth since 2009.
-If a lot of outstanding credit is bad, Beijing's task is the same as western countries have faced: how to restrain reckless lending without either precipitating a collapse or closing off credit flows to productive businesses.
-The PBoC's initial refusal to ease interbank rates shows Beijing's determination to stop the credit problem from becoming worse.
-But it was right to relent.
-If this is a ticking bomb, it must be defused not detonated.
-Liberalising interest on savings accounts will weaken demand for alternative products – but also squeeze banks' profit margin.
-If demand for off-balance-sheet products is curtailed, losses may materialise.
-Beijing has reserves to recapitalise banks. But it cannot undo the costs of financial failure, which must land somewhere; nor avoid the inevitably fierce political struggle over where that will be.
+Q874733
+Q208450
+Q148
+Q650241
+Q178706
+Q611519
+Q189539
+Q23387
+Q5
+Q502117
+Q148
+Q2031291
+Q1827667
+Q37654
+Q1347347
+Q559350
+Q148
+Q29814118
+Q1416617
+Q431000
+Q3196867
+Q55082364
+Q190258
+Q746418
+Q179179
+Q736288
+Q23387
+Q189539
+Q1801985
+Q37136
+Q58093
+Q129
+Q201
+Q58093
+Q5151
+Q736288
+Q22687
+Q2912172
+Q11193
+Q200535
+Q338754
+Q40276
+Q1193004
+Q517966
+Q557880
+Q170584
+Q28962312
+Q683595
+Q188886
+Q58093
+Q3516239
+Q736288
+Q182076
+Q16868672
+Q182076
+Q713744
+Q58093
+Q148
+Q192691
+Q362347
+Q717056
+Q724178
+Q203
+Q577
+Q29818766
+Q621184
+Q35221
+Q7860
+Q6452383
+Q6206
+Q926230
+Q309100
+Q7428188
+Q192242
+Q382887
+Q179179
+Q736288
+Q172964
+Q209190
+Q546113
+Q1156854
+Q386724
+Q4402708
+Q11366
+Q40276
+Q102538
+Q8
+Q11471
+Q845436
+Q1342838
+Q170212
+Q1499569
+Q5140240
+Q382887
+Q1414816
+Q55707349
+Q25392373
+Q329637
+Q21162272
+Q30230067
+Q206361
+Q1827667
+Q40276
+Q436048
+Q378915
+Q517966
+Q516519
+Q500653
+Q286583
+Q29950338
+Q329637
+Q216541
+Q148
+Q1342838
+Q51134
+Q220998
+Q182076
+Q3566043
+Q956
+Q759676
+Q54819698
+Q7988576
+Q6256
+Q37017
+Q1309431
+Q1102508
+Q182076
+Q493615
+Q2912172
+Q378408
+Q665184
+Q272893
+Q736288
+Q956
+Q21168708
+Q51597
+Q182076
+Q621184
+Q21255921
+Q14565199
+Q1101080
+Q7800690
+Q127197
+Q716482
+Q170924
+Q159421
+Q508295
+Q4402708
+Q11366
+Q40276
+Q29814939
+Q22687
+Q436048
+Q1187906
+Q625360
+Q4402708
+Q40276
+Q1121708
+Q956
+Q2088231
+Q22687
+Q22687
+Q240673
+Q1121708
+Q763288
+Q1717246
+Q14536140

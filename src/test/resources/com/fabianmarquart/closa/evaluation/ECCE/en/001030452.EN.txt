@@ -1,36 +1,256 @@
-The financial crisis is over; yet a durable recovery is not yet in place.
-Unprecedented support for the financial sector, along with massive fiscal and monetary stimulus, has allowed the world economy to emerge from the crisis.
-This has been true not only in the high-income countries but also in China.
-The question is how to withdraw that stimulus and so rely on renewed private demand.
-It is neither likely nor desirable that much of the recovery in private demand will come from the US or other erstwhile deficit country.
-That could only happen with a renewed surge in private borrowing.
-But in the US, UK and similarly affected countries, the task is to deleverage the private sector, not increase indebtedness further.
-The private sector will need to reduce its liabilities by spending less than its income over a sustained period.
-The question is what might offset such frugality.
-In the short to medium term, we already know the answer: public sector borrowing.
-On the basis of forecasts from the Organisation for Economic Co-operation and Development, the US government will run a general fiscal deficit of about 11 per cent of gross domestic product this year, while the current account deficit will be about 3 per cent of GDP.
-By definition, this means that the private sector is running a financial surplus of 8 per cent of GDP.
-This is a massive swing from 2007, when the US private sector ran a deficit of 2.4 per cent of GDP.
-Assume, moderately, that the US private sector will want to run an excess of income over spending of just 3 per cent of GDP after the crisis is over. Assume, too, as the OECD forecasts, that the current account deficit rises towards 4 per cent of GDP, by 2011.
-Then the general government deficit would still be 7 per cent of GDP.
-The big point is that if there is to be deleveraging of the private sector and a huge reduction in the fiscal deficit, then the current account deficit must pretty well disappear.
-Many argue that the global ""imbalances"" helped cause the crisis.
-This remains controversial.
-But a durable recovery does demand global rebalancing.
-In its absence, there will either be a prolonged global recession, or a renewed bout of borrowing by already overindebted private sectors or gigantic and ultimately unsustainable fiscal deficits.
-The question, then, is how to achieve durable rebalancing, in terms of who acts and how.
-On the who, much attention has been focused on China, the world's biggest surplus country.
-But, as Kemal Dervis, former minister of the UN Development Programme, argued in the FT this week, emerging and developing economies, apart from China, should be encouraged to borrow more, too.
-To achieve this, the world will need to promote substantial institutional reforms, including greater insurance against risk of crises, via expanded resources for the International Monetary Fund.
-Nevertheless, China and other surplus countries must play their part.
-Indeed, it surely makes sense for China to shift from a target for growth of output to one for growth in domestic demand at above the potential growth of supply.
-Finally, there is the question of ""how"" to make the needed shifts.
-The big debate is over the role of exchange rate changes.
-It would be possible to ignore exchange rates.
-But that would surely mean a danger of inflationary excess demand in surplus countries and deficient demand in deficit ones.
-The exchange rate changes are needed, to facilitate global adjustment.
-China is too important to continue with its present policy of pegging the renminbi to the dollar.
-Its exchange rate is a legitimate subject of common concern.
-The needed global adjustment will be thwarted if the pegging continues.
-That may seem unfair to the Chinese.
-But it is the price of having become a huge economic power.
+Q114380
+Q381072
+Q444184
+Q4697206
+Q82794
+Q1058733
+Q57774188
+Q219858
+Q859031
+Q1962593
+Q16502
+Q473750
+Q159810
+Q381072
+Q16751793
+Q6256
+Q148
+Q19097421
+Q189756
+Q1760704
+Q859031
+Q21092971
+Q2144402
+Q158668
+Q4402708
+Q18122778
+Q444184
+Q158668
+Q4402708
+Q30
+Q30
+Q444600
+Q6256
+Q2144402
+Q497332
+Q158668
+Q103808
+Q30
+Q30
+Q145
+Q159904
+Q6256
+Q759676
+Q591763
+Q219858
+Q17281278
+Q591763
+Q219858
+Q190258
+Q912546
+Q546972
+Q52834024
+Q850210
+Q12171
+Q19097421
+Q189756
+Q1156822
+Q1858477
+Q24862
+Q340169
+Q1071233
+Q1920566
+Q294217
+Q219858
+Q103808
+Q189569
+Q748250
+Q2292459
+Q1282091
+Q3312519
+Q2843407
+Q30
+Q30
+Q7188
+Q174493
+Q83460
+Q444600
+Q37136
+Q58093
+Q1547498
+Q40276
+Q577
+Q746687
+Q508295
+Q444600
+Q201
+Q58093
+Q12638
+Q101072
+Q19033
+Q591763
+Q219858
+Q105674
+Q268617
+Q23355
+Q58093
+Q12638
+Q1101080
+Q123704
+Q907344
+Q30
+Q30
+Q591763
+Q219858
+Q174493
+Q444600
+Q58093
+Q12638
+Q24247591
+Q30
+Q30
+Q591763
+Q219858
+Q26256512
+Q174493
+Q19357421
+Q850210
+Q201
+Q724178
+Q12638
+Q381072
+Q24247591
+Q41550
+Q748250
+Q746687
+Q508295
+Q444600
+Q1139344
+Q202
+Q58093
+Q12638
+Q851312
+Q83460
+Q7188
+Q444600
+Q23350
+Q724178
+Q12638
+Q44946
+Q591763
+Q219858
+Q912546
+Q444600
+Q746687
+Q508295
+Q444600
+Q3030513
+Q23835475
+Q179289
+Q381072
+Q55082364
+Q444184
+Q4402708
+Q16120406
+Q176494
+Q2144402
+Q27889498
+Q103808
+Q591763
+Q219858
+Q444600
+Q19097421
+Q189756
+Q1071233
+Q188473
+Q6501338
+Q3568
+Q148
+Q16502
+Q16502
+Q268617
+Q6256
+Q83307
+Q1065
+Q2843407
+Q3406946
+Q900831
+Q23387
+Q159810
+Q148
+Q25702570
+Q16502
+Q16502
+Q190258
+Q215599
+Q900406
+Q47035128
+Q43183
+Q104493
+Q381072
+Q5420776
+Q210947
+Q7804
+Q148
+Q268617
+Q6256
+Q4197743
+Q26186900
+Q173253
+Q148
+Q1604733
+Q170212
+Q1342838
+Q362347
+Q199
+Q1342838
+Q4402708
+Q2296856
+Q1342838
+Q542869
+Q189756
+Q26186900
+Q190258
+Q1604733
+Q179875
+Q214339
+Q66100
+Q736288
+Q1150070
+Q30230067
+Q815577
+Q66100
+Q736288
+Q19033
+Q13582404
+Q1337691
+Q4402708
+Q268617
+Q6256
+Q4402708
+Q444600
+Q199
+Q4329381
+Q66100
+Q736288
+Q1150070
+Q190258
+Q1150166
+Q1714153
+Q148
+Q23090331
+Q193168
+Q1156854
+Q39099
+Q66100
+Q736288
+Q1101080
+Q164573
+Q1120307
+Q206361
+Q190258
+Q1714153
+Q23090331
+Q148
+Q160151
+Q25107

@@ -1,23 +1,168 @@
-Statistics is not always the bedfellow of lies and damned lies.
-At its best, it brings epiphanies.
-An initiative by the OECD and the World Trade Organisation to map the value added embodied in international trade flows should be an eye-opener for policy makers.
-Conventional export and import figures are calculated as the total value or volume of goods or services traded between two countries.
-But in a globalised supply chain, the elements making up a final product may cross national borders many times during the production process.
-Simple bilateral numbers do not capture this.
-The researchers have painstakingly calculated the value a country adds to the goods and services it exports, by deducting the inputs going into their production that the exporter first had to import.
-Locating where the value in traded products is created and who reaps the rewards gives a truer picture of trading relationships.
-This does not affect countries' overall trade balances but it does alter the composition of surpluses and deficits between different trading partners.
-The most argued-over trade deficit in the world – the US's with China – turns out to be much smaller when accounting for the value added in Chinese exports that comes from third countries, or even the US itself.
-In the most popular illustration, China keeps only a fraction of the cost of an iPhone.
-Those making political hay from trade disputes would do well to take in these findings.
-An immediate implication is that imports are not the job-killers they are made out to be.
-Supply chains now criss-cross the world, as highlighted by the global disruptions from local natural disasters such as the Tohoku earthquake or Thailand's floods.
-This means imports that displace a country's domestic products may at the same time be the lifeblood of its exporting sectors.
-Conversely, even low tariffs may cause more harm than they offer protection.
-The new numbers also restore services to their rightful place.
-Too much hot air is blown about the importance of “making things”.
-In fact, services account for one-third of value added in core “things” such as machinery and chemicals.
-Those who want trading success must focus more on the productivity of their service sectors.
-Trade is becoming ever more gloriously interdependent.
-This leads to painful changes, such as the squeezing of medium-skilled workers, but also more productivity.
-By improving our understanding of the intricacy of world trade, the new data help us manage it better.
+Q4697206
+Q4925193
+Q4925193
+Q26132734
+Q2312056
+Q660064
+Q41550
+Q4006
+Q1434924
+Q32043
+Q286583
+Q178803
+Q601401
+Q493615
+Q1156854
+Q182722
+Q62955
+Q1412049
+Q31087
+Q16868672
+Q19426
+Q39297
+Q28877
+Q906066
+Q1424605
+Q200
+Q6256
+Q1824206
+Q369377
+Q11344
+Q1340858
+Q40276
+Q40843
+Q133346
+Q11471
+Q1408286
+Q205663
+Q2315394
+Q11563
+Q17768966
+Q1650915
+Q31087
+Q19426
+Q6256
+Q32043
+Q2897903
+Q906066
+Q182722
+Q210947
+Q739302
+Q62955
+Q19426
+Q1424605
+Q40276
+Q386724
+Q1367947
+Q1321905
+Q478798
+Q601401
+Q7310741
+Q159904
+Q6256
+Q8043
+Q1077396
+Q601401
+Q134566
+Q28873693
+Q207628
+Q268617
+Q444600
+Q51921823
+Q601401
+Q728646
+Q1300244
+Q601401
+Q444600
+Q16502
+Q16502
+Q30
+Q30
+Q148
+Q304479
+Q4116214
+Q1434924
+Q32043
+Q148
+Q182722
+Q137
+Q6256
+Q30
+Q30
+Q3123740
+Q178659
+Q148
+Q172964
+Q66055
+Q240673
+Q2766
+Q336989
+Q601401
+Q180684
+Q639907
+Q7881229
+Q62955
+Q4697206
+Q26186900
+Q542869
+Q369377
+Q16502
+Q16502
+Q559350
+Q5282724
+Q8065
+Q3839081
+Q1194394
+Q7944
+Q869
+Q8068
+Q19033
+Q62955
+Q6256
+Q40276
+Q11471
+Q219858
+Q209190
+Q52389
+Q179289
+Q15098235
+Q1193004
+Q2251595
+Q1954125
+Q11563
+Q446966
+Q906066
+Q82794
+Q28128222
+Q406714
+Q3242199
+Q16886469
+Q35120
+Q188572
+Q906066
+Q508295
+Q1434924
+Q32043
+Q591707
+Q35120
+Q1229245
+Q2329
+Q26256512
+Q601401
+Q50000
+Q3568
+Q2111958
+Q55638
+Q219858
+Q7831898
+Q32518
+Q1150070
+Q327055
+Q2111958
+Q46744
+Q16502
+Q601401
+Q1954125
+Q1502887
+Q23835475
+Q338754

@@ -1,18 +1,158 @@
-Whatever the reasons that lay behind it, Standard Chartered's rush to settle with New York's banking regulator is an embarrassing climbdown.
-Only a few days ago the bank was threatening to sue New York State's Department of Financial Services for reputational damage over claims that it had misled regulators in transactions subject to US sanctions on Iran.
-StanChart no doubt had strong commercial reasons to seek a rapid deal.
-The $340m settlement allows it to avoid a potentially damaging face-off between Peter Sands, chief executive, and outspoken regulators.
-The sharp rally in the bank's shares yesterday signalled that, as far as investors are concerned, it has done the right thing.
-Had the regulator revoked StanChart's New York banking licence as it had threatened to do, the bank's business of emerging market trade finance would have suffered a mortal blow.
-But the hefty settlement has punctured StanChart's defiance and casts doubt over the bank's confidence in its case.
-The manner in which the settlement was struck also has potentially disturbing consequences for the banking industry and for global regulation.
-Benjamin Lawsky, the head of New York's new financial regulator, has scored his victory using questionable tactics – whatever the rights or wrongs of his allegations.
-StanChart still faces several investigations into its Iranian client transactions by a range of federal authorities.
-Potential fines could amount to $700m.
-The decision by the DFS to break ranks with fellow regulators and pursue StanChart in public before their investigations are concluded could open the door to a flood of separate but linked inquiries, each drawing its own conclusions.
-If banks are to be clear about their responsibilities and obligations, regulators have to establish coherent norms and processes.
-It would be perverse if, at a time when the world is seeking to promote global regulatory co-operation, one regulator is applauded for going it alone.
-That said, Mr Lawsky was right to raise questions over the legality of wire-stripping, where client details are removed from transactions that only pass through New York.
-Banks say this is done to avoid duplication of due diligence.
-The deal means there can be no public judgment on whether StanChart sought to impede regulators in their assessment of potentially illegal transactions.
-The bank strongly denies this. But it gave up the chance to prove its case.
+Q178354
+Q6505497
+Q548278
+Q744865
+Q1818899
+Q60
+Q3435731
+Q1639780
+Q21503252
+Q573
+Q22687
+Q1384
+Q5449654
+Q481609
+Q836925
+Q1639780
+Q601401
+Q164573
+Q30
+Q32098
+Q794
+Q34302
+Q2986261
+Q178354
+Q30269216
+Q695793
+Q321839
+Q4917
+Q167412
+Q1962593
+Q1717246
+Q1004645
+Q1752864
+Q1162163
+Q35798
+Q1639780
+Q626605
+Q1517187
+Q175331
+Q22687
+Q11692
+Q1187312
+Q174984
+Q23257209
+Q557880
+Q206361
+Q14565199
+Q35120
+Q1639780
+Q7318575
+Q60
+Q3435731
+Q79719
+Q22687
+Q2912172
+Q546395
+Q37654
+Q1476229
+Q43015
+Q3242199
+Q167412
+Q24276534
+Q496098
+Q34302
+Q22687
+Q4116378
+Q3975
+Q367293
+Q167412
+Q280658
+Q733541
+Q806718
+Q8148
+Q428148
+Q4888951
+Q23640
+Q60
+Q1954125
+Q1639780
+Q187947
+Q50000
+Q1055911
+Q780687
+Q29485
+Q2839009
+Q37017
+Q21004260
+Q794
+Q528166
+Q601401
+Q182995
+Q20853538
+Q174834
+Q2296856
+Q2842797
+Q309314
+Q4917
+Q25208718
+Q732833
+Q903577
+Q56019
+Q1404101
+Q1639780
+Q468489
+Q211198
+Q21004260
+Q20665666
+Q2735683
+Q36794
+Q8068
+Q102014
+Q21004260
+Q93184
+Q20665666
+Q22687
+Q306484
+Q2648051
+Q1639780
+Q574562
+Q367293
+Q205663
+Q11471
+Q16502
+Q16502
+Q215599
+Q4013945
+Q3312519
+Q199
+Q1639780
+Q7429143
+Q14565199
+Q884353
+Q189756
+Q2307054
+Q528166
+Q23009442
+Q601401
+Q1142227
+Q60
+Q22687
+Q7429143
+Q1717246
+Q332148
+Q1427962
+Q321839
+Q19033
+Q211198
+Q1720612
+Q30269216
+Q264661
+Q1639780
+Q855232
+Q601401
+Q17643783
+Q22687
+Q1343202
+Q3851114
+Q3975

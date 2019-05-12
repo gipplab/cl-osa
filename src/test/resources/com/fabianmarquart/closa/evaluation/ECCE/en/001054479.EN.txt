@@ -1,35 +1,229 @@
-US President Barack Obama deserves credit for having addressed the public's anxiety about the growing reach of the National Security Agency.
-But his speech on Friday offered only a modest down payment on a more effective system of oversight.
-Edward Snowden should be prosecuted for having leaked highly sensitive details about how US intelligence protects America's national security – a legitimate activity of any government.
-There will be more leaks to come. But his disclosures have shed light on the exponential growth of US data surveillance, which has sparked understandable public concern.
-There is no contradiction between Mr Obama's call for Mr Snowden to be brought to justice and his first stab at responding to the more disquieting elements of what has been revealed.
-Let us hope he follows up in the coming months with more concrete solutions.
-In his speech, Mr Obama tried to sketch out how to make the NSA more accountable without compromising national security.
-Most important will be to tighten up on the NSA's system of data collection and storage – a vast dragnet that takes in hundreds of millions of telephone calls and text messages that are currently held in NSA data vaults.
-The president sidestepped the crucial question of whether the data should be gathered in the first place. He also left it to Eric Holder, the attorney-general, and James Clapper, the director of national intelligence, to work out the details.
-Mr Obama said the NSA should store its metadata collections with a third party.
-Telephone companies do not want to do it. Their reputation has already taken a big hit. And the NSA does not think it is necessary.
-Nor does a third-party entity exist.
-Mr Holder and Mr Clapper will have to come up with a robust and credible plan by the end of March.
-The detail will be crucial.
-In the speech, Mr Obama repeated his promise to stop tapping the communications of leaders of foreign allies.
-Angela Merkel, the German chancellor, has accepted his apology for having tapped her phone over more than a decade.
-In the real world, governments tend to spy on one another. The only real restraint is capability.
-It would be unwise to pretend that it does not happen and dishonest to disavow it in any circumstances.
-There has been hypocrisy in the outrage of US allies, most of which also spy on their friends.
-Mr Obama offered fewer reassurances to ordinary foreign citizens.
-But he did dangle possible new protections on which communications would be targeted.
-Again, the details are yet to come.
-Mr Obama also asked Congress to appoint an independent panel of advocates that would advise the secret courts that oversee the NSA's decisions.
-To date they have largely rubber-stamped such requests. Nor are their rulings subject to appeal.
-Mr Obama's solution goes only part of the way to fixing that.
-The panel of advocates would have no power to go on fact-finding missions about the courts' rulings nor to contact the targets of their surveillance.
-In other words, they would be largely toothless.
-Given the degree to which Mr Obama's speech stuck to the NSA's preferences, Congress will probably need to draft more robust oversight powers for itself.
-Finally, Mr Obama expressed insufficient concern about the harm done to US big data companies.
-By one estimate, post-Snowden moves by other countries to nationalise data storage could cost them $180bn in lost business.
-Mr Obama's task is not easy.
-He must be vigilant about US national security without damaging US democracy or business.
-His speech was an opening gambit that went further than that of other governments, the UK included.
-But that is a low bar.
-Mr Obama will soon need to show that what he is proposing amounts to more than just window dressing.
+Q11696
+Q76
+Q76
+Q182076
+Q28008314
+Q2388316
+Q211198
+Q154430
+Q489398
+Q121194
+Q315
+Q130
+Q1193004
+Q708438
+Q1148747
+Q13424289
+Q600751
+Q1349983
+Q30
+Q83500
+Q30
+Q258307
+Q169489
+Q317949
+Q7188
+Q1349983
+Q721931
+Q9128
+Q582659
+Q1342838
+Q30
+Q1502887
+Q334401
+Q911679
+Q211198
+Q206361
+Q363948
+Q76
+Q5936994
+Q16533
+Q11344
+Q192906
+Q9788
+Q190507
+Q31888506
+Q5151
+Q22657
+Q1879813
+Q315
+Q76
+Q578508
+Q909887
+Q26186900
+Q121194
+Q258307
+Q169489
+Q121194
+Q4929239
+Q361873
+Q66221
+Q328475
+Q37413
+Q38526
+Q2296401
+Q13159882
+Q628523
+Q196431
+Q121194
+Q1502887
+Q189771
+Q2980956
+Q30461
+Q189756
+Q1502887
+Q33965709
+Q82794
+Q5338673
+Q312644
+Q1501926
+Q42178
+Q4443415
+Q83500
+Q28640
+Q76
+Q7429143
+Q121194
+Q213441
+Q180160
+Q361873
+Q3528251
+Q200538
+Q612672
+Q102538
+Q26256512
+Q478594
+Q713493
+Q121194
+Q35120
+Q468777
+Q617029
+Q36996115
+Q611203
+Q40719766
+Q110
+Q315
+Q76
+Q1274479
+Q1425577
+Q51597
+Q203598
+Q11024
+Q32518
+Q3612401
+Q567
+Q183
+Q61061
+Q656656
+Q11035
+Q47035128
+Q39911
+Q286583
+Q16502
+Q7188
+Q749311
+Q9352089
+Q199
+Q286583
+Q1347367
+Q845929
+Q3629141
+Q201650
+Q7112875
+Q30
+Q3612401
+Q9352089
+Q3276720
+Q76
+Q1193004
+Q1076566
+Q1020994
+Q30230067
+Q1954125
+Q2251595
+Q11024
+Q170212
+Q76
+Q10225
+Q625303
+Q55439
+Q380075
+Q19833749
+Q12731
+Q1240788
+Q121194
+Q732833
+Q205892
+Q22445448
+Q164573
+Q329777
+Q76
+Q1879813
+Q17641254
+Q747376
+Q55439
+Q380075
+Q25107
+Q1391688
+Q51647
+Q12731
+Q8043
+Q23797
+Q170212
+Q334401
+Q8171
+Q21645213
+Q3579096
+Q28390
+Q76
+Q315
+Q2872553
+Q121194
+Q908656
+Q10225
+Q18122778
+Q190258
+Q683754
+Q25107
+Q3123740
+Q76
+Q327968
+Q206361
+Q15098235
+Q30
+Q858810
+Q1502887
+Q102538
+Q199
+Q965330
+Q6256
+Q193395
+Q66221
+Q240673
+Q4917
+Q20861252
+Q2912172
+Q76
+Q759676
+Q4697206
+Q30
+Q258307
+Q169489
+Q30
+Q7174
+Q2912172
+Q315
+Q1471749
+Q208544
+Q7188
+Q145
+Q728944
+Q1101080
+Q209190
+Q860
+Q76
+Q190258
+Q7502926
+Q47035128
+Q35473
+Q523536

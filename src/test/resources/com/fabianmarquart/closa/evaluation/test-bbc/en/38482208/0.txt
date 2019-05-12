@@ -1,22 +1,193 @@
-'Russia hacking code' found on Vermont utility computer
-
-An electrical company in the US state of Vermont says it has found malware code allegedly used by Russian hackers on one of its company laptops.
-The Burlington Electric Department said it had taken "immediate action to isolate" the computer, which was not connected to the electrical grid.
-The government alerted them to the "Grizzly Steppe" code on Thursday.
-The same day, the US expelled 35 Russian diplomats over alleged Russian interference in November's election.
-Moscow has denied any involvement in the hacking of the Democratic party and Hillary Clinton's presidential campaign.
-On Friday, US President-elect Donald Trump praised Russian President Vladimir Putin for not expelling American diplomats in a tit-for-tat response.
-Diplomatic spat goes undiplomatic
-Can the hack be traced to Russia?
-The Burlington company said it was "working with federal officials to trace this malware and prevent any other attempts to infiltrate utility systems".
-It has also briefed state officials and vowed to fully support the investigation.
-The statement followed a Washington Post report, citing unnamed US officials, that Russian hackers had penetrated the electrical facility, underlining the vulnerability of America's national grid.
-The newspaper later retracted the claim that hackers had accessed the grid, saying the computer hacked was not attached to the system.
-According to the news website: "The incursion may have been designed to disrupt the utility's operations or as a test to see whether they could penetrate a portion of the grid."
-Politicians in Vermont, including the Democrat Governor, Peter Shumlin, are calling for a full investigation into the incident.
-"Vermonters and all Americans should be both alarmed and outraged that one of the world's leading thugs, [Russian President] Vladimir Putin, has been attempting to hack our electric grid, which we rely upon to support our quality-of-life, economy, health, and safety," he said in a statement.
-Democratic congressman Peter Welch said the discovery showed "how rampant Russian hacking is".
-"It's systemic, relentless, predatory," he added.
-US officials believe Russia was behind the hacking of Ukraine's electrical grid in December 2015, which plunged parts of the country into darkness and left about 225,000 people without power.
-Experts said it was the first known power outage caused by a cyber attack.
-Update 25 January 2017: This story has been updated to make clear that the Washington Post has since retracted the claim in its article that hackers had accessed the US national grid.
+Q627319
+Q159
+Q2144405
+Q188889
+Q8043
+Q16551
+Q312466
+Q102538
+Q30
+Q30
+Q7275
+Q16551
+Q7429143
+Q14001
+Q188889
+Q32188232
+Q278368
+Q159
+Q1487
+Q199
+Q102538
+Q3962
+Q4999236
+Q7429143
+Q188473
+Q275473
+Q12855
+Q1096907
+Q1519469
+Q7737401
+Q7188
+Q950158
+Q4442289
+Q188889
+Q129
+Q7762159
+Q573
+Q30
+Q30
+Q379693
+Q434712
+Q159
+Q193391
+Q32188232
+Q159
+Q136980
+Q125
+Q40231
+Q649
+Q1343202
+Q36949023
+Q2144405
+Q4280
+Q200538
+Q6294
+Q831663
+Q130
+Q30
+Q22686
+Q1208425
+Q159
+Q704271
+Q7747
+Q463257
+Q193391
+Q1367487
+Q1920566
+Q7574000
+Q11185
+Q15835484
+Q159
+Q1071790
+Q4999221
+Q102538
+Q7429143
+Q382887
+Q15835484
+Q14001
+Q1717246
+Q29142
+Q1127330
+Q312466
+Q4967012
+Q19752385
+Q382887
+Q1144504
+Q10940
+Q21004260
+Q613299
+Q31888506
+Q10870555
+Q18089080
+Q42503289
+Q30
+Q382887
+Q159
+Q1487
+Q25351855
+Q13226383
+Q631425
+Q30
+Q1519469
+Q11032
+Q2141963
+Q836925
+Q1487
+Q29466124
+Q1519469
+Q3026787
+Q11185
+Q230629
+Q1770792
+Q17502905
+Q1153191
+Q35127
+Q82604
+Q5282724
+Q312466
+Q362482
+Q27318
+Q2191756
+Q25351855
+Q2105114
+Q1519469
+Q82955
+Q16551
+Q881146
+Q21004260
+Q4202290
+Q846570
+Q199
+Q16502
+Q16502
+Q11348765
+Q159
+Q704271
+Q7747
+Q11185
+Q1096907
+Q1519469
+Q21092971
+Q10940
+Q159810
+Q12147
+Q24994
+Q7429143
+Q613299
+Q14761450
+Q1112656
+Q7429143
+Q753297
+Q7502926
+Q1469340
+Q159
+Q2144405
+Q32043
+Q30
+Q382887
+Q17573152
+Q159
+Q2144405
+Q212
+Q1096907
+Q1519469
+Q16726269
+Q11187127
+Q906997
+Q6256
+Q204170
+Q5338673
+Q5
+Q25107
+Q381160
+Q7429143
+Q828827
+Q28914147
+Q179289
+Q4071928
+Q81672
+Q33122609
+Q20650869
+Q12681718
+Q217086
+Q26186900
+Q306484
+Q2141963
+Q836925
+Q103184
+Q1487
+Q29466124
+Q30
+Q30
+Q1519469

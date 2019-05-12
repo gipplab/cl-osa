@@ -26,7 +26,7 @@ public abstract class EvaluationSet {
     protected Map<String, List<String>> candidateIdTokensMap = new HashMap<>();
     protected Map<String, List<String>> suspiciousIdTokensMap = new HashMap<>();
 
-    protected Map<String, Map<String, Double>> suspiciousIdDetectedCandidateIdsMap;
+    protected Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap;
 
     protected Map<String, String> suspiciousIdLanguageMap = new HashMap<>();
     protected Map<String, String> candidateIdLanguageMap = new HashMap<>();
@@ -295,6 +295,19 @@ public abstract class EvaluationSet {
         // perform analysis
         performAnalysis();
 
+        // TODO: similarity distribution (similarity of aligned documents)
+        Map<Float, Integer> alignedDocumentSimilarities = new HashMap<>();
+
+        for (String suspiciousId : suspiciousIdCandidateScoresMap.keySet()) {
+            Float alignedDocumentSimilarityPercent = (float) (suspiciousIdCandidateScoresMap.get(suspiciousId).get(suspiciousIdCandidateIdMap.get(suspiciousId)) * 100);
+            alignedDocumentSimilarityPercent = Math.round(alignedDocumentSimilarityPercent / 10.0f) * 10.0f;
+            if (alignedDocumentSimilarities.containsKey(alignedDocumentSimilarityPercent)) {
+                alignedDocumentSimilarities.put(alignedDocumentSimilarityPercent, alignedDocumentSimilarities.get(alignedDocumentSimilarityPercent) + 1);
+            } else {
+                alignedDocumentSimilarities.put(alignedDocumentSimilarityPercent, 1);
+            }
+        }
+
         List<Float> precisions = new ArrayList<>();
         List<Float> recalls = new ArrayList<>();
         List<Float> fMeasures = new ArrayList<>();
@@ -305,10 +318,10 @@ public abstract class EvaluationSet {
 
         List<Integer> ranks = Arrays.asList(1, 2, 3, 5, 10, 20, 50);
 
-        for (int lowestRank : ranks) {
+        for (int currentRank : ranks) {
 
             System.out.println();
-            evaluation.append("Values for ranks 1 to ").append(lowestRank + 1).append(":\n\n");
+            evaluation.append("Values for ranks 1 to ").append(currentRank).append(":\n\n");
 
             // print evaluation
             int truePositives = 0;
@@ -318,31 +331,33 @@ public abstract class EvaluationSet {
             int collectionSize = candidateIdTokensMap.size();
             int irrelevantElements = collectionSize - relevantElements;
 
-            for (String suspiciousId : suspiciousIdDetectedCandidateIdsMap.keySet()) {
-                int candidateCount = suspiciousIdDetectedCandidateIdsMap.get(suspiciousId).size();
+            for (String suspiciousId : suspiciousIdCandidateScoresMap.keySet()) {
+                int candidateCount = suspiciousIdCandidateScoresMap.get(suspiciousId).size();
+
 
                 System.out.println("Candidate count for " + suspiciousId + ": " + candidateCount);
 
                 if (candidateCount > 0) {
-                    selectedElements += suspiciousIdDetectedCandidateIdsMap
+                    selectedElements += suspiciousIdCandidateScoresMap
                             .get(suspiciousId)
                             .entrySet()
                             .stream()
                             .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-                            .limit(lowestRank + 1)
+                            .limit(currentRank)
                             .collect(Collectors.toList())
                             .size();
 
-                    if (suspiciousIdDetectedCandidateIdsMap
+                    if (suspiciousIdCandidateScoresMap
                             .get(suspiciousId)
                             .entrySet()
                             .stream()
                             .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-                            .limit(lowestRank + 1)
+                            .limit(currentRank)
                             .map(Map.Entry::getKey)
                             .collect(Collectors.toList())
                             .contains(suspiciousIdCandidateIdMap.get(suspiciousId))) {
                         truePositives += 1;
+
                     } else {
                         falsePositives += 1;
                     }
@@ -372,6 +387,9 @@ public abstract class EvaluationSet {
         evaluation.append("Precision: ").append(precisions).append("\n");
         evaluation.append("Recall: ").append(recalls).append("\n");
         evaluation.append("F-Measure: ").append(fMeasures);
+        evaluation.append("\n\n").append("Aligned document similarities");
+        evaluation.append("\n\n");
+        evaluation.append(alignedDocumentSimilarities);
 
         System.out.println(evaluation);
 

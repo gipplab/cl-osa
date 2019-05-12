@@ -67,7 +67,7 @@ public class TOSAEvaluationSet extends EvaluationSet {
         System.out.println("Create dictionary \n");
         Dictionary<String> dictionary = new Dictionary<>(candidateIdTokensMap);
 
-        suspiciousIdDetectedCandidateIdsMap = new HashMap<>();
+        suspiciousIdCandidateScoresMap = new HashMap<>();
 
         // perform detailed analysis
         System.out.println("Perform detailed analysis \n");
@@ -104,7 +104,7 @@ public class TOSAEvaluationSet extends EvaluationSet {
 
             }
 
-            suspiciousIdDetectedCandidateIdsMap.put(suspiciousId, candidateScoreMap);
+            suspiciousIdCandidateScoresMap.put(suspiciousId, candidateScoreMap);
 
         });
     }

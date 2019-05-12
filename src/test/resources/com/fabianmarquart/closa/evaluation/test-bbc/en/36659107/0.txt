@@ -1,40 +1,317 @@
-Istanbul Ataturk airport attack: 41 dead and more than 230 hurt
-
-A gun and bomb attack on Istanbul's Ataturk airport has killed 41 people, at least 13 of them foreigners, and injured more than 230, officials say.
-Three attackers arrived in a taxi and began firing at the terminal entrance late on Tuesday. They blew themselves up after police fired back.
-PM Binali Yildirim said early signs pointed to so-called Islamic State but no-one has so far admitted the attack.
-Recent bombings have been linked to either IS or Kurdish separatists.
-Tuesday's attack looked like a major co-ordinated assault, says the BBC's Mark Lowen.
-Ataturk airport has long been seen as a vulnerable target, our Turkey correspondent adds, reporting from a plane stuck on the tarmac in Istanbul.
-There are X-ray scanners at the entrance to the terminal but security checks for cars are limited.
-Pictures from the airport terminal showed bodies covered in sheets, with glass and abandoned luggage littering the building.
-Turkish President Recep Tayyip Erdogan said the attack should serve as a turning point in the global fight against militant groups.
-"The bombs that exploded in Istanbul today could have gone off at any airport in any city around the world," he said.
-The US called the attack "heinous", saying America remained "steadfast in our support for Turkey".
-German Interior Minister Thomas de Maiziere called the attacks "cowardly and brutal".
-Istanbul's governor confirmed 41 people had died and 239 were injured in the attack. At least 13 of those killed were of foreign or dual nationality. Some 109 of those hurt have now been discharged from hospital.
-One Iranian and one Ukrainian were confirmed dead.
-Reports of the attack vary but it appears the attackers opened fire at the entrance where the X-ray machines are positioned, sparking an exchange with police. At least two ran into the building.
-Footage on social media shows one moving through the building as people around him flee. He is shot by police and remains on the ground for about 20 seconds before blowing himself up. All three attackers were killed.
-The lack of any immediate claim for this attack by so-called Islamic State is not surprising. IS rarely, if ever, claims responsibility for attacks against the Turkish state yet it is quick to advertise its assassinations of Syrian activists inside Turkey.
-All the signs point towards IS being the culprits. This is what British counter-terrorism officials term "a marauding terrorist firearms attack", following a pattern first seen in the Mumbai attacks of 2008.
-The Istanbul targets were international air travellers and ground staff at an iconic location, the third busiest airport in Europe.
-IS is targeting Turkey because it sees its government as being un-Islamic and too close to its Western allies in Nato. IS is also feeling the pressure as the Turkish authorities move to close down its networks inside Turkey.
-Turkey's other main foe, Kurdish separatists, have carried out many attacks over the years but their primary targets have tended to be Turkish policemen and soldiers.
-Paul Roos, who was due to fly home to South Africa, told Reuters he saw one of the attackers.
-"He was wearing all black. His face was not masked. We ducked behind a counter but I stood up and watched him. Two explosions went off shortly after one another. By that time he had stopped shooting.
-"He turned around and started coming towards us. He was holding his gun inside his jacket. He looked around anxiously to see if anyone was going to stop him and then went down the escalator. We heard some more gunfire and then another explosion, and then it was over."
-Taxis were used to rush casualties to hospital after the attack. Desperate relatives of those missing later gathered outside a local hospital where many victims were taken.
-Flights in and out of the airport were suspended after the attack. They have now resumed, but information boards showed about one-third had been cancelled, with many delays.
-Charles Michel, the prime minister of Belgium whose capital city was targeted by bombers in March, tweeted from the EU summit in Brussels: "Our thoughts are with the victims of the attacks at Istanbul's airport. We condemn these atrocious acts of violence."
-#PrayforTurkey began trending on Twitter after the attack.
-2016
-7 June, Istanbul: Car bomb kills seven police officers and four civilians. Claimed by Kurdish militant group TAK
-19 March, Istanbul: Suicide bomb kills four people in shopping street. IS blamed
-13 March, Ankara: Car bomb kills 35. Claimed by TAK
-17 February, Ankara: 29 killed in attack on military buses. Claimed by TAK
-12 January, Istanbul: 12 Germans killed by Syrian bomber in tourist area
-2015
-23 December, Istanbul: Bomb kills cleaner at Istanbul's Sabiha Gokcen airport. Claimed by TAK
-10 October, Ankara: More than 100 killed at peace rally outside railway station. Blamed on IS
-20 July, Suruc, near Syrian border: 34 people killed in bombing in Kurdish town. IS blamed
+Q86473
+Q1248784
+Q81672
+Q712623
+Q4
+Q47035128
+Q528607
+Q5413585
+Q17143371
+Q891854
+Q81672
+Q406
+Q5152
+Q1248784
+Q931260
+Q712623
+Q5
+Q37141
+Q473741
+Q47035128
+Q528607
+Q382887
+Q7429143
+Q201
+Q280658
+Q12769393
+Q82650
+Q23759131
+Q17052147
+Q216640
+Q1137365
+Q40719766
+Q127
+Q3242199
+Q35535
+Q3196
+Q180686
+Q7429143
+Q40719727
+Q262246
+Q11175
+Q2429253
+Q7275
+Q23257209
+Q847337
+Q81672
+Q891854
+Q102014
+Q36368
+Q127
+Q81672
+Q613617
+Q365680
+Q7429143
+Q9531
+Q6768645
+Q5152
+Q1248784
+Q2191756
+Q278113
+Q170212
+Q43
+Q1155838
+Q32043
+Q11030
+Q197
+Q2872553
+Q573970
+Q406
+Q9968
+Q82744
+Q1137365
+Q216640
+Q169489
+Q80042
+Q1420
+Q177239
+Q478798
+Q849706
+Q216640
+Q7502926
+Q48422
+Q155171
+Q196878
+Q11469
+Q305418
+Q865054
+Q41176
+Q256
+Q704271
+Q39259
+Q7429143
+Q81672
+Q44127
+Q569250
+Q44946
+Q650711
+Q17149090
+Q83306
+Q127197
+Q179057
+Q406
+Q3151690
+Q1248784
+Q7930989
+Q16502
+Q16502
+Q7429143
+Q30
+Q30
+Q81672
+Q3026787
+Q30
+Q1058733
+Q43
+Q183
+Q30577840
+Q6348972
+Q9438
+Q81672
+Q406
+Q48352
+Q188613
+Q712623
+Q5
+Q45089
+Q845630
+Q81672
+Q37141
+Q931260
+Q756296
+Q231002
+Q604950
+Q5413585
+Q13963
+Q16917
+Q199
+Q794
+Q199
+Q159
+Q188613
+Q4
+Q10870555
+Q81672
+Q214981
+Q3620816
+Q280658
+Q2735683
+Q1137365
+Q9968
+Q11019
+Q179076
+Q35535
+Q200
+Q1210151
+Q41176
+Q1192650
+Q202833
+Q1740954
+Q7502926
+Q199
+Q41176
+Q5
+Q290088
+Q35535
+Q55082364
+Q1349417
+Q40292
+Q11574
+Q5248757
+Q201
+Q280658
+Q931260
+Q17539467
+Q6468673
+Q836925
+Q81672
+Q2429253
+Q7275
+Q4697206
+Q28962310
+Q836925
+Q81672
+Q256
+Q7275
+Q57055076
+Q10355417
+Q3882219
+Q1134739
+Q15253558
+Q43
+Q262246
+Q11175
+Q25551003
+Q842438
+Q909459
+Q382887
+Q1071233
+Q14886050
+Q12796
+Q81672
+Q47436102
+Q738168
+Q2191756
+Q1156
+Q81672
+Q1069941
+Q406
+Q170212
+Q845956
+Q406714
+Q22813352
+Q11300301
+Q192193
+Q2221906
+Q1248784
+Q46
+Q7685924
+Q43
+Q2191756
+Q7188
+Q21818619
+Q2986600
+Q3612401
+Q6038735
+Q205555
+Q39552
+Q256
+Q174834
+Q27105472
+Q12731
+Q141488
+Q43
+Q43
+Q3278265
+Q289891
+Q36368
+Q1333956
+Q81672
+Q577
+Q2110192
+Q170212
+Q749311
+Q256
+Q384593
+Q3329016
+Q3372131
+Q327611
+Q7743
+Q258
+Q806805
+Q130879
+Q2191756
+Q199
+Q280658
+Q23445
+Q37017
+Q116441
+Q286899
+Q247299
+Q199
+Q1510380
+Q28973077
+Q200
+Q179057
+Q199
+Q11471
+Q51597
+Q2154246
+Q304479
+Q529711
+Q10494269
+Q17143371
+Q849964
+Q2191756
+Q51597
+Q15003
+Q179057
+Q28835627
+Q278368
+Q744865
+Q1056901
+Q16917
+Q81672
+Q171318
+Q16917
+Q1851760
+Q206021
+Q1248784
+Q35855188
+Q81672
+Q950511
+Q11028
+Q520096
+Q7502926
+Q4066775
+Q1426138
+Q950958
+Q14212
+Q83307
+Q31
+Q5119
+Q7930989
+Q170212
+Q170877
+Q110
+Q399793
+Q458
+Q8502
+Q239
+Q9420
+Q1851760
+Q81672
+Q406
+Q1248784
+Q49371
+Q124490

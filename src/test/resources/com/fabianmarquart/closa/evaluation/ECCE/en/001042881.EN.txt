@@ -1,43 +1,241 @@
-In a fortnight Barack Obama will submit his last budget before the election.
-Let us hope it improves on last week's State of the Union address.
-To be sure, America's tax system is unfair and needs to be reformed.
-With the exception of the 30 per cent minimum tax on millionaires, which smacked of election-year gimmickry, Mr Obama's proposals were too timid.
-Much like Bill Clinton in the 1990s, Mr Obama is slipping into a habit of fiddling with the tax system rather than trying to overhaul it.
-The US tax code cries out for simplification.
-Mr Obama offers only to add to its complexity.
-His proposals disappointed on two important counts.
-First, by downplaying fiscal reform, Mr Obama ducked America's biggest challenge.
-That may be understandable given that last year Washington only narrowly avoided a default in what would have been the biggest unforced error in memory.
-Yet that is no excuse for inaction.
-It is not too late to pick up on last year's Simpson-Bowles plan,which would have broadened the tax base and abolished most exemptions.
-The report had its flaws – notably putting a 21 per cent ceiling on spending as a share of gross dom-estic product.
-No government can operate under such constraints.
-But it offered a good basis to tackle America's long-term deficit while making the tax system simpler and more pro-growth.
-If the president has a better proposal, he should offer it before November.
-Second, Mr Obama is guilty of small-bore tokenism.
-It may make electoral sense to scatter more tax breaks on high-tech manufacturers, clean energy producers, small businesses, companies that are “re-shoring” and other attractive-sounding causes.
-But the real victors will be the lawyers and accountants.
-The urge to tinker is a mark of impotence.
-Together these measures add up to far less than a sum of their parts.
-Mr Obama's stated goals are good – to boost jobs and investment in the US economy, and spread the tax burden more equitably.
-But there are far better ways of achieving them.
-By eliminating most tax loopholes, for example, he could reduce the headline personal and corporate tax rates and still boost revenues.
-Ronald Reagan did this in 1986.
-Mr Obama should champion it in 2012.
-He should also let George W. Bush's tax cuts expire at the end of this year.
-Likewise, the system could be made fairer and more efficient by taxing debt and equity at the same rate.
-Equalising the capital gains tax – and scrapping the “carried interest” loophole for investment income – would also bring political benefits.
-Like many in America's top 1 per cent, Mitt Romney pays an effective a rate of about 15 per cent – far below many middle-class Americans.
-Most of his money was made at Bain Capital, which, like all private equity groups, benefits from a federal debt interest subsidy.
-It should be eliminated.
-Instead Mr Obama offered a minimum tax on the wealthy and a similar floor on companies that keep their earnings offshore.
-Rather than address the underlying flaws, Mr Obama came up with more ad hoc fixes.
-Without a doubt, Mr Romney's tax plan is worse.
-He would reduce the corporate tax rate without scrapping loopholes.
-And he would require draconian spending cuts to make up for the lost revenue – particularly since he would ring fence defence spending.
-Mr Romney's plan would add to the deficit while making the system less progressive.
-In its favour, it is at least innocent of the charge of timidity.
-All of which makes Mr Obama's caution harder to fathom.
-Sooner or later America will have its fiscal reckoning.
-Instead of playing to the electoral gallery, Mr Obama should offer a bold vision for fiscal overhaul.
-In politics, as in business, it is always better to stay ahead of the curve.
+Q2993680
+Q76
+Q196092
+Q41263
+Q40231
+Q9788
+Q190507
+Q23387
+Q7275
+Q5025566
+Q67077
+Q319608
+Q30
+Q2532964
+Q190258
+Q900406
+Q20980698
+Q42817
+Q58093
+Q1637963
+Q8161
+Q1075912
+Q382586
+Q76
+Q3918409
+Q1124
+Q76
+Q12029
+Q2532964
+Q4393174
+Q30
+Q30
+Q7689416
+Q188889
+Q29463760
+Q76
+Q1193004
+Q32043
+Q723897
+Q3918409
+Q621206
+Q200
+Q3519259
+Q900406
+Q76
+Q286899
+Q30
+Q2988681
+Q577
+Q23
+Q1717246
+Q281782
+Q29485
+Q492
+Q552754
+Q40719766
+Q55670909
+Q577
+Q611203
+Q8161
+Q11193
+Q322732
+Q1383686
+Q10870555
+Q5801290
+Q712477
+Q58093
+Q221706
+Q11692
+Q1547498
+Q40276
+Q7188
+Q131030
+Q2303305
+Q1193004
+Q15290
+Q189569
+Q24976
+Q30
+Q444600
+Q2532964
+Q30461
+Q21255605
+Q3918409
+Q1193004
+Q125
+Q11574
+Q76
+Q30331417
+Q26186900
+Q173253
+Q7689411
+Q903577
+Q6606110
+Q4116742
+Q11379
+Q131427
+Q1109680
+Q2912172
+Q102538
+Q2574811
+Q286583
+Q40348
+Q326653
+Q17090812
+Q338221
+Q1101080
+Q1089123
+Q184674
+Q192276
+Q32043
+Q23257209
+Q52834024
+Q218005
+Q76
+Q613299
+Q18530
+Q15290
+Q192581
+Q88272
+Q30
+Q30
+Q159810
+Q611035
+Q8161
+Q1078386
+Q23257209
+Q21255605
+Q17641254
+Q8161
+Q2995606
+Q12335479
+Q912546
+Q1313396
+Q645011
+Q1128317
+Q736288
+Q850210
+Q9960
+Q2813507
+Q76
+Q646324
+Q1489579
+Q9788
+Q207
+Q8161
+Q320553
+Q2197000
+Q40719766
+Q577
+Q1770792
+Q26186900
+Q3196867
+Q827451
+Q736288
+Q687591
+Q854659
+Q8161
+Q336332
+Q499193
+Q170924
+Q2995606
+Q88272
+Q850210
+Q2383321
+Q30
+Q199
+Q58093
+Q4496
+Q1640172
+Q736288
+Q38701
+Q724178
+Q23257209
+Q846570
+Q1368
+Q26186900
+Q803873
+Q476115
+Q827451
+Q83306
+Q2383321
+Q3196867
+Q170924
+Q193219
+Q76
+Q1193004
+Q1637963
+Q8161
+Q26256352
+Q217164
+Q102538
+Q172964
+Q28008314
+Q5801290
+Q76
+Q5025838
+Q192683
+Q34302
+Q371280
+Q8161
+Q611203
+Q21255921
+Q912546
+Q645011
+Q1128317
+Q736288
+Q336332
+Q2995606
+Q774228
+Q27038146
+Q320553
+Q131207
+Q20861252
+Q850210
+Q45926
+Q148571
+Q838247
+Q371280
+Q611203
+Q32043
+Q444600
+Q1770792
+Q4877042
+Q359385
+Q73792
+Q26186900
+Q76
+Q10566551
+Q6502423
+Q30
+Q11410
+Q164419
+Q76
+Q1193004
+Q162668
+Q4393174
+Q7163
+Q2912172
+Q21255605
+Q161973

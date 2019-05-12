@@ -1,22 +1,168 @@
-The bone thrown by the Basel committee to the banks in relaxing the new “liquidity coverage ratio” at the weekend was largely what the industry had wanted.
-It was also a capitulation to good sense as much as one to sectoral interests.
-The LCR requires banks to hold liquid assets at least equal to the amount of capital clients might be expected to withdraw over a 30-day period in a crisis.
-The collapse of Lehman Brothers – when the global financial system was brought to its knees by one bank running out of funds – showed why such a requirement is necessary.
-But the draft LCR's original definition of high-quality liquid assets was ill-designed.
-By treating government debt as the most liquid of assets, it echoed the earlier Basel error of treating it as risk-free.
-The painful lesson of the eurozone crisis is that sovereign debt need be neither.
-The banks were right, therefore, to push for a wider definition of liquid assets including blue-chip stocks and corporate bonds.
-If trading in such securities can remain liquid even when some sovereign debt markets freeze, including them – subject to proper haircuts – encourages more diversified and robust liquidity buffers.
-The Basel committee accepted this.
-It also added sensible guidance to make clear that a bank may run down its liquidity stockpile in a crisis with the permission of its supervisor.
-A liquidity buffer is a powder to be kept dry so that it can be used when needed, not held on to in all circumstances.
-Other goodies the banking sector asked for and obtained are less easily justifiable.
-Basel gave more than banks had dared to expect on how bad a liquidity squeeze they must be prepared for.
-The assumed outflow rates have been cut, sometimes by a lot.
-We have learnt, however, that historical experience is a poor guide to how bad things can become.
-Retaining a more conservative approach would have been wiser, especially as a broadened class of eligible assets already makes the LCR less onerous.
-Important as the LCR is, it must not overshadow the importance of bank solvency.
-Central banks can always provide liquidity, and while their facilities should not be a first resort for banks, the Basel committee is right to signal it will incorporate access to them in its rules.
-Insolvent banks, in contrast, must not be rescued by money presses.
-Similarly, the Bank of England's Mervyn King underlined that there is no way an LCR can deal with a solvency crisis.
-A decent liquidity rule does not compensate for Basel III's pusillanimous and overly-delayed capital adequacy rules.
+Q6753652
+Q265868
+Q172560
+Q78
+Q865588
+Q22687
+Q1954125
+Q1827667
+Q2705220
+Q3481047
+Q211391
+Q8148
+Q26256512
+Q217901
+Q15290
+Q173253
+Q199
+Q170924
+Q774228
+Q22687
+Q196431
+Q11435
+Q46737
+Q5119
+Q528166
+Q1362683
+Q1760704
+Q12171
+Q381072
+Q1309431
+Q212900
+Q990817
+Q574833
+Q1416617
+Q37425
+Q199
+Q806663
+Q105674
+Q25392373
+Q7502926
+Q774228
+Q5162775
+Q31603
+Q23013268
+Q101072
+Q11435
+Q46737
+Q12695
+Q3196867
+Q11435
+Q46737
+Q182767
+Q78
+Q29485
+Q337921
+Q381072
+Q584496
+Q3196867
+Q190258
+Q7715561
+Q22687
+Q14565199
+Q1756083
+Q101072
+Q11435
+Q46737
+Q909380
+Q6503112
+Q11693
+Q601401
+Q169489
+Q24759380
+Q11435
+Q584496
+Q540626
+Q37654
+Q584561
+Q164573
+Q1867823
+Q327496
+Q1827667
+Q208465
+Q78
+Q865588
+Q32043
+Q26186900
+Q306484
+Q22687
+Q1210151
+Q1827667
+Q2710737
+Q381072
+Q231043
+Q363802
+Q1827667
+Q208465
+Q1101080
+Q2908004
+Q172964
+Q56300805
+Q278368
+Q190258
+Q196431
+Q3629141
+Q3435731
+Q219858
+Q78
+Q47035128
+Q22687
+Q19357892
+Q1362683
+Q3566043
+Q1827667
+Q29814939
+Q227552
+Q24247591
+Q3308838
+Q736288
+Q44364
+Q220998
+Q11448873
+Q164359
+Q1101080
+Q16738028
+Q1039099
+Q3566043
+Q35120
+Q7169
+Q1801985
+Q18193
+Q46737
+Q26186900
+Q16886469
+Q22687
+Q1137437
+Q66344
+Q22687
+Q1827667
+Q13226383
+Q875157
+Q22687
+Q78
+Q865588
+Q14565199
+Q174984
+Q267712
+Q29466124
+Q104555
+Q22687
+Q690182
+Q17126809
+Q1368
+Q1193236
+Q26487354
+Q21
+Q1375680
+Q17641254
+Q321839
+Q1137437
+Q381072
+Q1827667
+Q104555
+Q1338171
+Q809926
+Q2914988
+Q5119
+Q3394043
+Q104555

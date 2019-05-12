@@ -1,20 +1,154 @@
-Recent revelations that many companies pay vanishingly little corporate tax have laid bare serious shortcomings in the international tax system.
-This has created a groundswell of demands for reform that politicians, struggling to make ends meet in a post-crisis world, are readier to meet.
-The plan produced by the OECD for the Group of 20 leading economies is an attempt to translate clamour into action.
-The OECD is right about the need for change.
-Existing international tax rules were designed decades ago in an era before tax havens and the digital economy.
-They have not kept up as the world has changed around them.
-Creative use of transfer pricing and the ambiguity surrounding the location of transactions in cyber space has enabled multinationals to book ever more of their profits in low-tax jurisdictions.
-Companies have become expert at exploiting the cracks between different systems to take charges against tax in one place while incurring no corresponding cost in another.
-Diagnosing the problem is easier than solving it.
-Notwithstanding the loss of public confidence, there is a free-rider problem: each country would like everyone else to stamp out avoidance without having to touch its own companies.
-Many states design their tax systems to attract inward investment and give their own countries a leg-up when they trade abroad.
-Within the G20 there are divisions between emerging and developed economies.
-Countries such as India would like multinationals to pay more tax in the countries where they do business.
-Advanced economies, with their greater reliance on overseas income, especially from intangibles, are more wary.
-The best outcome would be an international agreement on how to link tax bases to real economic activity and limit the creation of brass-plate subsidiaries whose sole purpose is to locate the most profitable parts of businesses in low-tax jurisdictions or in no jurisdiction at all.
-But a global deal is a tall order and the OECD sets aside such radical reform in favour of a more incremental approach.
-It remains to be seen whether states can rise to the challenge and act together under the OECD's aegis.
-They need to amend ill-designed national rules and bilateral treaties whose aim of no double taxation has had the effect of double no-taxation.
-Without such action, the risk is that they will act unilaterally to the detriment of global trade.
-The report is a start but there is much work to do.
+Q192906
+Q102538
+Q1640172
+Q645011
+Q8161
+Q6505497
+Q845956
+Q2532964
+Q386724
+Q4402708
+Q900406
+Q82955
+Q26186900
+Q5375780
+Q16502
+Q166259
+Q611203
+Q131427
+Q41550
+Q16887380
+Q40292
+Q11348765
+Q159810
+Q21503252
+Q29142
+Q333634
+Q188473
+Q41550
+Q14565199
+Q190258
+Q1150070
+Q845956
+Q8161
+Q104555
+Q82604
+Q39911
+Q29818766
+Q630830
+Q272051
+Q283202
+Q138461
+Q159810
+Q4697206
+Q16502
+Q16502
+Q1150070
+Q1724915
+Q646278
+Q2516951
+Q1140419
+Q23497974
+Q2221906
+Q601401
+Q107
+Q29809684
+Q571
+Q26911
+Q471855
+Q102538
+Q381160
+Q330694
+Q51921823
+Q73792
+Q8161
+Q199
+Q82794
+Q240673
+Q621184
+Q1121708
+Q211198
+Q4116378
+Q1101080
+Q621184
+Q6256
+Q3249878
+Q37930
+Q1717246
+Q877674
+Q102538
+Q7275
+Q82604
+Q2532964
+Q2247133
+Q88272
+Q6256
+Q1424605
+Q19771
+Q38348
+Q2843407
+Q159810
+Q6256
+Q668
+Q3249878
+Q1640172
+Q8161
+Q6256
+Q2912172
+Q159810
+Q47035128
+Q21092971
+Q850210
+Q7716611
+Q26132734
+Q2995644
+Q131569
+Q93288
+Q102014
+Q43900340
+Q189569
+Q286583
+Q8187769
+Q317949
+Q177239
+Q386724
+Q658255
+Q876082
+Q231823
+Q2221906
+Q2912172
+Q471855
+Q471855
+Q321839
+Q1101080
+Q36602
+Q41550
+Q36161
+Q170409
+Q900406
+Q1801985
+Q55082364
+Q2191756
+Q7275
+Q1139344
+Q2988681
+Q188473
+Q41550
+Q190258
+Q1269627
+Q104555
+Q9557810
+Q131569
+Q4503831
+Q1242836
+Q1964442
+Q926230
+Q191290
+Q188473
+Q104493
+Q188473
+Q601401
+Q10870555
+Q1101080
+Q529711
+Q28640

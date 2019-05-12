@@ -1,24 +1,156 @@
-Few big takeovers in recent years have received quite as harsh a reception as that accorded Hewlett-Packard's $11bn bid for the British software developer, Autonomy.
-Not only did the US technology group's shares crash on announcement; angry investors later forced out the chief executive responsible, Léo Apotheker.
-Now, just over a year later, it is clear how right the market was to be worried.
-HP has written down nearly $9bn – or 80 per cent of the purchase price.
-It alleges that a big chunk of these impairments are the result of Autonomy's “accounting irregularities, misrepresentations and disclosure failures”.
-While HP still believes in Autonomy's technology, the company's margins – long a source of wonder in the software industry – are lower than it thought.
-The responsibility for the failings identified in HP's somewhat belated independent due-diligence review (itself triggered by an internal whistleblower) has yet to be established.
-Autonomy's former boss, Mike Lynch, has denied any wrongdoing.
-But the sheer size of the gap in value makes it hard to credit this purely to Mr Apotheker's credulity – or HP's subsequent mismanagement.
-The allegations are serious.
-If true, they point to failings of process and governance.
-Accounting in software businesses is a notoriously slippery area.
-But the idea of mischaracterising more than 10 per cent of revenues – as high-margin software sales when they came from low-margin hardware – is hard to pass off as some oversight or bad judgment call.
-The US group has referred the allegations to the Securities and Exchange Commission and to the Serious Fraud Office in the UK.
-It is also seeking compensation.
-The investigations should uncover whether blame can be attached to Mr Lynch and his colleagues.
-They might also usefully look at the role played by Deloitte, Autonomy's auditors.
-If the allegations are correct, they stand accused of slumbering at the spreadsheet.
-The majority of mergers and acquisitions fail to add value.
-Valuing software companies is an art, not a science, and buying growth is a chancy business.
-HP may have been reckless but at least Mr Apotheker – if not his fellow directors – has paid the price.
-More worrying is the fact that Autonomy was not a start-up but a longstanding member of the FTSE 100 index.
-The sort of scrutiny it faced ought to have precluded the irregularities of which it is now accused.
-If these checks failed, that is the real scandal.
+Q1416898
+Q577
+Q159391
+Q51267085
+Q31948
+Q131569
+Q80978
+Q4917
+Q51081147
+Q842438
+Q183888
+Q5482740
+Q484105
+Q30
+Q30
+Q11016
+Q83306
+Q11692
+Q238053
+Q567303
+Q557880
+Q11402
+Q1162163
+Q35798
+Q78336
+Q577
+Q306484
+Q14565199
+Q37654
+Q1436482
+Q80978
+Q28389
+Q4917
+Q712467
+Q58093
+Q1369832
+Q160151
+Q2995644
+Q484105
+Q4116214
+Q30067981
+Q1121708
+Q80978
+Q17573152
+Q484105
+Q11016
+Q102538
+Q625360
+Q128751
+Q333173
+Q880371
+Q8148
+Q9420
+Q2039217
+Q80978
+Q625303
+Q265158
+Q3123740
+Q336751
+Q26102
+Q574562
+Q484105
+Q468388
+Q6847731
+Q1343202
+Q6765918
+Q7492502
+Q322481
+Q4153227
+Q19426
+Q26186900
+Q5655097
+Q182076
+Q37005053
+Q5183820
+Q80978
+Q18037037
+Q2839009
+Q16751793
+Q11175
+Q205663
+Q1553864
+Q4116214
+Q7397
+Q2912172
+Q1101080
+Q11500
+Q131841
+Q47035128
+Q23806
+Q58093
+Q850210
+Q7397
+Q194189
+Q5025838
+Q3966
+Q5655097
+Q1142227
+Q3566043
+Q1720612
+Q30
+Q30
+Q83306
+Q121769
+Q2839009
+Q1813958
+Q145
+Q1338171
+Q21004260
+Q621695
+Q230629
+Q665543
+Q18029574
+Q214339
+Q4197743
+Q491748
+Q26269483
+Q4819974
+Q2839009
+Q56557591
+Q1510380
+Q159394
+Q183197
+Q18000
+Q731112
+Q1362753
+Q32043
+Q19426
+Q1058914
+Q102538
+Q21503252
+Q735
+Q336
+Q1342838
+Q1101080
+Q2912172
+Q80978
+Q1025
+Q37005053
+Q1404101
+Q42178
+Q1640172
+Q160151
+Q188572
+Q484105
+Q129238
+Q21503252
+Q466496
+Q37413
+Q184848
+Q181593
+Q37017
+Q159394
+Q80042
+Q286583
+Q192909

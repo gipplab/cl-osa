@@ -1,29 +1,249 @@
-Since the financial crisis, emerging markets have enjoyed some indirect benefit from the sluggish recovery of the developed world.
-The unprecedented stimulus unleashed by the largest central banks has depressed yields on safe assets, pushing investors to search for higher rates in ever more exotic locations.
-Between 2010 and 2013, private capital inflows to developing countries jumped to about 6 per cent of their combined gross domestic product.
-This bonanza of funds is likely to slow down this year.
-The decision by the US Federal Reserve to taper its $85bn-a-month asset purchases will push up interest rates in the rich world, leading asset managers in the City of London and on Wall Street to rebalance their portfolios towards securities that are closer to home.
-While the prolonged monetary largesse by the European Central Bank and the Bank of Japan will reduce this exodus, companies and governments in emerging markets are expected to face higher borrowing costs.
-When the Fed threatened to begin unwinding quantitative easing last May, spreads on sovereign bonds of the likes of India and Brazil rose by 80 basis points in four months.
-The key question for policy makers in low- and middle-income countries is just how sudden the “great reversal” will be.
-A report by the World Bank out this week offers ground for optimism.
-The World Bank predicts that the transition to higher interest rates in the rich world is likely to be smooth.
-Between 2013 and 2016, the slowdown in capital inflows to all emerging markets is predicted to amount to a mere 0.6 per cent of their combined national income.
-Indeed, the relatively quiet market reaction to the December taper seems to vindicate this optimism.
-However, the risk of a more abrupt transition remains significant.
-Just as worryingly, the number of countries exposed to possible financial turmoil is larger than conventionally assumed.
-Research published by the Financial Times this week shows that at least eight middle-income countries would have difficulties in paying back their loans were the financial system to come to a “sudden stop”. The list includes countries that have long been under the spotlight because of their large current account deficits, such as Turkey, but also some darlings of the markets, for example Chile.
-The challenge for these economies is twofold.
-First, it is essential that they cut back exposure to flickering short-term debt.
-In particular, the stability of many non-financial corporations is a real cause of concern.
-Much like the banks brought down by the 1997-98 Asian financial crisis, these companies have borrowed heavily in foreign money and are vulnerable to sudden currency shifts.
-Second, emerging markets should seek to remain attractive to foreign investors even as global money becomes tighter.
-The first line of defence is for central banks to raise interest rates, as Brazil did on Wednesday.
-A timely rate rise can change the psychology of investors, but risks damp growth.
-A more durable solution is passing structural changes that lift the growth potential.
-This is the path taken by Mexico since the election of Enrique Peña Nieto as president.
-Not only has this reform spurt allowed Mexico to keep monetary policy looser than other countries. It has also made market participants interested in investing directly into the economy, which is a far more secure form of external financing than “hot money”.
-A strong recovery of the rich world can be excellent news for developing countries.
-Trade would pick up again leading their exports to boom.
-But for this rosier scenario to occur, emerging markets must shore up their financial systems, reducing reliance on short-term funding and improving competitiveness.
-Only this will ensure that their extraordinary economic journey can continue smoothly.
+Q114380
+Q381072
+Q546395
+Q37654
+Q15304518
+Q2383321
+Q29812254
+Q444184
+Q16502
+Q859031
+Q66344
+Q22687
+Q2383321
+Q471898
+Q46737
+Q557880
+Q4368940
+Q736288
+Q2221906
+Q851662
+Q1489644
+Q158668
+Q5119
+Q3247043
+Q6256
+Q1151752
+Q23488
+Q724178
+Q1547498
+Q40276
+Q25392373
+Q18122778
+Q24249439
+Q577
+Q25208718
+Q732833
+Q4917
+Q46737
+Q1369832
+Q179179
+Q736288
+Q16502
+Q11348765
+Q46737
+Q721834
+Q23311
+Q7930989
+Q84
+Q11690
+Q927450
+Q915026
+Q169489
+Q997419
+Q7743
+Q8901
+Q27865861
+Q502117
+Q17
+Q912546
+Q102538
+Q7188
+Q546395
+Q37654
+Q1362683
+Q37017
+Q103808
+Q240673
+Q53536
+Q23759131
+Q21087400
+Q119
+Q611035
+Q2324820
+Q11693
+Q668
+Q155
+Q1139344
+Q712467
+Q750178
+Q44946
+Q202
+Q5151
+Q7744165
+Q23445
+Q189756
+Q1156854
+Q209190
+Q6256
+Q7907894
+Q10870555
+Q7164
+Q23387
+Q1193004
+Q1349417
+Q485446
+Q7164
+Q1606712
+Q179179
+Q736288
+Q16502
+Q18122778
+Q19861550
+Q1489644
+Q12681716
+Q29813637
+Q5119
+Q3247043
+Q546395
+Q37654
+Q309314
+Q1421509
+Q11187553
+Q724178
+Q1057397
+Q850210
+Q37654
+Q192957
+Q126
+Q485446
+Q104493
+Q29812509
+Q1606712
+Q55082364
+Q16172260
+Q11563
+Q6256
+Q30230067
+Q165309
+Q24247591
+Q7315046
+Q2085381
+Q23387
+Q7502926
+Q23355
+Q6256
+Q16515105
+Q189539
+Q1416617
+Q51597
+Q7747540
+Q27948
+Q728944
+Q6256
+Q82916
+Q520952
+Q746687
+Q508295
+Q444600
+Q43
+Q446499
+Q37654
+Q12335479
+Q298
+Q18456057
+Q2988681
+Q159810
+Q44364
+Q271960
+Q3196867
+Q903517
+Q167037
+Q1101080
+Q286583
+Q2574811
+Q206361
+Q22687
+Q7974
+Q114380
+Q381072
+Q102538
+Q25702570
+Q1368
+Q278113
+Q8142
+Q1604733
+Q11574
+Q546395
+Q37654
+Q30269216
+Q24759380
+Q557880
+Q1368
+Q18689797
+Q37105
+Q838247
+Q66344
+Q22687
+Q884353
+Q179179
+Q736288
+Q155
+Q128
+Q736288
+Q1139344
+Q1150070
+Q9418
+Q557880
+Q104493
+Q260765
+Q1342838
+Q1879813
+Q336215
+Q1969120
+Q1150070
+Q132911
+Q1342838
+Q2296856
+Q817765
+Q20683640
+Q96
+Q40231
+Q296741
+Q30461
+Q900406
+Q1962593
+Q96
+Q172964
+Q178476
+Q1156854
+Q6256
+Q26186900
+Q37654
+Q56512863
+Q4290
+Q159810
+Q1101080
+Q23257209
+Q55707349
+Q18193
+Q28128222
+Q1368
+Q444184
+Q16502
+Q38926
+Q6256
+Q7831898
+Q55670909
+Q11348765
+Q182722
+Q179057
+Q103076
+Q546395
+Q37654
+Q468756
+Q1416617
+Q21092971
+Q6055890
+Q61509
+Q23090331

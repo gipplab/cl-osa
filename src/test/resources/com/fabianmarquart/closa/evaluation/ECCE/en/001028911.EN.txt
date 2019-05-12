@@ -1,41 +1,278 @@
-When the economic tide began to turn in 2006, as US housing prices peaked, few expected more than a gentle slowdown.
-After a record-long worldwide expansion, policymakers were congratulating themselves on having tamed the business cycle.
-That ""great moderation"" now looks more like a grand illusion — or at least a more equivocal victory than once thought.
-The length and strength of the boom were in no small part due to a complex financial system that multiplied the expansionary effect of gushing liquidity.
-When the slowdown eventually came, that financial system seized up.
-The downturned became an avalanche.
-It took staring into the abyss to concentrate leaders' minds, after initial halting responses to the crisis and denials of its severity.
-But at their Washington summit last November, after the Lehman collapse and the financial panic that ensued, G20 countries vowed to work together to prevent a second great depression, a commitment renewed in London in April.
-They succeeded.
-In doing so, they proved that though we were wrong to think we had escaped the vagaries of the business cycle, we did have the ability to overcome the vices of parochial politics that led to calamity in the 1930s.
-That is no small achievement, and one they must defend when they meet in Pittsburgh today.
-The avalanche seems to have stopped, but the slide has been brutal.
-The main industrial economies have suffered their greatest output loss since the second world war — production that the International Monetary Fund warns is lost forever.
-What growth can now be detected is almost exclusively powered by government stimulus.
-The financial system is still pathologically undercapitalised: banks have raised less than one tenth of the $1,700bn of fresh capital the IMF has estimated is needed, and securitisation remains sickly.
-All this casts a shadow over the recovery's strength.
-The world has stepped back from the brink, but is still skirting the edge of the precipice.
-More work is needed to get us back on a safe upward path.
-Leaders must not let success in preventing the worst weaken the will to take the necessary next steps.
-The policy dilemma in the middle of the crisis was that the policies required to halt the fall — deficit spending, flush liquidity, bank rescues — were different and sometimes opposite to the measures needed to prevent the dangers from building up again — lower indebtedness, less leverage and elimination of moral hazard.
-That dilemma has not disappeared;
-it may be getting worse as the time to switch from short-term crisis management to long-term prevention comes closer.
-Co-ordinating exit strategies is therefore the priority at this summit.
-Much is made, rightly, of making sure that global growth is balanced.
-In future, China, Germany and Japan must consume more, and the US must consume less.
-But rebalancing is by definition a co-ordinated activity.
-If the US ""rebalances"" — that is, starts saving more as a nation — without others increasing their spending, the risk is not unbalanced growth, but no growth at all.
-A broad consensus is needed both on the goal of long-term balance and on the process of short-term rebalancing.
-G20 countries have made good progress on regulatory reform, with the plans proposed in the US and Europe based on sound principles.
-The politics of reform has recently focused on higher capital requirements to stop banks from gorging on risky assets until they become too big to fail.
-But such rules must be implemented gradually, lest undercapitalised banks meet them by cutting lending.
-In the meantime, equally important are resolution regimes and ""living wills"" to ensure that even the largest banks can fail safely.
-On reform, too, co-ordination is needed — on when to raise capital ratios and how to manage insolvencies in truly global institutions.
-The vexed issue of bonuses is also being revisited.
-Much public anger at bankers' rewards is legitimate, and politicians are right to respond to it.
-They must also root out compensation schemes that encourage systemic risk.
-But quick fixes will do little: as long as banks have bloated profits, they will find a way to distribute them.
-Bonuses must not distract from deeper reforms to stop finance — supposed to be an intermediate product — from again gobbling up an ever larger share of corporate profits.
-The G20 must not now let its attention slip.
-World leaders are always vulnerable to domestic politics, but last year's danger helped them rise above their differences.
-As urgency wanes, leaders' responsibility to keep standing together is as important as ever.
+Q23384
+Q23759131
+Q304479
+Q841361
+Q30
+Q3975
+Q160151
+Q207326
+Q1362683
+Q47035128
+Q29813637
+Q1072012
+Q5420776
+Q18340078
+Q192311
+Q11442
+Q1941972
+Q182593
+Q50000
+Q9420
+Q36253
+Q605035
+Q179057
+Q24245823
+Q238156
+Q1416617
+Q1053266
+Q926230
+Q212379
+Q1827667
+Q29813637
+Q5025838
+Q1416617
+Q7935
+Q600717
+Q336525
+Q2226474
+Q32518
+Q8043
+Q450
+Q378408
+Q1920566
+Q381072
+Q1343202
+Q7972334
+Q8502
+Q125
+Q1128593
+Q1309431
+Q208450
+Q19771
+Q6256
+Q1144504
+Q327055
+Q1717246
+Q11574
+Q42844
+Q17285911
+Q2144402
+Q84
+Q118
+Q29485
+Q11185
+Q192311
+Q11442
+Q1347367
+Q40139189
+Q475638
+Q7163
+Q32518
+Q1689296
+Q12681684
+Q24245823
+Q2532754
+Q199
+Q159394
+Q1342
+Q3151690
+Q7935
+Q51597
+Q334747
+Q2460215
+Q3278265
+Q487965
+Q159810
+Q362347
+Q1121708
+Q11574
+Q103495
+Q198
+Q739302
+Q7804
+Q20861252
+Q1342838
+Q167676
+Q25107
+Q7188
+Q859031
+Q1416617
+Q22687
+Q884353
+Q52834024
+Q11184976
+Q28469720
+Q4917
+Q668
+Q41446476
+Q5119
+Q7804
+Q965330
+Q190258
+Q55082364
+Q496098
+Q160020
+Q444184
+Q605035
+Q16502
+Q16502
+Q3289701
+Q1630557
+Q26382
+Q24249527
+Q28640
+Q190258
+Q471898
+Q817765
+Q32518
+Q9788
+Q50000
+Q3289701
+Q1156854
+Q254128
+Q40719748
+Q381072
+Q1156854
+Q774228
+Q55678
+Q1314
+Q444600
+Q20679890
+Q1827667
+Q22687
+Q17126809
+Q51921823
+Q131779
+Q192276
+Q190258
+Q1717246
+Q13582404
+Q41176
+Q1148384
+Q44454
+Q753552
+Q254128
+Q4697206
+Q3030513
+Q21255921
+Q11471
+Q5320
+Q1141276
+Q338754
+Q1717246
+Q137
+Q997419
+Q1383865
+Q185451
+Q11888847
+Q8502
+Q26186900
+Q1342838
+Q344
+Q148
+Q183
+Q17
+Q22855
+Q30
+Q30
+Q22855
+Q101072
+Q317949
+Q30
+Q30
+Q529711
+Q319622
+Q6266
+Q104493
+Q4697206
+Q1342838
+Q1342838
+Q4097090
+Q202722
+Q190258
+Q18530
+Q134566
+Q205663
+Q19771
+Q6256
+Q26186900
+Q15290
+Q247792
+Q4013945
+Q900406
+Q611203
+Q3918409
+Q30
+Q30
+Q46
+Q11193
+Q11461
+Q158646
+Q7163
+Q900406
+Q3568
+Q2914988
+Q774228
+Q51597
+Q22687
+Q46737
+Q104555
+Q1183543
+Q22687
+Q176982
+Q210521
+Q5589178
+Q28640
+Q22687
+Q900406
+Q190258
+Q884353
+Q5119
+Q3481047
+Q338754
+Q757382
+Q178706
+Q86447
+Q4942650
+Q211198
+Q79871
+Q806798
+Q8043
+Q1321905
+Q82955
+Q14565199
+Q41500
+Q1338171
+Q1155772
+Q1369234
+Q104493
+Q57055076
+Q22687
+Q26911
+Q17641254
+Q1459069
+Q4942650
+Q3030775
+Q900406
+Q51597
+Q43015
+Q245032
+Q40276
+Q11692
+Q26911
+Q19771
+Q9788
+Q6501338
+Q1971493
+Q8035911
+Q32518
+Q278113
+Q7163
+Q577
+Q13582404
+Q23835475
+Q1139344
+Q845126
+Q32518
+Q8043
+Q683979

@@ -1,24 +1,184 @@
-Since the financial crisis, banks have talked a lot about the need to restore trust and prove their social usefulness.
-But the protestations of reform have often seemed pro-forma, concealing a real desire to return as swiftly as possible to pre-crunch business as usual.
-While acknowledging the need for stronger regulation, bosses have bridled at changing the way they manage institutions.
-They have persisted in chasing over-optimistic returns and paying sky-high salaries, arguing that to do otherwise would condemn their banks to also-ran status.
-The hard-sell investment banking culture has continued to predominate.
-As 2012 has gone on, however, cracks have appeared in this position.
-These are partly the product of costly scandals that have tumbled out, which have in turn underlined the reputational and financial costs of the sales culture.
-The revelation over the summer that banks had manipulated the Libor interest rate so outraged shareholders that in one case – that of Barclays – they ejected the entire top management team (which was dominated by investment bankers).
-Meanwhile, the spiralling cost of mis-selling scandals in the UK – for payment protection insurance and interest rate derivatives – has emphasised the threat posed to still-weak balance sheets by aggressive transaction-based banking.
-But it is not only scandals that have changed the mood.
-Tightening regulation has started to unpick elements of the pre-crunch model.
-By forcing investment banks to run with less leverage and driving up the marginal cost of funding, the new rules are progressively driving some banks out of trading.
-Last week, UBS of Switzerland acknowledged the writing on the wall and announced plans to shut down parts of its investment bank, shedding 10,000 jobs.
-These changes are welcome.
-While lucrative for practitioners, the pre-crunch banking model brought precious few social benefits. Little if any value was created for investors.
-It is telling that news of UBS's withdrawal precipitated a strong rally in its shares.
-But if it is welcome that banks are pulling back from some “me too” trading activities, this will not in itself end the hard-driving short term culture that has come to characterise banking institutions.
-More still needs to be done if the system is to be run in the interests of shareholders, customers and the economy rather than bankers themselves.
-Managements must be more realistic about the returns that banks can achieve, and more responsive to efforts to cut gearing and raise capital over time.
-Bonuses and pay should be more modest.
-The service culture must be restored in high street banking.
-These are not things that can be fixed by a few rule-tweaks, or by bolstering the capital that banks are required to hold. They require a real change of heart and expectation.
-If this cannot be achieved by the current leadership, a new generation will have to be sent for.
-For until there is real cultural change, the banker bashing will not end.
+Q114380
+Q381072
+Q22687
+Q603773
+Q220998
+Q190258
+Q446966
+Q659974
+Q345367
+Q21263262
+Q900406
+Q286583
+Q775842
+Q29950338
+Q30230067
+Q5001850
+Q28962312
+Q190258
+Q428148
+Q468388
+Q148558
+Q17641254
+Q338754
+Q178706
+Q368671
+Q1335051
+Q29950338
+Q194489
+Q22687
+Q813912
+Q319845
+Q3435731
+Q11042
+Q23090331
+Q1489579
+Q330694
+Q3620816
+Q192388
+Q40276
+Q192909
+Q304479
+Q240673
+Q194189
+Q11042
+Q192906
+Q28308492
+Q22687
+Q207351
+Q179179
+Q736288
+Q381136
+Q199
+Q3975
+Q245343
+Q425705
+Q2563977
+Q327245
+Q2883465
+Q806798
+Q240673
+Q192909
+Q145
+Q1148747
+Q2251595
+Q43183
+Q179179
+Q736288
+Q29175
+Q707125
+Q1671968
+Q46834
+Q196878
+Q11849872
+Q3435731
+Q192909
+Q1150070
+Q184932
+Q428148
+Q557828
+Q11344
+Q193946
+Q1003136
+Q319845
+Q22687
+Q174493
+Q1148384
+Q628839
+Q382444
+Q240673
+Q6055890
+Q1954125
+Q104555
+Q628839
+Q22687
+Q601401
+Q19114386
+Q23387
+Q193199
+Q39
+Q457597
+Q37260
+Q42948
+Q1371925
+Q611203
+Q29817744
+Q319845
+Q22687
+Q381084
+Q427923
+Q192581
+Q1150070
+Q13109234
+Q3435731
+Q193946
+Q15623228
+Q2383321
+Q19426
+Q386724
+Q557880
+Q38926
+Q193199
+Q1760704
+Q25257
+Q175331
+Q11692
+Q13109234
+Q22687
+Q199
+Q601401
+Q317949
+Q3123740
+Q5375780
+Q57055076
+Q1071233
+Q11042
+Q23404
+Q3435731
+Q178706
+Q190258
+Q1770792
+Q174493
+Q170924
+Q381136
+Q247797
+Q159810
+Q806798
+Q338754
+Q29950338
+Q22687
+Q14536140
+Q44364
+Q884353
+Q5119
+Q11471
+Q4942650
+Q1640172
+Q7763389
+Q906066
+Q11042
+Q446966
+Q5754843
+Q34442
+Q3435731
+Q35120
+Q3073127
+Q5119
+Q22687
+Q774228
+Q196431
+Q774228
+Q286583
+Q1150070
+Q1072
+Q1362683
+Q11651
+Q484275
+Q1954125
+Q213381
+Q877558
+Q286583
+Q5193493
+Q1150070
+Q806798
+Q5375780

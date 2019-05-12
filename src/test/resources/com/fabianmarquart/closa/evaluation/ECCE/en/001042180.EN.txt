@@ -1,38 +1,277 @@
-For the past 30 years, going back well before the Maastricht treaty, successive British governments have sought to maintain influence in Brussels while steering clear of some of the European Union's signature projects, notably the single currency.
-The crisis in the eurozone has laid bare the contradictions in this policy.
-As the single currency's woes have deepened, British ministers have found themselves pulled in two directions.
-Terrified by the consequences of the euro's failure, they have urged fiscal union on the eurozone as a means of shoring up the currency.
-George Osborne, the chancellor of the exchequer, has even talked about the “remorseless logic” of tighter integration.
-But those same ministers have deprecated the idea that this would have consequences for Britain.
-The message has been: “do what you must but leave us out”.
-Public disenchantment with the EU has spurred the British government to ratchet up its demands.
-Not only has opposition on the Tory benches hardened against any further transfer of powers, but calls have intensified to claw some back.
-In recent weeks, David Cameron has been egged on to demand a price – in repatriated powers – for nodding through any change in the EU treaties that a eurozone rescue might require.
-Events at the European summit this week have spectacularly unseated Mr Cameron's attempt to ride these two diverging horses.
-In pursuit of safeguards designed principally to protect the City of London, the prime minister has vetoed a treaty whose ostensible purpose is to secure a rescue of the eurozone.
-His determination not to see such a treaty enacted at the level of the 27 existing members has forced its authors – France and Germany – to pursue an inter-governmental agreement.
-The consequences are still reverberating around Europe.
-It is too soon to know whether the breach is permanent.
-A purely inter-governmental arrangement could be legally tiresome for the eurozone, denying it access to EU institutions and forcing it to design a whole parallel structure for its deal.
-Conceivably, after a further round of horse-trading, a compromise might be reached.
-But this cannot soften the impact of the British veto.
-Mr Cameron may describe himself as “relaxed” about a decision which allows him to sidestep a referendum he was desperate to avoid, and which would almost certainly have smashed his coalition government.
-But the price has been to ditch past UK policy, which stressed opposition to anything leading to the entrenchment of a “two-tier Europe”.
-That such a Europe now exists may be a logical conclusion, and one can argue that the prime minister had no choice but to accept such an outcome.
-But while Mr Cameron is enjoying his newfound bulldog role at Westminster, his stand in Europe makes for disastrous politics.
-No other member state has backed Britain.
-The impression is that Mr Cameron has hindered a euro rescue.
-While the Financial Times does not believe any price is worth paying to be in the room, Britain in this instance has wielded a veto and gained nothing in return.
-The prime minister chose to take a stand on protecting the City.
-The government has long worried about the incoming tide of EU regulation, some of which could damage the financial services industry, a vital national interest.
-In a more integrated eurozone, the government fears there could be moves to tighten and centralise financial supervision in ways that harm the UK.
-It is not unreasonable for a British government to seek to nip such a risk in the bud.
-However, forcing the eurozone to set up its own parallel union will not protect the City.
-The new club's 17 members could still force through big changes to the single market if they acted as a bloc.
-While this may not be an immediate risk – they remain divided on many issues – things may change as they move closer and cut deals among themselves.
-France and Germany have already indicated a wish for the eurozone to encroach on areas hitherto reserved for all 27. These include labour market regulation and a common corporate tax base.
-By precipitately wielding his veto, Mr Cameron may well have hastened the formation of such a bloc, to the detriment of British interests.
-Moreover, forcing the eurozone to pursue its own treaty has put his own goal of repatriating powers beyond reach.
-Mr Cameron must now find a way to restore the UK's influence over the single market.
-This will require resourcefulness and political courage.
-One thing is clear: an empty chair resolves nothing.
+Q192630
+Q42817
+Q577
+Q1309
+Q131569
+Q842438
+Q7188
+Q30269216
+Q18603649
+Q239
+Q18891017
+Q306484
+Q458
+Q188675
+Q170584
+Q134556
+Q8142
+Q19083562
+Q381072
+Q6505497
+Q363948
+Q1156854
+Q134556
+Q8142
+Q21142566
+Q842438
+Q83307
+Q5306030
+Q200
+Q2151613
+Q516626
+Q733541
+Q4916
+Q1121708
+Q178790
+Q21162272
+Q2514054
+Q8142
+Q71795
+Q61061
+Q603773
+Q8078
+Q80091
+Q83307
+Q280943
+Q131841
+Q733541
+Q690213
+Q15995303
+Q628523
+Q5338673
+Q7257279
+Q458
+Q740732
+Q6063
+Q7188
+Q954753
+Q4402708
+Q105562
+Q2945547
+Q204776
+Q315364
+Q25107
+Q38178665
+Q217605
+Q23387
+Q192
+Q17147
+Q4402708
+Q160151
+Q25107
+Q1150070
+Q458
+Q131569
+Q1341429
+Q774228
+Q1190554
+Q8502
+Q23387
+Q515200
+Q29142
+Q352858
+Q200
+Q136
+Q82604
+Q6658033
+Q23311
+Q7930989
+Q84
+Q14212
+Q83307
+Q178074
+Q131569
+Q32188232
+Q231823
+Q55707349
+Q1341429
+Q21168708
+Q2191756
+Q131569
+Q55893586
+Q207988
+Q433353
+Q468777
+Q379825
+Q11402
+Q36180
+Q142
+Q183
+Q468489
+Q18591838
+Q93288
+Q733541
+Q46
+Q20742557
+Q379755
+Q29466124
+Q458
+Q178706
+Q1003136
+Q82604
+Q853109
+Q517966
+Q321839
+Q37144
+Q726686
+Q489398
+Q4115667
+Q842438
+Q178074
+Q515200
+Q1780466
+Q646590
+Q732833
+Q1962593
+Q43109
+Q1717246
+Q1434353
+Q3750832
+Q837416
+Q7188
+Q160151
+Q2048319
+Q145
+Q1156854
+Q39552
+Q105562
+Q11348765
+Q23498051
+Q46
+Q46
+Q468777
+Q20665666
+Q199
+Q14212
+Q83307
+Q1775867
+Q29466402
+Q2995644
+Q515200
+Q29826113
+Q214339
+Q11010
+Q1510380
+Q46
+Q26186900
+Q7163
+Q1646605
+Q7275
+Q690213
+Q3149470
+Q515200
+Q1717246
+Q4916
+Q1341429
+Q17573152
+Q160151
+Q180516
+Q690213
+Q1664689
+Q178074
+Q283976
+Q14212
+Q83307
+Q1510380
+Q23311
+Q18662
+Q7737401
+Q7188
+Q1436482
+Q23384
+Q458
+Q428148
+Q481609
+Q837171
+Q55638
+Q8148
+Q622857
+Q170924
+Q7188
+Q44619
+Q190632
+Q1175042
+Q17641254
+Q15098235
+Q145
+Q4697206
+Q6063
+Q7188
+Q30269216
+Q1069045
+Q104493
+Q189838
+Q1003136
+Q36161
+Q178790
+Q6658033
+Q23311
+Q18662
+Q1954125
+Q392326
+Q40118
+Q379825
+Q11402
+Q1150070
+Q955276
+Q37654
+Q49371
+Q104493
+Q24759380
+Q152005
+Q86447
+Q35120
+Q1150070
+Q27105472
+Q997419
+Q44364
+Q321839
+Q142
+Q183
+Q241625
+Q11500
+Q1937518
+Q433353
+Q728944
+Q34581
+Q37654
+Q428148
+Q1120307
+Q645011
+Q8161
+Q11193
+Q178074
+Q515200
+Q200446
+Q842438
+Q170924
+Q1003136
+Q468489
+Q131569
+Q18533
+Q18530
+Q25107
+Q489398
+Q515200
+Q17641254
+Q446966
+Q145
+Q18603649
+Q955276
+Q37654
+Q774228
+Q208160
+Q199
+Q35120
+Q306484
+Q15026

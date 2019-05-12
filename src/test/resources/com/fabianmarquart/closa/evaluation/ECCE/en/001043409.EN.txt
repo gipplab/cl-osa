@@ -1,20 +1,159 @@
-It would be logical to assume that with rising unemployment, a shrinking economy and an almost daily diet of euro crisis, Britain would be a deeply unhappy nation.
-Yet the government's first attempt to measure the wellbeing of its citizens shows that despite all the bad news, the British are, in fact, a rather happy lot.
-Roughly three-quarters of the 80,000 people surveyed in the depths of last year's gloom gave marks of more than seven out of 10 when scoring their general satisfaction with life.
-The remarkable footnote is that the survey was taken at the very moment that Britain's confidence was shaken by strikes, student unrest and youth riots in the cities.
-If anything it proves that happiness is relative.
-Things may be bad, but there is always someone worse off than yourself.
-It may be that the British actively enjoy a good moan, despite their reputation for having a stiff upper lip.
-And if ever there was a lot to grumble about, it is surely now when public spending is being cut and unemployment stands at 8.4 per cent.
-Look at Northern Ireland, where the axe has fallen hardest. There, the population scores higher on satisfaction, fulfilment and happiness than in England, Scotland or Wales.
-Of course that could be due to a marginally better performance on employment and a relatively younger population.
-Measuring a nation's happiness has its uses.
-When government cannot splash out on creating jobs and new public services, and everyone has to tighten their belts, the feel-good factor counts.
-As Bobby Kennedy said in 1968, the cold calculator of gross national product “does not allow for the health of our children, the quality of their education, or the joy of their play.
-It measures everything, in short, except that which makes life worthwhile.”
-There is also evidence to suggest that wellbeing is a good indicator of future healthcare needs.
-A survey by Gallup, the polling group, claims that countries with a happy population require less medical treatment than depressed nations.
-But the science of how to measure wellbeing is still at such an early stage that its value as a policy tool remains unproven.
-Taking a loose reading of the British government's subjective wellbeing data, the happiest category of person should be a white male with five or more adolescent children, who works fewer than 16 hours a week.
-He may be happy.
-But this is hardly the goal to which the rest of the nation can or should aspire.
+Q24247591
+Q41171
+Q159810
+Q26214163
+Q474191
+Q4916
+Q381072
+Q690213
+Q6266
+Q7188
+Q29142
+Q192276
+Q7981051
+Q1020994
+Q7502926
+Q3566043
+Q38926
+Q842438
+Q188572
+Q8
+Q220998
+Q5366871
+Q5
+Q7257997
+Q577
+Q5571261
+Q1089123
+Q47035128
+Q23350
+Q23806
+Q83460
+Q29713114
+Q3
+Q12823770
+Q7257997
+Q48103
+Q690213
+Q4116378
+Q29811654
+Q49776
+Q48282
+Q190007
+Q124757
+Q7930989
+Q7856108
+Q8
+Q171318
+Q35120
+Q3566043
+Q21255921
+Q842438
+Q15290
+Q478594
+Q3740460
+Q15173
+Q220998
+Q211198
+Q44364
+Q41171
+Q1510380
+Q58093
+Q568899
+Q26
+Q39397
+Q11921529
+Q2625603
+Q187947
+Q29713114
+Q8
+Q21
+Q22
+Q25
+Q600134
+Q21255605
+Q35140
+Q656365
+Q2625603
+Q6266
+Q8
+Q1724915
+Q7188
+Q656906
+Q11398090
+Q192581
+Q1954125
+Q161837
+Q906066
+Q134560
+Q50708
+Q3519259
+Q25310
+Q7429143
+Q19241632
+Q12125
+Q31087
+Q182859
+Q40276
+Q1962593
+Q12147
+Q7569
+Q185957
+Q7922
+Q8
+Q11410
+Q192276
+Q24862
+Q26186900
+Q3
+Q176763
+Q690194
+Q7981051
+Q1101080
+Q15290
+Q127105
+Q344
+Q31207
+Q190258
+Q7257997
+Q65358
+Q1362921
+Q83306
+Q836925
+Q6256
+Q8
+Q2625603
+Q774228
+Q179661
+Q26256310
+Q6266
+Q336
+Q192276
+Q7981051
+Q40719727
+Q4809
+Q19426
+Q1156854
+Q39546
+Q55082364
+Q199657
+Q6063
+Q7188
+Q9208267
+Q7981051
+Q1502887
+Q719395
+Q5
+Q23444
+Q44148
+Q203
+Q1492760
+Q7569
+Q327055
+Q40254
+Q25235
+Q23387
+Q8
+Q18530
+Q879844
+Q6266

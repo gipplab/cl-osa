@@ -1,22 +1,160 @@
-Hardly a day goes by without reports of Chinese cyber attacks on foreign companies, media and governments.
-Concern over Beijing's failure to rein in this assault has prompted governments from the US to India to intensify scrutiny of Chinese companies, especially in critical infrastructure.
-In Britain, however, serious lapses of oversight have been revealed by a parliamentary inquiry.
-One of the biggest dilemmas for western countries today is the extent to which economic and security interests collide in doing business with China.
-Companies such as Huawei, the world's second-largest telecommunications equipment supplier, have become the focus of this conflict.
-On the one hand, it provides affordable, high-quality equipment that many countries need.
-On the other, suspicions about China's involvement in hacking and Huawei's own links to the People's Liberation Army raise grave concerns.
-Britain's Intelligence and Security Committee makes no judgment about the legitimacy of these suspicions.
-Huawei has never been linked to cyber attacks.
-The company may simply be the victim of wider wariness about the intentions of a rising superpower.
-But the report rightly highlights that the UK government did not do enough due diligence when it was told a Chinese company was in the running for BT's £10bn upgrade of Britain's telecoms network.
-Worse, cabinet officials chose not to inform ministers of potential security concerns for fear of damaging trade relations with China.
-Balancing commercial and security interests is always delicate.
-In this case the balance was misjudged.
-It would be wrong to suggest that the answer is to bar Chinese companies as telecoms suppliers.
-As the report makes clear, most telecoms groups have to source equipment from China.
-Only two are capable of creating a 4G system with their own equipment, and one of them is Huawei.
-Yet if these suppliers are indispensable, governments have to do a better job in managing potential risk.
-It is doubtful whether giving Huawei control over the security cell set up to monitor its own equipment is the best way to build confidence in policing.
-Rigorous measures have to be put in place if commercial interests are judged to outweigh perceived concerns.
-The west should also consider a co-ordinated approach to Chinese investment in critical infrastructure that addresses such concerns.
-Eliminating them will be to everyone's benefit.
+Q573
+Q10870555
+Q148
+Q4071928
+Q81672
+Q102538
+Q1740954
+Q7188
+Q206361
+Q956
+Q1121708
+Q2196000
+Q365680
+Q1126281
+Q7188
+Q30
+Q30
+Q668
+Q38178665
+Q148
+Q102538
+Q21604267
+Q121359
+Q690213
+Q192906
+Q21004260
+Q199
+Q254128
+Q7988576
+Q6256
+Q3151690
+Q389408
+Q169489
+Q170924
+Q238053
+Q2912172
+Q148
+Q102538
+Q160120
+Q16502
+Q16502
+Q12070726
+Q16798631
+Q1762621
+Q3568
+Q198
+Q199
+Q33767
+Q16798631
+Q6256
+Q190258
+Q516519
+Q148
+Q36949023
+Q2144405
+Q160120
+Q102014
+Q1398059
+Q884353
+Q173387
+Q206361
+Q690213
+Q11287598
+Q26186900
+Q1720612
+Q207982
+Q516519
+Q160120
+Q102014
+Q280658
+Q81672
+Q1685078
+Q102538
+Q1851760
+Q677393
+Q1047698
+Q10870555
+Q559350
+Q6063
+Q7188
+Q1427962
+Q806805
+Q148
+Q102538
+Q105674
+Q361431
+Q175743
+Q920419
+Q690213
+Q141488
+Q21255921
+Q3975
+Q382887
+Q11028
+Q83307
+Q2296856
+Q169489
+Q206361
+Q44619
+Q601401
+Q203066
+Q148
+Q2986261
+Q169489
+Q170924
+Q3975
+Q134566
+Q29485
+Q690194
+Q1920566
+Q860
+Q148
+Q102538
+Q1762621
+Q10870555
+Q26186900
+Q306484
+Q83306
+Q128751
+Q16798631
+Q148
+Q200
+Q11398090
+Q79697
+Q16798631
+Q199
+Q160120
+Q1762621
+Q7188
+Q21255605
+Q192581
+Q2296856
+Q104493
+Q160120
+Q11175
+Q169489
+Q7868
+Q36161
+Q5290
+Q16798631
+Q26132734
+Q17641254
+Q1340643
+Q4116378
+Q192276
+Q82794
+Q2986261
+Q170924
+Q1720612
+Q206361
+Q679
+Q1344851
+Q1801985
+Q148
+Q88272
+Q21604267
+Q121359
+Q28008314
+Q206361
+Q2383321

@@ -1,41 +1,263 @@
-Five years after the launch of quantitative easing, the US Federal Reserve has begun to unwind.
-On the day of Ben Bernanke's last press conference as chairman, the Federal Open Market Committee has decided that it will finally scale down its $85bn-a-month asset purchases programme.
-The US monetary authorities will now buy $10bn fewer Treasuries and mortgage-backed securities each month.
-The very idea of “tapering” has the ability to inspire awe in markets.
-But the direct impact of the Fed's actions should be negligible.
-The central bank will still be pumping money into the economy, if only a little more slowly.
-Even the change of pace must be put into perspective.
-By the central bank's own back-of-an-envelope calculations, $200bn in purchases are equivalent to 25 basis points of the policy rate.
-A $10bn reduction is therefore worth a 20th of that.
-Under normal circumstances, investors would barely notice.
-But these are not ordinary times.
-Wednesday's decision means that the largest and most unprecedented monetary experiment in the Fed's history is beginning to come to an end.
-When the Fed contemplated withdrawing its stimulus last May, both mortgage rates and US government bond yields shot up.
-Assets and currencies in emerging markets plummeted, too, as investors fled for safer havens.
-The fear is that the actual decision will lead to a new wave of market turmoil.
-Volatility will inexorably increase.
-The yield on the US 10-year note climbed as high as 2.92 per cent on the announcement.
-But unlike the situation six months ago, the Fed has taken some careful steps to explain that tapering is not the prelude to higher interest rates.
-It has for instance changed its “forward guidance”.
-Until Wednesday, the Fed had promised not to raise rates until unemployment had fallen below 6.5 per cent.
-Now it is undertaking to keep rates low until “well past” this threshold.
-The Fed cannot of course control market rates.
-But even if these were to rise, the US economy is in a much stronger position than it was to withstand the shock.
-National income expanded at an annualised rate of 3.6 per cent in the three months to September.
-Both retail sales and industrial production grew rapidly in November, a sign that the recovery should remain robust in the fourth quarter.
-Looking ahead into 2014, a deal on the US budget has reduced the size of the fiscal drag.
-While inflation remains well below the Fed's 2 per cent target, it should finally pick up as the uplift gathers pace.
-Tapering has consequences for the world beyond the US and these are less predictable.
-In particular, developing countries still look vulnerable.
-True, many retail investors have already fled emerging markets following this summer's “taper talk”.
-As a result, asset values are less frothy.
-Some central banks – for example the Reserve Bank of India – have also successfully supported their currencies by tightening liquidity.
-But investors are bound to be more scrupulous about where they choose to park their money.
-Frailties such as large current account deficits will be exposed.
-The biggest challenge is perhaps for Janet Yellen, who succeeds Mr Bernanke when he leaves the Fed at the end of January.
-As Mr Bernanke's deputy chair, Ms Yellen clearly had a major hand in Wednesday's decisions.
-Yet, when she takes the top job, investors will keep a close watch to see if her views diverge at all from those of her predecessors.
-As the head of the Fed's subcommittee on communication, Ms Yellen is well trained for this task.
-But she will need to prove her mettle quickly.
-So far, quantitative easing has helped the US weather the recession better than most other rich economies.
-But if the exit is not orderly, this will count for little.
+Q203
+Q577
+Q361945
+Q21087400
+Q23759131
+Q573
+Q201795
+Q272281
+Q625994
+Q140686
+Q2289022
+Q732833
+Q179651
+Q4917
+Q46737
+Q1369832
+Q1371819
+Q30
+Q30
+Q66344
+Q174834
+Q1308239
+Q4917
+Q1239455
+Q169489
+Q5151
+Q131841
+Q2393575
+Q1347367
+Q840343
+Q4830000
+Q37654
+Q15304504
+Q4115667
+Q53536
+Q188473
+Q7721911
+Q66344
+Q22687
+Q1368
+Q159810
+Q25932227
+Q1150070
+Q691543
+Q188968
+Q66344
+Q22687
+Q622821
+Q4917
+Q1369832
+Q36384
+Q79986
+Q750178
+Q44946
+Q1156854
+Q736288
+Q4917
+Q912546
+Q40292
+Q202785
+Q3629141
+Q557880
+Q7063001
+Q4697206
+Q1076566
+Q11471
+Q128
+Q732833
+Q19033
+Q101965
+Q53536
+Q309
+Q529711
+Q5375780
+Q53536
+Q1123855
+Q873222
+Q859031
+Q119
+Q184260
+Q736288
+Q30
+Q2324820
+Q11693
+Q2383321
+Q220869
+Q46737
+Q8142
+Q546395
+Q37654
+Q557880
+Q283202
+Q44619
+Q732833
+Q32518
+Q187760
+Q37172
+Q37654
+Q756115
+Q17281278
+Q2383321
+Q30
+Q30
+Q47433
+Q917284
+Q5754843
+Q58093
+Q567303
+Q2141565
+Q23488
+Q5151
+Q29818766
+Q53536
+Q3289701
+Q7958
+Q2393575
+Q4697206
+Q212148
+Q179179
+Q736288
+Q1664689
+Q1150070
+Q280658
+Q128
+Q53536
+Q1425577
+Q884353
+Q736288
+Q41171
+Q11921529
+Q724178
+Q172964
+Q736288
+Q209190
+Q192630
+Q774145
+Q53536
+Q53536
+Q600134
+Q11175
+Q37654
+Q736288
+Q1139344
+Q30
+Q30
+Q159810
+Q192388
+Q129302
+Q1057397
+Q850210
+Q5420776
+Q736288
+Q58093
+Q201
+Q5151
+Q123
+Q126793
+Q194189
+Q487965
+Q739302
+Q131512
+Q125
+Q262246
+Q444184
+Q24759380
+Q27927519
+Q586598
+Q56274009
+Q5371769
+Q321839
+Q30
+Q30
+Q41263
+Q912546
+Q322481
+Q206621
+Q35865
+Q55082364
+Q53536
+Q200
+Q58093
+Q170212
+Q55670909
+Q2980086
+Q691543
+Q7684542
+Q733541
+Q16502
+Q16502
+Q30
+Q30
+Q6256
+Q278113
+Q16751793
+Q126793
+Q557880
+Q546395
+Q37654
+Q47436102
+Q28308492
+Q603773
+Q2995644
+Q46737
+Q19426
+Q66344
+Q22687
+Q12335479
+Q38161169
+Q668
+Q10940
+Q8142
+Q1827667
+Q557880
+Q256817
+Q22698
+Q1368
+Q520952
+Q746687
+Q508295
+Q444600
+Q2988681
+Q263725
+Q5338673
+Q53536
+Q40719766
+Q108
+Q1055894
+Q15026
+Q1951543
+Q21476674
+Q613617
+Q33767
+Q128
+Q732833
+Q192581
+Q557880
+Q172964
+Q12731
+Q178794
+Q2191756
+Q1329910
+Q189000
+Q23640
+Q53536
+Q11024
+Q1951543
+Q21476674
+Q2328847
+Q759676
+Q190258
+Q23257209
+Q21087400
+Q23835475
+Q30
+Q30
+Q11663
+Q176494
+Q21255605
+Q159810
+Q1383865
+Q4697206
+Q12177489
+Q247299

@@ -1,26 +1,214 @@
-Paul Samuelson, one of the very first winners of the Nobel Memorial Prize in Economics, had little faith in the predictive powers of the stock market.
-In the 1960s, the professor jokingly noted that “Wall Street indexes predicted nine out of the last five recessions”.
-Yet when it comes to forecasting a slump, the profession which Mr Samuelson helped to found has no better record than stockpickers.
-Not only did the majority of economists fail to foresee the 2008 financial crisis. Once the downturn hit, most forecasters predicted substantially higher growth rates than those which were actually realised.
-These mistakes have led to some soul-searching in the profession.
-Last Tuesday, the Organisation for Economic Cooperation and Development, a group of mainly rich countries, published a post mortem exercise of its forecasting record during the crisis.
-The study shows that between 2007 and 2012 the Paris-based club was excessively optimistic, particularly when it came to the peripheral countries in the eurozone.
-This mea culpa is not the first of its kind.
-About a year ago, the IMF looked back at its own predictions, coming up with a similar admission of guilt.
-While both the OECD and the IMF now accept they have got their forecasts wrong, the two organisations are at odds on why they think their staffs made these mistakes.
-In what was immediately seen as a Damascene conversion, the IMF argued that the disappointing recovery of the rich world was largely the product of fiscal consolidation.
-Conversely, the OECD believes that – with the exception perhaps of the eurozone in the early stages of its sovereign debt crisis – austerity was not the main reason why countries did not grow as fast as expected.
-Instead, the discrepancy between what economists forecast and what actually happened was down to other factors, including the fragility of the banking sector, the stringency of product and labour market regulation and exposure to financial and trade shocks from other economies.
-In the eurozone, the OECD also wrongly assumed that the euro crisis would gradually recede, leading to a narrowing of bond yield differentials.
-On the whole, the OECD study appears to be more robust than that of the IMF. It covers a slightly larger number of countries and stretches over a longer period.
-While the fund's earlier work looked only at the role played by austerity, the OECD has looked at a broader set of possible explanations.
-The IMF has also partly rowed back on its results after it was shown they were too sensitive to the inclusion of some outliers.
-It would be wrong, however, to conclude that the OECD has vindicated the case for universal austerity.
-Even this study has still too few data points for researchers to draw strong conclusions from it.
-While fiscal consolidation did not lead to overly disappointing growth, it certainly did not produce the better than expected performance that some of its advocates had foreseen.
-Finally, while each country's belt-tightening efforts may have not been overly harmful, it is still possible that the decision by governments to enforce austerity simultaneously may have produced damaging spillovers.
-Indeed, this may be one of the shocks transmitted among countries and which – according to the OECD – led to a deeper downturn than was forecast.
-Ultimately, there is no one-size-fits-all lesson to be drawn from the crisis.
-While there was little reason to impose austerity in countries with low deficits such as Germany, conditions in Greece or Britain were different.
-Nor should one be fixated on fiscal policy: the state of the banking sector and supply side constraints mattered just as much in determining a country's economic outlook.
-This is probably the finding by the OECD study that policy makers should look at most closely.
+Q102454
+Q199
+Q18560095
+Q3132462
+Q9174
+Q10350689
+Q25107
+Q475000
+Q37654
+Q12681698
+Q37226
+Q47433
+Q11690
+Q927450
+Q184848
+Q19108
+Q203
+Q176494
+Q137
+Q7216332
+Q2509873
+Q28640
+Q2219079
+Q23835475
+Q21255605
+Q178588
+Q18000
+Q188094
+Q1069941
+Q114380
+Q381072
+Q713493
+Q7216332
+Q3516239
+Q736288
+Q29485
+Q871232
+Q28640
+Q952317
+Q127
+Q2292459
+Q16887380
+Q6256
+Q2085381
+Q49845
+Q219067
+Q7216332
+Q178588
+Q381072
+Q7767116
+Q1298668
+Q7502926
+Q907344
+Q1489579
+Q392326
+Q5025838
+Q178648
+Q6256
+Q525198
+Q21146257
+Q577
+Q29818766
+Q7804
+Q748250
+Q26256352
+Q847337
+Q628939
+Q41550
+Q7804
+Q29466402
+Q748250
+Q29485
+Q200
+Q43229
+Q4877042
+Q515895
+Q703534
+Q26186900
+Q29485
+Q2191756
+Q5212013
+Q1783534
+Q7804
+Q444184
+Q16502
+Q40276
+Q452440
+Q41550
+Q17573152
+Q20980698
+Q40719727
+Q4809
+Q584496
+Q3196867
+Q381072
+Q2814650
+Q3278265
+Q178354
+Q6256
+Q131512
+Q44602
+Q1362683
+Q188094
+Q7216332
+Q50708
+Q3435731
+Q219858
+Q40276
+Q34581
+Q37654
+Q428148
+Q271960
+Q601401
+Q129302
+Q159810
+Q41550
+Q24247591
+Q4916
+Q381072
+Q176494
+Q11348765
+Q11693
+Q2383321
+Q193137
+Q41550
+Q1298668
+Q3620816
+Q7804
+Q155171
+Q11563
+Q6256
+Q12171
+Q25392373
+Q28640
+Q214339
+Q4197743
+Q2814650
+Q41550
+Q36161
+Q30230067
+Q7958
+Q7804
+Q13382576
+Q2995644
+Q7502926
+Q728944
+Q779824
+Q29485
+Q20665666
+Q41550
+Q3975
+Q6497530
+Q2814650
+Q1298668
+Q29826308
+Q1502887
+Q44946
+Q1650915
+Q1137224
+Q20665666
+Q452440
+Q871232
+Q1342838
+Q131427
+Q21255605
+Q1362683
+Q35140
+Q380075
+Q6256
+Q14536140
+Q30230067
+Q732833
+Q7188
+Q166104
+Q2814650
+Q1913301
+Q199
+Q129302
+Q131214
+Q6256
+Q41550
+Q871232
+Q7216332
+Q19020713
+Q337921
+Q1137224
+Q381072
+Q178354
+Q779970
+Q2814650
+Q6256
+Q209190
+Q444600
+Q183
+Q12136
+Q41
+Q690213
+Q51921823
+Q199
+Q848036
+Q187021
+Q1156854
+Q7275
+Q3435731
+Q219858
+Q542869
+Q2303305
+Q35758
+Q6256
+Q18122778
+Q639907
+Q41550
+Q1298668
+Q1156854

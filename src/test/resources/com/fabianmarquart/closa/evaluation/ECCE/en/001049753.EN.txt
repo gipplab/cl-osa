@@ -1,33 +1,249 @@
-For years, the primary concern of Britain's security services has been facing down the threat from jihadism, an obligation that is unlikely to change for some time.
-But the British government is now asking the services to find space for another growing challenge – the threat posed to UK businesses and institutions from cyber espionage.
-The UK, like the US, is wary of naming China and Russia directly as the main sources of such espionage, much of which involves the theft of intellectual property from companies in areas such as defence, energy and aerospace.
-But the scale of the threat from these states and from other sources is troubling.
-BAE Systems Detica, which specialises in cyber security, has calculated that UK companies lose £27bn a year through cyber espionage.
-Sir Jonathan Evans, the head of MI5, said last year that one UK company had lost £800m of intellectual property in one cyber attack.
-Though last week's attack by hackers on European anti-spam sites fell into the category of obstruction rather than espionage, it may also leave businesses out of pocket by slowing or even blocking access to certain websites.
-Last week the government unveiled its most significant initiative to try and tackle the problem.
-It unveiled a body called a “fusion cell” which brings together 160 businesses and the UK security services, which will pool information on attacks to gain a richer picture of what is going on.
-The security services, with GCHQ, the intelligence listening post, will inform businesses of attacks emerging in cyber space.
-In turn, businesses will tell the authorities and one another when their systems are breached.
-How effective will such an arrangement be?
-And could it provide a model for other states looking to bolster their defences?
-Three observations can be made.
-First, the UK is right to avoid a system where companies are required by law to reveal when they are attacked.
-Companies always fear the damage that might be done by admitting their defences have been breached.
-If they are legally obliged to make disclosures, there is a risk they may prefer to turn a blind eye to attacks.
-This would be bad.
-That said, UK businesses must use the “fusion cell” to share information.
-But this will require a good degree of trust among companies that are often rivals.
-Second, businesses cannot assume this new collaboration alone will solve the problem.
-Companies have to do more to protect themselves. Sir Iain Lobban, head of GCHQ, has said 80 per cent of attacks could be thwarted by basic security measures such as software updates.
-Third, the UK needs to think harder about how to confront China and Russia about cyber espionage conducted by their militaries and proxies.
-London has been careful not to name names.
-China and Russia deny the accusations, saying they are themselves the victims of hacking attacks.
-Yet despite the denials, Washington seems to be adopting tougher rhetoric.
-Tom Donilon, the White House national security adviser, has spoken of “cyber intrusions emanating from China on an unprecedented scale” – the first public denouncement of Beijing by a senior official on this subject.
-Tackling China and Russia is not easy.
-The US and its allies have a delicate relationship with China, which finances American debt.
-Britain may not feel it has the diplomatic and economic clout to stand up to China and Russia.
-Companies must tend to their defences but more assertive diplomacy may be needed.
-Espionage may bring short-term benefits but China and Russia should consider the longer term and how best to protect their own technical capabilities.
-Ultimately, internet theft is in nobody's interest.
+Q577
+Q2110192
+Q206361
+Q690213
+Q42276510
+Q906066
+Q3064135
+Q707125
+Q2648051
+Q1150070
+Q11471
+Q6063
+Q7188
+Q906066
+Q107
+Q2988681
+Q707125
+Q1671968
+Q145
+Q2912172
+Q178706
+Q165950
+Q145
+Q30
+Q30
+Q148
+Q159
+Q3278265
+Q128751
+Q165950
+Q36949023
+Q1220097
+Q131257
+Q937228
+Q102538
+Q11500
+Q838247
+Q11379
+Q2876213
+Q179651
+Q707125
+Q7275
+Q128751
+Q739416
+Q5265735
+Q3510521
+Q169489
+Q31087
+Q145
+Q102538
+Q20861252
+Q175743
+Q577
+Q165950
+Q209690
+Q93698
+Q23640
+Q210175
+Q7429143
+Q577
+Q199
+Q145
+Q102538
+Q20861252
+Q175743
+Q131257
+Q937228
+Q199
+Q4071928
+Q81672
+Q23387
+Q81672
+Q1487
+Q2392270
+Q35127
+Q1314
+Q719395
+Q525302
+Q165950
+Q5338673
+Q2912172
+Q321767
+Q195872
+Q29466124
+Q35127
+Q19114386
+Q23387
+Q7188
+Q660064
+Q578508
+Q24976
+Q621184
+Q48422
+Q1363768
+Q7868
+Q532691
+Q2912172
+Q145
+Q42276510
+Q906066
+Q11020
+Q11028
+Q81672
+Q854659
+Q478798
+Q42276510
+Q906066
+Q220798
+Q83500
+Q49845
+Q11028
+Q2912172
+Q81672
+Q107
+Q304479
+Q2912172
+Q806805
+Q174834
+Q199
+Q379755
+Q193946
+Q7275
+Q3057620
+Q838247
+Q201
+Q193181
+Q26186900
+Q145
+Q14565199
+Q1717246
+Q102538
+Q774228
+Q7748
+Q192906
+Q280658
+Q102538
+Q44619
+Q481609
+Q838247
+Q2648051
+Q26186900
+Q1101080
+Q104493
+Q908656
+Q304479
+Q10874
+Q7364
+Q81672
+Q3566043
+Q7429143
+Q145
+Q2912172
+Q278368
+Q1363768
+Q7868
+Q11692
+Q11028
+Q774228
+Q15290
+Q28390
+Q659974
+Q102538
+Q54894664
+Q11574
+Q2912172
+Q24247591
+Q1954125
+Q1145523
+Q621184
+Q102538
+Q6658033
+Q209690
+Q13534454
+Q23640
+Q220798
+Q7429143
+Q712467
+Q58093
+Q81672
+Q169489
+Q192276
+Q19915274
+Q21924000
+Q145
+Q190258
+Q148
+Q159
+Q165950
+Q8473
+Q1517802
+Q84
+Q148
+Q159
+Q1343202
+Q19357312
+Q3026787
+Q1851760
+Q2144405
+Q81672
+Q1343202
+Q23
+Q81009
+Q35525
+Q258307
+Q169489
+Q2994387
+Q570
+Q212895
+Q148
+Q179651
+Q211198
+Q956
+Q332209
+Q382887
+Q164573
+Q148
+Q159
+Q4697206
+Q30
+Q30
+Q3612401
+Q7310741
+Q148
+Q43015
+Q463257
+Q3196867
+Q690213
+Q1510380
+Q148
+Q159
+Q102538
+Q749311
+Q838247
+Q1889
+Q190258
+Q165950
+Q2383321
+Q148
+Q159
+Q1344851
+Q1071233
+Q26132734
+Q6658033
+Q569612
+Q1347367
+Q19020713
+Q75
+Q1220097
+Q170924

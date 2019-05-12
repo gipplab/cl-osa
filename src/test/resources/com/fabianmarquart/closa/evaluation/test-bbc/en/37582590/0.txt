@@ -1,29 +1,265 @@
-Flash crash sees the pound gyrate in Asian trading
-
-The pound has dived on Asian markets with automated trading being blamed for the volatility.
-At one stage it fell as much as 6% to $1.1841 - the biggest move since the Brexit vote - before recovering. It was recently trading 2% lower at $1.2388.
-It is not clear what triggered the sudden sell-off. Analysts say it could have been automated trading systems reacting to a news report.
-The Bank of England said it was "looking into" the flash crash.
-The sharp drop came after the Financial Times published a story online about French President Francois Hollande demanding "tough Brexit negotiations".
-"It's difficult to know exactly what triggered it," Angus Nicholson, market analyst with IG in Melbourne, told the BBC.
-The pound has been volatile since the UK voted to leave the European Union.
-Analysts speculate that a computer may have been set to scan the news for negative Brexit stories, with the order to sell if it found any.
-The trigger could have also been a simple mistake, or what's know as a fat finger trade, when a trader enters a wrong number. Analysts at JP Morgan who have analysed the flash crash think that was unlikely to be the trigger.
-Live: Pound gyrates on the currency markets
-What happened to the pound overnight?
-Viewpoints: How low can the pound go?
-The incident happened at a time when there is very little pound trading going on - which means that any sell-off will have a bigger impact than during busy hours.
-The situation is likely to have been exacerbated by trading algorithms (sometimes know as algos) - software which is designed to trade automatically and can react much faster than human traders.
-"These days some algos trade on the back of news sites, and even what is trending on social media sites such as Twitter, so a deluge of negative Brexit headlines could have led to an algo taking that as a major sell signal for the pound," says Kathleen Brooks, research director at City Index.
-"Once the pound started moving lower then more technical algos could have followed suit, compounding the short, sharp, selling pressure."
-Ms Brooks thinks another flash crash could be on the cards for the pound.
-"This highlights the drawback of machines making trading decisions, however, it is the reality, and it is only getting more popular. Thus, another flash crash is possible," she said.
-Traders remain nervous about the fallout from the UK's talks with the EU over leaving the bloc.
-Last Sunday, the Prime Minister Theresa May said she would trigger Article 50, the clause needed to start the exit process, by the end of March 2017.
-Sterling has been "on a precipice" since then, according to Sean Callow, senior currency strategist at Australian bank, Westpac.
-"I think we've underestimated how many people had money positions for a very wishy-washy Brexit, or even none," he said.
-Analysts at HSBC are forecasting that the pound could fall to $1.10 and could be worth just one euro by the end of next year.
-"The argument which is still presented to us - that the UK and EU will resolve their difference and come to an amicable deal - appears a little surreal," said David Bloom, head of foreign exchange research at HSBC.
-"It is becoming clear that many European countries will come to the negotiation table looking for political damage limitation rather than economic damage limitation. A lose-lose situation is the inevitable outcome."
-Ms Brooks, from City Index said: "The big issue for the pound right now is that it has become detached from the economic fundamentals and politics have become king. This is where things will get dangerous for the currency going forward.
-"Theresa May's hard-line on Brexit negotiations and her insistence that negotiations will take place in private have only increased uncertainty for the market, with traders left combing news websites for the latest headlines to try and gauge for themselves the state of play between the UK and the EU."
+Q1427217
+Q238053
+Q25224
+Q7974
+Q601401
+Q21942556
+Q25224
+Q1866686
+Q7974
+Q37654
+Q601401
+Q621695
+Q756115
+Q199
+Q4809
+Q11921529
+Q23488
+Q4917
+Q7888194
+Q42904171
+Q601401
+Q200
+Q4917
+Q4697206
+Q306484
+Q336751
+Q485178
+Q7429143
+Q184199
+Q601401
+Q38926
+Q10870555
+Q17643783
+Q26487354
+Q21
+Q7429143
+Q221836
+Q238053
+Q626605
+Q1517187
+Q185789
+Q5025838
+Q2085381
+Q217086
+Q73368
+Q32
+Q704271
+Q157
+Q7888194
+Q202875
+Q336751
+Q37654
+Q485178
+Q673341
+Q3141
+Q806805
+Q9531
+Q21942556
+Q25224
+Q145
+Q2540351
+Q5338673
+Q458
+Q485178
+Q36161
+Q17502905
+Q38926
+Q595597
+Q7888194
+Q217086
+Q36602
+Q1081889
+Q336751
+Q2315394
+Q29485
+Q127980
+Q335320
+Q601401
+Q1424605
+Q57699905
+Q29485
+Q11563
+Q485178
+Q2633403
+Q221836
+Q238053
+Q336751
+Q165714
+Q25224
+Q66076
+Q37654
+Q25224
+Q20978643
+Q209190
+Q25224
+Q7741687
+Q4202290
+Q11471
+Q25224
+Q601401
+Q19033
+Q4115667
+Q26254012
+Q25235
+Q3856268
+Q2141565
+Q18122778
+Q601401
+Q8366
+Q7397
+Q82604
+Q1424605
+Q192957
+Q5
+Q1424605
+Q573
+Q601401
+Q38926
+Q35127
+Q202833
+Q1740954
+Q35127
+Q918
+Q21162281
+Q595597
+Q7888194
+Q1313396
+Q32518
+Q613617
+Q1081889
+Q174984
+Q25224
+Q7429143
+Q18811238
+Q18121578
+Q42178
+Q25224
+Q529711
+Q569612
+Q31888506
+Q27905
+Q1303150
+Q24862
+Q1517187
+Q3380760
+Q39552
+Q1951543
+Q1055838
+Q221836
+Q238053
+Q2402796
+Q25224
+Q559350
+Q3715176
+Q11019
+Q601401
+Q732833
+Q9510
+Q221836
+Q238053
+Q30230067
+Q7429143
+Q1424605
+Q24759380
+Q145
+Q603773
+Q458
+Q21171241
+Q132
+Q264766
+Q6348972
+Q264766
+Q7429143
+Q336751
+Q17331110
+Q712519
+Q117364
+Q190258
+Q557828
+Q1383865
+Q205663
+Q40719766
+Q23994849
+Q12681718
+Q482691
+Q24249527
+Q332209
+Q8142
+Q7621877
+Q2872152
+Q22687
+Q2031726
+Q199
+Q54311997
+Q5
+Q1368
+Q192388
+Q7888194
+Q7429143
+Q485178
+Q190464
+Q7216332
+Q25224
+Q11921529
+Q4917
+Q199
+Q4916
+Q40719766
+Q577
+Q186619
+Q464980
+Q145
+Q458
+Q845126
+Q321839
+Q3620816
+Q7429143
+Q5231484
+Q23640
+Q179076
+Q42240
+Q190464
+Q306484
+Q6256
+Q202875
+Q14748
+Q481609
+Q481609
+Q2141565
+Q2995644
+Q1951543
+Q1055838
+Q7429143
+Q7717685
+Q86447
+Q25224
+Q193168
+Q334445
+Q11332268
+Q7163
+Q116
+Q35120
+Q8142
+Q280658
+Q264766
+Q7888194
+Q202875
+Q202875
+Q82794
+Q158668
+Q17281278
+Q1403517
+Q37654
+Q1424605
+Q5338673
+Q3491532
+Q1153191
+Q35127
+Q1313396
+Q578508
+Q914462
+Q7275
+Q11410
+Q145
+Q458

@@ -1,33 +1,230 @@
-G20: Trump and Putin debate US election hack at first meeting
-
-Donald Trump and Vladimir Putin have discussed the alleged Russian hacking of last year's US presidential election during their first meeting.
-US Secretary of State Rex Tillerson described the exchanges as "robust".
-Russian Foreign Minister Sergei Lavrov said Mr Trump had accepted Mr Putin's assertions that his country was not responsible.
-But Mr Tillerson said it was not clear whether the two countries would ever come to an agreement on what happened.
-"I think the president is rightly focused on how do we move forward from something that may be an intractable disagreement at this point," he added.
-The US and Russian presidents held their first face-to-face talks on the sidelines of the G20 summit in the German city of Hamburg, which is being held amid sometimes violent protests.
-Other topics discussed during their meeting - which lasted nearly two-and-a-quarter hours, longer than originally planned - included the war in Syria, terrorism and cybersecurity.
-"The president opened the meeting with President Putin by raising the concerns of the American people regarding Russian interference in the 2016 election," Mr Tillerson, part of the US delegation, told reporters afterwards.
-"They had a very robust and lengthy exchange on the subject. The president pressed President Putin on more than one occasion regarding Russian involvement.
-"President Putin denied such involvement, as I think he has done in the past."
-Mr Tillerson said the two leaders had "connected very quickly", adding: "There was a very clear positive chemistry between the two. There are so many issues on the table... Just about everything got touched upon... Neither one of them wanted to stop.
-"I believe they even sent in the First Lady [Melania Trump] at one point to see if she could get us out of there, but that didn't work either... We did another hour. Clearly she failed!"
-Mr Lavrov said: "President Trump said he heard clear statements... that Russian authorities did not intervene [in the US election], and he accepted these declarations."
-Mr Tillerson was asked as he was leaving the news conference if this was accurate, but declined to answer.
-Earlier, as the talks began in front of the media before going into private session, Mr Trump told Mr Putin: "It's an honour to be with you."
-Mr Putin replied: "I'm delighted to meet you personally."
-Mr Trump added: "Putin and I have been discussing various things, and I think it's going very well.
-"We've had some very, very good talks. We're going to have a talk now and obviously that will continue. We look forward to a lot of very positive things happening for Russia, for the United States and for everybody concerned."
-Mr Putin, via a translator, said that while they had previously spoken by phone, that would never be as good as meeting face to face.
-The two men had staked out opposing views on major international issues in the run-up to the summit:
-Based on the tone and the results of the US-Russia discussions, this meeting is being lauded here in Moscow as a breakthrough.
-The head of the Russian parliament's foreign affairs committee predicted it would "stop the rot in US-Russian relations".
-Essentially, Vladimir Putin has got what Vladimir Putin wanted: a US president who is focused not on confrontation but on mutually beneficial co-operation; as American leader who is not going to sit there for two hours lecturing his Russian counterpart on democracy, but instead do deals with him.
-And there were several agreements: to co-operate in Syria, over Ukraine, and in the area of cyber security. The Kremlin will see all of this as a first step towards a bigger goal: much wider co-operation with America and the scrapping of Western sanctions.
-But remember - Donald Trump is under intense pressure back home over his team's alleged links to Moscow. It's far from certain he'll be able to deliver what Russia wants.
-Climate change and trade are set to dominate the rest of the two-day G20 meeting, taking place amid clashes between protesters and police in the streets outside the venue that have left dozens injured.
-A huge police operation is trying to keep demonstrators - who are protesting against the presence of Mr Trump and Mr Putin, climate change and global wealth inequalities - well away from the summit venue, and water cannon have been deployed.
-The US First Lady was at one point unable to leave her hotel in Hamburg because of the protests.
-Mrs Trump had been due to take part in an excursion with other leaders' spouses, but her spokeswoman Stephanie Grisham said: "The Hamburg police could not give us clearance to leave."
-Mrs Trump herself tweeted about her concern for those injured in the protests.
-The G20 (Group of Twenty) is a summit for 19 countries, both developed and developing, plus the EU.
+Q19771
+Q22686
+Q7747
+Q179875
+Q30
+Q40231
+Q11185
+Q625994
+Q22686
+Q7747
+Q3030248
+Q32188232
+Q159
+Q2144405
+Q577
+Q30
+Q858439
+Q40231
+Q625994
+Q30
+Q753514
+Q2913313
+Q331401
+Q1780466
+Q179076
+Q159
+Q19827130
+Q6348972
+Q7429143
+Q22686
+Q7747
+Q741248
+Q6256
+Q37568923
+Q7429143
+Q306484
+Q200
+Q6256
+Q93288
+Q199
+Q30461
+Q3568
+Q27105472
+Q280658
+Q1255828
+Q44946
+Q32043
+Q30
+Q30
+Q159
+Q30461
+Q196431
+Q47462497
+Q603773
+Q19771
+Q8502
+Q183
+Q7930989
+Q1055
+Q196431
+Q273120
+Q200801
+Q3030248
+Q625994
+Q25235
+Q53737447
+Q611203
+Q728944
+Q198
+Q858
+Q7283
+Q3510521
+Q2980956
+Q30461
+Q2735683
+Q625994
+Q704271
+Q7747
+Q2204480
+Q206361
+Q463257
+Q5
+Q159
+Q136980
+Q12681716
+Q40231
+Q37568923
+Q30
+Q30
+Q322934
+Q806805
+Q42909
+Q179076
+Q164573
+Q2980956
+Q30461
+Q1193236
+Q704271
+Q7747
+Q47035128
+Q199
+Q159
+Q36949023
+Q704271
+Q7747
+Q1343202
+Q36949023
+Q199
+Q192630
+Q37568923
+Q7429143
+Q200
+Q32518
+Q32043
+Q306484
+Q1413646
+Q2329
+Q200
+Q86447
+Q14748
+Q16172260
+Q877674
+Q199
+Q26256512
+Q51597
+Q30287466
+Q17573152
+Q877558
+Q203184
+Q345
+Q432473
+Q199
+Q44946
+Q2191756
+Q327055
+Q25235
+Q21392377
+Q7429143
+Q22686
+Q22686
+Q7429143
+Q306484
+Q613299
+Q159
+Q174834
+Q30
+Q30
+Q40231
+Q46337
+Q37568923
+Q21171241
+Q17502905
+Q272281
+Q625994
+Q272035
+Q188078
+Q1920566
+Q603773
+Q23759131
+Q17502905
+Q1740954
+Q158668
+Q932410
+Q22686
+Q806805
+Q7747
+Q207333
+Q7747
+Q1920566
+Q199
+Q22686
+Q32043
+Q7747
+Q199
+Q35120
+Q199
+Q16738024
+Q15290
+Q603773
+Q603773
+Q23090331
+Q280658
+Q220998
+Q1413646
+Q35120
+Q108874
+Q159
+Q30
+Q30
+Q21609594
+Q206361
+Q7747
+Q333634
+Q7429143
+Q570
+Q11035
+Q15290
+Q625994
+Q37017
+Q37017
+Q200
+Q8441
+Q468455
+Q1329910
+Q613617
+Q845956
+Q86447
+Q8502
+Q11193
+Q19426
+Q2995644
+Q3030248
+Q625994
+Q649
+Q2920535
+Q25056287
+Q23640
+Q457869
+Q610018
+Q1772698
+Q865588
+Q51597
+Q203066
+Q7747
+Q7747
+Q26256512
+Q11696
+Q30461
+Q3568
+Q3312519

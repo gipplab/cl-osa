@@ -1,27 +1,163 @@
-For once, global stock exchanges are the story – not the shares traded on them.
-But the extraordinary wave of proposed mergers presents questions for policy makers.
-Competition has already been increased and regulation tightened.
-Regulators should scrutinise the form these new exchanges take.
-But they should manage – not resist – the force of the market.
-Stock exchanges are built in the image of the markets they serve.
-Once every city had a bourse.
-Now that capital is global, consolidation is being applied on an international scale.
-The idea that exchanges must be national entities is no longer true.
-Those in the US who object to Germany's Deutsche Börse running NYSE Euronext should remember that NYSE owns the Paris exchange.
-The real concern that mergers raise is the threat that a larger provider abuses its dominance.
-In the past decade, US and European regulators broke exchanges' trading monopolies.
-The ensuing fragmentation has worked well for share trading.
-In the UK, the London Stock Exchange now handles less than 60 per cent of trading in the FTSE 100.
-The rest is dealt on smaller platforms, in “dark pools” and through facilities offered by banks and brokers.
-It is less clear that the market will provide enough competition in derivatives.
-These products are the most lucrative to trade, and also promise the greatest growth in the wake of Dodd-Frank and other regulation pushing derivatives trading onto exchanges.
-Since liquidity has proved most important to derivatives traders, the market leans towards a natural oligopoly.
-Yet the US gave antitrust approval in 2007 to the Chicago Mercantile Exchange's acquisition of its rival.
-It now dominates US futures trading.
-It is up to European regulators whether they follow the US or create a different model of securities market.
-But the proposed Deutsche Börse and NYSE Euronext merger would at least create a European counterweight to CME.
-If derivative exchanges are natural oligopolies, they should be regulated in the same way as other such near-monopolies.
-Rather than fight the formation of global behemoths, policy makers must ensure they do not abuse their power.
-Having fewer, larger players may offer some advantages: pricing is more transparent; trading is easier to monitor.
-But if the mergers go ahead, regulators must have the tools and political will to hold them to account.
-They must be ready for the task: this wave of exchange mergers is only just beginning.
+Q11691
+Q179076
+Q217086
+Q11692
+Q1424605
+Q37172
+Q3918409
+Q452440
+Q184303
+Q189756
+Q1156854
+Q45767
+Q17281278
+Q428148
+Q1639780
+Q18193
+Q1954125
+Q179076
+Q338754
+Q138796
+Q11402
+Q37654
+Q213346
+Q179076
+Q1340643
+Q478798
+Q37654
+Q44127
+Q7930989
+Q179076
+Q5119
+Q452440
+Q11348
+Q845956
+Q179651
+Q131841
+Q179076
+Q35120
+Q16751793
+Q30
+Q30
+Q175026
+Q183
+Q157852
+Q105674
+Q13683
+Q13677
+Q618532
+Q90
+Q179076
+Q489544
+Q286583
+Q206361
+Q452440
+Q884353
+Q707125
+Q600571
+Q266162
+Q192630
+Q39911
+Q30
+Q1639780
+Q903577
+Q179076
+Q8043
+Q601401
+Q43637
+Q1132459
+Q327055
+Q11692
+Q601401
+Q145
+Q171240
+Q1205349
+Q52834024
+Q79998
+Q724178
+Q601401
+Q466496
+Q37413
+Q5710882
+Q879844
+Q321839
+Q177749
+Q1166205
+Q11020
+Q13226383
+Q1193004
+Q22687
+Q160117
+Q306484
+Q37654
+Q45767
+Q29175
+Q40276
+Q1424605
+Q1425577
+Q1342838
+Q1362362
+Q428148
+Q29175
+Q601401
+Q179076
+Q1827667
+Q29175
+Q1424605
+Q37654
+Q21984376
+Q747691
+Q103639
+Q30
+Q30
+Q231043
+Q907344
+Q1071967
+Q1362753
+Q30
+Q344
+Q601401
+Q1639780
+Q31888506
+Q30
+Q30
+Q386724
+Q51921823
+Q193946
+Q169489
+Q37654
+Q3918409
+Q157852
+Q13683
+Q452440
+Q386724
+Q1324102
+Q1053787
+Q29175
+Q179076
+Q747691
+Q103639
+Q1639780
+Q17641254
+Q127771
+Q200446
+Q1156854
+Q600571
+Q25107
+Q4197743
+Q1193004
+Q4686406
+Q2516951
+Q487623
+Q601401
+Q5290
+Q452440
+Q1639780
+Q39546
+Q196431
+Q508295
+Q759676
+Q37172
+Q179076
+Q452440
+Q529711
