@@ -248,11 +248,12 @@ public abstract class EvaluationSet {
         suspiciousIdLanguageMap.put(suspiciousFile.getPath(), suspiciousLanguage);
         candidateIdLanguageMap.put(candidateFile.getPath(), candidateLanguage);
 
-        candidateIdTokensMap.put(candidateFile.getPath(), candidateTokens);
         suspiciousIdTokensMap.put(suspiciousFile.getPath(), suspiciousTokens);
+        candidateIdTokensMap.put(candidateFile.getPath(), candidateTokens);
+
         suspiciousIdCandidateIdMap.put(suspiciousFile.getPath(), candidateFile.getPath());
 
-        System.out.println("Preprocessed " + suspiciousFile.getName());
+        System.out.println("Preprocessed.");
     }
 
     /**
@@ -295,16 +296,19 @@ public abstract class EvaluationSet {
         // perform analysis
         performAnalysis();
 
-        // TODO: similarity distribution (similarity of aligned documents)
         Map<Float, Integer> alignedDocumentSimilarities = new HashMap<>();
 
         for (String suspiciousId : suspiciousIdCandidateScoresMap.keySet()) {
-            Float alignedDocumentSimilarityPercent = (float) (suspiciousIdCandidateScoresMap.get(suspiciousId).get(suspiciousIdCandidateIdMap.get(suspiciousId)) * 100);
-            alignedDocumentSimilarityPercent = Math.round(alignedDocumentSimilarityPercent / 10.0f) * 10.0f;
-            if (alignedDocumentSimilarities.containsKey(alignedDocumentSimilarityPercent)) {
-                alignedDocumentSimilarities.put(alignedDocumentSimilarityPercent, alignedDocumentSimilarities.get(alignedDocumentSimilarityPercent) + 1);
-            } else {
-                alignedDocumentSimilarities.put(alignedDocumentSimilarityPercent, 1);
+            String candidateId = suspiciousIdCandidateIdMap.get(suspiciousId);
+
+            if (suspiciousIdCandidateScoresMap.get(suspiciousId).containsKey(candidateId)) {
+                Float alignedDocumentSimilarityPercent = (float) (suspiciousIdCandidateScoresMap.get(suspiciousId).get(candidateId) * 100);
+                alignedDocumentSimilarityPercent = Math.round(alignedDocumentSimilarityPercent / 10.0f) * 10.0f;
+                if (alignedDocumentSimilarities.containsKey(alignedDocumentSimilarityPercent)) {
+                    alignedDocumentSimilarities.put(alignedDocumentSimilarityPercent, alignedDocumentSimilarities.get(alignedDocumentSimilarityPercent) + 1);
+                } else {
+                    alignedDocumentSimilarities.put(alignedDocumentSimilarityPercent, 1);
+                }
             }
         }
 
