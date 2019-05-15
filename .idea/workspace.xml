@@ -77,8 +77,8 @@
       <file leaf-file-name="CLOSAEvaluationSetTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSetTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-955">
-              <caret line="186" column="23" lean-forward="false" selection-start-line="186" selection-start-column="23" selection-end-line="186" selection-end-column="23" />
+            <state relative-caret-position="86">
+              <caret line="165" column="39" lean-forward="false" selection-start-line="165" selection-start-column="16" selection-end-line="165" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -97,8 +97,8 @@
       <file leaf-file-name="EvaluationSet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="874">
-              <caret line="414" column="107" lean-forward="false" selection-start-line="414" selection-start-column="107" selection-end-line="414" selection-end-column="107" />
+            <state relative-caret-position="426">
+              <caret line="326" column="88" lean-forward="false" selection-start-line="326" selection-start-column="88" selection-end-line="326" selection-end-column="88" />
               <folding />
             </state>
           </provider>
@@ -1159,7 +1159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1557945633004</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="MRR">
+      <created>1557947537889</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1557947537889</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1231,7 +1238,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="readme for entity extraction" />
     <MESSAGE value="Moved entity extraction main method to entity extractor." />
     <MESSAGE value="Added external libraries" />
     <MESSAGE value="Restructuring" />
@@ -1256,7 +1262,8 @@
     <MESSAGE value="Europarl only 500 documents" />
     <MESSAGE value="Europarl &amp; JRC 1000 pairs" />
     <MESSAGE value="pan 11 500" />
-    <option name="LAST_COMMIT_MESSAGE" value="pan 11 500" />
+    <MESSAGE value="MRR" />
+    <option name="LAST_COMMIT_MESSAGE" value="MRR" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1643,16 +1650,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSetTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-955">
-          <caret line="186" column="23" lean-forward="false" selection-start-line="186" selection-start-column="23" selection-end-line="186" selection-end-column="23" />
+        <state relative-caret-position="86">
+          <caret line="165" column="39" lean-forward="false" selection-start-line="165" selection-start-column="16" selection-end-line="165" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="874">
-          <caret line="414" column="107" lean-forward="false" selection-start-line="414" selection-start-column="107" selection-end-line="414" selection-end-column="107" />
+        <state relative-caret-position="426">
+          <caret line="326" column="88" lean-forward="false" selection-start-line="326" selection-start-column="88" selection-end-line="326" selection-end-column="88" />
           <folding />
         </state>
       </provider>

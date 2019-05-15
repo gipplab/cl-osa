@@ -324,6 +324,7 @@ public abstract class EvaluationSet {
             int rank = 1;
             for (Map.Entry<String, Double> candidateScoreEntry : suspiciousIdCandidateScoresMap.get(suspiciousId).entrySet()) {
                 if (candidateScoreEntry.getKey().equals(candidateId)) {
+                    System.out.println("Candidate " + candidateId + " on rank " + rank);
                     meanReciprocalRank += 1.0/rank;
                     break;
                 }
