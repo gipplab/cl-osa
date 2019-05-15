@@ -156,7 +156,7 @@ public abstract class EvaluationSet {
         System.out.println("Analyzing " + FileUtils.listFiles(folder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .size() + " files... (" + this.getClass().getSimpleName() + ")");
 
-        FileUtils.listFiles(folder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
+        Map<File, File> files = FileUtils.listFiles(folder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .stream()
                 .sorted()
                 .filter(file -> !file.getName().equals(".DS_Store"))
@@ -169,9 +169,14 @@ public abstract class EvaluationSet {
                         }))
                 .entrySet().stream()
                 .filter(entry -> Files.exists(entry.getValue().toPath()))
-                .forEach(entry -> initializeOneFilePair(
-                        entry.getKey(),
-                        entry.getValue()));
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+        List<File> keys = new ArrayList<>(files.keySet());
+
+        for (int i = 0; i < keys.size(); i++) {
+            System.out.println("Initialize file " + (i + 1) + " of " + (keys.size() + 1) + ":");
+            initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
+        }
     }
 
     /**
