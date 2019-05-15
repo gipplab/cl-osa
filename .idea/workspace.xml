@@ -97,8 +97,8 @@
       <file leaf-file-name="EvaluationSet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="132" column="21" lean-forward="false" selection-start-line="132" selection-start-column="21" selection-end-line="132" selection-end-column="21" />
+            <state relative-caret-position="535">
+              <caret line="144" column="108" lean-forward="false" selection-start-line="144" selection-start-column="108" selection-end-line="144" selection-end-column="108" />
               <folding />
             </state>
           </provider>
@@ -1117,7 +1117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1557667898920</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Count files while initializing alignments">
+      <created>1557906301893</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1557906301894</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1189,7 +1196,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor sparqlUtil for new classifier" />
     <MESSAGE value="Fixed index typo" />
     <MESSAGE value="Major refactoring: Made classification and language detection static, &#10;always return id score maps instead of top ranked document id, added spanish library,&#10;added parameters to main method." />
     <MESSAGE value="Reformat / Readme.md update" />
@@ -1214,7 +1220,8 @@
     <MESSAGE value="Changed rank steps" />
     <MESSAGE value="CL similarity distribution" />
     <MESSAGE value="CL similarity distribution (fix if token list empty)" />
-    <option name="LAST_COMMIT_MESSAGE" value="CL similarity distribution (fix if token list empty)" />
+    <MESSAGE value="Count files while initializing alignments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Count files while initializing alignments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1598,8 +1605,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="132" column="21" lean-forward="false" selection-start-line="132" selection-start-column="21" selection-end-line="132" selection-end-column="21" />
+        <state relative-caret-position="535">
+          <caret line="144" column="108" lean-forward="false" selection-start-line="144" selection-start-column="108" selection-end-line="144" selection-end-column="108" />
           <folding />
         </state>
       </provider>

@@ -106,7 +106,7 @@ public abstract class EvaluationSet {
 
         System.out.println("Analyzing " + fileCountLimit + " file pairs... (" + this.getClass().getSimpleName() + ")");
 
-        FileUtils.listFiles(suspiciousFolder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
+        Map<File, File> files = FileUtils.listFiles(suspiciousFolder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .stream()
                 .sorted()
                 .filter(file -> !file.getName().equals(".DS_Store"))
@@ -136,11 +136,14 @@ public abstract class EvaluationSet {
                 .entrySet().stream()
                 .filter(entry -> entry.getValue().exists())
                 .limit(fileCountLimit)
-                .forEach(entry -> initializeOneFilePair(
-                        entry.getKey(),
-                        suspiciousLanguage,
-                        entry.getValue(),
-                        candidateLanguage));
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+        List<File> keys = new ArrayList<>(files.keySet());
+
+        for (int i = 0; i < keys.size(); i++) {
+            System.out.println("Initialize file " + (i + 1) + " of " + (keys.size() + 1) + ":");
+            initializeOneFilePair(keys.get(i), suspiciousLanguage, files.get(keys.get(i)), candidateLanguage);
+        }
     }
 
 
