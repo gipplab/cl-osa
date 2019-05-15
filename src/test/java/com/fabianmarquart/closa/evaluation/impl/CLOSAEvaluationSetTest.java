@@ -183,7 +183,8 @@ public class CLOSAEvaluationSetTest {
         try {
             CLOSAEvaluationSet englishSpanishPan11EvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es"
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es",
+                    500
             );
             // englishSpanishPan11EvaluationSetCLOSA.setGraphBasedAnalysis(true);
             englishSpanishPan11EvaluationSetCLOSA.printEvaluation();
@@ -258,7 +259,7 @@ public class CLOSAEvaluationSetTest {
             CLOSAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr",
-                    1000
+                    500
             );
             englishFrenchJrcAcquisEvaluationSetCLOSA.printEvaluation();
         } catch (Exception e) {
@@ -288,7 +289,7 @@ public class CLOSAEvaluationSetTest {
             CLOSAEvaluationSet englishFrenchEuroparlEvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
-                    1000
+                    500
             );
             englishFrenchEuroparlEvaluationSetCLOSA.printEvaluation();
         } catch (Exception e) {

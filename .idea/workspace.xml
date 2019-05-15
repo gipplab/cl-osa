@@ -77,8 +77,8 @@
       <file leaf-file-name="CLOSAEvaluationSetTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSetTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="260" column="24" lean-forward="false" selection-start-line="260" selection-start-column="24" selection-end-line="260" selection-end-column="24" />
+            <state relative-caret-position="431">
+              <caret line="186" column="23" lean-forward="false" selection-start-line="186" selection-start-column="23" selection-end-line="186" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -1145,7 +1145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1557912987082</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Europarl &amp; JRC 1000 pairs">
+      <created>1557917268717</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1557917268717</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1217,7 +1224,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Reformat / Readme.md update" />
     <MESSAGE value="added text annotation feature" />
     <MESSAGE value="readme for entity extraction" />
     <MESSAGE value="Moved entity extraction main method to entity extractor." />
@@ -1242,7 +1248,8 @@
     <MESSAGE value="Count files while initializing alignments" />
     <MESSAGE value="JRC only 500 documents" />
     <MESSAGE value="Europarl only 500 documents" />
-    <option name="LAST_COMMIT_MESSAGE" value="Europarl only 500 documents" />
+    <MESSAGE value="Europarl &amp; JRC 1000 pairs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Europarl &amp; JRC 1000 pairs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1637,8 +1644,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSetTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="260" column="24" lean-forward="false" selection-start-line="260" selection-start-column="24" selection-end-line="260" selection-end-column="24" />
+        <state relative-caret-position="431">
+          <caret line="186" column="23" lean-forward="false" selection-start-line="186" selection-start-column="23" selection-end-line="186" selection-end-column="23" />
           <folding />
         </state>
       </provider>
