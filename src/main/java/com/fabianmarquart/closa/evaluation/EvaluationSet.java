@@ -322,7 +322,14 @@ public abstract class EvaluationSet {
             }
 
             int rank = 1;
-            for (Map.Entry<String, Double> candidateScoreEntry : suspiciousIdCandidateScoresMap.get(suspiciousId).entrySet()) {
+
+            Map<String, Double> candidateScoresMapSorted = suspiciousIdCandidateScoresMap.get(suspiciousId).entrySet()
+                    .stream()
+                    .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+
+            for (Map.Entry<String, Double> candidateScoreEntry : candidateScoresMapSorted.entrySet()) {
                 if (candidateScoreEntry.getKey().equals(candidateId)) {
                     System.out.println("Candidate " + candidateId + " on rank " + rank);
                     meanReciprocalRank += 1.0/rank;
@@ -360,8 +367,6 @@ public abstract class EvaluationSet {
             for (String suspiciousId : suspiciousIdCandidateScoresMap.keySet()) {
                 int candidateCount = suspiciousIdCandidateScoresMap.get(suspiciousId).size();
 
-
-                System.out.println("Candidate count for " + suspiciousId + ": " + candidateCount);
 
                 if (candidateCount > 0) {
                     selectedElements += suspiciousIdCandidateScoresMap
