@@ -323,10 +323,11 @@ public abstract class EvaluationSet {
 
             int rank = 1;
 
-            Map<String, Double> candidateScoresMapSorted = suspiciousIdCandidateScoresMap.get(suspiciousId).entrySet()
+            // FIXME: this does not sort
+            LinkedHashMap<String, Double> candidateScoresMapSorted = new LinkedHashMap<>(suspiciousIdCandidateScoresMap.get(suspiciousId).entrySet()
                     .stream()
                     .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
 
 
             for (Map.Entry<String, Double> candidateScoreEntry : candidateScoresMapSorted.entrySet()) {
