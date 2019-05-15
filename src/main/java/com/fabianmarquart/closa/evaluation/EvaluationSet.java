@@ -141,7 +141,7 @@ public abstract class EvaluationSet {
         List<File> keys = new ArrayList<>(files.keySet());
 
         for (int i = 0; i < keys.size(); i++) {
-            System.out.println("Initialize file " + (i + 1) + " of " + (keys.size() + 1) + ":");
+            System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
             initializeOneFilePair(keys.get(i), suspiciousLanguage, files.get(keys.get(i)), candidateLanguage);
         }
     }
@@ -177,7 +177,7 @@ public abstract class EvaluationSet {
         List<File> keys = new ArrayList<>(files.keySet());
 
         for (int i = 0; i < keys.size(); i++) {
-            System.out.println("Initialize file " + (i + 1) + " of " + (keys.size() + 1) + ":");
+            System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
             initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
         }
     }

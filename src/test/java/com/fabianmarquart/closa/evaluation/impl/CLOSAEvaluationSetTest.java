@@ -288,7 +288,7 @@ public class CLOSAEvaluationSetTest {
             CLOSAEvaluationSet englishFrenchEuroparlEvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
-                    1000
+                    500
             );
             englishFrenchEuroparlEvaluationSetCLOSA.printEvaluation();
         } catch (Exception e) {
