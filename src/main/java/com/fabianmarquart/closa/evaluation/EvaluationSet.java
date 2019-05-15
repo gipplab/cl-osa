@@ -306,6 +306,8 @@ public abstract class EvaluationSet {
 
         Map<Float, Integer> alignedDocumentSimilarities = new HashMap<>();
 
+        double meanReciprocalRank = 0.0;
+
         for (String suspiciousId : suspiciousIdCandidateScoresMap.keySet()) {
             String candidateId = suspiciousIdCandidateIdMap.get(suspiciousId);
 
@@ -318,7 +320,18 @@ public abstract class EvaluationSet {
                     alignedDocumentSimilarities.put(alignedDocumentSimilarityPercent, 1);
                 }
             }
+
+            int rank = 1;
+            for (Map.Entry<String, Double> candidateScoreEntry : suspiciousIdCandidateScoresMap.get(suspiciousId).entrySet()) {
+                if (candidateScoreEntry.getKey().equals(candidateId)) {
+                    meanReciprocalRank += 1.0/rank;
+                    break;
+                }
+                rank++;
+            }
         }
+
+        meanReciprocalRank = meanReciprocalRank / suspiciousIdCandidateIdMap.size();
 
         List<Float> precisions = new ArrayList<>();
         List<Float> recalls = new ArrayList<>();
@@ -399,6 +412,7 @@ public abstract class EvaluationSet {
         evaluation.append("Precision: ").append(precisions).append("\n");
         evaluation.append("Recall: ").append(recalls).append("\n");
         evaluation.append("F-Measure: ").append(fMeasures);
+        evaluation.append("\n\n").append("Mean reciprocal rank: ").append(meanReciprocalRank).append("\n");
         evaluation.append("\n\n").append("Aligned document similarities");
         evaluation.append("\n\n");
         evaluation.append(alignedDocumentSimilarities);
