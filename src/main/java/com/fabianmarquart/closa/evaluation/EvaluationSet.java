@@ -324,14 +324,14 @@ public abstract class EvaluationSet {
             int rank = 1;
 
             // FIXME: this does not sort
-            LinkedHashMap<String, Double> candidateScoresMapSorted = new LinkedHashMap<>(suspiciousIdCandidateScoresMap.get(suspiciousId).entrySet()
+            List<String> candidatesSorted = suspiciousIdCandidateScoresMap.get(suspiciousId).entrySet()
                     .stream()
                     .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
+                    .map(Map.Entry::getKey).collect(Collectors.toList());
 
 
-            for (Map.Entry<String, Double> candidateScoreEntry : candidateScoresMapSorted.entrySet()) {
-                if (candidateScoreEntry.getKey().equals(candidateId)) {
+            for (String currentCandidateId : candidatesSorted) {
+                if (currentCandidateId.equals(candidateId)) {
                     System.out.println("Candidate " + candidateId + " on rank " + rank);
                     meanReciprocalRank += 1.0/rank;
                     break;
