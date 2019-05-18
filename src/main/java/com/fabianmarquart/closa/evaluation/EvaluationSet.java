@@ -343,7 +343,7 @@ public abstract class EvaluationSet {
                 .stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
-                        e -> (float) e.getValue() / suspiciousIdCandidateScoresMap.size()));
+                        e -> (float) e.getValue() * 100.0f / suspiciousIdCandidateScoresMap.size()));
 
         meanReciprocalRank = meanReciprocalRank / suspiciousIdCandidateIdMap.size();
 
@@ -413,9 +413,9 @@ public abstract class EvaluationSet {
             float recall = (float) truePositives / relevantElements;
             float fMeasure = 2.0f * (precision * recall) / (precision + recall);
 
-            precisions.add(precision);
-            recalls.add(recall);
-            fMeasures.add(fMeasure);
+            precisions.add(precision * 100.0f);
+            recalls.add(recall * 100.0f);
+            fMeasures.add(fMeasure * 100.0f);
         }
 
 
@@ -424,7 +424,7 @@ public abstract class EvaluationSet {
         evaluation.append("Precision: ").append(precisions).append("\n");
         evaluation.append("Recall: ").append(recalls).append("\n");
         evaluation.append("F-Measure: ").append(fMeasures);
-        evaluation.append("\n\n").append("Mean reciprocal rank: ").append(meanReciprocalRank).append("\n");
+        evaluation.append("\n\n").append("Mean reciprocal rank: ").append(meanReciprocalRank * 100.0f).append("\n");
         evaluation.append("\n\n").append("Aligned document similarities");
         evaluation.append("\n\n");
         evaluation.append(alignedDocumentSimilarities).append("\n\n");
