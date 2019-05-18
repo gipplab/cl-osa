@@ -111,6 +111,20 @@ public class CLESAEvaluationSet extends EvaluationSet {
     }
 
     /**
+     * Initializes the evaluationSet with max file count. The files have to be named identically, only the directories
+     * should be named differently.
+     *
+     * @param suspiciousFolder   contains the suspicious files
+     * @param suspiciousLanguage suspicious files' language
+     * @param candidateFolder    contains the candidate files, named identically to the suspicious ones.
+     * @param candidateLanguage  candidate files' language
+     * @param maxFileCount       maximum file count.
+     */
+    public CLESAEvaluationSet(File suspiciousFolder, String suspiciousLanguage, File candidateFolder, String candidateLanguage, int maxFileCount) throws IOException {
+        super(suspiciousFolder, suspiciousLanguage, candidateFolder, candidateLanguage, maxFileCount);
+    }
+
+    /**
      * Gets a MongoDB collection.
      *
      * @return the Collection object.
