@@ -4,6 +4,7 @@ import com.fabianmarquart.closa.evaluation.EvaluationSet;
 import com.fabianmarquart.closa.model.Dictionary;
 import com.fabianmarquart.closa.model.Token;
 import com.fabianmarquart.closa.util.TokenUtil;
+import com.fabianmarquart.closa.util.TranslationUtil;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;

@@ -107,4 +107,18 @@ public class CLESAEvaluationSetTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testCLESAJrcAcquisDocuments() {
+        try {
+            CLESAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLESA = new CLESAEvaluationSet(
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr",
+                    500
+            );
+            englishFrenchJrcAcquisEvaluationSetCLESA.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
