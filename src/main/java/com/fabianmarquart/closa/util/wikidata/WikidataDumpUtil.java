@@ -565,6 +565,30 @@ public class WikidataDumpUtil {
 
 
     /**
+     * Gets a list of ancestors limited by depth in the Wikidata ontology.
+     *
+     * @param entity   entity
+     * @param maxDepth maximum depth for traversal.
+     * @return the map of ancestor entities with distance.
+     */
+    public static Map<WikidataEntity, Long> getAncestorsByMaxDepth(WikidataEntity entity, Long maxDepth) {
+        AggregateIterable<Document> queryResult = entitiesHierarchyCollection.aggregate(Arrays.asList(
+                new Document("$match", new Document("id", entity.getId())),
+                new Document("$unwind", "$hierarchy"),
+                new Document("match", new Document("hierarchy.depth", new Document("$lte", maxDepth)))
+        ));
+
+        Map<WikidataEntity, Long> ancestors = new HashMap<>();
+
+        for (Document document : queryResult) {
+            ancestors.put(new WikidataEntity(document.get("hierarchy", Document.class).getString("id")),
+                    document.get("hierarchy", Document.class).getLong("depth") + 1L);
+        }
+
+        return ancestors;
+    }
+
+    /**
      * Gets a list of all descendants in the Wikidata ontology.
      *
      * @param entity entity

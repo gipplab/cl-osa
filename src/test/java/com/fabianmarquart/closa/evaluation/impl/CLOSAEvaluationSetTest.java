@@ -119,6 +119,7 @@ public class CLOSAEvaluationSetTest {
                     new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/ja"), "ja"
             );
 
+            englishJapaneseBBCEvaluationSetCLOSA.setGraphBasedAnalysis(true);
             englishJapaneseBBCEvaluationSetCLOSA.printEvaluation();
 
         } catch (IOException e) {

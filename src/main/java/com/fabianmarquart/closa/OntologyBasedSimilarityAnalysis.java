@@ -5,6 +5,7 @@ import com.fabianmarquart.closa.classification.TextClassifier;
 import com.fabianmarquart.closa.language.LanguageDetector;
 import com.fabianmarquart.closa.model.Dictionary;
 import com.fabianmarquart.closa.model.WikidataEntity;
+import com.fabianmarquart.closa.util.wikidata.WikidataDumpUtil;
 import com.fabianmarquart.closa.util.wikidata.WikidataEntityExtractor;
 import com.fabianmarquart.closa.util.wikidata.WikidataSimilarityUtil;
 import me.tongfei.progressbar.ProgressBar;
@@ -198,26 +199,73 @@ public class OntologyBasedSimilarityAnalysis {
         // perform detailed analysis
         System.out.println("Perform detailed analysis \n");
 
-        for (Map.Entry<String, List<String>> suspiciousEntry : suspiciousIdTokensMap.entrySet()) {
+        Map<String, Map<String, Float>> suspiciousIdTokenCountMap = new HashMap<>();
+        Map<String, Map<String, Float>> candidateIdTokenCountMap = new HashMap<>();
 
-            Map<String, Double> candidateScoreMap = candidateIdTokensMap.entrySet()
-                    .stream()
-                    .collect(Collectors.toMap(Map.Entry::getKey,
-                            entry -> WikidataSimilarityUtil.cosineSimilarity(suspiciousEntry.getValue()
-                                            .stream()
-                                            .map(WikidataEntity::new)
-                                            .collect(Collectors.toList()),
-                                    entry.getValue()
-                                            .stream()
-                                            .map(WikidataEntity::new)
-                                            .collect(Collectors.toList()))));
+        for (Map.Entry<String, List<String>> suspiciousIdTokensMapEntry : suspiciousIdTokensMap.entrySet()) {
+            String id = suspiciousIdTokensMapEntry.getKey();
 
-            suspiciousIdDetectedCandidateIdsMap.put(
-                    suspiciousEntry.getKey(),
-                    candidateScoreMap);
+            List<String> tokens = suspiciousIdTokensMapEntry.getValue();
+            Map<String, Float> countMap = getHierarchicalCountMap(tokens);
+            suspiciousIdTokenCountMap.put(id, countMap);
         }
 
+        for (Map.Entry<String, List<String>> candidateIdTokensMapEntry : candidateIdTokensMap.entrySet()) {
+            String id = candidateIdTokensMapEntry.getKey();
+
+            List<String> tokens = candidateIdTokensMapEntry.getValue();
+            Map<String, Float> countMap = getHierarchicalCountMap(tokens);
+            candidateIdTokenCountMap.put(id, countMap);
+        }
+
+
+        // perform detailed analysis
+        logger.info("Perform detailed analysis");
+
+        // progress bar
+        ProgressBar progressBar = new ProgressBar("Perform cosine similarity analysis", suspiciousIdTokensMap.entrySet().size(), ProgressBarStyle.ASCII);
+        progressBar.start();
+
+        // iterate the suspicious documents
+        for (Map.Entry<String, Map<String, Float>> suspiciousEntry : suspiciousIdTokenCountMap.entrySet()) {
+
+            Map<String, Double> candidateSimilarities = new HashMap<>();
+
+            for (Map.Entry<String, Map<String, Float>> candidateEntry : candidateIdTokenCountMap.entrySet()) {
+                double similarity = WikidataSimilarityUtil.cosineSimilarity(suspiciousEntry.getValue(), candidateEntry.getValue());
+                candidateSimilarities.put(candidateEntry.getKey(), similarity);
+            }
+
+            suspiciousIdDetectedCandidateIdsMap.put(suspiciousEntry.getKey(), candidateSimilarities);
+        }
+
+        progressBar.stop();
+
         return suspiciousIdDetectedCandidateIdsMap;
+    }
+
+
+    private Map<String, Float> getHierarchicalCountMap(List<String> tokens) {
+        Map<String, Float> tokenCountMap = new HashMap<>();
+
+        for (String token : tokens) {
+            if (tokenCountMap.containsKey(token)) {
+                tokenCountMap.put(token, tokenCountMap.get(token) + 1.0f);
+            } else {
+                tokenCountMap.put(token, 1.0f);
+            }
+
+            WikidataEntity tokenEntity = WikidataDumpUtil.getEntityById(token);
+
+            for (Map.Entry<WikidataEntity, Long> ancestor : WikidataDumpUtil.getAncestorsByMaxDepth(tokenEntity, 2L).entrySet()) {
+                if (tokenCountMap.containsKey(ancestor.getKey().getId())) {
+                    tokenCountMap.put(ancestor.getKey().getId(), tokenCountMap.get(ancestor.getKey().getId() + 1.0f / (ancestor.getValue() + 1.0f)));
+                } else {
+                    tokenCountMap.put(ancestor.getKey().getId(), 1.0f / (ancestor.getValue() + 1.0f));
+                }
+            }
+        }
+        return tokenCountMap;
     }
 
 

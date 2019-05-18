@@ -12,10 +12,7 @@ import org.apache.commons.math3.linear.OpenMapRealVector;
 import org.apache.commons.math3.linear.SparseRealVector;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -75,6 +72,41 @@ public class WikidataSimilarityUtil {
         return firstVector.dotProduct(secondVector) / (firstVector.getNorm() * secondVector.getNorm());
     }
 
+
+    /**
+     * Cosine similarity.
+     *
+     * @param firstEntitiesCounts first entity count map.
+     * @param secondEntitiesCounts second entity count map.
+     * @param progressBar progress bar.
+     * @return overall similarity.
+     */
+    public static double cosineSimilarity(Map<String, Float> firstEntitiesCounts,
+                                          Map<String, Float> secondEntitiesCounts,
+                                          ProgressBar progressBar) {
+
+        List<String> union = new ArrayList<>(SetUtils.union(
+                new HashSet<>(firstEntitiesCounts.keySet()),
+                new HashSet<>(secondEntitiesCounts.keySet())));
+
+
+        SparseRealVector firstVector = new OpenMapRealVector(union.size());
+        SparseRealVector secondVector = new OpenMapRealVector(union.size());
+
+
+        // vector construction
+        for (Map.Entry<String, Float> firstEntityCount : firstEntitiesCounts.entrySet()) {
+            firstVector.addToEntry(union.indexOf(firstEntityCount.getKey()), firstEntityCount.getValue());
+            if (progressBar != null) progressBar.step();
+        }
+        for (Map.Entry<String, Float> secondEntityCount : secondEntitiesCounts.entrySet()) {
+            secondVector.addToEntry(union.indexOf(secondEntityCount.getKey()), secondEntityCount.getValue());
+            if (progressBar != null) progressBar.step();
+        }
+
+        return firstVector.dotProduct(secondVector) / (firstVector.getNorm() * secondVector.getNorm());
+    }
+
     /**
      * Cosine similarity.
      * Runtime complexity: O(n)
@@ -86,6 +118,11 @@ public class WikidataSimilarityUtil {
     public static double cosineSimilarity(List<WikidataEntity> firstEntities,
                                           List<WikidataEntity> secondEntities) {
         return cosineSimilarity(firstEntities, secondEntities, null);
+    }
+
+    public static double cosineSimilarity(Map<String, Float> firstEntitiesCounts,
+                                          Map<String, Float> secondEntitiesCounts) {
+        return cosineSimilarity(firstEntitiesCounts, secondEntitiesCounts, null);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
