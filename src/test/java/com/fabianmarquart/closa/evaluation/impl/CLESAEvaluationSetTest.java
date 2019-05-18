@@ -121,4 +121,20 @@ public class CLESAEvaluationSetTest {
             e.printStackTrace();
         }
     }
+
+
+    @Test
+    public void testCLESAEuroparlDocuments() {
+
+        try {
+            CLESAEvaluationSet englishFrenchEuroparlEvaluationSetCLESA = new CLESAEvaluationSet(
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
+                    500
+            );
+            englishFrenchEuroparlEvaluationSetCLESA.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

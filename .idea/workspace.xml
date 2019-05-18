@@ -26,8 +26,8 @@
       <file leaf-file-name="CLESAEvaluationSetTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="109" column="0" lean-forward="true" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+            <state relative-caret-position="506">
+              <caret line="133" column="14" lean-forward="false" selection-start-line="133" selection-start-column="14" selection-end-line="133" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -46,18 +46,8 @@
       <file leaf-file-name="CLOSAEvaluationSetTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSetTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="269" column="5" lean-forward="true" selection-start-line="257" selection-start-column="3" selection-end-line="269" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WikidataDisambiguator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/wikidata/WikidataDisambiguator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="160" column="38" lean-forward="false" selection-start-line="160" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
+            <state relative-caret-position="493">
+              <caret line="299" column="5" lean-forward="true" selection-start-line="271" selection-start-column="0" selection-end-line="299" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -86,8 +76,8 @@
       <file leaf-file-name="CLCNGEvaluationSet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+            <state relative-caret-position="431">
+              <caret line="109" column="48" lean-forward="false" selection-start-line="109" selection-start-column="48" selection-end-line="109" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -96,8 +86,8 @@
       <file leaf-file-name="CLCNGEvaluationSetTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSetTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="28" column="26" lean-forward="false" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
+            <state relative-caret-position="315">
+              <caret line="25" column="35" lean-forward="false" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -607,7 +597,32 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity">
+  <component name="RunManager" selected="JUnit.CLCNGEvaluationSetTest.testCLCNGEvaluationSetEnglishJapanese">
+    <configuration name="CLCNGEvaluationSetTest.testCLCNGEvaluationSetEnglishJapanese" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.fabianmarquart.closa.evaluation.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="CLOSA" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.fabianmarquart.closa.evaluation.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.fabianmarquart.closa.evaluation.impl.CLCNGEvaluationSetTest" />
+      <option name="METHOD_NAME" value="testCLCNGEvaluationSetEnglishJapanese" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
     <configuration name="CLOSAEvaluationSetTest.testCLOSAEnglishChineseCosineSimilarity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -716,31 +731,6 @@
       <option name="PACKAGE_NAME" value="com.fabianmarquart.closa" />
       <option name="MAIN_CLASS_NAME" value="com.fabianmarquart.closa.OntologyBasedSimilarityAnalysisTest" />
       <option name="METHOD_NAME" value="executeOntologyEnhancedAlgorithmAndComputeScoresTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration name="WikidataEntityExtractorTests.testExtractEntitiesFromChineseSentence" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.fabianmarquart.closa.util.wikidata.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="CLOSA" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.fabianmarquart.closa.util.wikidata" />
-      <option name="MAIN_CLASS_NAME" value="com.fabianmarquart.closa.util.wikidata.WikidataEntityExtractorTests" />
-      <option name="METHOD_NAME" value="testExtractEntitiesFromChineseSentence" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
@@ -887,19 +877,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="JUnit.MainTest" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.WikidataEntityExtractorTests.testExtractEntitiesFromChineseSentence" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAVroniPlag" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishChineseCosineSimilarity" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAVroniPlag" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishChineseCosineSimilarity" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.CLCNGEvaluationSetTest.testCLCNGEvaluationSetEnglishJapanese" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishChineseCosineSimilarity" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAVroniPlag" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.WikidataEntityExtractorTests.testExtractEntitiesFromChineseSentence" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.CLCNGEvaluationSetTest.testCLCNGEvaluationSetEnglishJapanese" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishChineseCosineSimilarity" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAVroniPlag" />
       </list>
     </recent_temporary>
   </component>
@@ -916,13 +906,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1550154606114</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Major refactoring: Made classification and language detection static, &#10;always return id score maps instead of top ranked document id, added spanish library,&#10;added parameters to main method.">
-      <created>1554580044390</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1554580044390</updated>
     </task>
     <task id="LOCAL-00008" summary="Reformat / Readme.md update">
       <created>1554580686140</created>
@@ -1260,15 +1243,22 @@
       <option name="project" value="LOCAL" />
       <updated>1558212292315</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="CL-ESA Evaluation JRC-Acquis">
+      <created>1558213394599</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1558213394599</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TestHistory">
+    <history-entry file="CLCNGEvaluationSetTest_testCLCNGEvaluationSetEnglishJapanese - 2019.05.18 at 23h 13m 24s.xml">
+      <configuration name="CLCNGEvaluationSetTest.testCLCNGEvaluationSetEnglishJapanese" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="CLOSAEvaluationSetTest_testCLOSAEnglishJapaneseCosineSimilarity - 2019.05.18 at 20h 41m 40s.xml">
       <configuration name="CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="OntologyBasedSimilarityAnalysisTest_executeOntologyEnhancedAlgorithmAndComputeScoresTest - 2019.05.18 at 20h 25m 36s.xml">
-      <configuration name="OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="OntologyBasedSimilarityAnalysisTest_executeOntologyEnhancedAlgorithmAndComputeScoresTest - 2019.05.18 at 20h 26m 16s.xml">
       <configuration name="OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" configurationId="JUnit" />
@@ -1332,7 +1322,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Language code check" />
     <MESSAGE value="debugging" />
     <MESSAGE value="analysis fixed null-poiner exception" />
     <MESSAGE value="Changed rank steps" />
@@ -1357,7 +1346,8 @@
     <MESSAGE value="Parent count 1/2^(k+1)" />
     <MESSAGE value="Check file empty" />
     <MESSAGE value="Percent instead of ratio" />
-    <option name="LAST_COMMIT_MESSAGE" value="Percent instead of ratio" />
+    <MESSAGE value="CL-ESA Evaluation JRC-Acquis" />
+    <option name="LAST_COMMIT_MESSAGE" value="CL-ESA Evaluation JRC-Acquis" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1370,13 +1360,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/commandLine/EntityExtractionTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/commandLine/MainTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1730,34 +1713,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSetTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/WordNetUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="28" column="26" lean-forward="false" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
+        <state relative-caret-position="297">
+          <caret line="71" column="33" lean-forward="true" selection-start-line="71" selection-start-column="33" selection-end-line="71" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+        <state relative-caret-position="431">
+          <caret line="109" column="48" lean-forward="false" selection-start-line="109" selection-start-column="48" selection-end-line="109" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSetTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="25" column="35" lean-forward="false" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSetTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="269" column="5" lean-forward="true" selection-start-line="257" selection-start-column="3" selection-end-line="269" selection-end-column="5" />
+        <state relative-caret-position="493">
+          <caret line="299" column="5" lean-forward="true" selection-start-line="271" selection-start-column="0" selection-end-line="299" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="109" column="0" lean-forward="true" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+        <state relative-caret-position="506">
+          <caret line="133" column="14" lean-forward="false" selection-start-line="133" selection-start-column="14" selection-end-line="133" selection-end-column="14" />
           <folding />
         </state>
       </provider>

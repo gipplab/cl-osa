@@ -107,12 +107,13 @@ public class CLCNGEvaluationSet extends EvaluationSet {
                 return new ArrayList<>(FileUtils.readLines(new File(documentTokensPath), StandardCharsets.UTF_8));
             }
 
-            List<Token> documentTokens = TokenUtil.tokenize(documentText, documentLanguage);
+            documentText = TranslationUtil.translate(documentText, documentLanguage, "en");
+            List<Token> documentTokens = TokenUtil.tokenize(documentText, "en");
             documentTokens = TokenUtil.nGramPartition(documentTokens, n);
             documentTokens.forEach(Token::toLowerCase);
 
             return documentTokens.stream().map(Token::getToken).collect(Collectors.toList());
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
