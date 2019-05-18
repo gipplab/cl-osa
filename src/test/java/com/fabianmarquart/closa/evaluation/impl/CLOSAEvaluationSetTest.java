@@ -157,6 +157,7 @@ public class CLOSAEvaluationSetTest {
                     new File("src/test/resources/com/fabianmarquart/closa/evaluation/ECCE/en"), "en",
                     new File("src/test/resources/com/fabianmarquart/closa/evaluation/ECCE/zh"), "zh"
             );
+            englishChineseECCEEvaluationSetCLOSA.setGraphBasedAnalysis(true);
             englishChineseECCEEvaluationSetCLOSA.printEvaluation();
         } catch (IOException e) {
             e.printStackTrace();
