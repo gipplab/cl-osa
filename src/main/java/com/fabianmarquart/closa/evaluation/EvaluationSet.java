@@ -332,12 +332,18 @@ public abstract class EvaluationSet {
             for (String currentCandidateId : candidatesSorted) {
                 if (currentCandidateId.equals(candidateId)) {
                     System.out.println("Candidate " + candidateId + " on rank " + rank);
-                    meanReciprocalRank += 1.0/rank;
+                    meanReciprocalRank += 1.0 / rank;
                     break;
                 }
                 rank++;
             }
         }
+
+        Map<Float, Float> alignedDocumentSimilaritiesPercent = alignedDocumentSimilarities.entrySet()
+                .stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        e -> (float) e.getValue() / suspiciousIdCandidateScoresMap.size()));
 
         meanReciprocalRank = meanReciprocalRank / suspiciousIdCandidateIdMap.size();
 
@@ -410,8 +416,8 @@ public abstract class EvaluationSet {
             precisions.add(precision);
             recalls.add(recall);
             fMeasures.add(fMeasure);
-
         }
+
 
         evaluation.append("\n").append("Ranks 1 to ").append(maximumRank);
         evaluation.append("\n\n");
@@ -421,7 +427,8 @@ public abstract class EvaluationSet {
         evaluation.append("\n\n").append("Mean reciprocal rank: ").append(meanReciprocalRank).append("\n");
         evaluation.append("\n\n").append("Aligned document similarities");
         evaluation.append("\n\n");
-        evaluation.append(alignedDocumentSimilarities);
+        evaluation.append(alignedDocumentSimilarities).append("\n\n");
+        evaluation.append(alignedDocumentSimilaritiesPercent);
 
         System.out.println(evaluation);
 
