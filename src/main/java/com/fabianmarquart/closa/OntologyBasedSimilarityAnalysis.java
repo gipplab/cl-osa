@@ -223,8 +223,8 @@ public class OntologyBasedSimilarityAnalysis {
             Map<String, List<String>> candidateIdTokensMap) {
         Map<String, Map<String, Double>> suspiciousIdDetectedCandidateIdsMap = new HashMap<>();
 
-        // perform detailed analysis
-        System.out.println("Perform detailed analysis \n");
+        ProgressBar ontologyProgressBar = new ProgressBar("Enhancing vectors with ontology data", suspiciousIdTokensMap.size() + candidateIdTokensMap.size(), ProgressBarStyle.ASCII);
+        ontologyProgressBar.start();
 
         Map<String, Map<String, Double>> suspiciousIdTokenCountMap = new HashMap<>();
         Map<String, Map<String, Double>> candidateIdTokenCountMap = new HashMap<>();
@@ -235,6 +235,8 @@ public class OntologyBasedSimilarityAnalysis {
             List<String> tokens = suspiciousIdTokensMapEntry.getValue();
             Map<String, Double> countMap = getHierarchicalCountMap(tokens);
             suspiciousIdTokenCountMap.put(id, countMap);
+
+            ontologyProgressBar.step();
         }
 
         for (Map.Entry<String, List<String>> candidateIdTokensMapEntry : candidateIdTokensMap.entrySet()) {
@@ -243,14 +245,18 @@ public class OntologyBasedSimilarityAnalysis {
             List<String> tokens = candidateIdTokensMapEntry.getValue();
             Map<String, Double> countMap = getHierarchicalCountMap(tokens);
             candidateIdTokenCountMap.put(id, countMap);
+
+            ontologyProgressBar.step();
         }
+
+        ontologyProgressBar.stop();
 
 
         // perform detailed analysis
         logger.info("Perform detailed analysis");
 
         // progress bar
-        ProgressBar progressBar = new ProgressBar("Perform cosine similarity analysis", suspiciousIdTokensMap.entrySet().size(), ProgressBarStyle.ASCII);
+        ProgressBar progressBar = new ProgressBar("Perform cosine similarity analysis", suspiciousIdTokenCountMap.size() * candidateIdTokenCountMap.size(), ProgressBarStyle.ASCII);
         progressBar.start();
 
         // iterate the suspicious documents
@@ -261,6 +267,7 @@ public class OntologyBasedSimilarityAnalysis {
             for (Map.Entry<String, Map<String, Double>> candidateEntry : candidateIdTokenCountMap.entrySet()) {
                 double similarity = WikidataSimilarityUtil.cosineSimilarity(suspiciousEntry.getValue(), candidateEntry.getValue());
                 candidateSimilarities.put(candidateEntry.getKey(), similarity);
+                progressBar.step();
             }
 
             suspiciousIdDetectedCandidateIdsMap.put(suspiciousEntry.getKey(), candidateSimilarities);
