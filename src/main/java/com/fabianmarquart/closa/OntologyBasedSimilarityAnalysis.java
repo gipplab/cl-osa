@@ -223,7 +223,9 @@ public class OntologyBasedSimilarityAnalysis {
             Map<String, List<String>> candidateIdTokensMap) {
         Map<String, Map<String, Double>> suspiciousIdDetectedCandidateIdsMap = new HashMap<>();
 
-        ProgressBar ontologyProgressBar = new ProgressBar("Enhancing vectors with ontology data", suspiciousIdTokensMap.size() + candidateIdTokensMap.size(), ProgressBarStyle.ASCII);
+        ProgressBar ontologyProgressBar = new ProgressBar("Enhancing vectors with ontology data",
+                suspiciousIdTokensMap.size() + candidateIdTokensMap.size(),
+                ProgressBarStyle.ASCII);
         ontologyProgressBar.start();
 
         Map<String, Map<String, Double>> suspiciousIdTokenCountMap = new HashMap<>();
@@ -231,21 +233,17 @@ public class OntologyBasedSimilarityAnalysis {
 
         for (Map.Entry<String, List<String>> suspiciousIdTokensMapEntry : suspiciousIdTokensMap.entrySet()) {
             String id = suspiciousIdTokensMapEntry.getKey();
-
             List<String> tokens = suspiciousIdTokensMapEntry.getValue();
             Map<String, Double> countMap = getHierarchicalCountMap(tokens);
             suspiciousIdTokenCountMap.put(id, countMap);
-
             ontologyProgressBar.step();
         }
 
         for (Map.Entry<String, List<String>> candidateIdTokensMapEntry : candidateIdTokensMap.entrySet()) {
             String id = candidateIdTokensMapEntry.getKey();
-
             List<String> tokens = candidateIdTokensMapEntry.getValue();
             Map<String, Double> countMap = getHierarchicalCountMap(tokens);
             candidateIdTokenCountMap.put(id, countMap);
-
             ontologyProgressBar.step();
         }
 
@@ -256,7 +254,9 @@ public class OntologyBasedSimilarityAnalysis {
         logger.info("Perform detailed analysis");
 
         // progress bar
-        ProgressBar progressBar = new ProgressBar("Perform cosine similarity analysis", suspiciousIdTokenCountMap.size() * candidateIdTokenCountMap.size(), ProgressBarStyle.ASCII);
+        ProgressBar progressBar = new ProgressBar("Perform cosine similarity analysis",
+                suspiciousIdTokenCountMap.size() * candidateIdTokenCountMap.size(),
+                ProgressBarStyle.ASCII);
         progressBar.start();
 
         // iterate the suspicious documents
@@ -303,9 +303,9 @@ public class OntologyBasedSimilarityAnalysis {
 
                 if (tokenCountMap.containsKey(ancestorId)) {
                     Double oldCount = tokenCountMap.get(ancestorId);
-                    tokenCountMap.put(ancestorId, oldCount + (1.0 / (ancestorEntry.getValue() + 1.0)));
+                    tokenCountMap.put(ancestorId, oldCount + (1.0 / Math.pow(2.0, ancestorEntry.getValue())));
                 } else {
-                    tokenCountMap.put(ancestorId, 1.0 / (ancestorEntry.getValue() + 1.0));
+                    tokenCountMap.put(ancestorId, 1.0 / Math.pow(2.0, ancestorEntry.getValue()));
                 }
             }
         }
