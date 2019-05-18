@@ -323,7 +323,6 @@ public abstract class EvaluationSet {
 
             int rank = 1;
 
-            // FIXME: this does not sort
             List<String> candidatesSorted = suspiciousIdCandidateScoresMap.get(suspiciousId).entrySet()
                     .stream()
                     .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))

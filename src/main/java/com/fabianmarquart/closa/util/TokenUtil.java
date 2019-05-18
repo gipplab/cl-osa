@@ -288,18 +288,17 @@ public class TokenUtil {
                 break;
             case "es":
                 // TODO: lemmatize
-                    /*
-                    pipeline = new StanfordCoreNLP(
-                            PropertiesUtils.asProperties(
-                                    "annotators", "tokenize, ssplit, pos, lemma, ner", //, parse",
-                                    "ssplit.isOneSentence", "false",
-                                    "parse.model", "edu/stanford/nlp/models/srparser/spanishSR.ser.gz",
-                                    "tokenize.language", "es",
-                                    "ner.useSUTime", "false",
-                                    "untokenizable", "noneDelete"));
-                    break;
-                    */
-                return namedEntityTokenizeSpanish(text);
+                // return namedEntityTokenizeSpanish(text);
+
+                pipeline = new StanfordCoreNLP(
+                        PropertiesUtils.asProperties(
+                                "annotators", "tokenize, ssplit, pos, lemma, ner", //, parse",
+                                "ssplit.isOneSentence", "false",
+                                "parse.model", "edu/stanford/nlp/models/srparser/spanishSR.ser.gz",
+                                "tokenize.language", "es",
+                                "ner.useSUTime", "false",
+                                "untokenizable", "noneDelete"));
+                break;
             case "ja":
                 return namedEntityTokenizeJapanese(text);
             case "ru":
