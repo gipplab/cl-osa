@@ -151,7 +151,7 @@ public class OntologyBasedSimilarityAnalysis {
             Category documentCategory = textClassifier.classifyText(documentText, documentLanguage);
 
             // document entities
-            if (Files.exists(Paths.get(documentEntitiesPath))) {
+            if (Files.exists(Paths.get(documentEntitiesPath)) && !FileUtils.readFileToString(new File(documentEntitiesPath), StandardCharsets.UTF_8).isEmpty()) {
                 // if the file has already been pre-processed
                 documentEntities = new ArrayList<>(FileUtils.readLines(new File(documentEntitiesPath), StandardCharsets.UTF_8));
             } else {
