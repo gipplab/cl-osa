@@ -303,9 +303,9 @@ public class OntologyBasedSimilarityAnalysis {
 
                 if (tokenCountMap.containsKey(ancestorId)) {
                     Double oldCount = tokenCountMap.get(ancestorId);
-                    tokenCountMap.put(ancestorId, oldCount + (1.0 / Math.pow(2.0, ancestorEntry.getValue())));
+                    tokenCountMap.put(ancestorId, oldCount + (1.0 / Math.pow(2.0, (ancestorEntry.getValue() + 1.0))));
                 } else {
-                    tokenCountMap.put(ancestorId, 1.0 / Math.pow(2.0, ancestorEntry.getValue()));
+                    tokenCountMap.put(ancestorId, 1.0 / Math.pow(2.0, (ancestorEntry.getValue() + 1.0)));
                 }
             }
         }
