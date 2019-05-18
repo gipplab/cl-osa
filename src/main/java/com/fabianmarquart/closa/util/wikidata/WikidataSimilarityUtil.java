@@ -76,13 +76,13 @@ public class WikidataSimilarityUtil {
     /**
      * Cosine similarity.
      *
-     * @param firstEntitiesCounts first entity count map.
+     * @param firstEntitiesCounts  first entity count map.
      * @param secondEntitiesCounts second entity count map.
-     * @param progressBar progress bar.
+     * @param progressBar          progress bar.
      * @return overall similarity.
      */
-    public static double cosineSimilarity(Map<String, Float> firstEntitiesCounts,
-                                          Map<String, Float> secondEntitiesCounts,
+    public static double cosineSimilarity(Map<String, Double> firstEntitiesCounts,
+                                          Map<String, Double> secondEntitiesCounts,
                                           ProgressBar progressBar) {
 
         List<String> union = new ArrayList<>(SetUtils.union(
@@ -95,11 +95,11 @@ public class WikidataSimilarityUtil {
 
 
         // vector construction
-        for (Map.Entry<String, Float> firstEntityCount : firstEntitiesCounts.entrySet()) {
+        for (Map.Entry<String, Double> firstEntityCount : firstEntitiesCounts.entrySet()) {
             firstVector.addToEntry(union.indexOf(firstEntityCount.getKey()), firstEntityCount.getValue());
             if (progressBar != null) progressBar.step();
         }
-        for (Map.Entry<String, Float> secondEntityCount : secondEntitiesCounts.entrySet()) {
+        for (Map.Entry<String, Double> secondEntityCount : secondEntitiesCounts.entrySet()) {
             secondVector.addToEntry(union.indexOf(secondEntityCount.getKey()), secondEntityCount.getValue());
             if (progressBar != null) progressBar.step();
         }
@@ -120,8 +120,8 @@ public class WikidataSimilarityUtil {
         return cosineSimilarity(firstEntities, secondEntities, null);
     }
 
-    public static double cosineSimilarity(Map<String, Float> firstEntitiesCounts,
-                                          Map<String, Float> secondEntitiesCounts) {
+    public static double cosineSimilarity(Map<String, Double> firstEntitiesCounts,
+                                          Map<String, Double> secondEntitiesCounts) {
         return cosineSimilarity(firstEntitiesCounts, secondEntitiesCounts, null);
     }
 

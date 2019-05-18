@@ -19,10 +19,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -90,6 +87,36 @@ public class OntologyBasedSimilarityAnalysis {
             }
 
             return performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return new HashMap<>();
+    }
+
+    /**
+     * Whole CL-OSA pipeline.
+     *
+     * @param suspiciousDocumentPath path to the suspicious document (.txt)
+     * @param candidateDocumentPaths paths to the candidate documents (.txt)
+     * @return list of candidate paths matching the suspicious
+     */
+    public Map<String, Double> executeOntologyEnhancedAlgorithmAndComputeScores(String suspiciousDocumentPath, List<String> candidateDocumentPaths) {
+        Map<String, List<String>> suspiciousIdTokensMap = new HashMap<>();
+        Map<String, List<String>> candidateIdTokensMap = new HashMap<>();
+
+        try {
+            suspiciousIdTokensMap.put(suspiciousDocumentPath,
+                    preProcess(suspiciousDocumentPath,
+                            languageDetector.detectLanguage(FileUtils.readFileToString(new File(suspiciousDocumentPath), StandardCharsets.UTF_8))));
+
+            for (String candidateDocumentPath : candidateDocumentPaths) {
+                candidateIdTokensMap.put(candidateDocumentPath,
+                        preProcess(candidateDocumentPath,
+                                languageDetector.detectLanguage(FileUtils.readFileToString(new File(candidateDocumentPath), StandardCharsets.UTF_8))));
+            }
+
+            return performEnhancedCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -199,14 +226,14 @@ public class OntologyBasedSimilarityAnalysis {
         // perform detailed analysis
         System.out.println("Perform detailed analysis \n");
 
-        Map<String, Map<String, Float>> suspiciousIdTokenCountMap = new HashMap<>();
-        Map<String, Map<String, Float>> candidateIdTokenCountMap = new HashMap<>();
+        Map<String, Map<String, Double>> suspiciousIdTokenCountMap = new HashMap<>();
+        Map<String, Map<String, Double>> candidateIdTokenCountMap = new HashMap<>();
 
         for (Map.Entry<String, List<String>> suspiciousIdTokensMapEntry : suspiciousIdTokensMap.entrySet()) {
             String id = suspiciousIdTokensMapEntry.getKey();
 
             List<String> tokens = suspiciousIdTokensMapEntry.getValue();
-            Map<String, Float> countMap = getHierarchicalCountMap(tokens);
+            Map<String, Double> countMap = getHierarchicalCountMap(tokens);
             suspiciousIdTokenCountMap.put(id, countMap);
         }
 
@@ -214,7 +241,7 @@ public class OntologyBasedSimilarityAnalysis {
             String id = candidateIdTokensMapEntry.getKey();
 
             List<String> tokens = candidateIdTokensMapEntry.getValue();
-            Map<String, Float> countMap = getHierarchicalCountMap(tokens);
+            Map<String, Double> countMap = getHierarchicalCountMap(tokens);
             candidateIdTokenCountMap.put(id, countMap);
         }
 
@@ -227,11 +254,11 @@ public class OntologyBasedSimilarityAnalysis {
         progressBar.start();
 
         // iterate the suspicious documents
-        for (Map.Entry<String, Map<String, Float>> suspiciousEntry : suspiciousIdTokenCountMap.entrySet()) {
+        for (Map.Entry<String, Map<String, Double>> suspiciousEntry : suspiciousIdTokenCountMap.entrySet()) {
 
             Map<String, Double> candidateSimilarities = new HashMap<>();
 
-            for (Map.Entry<String, Map<String, Float>> candidateEntry : candidateIdTokenCountMap.entrySet()) {
+            for (Map.Entry<String, Map<String, Double>> candidateEntry : candidateIdTokenCountMap.entrySet()) {
                 double similarity = WikidataSimilarityUtil.cosineSimilarity(suspiciousEntry.getValue(), candidateEntry.getValue());
                 candidateSimilarities.put(candidateEntry.getKey(), similarity);
             }
@@ -251,26 +278,31 @@ public class OntologyBasedSimilarityAnalysis {
      * @param tokens tokens.
      * @return tokens, with ancestors added.
      */
-    private Map<String, Float> getHierarchicalCountMap(List<String> tokens) {
-        Map<String, Float> tokenCountMap = new HashMap<>();
+    private Map<String, Double> getHierarchicalCountMap(List<String> tokens) {
+        Map<String, Double> tokenCountMap = new TreeMap<>();
 
         for (String token : tokens) {
-            if (tokenCountMap.containsKey(token)) {
-                tokenCountMap.put(token, tokenCountMap.get(token) + 1.0f);
+            if (tokenCountMap.containsKey(token) && tokenCountMap.get(token) != null) {
+                Double oldCount = tokenCountMap.get(token);
+                tokenCountMap.put(token, oldCount + 1.0);
             } else {
-                tokenCountMap.put(token, 1.0f);
+                tokenCountMap.put(token, 1.0);
             }
 
             WikidataEntity tokenEntity = WikidataDumpUtil.getEntityById(token);
 
-            for (Map.Entry<WikidataEntity, Long> ancestor : WikidataDumpUtil.getAncestorsByMaxDepth(tokenEntity, 2L).entrySet()) {
-                if (tokenCountMap.containsKey(ancestor.getKey().getId())) {
-                    tokenCountMap.put(ancestor.getKey().getId(), tokenCountMap.get(ancestor.getKey().getId() + 1.0f / (ancestor.getValue() + 1.0f)));
+            for (Map.Entry<WikidataEntity, Long> ancestorEntry : WikidataDumpUtil.getAncestorsByMaxDepth(tokenEntity, 2L).entrySet()) {
+                String ancestorId = ancestorEntry.getKey().getId();
+
+                if (tokenCountMap.containsKey(ancestorId)) {
+                    Double oldCount = tokenCountMap.get(ancestorId);
+                    tokenCountMap.put(ancestorId, oldCount + (1.0 / (ancestorEntry.getValue() + 1.0)));
                 } else {
-                    tokenCountMap.put(ancestor.getKey().getId(), 1.0f / (ancestor.getValue() + 1.0f));
+                    tokenCountMap.put(ancestorId, 1.0 / (ancestorEntry.getValue() + 1.0));
                 }
             }
         }
+
         return tokenCountMap;
     }
 

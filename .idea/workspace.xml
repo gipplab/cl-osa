@@ -6,12 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0cd2083-bb37-47bf-87bf-140cc5c25b2d" name="Default" comment="CL-ESA Pan 11 documents">
+    <list default="true" id="e0cd2083-bb37-47bf-87bf-140cc5c25b2d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysis.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysis.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/wikidata/WikidataDumpUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/wikidata/WikidataDumpUtil.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/wikidata/WikidataSimilarityUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/wikidata/WikidataSimilarityUtil.java" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysisTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysisTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -47,21 +46,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CLESAEvaluationSetTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CLESAEvaluationSetTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="507">
-              <caret line="94" column="35" lean-forward="true" selection-start-line="94" selection-start-column="35" selection-end-line="94" selection-end-column="35" />
+              <caret line="94" column="35" lean-forward="false" selection-start-line="94" selection-start-column="35" selection-end-line="94" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CLOSAEvaluationSetTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CLOSAEvaluationSetTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSetTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="194" column="5" lean-forward="false" selection-start-line="165" selection-start-column="4" selection-end-line="194" selection-end-column="5" />
+            <state relative-caret-position="405">
+              <caret line="121" column="67" lean-forward="false" selection-start-line="121" selection-start-column="67" selection-end-line="121" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -80,7 +79,7 @@
       <file leaf-file-name="CLOSAEvaluationSet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
+            <state relative-caret-position="326">
               <caret line="64" column="66" lean-forward="false" selection-start-line="64" selection-start-column="66" selection-end-line="64" selection-end-column="66" />
               <folding />
             </state>
@@ -97,11 +96,23 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="OntologyBasedSimilarityAnalysisTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysisTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="326">
+              <caret line="34" column="68" lean-forward="false" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="68" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="OntologyBasedSimilarityAnalysis.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="597">
-              <caret line="252" column="0" lean-forward="false" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
+            <state relative-caret-position="792">
+              <caret line="297" column="68" lean-forward="false" selection-start-line="297" selection-start-column="68" selection-end-line="297" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -110,8 +121,8 @@
       <file leaf-file-name="WikidataSimilarityUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/wikidata/WikidataSimilarityUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="123" column="52" lean-forward="false" selection-start-line="123" selection-start-column="52" selection-end-line="123" selection-end-column="52" />
+            <state relative-caret-position="106">
+              <caret line="88" column="33" lean-forward="true" selection-start-line="88" selection-start-column="33" selection-end-line="88" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -190,7 +201,6 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/readme.md" />
-        <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysisTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLCSAEvaluationSetTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSetTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/EvaluationSetTest.java" />
@@ -203,13 +213,14 @@
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLCSAEvaluationSet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/model/Dictionary.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/wikidata/WikidataSimilarityUtil.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSetTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/wikidata/WikidataDisambiguator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/wikidata/WikidataDumpUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysis.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysisTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/wikidata/WikidataSimilarityUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysis.java" />
       </list>
     </option>
   </component>
@@ -599,7 +610,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity">
+  <component name="RunManager" selected="JUnit.OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest">
     <configuration name="CLOSAEvaluationSetTest.testCLOSAEnglishChineseCosineSimilarity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -695,6 +706,31 @@
       <envs />
       <patterns />
     </configuration>
+    <configuration name="OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.fabianmarquart.closa.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="CLOSA" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.fabianmarquart.closa" />
+      <option name="MAIN_CLASS_NAME" value="com.fabianmarquart.closa.OntologyBasedSimilarityAnalysisTest" />
+      <option name="METHOD_NAME" value="executeOntologyEnhancedAlgorithmAndComputeScoresTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
     <configuration name="WikidataEntityExtractorTests.testExtractEntitiesFromChineseSentence" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -708,31 +744,6 @@
       <option name="PACKAGE_NAME" value="com.fabianmarquart.closa.util.wikidata" />
       <option name="MAIN_CLASS_NAME" value="com.fabianmarquart.closa.util.wikidata.WikidataEntityExtractorTests" />
       <option name="METHOD_NAME" value="testExtractEntitiesFromChineseSentence" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration name="WikidataEntityExtractorTests.testExtractEntitiesFromJapaneseSentence" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.fabianmarquart.closa.util.wikidata.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="CLOSA" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.fabianmarquart.closa.util.wikidata" />
-      <option name="MAIN_CLASS_NAME" value="com.fabianmarquart.closa.util.wikidata.WikidataEntityExtractorTests" />
-      <option name="METHOD_NAME" value="testExtractEntitiesFromJapaneseSentence" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
@@ -879,19 +890,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="JUnit.MainTest" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.WikidataEntityExtractorTests.testExtractEntitiesFromJapaneseSentence" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.WikidataEntityExtractorTests.testExtractEntitiesFromChineseSentence" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAVroniPlag" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishChineseCosineSimilarity" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.WikidataEntityExtractorTests.testExtractEntitiesFromChineseSentence" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAVroniPlag" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishChineseCosineSimilarity" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishChineseCosineSimilarity" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAVroniPlag" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.WikidataEntityExtractorTests.testExtractEntitiesFromChineseSentence" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.WikidataEntityExtractorTests.testExtractEntitiesFromJapaneseSentence" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAEnglishChineseCosineSimilarity" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.CLOSAEvaluationSetTest.testCLOSAVroniPlag" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.WikidataEntityExtractorTests.testExtractEntitiesFromChineseSentence" />
       </list>
     </recent_temporary>
   </component>
@@ -1238,39 +1249,46 @@
       <option name="project" value="LOCAL" />
       <updated>1558197369861</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Ontology mongo query bugfix">
+      <created>1558197387699</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1558197387699</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CLOSAEvaluationSetTest_testCLOSAEnglishJapaneseCosineSimilarity - 2019.05.15 at 22h 54m 52s.xml">
-      <configuration name="CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity" configurationId="JUnit" />
+    <history-entry file="OntologyBasedSimilarityAnalysisTest_executeOntologyEnhancedAlgorithmAndComputeScoresTest - 2019.05.18 at 20h 25m 15s.xml">
+      <configuration name="OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CLOSAEvaluationSetTest_testCLOSAEnglishJapaneseCosineSimilarity - 2019.05.15 at 22h 59m 05s.xml">
-      <configuration name="CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity" configurationId="JUnit" />
+    <history-entry file="OntologyBasedSimilarityAnalysisTest_executeOntologyEnhancedAlgorithmAndComputeScoresTest - 2019.05.18 at 20h 25m 36s.xml">
+      <configuration name="OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CLOSAEvaluationSetTest_testCLOSAEnglishJapaneseCosineSimilarity - 2019.05.15 at 23h 12m 56s.xml">
-      <configuration name="CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity" configurationId="JUnit" />
+    <history-entry file="OntologyBasedSimilarityAnalysisTest_executeOntologyEnhancedAlgorithmAndComputeScoresTest - 2019.05.18 at 20h 26m 16s.xml">
+      <configuration name="OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CLOSAEvaluationSetTest_testCLOSAEnglishJapaneseCosineSimilarity - 2019.05.15 at 23h 56m 52s.xml">
-      <configuration name="CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity" configurationId="JUnit" />
+    <history-entry file="OntologyBasedSimilarityAnalysisTest_executeOntologyEnhancedAlgorithmAndComputeScoresTest - 2019.05.18 at 20h 26m 51s.xml">
+      <configuration name="OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CLOSAEvaluationSetTest_testCLOSAEnglishJapaneseCosineSimilarity - 2019.05.16 at 08h 00m 52s.xml">
-      <configuration name="CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity" configurationId="JUnit" />
+    <history-entry file="OntologyBasedSimilarityAnalysisTest_executeOntologyEnhancedAlgorithmAndComputeScoresTest - 2019.05.18 at 20h 28m 10s.xml">
+      <configuration name="OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CLOSAEvaluationSetTest_testCLOSAEnglishJapaneseCosineSimilarity - 2019.05.18 at 18h 28m 46s.xml">
-      <configuration name="CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity" configurationId="JUnit" />
+    <history-entry file="OntologyBasedSimilarityAnalysisTest_executeOntologyEnhancedAlgorithmAndComputeScoresTest - 2019.05.18 at 20h 31m 16s.xml">
+      <configuration name="OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CLOSAEvaluationSetTest_testCLOSAEnglishJapaneseCosineSimilarity - 2019.05.18 at 18h 29m 53s.xml">
-      <configuration name="CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity" configurationId="JUnit" />
+    <history-entry file="OntologyBasedSimilarityAnalysisTest_executeOntologyEnhancedAlgorithmAndComputeScoresTest - 2019.05.18 at 20h 36m 02s.xml">
+      <configuration name="OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CLOSAEvaluationSetTest_testCLOSAEnglishJapaneseCosineSimilarity - 2019.05.18 at 18h 34m 14s.xml">
-      <configuration name="CLOSAEvaluationSetTest.testCLOSAEnglishJapaneseCosineSimilarity" configurationId="JUnit" />
+    <history-entry file="OntologyBasedSimilarityAnalysisTest_executeOntologyEnhancedAlgorithmAndComputeScoresTest - 2019.05.18 at 20h 36m 23s.xml">
+      <configuration name="OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CLOSAEvaluationSetTest_testCLOSAVroniPlag - 2019.05.11 at 19h 16m 43s.xml">
-      <configuration name="CLOSAEvaluationSetTest.testCLOSAVroniPlag" configurationId="JUnit" />
+    <history-entry file="OntologyBasedSimilarityAnalysisTest_executeOntologyEnhancedAlgorithmAndComputeScoresTest - 2019.05.18 at 20h 37m 13s.xml">
+      <configuration name="OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CLOSAEvaluationSetTest_testCLOSAVroniPlag - 2019.05.11 at 19h 17m 17s.xml">
-      <configuration name="CLOSAEvaluationSetTest.testCLOSAVroniPlag" configurationId="JUnit" />
+    <history-entry file="OntologyBasedSimilarityAnalysisTest_executeOntologyEnhancedAlgorithmAndComputeScoresTest - 2019.05.18 at 20h 39m 30s.xml">
+      <configuration name="OntologyBasedSimilarityAnalysisTest.executeOntologyEnhancedAlgorithmAndComputeScoresTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -1286,7 +1304,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5021299" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1256656" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.4978701" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49600708" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3336291" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24933451" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1296,7 +1314,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29281276" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29281276" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1310,7 +1328,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Turned off logging for Reflections" />
     <MESSAGE value="Removed logging from Tokenizer" />
     <MESSAGE value="Updated readme" />
     <MESSAGE value="Optimized imports" />
@@ -1335,11 +1352,12 @@
     <MESSAGE value="Aligned similarities in percent" />
     <MESSAGE value="Graph based analysis" />
     <MESSAGE value="CL-ESA Pan 11 documents" />
-    <option name="LAST_COMMIT_MESSAGE" value="CL-ESA Pan 11 documents" />
+    <MESSAGE value="Ontology mongo query bugfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ontology mongo query bugfix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <option name="time" value="23" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1508,14 +1526,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysisTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/wikidata/WikidataSparqlUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1647,14 +1657,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="579">
-          <caret line="430" column="62" lean-forward="false" selection-start-line="430" selection-start-column="62" selection-end-line="430" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLCSAEvaluationSet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-486">
@@ -1667,22 +1669,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="90" column="13" lean-forward="true" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/wikidata/WikidataSimilarityUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="123" column="52" lean-forward="false" selection-start-line="123" selection-start-column="52" selection-end-line="123" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="64" column="66" lean-forward="false" selection-start-line="64" selection-start-column="66" selection-end-line="64" selection-end-column="66" />
           <folding />
         </state>
       </provider>
@@ -1705,22 +1691,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="252" column="0" lean-forward="false" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSetTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="194" column="5" lean-forward="false" selection-start-line="165" selection-start-column="4" selection-end-line="194" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="687">
@@ -1732,7 +1702,57 @@
     <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="507">
-          <caret line="94" column="35" lean-forward="true" selection-start-line="94" selection-start-column="35" selection-end-line="94" selection-end-column="35" />
+          <caret line="94" column="35" lean-forward="false" selection-start-line="94" selection-start-column="35" selection-end-line="94" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="579">
+          <caret line="430" column="62" lean-forward="false" selection-start-line="430" selection-start-column="62" selection-end-line="430" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysisTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="34" column="68" lean-forward="false" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/wikidata/WikidataSimilarityUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="88" column="33" lean-forward="true" selection-start-line="88" selection-start-column="33" selection-end-line="88" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="297" column="68" lean-forward="false" selection-start-line="297" selection-start-column="68" selection-end-line="297" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="64" column="66" lean-forward="false" selection-start-line="64" selection-start-column="66" selection-end-line="64" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSetTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="121" column="67" lean-forward="false" selection-start-line="121" selection-start-column="67" selection-end-line="121" selection-end-column="67" />
           <folding />
         </state>
       </provider>
