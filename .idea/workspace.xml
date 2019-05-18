@@ -8,8 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e0cd2083-bb37-47bf-87bf-140cc5c25b2d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/TokenUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/TokenUtil.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -23,28 +22,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="WikidataEntityExtractor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/wikidata/WikidataEntityExtractor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="33" column="52" lean-forward="false" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WikidataDumpUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/wikidata/WikidataDumpUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12270">
-              <caret line="861" column="7" lean-forward="false" selection-start-line="861" selection-start-column="7" selection-end-line="861" selection-end-column="7" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="wikidata-dump-mongo-import.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wikidata-dump-mongo-import.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -65,11 +42,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TokenUtil.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TokenUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/TokenUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="626">
+            <state relative-caret-position="3019">
               <caret line="300" column="22" lean-forward="false" selection-start-line="300" selection-start-column="22" selection-end-line="300" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CLESAEvaluationSet.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-6258">
+              <caret line="84" column="54" lean-forward="false" selection-start-line="84" selection-start-column="54" selection-end-line="84" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CLESAEvaluationSetTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="785">
+              <caret line="65" column="28" lean-forward="false" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -199,7 +196,6 @@
         <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/commandLine/EntityExtractionTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/commandLine/MainTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/model/Dictionary.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" />
         <option value="$PROJECT_DIR$/src/main/resources/com/fabianmarquart/closa/simplelogger.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/classification/TextClassifier.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/classification/TextClassifierUtilTest.java" />
@@ -221,6 +217,7 @@
         <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSetTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/TokenUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" />
       </list>
     </option>
   </component>
@@ -1203,7 +1200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1557989486055</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Restored Spanish">
+      <created>1558187018741</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1558187018741</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1275,7 +1279,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Moved entity extraction main method to entity extractor." />
     <MESSAGE value="Added external libraries" />
     <MESSAGE value="Restructuring" />
     <MESSAGE value="Command line options check" />
@@ -1300,7 +1303,8 @@
     <MESSAGE value="Europarl &amp; JRC 1000 pairs" />
     <MESSAGE value="pan 11 500" />
     <MESSAGE value="MRR" />
-    <option name="LAST_COMMIT_MESSAGE" value="MRR" />
+    <MESSAGE value="Restored Spanish" />
+    <option name="LAST_COMMIT_MESSAGE" value="Restored Spanish" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1339,13 +1343,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2629">
-          <caret line="427" column="19" lean-forward="false" selection-start-line="427" selection-start-column="19" selection-end-line="427" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -1549,14 +1546,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="70" column="84" lean-forward="false" selection-start-line="70" selection-start-column="84" selection-end-line="70" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/resources/com/fabianmarquart/closa/evaluation/ECCE/zh/001028739.ZH.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -1695,8 +1684,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/TokenUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="626">
+        <state relative-caret-position="3019">
           <caret line="300" column="22" lean-forward="false" selection-start-line="300" selection-start-column="22" selection-end-line="300" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="785">
+          <caret line="65" column="28" lean-forward="false" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6258">
+          <caret line="84" column="54" lean-forward="false" selection-start-line="84" selection-start-column="54" selection-end-line="84" selection-end-column="54" />
           <folding />
         </state>
       </provider>
