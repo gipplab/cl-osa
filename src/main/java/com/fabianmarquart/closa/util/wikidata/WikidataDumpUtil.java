@@ -575,7 +575,7 @@ public class WikidataDumpUtil {
         AggregateIterable<Document> queryResult = entitiesHierarchyCollection.aggregate(Arrays.asList(
                 new Document("$match", new Document("id", entity.getId())),
                 new Document("$unwind", "$hierarchy"),
-                new Document("match", new Document("hierarchy.depth", new Document("$lte", maxDepth)))
+                new Document("$match", new Document("hierarchy.depth", new Document("$lte", maxDepth)))
         ));
 
         Map<WikidataEntity, Long> ancestors = new HashMap<>();

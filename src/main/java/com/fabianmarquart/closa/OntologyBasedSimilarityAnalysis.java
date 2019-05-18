@@ -245,6 +245,12 @@ public class OntologyBasedSimilarityAnalysis {
     }
 
 
+    /**
+     * Add two levels of hierarchy, taking their inverse depth as count.
+     *
+     * @param tokens tokens.
+     * @return tokens, with ancestors added.
+     */
     private Map<String, Float> getHierarchicalCountMap(List<String> tokens) {
         Map<String, Float> tokenCountMap = new HashMap<>();
 
