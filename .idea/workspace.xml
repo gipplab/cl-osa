@@ -8,7 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e0cd2083-bb37-47bf-87bf-140cc5c25b2d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysis.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysis.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CLESAEvaluationSetTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CLESAEvaluationSetTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="85" column="41" lean-forward="true" selection-start-line="85" selection-start-column="41" selection-end-line="85" selection-end-column="41" />
+            <state relative-caret-position="191">
+              <caret line="81" column="39" lean-forward="false" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -104,11 +104,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OntologyBasedSimilarityAnalysis.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="OntologyBasedSimilarityAnalysis.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="153" column="66" lean-forward="false" selection-start-line="153" selection-start-column="66" selection-end-line="153" selection-end-column="66" />
+            <state relative-caret-position="371">
+              <caret line="293" column="12" lean-forward="false" selection-start-line="293" selection-start-column="12" selection-end-line="293" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -203,10 +203,10 @@
         <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysisTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/wikidata/WikidataSimilarityUtil.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSetTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysis.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSet.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysis.java" />
       </list>
     </option>
   </component>
@@ -906,13 +906,6 @@
       <option name="presentableId" value="Default" />
       <updated>1550154606114</updated>
     </task>
-    <task id="LOCAL-00009" summary="added text annotation feature">
-      <created>1554662823846</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1554662823846</updated>
-    </task>
     <task id="LOCAL-00010" summary="readme for entity extraction">
       <created>1554663132806</created>
       <option name="number" value="00010" />
@@ -1249,7 +1242,14 @@
       <option name="project" value="LOCAL" />
       <updated>1558214526380</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="CL-ESA en-zh">
+      <created>1558249169872</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1558249169872</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1321,7 +1321,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="analysis fixed null-poiner exception" />
     <MESSAGE value="Changed rank steps" />
     <MESSAGE value="CL similarity distribution" />
     <MESSAGE value="CL similarity distribution (fix if token list empty)" />
@@ -1346,7 +1345,8 @@
     <MESSAGE value="Percent instead of ratio" />
     <MESSAGE value="CL-ESA Evaluation JRC-Acquis" />
     <MESSAGE value="CL-ESA Evaluation Europarl" />
-    <option name="LAST_COMMIT_MESSAGE" value="CL-ESA Evaluation Europarl" />
+    <MESSAGE value="CL-ESA en-zh" />
+    <option name="LAST_COMMIT_MESSAGE" value="CL-ESA en-zh" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1688,14 +1688,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="153" column="66" lean-forward="false" selection-start-line="153" selection-start-column="66" selection-end-line="153" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="536">
@@ -1746,8 +1738,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="85" column="41" lean-forward="true" selection-start-line="85" selection-start-column="41" selection-end-line="85" selection-end-column="41" />
+        <state relative-caret-position="191">
+          <caret line="81" column="39" lean-forward="false" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="293" column="12" lean-forward="false" selection-start-line="293" selection-start-column="12" selection-end-line="293" selection-end-column="12" />
           <folding />
         </state>
       </provider>

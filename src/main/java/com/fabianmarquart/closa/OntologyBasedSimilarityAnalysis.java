@@ -289,24 +289,16 @@ public class OntologyBasedSimilarityAnalysis {
         Map<String, Double> tokenCountMap = new TreeMap<>();
 
         for (String token : tokens) {
-            if (tokenCountMap.containsKey(token) && tokenCountMap.get(token) != null) {
-                Double oldCount = tokenCountMap.get(token);
-                tokenCountMap.put(token, oldCount + 1.0);
-            } else {
-                tokenCountMap.put(token, 1.0);
-            }
 
+            tokenCountMap.put(token, 1.0);
+            
             WikidataEntity tokenEntity = WikidataDumpUtil.getEntityById(token);
 
             for (Map.Entry<WikidataEntity, Long> ancestorEntry : WikidataDumpUtil.getAncestorsByMaxDepth(tokenEntity, 2L).entrySet()) {
                 String ancestorId = ancestorEntry.getKey().getId();
 
-                if (tokenCountMap.containsKey(ancestorId)) {
-                    Double oldCount = tokenCountMap.get(ancestorId);
-                    tokenCountMap.put(ancestorId, oldCount + (1.0 / Math.pow(2.0, (ancestorEntry.getValue() + 1.0))));
-                } else {
-                    tokenCountMap.put(ancestorId, 1.0 / Math.pow(2.0, (ancestorEntry.getValue() + 1.0)));
-                }
+                tokenCountMap.put(ancestorId, 1.0 / Math.pow(2.0, (ancestorEntry.getValue())));
+
             }
         }
 
