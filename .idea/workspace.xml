@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e0cd2083-bb37-47bf-87bf-140cc5c25b2d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/ConceptUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/ConceptUtil.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -83,17 +82,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConceptUtil.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ConceptUtil.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/ConceptUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="455" column="0" lean-forward="true" selection-start-line="455" selection-start-column="0" selection-end-line="455" selection-end-column="0" />
+            <state relative-caret-position="409">
+              <caret line="482" column="0" lean-forward="false" selection-start-line="482" selection-start-column="0" selection-end-line="482" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CLESAEvaluationSet.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CLESAEvaluationSet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="389">
@@ -215,8 +214,8 @@
         <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSetTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/TranslationUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/ConceptUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/ConceptUtil.java" />
       </list>
     </option>
   </component>
@@ -886,13 +885,6 @@
       <option name="presentableId" value="Default" />
       <updated>1550154606114</updated>
     </task>
-    <task id="LOCAL-00014" summary="Command line options check">
-      <created>1555164622170</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1555164622170</updated>
-    </task>
     <task id="LOCAL-00015" summary="fields local">
       <created>1555166298992</created>
       <option name="number" value="00015" />
@@ -1229,7 +1221,14 @@
       <option name="project" value="LOCAL" />
       <updated>1558276227504</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="has page id in language">
+      <created>1558280919265</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1558280919265</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1301,7 +1300,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="JRC only 500 documents" />
     <MESSAGE value="Europarl only 500 documents" />
     <MESSAGE value="Europarl &amp; JRC 1000 pairs" />
     <MESSAGE value="pan 11 500" />
@@ -1326,7 +1324,8 @@
     <MESSAGE value="Path for preprocessed files fixed" />
     <MESSAGE value="ConceptUtil article language present check" />
     <MESSAGE value="ConceptUtil article language null pointer fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="ConceptUtil article language null pointer fixed" />
+    <MESSAGE value="has page id in language" />
+    <option name="LAST_COMMIT_MESSAGE" value="has page id in language" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1730,18 +1729,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/ConceptUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="455" column="0" lean-forward="true" selection-start-line="455" selection-start-column="0" selection-end-line="455" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="389">
           <caret line="189" column="133" lean-forward="false" selection-start-line="189" selection-start-column="133" selection-end-line="189" selection-end-column="133" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/ConceptUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="482" column="0" lean-forward="false" selection-start-line="482" selection-start-column="0" selection-end-line="482" selection-end-column="0" />
           <folding />
         </state>
       </provider>

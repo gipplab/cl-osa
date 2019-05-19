@@ -452,6 +452,7 @@ public class ConceptUtil {
     }
 
     public static boolean hasPageIdLanguage(String pageId, String originalLanguage, String targetLanguage) {
+
         return originalLanguage.equals(targetLanguage) || getPageIdInLanguage(pageId, originalLanguage, targetLanguage) != null;
 
     }
@@ -476,22 +477,26 @@ public class ConceptUtil {
             HttpResponse response = client.execute(get);
 
             JsonObject object = parser.parse(EntityUtils.toString(response.getEntity(), UTF_8)).getAsJsonObject();
-            JsonObject query = object.getAsJsonObject("query");
 
-            if (query.has("pages")) {
-                Set<Map.Entry<String, JsonElement>> pages = query
-                        .getAsJsonObject("pages")
-                        .entrySet();
-
-                if (!pages.iterator().hasNext()) {
-                    return null;
-                }
-
-                return pages.iterator().next().getKey();
-
-            } else {
+            if (!object.has("query")) {
                 return null;
             }
+
+            JsonObject query = object.getAsJsonObject("query");
+
+            if (!query.has("pages")) {
+                return null;
+            }
+
+            Set<Map.Entry<String, JsonElement>> pages = query
+                    .getAsJsonObject("pages")
+                    .entrySet();
+
+            if (!pages.iterator().hasNext()) {
+                return null;
+            }
+
+            return pages.iterator().next().getKey();
 
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
