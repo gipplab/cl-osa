@@ -1,273 +1,33 @@
-Q79
-Q8473
-Q38526
-Q1020994
-Q6256
-Q34442
-Q164
-Q4631
-Q128
-Q195742
-Q2540351
-Q30461
-Q1799761
-Q27318
-Q207982
-Q180516
-Q5338673
-Q79
-Q27318
-Q190258
-Q6256
-Q207988
-Q1810951
-Q22289859
-Q8441
-Q7434
-Q37110
-Q5375780
-Q199
-Q577
-Q104555
-Q133207
-Q45382
-Q104225
-Q38526
-Q1061510
-Q34442
-Q4631
-Q529711
-Q47035128
-Q11563
-Q317
-Q34105
-Q851312
-Q5655097
-Q47035128
-Q1136859
-Q990817
-Q192906
-Q39018
-Q11460
-Q79
-Q1954125
-Q103076
-Q28389
-Q48103
-Q481303
-Q8473
-Q707492
-Q192193
-Q35855188
-Q7755
-Q23009439
-Q4631
-Q13593432
-Q23640
-Q32766
-Q12731
-Q660321
-Q845436
-Q36161
-Q3112663
-Q7188
-Q26418641
-Q386724
-Q55439
-Q4503831
-Q21083885
-Q7755
-Q1954125
-Q858439
-Q40231
-Q253101
-Q29042990
-Q190258
-Q83460
-Q8473
-Q482853
-Q23488
-Q39911
-Q317
-Q529711
-Q39524
-Q81009
-Q1425229
-Q578508
-Q182767
-Q467064
-Q34105
-Q851312
-Q8473
-Q489398
-Q46744
-Q4631
-Q577
-Q25107
-Q273395
-Q1954125
-Q7755
-Q131677
-Q1314
-Q8473
-Q79
-Q199
-Q178706
-Q11475
-Q1954125
-Q1606712
-Q190258
-Q905592
-Q4631
-Q1121708
-Q196431
-Q192611
-Q14073567
-Q3043345
-Q165947
-Q25107
-Q427730
-Q577
-Q5503
-Q30269216
-Q17768966
-Q5843
-Q207961
-Q178706
-Q190258
-Q1076566
-Q1061510
-Q192581
-Q169489
-Q12725
-Q906066
-Q333024
-Q79
-Q8425
-Q21168708
-Q36602
-Q3851114
-Q23759131
-Q133308
-Q23810
-Q1275330
-Q32518
-Q124964
-Q1710290
-Q3851114
-Q253101
-Q10931
-Q33761
-Q1312
-Q529711
-Q44946
-Q3276720
-Q529711
-Q1065144
-Q34442
-Q18560095
-Q25107
-Q577947
-Q3975
-Q837675
-Q8473
-Q306484
-Q3306907
-Q81715
-Q79
-Q817765
-Q8473
-Q1627992
-Q344
-Q7174
-Q190258
-Q29042990
-Q7174
-Q79
-Q728944
-Q1786052
-Q11402
-Q1567091
-Q3851114
-Q344
-Q40231
-Q18957
-Q3039511
-Q172896
-Q576145
-Q432
-Q262246
-Q1384187
-Q584041
-Q637156
-Q86447
-Q32518
-Q320346
-Q201
-Q15265344
-Q17641254
-Q4925193
-Q262
-Q29817941
-Q8473
-Q701040
-Q40231
-Q2100949
-Q18560095
-Q11888847
-Q1954125
-Q1606712
-Q7755
-Q125
-Q304479
-Q727002
-Q780687
-Q253101
-Q1020994
-Q93288
-Q288514
-Q104555
-Q14565199
-Q212148
-Q1954125
-Q40231
-Q283976
-Q131263
-Q8473
-Q306484
-Q2298569
-Q4006
-Q306484
-Q221725
-Q524980
-Q1058733
-Q30
-Q30
-Q458
-Q79
-Q190258
-Q381212
-Q2827815
-Q569612
-Q5070802
-Q30
-Q30
-Q26186900
-Q306484
-Q4917
-Q30336909
-Q668
-Q192691
-Q8473
-Q24245718
-Q79
-Q26186900
-Q454
-Q801
-Q12681706
-Q1606712
-Q7174
-Q30
-Q1530061
-Q7204
-Q4402708
+When Egypt's army took the side of millions of citizens occupying the country's streets and squares and ousted Mohamed Morsi on Wednesday, it swept aside a legitimately elected president who had serially failed litmus tests of democratic legitimacy.
+There is no room left for Egypt to keep failing these tests – and no need for a country that can mobilise at this level of vitality to retain the men in uniform as pharaoh makers.
+The tumultuous end to one year of rule by the Muslim Brotherhood was, quite simply, a coup d'état.
+But it was preceded by millions of Egyptians taking to the streets, calling for Mr Morsi's departure in even greater numbers than brought down the army-backed dictatorship of Hosni Mubarak in 2011.
+It is hard to think of a greater humiliation for the Brothers, revealed as would-be emperors with the most threadbare of clothes.
+Egypt's new script is being written, for the moment, by General Abdel Fattah al-Sisi, the army chief of staff.
+He has suspended the constitution, and replaced Mr Morsi with Adli Mansour, head of the constitutional court.
+Mr Mansour's mandate is to set up a caretaker government of technocrats, create pluralist panels aimed at national unity and an inclusive constitution, after which there will be new parliamentary and presidential elections.
+Egyptian democrats will need to keep prompting the generals.
+The army, after all, was the backbone of six decades of dictatorship, beginning with Gamal Abdel Nasser, a regional titan whose rhetoric Gen al-Sisi dimly tries to echo.
+After dumping Mr Mubarak in 2011, the army seemed to reach an understanding with Mr Morsi last year that embedded its power and privileges in a new, Islamist-tinged constitution.
+This was bulldozed through by the Brotherhood last autumn.
+The army, alas, is Egypt's one working institution, highlighting the vacuum that this new transition needs desperately to fill.
+Mr Morsi's failure is instructive.
+He held himself accountable not to his electorate but to his Brothers who, in their secretive and paranoid hunger for power after 85 years underground, sought to capture, pack and shape almost every institution.
+Not only did they fail to meet the needs of ordinary Egyptians for jobs and security, electricity and services, they fatally misjudged the pluralism of Egypt's society and the determination of those who upended the old order – of which the Brotherhood is inescapably part.
+There may now be a chance to begin anew.
+Or as Mohamed ElBaradei, Nobel laureate and leader of the loose liberal coalition, the National Salvation Front, put it: a chance to relaunch the Egyptian revolution and the Arab spring.
+The starting point of Mr ElBaradei and his friends should be to start matching their prowess in the streets by organising to win power through the ballot box.
+The jury is out on whether the army has cleared away Islamist barricades in Egypt's path.
+But the military will not be the handmaiden of a liberal future.
+Democracy needs hardworking democrats.
+Democracy in Egypt will also very much have to include Islamists and the Brotherhood, a declining but still potent force.
+The Brotherhood must be given an equal chance in future elections.
+Otherwise, mainstream Islamists will be driven back into the catacombs and Salafist strains of political Islam will come to the fore.
+There are already worrying signs of revanchism, with up to 300 arrest warrants issued against Brotherhood leaders and the closure of three Islamist broadcasters.
+That way lies Algeria, rent asunder in the 1990s after the army annulled elections that Islamists were poised to win.
+The priorities for this new transition must be to revisit the contentious constitution of last November, turn it into a charter of the rights of Egyptian citizens, and agree on fair and monitorable electoral rules.
+That would be the right prelude for new elections – as well as the return to barracks of the army.
+A clear road map, with a clear timetable, should command support from the US and the EU.
+Indeed, Egypt needs less military aid and much more financial and technical assistance to confront its looming economic emergency.
+The US in particular should make clear that its $1.3bn annual stipend for the army, sacrosanct since Egypt made peace with Israel in 1979, is now contingent on a credible transition to democracy.
+America's tarnished democratic credibility in the Middle East demands no less.

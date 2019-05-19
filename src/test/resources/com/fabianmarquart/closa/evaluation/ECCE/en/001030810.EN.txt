@@ -1,164 +1,24 @@
-Q95
-Q148
-Q107679
-Q73368
-Q4368940
-Q2152413
-Q1371925
-Q22272441
-Q2995644
-Q148
-Q35127
-Q603773
-Q956
-Q7188
-Q189569
-Q30230067
-Q174493
-Q29829884
-Q19541
-Q44167
-Q7748
-Q1101080
-Q1510380
-Q32518
-Q95
-Q860
-Q132510
-Q148
-Q16738028
-Q6256
-Q102538
-Q26256512
-Q574562
-Q37654
-Q30336909
-Q668
-Q5
-Q104555
-Q159810
-Q11402
-Q38926
-Q1740954
-Q73368
-Q4368940
-Q1058914
-Q102538
-Q633140
-Q543
-Q774228
-Q2283
-Q8046881
-Q174493
-Q1868524
-Q4368940
-Q35127
-Q104555
-Q841361
-Q95
-Q18193
-Q278368
-Q11028
-Q172964
-Q25208718
-Q732833
-Q1308999
-Q164573
-Q179875
-Q95
-Q3123740
-Q728944
-Q92764
-Q199
-Q102538
-Q19435686
-Q636309
-Q148
-Q7748
-Q102538
-Q51647
-Q43229
-Q16502
-Q16502
-Q11028
-Q26186900
-Q21263262
-Q1145523
-Q22272441
-Q3278265
-Q50708
-Q1137224
-Q8074
-Q95
-Q4761596
-Q478798
-Q3151690
-Q95
-Q26012500
-Q8514257
-Q4697206
-Q7245253
-Q1524751
-Q199
-Q24255051
-Q6256
-Q47035128
-Q5
-Q73368
-Q4877042
-Q468455
-Q95
-Q622821
-Q148
-Q7275
-Q30198
-Q2988681
-Q11175
-Q7281
-Q577
-Q16959
-Q47223
-Q164055
-Q3199915
-Q257931
-Q380
-Q918
-Q273976
-Q382887
-Q128758
-Q131138
-Q32043
-Q95
-Q81672
-Q9158
-Q906066
-Q148
-Q4202290
-Q1150070
-Q134566
-Q3962655
-Q102538
-Q11348765
-Q23387
-Q732833
-Q95
-Q48302073
-Q613299
-Q11402
-Q148
-Q1510380
-Q35758
-Q344
-Q148
-Q1050390
-Q327968
-Q95
-Q613617
-Q102538
-Q665184
-Q148
-Q4402708
-Q11175
-Q9788
-Q190507
-Q4697206
+Google is calling China's bluff.
+The online search giant has announced that it is ""no longer willing"" to censor results on its Chinese site.
+It will now talk with the Beijing government about the basis on which it would be possible to run ""an unfiltered search engine within the law, if at all"".
+This is a bold stand, and could well lead to Google being barred from an important emerging marketplace
+China is still a poor country, but multinational companies want to establish themselves in a market of 1.3bn increasingly prosperous people.
+The authoritarian rulers of this continental economy have, until now, been able to force news, media, online search and software companies to comply with their onerous censorship requirements.
+Microsoft and Yahoo both run local search sites that conform to these rules.
+Since 2006, so has Google, although in a form that gives users more details about when information is being kept from them.
+The decision to go along with the restrictions has been the subject of fierce debate, not least within Google itself.
+The sceptics included Sergey Brin, one of the company's founders.
+They fretted that complying with China's laws directly breached the company's mission: ""to organise the world's information and make it universally accessible and useful"".
+Collaboration with the censors, moreover, was the main factor that drew clouds over Google's sunny image.
+So, today, Google looks cool again.
+But this posture is not a PR stunt. If it were, it would be an extraordinarily high-risk one. Its presence in a country that already has more than 300m of its people online is at stake.
+Rather, Google is reacting to a calculating Chinese state that will brook no challenge to its control of propaganda.
+Last year the unrest in Urumqi and the anniversary of the Tiananmen Square massacre both provoked frenzied crackdowns.
+Facebook and Twitter have already been blocked.
+Control-obsessed officials have suppressed even childish satire and jokes.
+In addition, Google recently uncovered attacks on its e-mail service from within China.
+These incidents changed the balance of opinions within the company, leading to this week's decision.
+If Google follows through on its statement, even if it is forced out of China, its stand will still matter.
+In future the Chinese will have more difficulty snuffing out free expression.
+Google is the first major company to steadfastly refuse China's demands for control.
+Let us hope it is not the last.

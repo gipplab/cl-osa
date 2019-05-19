@@ -1,156 +1,23 @@
-Q46
-Q3918409
-Q577
-Q23647168
-Q2251595
-Q104555
-Q37602
-Q780687
-Q188728
-Q239
-Q25288
-Q208084
-Q5162775
-Q31603
-Q428148
-Q1920566
-Q206361
-Q4115667
-Q2912172
-Q1150070
-Q179723
-Q11332268
-Q158646
-Q795052
-Q618532
-Q43402563
-Q1502887
-Q900406
-Q46
-Q23647168
-Q2251595
-Q7748
-Q6326982
-Q11651
-Q428148
-Q205892
-Q862137
-Q16502
-Q16502
-Q466
-Q320765
-Q189756
-Q28008314
-Q2995644
-Q11016
-Q1962593
-Q278368
-Q34442
-Q204606
-Q1502887
-Q820037
-Q231823
-Q26186900
-Q173253
-Q428148
-Q219858
-Q133346
-Q1954125
-Q104555
-Q196626
-Q14565199
-Q239
-Q1344851
-Q208084
-Q198
-Q1646605
-Q7275
-Q7748
-Q193395
-Q66221
-Q4503831
-Q6658033
-Q22855
-Q1436482
-Q104555
-Q46
-Q56085066
-Q102538
-Q208084
-Q3918409
-Q19033
-Q2388316
-Q211198
-Q775842
-Q47035128
-Q188728
-Q2251595
-Q200
-Q11344
-Q11651
-Q3918409
-Q625994
-Q4402708
-Q605778
-Q1020994
-Q618532
-Q1502887
-Q1384510
-Q231043
-Q1724915
-Q367293
-Q733541
-Q371730
-Q1954125
-Q231043
-Q30269216
-Q1724915
-Q1502887
-Q1150070
-Q11574
-Q278368
-Q14565199
-Q1150070
-Q1760704
-Q1076693
-Q11028
-Q239
-Q732833
-Q1260632
-Q1142227
-Q33767
-Q199
-Q12335479
-Q380
-Q278368
-Q26256512
-Q1760704
-Q49845
-Q211198
-Q55670909
-Q28008314
-Q278368
-Q11471
-Q231043
-Q2296856
-Q733541
-Q211198
-Q4382010
-Q75
-Q278368
-Q1502887
-Q278368
-Q2297604
-Q102538
-Q3966
-Q6349289
-Q75
-Q2152413
-Q46
-Q3918409
-Q95
-Q380
-Q815577
-Q4402708
-Q726686
-Q190258
+When Europe unveiled proposals last year to toughen up data protection rules, they were hailed as an important advance in rights to privacy.
+Now Brussels is weighing whether to adapt some aspects of the draft regulations in response to concerns over the impact on business.
+But any changes should not sacrifice the fundamental principle that individuals are the ultimate owners of their own personal data.
+Reform of Europe's data protection laws is long overdue.
+The current regulations date back to 1995, long before the world became web wired.
+Important questions have to be addressed as a result of technological advances that allow users to be tracked throughout cyberspace and their data to be mined for profitable purposes.
+It makes sense to have harmonised regulations in a sector where borders are irrelevant.
+But any new rules should be reasonable and enforceable.
+In this context, it is right for Brussels to consider reviewing aspects that might conflict with a member state's own laws, such as regards data storage, which also aim to protect consumers.
+It is also legitimate to worry that overly costly and restrictive rules might quash the competitiveness of Europe's digital companies.
+Reconsidering certain aspects of the proposals should not, however, mean sacrificing the public's growing desire for greater privacy protection.
+Two elements of the current proposals are central to meeting that demand.
+Digital citizens, as ultimate owners of their data, should be asked for their explicit consent to its use.
+The manner in which that is asked for, and the consequences of giving it, should also be unambiguous.
+And once given, new consent should only be sought if the use of data changes.
+Second, users should have the right to change or withdraw personal information that is harmful or inaccurate.
+For this to be enforceable, Brussels will have to decide who should be responsible for content that has passed legitimately into third-party hands.
+One example might be when a Facebook user wants to withdraw posts that were previously public but which have been picked up elsewhere.
+This might be addressed by telling users at the time of consent what the potential consequences of a public profile could be.
+Internet users are increasingly wary of how their data are being used.
+Software companies who provide cloaking devices are booming.
+The internet giants most opposed to Europe's proposals, such as Google and Facebook, neither can nor should ignore that demand.
+A reasonable compromise is needed.

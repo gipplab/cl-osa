@@ -1,279 +1,35 @@
-Q105
-Q8094
-Q25107
-Q33767
-Q48422
-Q26186900
-Q5338673
-Q4809
-Q23387
-Q26487354
-Q21
-Q5449636
-Q1077396
-Q31275820
-Q903517
-Q1371925
-Q7754
-Q7881229
-Q145
-Q22687
-Q190258
-Q175743
-Q5119
-Q40719766
-Q1489644
-Q1639780
-Q611203
-Q9788
-Q1954125
-Q22687
-Q529711
-Q5119
-Q199
-Q639907
-Q5119
-Q165309
-Q1362683
-Q21503252
-Q567303
-Q24238419
-Q11563
-Q30301727
-Q815758
-Q5119
-Q17641254
-Q22687
-Q8043
-Q26726369
-Q25342
-Q203764
-Q7188
-Q622588
-Q39546
-Q4402708
-Q159810
-Q26487354
-Q21
-Q179179
-Q736288
-Q4877042
-Q178588
-Q209190
-Q1472481
-Q103808
-Q240673
-Q259059
-Q2912172
-Q5754843
-Q317623
-Q22687
-Q12147
-Q744865
-Q11287
-Q1187906
-Q625360
-Q188572
-Q2143576
-Q212357
-Q6055890
-Q1371819
-Q22687
-Q7429143
-Q182076
-Q1109680
-Q2912172
-Q240673
-Q182076
-Q4697206
-Q11921529
-Q102538
-Q906066
-Q47035128
-Q170924
-Q240673
-Q189539
-Q172964
-Q22687
-Q3043314
-Q44946
-Q806737
-Q344
-Q1121708
-Q211557
-Q271960
-Q5420776
-Q1954125
-Q25702570
-Q15290
-Q199
-Q13109234
-Q1639780
-Q728
-Q667661
-Q10870555
-Q5119
-Q3481047
-Q5488991
-Q337921
-Q1121708
-Q22687
-Q8043
-Q265777
-Q2842797
-Q1338171
-Q1640172
-Q192909
-Q207351
-Q1148747
-Q2251595
-Q43183
-Q26186900
-Q47005650
-Q703087
-Q186361
-Q11574
-Q22687
-Q8043
-Q104493
-Q622821
-Q944644
-Q2314
-Q11471
-Q78
-Q5119
-Q104555
-Q231043
-Q1724915
-Q22687
-Q8043
-Q193946
-Q46737
-Q926230
-Q26911
-Q1344851
-Q104493
-Q193946
-Q22687
-Q278368
-Q1639780
-Q965330
-Q1121708
-Q22687
-Q8043
-Q915026
-Q145
-Q683595
-Q188886
-Q21263262
-Q11563
-Q208099
-Q5375780
-Q24245823
-Q26186900
-Q845126
-Q175743
-Q52834024
-Q199
-Q724178
-Q1770792
-Q16868672
-Q46737
-Q1031196
-Q23350
-Q724178
-Q46737
-Q19033
-Q28942369
-Q201
-Q58093
-Q16868672
-Q46737
-Q5119
-Q55082364
-Q1151752
-Q1101080
-Q3566043
-Q1120735
-Q487623
-Q1639780
-Q2031291
-Q5119
-Q622821
-Q21255605
-Q5488991
-Q4402708
-Q138364
-Q19097421
-Q189756
-Q5119
-Q780687
-Q86447
-Q211198
-Q1368
-Q104555
-Q181201
-Q4942650
-Q1148747
-Q51597
-Q11471
-Q32043
-Q1639780
-Q1425577
-Q51597
-Q22687
-Q625994
-Q3481047
-Q189539
-Q571
-Q4808784
-Q194189
-Q1150070
-Q866298
-Q19426
-Q21255605
-Q23835475
-Q806737
-Q26186900
-Q14565199
-Q1954125
-Q22687
-Q1142227
-Q104555
-Q468777
-Q22687
-Q1078386
-Q192630
-Q621184
-Q26726369
-Q180516
-Q26186900
-Q1954125
-Q22687
-Q41446476
-Q46834
-Q196878
-Q129238
-Q16515105
-Q3435731
-Q188572
-Q1954125
-Q22687
-Q101072
-Q211557
-Q621184
-Q20459
-Q26256310
-Q574562
-Q190258
-Q196431
-Q105210
-Q1637963
-Q5119
-Q7762159
-Q4686406
-Q2204480
-Q42841
-Q8043
-Q2914988
-Q774228
+On Monday the UK Financial Services Authority is to be wound down and its powers handed over to successor bodies.
+It has made sure not to leave the stage quietly.
+This week, the Bank of England's Financial Policy Committee, which is taking on responsibility for overall financial stability, announced that FSA analysis implied UK banks needed to find £25bn of additional capital by the end of 2013.
+Regulators also plan to let new banks start up with less capital than established ones.
+The finding of a capital shortfall had been well-flagged and was smaller than many had expected.
+Still, it is an important announcement.
+That initially healthy numbers conceal a scarcity of loss-absorbing capital goes a long way to explaining banks' unwillingness to lend and thus the disappointing potency of monetary activism, government's preferred tool for propping up demand in the economy.
+Although the Bank of England's interest rate is at a record low, the spread above it of borrowing costs for households and businesses has remained high by pre-crisis standards.
+Banks in rude health would rush to exploit such a profit margin by expanding lending.
+In fact, lending is shrinking – in spite of a flagship “funding for lending” programme.
+Banks say they are making credit more available to small businesses but the cost of that credit has not fallen.
+Also, many companies unable to service more than interest costs on outstanding loans are being kept alive by bank forbearance.
+All this points to a banking system too worried about future losses on its legacy exposures to expand lending to new borrowers – even good ones.
+It is therefore welcome that the regulator arm has looked seriously at the realism of reported capital ratios.
+The FPC is, first, applying the lesson of self-inflicted losses from banks' misconduct.
+Fines and compensation already paid for scandals such as Libor manipulation and payment protection insurance mis-selling make it rational to provision for more punishment to come.
+Second, it is taking banks' risk calculations with a pinch of salt.
+Not before time: it is deeply problematic that Basel capital rules permit the use of banks' own models to risk-weight assets, in effect making profit considerations relevant to what risk model banks choose to use.
+Finally, regulators estimated losses on some of the banks' portfolios in UK real estate and the eurozone periphery.
+All this is useful.
+The number coming out at the end, however, is too small to make much difference – £25bn amounts to less than 1 per cent of the system's total assets.
+The hurdle at 7 per cent of risk-weighted assets – which means losing 3 per cent of total assets could wipe out capital – remains too easy to jump.
+And it is a bad omen for transparency that regulators chose not to release a detailed bank-by-bank capital calculation.
+Something is still better than nothing.
+The FPC rightly demands swift recapitalisation.
+The question is where the capital is to be found?
+Rights issues look unlikely, public money has been ruled out.
+Dividend and bonus payments can be stopped, but will take time to add up.
+So regulators must deliver on the promise to stop banks from meeting the ratio by shrinking the loan book.
+Asset sales that did not change aggregate values would be much better – and would help to diversify the banking system.
+That also makes it right to give new banks a pass on the toughest rules.
+If existing banks are too burdened with past problems to lend, room must be made for new banks with fresh balance sheets.
+Start-up difficulties in banking, and the fact that new banks by definition have no legacy problems, justify lighter treatment of entrants – until they have established a foothold.
+There is no need to hold them only to the legal minimum of capital, however.
+The same advantage could be conferred by raising incumbents' capital requirement even further.

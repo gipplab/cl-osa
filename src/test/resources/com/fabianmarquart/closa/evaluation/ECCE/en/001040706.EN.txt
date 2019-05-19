@@ -1,160 +1,18 @@
-Q32
-Q22687
-Q46
-Q1020013
-Q160151
-Q11921529
-Q7602472
-Q577
-Q865422
-Q584496
-Q3196867
-Q381072
-Q557880
-Q142
-Q22687
-Q217446
-Q23595
-Q81054
-Q128
-Q732833
-Q67033
-Q765517
-Q7295719
-Q327333
-Q7430019
-Q270363
-Q221948
-Q499707
-Q265158
-Q216541
-Q206361
-Q271960
-Q3196867
-Q35221
-Q38178665
-Q3196867
-Q381072
-Q159904
-Q1347367
-Q142
-Q201
-Q22687
-Q25392373
-Q750458
-Q37654
-Q317623
-Q7160407
-Q32
-Q22687
-Q5754843
-Q271960
-Q211198
-Q158668
-Q3196867
-Q270363
-Q221948
-Q22687
-Q658255
-Q16751793
-Q1827667
-Q1137437
-Q707125
-Q188473
-Q468756
-Q142
-Q806737
-Q1069941
-Q3975
-Q8901
-Q27865861
-Q1425577
-Q1827667
-Q22687
-Q190258
-Q830077
-Q32
-Q22687
-Q898256
-Q584496
-Q3196867
-Q281782
-Q5070802
-Q7275
-Q1058733
-Q44946
-Q281782
-Q1190554
-Q611035
-Q3435731
-Q219858
-Q32
-Q22687
-Q22687
-Q270363
-Q499707
-Q188473
-Q23387
-Q22687
-Q660064
-Q884353
-Q658371
-Q1368
-Q7188
-Q1643184
-Q22687
-Q12335479
-Q181201
-Q1148747
-Q4942650
-Q37654
-Q121842
-Q32
-Q22687
-Q8043
-Q188473
-Q219858
-Q1101080
-Q17641254
-Q471898
-Q283202
-Q329777
-Q7188
-Q2827815
-Q104555
-Q41500
-Q621184
-Q4697206
-Q32
-Q22687
-Q5119
-Q3481047
-Q47035128
-Q271960
-Q41
-Q19033
-Q37654
-Q17573152
-Q46
-Q32518
-Q1717246
-Q281782
-Q4697206
-Q86447
-Q32
-Q22687
-Q37105
-Q281782
-Q179289
-Q45
-Q38
-Q29
-Q7944
-Q178513
-Q179076
-Q46
-Q190258
-Q23257209
-Q1920566
-Q23257209
-Q1123855
+French banks are hardly alone in Europe in having suffered steep share price falls since the start of this year.
+But the apparent inability of European policymakers to control the sovereign debt crisis is making investors increasingly fearful that some of France's best-known banks may be sucked into the centre of the storm.
+Wednesday's decision by Moody's, the credit rating agency, to downgrade Société Générale and Crédit Agricole and to put BNP Paribas on review was driven by concern about their exposure to Greek debt.
+But it also reflected nervousness about how a sudden intensification of the debt crisis might affect the ability of France's three biggest banks to fund themselves on capital markets.
+By the standards of their European peers, French banks have a high exposure to Greek public and private debt.
+Société Générale and Crédit Agricole both own Greek bank subsidiaries.
+True, there are no liquidity or solvency threats requiring immediate action to shore up France's banking system, as there were in 2008.
+In any case, the European Central Bank has promised to provide as much liquidity as eurozone banks need.
+But to observe that French banks seem strong enough to ride out a Greek sovereign debt default without requiring emergency state support is to miss the point.
+A Greek default would not be a self-contained event. It would spread instability across the European banking sector.
+French banks would be no more immune to contagion than banks elsewhere.
+Société Générale and BNP Paribas have acted intelligently this week in showing that banks can take the initiative and raise extra cash before they call on government help.
+Banks could do even more – for example, by suspending dividend payments and curbing bonuses.
+But even if the markets have responded positively to the French banks' actions, the sector is a still a long way from safe harbour.
+An eventual appeal for government aid cannot be ruled out.
+The root of the problem is not that some French banks have weaker capital ratios or greater exposure to Greece than the European average. It is that the markets do not believe Europe's leaders have the will to prevent a Greek default.
+This is not just an issue for French banks, though they are in the front line.
+If a Greek default were to cause turmoil in Portugal, Italy and Spain, the tremors would go beyond the Paris bourse and Europe would need a far more effective response than anything so far contemplated.

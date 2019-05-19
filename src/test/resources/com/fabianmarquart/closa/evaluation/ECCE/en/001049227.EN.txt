@@ -1,203 +1,31 @@
-Q1150095
-Q841787
-Q30
-Q30
-Q145
-Q732833
-Q796
-Q1316
-Q37172
-Q33761
-Q1312
-Q10931
-Q496098
-Q25107
-Q959298
-Q23806
-Q577
-Q30
-Q30
-Q690213
-Q7204
-Q9368
-Q160020
-Q732833
-Q200
-Q189756
-Q467011
-Q11448873
-Q1471321
-Q1920566
-Q1101080
-Q1316
-Q180095
-Q178588
-Q817
-Q12223
-Q1436482
-Q679
-Q247949
-Q3754526
-Q29142
-Q102014
-Q47740
-Q2988681
-Q30
-Q29485
-Q30
-Q30
-Q145
-Q181036
-Q796
-Q728
-Q11423
-Q17781833
-Q198
-Q6821213
-Q321703
-Q679
-Q7174
-Q6256
-Q30
-Q30
-Q145
-Q198
-Q3030775
-Q6501338
-Q38118608
-Q889
-Q1426138
-Q247792
-Q35574
-Q467011
-Q29485
-Q103495
-Q198
-Q12171
-Q337921
-Q30
-Q30
-Q145
-Q11448873
-Q11348
-Q23445
-Q199
-Q21146257
-Q190868
-Q1349417
-Q959298
-Q2191756
-Q796
-Q889
-Q1016
-Q679
-Q3123740
-Q406714
-Q165
-Q831663
-Q912546
-Q206887
-Q6038735
-Q1056901
-Q7988576
-Q7188
-Q82794
-Q47035128
-Q181767
-Q55762800
-Q36949023
-Q959298
-Q691
-Q32
-Q11402
-Q1349417
-Q529711
-Q142
-Q39552
-Q55762800
-Q7275
-Q5879610
-Q169489
-Q337921
-Q15290
-Q199
-Q1954125
-Q24238091
-Q172964
-Q7988576
-Q25107
-Q381212
-Q2827815
-Q1134739
-Q1125062
-Q198
-Q240673
-Q3
-Q14565199
-Q30
-Q30
-Q15304504
-Q1058733
-Q127771
-Q545449
-Q467011
-Q5338673
-Q1089123
-Q7988576
-Q1889
-Q29509080
-Q104555
-Q1168287
-Q959298
-Q774228
-Q37470
-Q4927280
-Q842838
-Q6038735
-Q188473
-Q403
-Q1231
-Q1058733
-Q3151690
-Q198
-Q1671614
-Q4927280
-Q29581471
-Q796
-Q319221
-Q5338673
-Q7988576
-Q211198
-Q83500
-Q7275
-Q16869121
-Q49394
-Q7988576
-Q327333
-Q1347367
-Q794
-Q423
-Q858
-Q176763
-Q215772
-Q1503443
-Q54360657
-Q1343699
-Q756
-Q200
-Q6256
-Q858
-Q80877
-Q1316
-Q49394
-Q2296856
-Q841787
-Q28484760
-Q29485
-Q24247591
-Q181036
-Q794
-Q423
-Q679
-Q131779
-Q29485
+In March 2003 the US and UK decided to invade Iraq and topple Saddam Hussein.
+Much has happened since, most notably the wave of Arab spring revolutions that might eventually have cast him from power without intervention.
+But 10 years on, the US, Britain and the Middle East still live in the shadow of that fateful decision.
+Two questions dominate.
+Was the invasion justified?
+And what have we learnt from it?
+The answer to the first is a resounding no.
+Saddam was a tyrant whose record in Kuwait and against the Kurds rightly worried the west.
+But the Bush administration's attempt after 9/11 to link him with Osama bin Laden as part of some crude Muslim challenge to America was wrong.
+The US and UK grossly exaggerated Iraq's weapons of mass destruction.
+War was waged on the premise that the west could bring instant democracy to the country.
+Above all, it embroiled the US and UK in an eight-year conflict that distracted attention from securing Afghanistan, which delayed and ultimately undermined progress there.
+The invasion was arguably the biggest diplomatic error of the post-second world war period.
+As for the lessons, the US and UK have learnt and applied a key one – a wariness for the kind of “boots on the ground” intervention seen in Iraq and Afghanistan.
+In Libya, the west rightly restricted itself to an air and sea campaign that reduced civilian and Nato casualties.
+But more significantly, western governments now place greater emphasis on Middle Eastern and African involvement in regional intervention.
+In Mali, French forces are on the ground.
+But from the start France has stressed that Malian and African states have to bear responsibility for longer-term security.
+Not all the lessons have been good ones, however.
+This new reticence to intervene has kept western powers from delivering crucial military aid to Syrian rebels in a conflict that has cost 70,000 lives.
+But at least it is right that the US is now leaning towards more direct support for non-jihadist fighters.
+The Iraq invasion has also left its mark on western diplomacy.
+There is now an unofficial rule that military intervention requires UN Security Council backing.
+This is worrying.
+In 1999 Nato acted to get Serbia out of Kosovo without such support.
+Today that is lauded as a just war.
+The obsession with Security Council backing on every occasion should be reconsidered.
+Finally, the Iraq adventure has left western publics too sceptical about intelligence suggesting pariah states might possess WMD.
+Since then, western agencies have regularly underestimated capabilities in Iran, North Korea and Syria – as evidenced by the sudden emergence of secret uranium enrichment plants in the first two of these countries, and by Syria's nuclear reactor.
+Exaggerating Saddam's WMD potential in 2003 was a terrible mistake. But we should not assume the same exaggeration about Iran and North Korea.
+It might just be that the west is making exactly the opposite error.

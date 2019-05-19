@@ -1,164 +1,21 @@
-Q46
-Q1342838
-Q11563
-Q7743
-Q240673
-Q16738028
-Q1156854
-Q4180
-Q557945
-Q3030775
-Q29485
-Q32518
-Q1435089
-Q14565199
-Q759676
-Q7614320
-Q83307
-Q625994
-Q23387
-Q1340643
-Q3435731
-Q178790
-Q4916
-Q46
-Q22687
-Q5338673
-Q6055890
-Q37654
-Q3196867
-Q7113677
-Q46834
-Q196878
-Q175111
-Q3196867
-Q22687
-Q9633
-Q7188
-Q23013268
-Q1156854
-Q208450
-Q584496
-Q540626
-Q37654
-Q1121708
-Q3073127
-Q22687
-Q4877042
-Q817765
-Q1156854
-Q29485
-Q190258
-Q178790
-Q11438
-Q7275
-Q5420776
-Q199
-Q164573
-Q2814650
-Q120
-Q3435731
-Q178790
-Q11471
-Q1542661
-Q93288
-Q134556
-Q759957
-Q174834
-Q55082364
-Q2191756
-Q327055
-Q726686
-Q172964
-Q24245823
-Q22687
-Q32032
-Q202785
-Q11471
-Q179875
-Q134556
-Q210521
-Q517596
-Q7860
-Q104555
-Q26186900
-Q557880
-Q5879610
-Q240673
-Q22687
-Q1121708
-Q93288
-Q1425577
-Q120
-Q1971493
-Q35758
-Q1255828
-Q4697206
-Q105210
-Q157031
-Q188619
-Q557880
-Q11461
-Q247792
-Q577
-Q29818766
-Q550313
-Q25107
-Q997419
-Q22687
-Q1459069
-Q1121708
-Q557880
-Q190258
-Q105210
-Q189569
-Q264661
-Q64
-Q55687191
-Q30269216
-Q569612
-Q131569
-Q1269627
-Q57055076
-Q105210
-Q1879813
-Q6256
-Q8043
-Q836925
-Q207333
-Q332209
-Q11693
-Q30
-Q30
-Q189569
-Q164359
-Q229
-Q7502926
-Q6658033
-Q24245823
-Q7881229
-Q2063826
-Q2063826
-Q4917
-Q720751
-Q4197743
-Q11348
-Q823288
-Q5119
-Q1109680
-Q2912172
-Q601401
-Q1358789
-Q56019
-Q11693
-Q88272
-Q40276
-Q557880
-Q160151
-Q104493
-Q11471
-Q23759131
-Q578508
-Q2144962
-Q3123740
-Q28640
+Europe's recent lamentable growth numbers bring home the cost of poor policy.
+But after years of confusion, distraction and errors, eurozone leaders are focusing on the right task, as finance ministers did in their meeting last week: to build a banking union for the euro.
+Many of Europe's banks have been left undercapitalised, their lending constrained by frozen funding markets and the debt overhangs on their balance sheets.
+By hanging the debts of banks around the necks of governments, the original policy exacerbated panic in sovereign debt markets.
+Thus a failure to fix the banks beat a path for the other big policy mistake.
+Instead of the fiscal co-ordination needed in monetary union, where financially solid states expand while stretched ones tighten, the eurozone was subjected to the strictures of austerity for all.
+Since June, however, the eurozone has been moving towards banking union, albeit fitfully.
+At times it has gone into reverse. It has agreed on a single supervisory authority, though it remains to be seen how it will work (especially a compromise to keep small banks out of the net in normal times).
+The debate is now about a single resolution mechanism and the nature of rules to make investors bear the cost of bank failures.
+An agreement is promised by June.
+That may well slip. What matters is that the disagreement is not over whether to have an SRM and bail-in, but over its legal foundations and the hierarchy of loss-taking for investors.
+This may not sound much, but it is tremendous political progress from where the eurozone was only a year ago.
+The power to close banks and distribute losses among investors needs an unassailable legal basis.
+This should not be an insuperable obstacle: Berlin has clarified it seeks only technical treaty amendments.
+A relatively quick legal solution should be achievable.
+On bail-in, countries disagree whether depositors' claims should be honoured ahead of senior bonds (as in the US) or on an equal basis.
+The experience of Cyprus, which shows how essential it is to protect small depositors credibly, implies super-seniority for insured deposits.
+Deposits above €100,000 also play a vital economic function – as working capital for the small business; one-off transactions such as housebuying; or savings for the ultra-risk-averse pensioner.
+They should rank above bonds – investment products that investors can and should price according to risk.
+It took a long time, but the eurozone has begun to try to repair itself.
+It should keep up the work.

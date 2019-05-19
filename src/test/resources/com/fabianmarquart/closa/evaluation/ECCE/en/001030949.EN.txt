@@ -1,168 +1,24 @@
-Q37654
-Q1187312
-Q76
-Q36161
-Q4097090
-Q1954125
-Q192276
-Q281095
-Q428148
-Q1300244
-Q22687
-Q601401
-Q247797
-Q317949
-Q643669
-Q26911
-Q22687
-Q4942650
-Q806798
-Q21013308
-Q30461
-Q570
-Q573
-Q193326
-Q1371925
-Q27927519
-Q586598
-Q4917
-Q668
-Q180490
-Q7860
-Q76
-Q13196750
-Q14565199
-Q7429143
-Q137
-Q40719766
-Q7889
-Q35525
-Q138796
-Q584028
-Q806798
-Q51134
-Q8161
-Q3918409
-Q909027
-Q11175
-Q22687
-Q4808784
-Q1345265
-Q7248388
-Q51134
-Q174834
-Q744865
-Q1050390
-Q22687
-Q1308999
-Q48204
-Q5347026
-Q76
-Q20861252
-Q1499569
-Q2388316
-Q211198
-Q184932
-Q123704
-Q11690
-Q927450
-Q76
-Q3620816
-Q12731
-Q1367353
-Q5
-Q38526
-Q194489
-Q846570
-Q28640
-Q44619
-Q28942369
-Q192581
-Q7743
-Q76
-Q327245
-Q105674
-Q5051643
-Q126
-Q22687
-Q35798
-Q35525
-Q23387
-Q1371925
-Q4917
-Q165628
-Q22687
-Q217605
-Q240673
-Q188473
-Q1954125
-Q3918409
-Q1101080
-Q170409
-Q1604733
-Q29485
-Q2110192
-Q4503831
-Q4013945
-Q1156854
-Q26186900
-Q30230067
-Q22687
-Q879844
-Q806737
-Q8425
-Q3918409
-Q1571900
-Q28008314
-Q44946
-Q141488
-Q102538
-Q199
-Q35120
-Q278113
-Q381072
-Q5655097
-Q133346
-Q19357621
-Q159904
-Q22687
-Q1962593
-Q235779
-Q192388
-Q428148
-Q36161
-Q40348
-Q806903
-Q59163
-Q601401
-Q126793
-Q22687
-Q1717246
-Q2063826
-Q278368
-Q80831
-Q133215
-Q1101080
-Q621184
-Q26132734
-Q24976
-Q5074302
-Q22687
-Q104493
-Q7275
-Q7737401
-Q7188
-Q23445
-Q1156854
-Q40164
-Q26186900
-Q178706
-Q196431
-Q5119
-Q35221
-Q104493
-Q174493
-Q707125
-Q1671968
-Q879844
-Q1416617
+Markets nosedived yesterday when Barack Obama set out broad new measures on financial regulation.
+The most signficant of them is banning deposit-taking banks from proprietary trading that is ""unrelated to serving customers"".
+This activity has generated politically incendiary profits for banks and bonuses for bankers.
+The timing was political: the president spoke on the day that Goldman Sachs announced fourth quarter earnings of $4.95bn.
+Those of a more populist nature than Mr Obama — both on the left and on the right ­— will say that he comes late to the game.
+Indeed, the White House and the US Treasury resisted the backlash against bankers earlier in 2009 — they opposed the punitive tax proposed in the House of Representatives.
+Instead of using the control they enjoyed over the banks through the Troubled Asset Relief Program in 2009, the authorities rushed to free banks from the restrictions associated with Tarp.
+Mr Obama may now be rueing this lost opportunity.
+The public mood has swung against Wall Street — to which Mr Obama appears too close for comfort.
+Trillion-dollar bail-outs for people on million dollar salaries have infuriated Americans living in fear of losing their jobs and their homes.
+Mr Obama's political team is running to catch up.
+In December, he called bank executives to the White House to scold them and, last week, announced a $90bn levy on the banks to claw back some of the costs of the bail-out.
+These actions were broadly justified.
+The new proposal, however, is a radical shift — and a mistake.
+The primary aim in regulatory policy should be to make it possible for banks to fail without endangering the rest of the banking system — and society.
+The proposed remedy, however, will not address this point.
+Even financial networks where companies each did only one thing would still be vulnerable to systemic crises.
+Defining and policing a hard boundary will be impossible.
+Will affected banks be allowed to hedge their positions?
+This brutal regulation will be set upon by lawyers.
+Banning prop trading by retail banks would prevent state-insured deposits being used as chips in the financial casino.
+That is a big problem.
+It is, however, best tackled by charging banks for the risks that the state insures for them.
+The government's key policy lever should be to make sure that institutions hold enough capital to reflect the risks that they run and the threats that they pose to the rest of the financial system.

@@ -1,223 +1,40 @@
-Q506
-Q406714
-Q23
-Q93288
-Q4393174
-Q30
-Q131288
-Q1366722
-Q321839
-Q16868672
-Q16887380
-Q23355
-Q14828018
-Q35525
-Q202875
-Q31603
-Q26391804
-Q13109234
-Q23
-Q903577
-Q1269239
-Q34302
-Q24759380
-Q206361
-Q24759380
-Q132911
-Q131288
-Q1413646
-Q907344
-Q176494
-Q37172
-Q131288
-Q30
-Q30
-Q903577
-Q185789
-Q192691
-Q3247043
-Q39911
-Q29818766
-Q192630
-Q201
-Q577
-Q96
-Q386191
-Q1342838
-Q690194
-Q1604733
-Q172964
-Q21503252
-Q44649
-Q11471
-Q813912
-Q30
-Q30
-Q29468
-Q262246
-Q4915012
-Q42138
-Q690194
-Q23
-Q29822052
-Q1978388
-Q2920535
-Q11471
-Q113558
-Q30
-Q1959714
-Q203066
-Q96
-Q23835475
-Q217164
-Q2105114
-Q30
-Q30
-Q159810
-Q7755544
-Q2046602
-Q321839
-Q192628
-Q169489
-Q253276
-Q133346
-Q21262209
-Q192630
-Q202
-Q577
-Q76
-Q76
-Q3754526
-Q3289701
-Q169489
-Q17281278
-Q379693
-Q7727
-Q47035128
-Q1124
-Q26886
-Q50000
-Q76
-Q4202277
-Q5589178
-Q23835475
-Q7937
-Q23
-Q93288
-Q4915012
-Q42138
-Q23257209
-Q29468
-Q29817416
-Q185943
-Q32043
-Q124490
-Q1260006
-Q179216
-Q525361
-Q30
-Q169489
-Q577
-Q16562
-Q40021
-Q902814
-Q3957
-Q199
-Q471898
-Q30
-Q7930989
-Q199
-Q1101080
-Q854659
-Q2296856
-Q633403
-Q211391
-Q10870555
-Q321839
-Q30
-Q178790
-Q30
-Q30
-Q1060623
-Q503577
-Q30
-Q10512400
-Q327055
-Q170404
-Q1371819
-Q306484
-Q1031196
-Q321839
-Q16887380
-Q23355
-Q683754
-Q93288
-Q192691
-Q221706
-Q10512400
-Q327055
-Q217164
-Q1412049
-Q1101080
-Q13440398
-Q11402
-Q21255605
-Q202875
-Q206361
-Q170404
-Q327055
-Q23090331
-Q733553
-Q54832380
-Q23257209
-Q30
-Q30
-Q86447
-Q1551939
-Q2402796
-Q132911
-Q54832380
-Q2123632
-Q2872553
-Q577
-Q728944
-Q170404
-Q48282
-Q336
-Q11023
-Q30
-Q174165
-Q192276
-Q19020713
-Q216774
-Q879844
-Q7275
-Q30619313
-Q7163
-Q520952
-Q11692
-Q909027
-Q29468
-Q382586
-Q185943
-Q12547146
-Q1142227
-Q11702
-Q570
-Q18029574
-Q2540351
-Q29552
-Q104493
-Q30619313
-Q8465
-Q198
-Q37474838
-Q29468
-Q26186900
-Q454
-Q1211934
-Q42904171
-Q47519884
-Q190258
-Q7502926
-Q23835475
+Perhaps it is the blossom in the air.
+But Washington may be about to agree on an overhaul of America's dilapidated immigration system.
+A final deal is not yet complete.
+However, the bipartisan “group of eight” senators to whom the White House has outsourced negotiations is confident there will be a draft soon.
+The prospect should be welcomed.
+At the very least, it would reassure us that Washington is capable of taking a break from its chronic dysfunction.
+However, doubts remain whether a bill could get through the Republican House of Representatives.
+And concerns also remain on whether the bill would do enough to lift high-skilled immigration.
+First, the bill's big positives.
+Since the 2007 recession, the great wave of Mexican immigration to the US has broken.
+It has dropped from a roughly 500,000 annual inflow a decade ago to zero in the past three years.
+Mexico's rising economic prospects and declining population growth suggest that shift may be for keeps.
+Now is an ideal time to redress the status of the 11m undocumented Hispanics in the US.
+Enough Republicans have signed up to the “pathway to citizenship” to suggest Washington may finally be about to grasp the nettle.
+It would be a big breakthrough at a time of increasingly dynamic US economic relations with Mexico.
+It would also help to put a floor under the low-wage portions of the US economy.
+The other side of any package will be a deal to beef up security along the 2,000 mile US-Mexico border.
+Much of this may be superfluous.
+In the past four years, President Barack Obama's administration has stepped up security and increased deportations (which, at 1.5m is more than Messrs Bush and Clinton combined).
+The quiet success of Mr Obama's enforcement regime has helped to improve the climate in Washington to agree on a 10-year pathway to citizenship.
+So far, few Republicans have cried “amnesty”.
+In addition, the growing violence of the Mexican drugs cartels is justification alone for the tougher US security.
+In the past few years, El Paso, the Texan border town, has gone from being one of the least safe US cities to being one of its safest.
+This is a gain worth consolidating.
+The emerging bill also has potential weaknesses, however.
+This weekend's reported deal between the AFL-CIO, the largest US union, and the US Chamber of Commerce, on a US guest worker visa programme may have cleared the largest hurdle to a deal among the group of eight.
+But it looks to have been shoddily drafted.
+They agreed to an annual ceiling of just 200,000 guest workers and a floor of 20,000.
+Even the higher figure is a bagatelle in a labour force of nearly 150m.
+Clearly the AFL-CIO got the better of the negotiation.
+There is also concern the so-called “economic visas” for high-skilled workers will continue to be channelled through the bureaucratic H1B system.
+It would be far preferable for the US to issue more green cards than to lift the H1B quota, which is stuck at 65,000 a year.
+It would also be a plus if the bill included automatic visas for foreign students graduating in science and engineering.
+Such a move would boost US innovation.
+Neither measure is yet assured.
+Ultimately, however, the bill's fate will rest on the state of Republican politics.
+A large share of House Republicans will oppose any bill that smacks of amnesty for illegal immigrants.
+For it to pass, John Boehner, the speaker, will thus have to persuade some of his colleagues to vote with the Democrats, which would risk a Republican civil war.
+Mr Boehner knows the GOP must make peace with the Hispanic vote for its own electoral survival.
+But he will need to show statesmanship to help get it there.

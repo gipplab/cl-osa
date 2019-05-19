@@ -1,279 +1,32 @@
-Q18689797
-Q371730
-Q14631121
-Q124216
-Q22687
-Q1503443
-Q5025838
-Q51134
-Q193199
-Q1135567
-Q39552
-Q30
-Q600751
-Q17643783
-Q22687
-Q1640172
-Q2842797
-Q1142227
-Q528166
-Q11028
-Q30
-Q1020994
-Q70
-Q39552
-Q321839
-Q105210
-Q124216
-Q7748
-Q3242199
-Q280658
-Q487623
-Q1187312
-Q124216
-Q7188
-Q192276
-Q124216
-Q22687
-Q528166
-Q11028
-Q30
-Q600751
-Q582600
-Q7748
-Q3918409
-Q70
-Q1142227
-Q11204
-Q28308492
-Q124216
-Q22687
-Q633140
-Q30
-Q600751
-Q8043
-Q12136
-Q885383
-Q6559173
-Q93288
-Q1425577
-Q1137224
-Q37105
-Q22687
-Q8043
-Q192630
-Q30
-Q7748
-Q23257209
-Q7748
-Q1101080
-Q15290
-Q199
-Q23835475
-Q23009442
-Q105210
-Q1403517
-Q124216
-Q22687
-Q8043
-Q2912172
-Q30
-Q30
-Q37654
-Q9788
-Q30
-Q30
-Q186361
-Q847337
-Q628939
-Q23835475
-Q846570
-Q8161
-Q124216
-Q5306030
-Q206864
-Q1206488
-Q44946
-Q177239
-Q481609
-Q278368
-Q22687
-Q8043
-Q4686406
-Q82794
-Q22698
-Q1368
-Q582600
-Q7748
-Q202785
-Q443955
-Q104555
-Q199
-Q577
-Q16502
-Q29826308
-Q189756
-Q1962593
-Q47519884
-Q193199
-Q321839
-Q321839
-Q831390
-Q23384
-Q11471
-Q258127
-Q44315
-Q200535
-Q114380
-Q381072
-Q1913301
-Q15290
-Q1101080
-Q4338318
-Q2540351
-Q82955
-Q19571551
-Q1368
-Q2314
-Q3306907
-Q19357892
-Q190507
-Q203
-Q577
-Q29818766
-Q520952
-Q159810
-Q23759131
-Q29814939
-Q272051
-Q283202
-Q660064
-Q321839
-Q39
-Q1351807
-Q145
-Q8161
-Q850210
-Q145
-Q1938414
-Q124216
-Q22687
-Q93288
-Q6502151
-Q5416089
-Q207982
-Q5074302
-Q8161
-Q11471
-Q1020994
-Q1640172
-Q280658
-Q26256352
-Q611203
-Q70
-Q64
-Q1309431
-Q183
-Q105562
-Q178074
-Q188473
-Q30
-Q30
-Q1142227
-Q7748
-Q650241
-Q178706
-Q11692
-Q463257
-Q528166
-Q8043
-Q11028
-Q973587
-Q22687
-Q2912172
-Q30
-Q30
-Q37654
-Q178354
-Q633140
-Q145
-Q30
-Q30
-Q900406
-Q104555
-Q143720
-Q161243
-Q458
-Q181897
-Q487623
-Q104555
-Q10870555
-Q8161
-Q1148747
-Q189569
-Q26186900
-Q181593
-Q567555
-Q5290
-Q16502
-Q16502
-Q102538
-Q458
-Q920419
-Q1121492
-Q1962593
-Q179076
-Q11028
-Q79719
-Q471855
-Q1368455
-Q165628
-Q6042515
-Q8161
-Q40
-Q32
-Q8161
-Q1503443
-Q17641254
-Q48302283
-Q200535
-Q1050571
-Q1121492
-Q32032
-Q3289701
-Q61509
-Q1760141
-Q2532964
-Q26186900
-Q20459
-Q1078386
-Q5416089
-Q1717246
-Q499193
-Q2411795
-Q16887380
-Q23350
-Q188473
-Q8171
-Q8161
-Q487623
-Q145
-Q161243
-Q172378
-Q28119567
-Q26132734
-Q4826500
-Q8161
-Q6031064
-Q179076
-Q5420776
-Q70
-Q327209
-Q7502926
-Q159810
-Q30
-Q30
-Q458
-Q17641254
-Q719602
-Q7502926
+The first unambiguous defeat of Swiss bank secrecy came in 2009, when UBS buckled under pressure from US prosecutors.
+The bank had to pay fines and pass on client information about tax-evading US citizens.
+Bern was pressured into making this deal legal under Swiss law.
+Another blow was struck for transparency yesterday, when the Swiss government accepted a broader measure allowing more Swiss banks to give up client information to US prosecutors.
+The law proposed by Bern will, if passed by the legislature this summer, authorise Swiss banks to comply with US prosecutors' conditions for entering deferred prosecution agreements.
+These promise to draw a line under banks' past violations of US law.
+As far as it goes, the law is a good one.
+It helps remove the legal and reputational uncertainty that is hampering Swiss banks' business in the US market, and it lets the US exact punishment and admission of guilt from those who have helped Americans cheat on their taxes.
+But the Swiss, who have been pulled kicking and screaming to this point, are trying to limit the damage to what used to be their banks' competitive advantage: a discreet place to park your money.
+The law will suspend normal confidentiality rules for one year only.
+But the old and cosy world where too few questions were asked should not be allowed to survive.
+The UBS deal and the latest, broader deal are just wavelets in a larger tide that – not before time – is turning against hidden wealth.
+If the financial crisis has produced anything good, it is a heightened awareness among voters and politicians of the ease with which big money can be salted away untaxed and unseen.
+Faster than anyone would have dared hope five years ago, large economies have begun to squeeze tax havens.
+Some initiatives have been timid, such as a bilateral Swiss-UK deal under which Switzerland will remit to the UK tax due on income from undeclared savings by UK taxpayers in Swiss banks.
+This agreement unforgivably gives tax evasion a sheen of legitimacy by charging tax cheats no more (some times less) than what law-abiding citizens must pay, without even requiring them to come forward.
+A similar bilateral plan between Bern and Berlin collapsed after a German opposition veto.
+Others have taken more forceful action.
+The US has passed Fatca, a law requiring foreign financial institutions to share their American clients' information with the Internal Revenue Service.
+Any bank wishing to do business with the US market has a strong reason to comply.
+The UK has piggybacked on the US reforms to toughen up rules for some of its own crown dependencies.
+The EU is making strides for transparency with a rule requiring all multinationals to report tax payments on a country-by-country basis.
+If nothing else, this should make more glaring the sorts of anomalies displayed recently by some of the world's most famous companies.
+The EU is also working on a much-needed upgrade of its savings directive.
+This allows automatic exchange of tax-related information – though it permits jurisdictions to opt out and levy a withholding tax instead.
+Austria and Luxembourg have maintained tax secrecy in this way.
+And only a narrow slice of wealth is caught by the directive's net.
+These are only the first steps on a long journey towards cleaner tax systems, which can also be made lighter once the burden of evasion and avoidance no longer has to be carried by others.
+The Group of Seven must put action behind its words on tax transparency – above all the UK and its dependencies, whose stance on this is ambiguous at best.
+Automatic tax information exchange should expand greatly.
+Bern's concessions show that the big economies – the US and the EU – have a way to prevail.
+They must show that they also have the will.

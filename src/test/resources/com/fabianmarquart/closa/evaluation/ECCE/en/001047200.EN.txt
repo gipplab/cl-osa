@@ -1,149 +1,21 @@
-Q8880
-Q159394
-Q1335051
-Q1391906
-Q29815072
-Q51134
-Q2283
-Q75
-Q420438
-Q6368
-Q8024392
-Q278368
-Q45767
-Q420438
-Q708
-Q239
-Q14565199
-Q1510380
-Q83306
-Q1121708
-Q17285911
-Q621184
-Q102538
-Q60918
-Q732833
-Q192630
-Q23355
-Q577
-Q2283
-Q1640172
-Q21818619
-Q4917
-Q530013
-Q668
-Q2842797
-Q498153
-Q167412
-Q51134
-Q93288
-Q1193004
-Q278368
-Q1775867
-Q6368
-Q6368
-Q40719766
-Q5371769
-Q29142
-Q1717246
-Q105210
-Q178561
-Q1639780
-Q1183543
-Q2283
-Q131569
-Q27318
-Q60918
-Q27454075
-Q25107
-Q1143604
-Q321839
-Q906911
-Q239
-Q8043
-Q1920566
-Q21168708
-Q344
-Q102538
-Q1425577
-Q733541
-Q167412
-Q4013945
-Q39546
-Q239
-Q30230067
-Q1717246
-Q2478386
-Q11402
-Q102538
-Q633140
-Q326498
-Q7748
-Q8222382
-Q1143604
-Q206621
-Q577
-Q2283
-Q2472132
-Q6743719
-Q321839
-Q21263262
-Q8148
-Q75
-Q2383321
-Q1639780
-Q102538
-Q1879813
-Q206361
-Q178561
-Q1604733
-Q6368
-Q23257209
-Q238156
-Q16502
-Q4182287
-Q19541
-Q44167
-Q55082364
-Q2191756
-Q1571900
-Q35535
-Q906066
-Q1150070
-Q286583
-Q11471
-Q3851114
-Q60918
-Q1920566
-Q2283
-Q131427
-Q2995644
-Q2976603
-Q3975
-Q60918
-Q219067
-Q14565199
-Q165628
-Q2842797
-Q23806
-Q58093
-Q850210
-Q3975
-Q2283
-Q847337
-Q628939
-Q7429143
-Q569612
-Q29485
-Q621695
-Q574562
-Q23387
-Q239
-Q2995644
-Q508295
-Q6881762
-Q2842797
-Q17641254
-Q2283
-Q1530061
-Q481609
+The European Commission might have been accused of chasing fading phantoms when in 2009 it went after Microsoft for foisting its Internet Explorer browser on Windows users.
+Competition was already rapidly eroding Explorer's lead.
+But Brussels is now right to take a stand against the group's failure to abide by its own commitments to resolve the problem.
+No other company has so consistently flouted commission antitrust decisions.
+In the past eight years, Microsoft has paid close to €1.6bn in fines, largely for non-compliance.
+The settlement of 2009, where it agreed to offer users a choice of web browsers until the end of 2014, was a sensible attempt to avoid another damaging legal battle with regulators.
+But in failing to implement its own undertakings, Microsoft is putting these accords to the test.
+This is the first violation since the commission acquired the power to withhold infringement proceedings in favour of such deals in 2004.
+Brussels' response will determine whether in future other companies feel compelled to abide by their promises and, in consequence, whether settlements prove to be effective regulatory tools.
+Brussels is understandably keen, where possible, to avoid using the legal system to force companies to comply with competition law.
+Legal proceedings can drag on for years, as Microsoft knows to its regret.
+Settlement deals could prove particularly useful in fast-moving, high-tech industries such as the internet. They benefit both regulators and companies by providing speedy and cost-efficient solutions to antitrust concerns.
+But applying them can still be tricky, especially as the antitrust battle has shifted from browsers to the far more complex world of web search engines.
+It remains to be seen whether behavioural remedies can be policed when services are constantly changed in real time.
+Yet there will be no chance to find out if the commission's response to Microsoft fails to produce a robust outcome.
+Nevertheless, this should not be disproportionate.
+Even in classic infringement cases, the commission does not normally exercise its right to levy a fine of 10 per cent of revenue.
+In this case, Microsoft quickly admitted guilt, and said technical mistakes were to blame.
+This will have to be established in the coming weeks.
+But if Brussels finds that the breach resulted from incompetence rather than a deliberate violation, this should be taken into account to mitigate any fine.
+Either way, Microsoft's credibility is damaged.

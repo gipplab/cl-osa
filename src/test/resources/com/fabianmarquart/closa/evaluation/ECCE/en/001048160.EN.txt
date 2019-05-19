@@ -1,156 +1,20 @@
-Q5464790
-Q184754
-Q2842797
-Q779970
-Q16502
-Q16502
-Q22687
-Q4917
-Q668
-Q167412
-Q193199
-Q30
-Q145
-Q124216
-Q1639780
-Q2839009
-Q29142
-Q207351
-Q179179
-Q736288
-Q29810410
-Q1639780
-Q134560
-Q179651
-Q193199
-Q36949023
-Q245343
-Q1640172
-Q4917
-Q1818899
-Q26256352
-Q2839009
-Q577
-Q638053
-Q247299
-Q22445448
-Q196092
-Q627861
-Q806798
-Q721834
-Q202
-Q332209
-Q199
-Q36949023
-Q176763
-Q35798
-Q108874
-Q22687
-Q89938
-Q622645
-Q633140
-Q273283
-Q34394
-Q930164
-Q3073127
-Q207351
-Q3620816
-Q9420
-Q189756
-Q196092
-Q26186900
-Q193199
-Q192388
-Q381072
-Q498153
-Q167412
-Q11175
-Q14536140
-Q22687
-Q37654
-Q736288
-Q26911
-Q1666223
-Q160117
-Q202785
-Q11348
-Q1045147
-Q22687
-Q1424605
-Q26944781
-Q189569
-Q179076
-Q906066
-Q57261620
-Q747376
-Q160117
-Q32188232
-Q1321905
-Q36602
-Q22687
-Q231823
-Q1640172
-Q60918
-Q160117
-Q1343202
-Q2839009
-Q56557591
-Q193199
-Q363948
-Q309314
-Q600571
-Q6501421
-Q192388
-Q19097421
-Q189756
-Q701521
-Q22687
-Q21004260
-Q2141565
-Q174834
-Q26256512
-Q12731
-Q2839009
-Q9332
-Q121650
-Q2735683
-Q36794
-Q27905
-Q247797
-Q207351
-Q104493
-Q22687
-Q436048
-Q1566
-Q48103
-Q3566043
-Q9332
-Q697327
-Q23004
-Q498153
-Q167412
-Q736288
-Q3975
-Q207351
-Q6776875
-Q23640
-Q145
-Q5449586
-Q611203
-Q3918409
-Q461499
-Q747376
-Q207351
-Q83267
-Q83267
-Q1183543
-Q16751793
-Q23835475
-Q192630
-Q192909
-Q877558
-Q628523
-Q104555
-Q169737
-Q286583
-Q240673
+Following the recent string of fines imposed on some of the world's largest banks, the $1.5bn settlement between UBS and US, UK and Swiss regulators over allegations it attempted to manipulate the Libor interest rate may look like just another notch on the regulator's belt.
+It is not.
+The scale of UBS's involvement is astonishing – much bigger than that of Barclays, which paid $450m to settle similar allegations earlier this year.
+The Financial Services Authority counted at least 2,000 requests for inappropriate submissions from 45 bankers.
+Several managers, including four senior ones, were involved.
+And while there is no evidence that top executives were aware of what was happening, the bank's cavalier attitude to risk-management and compliance simply beggars belief.
+The conspiracy to fix Libor appears more extensive than had been previously thought.
+This was not just a question of massaging submissions to make UBS's financial position look stronger than it was after the crisis.
+The settlement also points to a co-ordinated effort across banks to manipulate market rates for profit, using as intermediaries the interdealer brokers whose normal function is to assist banks to trade with each other on an undisclosed basis.
+In exchange for their services as middlemen in the fixing, these brokers were allegedly rewarded with orders from banks that had no economic purpose other than to pay them a commission.
+The brokers have denied the allegations.
+But if these are correct, and UBS has not contradicted them, this would amount to an intolerable abuse of a privileged position.
+The question of collusion also puts the other banks under investigation in an awkward situation.
+The antitrust authorities will certainly want to take a close look at any allegations of price-fixing behaviour.
+If these stick they could open the door to class-action suits being brought by customers.
+Libor thus risks being the banks' “tobacco moment”, when long-running bad behaviour is finally rumbled and the lawsuits roll in.
+The settlement will at any rate strengthen the case for overhauling Libor, as Martin Wheatley, the head of the UK's emerging Financial Conduct Authority, plans to do.
+In particular, his proposal to transform the fixing of Libor into a criminal offence is overdue and should be implemented swiftly.
+True, this will not help with past scandals.
+But it will send a powerful message that respecting the rules is not optional, and breaking them has a real cost.

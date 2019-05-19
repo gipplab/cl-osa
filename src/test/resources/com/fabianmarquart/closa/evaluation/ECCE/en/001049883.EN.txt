@@ -1,173 +1,24 @@
-Q178146
-Q148
-Q7430019
-Q845956
-Q7295719
-Q327333
-Q842838
-Q484954
-Q52834024
-Q40292
-Q724178
-Q1057397
-Q850210
-Q148
-Q382887
-Q3196867
-Q909380
-Q29817121
-Q1342838
-Q55082364
-Q24238419
-Q3975
-Q956
-Q24862
-Q187860
-Q3196867
-Q66344
-Q22687
-Q144334
-Q1193236
-Q8161
-Q209190
-Q10870555
-Q504514
-Q1102060
-Q732833
-Q956
-Q7295719
-Q115
-Q326277
-Q14565199
-Q148
-Q695793
-Q5420776
-Q182076
-Q286583
-Q707125
-Q903517
-Q200
-Q11500
-Q206361
-Q322481
-Q3196867
-Q8502
-Q837766
-Q174834
-Q11574
-Q903517
-Q148
-Q57774254
-Q3435731
-Q219858
-Q148
-Q15284
-Q192249
-Q189539
-Q51134
-Q956
-Q34876
-Q88272
-Q859031
-Q2046602
-Q586598
-Q170584
-Q643669
-Q850210
-Q19084362
-Q3196867
-Q909380
-Q1802419
-Q7188
-Q2388316
-Q12695
-Q3196867
-Q1412049
-Q47035128
-Q4917
-Q948
-Q5447453
-Q1057397
-Q850210
-Q22687
-Q3196867
-Q82794
-Q88272
-Q42889
-Q82604
-Q324923
-Q103808
-Q23257209
-Q956
-Q321839
-Q621184
-Q22687
-Q23004
-Q3196867
-Q7737401
-Q7188
-Q15284
-Q86447
-Q11693
-Q47035128
-Q487623
-Q956
-Q732833
-Q677393
-Q162351
-Q34876
-Q32043
-Q3196867
-Q909380
-Q16172260
-Q1139344
-Q148
-Q57774254
-Q3435731
-Q2114394
-Q1954125
-Q182076
-Q16751793
-Q2843407
-Q160020
-Q22687
-Q1416617
-Q40276
-Q1081889
-Q148
-Q2144456
-Q219858
-Q28962312
-Q278368
-Q43015
-Q170584
-Q937228
-Q8148
-Q174834
-Q1639780
-Q219858
-Q47035128
-Q6430706
-Q44619
-Q3289701
-Q956
-Q37017
-Q254128
-Q182076
-Q493615
-Q256817
-Q1342838
-Q11366
-Q7988576
-Q164359
-Q192630
-Q39911
-Q4530482
-Q2843407
-Q286583
-Q904243
-Q182076
-Q5420776
-Q11888847
-Q148
-Q484275
+It would be easy to dismiss China's first downgrade by an international rating agency since 1999 as unjustified pessimism.
+At less than 20 per cent of national income, China's official debt stock is tiny.
+Growth, albeit slowing, remains healthy.
+In any case, Beijing is not short of options to repay its debt, whether via its central bank's printing press or by increasing taxes that are still low.
+Yet the report that accompanies Fitch's decision to lower Beijing's rating from AA- to A+ is right to emphasise China's rapid expansion of credit as a real threat to economic stability.
+There are two areas of immediate concern. First, the size of the debt mountain accumulated by local authorities. Second, the stability of China's growing shadow banking sector.
+China's municipalities have been saddled with loans since 2009, when Beijing encouraged its provinces to go on an investment binge as part of a heroic stimulus package.
+Roughly a quarter of these projects generated no revenue.
+The debt stock for local governments, unconsolidated in the public debt figures, is more than Rmb10tn ($1.6tn), a fifth of national income.
+Much of it is in short-term bank debt, placed in special-purpose investment vehicles designed to circumvent a ban on borrowing.
+So far, Beijing has dealt with this problem by demanding that state-owned banks roll over these debts.
+But this is only a palliative.
+The government's push for municipalities to issue their own bonds is more promising, as it will encourage greater thrift and transparency.
+Yet, ultimately, Beijing will have to decide whether it intends to bail out its provinces, which would add to its own debt stock.
+Just as worrying is the rise of China's shadow banking, which is financing almost half of all new credit.
+True, the development of shadow banks is natural as a financial system becomes more sophisticated.
+Yet the products sold outside China's formal lending sector are often murky.
+Too frequently, they are used to finance uncreditworthy projects, particularly in the property industry.
+The authorities are seeking to regulate the sector by demanding greater disclosure.
+Critics fear these steps will prove insufficient.
+Beijing faces a dilemma: regulating fast-expanding credit flows is bound to constrain growth.
+But the alternative is much uglier.
+As the western experience of the past decade shows, economic development is real only when it is financially sustainable.
+Getting a grip on credit expansion should be a priority for China's leadership.

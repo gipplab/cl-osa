@@ -1,231 +1,27 @@
-Q382887
-Q16502
-Q16502
-Q40292
-Q11348765
-Q6266
-Q3130
-Q211391
-Q173253
-Q381072
-Q173056
-Q19771
-Q625994
-Q473750
-Q159810
-Q216541
-Q148
-Q444184
-Q16502
-Q690213
-Q30
-Q30
-Q17
-Q27897915
-Q176494
-Q11693
-Q2383321
-Q178648
-Q6256
-Q207988
-Q546395
-Q37654
-Q19357595
-Q557880
-Q577
-Q389408
-Q21255975
-Q12136
-Q35197
-Q7275
-Q1524235
-Q1553864
-Q179073
-Q55082364
-Q707125
-Q93288
-Q252
-Q126
-Q14293544
-Q1954125
-Q3
-Q148
-Q30
-Q30
-Q733541
-Q188473
-Q7188
-Q21255975
-Q44432
-Q7310741
-Q23
-Q956
-Q199
-Q9203276
-Q86447
-Q11471
-Q1205349
-Q1606712
-Q16502
-Q179179
-Q736288
-Q7310741
-Q66344
-Q22687
-Q55082364
-Q981496
-Q48352
-Q38161169
-Q668
-Q18029574
-Q508295
-Q16515105
-Q16502
-Q2393575
-Q4917
-Q46737
-Q1369832
-Q196988
-Q10225
-Q23387
-Q263725
-Q53536
-Q140686
-Q304479
-Q7362
-Q15916459
-Q715358
-Q11563
-Q1156
-Q306484
-Q30
-Q178476
-Q1156854
-Q12136
-Q30
-Q86447
-Q23257209
-Q1818899
-Q18122778
-Q52943
-Q3130
-Q5655097
-Q621695
-Q1951543
-Q21476674
-Q9420
-Q53536
-Q53536
-Q845436
-Q170212
-Q736288
-Q35865
-Q41171
-Q30
-Q30
-Q668
-Q1951543
-Q21476674
-Q7881229
-Q160289
-Q14761450
-Q15290
-Q178354
-Q21606862
-Q164573
-Q17955
-Q44127
-Q170924
-Q846570
-Q5413709
-Q1404101
-Q49297
-Q81054
-Q713493
-Q546395
-Q37654
-Q577
-Q733541
-Q53536
-Q188473
-Q5453430
-Q7188
-Q66344
-Q22687
-Q621695
-Q557880
-Q21146257
-Q903517
-Q6720521
-Q721834
-Q190258
-Q172964
-Q1368
-Q82794
-Q37654
-Q6256
-Q16502
-Q43
-Q520952
-Q746687
-Q508295
-Q444600
-Q29493
-Q96
-Q53536
-Q220764
-Q11442
-Q2383321
-Q16502
-Q7098963
-Q3289701
-Q1951543
-Q21476674
-Q338754
-Q192242
-Q18029574
-Q529711
-Q23090331
-Q21146257
-Q487623
-Q53536
-Q280658
-Q66344
-Q174834
-Q227552
-Q344
-Q129302
-Q1951543
-Q21476674
-Q26186900
-Q306484
-Q53536
-Q1510380
-Q2735683
-Q656083
-Q37105
-Q66344
-Q22687
-Q546395
-Q37654
-Q190258
-Q344
-Q192276
-Q66344
-Q174834
-Q26726369
-Q806737
-Q37654
-Q190200
-Q381072
-Q3975
-Q41446476
-Q26132734
-Q17641254
-Q7502926
-Q53536
-Q214339
-Q157509
-Q16502
-Q16502
-Q756202
+When the top economic officials from the world's 20 leading nations gather in Sydney this weekend, they will be spared the sense of crisis that has loomed over the most recent G20 meetings.
+The global economy is humming along, driven by China and by the incipient recovery of parts of the rich world, most notably Britain, the US and Japan.
+Turmoil in the eurozone has receded, with bond yields in peripheral countries finally back near pre-crisis levels.
+Even the jitters across emerging markets which troubled investors earlier this year seem to have calmed down momentarily.
+To some extent, the improvement in economic conditions has been mirrored in the state of global governance.
+Protectionism remains a distant threat and an agreement in Bali last December has breathed new life into the World Trade Organisation.
+Global imbalances, especially between China and the US, have also narrowed.
+While this was not the consequence of co-ordinated action by governments, the improvement has taken some heat off the relationship between Washington and Beijing.
+However, on one of the defining economic issue of our times – how to handle the transition to a world of higher interest rates – the relationship between global central banks remains frosty.
+Raghuram Rajan, governor of the Reserve Bank of India, has called on his colleagues at the US Federal Reserve to take into account the difficulties of the developing world when tapering their $85bn-a-month asset purchases.
+In her testimony to Congress last week, however, Janet Yellen, the Fed chairwoman, turned a deaf ear to the plea by her opposite number in Mumbai, making it clear that US monetary policy will depend on economic conditions in America alone.
+Still, the issue is far from settled and is likely to dominate conversations in Sydney.
+It is hard to blame Ms Yellen for her thinking.
+The Fed has a mandate to target rates of inflation and unemployment in the US, not in India or elsewhere.
+Had Ms Yellen implied otherwise during her hearing, she would have been assailed by congressmen, and with good reason.
+Mr Rajan would be subject to the same criticisms if he chose to serve the interests of the Americans or the Europeans rather than those of his fellow Indians.
+Nor is the storm that hit emerging markets this year purely the consequence of the Fed's actions.
+National governments and central banks are also to blame for failing to provide investors with the kind of macroeconomic stability that fund managers need to keep their money in place.
+Markets are increasingly differentiating between countries from the developing world.
+This is why Turkey, with its large current account deficit, has been battered while reforming Mexico has been spared.
+Demanding that the Fed interrupt its tightening cycle for the benefit of the wider world is unrealistic.
+But there are other steps Ms Yellen could take to manage the frustration of her colleagues overseas.
+For a start, she should continue to provide the kind of transparency which the Fed has been offering since embarking on “forward guidance”.
+This would enable the other monetary authorities to prepare themselves for the aftermath of future monetary shocks.
+Ms Yellen should also make it clear that the Fed stands ready to open swap lines with the central banks of emerging markets if these were needed in future.
+This measure, which would ensure that the other monetary authorities have enough dollars to lend to their banking systems, was instrumental in calming markets at the height of the crisis.
+Repeating it in the case of fresh turmoil would be the best way to show that the Fed understands its role as the custodian of the world's reserve currency.

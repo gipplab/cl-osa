@@ -1,280 +1,39 @@
-Q329
-Q361945
-Q121842
-Q32
-Q3558349
-Q16887380
-Q40292
-Q11348765
-Q6266
-Q181890
-Q30515
-Q127834
-Q16877982
-Q131841
-Q1300785
-Q461499
-Q39984
-Q1954125
-Q911049
-Q8502
-Q1553864
-Q845956
-Q1773266
-Q170584
-Q1426138
-Q21255605
-Q11471
-Q37654
-Q13582404
-Q1309431
-Q11471
-Q26186900
-Q306484
-Q23387
-Q2292459
-Q1282091
-Q3312519
-Q2843407
-Q1403517
-Q16502
-Q473750
-Q159810
-Q1139344
-Q5151
-Q2912172
-Q22855
-Q4116378
-Q88272
-Q732833
-Q259059
-Q5780945
-Q46737
-Q160151
-Q29812254
-Q34581
-Q37654
-Q41550
-Q1362683
-Q1342838
-Q1547498
-Q40276
-Q30
-Q30
-Q304479
-Q595597
-Q8268
-Q11500
-Q546395
-Q179522
-Q159810
-Q164359
-Q3516239
-Q736288
-Q10225
-Q611203
-Q3196867
-Q221706
-Q30
-Q30
-Q26132734
-Q836925
-Q179808
-Q39984
-Q1331926
-Q32518
-Q1722555
-Q618779
-Q157171
-Q3196867
-Q381072
-Q33767
-Q461671
-Q1101080
-Q29485
-Q201788
-Q708562
-Q178354
-Q32518
-Q26186900
-Q7390
-Q3925840
-Q1329910
-Q3196867
-Q381072
-Q1643184
-Q42401039
-Q578
-Q557828
-Q24245823
-Q23522
-Q7275
-Q1036595
-Q16502
-Q200325
-Q309
-Q1962593
-Q1274479
-Q3123740
-Q712477
-Q29485
-Q473750
-Q159810
-Q24245823
-Q6256
-Q41
-Q707125
-Q621184
-Q4925193
-Q36161
-Q1121708
-Q473750
-Q159810
-Q66100
-Q736288
-Q1156854
-Q625994
-Q177749
-Q16502
-Q32518
-Q19771
-Q14565199
-Q82794
-Q86447
-Q8502
-Q82794
-Q815736
-Q1489579
-Q732833
-Q18689797
-Q86447
-Q66100
-Q736288
-Q192630
-Q8502
-Q16502
-Q473750
-Q159810
-Q20455502
-Q52389
-Q198
-Q207961
-Q8142
-Q4402708
-Q444600
-Q6256
-Q57055076
-Q1071233
-Q912546
-Q340169
-Q1210151
-Q6256
-Q268617
-Q625303
-Q8142
-Q51597
-Q196431
-Q884
-Q6606110
-Q157171
-Q8142
-Q1101080
-Q205663
-Q621184
-Q28008314
-Q17641254
-Q21255605
-Q185451
-Q11849872
-Q178476
-Q1156854
-Q199
-Q53536
-Q30
-Q30
-Q17643783
-Q502117
-Q17
-Q8901
-Q27865861
-Q31888506
-Q27905
-Q8901
-Q179179
-Q736288
-Q179651
-Q46737
-Q1369832
-Q10940
-Q4402708
-Q3975
-Q1643184
-Q338754
-Q3975
-Q584496
-Q3196867
-Q29
-Q38
-Q16502
-Q473750
-Q159810
-Q5420776
-Q504514
-Q859031
-Q43261
-Q1489579
-Q47035128
-Q16502
-Q473750
-Q159810
-Q6256
-Q268617
-Q93288
-Q17281278
-Q211198
-Q207988
-Q148
-Q26186900
-Q22657
-Q3289701
-Q1606712
-Q193946
-Q183
-Q51597
-Q11410
-Q214339
-Q327274
-Q1934684
-Q206361
-Q532
-Q9368
-Q36161
-Q30
-Q30
-Q859031
-Q190258
-Q504514
-Q444600
-Q912546
-Q611203
-Q473750
-Q159810
-Q577
-Q104493
-Q199
-Q19771
-Q8502
-Q1069941
-Q468455
-Q5754843
-Q8035911
-Q32518
-Q1139344
-Q2988681
-Q188473
-Q39984
-Q8502
-Q104493
-Q309
-Q132241
-Q2472132
+When Nicolas Sarkozy launched the French presidency of the Group of 20 leading nations, he picked the slogan “New World, New Ideas”.
+His ambition was to transform Cannes into a new Bretton Woods, as the summit would redesign global economic governance and the international monetary system.
+However laudable, these projects should be delayed for better times.
+With the markets in turmoil and the eurozone in danger of collapse, this can only be a time for short-termism.
+As was made clear this week by the Organisation for Economic Co-operation and Development, uncertainties over the short-term outlook for the world economy have risen dramatically in recent months.
+Business and consumer confidence have weakened, investment decisions are being postponed and household spending is suffering from lower asset prices and a sluggish labour market.
+The OECD expects near-term growth of gross domestic product will be weak in the US and may turn mildly negative in parts of the euro area.
+Even emerging market economies will experience below-trend growth rates.
+Much of this gloomy outlook is due to weak policymaking.
+As Congress squabbles over a deficit-reduction plan, just as it argued over the debt ceiling, the US has done its best to claim the Golden Palm at Cannes for the most incompetent decision-making.
+However, the eurozone leaders have stolen this unenviable prize by letting the Greek debt crisis get so out of hand that it now threatens the integrity of the eurozone.
+This is a mistake that historians will look back on with contempt.
+For this reason, non-European leaders must make their voices heard with their European counterparts.
+From an economic point of view, the eurozone has what it takes to solve its debt crisis without any external help.
+It must do so.
+The 20th century started with a small Balkan state blowing up the world.
+History must not be allowed to repeat itself in the 21st.
+There is something deeply wrong with the global economy if a small country like Greece can become such a big threat.
+A bigger problem lies in a set of co-ordination failures among the larger global economies, affecting monetary, fiscal and exchange rate policies.
+As a unique meeting platform for world leaders, the G20 is the right place to solve these issues.
+The next summit will not take place until June 2012, so it is essential that resolute decisions are taken now.
+The first issue has to do with exchange rates.
+While past summits have been effective in preventing the world economy from the havoc of beggar-thy-neighbour tariff wars, protectionism is creeping back in the shape of currency manipulation.
+For demand in the deficit countries to be sustained in the short term and for global imbalances to be reduced in the medium to long run, countries in surplus with an independent currency should stop doing what they can to hold it down.
+As Japanese manufacturers know all too well, letting a currency appreciate is a very painful process.
+Yet, this problem can be addressed in a less harmful and, most importantly, more effective way.
+A better strategy is pursuing a more aggressive monetary policy, such as the one the Federal Reserve is undertaking in the US.
+The Bank of Japan and the European Central Bank should follow suit.
+The ECB should lower interest rates while the BoJ should scale up its asset purchases.
+This would support global demand and, in the European case, help to manage those cases of sovereign debt fragilities, such as Spain and Italy, which are destabilising the eurozone and the world economy.
+A monetary expansion should be accompanied, for those who can do it, by a fiscal stimulus.
+A great amount of fiscal tightening is on the horizon for 2012, more than is necessary given the dismal outlook for the world economy.
+Countries in surplus should agree to increase their public spending levels.
+China must make concrete steps for a transition to a consumer-driven model, while Germany should stop playing the role of the Swabian housewife, concerned only about her savings when the village she lives in is set on fire.
+As for the US, more short-term stimulus is needed, though this must be accompanied by a credible long-term deficit reduction plan.
+For the global economy, the year to come risks being a dismal one.
+Since the G20 summit of 2008, the stakes have never been so high.
+World leaders must rise to the challenge and take bold action.
+Unless they do so, the Cannes summit risks going down in history as the festival of regrets.

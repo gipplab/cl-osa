@@ -1,163 +1,22 @@
-Q188094
-Q15290
-Q19097421
-Q189756
-Q220998
-Q192630
-Q577
-Q145
-Q7207
-Q76189
-Q24245823
-Q20861252
-Q4817
-Q1920566
-Q207360
-Q618779
-Q7191
-Q618779
-Q336
-Q1187312
-Q621206
-Q1482024
-Q18560095
-Q153761
-Q6608367
-Q264974
-Q99
-Q14565199
-Q618779
-Q559350
-Q114380
-Q381072
-Q381072
-Q4116378
-Q8134
-Q1553259
-Q15290
-Q336
-Q1275330
-Q28008314
-Q1553864
-Q601401
-Q517966
-Q178706
-Q174834
-Q3312519
-Q644461
-Q28640
-Q557828
-Q189756
-Q1471321
-Q1920566
-Q24255051
-Q877496
-Q240673
-Q2144456
-Q174834
-Q102538
-Q1331926
-Q1516247
-Q621184
-Q21255605
-Q37654
-Q601401
-Q7112940
-Q499193
-Q337921
-Q185674
-Q45767
-Q1156854
-Q43015
-Q1951543
-Q373726
-Q1298668
-Q1120307
-Q11020
-Q210947
-Q5454675
-Q909380
-Q161598
-Q80930
-Q24037718
-Q1120307
-Q186619
-Q210947
-Q865422
-Q7188
-Q1951543
-Q373726
-Q42240
-Q3975
-Q158668
-Q278368
-Q222749
-Q338754
-Q1120307
-Q210947
-Q44455
-Q17737
-Q574562
-Q158646
-Q104555
-Q82604
-Q12335479
-Q1553864
-Q327055
-Q21255605
-Q186361
-Q83306
-Q3123740
-Q278368
-Q1773152
-Q104555
-Q1724915
-Q2248623
-Q26186900
-Q37654
-Q1298668
-Q178706
-Q210947
-Q618779
-Q457597
-Q188094
-Q7429143
-Q177239
-Q37654
-Q25107
-Q7302600
-Q333024
-Q1951543
-Q373726
-Q1137224
-Q200535
-Q155207
-Q1298668
-Q644461
-Q17737
-Q55082364
-Q4671325
-Q131138
-Q188094
-Q28640
-Q334600
-Q333173
-Q28640
-Q17737
-Q32043
-Q189756
-Q4697206
-Q644461
-Q17737
-Q2191756
-Q1275330
-Q8043
-Q28640
-Q7502926
-Q1401304
-Q17737
-Q23835475
-Q2191756
-Q9510
-Q46744
-Q618779
+What are economists good for?
+The question has been asked a lot in the past year, by everyone from the UK's Queen Elizabeth to small savers who have lost out — and by this column.
+If anyone has an answer, it should be the Swedish Academy, which awarded the Nobel prize in economic science yesterday.
+It did not disappoint.
+The winners — Elinor Ostrom of Indiana University and Oliver Williamson of the University of California — are deserving in their own right.
+But their award also highlights — after a financial crisis and a crisis of confidence in economics — the great insights that good economic science can provide.
+Both laureates address economic governance: how economic transactions are structured by institutions of authority and co-operation.
+Mr Williamson's work starts from the question of why there are firms.
+The answer is that in the presence of transaction costs, the formal authority of company decision-making may solve bargaining problems better inside the firm than market trading outside.
+This carries lessons for fields from competition policy to finance.
+Ms Ostrom studies ""common pool resources"" such as fish stocks or groundwater.
+The well-known ""tragedy of the commons"" argument is that such resources are overexploited unless privatised or controlled by government.
+But Ms Ostrom's research finds cases of private users acting together to manage common resources efficiently.
+Using game theory, she establishes principles for how rules should be designed.
+For example, governance works better when punishment is the responsibility of the group itself, and when the users participate democratically in shaping the rules of use.
+Both scholars think about what makes markets fail or succeed, and study non-market institutions that can also allocate resources.
+This prize acknowledges that economists have as much to say about the limits of markets as about their power.
+It is also a timely recognition of methodological pluralism.
+Ms Ostrom draws on a wealth of case studies. Mr Williamson's theory ""remains relatively informal"" as the Academy politely puts it.
+Echoing the joke that economists see something work in practice and wonder if it can work in theory, it adds that the question ""is not whether [the Williamson theory] can be formalised, but when we will see fully fledged formalisations of it"".
+The laureates' work shows economic theory can help us see reality with a deeper understanding of it.
+That is certainly worth a prize.

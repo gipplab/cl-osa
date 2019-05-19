@@ -1,255 +1,32 @@
-Q201
-Q5151
-Q668
-Q196431
-Q1076105
-Q40231
-Q9203276
-Q48103
-Q6256
-Q11471
-Q2988681
-Q878123
-Q14212
-Q83307
-Q1058
-Q32518
-Q668
-Q10090
-Q105562
-Q845956
-Q3030248
-Q11344369
-Q3568
-Q478594
-Q10090
-Q32188232
-Q3625599
-Q192630
-Q124490
-Q18560095
-Q25107
-Q16502
-Q16502
-Q2912172
-Q32518
-Q189756
-Q7907894
-Q668
-Q11849872
-Q8161
-Q26256310
-Q102538
-Q180684
-Q862086
-Q206361
-Q577
-Q2247133
-Q6501338
-Q1366302
-Q842438
-Q784445
-Q131030
-Q122141
-Q907344
-Q122141
-Q862086
-Q784445
-Q18000
-Q618532
-Q15805
-Q8646
-Q191704
-Q4917
-Q668
-Q22486537
-Q57830036
-Q7188
-Q4402708
-Q122141
-Q33767
-Q4917
-Q668
-Q687591
-Q854659
-Q8161
-Q1362753
-Q4402708
-Q102538
-Q665184
-Q203
-Q577
-Q122141
-Q7188
-Q178561
-Q12731
-Q122141
-Q321839
-Q36949023
-Q31
-Q658255
-Q842438
-Q102538
-Q35120
-Q618532
-Q13218565
-Q22486537
-Q57830036
-Q7188
-Q836925
-Q122141
-Q4917
-Q668
-Q8161
-Q13218565
-Q22670946
-Q11471
-Q321839
-Q122141
-Q862086
-Q7748
-Q315364
-Q82794
-Q471855
-Q780687
-Q29485
-Q180684
-Q628511
-Q1489579
-Q668
-Q190752
-Q12731
-Q86447
-Q1720612
-Q122141
-Q668
-Q7188
-Q5338673
-Q35758
-Q1142227
-Q49371
-Q8161
-Q3975
-Q122141
-Q180684
-Q164
-Q199
-Q577
-Q668
-Q450
-Q1818899
-Q35758
-Q7858456
-Q15711797
-Q192350
-Q36161
-Q36602
-Q202875
-Q122141
-Q917714
-Q668
-Q7188
-Q4697206
-Q8161
-Q102538
-Q131030
-Q36133
-Q187466
-Q272051
-Q283202
-Q668
-Q621184
-Q122141
-Q1416898
-Q862086
-Q102538
-Q199
-Q34442
-Q272051
-Q283202
-Q1027
-Q22486537
-Q862086
-Q174834
-Q21253129
-Q646324
-Q122141
-Q8161
-Q3975
-Q4697206
-Q184754
-Q102538
-Q37156
-Q145
-Q502309
-Q14536140
-Q668
-Q573607
-Q906066
-Q1187312
-Q1418
-Q1371925
-Q926230
-Q273976
-Q46737
-Q668
-Q2283
-Q2995644
-Q180684
-Q8161
-Q174834
-Q668
-Q26256512
-Q877558
-Q628523
-Q102538
-Q8161
-Q2249676
-Q21013308
-Q14565199
-Q668
-Q3151690
-Q478594
-Q16502
-Q16502
-Q8161
-Q5589178
-Q6256
-Q174834
-Q9420
-Q481609
-Q668
-Q190258
-Q102538
-Q36161
-Q213441
-Q36133
-Q22486537
-Q862086
-Q159810
-Q1362683
-Q131512
-Q203
-Q58093
-Q577
-Q58093
-Q851662
-Q746687
-Q508295
-Q444600
-Q188078
-Q11471
-Q55082364
-Q35758
-Q206361
-Q11344369
-Q2540351
-Q188473
-Q2912172
-Q32518
-Q309100
-Q2221906
-Q668
-Q190258
-Q5655097
-Q862086
+In the next three months India will hold a general election.
+It will be a defining moment for the country at a time of growing economic challenges.
+The frontrunner in the race to be prime minister is Narendra Modi, the controversial leader of India's Hindu nationalist opposition.
+Much of the international discussion about Mr Modi currently focuses on his reputation as a Hindu nationalist and his alleged complicity in past anti-Muslim violence.
+But if he wins power, the world's business leaders will be asking another question about him: can he reverse India's notoriously aggressive tax treatment of foreign companies?
+There have been numerous disputes between the Indian taxman and foreign concerns in recent years. None has attracted more attention than the row involving British mobile operator Vodafone.
+Back in 2007 Vodafone took over an Indian mobile outfit that was majority owned by Hutchison Whampoa, a Hong Kong conglomerate, paying $10.9bn.
+The Indian government subsequently demanded that Vodafone should hand over $2.6bn in capital gains tax for the acquisition, a demand the company refused.
+In the ensuing five years Vodafone and the government battled this out in the courts.
+The Vodafone deal involved a Dutch subsidiary of the British company buying a Cayman entity owned by Hutchison.
+The Indian government claimed that Vodafone was liable for $2.6bn because it should have withheld the tax from Hutchison on its behalf at the time of the deal.
+Vodafone argued that, under Indian law, the transfer was not taxable because it took place in a foreign jurisdiction.
+Whatever the rights and wrongs, the dispute looked to have been resolved in January 2012 when India's supreme court issued a judgment in Vodafone's favour.
+But India's government did not leave matters there.
+It passed legislation allowing it to reopen tax cases retrospectively, thereby taking the Vodafone dispute back to square one.
+A year ago India indicated it was minded to settle the matter.
+Now, in another twist, the finance ministry looks set to order that negotiations with Vodafone be scrapped.
+India's government is not alone in worrying about how to recoup tax from foreign companies that operate on its soil but register in offshore tax havens.
+But India's problems here go well beyond Vodafone.
+Many of the takeovers by Indian companies of foreign ones have been routed through tax havens such as Mauritius.
+The Indian authorities do not seem to show anything like the same zeal in pursuit of their own national champions.
+Besides, Vodafone's tax case is not alone in generating unease abroad.
+A string of companies – including IBM and the UK's Cairn Energy – have struggled with India's revenue services.
+Yesterday Nokia announced that it has in effect been blocked from transferring assets in India to Microsoft as a result of a dispute with the tax authorities.
+If India wants to send a troubling message to global companies about how unpredictable a tax environment it has, it is certainly getting its timing right.
+India today has a reputation for having the world's most draconian tax regime.
+What is baffling is whether the country's authorities have thought through how much self-inflicted damage this is doing.
+India needs foreign companies to set up shop on its soil.
+The Indian economy is expected to have grown by about 5 per cent last year compared with 10.5 per cent in 2010.
+Although its current account deficit has declined in recent times, it remains a matter of concern.
+It may be that Mr Modi understands this and, if he is elected, will take action.
+Meanwhile, any business leader planning to locate in India needs to think hard about the unpredictability of the Indian taxman.

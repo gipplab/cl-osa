@@ -1,251 +1,28 @@
-Q192906
-Q317949
-Q389408
-Q9352089
-Q1020994
-Q179875
-Q16502
-Q16502
-Q1349983
-Q121194
-Q15982656
-Q13424289
-Q2574811
-Q945434
-Q262246
-Q327333
-Q101674
-Q75
-Q1502887
-Q1020994
-Q44619
-Q1349983
-Q30
-Q30
-Q47913
-Q906066
-Q909459
-Q14536140
-Q199
-Q1510380
-Q179875
-Q199
-Q44619
-Q178790
-Q104493
-Q1255828
-Q121194
-Q32518
-Q75
-Q104493
-Q7188
-Q16502
-Q16502
-Q141488
-Q36602
-Q6658033
-Q1020994
-Q8043
-Q1502887
-Q177239
-Q1347367
-Q121194
-Q165950
-Q262246
-Q6266
-Q2151613
-Q10870555
-Q30
-Q30
-Q9352089
-Q9158
-Q40722
-Q750553
-Q30461
-Q7188
-Q1371925
-Q611203
-Q215599
-Q54902132
-Q11016
-Q466845
-Q55707349
-Q9158
-Q906066
-Q438465
-Q2661677
-Q524778
-Q955276
-Q37654
-Q46
-Q2843407
-Q1502887
-Q8074
-Q625303
-Q30
-Q458
-Q5227350
-Q459221
-Q93288
-Q30
-Q30
-Q463257
-Q35127
-Q5413709
-Q1502887
-Q164573
-Q30
-Q334401
-Q2843407
-Q206361
-Q1072012
-Q466
-Q2735683
-Q11024
-Q177749
-Q634
-Q21503252
-Q44167
-Q16502
-Q473750
-Q159810
-Q4116214
-Q5447453
-Q1547498
-Q40276
-Q1342838
-Q159810
-Q192630
-Q203
-Q577
-Q461499
-Q1120307
-Q540684
-Q8074
-Q141488
-Q11692
-Q75
-Q746984
-Q493615
-Q30
-Q30
-Q75
-Q102538
-Q75
-Q32043
-Q240673
-Q5879610
-Q11016
-Q83306
-Q95
-Q380
-Q36161
-Q658255
-Q184303
-Q7275
-Q148
-Q159
-Q131030
-Q12731
-Q483426
-Q177239
-Q6031073
-Q493615
-Q7275
-Q23257209
-Q196939
-Q75
-Q76
-Q3754526
-Q190258
-Q529711
-Q222749
-Q1403016
-Q205663
-Q7988576
-Q7188
-Q121194
-Q487623
-Q362482
-Q121194
-Q192388
-Q5290
-Q75
-Q4323994
-Q1142227
-Q199
-Q1020994
-Q1142227
-Q30
-Q44127
-Q30
-Q30
-Q177239
-Q30
-Q30
-Q121194
-Q51597
-Q169489
-Q75
-Q23387
-Q121194
-Q903577
-Q3278265
-Q11024
-Q102014
-Q12855
-Q8046881
-Q95
-Q1502887
-Q23595
-Q16502
-Q16502
-Q1502887
-Q830337
-Q5338673
-Q102538
-Q278368
-Q169489
-Q1076693
-Q11028
-Q24862
-Q170924
-Q30
-Q258307
-Q169489
-Q190258
-Q134566
-Q2986261
-Q4348304
-Q30
-Q30
-Q26256512
-Q909459
-Q1347367
-Q214339
-Q478594
-Q30
-Q11024
-Q102538
-Q82794
-Q1072012
-Q466
-Q1101080
-Q18530
-Q1255828
-Q121194
-Q23090331
-Q104493
-Q30
-Q30
-Q37017
-Q25107
-Q327333
-Q481609
-Q30
-Q75
-Q102538
-Q80071
-Q30
-Q11016
-Q484275
+Revelations about the activities of the US National Security Agency, and the extent to which it spies on foreign citizens, are triggering intense debate across the world.
+For some, the leaks by the former NSA contractor Edward Snowden are the cause for much alarm, amid signs the agency hoovers up vast amounts of internet data on foreign citizens.
+For others, there are fears that the leaks have weakened the US intelligence services, undermining their counter-terrorism efforts.
+Wherever one stands in this debate, one fear should unite all.
+This is the risk that the controversy over the NSA will lead to a “Balkanisation” of the internet. This is the risk that governments around the world will respond by ringfencing their networks in order to protect their citizens' data and limit the ability of the NSA to conduct its spying.
+There are several signs that nations are moving in this direction.
+After reports that the US spied on the email of Dilma Rousseff, the Brazilian president, her government has announced plans to promote its own networking technology, even setting up a secure national email service.
+Michel Barnier, the European commissioner for the internal market, has suggested Europe should develop its own “European data cloud”, independent of US oversight.
+The EU, meanwhile, is considering revoking data sharing agreements with the US, requiring American website providers to warn Europeans that their data are subject to US surveillance.
+Such developments are of concern.
+The worldwide web is the most open communications platform on the planet.
+It is an engine of the world economy, accounting for a fifth of gross domestic product growth in advanced economies over the past five years.
+If it is transformed from a global commons to a patchwork of national cloud networks, the economic fallout will be immense.
+A disproportionate share of internet traffic flows through America, giving US internet companies global sway.
+However, the Balkanisation of the internet will add hugely to the costs borne by tech groups such as Google and Facebook, which would have to set up regional subsidiaries.
+There will also be a political gift to authoritarian states such as China and Russia, which operate closed national intranet systems to limit information flows.
+These states will be far from unhappy to witness the internet fragmenting.
+The Obama administration needs to start acting to arrest this process.
+It must give western governments assurances that the NSA is becoming more accountable and transparent in its operations.
+The NSA is currently in a position to monitor internet traffic that passes from one European citizen to another, simply because it passes through US servers.
+The US must guarantee limits on this.
+The US must also give assurances that the NSA will stop undermining the security of its internet titans.
+It emerged last week that the NSA has secretly broken into the main communications links that connect Yahoo and Google data centres around the world, accessing data without prior judicial oversight.
+This has left the companies struggling to reassure its global users about the security of their personal information.
+In short, the interests of US national security need to be balanced by commercial imperatives.
+The US clearly wants to maintain a strong counter-terrorism capability.
+But protecting the role and reputation of US communications companies – and their place in a seamless worldwide web – is a crucial economic goal.
+As the controversy over the NSA continues, the risk that the US faces is that the unfettered power of the agency will ultimately damage America's internet companies – the symbol of US technology leadership.

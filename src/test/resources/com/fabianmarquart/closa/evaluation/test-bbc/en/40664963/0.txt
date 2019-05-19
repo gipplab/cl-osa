@@ -1,256 +1,29 @@
-Q19108
-Q1150070
-Q912546
-Q83030
-Q104493
-Q1298668
-Q7429143
-Q199
-Q201
-Q3975
-Q83030
-Q1717246
-Q5
-Q1073
-Q12147
-Q3
-Q845956
-Q1298668
-Q27948
-Q19108
-Q23445
-Q1475848
-Q50708
-Q6468673
-Q7922
-Q12133
-Q1121708
-Q193713
-Q413
-Q28955456
-Q7767116
-Q1298668
-Q464980
-Q11081
-Q84
-Q19241682
-Q5
-Q28640
-Q83030
-Q965330
-Q5
-Q12136
-Q48103
-Q1475848
-Q50708
-Q1780466
-Q32043
-Q434712
-Q2413271
-Q645260
-Q83030
-Q104493
-Q9420
-Q128751
-Q83030
-Q1717246
-Q959298
-Q2421951
-Q83030
-Q3
-Q1073
-Q1150070
-Q28962312
-Q23759131
-Q2843407
-Q577
-Q7429143
-Q6508397
-Q36180
-Q193196
-Q222749
-Q3
-Q5
-Q83030
-Q8436
-Q461499
-Q344
-Q8425
-Q10870555
-Q26886
-Q28640
-Q79988
-Q845956
-Q381160
-Q7429143
-Q50708
-Q4197743
-Q613617
-Q214339
-Q795052
-Q83030
-Q104493
-Q27318
-Q2383321
-Q41176
-Q2088231
-Q19033
-Q1073
-Q141488
-Q23090331
-Q11348
-Q3
-Q481609
-Q652035
-Q1436482
-Q83030
-Q7560
-Q28640
-Q12136
-Q732833
-Q26186900
-Q1150070
-Q199
-Q28484760
-Q213449
-Q1466064
-Q2095
-Q199
-Q44364
-Q199
-Q40050
-Q220998
-Q283
-Q199
-Q278368
-Q56274075
-Q40050
-Q8486
-Q199
-Q1284693
-Q40244
-Q199
-Q326358
-Q652035
-Q7380012
-Q392326
-Q199
-Q23387
-Q7429143
-Q189964
-Q21255605
-Q219067
-Q474191
-Q199
-Q189964
-Q220998
-Q48769539
-Q3249878
-Q23090331
-Q5655097
-Q34442
-Q199
-Q24245823
-Q1150070
-Q26186900
-Q845126
-Q1121708
-Q2990590
-Q14623204
-Q7922
-Q3433178
-Q1475848
-Q50708
-Q36180
-Q690194
-Q795052
-Q23090331
-Q11448873
-Q3
-Q18122778
-Q1340643
-Q1073
-Q2088231
-Q3433178
-Q1475848
-Q50708
-Q12133
-Q1121708
-Q1202615
-Q185836
-Q1650915
-Q7429143
-Q1343202
-Q5
-Q2249676
-Q32518
-Q1778765
-Q275473
-Q42844
-Q1475848
-Q50708
-Q83030
-Q23445
-Q628523
-Q10870555
-Q15290
-Q1072
-Q15290
-Q1073
-Q193713
-Q219067
-Q55229595
-Q25288
-Q5754843
-Q82642
-Q39552
-Q12206
-Q912546
-Q104493
-Q83030
-Q389735
-Q12136
-Q12078
-Q1650915
-Q7429143
-Q1502887
-Q728944
-Q50708
-Q153
-Q622821
-Q17573152
-Q29810402
-Q611342
-Q42178
-Q42240
-Q11081
-Q31941943
-Q7429143
-Q83030
-Q36161
-Q712477
-Q655030
-Q931260
-Q190258
-Q104493
-Q529711
-Q1413646
-Q1150070
-Q29810402
-Q3018679
-Q1162163
-Q336
-Q189290
-Q11081
-Q7429143
-Q1717246
-Q42240
-Q23090331
-Q557880
-Q42240
-Q26256310
-Q5
-Q12136
-Q31888506
-Q530110
-Q918
+Nine lifestyle changes can reduce dementia risk, study says
+
+One in three cases of dementia could be prevented if more people looked after their brain health throughout life, according to an international study in the Lancet.
+It lists nine key risk factors including lack of education, hearing loss, smoking and physical inactivity.
+The study is being presented at the Alzheimer's Association International Conference in London.
+By 2050, 131 million people could be living with dementia globally.
+There are estimated to be 47 million people with the condition at the moment.
+These risk factors - which are described as potentially modifiable - add up to 35%. The other 65% of dementia risk is thought to be potentially non-modifiable.
+Source: Lancet Commission on dementia prevention, intervention and care
+"Although dementia is diagnosed in later life, the brain changes usually begin to develop years before," said lead author Prof Gill Livingston, from University College London.
+"Acting now will vastly improve life for people with dementia and their families and, in doing so, will transform the future of society."
+The report, which combines the work of 24 international experts, says lifestyle factors can play a major role in increasing or reducing an individual's dementia risk.
+It examines the benefits of building a "cognitive reserve", which means strengthening the brain's networks so it can continue to function in later life despite damage.
+Eve Laird, from Dumfries, is worried about dementia because her mum is living with the condition.
+She has decided to make some changes to her lifestyle.
+"I'm terrible for eating processed foods and takeaways and I've really been trying to cut back on that.
+"I definitely drink a lot more water than I used to - and I don't drink as much coffee now.
+"I actually took part in the Edinburgh marathon. For that I joined the Dumfries running club - I go there once a week."
+She says she felt so much better for the exercise, and for improving her diet.
+"I felt a lot healthier and mentally sharper as well. It's something I'd really like to continue, but it is hard to stay on track."
+"I just think the small changes can make such a big difference."
+Failure to complete secondary education was a major risk factor, and the authors suggest that individuals who continue to learn throughout life are likely to build additional brain reserves.
+Another major risk factor is hearing loss in middle age - the researchers say this can deny people a cognitively rich environment and lead to social isolation and depression, which are among other potentially modifiable risk factors for dementia.
+Another key message from the report is that what is good for the heart is good for the brain.
+Not smoking, doing exercise, keeping a healthy weight, treating high blood pressure and diabetes can all reduce the risk of dementia, as well as cardiovascular disease, and cancer.
+The researchers say they did not have enough data to include dietary factors or alcohol in their calculations but believe both could be important.
+Dr Doug Brown, director of research at Alzheimer's Society, said: "Though it's not inevitable, dementia is currently set to be the 21st Century's biggest killer. We all need to be aware of the risks and start making positive lifestyle changes."
+Dr David Reynolds, chief scientific officer at Alzheimer's Research UK, said: "Alongside prevention research, we must continue to invest in research to find a life-changing treatment for people with this devastating condition."
+Follow Fergus on Twitter

@@ -1,270 +1,40 @@
-Q8268
-Q32518
-Q1144504
-Q8268
-Q11500
-Q903517
-Q8901
-Q27865861
-Q732833
-Q1308239
-Q652
-Q27942639
-Q11693
-Q26186900
-Q178706
-Q37507
-Q30515
-Q188473
-Q5710882
-Q879844
-Q2540351
-Q2285706
-Q7188
-Q7502926
-Q21168708
-Q36602
-Q381072
-Q8901
-Q14565199
-Q26186900
-Q1369832
-Q9142
-Q29
-Q2324820
-Q11693
-Q7721911
-Q66344
-Q22687
-Q732833
-Q1071233
-Q2383321
-Q2585693
-Q118093
-Q517596
-Q3196867
-Q105210
-Q160020
-Q8901
-Q174834
-Q26186900
-Q178476
-Q1156854
-Q28640
-Q2388316
-Q29627
-Q170924
-Q578508
-Q5655097
-Q865422
-Q182076
-Q12136
-Q22687
-Q29814939
-Q370947
-Q19426
-Q591707
-Q46737
-Q3278265
-Q231823
-Q37654
-Q11693
-Q1308239
-Q8043
-Q49776
-Q877558
-Q2807
-Q220
-Q103808
-Q240673
-Q11175
-Q11888847
-Q8901
-Q28008314
-Q1337875
-Q104493
-Q8901
-Q926230
-Q520952
-Q105
-Q652
-Q27942639
-Q2383321
-Q11921529
-Q1049848
-Q44946
-Q778298
-Q179651
-Q8901
-Q10328804
-Q37654
-Q1854411
-Q4697206
-Q51597
-Q9142
-Q29
-Q2383321
-Q23806
-Q58093
-Q1089123
-Q959298
-Q440364
-Q47035128
-Q959298
-Q8901
-Q1333956
-Q179651
-Q327055
-Q183
-Q8425
-Q2191756
-Q12695
-Q3196867
-Q8901
-Q1121708
-Q23423024
-Q131361
-Q104493
-Q26186900
-Q47035128
-Q183
-Q138796
-Q1409574
-Q259397
-Q11402
-Q8901
-Q3289701
-Q152905
-Q8901
-Q30461
-Q23611288
-Q23423024
-Q12280
-Q1320217
-Q7188
-Q1308239
-Q11693
-Q26132734
-Q1879813
-Q8901
-Q55707349
-Q2995644
-Q7275
-Q665184
-Q25107
-Q93288
-Q9788
-Q47035128
-Q199
-Q190258
-Q7188
-Q26186900
-Q17598913
-Q283976
-Q2596417
-Q7275
-Q23090331
-Q211198
-Q774228
-Q444600
-Q176982
-Q185451
-Q1342838
-Q29
-Q7502926
-Q38
-Q2807
-Q444600
-Q1371819
-Q34442
-Q8161
-Q192276
-Q1920566
-Q1139344
-Q2383321
-Q7188
-Q4503831
-Q104555
-Q1145328
-Q34581
-Q37654
-Q38
-Q33767
-Q11860
-Q3030775
-Q6501338
-Q1650142
-Q35758
-Q48103
-Q7188
-Q1193004
-Q192276
-Q37654
-Q484298
-Q2735683
-Q28640
-Q444600
-Q320553
-Q220
-Q20861252
-Q1530061
-Q1340643
-Q37654
-Q659974
-Q11860
-Q55893586
-Q17285911
-Q2191756
-Q38
-Q29
-Q4697206
-Q1341429
-Q1371819
-Q1071233
-Q1156854
-Q183318
-Q36602
-Q35120
-Q815726
-Q1369832
-Q160151
-Q694268
-Q11175
-Q582577
-Q1156854
-Q26186900
-Q1954125
-Q1553864
-Q5589178
-Q865422
-Q14565199
-Q35120
-Q1342838
-Q6501338
-Q1144825
-Q158668
-Q134566
-Q211198
-Q199
-Q32098
-Q6266
-Q346934
-Q903517
-Q1342838
-Q131569
-Q6468673
-Q11344
-Q46
-Q3196867
-Q1342838
-Q381072
-Q4697206
-Q80091
-Q3123740
-Q4877042
-Q104493
-Q2540351
-Q10940
-Q192276
-Q82955
-Q806798
+Eurozone leaders have vowed to do “whatever it takes” to ensure the euro area's stability.
+The European Central Bank's decision to buy Italian and Spanish bonds makes it the only eurozone institution to match such slogans with actions.
+The rest of the eurozone governing system – its elected heads of governments above all – must now show equal determination in order to solve this existential crisis.
+The ECB was right to reactivate its Securities Markets Programme, through which it has earlier made outright purchases of Greek, Irish, and Portuguese government bonds.
+The central bank justifies its decision not in terms of keeping yields down but of safeguarding the efficacy of the monetary transmission mechanism.
+This is understandable.
+Unlike monetary debt financing, there is no legal shadow over the ECB's authority to make monetary policy work.
+It is surely in the public interest that it should try to do so: it is hard to control credit conditions through banks that are squeezed by collapsing market values for their core assets.
+But the main purpose – and what markets have been baying for – is to pre-empt a bond buyers' strike which would send Madrid's and Rome's borrowing costs spiralling out of control.
+This should be the overriding priority of all eurozone policymakers.
+Leaving the ECB to address it alone is politically and economically too risky.
+The economic risk is that it is uncertain how much ECB bond-buying will achieve.
+Its immediate effect has been large: on Monday, Italian and Spanish yields fell by almost a full percentage point, respectively.
+But whether this will endure depends on the scale of the ECB's continued forays into bond markets.
+The SMP has not stopped Irish and Portuguese yields from hovering around the 10 per cent mark.
+A timid intervention may undermine market sentiment more than no intervention at all.
+ECB bond-buying is also politically risky, especially if carried out on a big enough scale to work.
+It rankles those, in Germany and like-minded societies, who see it as tantamount to monetising government debt.
+Should it come to the worst, any significant ECB losses on the SMP would have to be met through a politically toxic recapitalisation.
+The irony is that this risk is made greater by Germany's resistance to more firepower for the European Financial Stability Facility.
+This is what has forced the ECB to step into the breach.
+Jean-Claude Trichet, ECB president, is therefore justified in his persistent calls for a fiscal backstop.
+He may be hoping that the SMP is just a bridge until the EFSF obtains the agreed authorisations from national governments to buy bonds.
+That would certainly be the best solution – but the ECB cannot secure this outcome if recalcitrant states refuse to give the EFSF the powers that have been agreed, let alone the greater ones that it actually needs.
+Government should make haste to enhance the EFSF.
+In return, beneficiary states must continue to improve their public finances.
+This requires both credible deficit cutting and a strategy for growth.
+In this regard, Spain has more to show for than Italy.
+Madrid's deficit programme is largely on track – some tax measures are being moved up in response to the last rise in yields – and the government has taken aim at rules strangling the labour market.
+In Italy, on the other hand, Silvio Berlusconi's discredited premiership has distracted attention from pressing matters.
+Only at the last moment did his government offer measures to calm the markets.
+On the surface, some look well-chosen – such as prying open the professions and frontloading deficit cuts – but Rome has lost much of the credibility it built up in the 1990s.
+Markets will not trust Mr Berlusconi to enact his commitments until they see him do so.
+Although Italy and Spain are not in eurozone rescue programmes, terms of policy are increasingly being dictated to them.
+That is the order of things to come: the eurozone's solidarity will be purchased at the price of more collective control over national economic policy.
+That makes it all the more important for the new economic governance regime to control the right things: growth must be given as much attention as fiscal rectitude, private balances as much as public ones, and sanctions must be automatic, not depend on the say-so of the big nations.
+The old stability and growth pact lacked all of these elements. That is why it failed.
+If Europe's debt and growth crisis is not solved, European integration itself is at risk.
+But to solve it, voters must be convinced to support the necessary measures.
+That is something only politicians, not central bankers can do.

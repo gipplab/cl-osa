@@ -120,11 +120,17 @@ public abstract class EvaluationSet {
                             String candidateFileName;
 
                             if (file.getName().toLowerCase().contains(suspiciousLanguage)) {
-                                if (file.getName().contains(suspiciousLanguage.toUpperCase())) {
-                                    candidateFileName = file.getName().replace(suspiciousLanguage.toUpperCase(),
-                                            candidateLanguage.toUpperCase());
+                                if (!suspiciousLanguage.equals(candidateLanguage)) {
+
+                                    if (file.getName().contains(suspiciousLanguage.toUpperCase())) {
+                                        candidateFileName = file.getName().replace(suspiciousLanguage.toUpperCase(),
+                                                candidateLanguage.toUpperCase());
+                                    } else {
+                                        candidateFileName = file.getName().replace(suspiciousLanguage, candidateLanguage);
+                                    }
                                 } else {
-                                    candidateFileName = file.getName().replace(suspiciousLanguage, candidateLanguage);
+                                    candidateFileName = file.getName().replace(suspiciousLanguage.toUpperCase(),
+                                            "ZH");
                                 }
                             } else {
                                 candidateFileName = file.getName();
@@ -472,8 +478,8 @@ public abstract class EvaluationSet {
         }
 
         Path newFullPath;
-        if (originalDocumentPath.contains("pds")) {
-            newFullPath = Paths.get(originalDocumentPath.replace("pds", "pds/preprocessed/" + this.getClass().getSimpleName()));
+        if (originalDocumentPath.contains("evaluation")) {
+            newFullPath = Paths.get(originalDocumentPath.replace("evaluation", "evaluation/preprocessed/" + this.getClass().getSimpleName()));
         } else {
             newFullPath = Paths.get(originalDocumentPath.replace(System.getProperty("user.home"),
                     System.getProperty("user.home") + "/preprocessed/" + this.getClass().getSimpleName()));

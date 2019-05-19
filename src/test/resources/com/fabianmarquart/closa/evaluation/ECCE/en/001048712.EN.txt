@@ -1,183 +1,28 @@
-Q16833268
-Q729
-Q56139
-Q283976
-Q68097
-Q23387
-Q29053180
-Q22687
-Q2912172
-Q164099
-Q1368
-Q176494
-Q114380
-Q381072
-Q215380
-Q1162163
-Q35798
-Q61509
-Q39
-Q577
-Q200446
-Q1329910
-Q1954125
-Q577
-Q196431
-Q485446
-Q199
-Q2912172
-Q32518
-Q776754
-Q23387
-Q68097
-Q577
-Q625994
-Q170418
-Q1362683
-Q28146343
-Q4916
-Q32043
-Q621184
-Q159810
-Q46
-Q30
-Q30
-Q44619
-Q4697206
-Q7188
-Q36161
-Q12136
-Q17281278
-Q88272
-Q192581
-Q386724
-Q184932
-Q132911
-Q55082364
-Q7831898
-Q908584
-Q1608736
-Q198
-Q29816560
-Q428148
-Q1139344
-Q11693
-Q2383321
-Q966490
-Q41171
-Q5754843
-Q132453
-Q6256
-Q21503252
-Q190258
-Q88272
-Q192581
-Q386724
-Q2912172
-Q4290
-Q208697
-Q37654
-Q159810
-Q25932227
-Q26132734
-Q4697206
-Q178354
-Q60960
-Q104493
-Q2144402
-Q1787424
-Q912546
-Q178354
-Q1144593
-Q1225810
-Q1342838
-Q950511
-Q158668
-Q88272
-Q21503252
-Q1499569
-Q131524
-Q2912172
-Q200446
-Q40719727
-Q4809
-Q444184
-Q4686406
-Q2072298
-Q192193
-Q45767
-Q2735683
-Q708
-Q1342838
-Q55670909
-Q157195
-Q625420
-Q12136
-Q20861252
-Q1499569
-Q7188
-Q214339
-Q1342838
-Q199
-Q44619
-Q22687
-Q179179
-Q736288
-Q66344
-Q22687
-Q2324820
-Q11693
-Q21087400
-Q1139344
-Q1827667
-Q1760704
-Q44602
-Q26186900
-Q102538
-Q25702570
-Q44619
-Q327968
-Q68097
-Q16502
-Q16502
-Q4877042
-Q104493
-Q1608736
-Q198
-Q884
-Q7188
-Q81096
-Q1314
-Q8146
-Q2568341
-Q45690031
-Q159810
-Q8142
-Q55659899
-Q601401
-Q1396424
-Q1156854
-Q2988681
-Q3064135
-Q2912172
-Q4697206
-Q3030513
-Q22687
-Q192193
-Q2029911
-Q906066
-Q24759380
-Q39552
-Q192581
-Q3053337
-Q23009439
-Q472302
-Q68097
-Q44619
-Q2912172
-Q32518
-Q272893
-Q82955
-Q578508
-Q45701
-Q48103
+The animal spirits returned to Davos this week.
+After years in which banks and businesses have retrenched, hoarded cash, and sheltered against recessions and financial crises, the band of chief executives who travel to Switzerland each year to form a view of what the new year holds looked a little more cheerful.
+“A disconcerting amount of optimism,” was one business leader's summary of the week in Davos.
+At last year's meeting of the World Economic Forum, many expected the disintegration of the euro to add to the problems of depressed economies in Europe and the US.
+Their worst fears, however, have not been realised.
+Governments still have much to do to set the conditions for a sustained increase in investment and job creation.
+Although the mood has lifted, it remains fragile.
+Trade tensions, currency wars, uncoordinated regulation, or a rise in bond yields could all disturb it.
+Unemployment is too high in many developed countries, especially in the eurozone periphery, and there is an urgent need for investment and job creation.
+But many businesses are wary of investing while financial markets are volatile and economies are growing slowly at best.
+That is not reason for inaction.
+If the “tail risk” of renewed financial chaos is reduced, the biggest reason for sitting on the sidelines has diminished.
+Growth cannot resume without private investment, and there is an opportunity for entrepreneurs.
+Businesses formed in the early stages of recovery have advantages.
+It is easier to recruit skilled staff, there is less competition and they can open a lead for when growth picks up.
+If everyone waits for perfect conditions, they lose that opportunity.
+But governments have a big role in encouraging growth.
+One fear among banks is that long-term interest rates, which have been pushed down by central banks buying government bonds through quantitative easing, could rise suddenly as liquidity is withdrawn too fast.
+This would make it harder for companies to borrow.
+Another fear expressed in Davos is that the world is at risk of a currency war.
+The Japanese government is trying to engineer a fall in the yen to revive its ailing economy.
+If others retaliate to depress their own currencies, it would be disruptive.
+International trade could be blighted by beggar-my-neighbour policies.
+The challenges facing businesses have not disappeared.
+Banks are laying off staff and professional services firms remain under pressure.
+The well-paying jobs that these employers have provided are difficult to replace.
+But there were signs in Davos that the worst fears of business leaders have eased.
+Politicians should try not to waste the moment.

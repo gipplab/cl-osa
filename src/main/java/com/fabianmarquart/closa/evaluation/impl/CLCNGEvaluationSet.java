@@ -9,10 +9,10 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -86,7 +86,7 @@ public class CLCNGEvaluationSet extends EvaluationSet {
     }
 
     /**
-     * CL-CSA preprocessing: text -> concepts -> translation -> stemming & stop-word removal
+     * CL-C3G preprocessing: text -> n-grams
      *
      * @param documentPath     document path
      * @param documentLanguage the document's language
@@ -98,16 +98,18 @@ public class CLCNGEvaluationSet extends EvaluationSet {
             // read in the file
             String documentText = FileUtils.readFileToString(new File(documentPath), StandardCharsets.UTF_8);
 
-            String documentTokensPath = documentPath.replace("pds", "pds/preprocessed/" + this.getClass().getSimpleName());
+            // FIXME: include translation
+            if (!documentLanguage.equals("en")) {
+                String translatedDocumentPath = documentPath.replace(String.format("/%s/", documentLanguage), String.format("/%s-t/", documentLanguage));
 
-            // if the file has already been pre-processed
-            if (Files.exists(Paths.get(documentTokensPath)) // file exists and is not empty
-                    && !FileUtils.readLines(new File(documentTokensPath), StandardCharsets.UTF_8).isEmpty()) {
-                System.out.println("Read preprocessed:");
-                return new ArrayList<>(FileUtils.readLines(new File(documentTokensPath), StandardCharsets.UTF_8));
+                if (Files.exists(Paths.get(translatedDocumentPath))) {
+                    documentText = FileUtils.readFileToString(new File(translatedDocumentPath), Charset.forName("UTF-8"));
+                } else {
+                    documentText = TranslationUtil.translate(documentText, documentLanguage, "en");
+                    FileUtils.writeStringToFile(new File(translatedDocumentPath), documentText, Charset.forName("UTF-8"));
+                }
             }
 
-            documentText = TranslationUtil.translate(documentText, documentLanguage, "en");
             List<Token> documentTokens = TokenUtil.tokenize(documentText, "en");
             documentTokens = TokenUtil.nGramPartition(documentTokens, n);
             documentTokens.forEach(Token::toLowerCase);

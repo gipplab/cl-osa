@@ -1,79 +1,11 @@
-Q17
-Q107
-Q484000
-Q877558
-Q478798
-Q17505024
-Q327333
-Q2031291
-Q478798
-Q20683640
-Q484000
-Q131030
-Q25271
-Q25271
-Q685106
-Q196969
-Q484000
-Q877558
-Q478798
-Q677466
-Q28640
-Q11631
-Q484000
-Q142807
-Q2249676
-Q131030
-Q2488752
-Q212688
-Q18545
-Q1183652
-Q107
-Q35473
-Q3
-Q25271
-Q17
-Q179103
-Q7429143
-Q484000
-Q25271
-Q40719727
-Q120
-Q478798
-Q677466
-Q17768966
-Q2031291
-Q17505024
-Q327333
-Q27105472
-Q11471
-Q206021
-Q178588
-Q478798
-Q11352
-Q231823
-Q478798
-Q677466
-Q11631
-Q788790
-Q28640
-Q101965
-Q179103
-Q23806
-Q25235
-Q7741444
-Q478798
-Q877558
-Q286583
-Q11471
-Q2488752
-Q1962593
-Q8563791
-Q865422
-Q1650915
-Q1349417
-Q14290457
-Q159354
-Q28640
-Q20978643
-Q159354
+Japan's zero-gravity space drone sends first pictures from ISS
+
+Japan's space agency has released the first images taken by a drone it operates on the International Space Station (ISS).
+The so-called Internal Ball Camera drone was sent to take pictures and video of the work of the astronauts.
+The drone can float in a zero-gravity environment and is operated from earth.
+Dubbed a little ball of cuteness floating about in space it has been offering a window into life on the ISS.
+Japan's Aerospace Exploration Agency (JAXA) said the drone was delivered to the ISS in early June. But only now have the first images and videos that it captured been released.
+According to the space agency, it can move "anywhere at any time via autonomous flight and record images from any angle".
+Its purpose is quite simply to take pictures and videos - which until now had been done by the astronauts themselves as they document their work and experiments.
+According to JAXA this currently "amounts to about 10% of their working hours".
+The images can be sent in real time back to earth and will allow "flight controllers and researchers on the ground to check the crew's work from the same viewpoint as the crew".

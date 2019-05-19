@@ -1,255 +1,35 @@
-Q7804
-Q884353
-Q1759104
-Q14660
-Q104493
-Q178476
-Q1156854
-Q5570074
-Q903517
-Q7804
-Q1436482
-Q21262209
-Q32518
-Q22687
-Q7234480
-Q1714153
-Q19357421
-Q192630
-Q104493
-Q1368
-Q59163
-Q1954125
-Q75794
-Q1156854
-Q5290
-Q707125
-Q428148
-Q4697206
-Q11471
-Q178476
-Q1156854
-Q4157104
-Q3975
-Q209190
-Q179179
-Q736288
-Q468489
-Q3395077
-Q178476
-Q1156854
-Q49848
-Q2031291
-Q7804
-Q23387
-Q25392373
-Q7430019
-Q748250
-Q1342838
-Q1489644
-Q176982
-Q11184992
-Q1049848
-Q44946
-Q58093
-Q16502
-Q1780466
-Q484605
-Q20054152
-Q2462658
-Q42178
-Q2843407
-Q159810
-Q546395
-Q37654
-Q30
-Q30
-Q262246
-Q6497624
-Q458
-Q17
-Q2872553
-Q19357312
-Q207988
-Q806798
-Q16502
-Q16502
-Q40719766
-Q16751793
-Q53536
-Q188473
-Q201
-Q37144
-Q21087400
-Q172964
-Q178476
-Q1156854
-Q444184
-Q123704
-Q502117
-Q17
-Q39911
-Q190258
-Q2757805
-Q283
-Q1907525
-Q650711
-Q161081
-Q294460
-Q1144504
-Q1377846
-Q4916
-Q37654
-Q8901
-Q27865861
-Q172964
-Q1156854
-Q736288
-Q2405997
-Q724178
-Q178476
-Q1156854
-Q19033
-Q19275831
-Q444184
-Q6430706
-Q44946
-Q262246
-Q35865
-Q132453
-Q6256
-Q160151
-Q690213
-Q35865
-Q1101080
-Q3436010
-Q58093
-Q104493
-Q12335479
-Q8268
-Q11500
-Q161081
-Q3595358
-Q160151
-Q884353
-Q286583
-Q179179
-Q736288
-Q222749
-Q206621
-Q1342838
-Q1156854
-Q1436482
-Q104493
-Q46737
-Q75794
-Q16502
-Q29826308
-Q262246
-Q46737
-Q160151
-Q6497624
-Q475000
-Q37654
-Q23835475
-Q444184
-Q12335479
-Q200535
-Q926230
-Q795052
-Q178706
-Q205555
-Q7108097
-Q736288
-Q205011
-Q11693
-Q15290
-Q35120
-Q34379
-Q1996375
-Q18193
-Q102538
-Q25702570
-Q557880
-Q707125
-Q1156854
-Q3568
-Q24083211
-Q178476
-Q1156854
-Q1962593
-Q650241
-Q178706
-Q1426138
-Q1581290
-Q7804
-Q457597
-Q22687
-Q30
-Q30
-Q21255605
-Q192581
-Q1121708
-Q46834
-Q196878
-Q5119
-Q208465
-Q344
-Q129302
-Q842438
-Q22687
-Q28640
-Q21262209
-Q3043314
-Q26186900
-Q26726369
-Q278113
-Q1717246
-Q1954125
-Q2912172
-Q444184
-Q16877982
-Q37144
-Q22687
-Q24759380
-Q19750554
-Q49371
-Q51597
-Q15290
-Q28640
-Q3435731
-Q178790
-Q1521829
-Q4116378
-Q1416617
-Q93288
-Q134556
-Q363802
-Q242767
-Q321839
-Q134556
-Q210521
-Q517596
-Q3975
-Q7502926
-Q806729
-Q381072
-Q24759380
-Q286583
-Q707125
-Q7804
-Q14565199
-Q104493
-Q3064135
-Q650241
-Q178706
-Q1156854
-Q1151752
-Q29485
-Q20665666
-Q3073131
-Q22687
-Q190258
-Q182612
-Q1102508
-Q656656
+The International Monetary Fund has raised a warning flag about the risks of ultra-loose monetary policy.
+In its Global Financial Stability Report, the IMF worries that excessive easing may lead banks to postpone the necessary adjustment after the excesses of the past.
+There is also a risk that cheap money could prop up new bubbles.
+While policy makers should monitor both threats via prudential regulation, it is not yet time to tighten monetary policy.
+The case for maintaining low interest rates and for continuing to pursue unconventional monetary policy is strengthened by another document released by the IMF this week – its Global Economic Outlook.
+The fund has downgraded its economic forecast for global growth in 2013, cutting it 0.2 percentage points to 3.3 per cent.
+In the three-speed world described by Christine Lagarde, IMF managing director, developed economies are lagging behind emerging markets.
+While the US is showing promising signs of buoyancy, the EU and Japan look stuck.
+The accusation that should be levelled at central bankers around the world is that they did too little, too late – not too much.
+True, the Federal Reserve has acted forcefully, unleashing three rounds of quantitative easing and committing to keep monetary policy loose until the recovery is in full swing.
+But it has taken the Bank of Japan decades to understand that it needed a bazooka, not a water pistol, to fight deflation.
+Mario Draghi's vow to do “whatever it takes” to save the euro has reassured markets, but the European Central Bank stubbornly keeps its policy rate at 0.75 per cent.
+Tightening monetary policy now would mean choking off the recovery.
+Critics would have a point if there were signs of accelerating inflation.
+But the only developed country where prices are creeping up is Britain. Even there, inflation is a moderate 2.8 per cent.
+A bigger risk, for example in the most troubled parts of the euro area, is deflation.
+Falling prices would raise real interest rates, acting as a further drag on growth.
+Policy makers may worry about the risk of asset bubbles. But, at least in the developed world, there are still too few signs that asset prices are overvalued.
+The recent buoyancy of the equity market can help the recovery, for example via wealth effects. Individuals and institutions are feeling richer and will therefore spend more.
+Lower rates on high-yield “junk” bonds can also be a good thing.
+These instruments are a favourite form of financing for many medium-sized companies.
+If they can borrow cheaply, it is easier to invest.
+The threat policy makers should mainly focus on is complacency.
+Ultra-loose monetary policy allows financial institutions to delay the necessary post-crisis healing.
+As the IMF acknowledges, banks in the US have done a much better job than their European counterparts at recognising losses on their balance sheets.
+They also have stronger capital buffers to withstand future shocks.
+European and British banks still have some work to do. Excessive forbearance makes lenders vulnerable.
+It also prevents them from lending to new businesses, which is vital for the recovery.
+New rounds of bank recapitalisation can no longer remain a pious aspiration, but must be acted upon.
+Finally, the eurozone should stop unpicking the good work it has done on banking union, which is crucial to rebuild confidence in its financial system.
+The agreement over the single supervisor should be complemented by a deal on the single resolution mechanism.
+As the Cypriot case shows, banking crises remain a real threat.
+The IMF is right to warn about the risks facing financial institutions.
+But policy makers should not jump to the wrong conclusion.
+Fixing the banks needs prudential plumbing, not bluntly closing the monetary taps.

@@ -1,143 +1,19 @@
-Q12870
-Q475000
-Q37654
-Q1181693
-Q23387
-Q148
-Q3220391
-Q54902132
-Q906066
-Q380
-Q27629792
-Q898405
-Q224530
-Q852662
-Q82794
-Q148
-Q102538
-Q11692
-Q30
-Q30
-Q2152413
-Q611203
-Q380
-Q5655097
-Q1151752
-Q2145455
-Q104493
-Q48204
-Q148
-Q5380819
-Q1137224
-Q380
-Q2141565
-Q95
-Q463257
-Q75
-Q205178
-Q906997
-Q148
-Q203
-Q577
-Q29818766
-Q304479
-Q164359
-Q19541
-Q44167
-Q543
-Q906066
-Q160151
-Q5380819
-Q95
-Q5306030
-Q851662
-Q1150070
-Q1072
-Q5338673
-Q16502
-Q48324
-Q51647
-Q36602
-Q16502
-Q16502
-Q11028
-Q2986261
-Q9420
-Q733541
-Q5655097
-Q17573152
-Q35120
-Q380
-Q621184
-Q37017
-Q321839
-Q543
-Q936190
-Q7188
-Q278368
-Q906066
-Q1020994
-Q380
-Q36161
-Q3123740
-Q15292
-Q848002
-Q51647
-Q278368
-Q11692
-Q1076693
-Q11028
-Q19602879
-Q7188
-Q772532
-Q199
-Q16363
-Q1920566
-Q380
-Q17641254
-Q131559
-Q278368
-Q14467155
-Q1502887
-Q1879813
-Q389408
-Q1962593
-Q102538
-Q386724
-Q148
-Q2912172
-Q26186900
-Q380
-Q278113
-Q344
-Q39552
-Q956
-Q600134
-Q380
-Q1329910
-Q188572
-Q73368
-Q3
-Q148
-Q75
-Q131030
-Q48324
-Q726686
-Q36949023
-Q7958
-Q2986261
-Q4348304
-Q380
-Q340709
-Q9332
-Q8458
-Q780687
-Q9644
-Q185451
-Q1962593
-Q102066
-Q28337
-Q380
-Q191609
-Q192520
-Q148
+Even before the explosive stock market debut last week of Ren Ren, the Chinese social networking service, Facebook had been looking closely at vaulting the great firewall that surrounds the Middle Kingdom.
+The spectacular valuation placed on the Chinese company's shares can only encourage the US giant to accelerate its plans.
+But Facebook should look hard before it leaps.
+The reputational risks associated with China entry are daunting.
+Many have drawn parallels between Facebook's situation and that of Google, another American internet wunderkind, which plunged into China five years ago. This turned out to be a humbling experience for the search engine.
+Having initially accepted censorship of its service as the price of entry, Google pulled out in 2010 after a change of heart.
+It was left with the worst of all worlds; damned both for undercutting its own moral mission to order the world's information and also for its commercial naivety in going in without having thought through the consequences.
+It is hard to believe that things would be any easier for Facebook.
+The reputational problems it faces are, if anything, deeper.
+Not only must it deal with the censorship; but also the likelihood that the Chinese government will use its service to snoop on its own citizens.
+Facebook may not have set itself some “don't be evil” style mission, but its raison d'être is to encourage its users to share personal information about themselves.
+This is morally problematic when the representatives of an authoritarian government are peering over one's shoulder.
+Moreover, there is no easy answer.
+Even if Facebook were able in some way to shield users from this gaze, perhaps by encrypting certain data, this would not be a durable solution.
+To the extent that this allowed the company to create a valuable Chinese business, it would simply make Facebook more vulnerable to future pressure from Beijing.
+Of course, Facebook could take the robust view that snooping is simply a fact of online life in China.
+But as other internet operators have found, the moral compromises this involves can be very awkward to explain.
+The commercial imperative may seem strong, but Facebook cannot simply shrug off its responsibility not to abet behaviour that violates human rights.
+Until it can articulate a strategy that allows it convincingly to navigate the ethical shoals, Facebook should refrain from sailing into China.

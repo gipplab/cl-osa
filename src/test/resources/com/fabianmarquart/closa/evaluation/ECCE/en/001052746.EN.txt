@@ -1,241 +1,31 @@
-Q131841
-Q189760
-Q25107
-Q33767
-Q33767
-Q11692
-Q6498684
-Q23498051
-Q158646
-Q380767
-Q1553864
-Q28962310
-Q23387
-Q1359568
-Q148
-Q75
-Q83306
-Q187860
-Q142807
-Q30
-Q30
-Q496672
-Q11691
-Q179076
-Q805079
-Q104555
-Q1962593
-Q102538
-Q618532
-Q865422
-Q827451
-Q6869239
-Q11692
-Q830077
-Q8646
-Q174834
-Q30
-Q30
-Q4013945
-Q878123
-Q30
-Q30
-Q4697206
-Q27948
-Q102538
-Q86447
-Q1055293
-Q11692
-Q18193
-Q51921823
-Q189760
-Q25288
-Q1775867
-Q18388277
-Q102538
-Q95
-Q211198
-Q200
-Q18193
-Q11692
-Q906911
-Q852787
-Q213660
-Q380
-Q31888506
-Q27905
-Q1123131
-Q8646
-Q14565199
-Q7429143
-Q1359568
-Q6646529
-Q104555
-Q1590639
-Q2986261
-Q428148
-Q1751943
-Q110022
-Q11692
-Q517966
-Q517596
-Q1359568
-Q11398090
-Q646164
-Q876082
-Q14565199
-Q520096
-Q379138
-Q199
-Q517966
-Q1338171
-Q557880
-Q1121708
-Q780687
-Q517596
-Q1359568
-Q1155772
-Q321767
-Q780687
-Q3975
-Q26186900
-Q2729863
-Q193137
-Q189760
-Q17573152
-Q367293
-Q457597
-Q3975
-Q193137
-Q189760
-Q517966
-Q19022516
-Q23445
-Q1436482
-Q9779
-Q41415
-Q8805
-Q11692
-Q23498051
-Q557880
-Q11348765
-Q206361
-Q192630
-Q1298668
-Q7502926
-Q11692
-Q102538
-Q35140
-Q4697206
-Q178354
-Q517966
-Q6498684
-Q926230
-Q7429143
-Q102538
-Q827451
-Q134556
-Q618532
-Q1962593
-Q27948
-Q1553864
-Q193946
-Q4697206
-Q16515105
-Q170212
-Q35140
-Q721834
-Q107
-Q26186900
-Q15049
-Q577
-Q1640172
-Q2296856
-Q11692
-Q18388277
-Q102538
-Q4198163
-Q165687
-Q5119
-Q774228
-Q2251595
-Q1416898
-Q1717246
-Q190139
-Q21171241
-Q557880
-Q1050390
-Q26186900
-Q88272
-Q104493
-Q110022
-Q11692
-Q18193
-Q83267
-Q158646
-Q17641254
-Q1193004
-Q47035128
-Q1520777
-Q557880
-Q322934
-Q11175
-Q795052
-Q86447
-Q732833
-Q18662
-Q7713255
-Q11366
-Q11402
-Q2912172
-Q30269216
-Q5119
-Q795052
-Q5418962
-Q827451
-Q15290
-Q557880
-Q240673
-Q5119
-Q102538
-Q853930
-Q2388316
-Q330284
-Q37654
-Q1499569
-Q2995644
-Q193137
-Q189760
-Q1724915
-Q102538
-Q4809
-Q2843407
-Q4697206
-Q265871
-Q3629141
-Q20742557
-Q379755
-Q1717246
-Q1121544
-Q19847391
-Q517966
-Q1340643
-Q117364
-Q1340643
-Q11193
-Q20742557
-Q1465133
-Q177239
-Q23090331
-Q36949023
-Q23445
-Q721834
-Q618532
-Q557880
-Q732833
-Q2251595
-Q11193
-Q185957
-Q2912172
-Q30269216
-Q215599
+The idea that voting power should go hand in hand with share ownership has become so entrenched a principle of corporate governance that it is rarely questioned.
+This week Alibaba, the Chinese internet group, opted to float in the US because the Hong Kong stock exchange would not bend its rules to allow the company's owners to control the equity, despite owning only a minority of the shares. 
+Most observers sided with the HK authorities while condemning the US for engaging in a regulatory race to the bottom.
+The US is not alone in allowing listed companies to issue multiple share classes with different voting weights, but it has become the destination of choice for technology companies. 
+Since Google went public with two classes of shares in 2004, others, such as Groupon, LinkedIn and Facebook, have followed suit.
+Few would dispute that Hong Kong was right to say no to Alibaba. 
+Listing rules should not be bent out of commercial expediency and local regulations explicitly prohibit dual share structures.
+The mechanism Alibaba concocted to get around this – creating a partnership of insiders that would have a sole right to nominate the board – was not only a fudge but an ill-designed one. 
+Dual-class structures at least compensate outside investors for the loss of rights through the mechanism of a share-price discount. 
+Alibaba's scheme would have pocketed the rights for nothing.
+Nonetheless, the case has made the Financial Times rethink its historic hostility to differential voting. 
+While continuing to believe that one-share, one-vote should be the norm, we acknowledge that there may be a case for tolerating some differential voting structures.
+A key worry about the alphabet soup of A and B shares is that it can entrench the controlling investors, leading to inefficiency and underperformance. 
+But while a valid concern – and past studies show that many dual-class shares companies perform less well – this is not a reason to reject such structures. 
+Majority ownership can have the same effect, and few would say companies whose equity is dominated by a single owner should not be allowed to list.
+Moreover, the UK-style governance model is not without difficulties. 
+It vaunts short-term targets and performance, granting managers less space to make bets that take years to pay off. 
+Many potential issuers of dual-class shares – such as technology companies – are highly dependent on scarce human capital. 
+These may require more protection against takeover to avoid top talent leaving.
+Investors should be free to make risky investments – so long as they understand the risks they are taking on. 
+Dual share classes do not offend this principle. 
+Indeed, in some ways they offer greater certainty. 
+Investors have at least knowingly delegated control to chosen individuals rather than having the issue decided for them at the whim of City insiders.
+The alternative is to force growing businesses to seek capital from wealthy individuals and private equity firms. 
+While that may be good for these investors, it both pushes up the cost of capital for issuing companies and starves the public markets of such opportunities. 
+Neither seems a desirable outcome.
+Differential voting has its uses. 
+It may be suitable for certain companies at certain stages of their development. 
+But this is not an endorsement in all circumstances, nor should they become permanent arrangements.
+To prevent ossification into mediocrity, structures should have sunset clauses built into them, based either on fixed time limits or the continued involvement of the key managers or owners. 
+Investors could then decide whether to afford protection, based on the quality of the insiders and the business they seek to promote.

@@ -1,244 +1,34 @@
-Q577
-Q2883465
-Q806798
-Q1312
-Q3289701
-Q600134
-Q23257209
-Q603773
-Q105
-Q56421531
-Q179057
-Q102538
-Q47035128
-Q336215
-Q170924
-Q199
-Q46737
-Q23387
-Q196939
-Q200
-Q2152413
-Q1362753
-Q467752
-Q4917
-Q1369832
-Q122141
-Q170924
-Q30
-Q784445
-Q489209
-Q1416898
-Q2283
-Q1418
-Q784445
-Q1378949
-Q2912172
-Q321839
-Q1190554
-Q275473
-Q44946
-Q9128
-Q577
-Q2191756
-Q691543
-Q317949
-Q11563
-Q487965
-Q219858
-Q1740954
-Q5151
-Q29818766
-Q17502905
-Q19963413
-Q30
-Q30
-Q142
-Q1537378
-Q5306030
-Q336751
-Q4917
-Q452440
-Q178354
-Q13109234
-Q2916087
-Q46737
-Q170219
-Q1101080
-Q317949
-Q23835475
-Q557880
-Q37172
-Q216541
-Q487965
-Q1344851
-Q775842
-Q321839
-Q11765
-Q386724
-Q19426
-Q39689
-Q1148384
-Q467752
-Q489209
-Q40276
-Q179057
-Q304479
-Q36507
-Q2283
-Q1369832
-Q1418
-Q926230
-Q1341429
-Q17502905
-Q1740954
-Q321839
-Q7860
-Q26132734
-Q178354
-Q13109234
-Q174984
-Q877558
-Q102538
-Q436048
-Q1368
-Q134566
-Q327055
-Q102538
-Q97
-Q1827667
-Q1368
-Q145
-Q46834
-Q196878
-Q1510380
-Q712519
-Q58093
-Q1547498
-Q40276
-Q30
-Q30
-Q4917
-Q948
-Q102538
-Q436048
-Q40276
-Q6468673
-Q4116378
-Q207988
-Q4402708
-Q261155
-Q206361
-Q827451
-Q19426
-Q389408
-Q13109234
-Q444184
-Q196626
-Q2152413
-Q601401
-Q321839
-Q39297
-Q5457712
-Q1489579
-Q1502887
-Q1141267
-Q16868672
-Q19426
-Q601401
-Q1510380
-Q4917
-Q668
-Q577
-Q205892
-Q199
-Q58093
-Q577
-Q1412049
-Q12171
-Q654355
-Q30
-Q30
-Q12136
-Q46
-Q48
-Q444184
-Q321839
-Q39297
-Q333495
-Q306484
-Q4116378
-Q184148
-Q102538
-Q4290
-Q1473480
-Q2912172
-Q317949
-Q1101080
-Q11348
-Q729
-Q56139
-Q137
-Q628839
-Q444184
-Q30
-Q30
-Q2912172
-Q88272
-Q105674
-Q1069941
-Q207988
-Q7257997
-Q42317
-Q1424605
-Q30
-Q102538
-Q187851
-Q2114394
-Q677393
-Q5119
-Q760120
-Q577
-Q682111
-Q10566551
-Q188572
-Q102538
-Q11692
-Q4917
-Q30
-Q30
-Q23257209
-Q577
-Q122141
-Q2540351
-Q29950338
-Q467752
-Q898830
-Q557880
-Q321839
-Q174984
-Q4116378
-Q389408
-Q1930567
-Q46737
-Q33767
-Q26132734
-Q26186900
-Q1724915
-Q23835475
-Q3057620
-Q444184
-Q806798
-Q13109234
-Q11765
-Q493615
-Q29950338
-Q181593
-Q729
-Q56139
-Q740732
-Q613617
-Q5420776
-Q317949
-Q102538
-Q557880
+After several quiet years, investment bankers suddenly have something of a spring in their step again.
+It is, of course, far too soon to talk about another M &amp; A boom, but companies seem to be taking more than a passing interest in buying one another's assets.
+This week alone has witnessed two giant acquisitions – Verizon's $130bn purchase of Vodafone's interest in its US mobile joint venture and the smaller but no less high-profile takeover by Microsoft of Nokia's mobile handset business.
+The former is the third-biggest corporate deal ever.
+Nor are these events isolated points of light.
+This year has seen a quickening of the pace of corporate activity in a number of industrial sectors – notably pharmaceuticals and media.
+Only a few months ago, the media conglomerates Omnicom of the US and France's Publicis pulled the trigger on a bold $35bn merger.
+There are reasons cautiously to welcome this flurry.
+While the churning of assets for its own sake is a frivolous activity that does nothing to help investors, much of the recent wave does seem to be driven by industrial considerations rather than the desire purely to conjure deal fees or create illusory value by applying the alchemy of leverage.
+Verizon is tidying up an ungainly joint venture that was a product of the last telecoms boom at the turn of the millennium.
+Microsoft's purchase of Nokia is in effect a rescue.
+Many of the media and pharmaceutical deals are similarly defensive in nature.
+But perhaps the best reason to welcome dealmaking is the signal it may send about companies' willingness to put their massive cash balances to work.
+Companies on both sides of the Atlantic are still awash with liquidity.
+Cash on UK balance sheets stands at roughly £670bn, or some 50 per cent of gross domestic product.
+In the US it is about $1.8tn.
+Companies' miserliness has been a product of their lack of confidence in the level of demand and consequent concern about equity values.
+To the extent this might be changing, it is welcome indeed.
+Nonetheless, the “recovery” must be put into context.
+Notwithstanding a few giant transactions, globally, deal volumes are actually flat as against 2012.
+According to data from Thomson Reuters, the total value of transactions stands at $1,556bn in the year to date, up just 1 per cent on last year's figure for the same period.
+Moreover, the rebound has come exclusively in the US, where economic conditions have improved more strongly.
+In Europe and Asia, despite a tepid and fragile recovery in the former, deal volumes are still falling.
+Nor is it yet clear that confidence has extended to companies investing in their own core businesses and expanding their activities.
+This is a much more important application of animal spirits when it comes to driving recovery.
+Yet even in the US, business investment is running at only slightly above its 2008 level.
+A recent survey of the 40 biggest publicly traded US companies recorded that roughly half of them intended to curtail their capital expenditures this year.
+Also indicative of continuing caution is the fact that companies are still buying back scads of their own shares – $308bn in the US so far this year.
+It is notable that Vodafone elected to return all but £6bn of the Verizon proceeds to its investors.
+The deal flurry is another signal of gently increasing confidence.
+To the extent it shuffles assets into the hands of those who can best make productive use of them, it may help to bolster recovery.
+Bankers will welcome the fees it brings.
+But it does not yet mark the return of the sort of animal spirits that will spur a major expansion of activity.
+For that to occur, companies must invest in themselves as well as each other.

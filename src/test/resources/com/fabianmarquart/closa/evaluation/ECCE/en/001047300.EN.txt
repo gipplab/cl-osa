@@ -1,171 +1,28 @@
-Q23387
-Q2551132
-Q8092
-Q52470
-Q60
-Q23497974
-Q11500
-Q1101080
-Q3267244
-Q7860
-Q25107
-Q2663482
-Q81054
-Q28640
-Q37484
-Q179651
-Q7743
-Q2912172
-Q149621
-Q6266
-Q1897397
-Q5119
-Q47035128
-Q712514
-Q3
-Q20861252
-Q199
-Q1362683
-Q6256
-Q30
-Q56139
-Q1920566
-Q814610
-Q906066
-Q35140
-Q898830
-Q573
-Q60
-Q5503
-Q1420023
-Q3710
-Q283
-Q520952
-Q29950338
-Q906066
-Q179057
-Q6497468
-Q7949
-Q60
-Q4925193
-Q7860
-Q336392
-Q16877982
-Q190258
-Q492
-Q18733
-Q301869
-Q1350758
-Q497332
-Q738822
-Q588676
-Q7930989
-Q3
-Q5
-Q317949
-Q1277161
-Q11663
-Q1190554
-Q4925193
-Q41500
-Q199
-Q1123131
-Q28962312
-Q2995644
-Q7942
-Q1150070
-Q60
-Q165
-Q759676
-Q5213276
-Q7930989
-Q553079
-Q170198
-Q23442
-Q2116292
-Q141488
-Q165
-Q838247
-Q577
-Q8425
-Q1139344
-Q2988681
-Q8068
-Q301869
-Q520952
-Q55
-Q12681694
-Q200569
-Q31
-Q1340643
-Q264661
-Q3278265
-Q1267889
-Q23257209
-Q1274479
-Q60
-Q508295
-Q30
-Q8187769
-Q317949
-Q240673
-Q81054
-Q29808883
-Q362347
-Q7942
-Q1150070
-Q19033
-Q1190554
-Q28314507
-Q200
-Q39911
-Q3975
-Q188473
-Q131512
-Q11366
-Q5249503
-Q30
-Q30
-Q11448873
-Q35120
-Q14565199
-Q199
-Q11663
-Q7216332
-Q962365
-Q11548115
-Q906066
-Q52470
-Q817765
-Q23835475
-Q177239
-Q481609
-Q1962593
-Q814610
-Q906066
-Q227552
-Q1347367
-Q1931511
-Q20861252
-Q52470
-Q1274479
-Q16216623
-Q8092
-Q34404
-Q23350
-Q577
-Q29818766
-Q16502
-Q1277161
-Q11663
-Q60
-Q29466402
-Q1931511
-Q121359
-Q45364
-Q40953
-Q199
-Q190507
-Q337921
-Q11448873
-Q1121708
+This week's landfall of hurricane Sandy in New York and surrounding areas is a reminder of nature's awesome power.
+The storm wrought devastation on an epic scale, smashing homes and businesses, and inundating whole coastal districts, including parts of the nation's financial capital.
+More than 70 lives have been lost.
+As one might expect from a country with America's can-do spirit, the response has been impressive.
+Not only have the emergency services performed heroics, the clean-up has proceeded apace.
+Only days after much of New York's subway system was submerged under feet of water, large parts have returned to service.
+But even this burst of resolve cannot disguise a bigger inconvenient truth: that New York and much of the eastern seaboard lie increasingly at nature's mercy.
+New Yorkers do not need long memories to recall the last inundation.
+Flood surges have become part of the warp and weft of city life.
+Whether human activity is responsible for the extreme weather events that lie at the root of this, no one can dispute that they are occurring more frequently as a result of climate change.
+Defending New York from the sea is no easy task.
+The city is low-lying and sits on a series of islands.
+Building a network of sea defences would be costly and take years.
+But other societies have risen to challenges no less daunting.
+After fearful floods inundated large parts of Holland in 1953, the Dutch built barriers across most of their main waterways.
+So far this has thwarted a repetition.
+New York and its hinterland account for about a third of US economic activity.
+So the cost of Sandy-like storms in lost output is huge.
+If climate change means “once-in-a-century” events recurring every two decades, the case for action will grow.
+After all, the alternative is economic decline.
+In the meantime, the US can also learn from the things that went right.
+One is weather forecasting.
+The eerie precision with which the meteorological services anticipated Sandy's path helped to limit the damage and allow the emergency services to prepare.
+This capability – threatened with deterioration through neglect – must not be lost.
+Sandy was no repetition of Katrina, the hurricane that devastated New Orleans seven years ago.
+But it might have been.
+In a world of more extreme weather, New York may have to accept that it can no longer get by with neglected infrastructure on a wing and a prayer.
+One hopes this lesson is learnt before the next catastrophe.

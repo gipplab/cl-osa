@@ -1,240 +1,42 @@
-Q35120
-Q131123
-Q58734
-Q2191756
-Q577
-Q169994
-Q733541
-Q695793
-Q1342838
-Q148
-Q1436482
-Q577
-Q569250
-Q44946
-Q56591458
-Q2114394
-Q48035814
-Q498957
-Q489398
-Q207988
-Q712514
-Q11471
-Q1344851
-Q471898
-Q679
-Q5754843
-Q207988
-Q169994
-Q283976
-Q5151
-Q577
-Q211198
-Q273120
-Q2329
-Q83405
-Q45701
-Q7577264
-Q148
-Q7275
-Q1740954
-Q382887
-Q170212
-Q262246
-Q704271
-Q15031
-Q3754526
-Q621184
-Q3620816
-Q20665666
-Q58734
-Q1101080
-Q2296856
-Q2574811
-Q11423
-Q58734
-Q196721
-Q1156854
-Q185957
-Q1342838
-Q159810
-Q12204
-Q37136
-Q9788
-Q382887
-Q1720612
-Q189833
-Q1342838
-Q21255975
-Q2249676
-Q1183543
-Q493615
-Q247792
-Q7737401
-Q7188
-Q29818672
-Q1502887
-Q83405
-Q577
-Q182060
-Q37136
-Q452440
-Q25107
-Q216541
-Q831663
-Q58734
-Q177239
-Q1724915
-Q24489
-Q2574811
-Q3566043
-Q56245086
-Q185957
-Q1434353
-Q17281278
-Q1225810
-Q16751793
-Q148
-Q309100
-Q134447
-Q159719
-Q719456
-Q32043
-Q40292
-Q362482
-Q677393
-Q3289701
-Q1724915
-Q11432
-Q80638
-Q25107
-Q3123740
-Q148
-Q3278265
-Q24489
-Q48422
-Q58093
-Q1151752
-Q1724915
-Q5978933
-Q11574
-Q148
-Q58734
-Q24976
-Q16502
-Q58734
-Q148
-Q7737401
-Q7188
-Q27105472
-Q679
-Q6256
-Q1879813
-Q131123
-Q58734
-Q58917
-Q956
-Q137
-Q21208
-Q34876
-Q557828
-Q997419
-Q2069494
-Q2995644
-Q23257209
-Q21255921
-Q58734
-Q8686
-Q16963
-Q34876
-Q185958
-Q21924000
-Q169994
-Q1121708
-Q212734
-Q58734
-Q21255921
-Q4022
-Q3193890
-Q3839081
-Q11921529
-Q18122778
-Q7302970
-Q148
-Q603773
-Q17200001
-Q2249676
-Q35120
-Q4810666
-Q27948
-Q137
-Q4202277
-Q468777
-Q104555
-Q37136
-Q846600
-Q19939
-Q25312
-Q3993446
-Q26186900
-Q623
-Q8161
-Q199
-Q7988576
-Q7188
-Q14536140
-Q1183543
-Q148
-Q1079196
-Q159810
-Q4686406
-Q1210151
-Q50000
-Q148
-Q1347367
-Q1034411
-Q2180497
-Q193946
-Q23257209
-Q159810
-Q191290
-Q322481
-Q23350
-Q577
-Q148
-Q190258
-Q11448873
-Q386724
-Q362347
-Q210947
-Q129529
-Q319622
-Q11888847
-Q600134
-Q18122778
-Q240673
-Q5655097
-Q2191756
-Q148
-Q1760141
-Q2249676
-Q5282724
-Q656365
-Q8148
-Q13582404
-Q484275
-Q233591
-Q200538
-Q20665666
-Q190258
-Q44602
-Q1342838
-Q47035128
-Q190258
-Q55669349
-Q406714
-Q12997450
-Q36133
-Q12997450
-Q4022
-Q29485
+The great thing about air pollution is that you can see it.
+After years of ignoring the thickening smog around them – or dismissing it as an inevitable consequence of rapid growth – more and more Chinese are clearly worried.
+Last year's “airpocalypse” was a turning point.
+PM2.5 fine particulates reached levels 70 times those considered safe in the west.
+Dangerously high levels of smog returned last month.
+In recent years there have been public protests against chemical factories and toxic waste spills throughout China.
+Even parts of the state media have taken to reprimanding local officials for failing to meet their own clean-up targets.
+There are tentative signs too that President Xi Jinping's administration is more serious about the problem.
+It appears to have concluded that pollution is a potential cause of mass discontent.
+Decreasing pollution also fits with its policy of improving the quality of growth by rebalancing the economy towards consumption.
+Mr Xi has let it be known that local officials will from now on be judged not purely by economic growth but also by improvements to the environment.
+If this is implemented, it marks progress.
+The government is also demanding real-time data from 15,000 heavily polluting factories.
+In his first year in office, Mr Xi has consolidated power and driven through an anti-corruption campaign with great ruthlessness.
+He could plausibly do the same against pollution.
+Yet there are serious limits to what can be achieved.
+First, the use of coal, the biggest cause of bad air quality, will almost certainly increase, not diminish.
+True, China is planning 28 nuclear power stations to add to the 20 already in operation.
+Moreover, it intends to step up use of gas and hydroelectric power, itself not exactly environmentally cost-free.
+Even so, China's main coal body is projecting a near-40 per cent jump in use by 2020.
+Second, China may merely displace pollution, not tackle it (just as the developed world has outsourced much of its pollution to China).
+The government has called for polluters to move to the west of the country, hardly a sustainable solution.
+Much of the air pollution that drifts across Beijing comes from Hebei province, which has now started to close outmoded steel mills.
+The result is far worse pollution in Shanghai as mills in nearby Jiangsu province take up the slack.
+Third, smog is only the most visible environmental catastrophe.
+Soil pollution may be worse still – and more intractable.
+Many rivers are ecological disasters.
+Biodiversity has already fallen, probably never to recover.
+China has long talked about cleaning up the environment.
+If it is now serious, there are some things it can do.
+Top of the list comes enforcement of existing rules.
+If Mr Xi can clamp down on corrupt “tigers” and “flies”, he can surely do the same with “dirty rats”.
+As well as making it illegal to pollute, he can also make it more expensive.
+A carbon tax would be a bold move, one even western governments have struggled to implement. Here China's centralised, command economy could be an advantage.
+In the long run, success will depend on China's ability to improve the efficiency of its economic model.
+Improvements so far have been easily outpaced by an economy that has doubled in size every seven years.
+China needs rapidly to learn how to create more output from fewer inputs.
+Energy saving should become a priority.
+Of course, there is likely to be a cost.
+It is hard to see how China can clean up its environment without significant disruption to employment in polluting industries.
+The danger is that the leadership of the Communist party will conclude that it needs fast growth more than it needs clean air, clean soil and clean rivers.
+That would be a mistake.

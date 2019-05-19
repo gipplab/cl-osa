@@ -1,189 +1,22 @@
-Q142
-Q704271
-Q329
-Q3249878
-Q193168
-Q921312
-Q1137634
-Q32518
-Q5655097
-Q732833
-Q8441
-Q17281278
-Q142
-Q128635
-Q32043
-Q8161
-Q858439
-Q40231
-Q7737401
-Q7188
-Q309100
-Q44364
-Q48302094
-Q345367
-Q73792
-Q25288
-Q32
-Q2912172
-Q831835
-Q6055890
-Q345367
-Q17281278
-Q128635
-Q131841
-Q26186900
-Q32
-Q40276
-Q62955
-Q181593
-Q73792
-Q25288
-Q32
-Q102538
-Q4917
-Q37413
-Q6821213
-Q1640172
-Q32043
-Q4917
-Q712519
-Q73792
-Q4917
-Q712782
-Q183
-Q102538
-Q20204892
-Q47694
-Q831835
-Q6256
-Q8436
-Q1962593
-Q26186900
-Q173253
-Q28008314
-Q567555
-Q1775867
-Q8161
-Q102538
-Q22855
-Q7737401
-Q7188
-Q1344851
-Q219416
-Q142
-Q831835
-Q329
-Q17573152
-Q1081889
-Q128635
-Q3057620
-Q32
-Q8148
-Q23835475
-Q643669
-Q21263262
-Q658371
-Q385503
-Q850210
-Q18122778
-Q1190554
-Q382887
-Q748250
-Q499193
-Q104493
-Q159810
-Q24249439
-Q41171
-Q1139344
-Q128635
-Q321839
-Q3242199
-Q12204
-Q44167
-Q32
-Q1342838
-Q16751793
-Q183
-Q305178
-Q26256352
-Q345367
-Q237
-Q907344
-Q926230
-Q11193
-Q502117
-Q35
-Q26186900
-Q26256352
-Q34644
-Q11471
-Q209190
-Q1342838
-Q12204
-Q11921529
-Q41171
-Q1139344
-Q231685
-Q17641254
-Q142
-Q25392373
-Q831835
-Q190258
-Q102538
-Q5879610
-Q1078386
-Q3053337
-Q8043
-Q345367
-Q1992300
-Q508295
-Q433353
-Q58093
-Q16868672
-Q1964442
-Q38712
-Q58093
-Q183
-Q38701
-Q58093
-Q41550
-Q690182
-Q40118
-Q58093
-Q850210
-Q451323
-Q7170591
-Q850210
-Q79986
-Q58093
-Q183
-Q712692
-Q58093
-Q145
-Q79986
-Q58093
-Q41550
-Q6015846
-Q1964442
-Q1101080
-Q17641254
-Q25392373
-Q7275
-Q2315394
-Q128635
-Q1139344
-Q810927
-Q21171811
-Q16738028
-Q41500
-Q621184
-Q4697206
-Q1964442
-Q4925193
-Q831835
-Q858439
-Q40231
-Q16751793
-Q262246
-Q208160
+France's President Nicolas Sarkozy likes to present himself as Captain Courageous, a leader who takes the hard decisions from which his predecessors so often shrank.
+It is certainly a brave man who would increase France's value added tax just ahead of a challenging presidential election.
+The government is planning to cut the heavy social charges which weigh on the competitiveness of French businesses, while making up the shortfall in welfare funding with a “social” increase in VAT.
+The idea is that this would make French products more competitive, and imports costlier – a sort of pseudo-devaluation.
+Social charges do weigh on the competitiveness of French companies.
+On top of every €100 of wages paid, they have to add €50 in charges, against €39 in Germany.
+Companies thus contribute to a higher proportion of the welfare system than in many other countries, even to family allowances.
+It makes sense to address such anomalies.
+But the choice should not be whether to tax companies or consumers more. The government should also consider the underlying sustainability of France's generous welfare system.
+Mr Sarkozy may believe he can sell higher VAT as a patriotic move to bolster French industry.
+It may also help to generate useful extra tax revenues, in the likely event that official economic forecasts prove too optimistic.
+But the move carries risks.
+As the economy slows and unemployment rises, higher VAT could deal a damaging blow to consumption, long the motor of French growth.
+True, Germany introduced a similar “social VAT” in 2007 with little ill effect. But this was off a lower base.
+Bank of America/Merrill Lynch found that when Denmark made a similar move in the 1980s, at a time of low growth, consumption fell and unemployment rose.
+The way in which France funds its welfare system needs readjusting.
+Companies bear too great a burden.
+Employers' social contributions account for 27 per cent of total taxation, against 18 per cent in Germany and 15 per cent in the OECD.
+In contrast, 17 per cent of revenue is derived from personal income, against 25 per cent in Germany, 31 per cent in the UK and 25 per cent in the OECD.
+Progressive taxation is a fairer way to fund state spending, while a simple VAT rise disproportionately hits the poor.
+But the root of the problem is not taxation. It lies in an overgenerous welfare system.
+Tackling that ahead of the presidential election would be the true sign of political courage.

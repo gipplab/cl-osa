@@ -1,283 +1,31 @@
-Q900831
-Q44946
-Q871232
-Q1187312
-Q1395219
-Q9510
-Q7942
-Q1150070
-Q637156
-Q19033
-Q190258
-Q40719766
-Q1474477
-Q623
-Q11651
-Q691543
-Q32518
-Q3839081
-Q3851114
-Q2995644
-Q5754843
-Q26186900
-Q2330707
-Q103076
-Q47005650
-Q1920566
-Q114380
-Q381072
-Q37226
-Q60960
-Q104493
-Q104493
-Q199
-Q104493
-Q1604733
-Q17641254
-Q7942
-Q1150070
-Q26186900
-Q12343610
-Q8502
-Q7942
-Q1150070
-Q1748
-Q16502
-Q16502
-Q1499569
-Q510878
-Q17285911
-Q320553
-Q623
-Q1474477
-Q36602
-Q1717246
-Q1121708
-Q35758
-Q912546
-Q16502
-Q16502
-Q1474477
-Q207326
-Q39911
-Q47035128
-Q901
-Q189756
-Q21168708
-Q29815021
-Q321839
-Q1718759
-Q32518
-Q625994
-Q1748
-Q93288
-Q26186900
-Q320553
-Q17641254
-Q152005
-Q1078386
-Q17641254
-Q9368
-Q7044668
-Q199
-Q283202
-Q182593
-Q4697206
-Q19357621
-Q3568
-Q47436102
-Q158646
-Q321839
-Q11016
-Q240673
-Q1474477
-Q320553
-Q5282724
-Q179289
-Q774228
-Q466845
-Q14565199
-Q160151
-Q623
-Q1474477
-Q5754843
-Q386724
-Q37654
-Q1414816
-Q176982
-Q1474477
-Q82955
-Q806805
-Q192611
-Q7949
-Q25107
-Q7590
-Q40276
-Q17737
-Q623
-Q8161
-Q16502
-Q1155772
-Q1474477
-Q2123632
-Q26132734
-Q1879813
-Q327055
-Q1155772
-Q200446
-Q591707
-Q1748
-Q321839
-Q201
-Q12136
-Q6505497
-Q1474477
-Q320553
-Q39911
-Q9788
-Q2912172
-Q259059
-Q32032
-Q240673
-Q88272
-Q3947
-Q159719
-Q756
-Q1962593
-Q1714153
-Q336
-Q1150070
-Q779970
-Q510878
-Q177239
-Q6256
-Q6266
-Q138796
-Q189569
-Q6256
-Q386724
-Q621184
-Q8104
-Q167336
-Q11432
-Q876082
-Q17200001
-Q186619
-Q4697206
-Q11471
-Q1142227
-Q16502
-Q621184
-Q148
-Q30
-Q30
-Q16502
-Q16502
-Q1997
-Q230788
-Q16502
-Q44364
-Q1474477
-Q6545604
-Q6256
-Q1101080
-Q3975
-Q2123632
-Q552754
-Q1474477
-Q170212
-Q196626
-Q170212
-Q1748
-Q4503831
-Q221725
-Q1474477
-Q2123632
-Q529711
-Q16738028
-Q6256
-Q759757
-Q288514
-Q1879813
-Q57055328
-Q1071233
-Q1474477
-Q221706
-Q177323
-Q6256
-Q29466402
-Q1879813
-Q1474477
-Q6147804
-Q23257209
-Q11651
-Q207988
-Q148
-Q668
-Q138796
-Q221706
-Q7429143
-Q20058545
-Q623
-Q1061524
-Q1474477
-Q47574
-Q739302
-Q1474477
-Q1342838
-Q5001850
-Q28962312
-Q6172442
-Q2123632
-Q6256
-Q3151690
-Q623
-Q160151
-Q623
-Q1474477
-Q370947
-Q19426
-Q47035128
-Q4917
-Q1412049
-Q17281278
-Q221706
-Q926230
-Q2296856
-Q315364
-Q6256
-Q2123632
-Q601401
-Q166735
-Q4917
-Q577
-Q8880
-Q965330
-Q16738028
-Q6256
-Q190258
-Q24976
-Q7942
-Q1150070
-Q2912172
-Q1474477
-Q231043
-Q2894265
-Q37654
-Q382887
-Q2843407
-Q2827815
-Q1061910
-Q315364
-Q102538
-Q623
-Q6881762
-Q11016
-Q6256
-Q6256
-Q29822052
-Q11412
-Q2988681
-Q2191756
-Q321839
-Q489398
+As the FT pointed out in an editorial yesterday, scepticism of the reality of climate change is either unfounded or, when warranted, does not mean nothing needs be to be done.
+We cannot be certain (until it is too late) that continuing to emit carbon at our current pace will lead to disaster; but we do know that if we do, the chance of a catastrophic outcome is high enough to make insuring against worst-case scenarios the rational response.
+Surely the financial crisis has taught us that a low-probability tail risk is still a risk.
+As there is no one onto whom planetary risk can be shifted, the only way to insure against climate change fall-out is to make it sufficiently improbable.
+The upcoming summit on climate change in Copenhagen is the world's opportunity to do this, by making a mutual, binding commitment to global cuts in carbon emissions.
+In order to prevent catastrophe, it does not matter how or by whom the reduction is achieved: it is the world as a whole whose emissions must peak in the next decade and more than halve by mid-century, according to scientists.
+The ""how"" and ""by whom"" questions do, however, fundamentally determine the economic and political viability of any deal.
+The leaders meeting in Copenhagen must, therefore, agree not only to make ambitious global cuts, but to achieve them in the most cost-efficient way and divide the burden in a way everyone can live with.
+No one should harbour illusions about the difficulty of reaching such a bargain. But it is not impossible.
+To succeed, negotiators must focus on the following principles.
+The deal should not favour some technologies over others.
+Minimising the cost of necessary emissions cuts and containing the disruption they will cause requires setting the right price for carbon emissions: it must be high, and the same everywhere.
+That will create market incentives for cutting emissions efficiently — but politicians must tell their electorates the truth: power, transportation, and carbon-intensive products must become markedly more expensive.
+In theory, a global carbon tax could do this.
+In the actual world, a global scheme of tradeable emissions quotas is the best solution.
+To work, such a scheme, which must form the core of any Copenhagen deal, has to meet three conditions: it must lay down a time-path for emissions cuts over several decades (to let businesses and households predict the net costs of such long-term investments as houses and power plants); allow for adjustments if — but only if — the science changes; and impose binding limits on all countries.
+Some developing nations have fiercely resisted this, on the basis that now-rich countries created the problem by pumping the atmosphere full of greenhouse gases and should take sole responsibility for cleaning up after themselves.
+The argument is not without merit, but its time has passed.
+The emerging world is now part of the problem: China has surpassed the US as the world's largest CO2 emitter.
+Granted, the developing world should not have to cut emissions: the heaviest lifting must be done by richer countries.
+But that is a case for more generous quotas, not an excuse from signing up to a global emissions target.
+Within the context of such a target, Copenhagen should aim for a schedule of tradeable emissions quotas that start out higher for poor countries and gradually converge to the only fair solution in the long term: equal per capita emissions ceilings.
+Developing countries ought to accept this solution, which would give most if not all of them emissions caps far above current levels.
+Even China and India, who resist ceilings, have said they can commit to lower carbon intensity (emissions per unit of production) or to curbing emissions growth from ""business as usual"".
+Selling unused quotas would, moreover, be hugely lucrative for poorer countries.
+At today's European carbon price, yearly carbon emissions have a market value of more than €500bn, a figure which could increase significantly as the global ceiling took effect.
+The potential transfers from rich countries resulting from quota trading could easily swamp the €100bn per year the European Commission has estimated poor countries will need to tackle climate change.
+Businesses buying emissions permits in a global market would be politically more palatable than official development aid.
+And technology transfers would be boosted by companies profiting from bringing carbon mitigation technology in fast-growing emerging countries.
+Most countries seem to grasp the gravity of the challenge.
+If they can also see what is in it for them, a deal may yet be within reach.

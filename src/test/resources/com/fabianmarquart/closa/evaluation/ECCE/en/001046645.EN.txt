@@ -1,233 +1,33 @@
-Q294460
-Q8901
-Q30461
-Q361945
-Q1371819
-Q5151
-Q1156854
-Q1756083
-Q450
-Q3435731
-Q178790
-Q4503831
-Q912546
-Q104493
-Q806663
-Q174493
-Q278113
-Q1646605
-Q7275
-Q19114386
-Q23387
-Q8880
-Q37223985
-Q3918409
-Q27105472
-Q1175042
-Q22687
-Q3306907
-Q1639780
-Q8901
-Q7721911
-Q66344
-Q22687
-Q21092971
-Q468777
-Q141488
-Q363802
-Q22289859
-Q1366722
-Q7429143
-Q86447
-Q12731
-Q22687
-Q1300244
-Q208084
-Q611203
-Q22687
-Q23836
-Q1954125
-Q379755
-Q1646605
-Q7275
-Q183
-Q31948
-Q177239
-Q174320
-Q1175042
-Q178790
-Q22687
-Q60918
-Q14565199
-Q2872553
-Q17143371
-Q27942639
-Q3435731
-Q381072
-Q7502926
-Q24245823
-Q178706
-Q336751
-Q621184
-Q806737
-Q134556
-Q11402
-Q29
-Q30269216
-Q1643184
-Q15290
-Q178354
-Q1175042
-Q8901
-Q466845
-Q1954125
-Q178706
-Q7228652
-Q644238
-Q178476
-Q1156854
-Q751309
-Q1175042
-Q199
-Q48422
-Q23835475
-Q3568
-Q1077396
-Q903517
-Q1416617
-Q386724
-Q8901
-Q1671968
-Q2988681
-Q28008314
-Q2296856
-Q198
-Q178476
-Q1156854
-Q751309
-Q1175042
-Q2574435
-Q60918
-Q200
-Q11348
-Q172964
-Q66344
-Q22687
-Q728
-Q14536140
-Q830077
-Q47035128
-Q728646
-Q188619
-Q621184
-Q5190563
-Q2574435
-Q60918
-Q613299
-Q8901
-Q1920566
-Q8889
-Q8886
-Q8896
-Q178706
-Q8901
-Q732833
-Q12731
-Q1548033
-Q22687
-Q444600
-Q379755
-Q2995644
-Q584028
-Q206361
-Q774228
-Q309100
-Q2574435
-Q60918
-Q26256512
-Q315364
-Q1175042
-Q22687
-Q8901
-Q7602472
-Q5371769
-Q221725
-Q104493
-Q744865
-Q321839
-Q131427
-Q21262209
-Q178706
-Q199
-Q4697206
-Q196721
-Q231823
-Q247792
-Q208084
-Q3435731
-Q178790
-Q24249439
-Q60918
-Q23392
-Q611203
-Q2063826
-Q611203
-Q79871
-Q183
-Q2540351
-Q8901
-Q1371819
-Q1120307
-Q1175042
-Q504514
-Q3435731
-Q210521
-Q5589178
-Q728944
-Q117364
-Q157165
-Q5375780
-Q22687
-Q584496
-Q6865248
-Q104493
-Q315364
-Q60918
-Q3435731
-Q178790
-Q780687
-Q458
-Q6256
-Q8901
-Q1962593
-Q21262209
-Q25107
-Q1639780
-Q36161
-Q317623
-Q317623
-Q3435731
-Q178790
-Q131427
-Q170409
-Q1150070
-Q46
-Q6256
-Q20861252
-Q42008
-Q208084
-Q3435731
-Q219858
-Q4916
-Q28640
-Q458
-Q379825
-Q2988681
-Q1671968
-Q2574435
-Q60918
-Q1205349
-Q19269277
-Q4809
-Q238156
-Q205663
+When Mario Draghi, European Central Bank president, launched his bond-buying programme this month, he urged policy makers to push ahead with European institution-building.
+He most certainly had in mind a “banking union”, which would aim to reduce the risk of bank runs in the eurozone's most vulnerable member states.
+Last week the European Commission heeded Mr Draghi's call with a proposal to move the supervision of eurozone banks away from national regulators to the ECB.
+The central bank would rely on the existing network of national supervisors, but would retain the final say on issues such as when to close down a bank.
+The most important aspect of the plan is that it envisages all the banks of the eurozone being wrapped into the new arrangement.
+Some member states, including Germany, had lobbied to limit the scope of eurozone-wide supervision to the union's largest banks.
+But the commission is right to stick to its guns.
+As the Spanish banking crisis showed, even small institutions can trigger considerable problems for the eurozone banking system.
+While a single caja may not have been systemically important, collectively they forced Spain to seek external help.
+There are good reasons for moving supervision to the ECB, rather than setting up a new institution.
+Pooling expertise on monetary policy and banking supervision within one body should help it to focus on the overall stability of the financial system.
+But the creation of an overly mighty ECB poses significant challenges that have to be addressed.
+First, there are potential conflicts between monetary policy and banking supervision.
+The commission rightly argues that these two functions should be kept separate within the central bank.
+But the youthful supervisory arm will struggle to convince observers that it is no more than the junior partner in the hierarchy.
+Then there is the problem of accountability.
+The commission states that the ECB will answer to the European Parliament and the European Council.
+But these institutions are often perceived as weak.
+Were the ECB to decide to close down a large bank, the democratic deficit in this arrangement could result in a popular backlash.
+Addressing these concerns requires careful planning.
+The commission wants to transfer the supervision of all banks to the ECB by the start of 2014.
+This timetable risks being overly ambitious.
+A rushed deal could produce either a superfluous institution or one that is not fit for purpose.
+Conversely, progress on other aspects of the banking union has been slow.
+It is understandable that the commission put on ice plans for a eurozone-wide deposit guarantee.
+Such plans would have stirred more anger among German voters, already aggrieved by the ECB's bond-buying programme.
+But common supervision has to be accompanied by a eurozone-wide banking resolution regime.
+This should include clauses to bail-in creditors, which would end the deadly embrace between banks and sovereigns and minimise the risk of cross-border fiscal transfers.
+Finally, the commission should ensure that the banking union does not undermine the rights of EU countries outside the eurozone.
+In particular, the ECB should not be allowed to enjoy excessive powers vis a vis other national regulators when they meet to set pan-European technical standards.
+A banking union will produce radical changes within Europe.
+Countries within the eurozone will lose sovereignty over aspects of their banking sector, which is part of making the euro work, while other EU members will have to adapt to the challenge posed by having a closely integrated bloc on their doorstep.
+The commission should be careful in how it handles the earliest and most delicate stages of this complex process.

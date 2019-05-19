@@ -1,165 +1,20 @@
-Q201795
-Q909887
-Q34442
-Q1383865
-Q677393
-Q278368
-Q6717428
-Q140686
-Q53536
-Q2031291
-Q196988
-Q1187312
-Q36161
-Q611203
-Q23009442
-Q8261
-Q59163
-Q66344
-Q22687
-Q468756
-Q30
-Q159810
-Q114380
-Q381072
-Q2272047
-Q907344
-Q53536
-Q557828
-Q44364
-Q179179
-Q736288
-Q58093
-Q40719766
-Q1069941
-Q21818619
-Q66344
-Q174834
-Q169489
-Q1193236
-Q1954125
-Q1368
-Q205879
-Q40719766
-Q110
-Q1371819
-Q1153051
-Q53536
-Q1308239
-Q4917
-Q4917
-Q668
-Q46737
-Q53536
-Q37017
-Q182076
-Q381072
-Q2431801
-Q176494
-Q41171
-Q44946
-Q192276
-Q915026
-Q1309431
-Q160151
-Q1049098
-Q205663
-Q7958
-Q55760862
-Q278368
-Q19357421
-Q1368
-Q53536
-Q53536
-Q278368
-Q1542661
-Q3133368
-Q3380760
-Q169489
-Q650241
-Q178706
-Q1425577
-Q1308239
-Q46737
-Q205892
-Q32043
-Q66344
-Q22687
-Q1640172
-Q170924
-Q2088231
-Q196431
-Q22687
-Q53536
-Q1193004
-Q1071233
-Q2063826
-Q192276
-Q36384
-Q196756
-Q2063826
-Q22687
-Q182076
-Q1342838
-Q47035128
-Q53536
-Q140686
-Q7241004
-Q611203
-Q1758647
-Q37654
-Q1139344
-Q2012704
-Q25392373
-Q736288
-Q23355
-Q5151
-Q1362683
-Q344
-Q35865
-Q24759380
-Q58093
-Q23806
-Q577
-Q178354
-Q37654
-Q8043
-Q35865
-Q93288
-Q855232
-Q209190
-Q179179
-Q736288
-Q11471
-Q30
-Q30
-Q520952
-Q631916
-Q4153227
-Q25288
-Q35865
-Q26326601
-Q1342838
-Q1371925
-Q53536
-Q529711
-Q191145
-Q1827667
-Q381072
-Q192276
-Q57774188
-Q219858
-Q16738028
-Q207961
-Q206621
-Q1342838
-Q7715561
-Q22687
-Q182076
-Q12136
-Q16889909
-Q4013945
-Q900406
-Q14536140
-Q633403
-Q22687
+Ben Bernanke has sketched out a route to the exit, but does not intend to use it for a while.
+The chairman of the Federal Reserve released testimony yesterday that set out plans for removing the novel and extraordinary monetary props with which his central bank has shored up the sickly US economy during the financial crisis.
+In September 2007, the Fed started to cut interest rates from 5.25 per cent.
+By the end of 2008, it neared zero.
+Still, the monetary authority went further, buying securities to press new money into circulation.
+By the end of March, when its asset-buying programme is due to finish, the Fed will have bought $300bn of Treasuries and $1,400bn of mortgage-linked assets.
+This extreme loosening was — and is — justified: the Fed faced a credit crisis, a deep global recession and rising unemployment.
+But it will, at some point, be necessary to unwind these measures and disposing of such a portfolio without causing collapses in prices will be a slow process.
+So Mr Bernanke has explained other tricks he can use to soak up excess money.
+The Fed can use reverse repos — selling a security to financial institutions along with a promise to buy the asset back at a later date.
+In addition, the central bank can pay interest on the reserves held by banks with the Fed, and offer ""term deposits"" — a measure equivalent to a certificate of deposit for banks — to constrain credit growth.
+So, even though Mr Bernanke has loosened more than any Fed chairman before him, by presenting a credible plan to tighten, he has saved his anti-inflationary credentials.
+Markets do not anticipate a rise in the federal funds rate for eight months, but expectations for future inflation remain subdued, averaging only 2.3 per cent over the next 10 years.
+A further reason for markets' sangfroid about inflation, however, is that they agree with Mr Bernanke's assessment that ""exceptionally low"" interest rates will be necessary for some time.
+The US has a large output gap that will weigh on inflation.
+The outlook for growth is weak.
+Mr Bernanke also announced that the Fed might soon start scaling back its remaining financial liquidity crisis measures.
+But the financial sector is still in poor shape and a drag on growth.
+The banks are fragile, and so credit conditions are tight.
+Furthermore, regulatory reform efforts are exacerbating this weakness by encouraging banks to deleverage.

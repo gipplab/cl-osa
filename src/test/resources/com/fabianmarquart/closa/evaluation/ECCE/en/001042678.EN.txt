@@ -1,159 +1,20 @@
-Q48103
-Q489398
-Q732833
-Q46
-Q45767
-Q524778
-Q311229
-Q273976
-Q3918409
-Q13683
-Q200
-Q83306
-Q18207852
-Q46
-Q190258
-Q646324
-Q1324102
-Q30
-Q30
-Q29175
-Q2152413
-Q1023876
-Q2143576
-Q187117
-Q327209
-Q28008314
-Q45767
-Q206361
-Q524778
-Q1510380
-Q3519890
-Q178561
-Q8880
-Q732833
-Q29466402
-Q18207852
-Q2132873
-Q1099549
-Q321839
-Q37017
-Q196092
-Q2191756
-Q29812705
-Q14565199
-Q2995644
-Q1101080
-Q3975
-Q11398090
-Q179076
-Q306484
-Q190258
-Q26186900
-Q321839
-Q278368
-Q327209
-Q1193004
-Q8513
-Q13677
-Q196721
-Q1435089
-Q176982
-Q83306
-Q37654
-Q11692
-Q827451
-Q29175
-Q1630557
-Q37144
-Q591707
-Q621184
-Q6505497
-Q5375780
-Q595170
-Q58093
-Q601401
-Q816747
-Q183
-Q2324820
-Q11693
-Q344
-Q3975
-Q26186900
-Q8513
-Q13677
-Q18536342
-Q93288
-Q321839
-Q912546
-Q37654
-Q1775867
-Q7860
-Q29175
-Q37654
-Q179076
-Q40276
-Q557880
-Q8043
-Q908656
-Q1827667
-Q16886469
-Q2296856
-Q45767
-Q2516951
-Q17641254
-Q1137224
-Q1000804
-Q306484
-Q841654
-Q40276
-Q179076
-Q458
-Q3880557
-Q2735683
-Q29175
-Q1099549
-Q240673
-Q247797
-Q176982
-Q866298
-Q82794
-Q601401
-Q728646
-Q1193004
-Q306484
-Q7112940
-Q40276
-Q728944
-Q179179
-Q736288
-Q29175
-Q179076
-Q195872
-Q321839
-Q174834
-Q5338673
-Q127771
-Q23532527
-Q199
-Q728
-Q44416
-Q458
-Q1954125
-Q4013945
-Q271680
-Q26186900
-Q30
-Q30
-Q83306
-Q18536342
-Q46
-Q216906
-Q774228
-Q2735683
-Q184624
-Q621184
-Q13698
-Q247797
-Q8043
-Q240673
+A moment may have been reached with the decision of Europe's competition commissioner, Joaquin Almunia, to block the proposed tie-up between Deutsche Boerse and NYSE Euronext.
+The two groups have failed to persuade Mr Almunia that Europe needs its own champion as a counterweight to the US derivatives giant, CME Group.
+In spite of their frantic lobbying, and the offering of escalating concessions to address the many competition concerns, the commissioner has stood firm.
+The battle may not be over. The full European Commission has to decide whether to accept Mr Almunia's advice.
+But the likelihood of it clearing the deal in the face of his submission must be seen as slim.
+This seems the right result.
+While there is a case for creating a pan-European exchange, it was always clear that safeguards would be needed to make any deal palatable to users as well as providers.
+The concessions offered by DB and NYSE did not fit the bill, focusing on side-issues, such as cutting the combined group's market share in equity derivatives, while skirting round its highly profitable core.
+Yet this was where the biggest problem lay.
+DB/NYSE would, have ended up with 95 per cent of trading in benchmark short-term interest-rate and German government bond futures.
+A case can be made that DB and NYSE do not compete in these contracts – so the deal would not have reduced market choice.
+It is in the nature of derivative markets for exchanges to monopolise certain products, reflecting investors' preference for liquidity.
+But this belies the importance of potential as well as actual competition in restraining unreasonable pricing.
+A way to draw the sting might have been for DB/NYSE to to clear competing products from rival exchanges.
+Indeed this would have accelerated the fulfilment of an EU objective to open up derivatives clearing, thus reducing the cost for customers by cutting the aggregate amount of collateral placed against trades.
+But while the partners offered to clear some outside products, these did not include interest rate derivatives.
+The exchanges will argue that by blocking the deal, the authorities have left them to fight CME with one arm tied behind their back.
+The EU's new regulatory framework will make it easier for the US group to compete in Europe, without any reciprocal requirement to open up its own turf.
+This is indeed a problem for policymakers to puzzle.
+But it should not be solved at the customers' expense.

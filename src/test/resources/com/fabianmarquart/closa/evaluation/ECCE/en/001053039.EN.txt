@@ -1,191 +1,25 @@
-Q16021
-Q16021
-Q52946
-Q286583
-Q1368
-Q30
-Q13217683
-Q14828018
-Q1382002
-Q922169
-Q192314
-Q630830
-Q806798
-Q8043
-Q2842797
-Q36161
-Q1421509
-Q16021
-Q30
-Q1639780
-Q21818619
-Q7241004
-Q30
-Q30
-Q3435731
-Q83306
-Q4917
-Q32188232
-Q169489
-Q2842797
-Q165628
-Q30
-Q167037
-Q137
-Q797551
-Q6559173
-Q1640172
-Q174493
-Q104493
-Q2159907
-Q40889434
-Q7729861
-Q167412
-Q32188232
-Q847337
-Q22687
-Q26186900
-Q11690
-Q927450
-Q728
-Q179651
-Q2842797
-Q629962
-Q173253
-Q7112875
-Q210523
-Q214339
-Q114380
-Q381072
-Q22687
-Q36949023
-Q37654
-Q169489
-Q34379
-Q1137224
-Q1639780
-Q8043
-Q5025838
-Q1069941
-Q1369832
-Q813018
-Q926203
-Q17643783
-Q22687
-Q1308239
-Q1790733
-Q178706
-Q247949
-Q3754526
-Q26254017
-Q284812
-Q186361
-Q11410
-Q214339
-Q15290
-Q1020994
-Q344
-Q3754526
-Q26256352
-Q208450
-Q2072298
-Q17126809
-Q22687
-Q3975
-Q114380
-Q381072
-Q23628030
-Q167412
-Q1101080
-Q1416244
-Q37017
-Q922169
-Q1162163
-Q35798
-Q35221
-Q23257209
-Q4013945
-Q107425
-Q577
-Q14713
-Q6559173
-Q6559173
-Q11690
-Q927450
-Q47035128
-Q39911
-Q36661023
-Q41446476
-Q4013945
-Q84
-Q1448281
-Q3975
-Q178354
-Q17643783
-Q22687
-Q1308239
-Q813018
-Q2735683
-Q7364
-Q4686406
-Q171318
-Q15290
-Q12147
-Q5420776
-Q2912172
-Q3975
-Q813018
-Q36661023
-Q159391
-Q1643184
-Q30
-Q30
-Q7188
-Q1425577
-Q155171
-Q1121708
-Q4917
-Q27454075
-Q22687
-Q2734947
-Q46737
-Q600134
-Q214339
-Q17126809
-Q190258
-Q1427962
-Q29466402
-Q1404417
-Q546972
-Q155171
-Q1616363
-Q37105
-Q179651
-Q2842797
-Q190258
-Q775842
-Q26186900
-Q44946
-Q7188
-Q600751
-Q9332
-Q813018
-Q547952
-Q321839
-Q104493
-Q174984
-Q2296856
-Q17126809
-Q22687
-Q306484
-Q199
-Q190507
-Q22687
-Q4197743
-Q1341429
-Q214339
-Q4197743
-Q1069941
-Q252
-Q3629141
-Q23
+“A billion here, a billion there, and pretty soon you are talking real money,” the US senator Everett Dirksen once remarked.
+How Jamie Dimon at JPMorgan Chase must yearn for that kinder, gentler era when bankers' fines were set in mere single-digit billions.
+US regulators are close to presenting the US banking group with a $13bn bill for alleged mis-selling of mortgage-backed securities.
+Not only would this be the largest fine ever levied on a US corporation, it comes without any waiver from prosecution.
+JPMorgan must both pay and run the risk of being damned by criminal indictment.
+The details of the settlement have yet to emerge, so it is unclear precisely what JPMorgan is alleged to have done and what admissions the bank may have made.
+But already Wall Street is up in arms about the scale of the fine and its apparent arbitrariness.
+The sense of outrage stems from JPMorgan's role in the financial crisis.
+Although the bank was not immune from involvement in the market for mortgage-backed securities, many of the instruments that have drawn regulators' ire came with its 2008 purchases of Bear Stearns and Washington Mutual.
+The bank bought these crippled institutions at the behest of the Bush administration.
+Not only does it seem ungrateful for Uncle Sam to punish JPMorgan for playing the role of good corporate citizen; it may be counter-productive.
+A future administration confronting a similar panic might find it even harder to recruit rescuers for failing banks than was the case in the financial crisis.
+The putative settlement is a personal slap in the face for Jamie Dimon, JPMorgan's chief executive.
+It also reflects a far harsher regulatory landscape.
+This year has seen the Securities and Exchange Commission mount its first criminal prosecution of a Wall Street firm in more than a decade.
+Mr Dimon, fresh from a regulatory mauling over the London whale case, has reason to feel sore.
+But JPMorgan cannot abdicate all responsibility for its predicament.
+The bank bought Bear Stearns and WaMu with open eyes, seeking to take advantage of its relative good health to expand its business dramatically.
+In the case of Bear Stearns, Mr Dimon also received substantial help from the US government, which promised to cover losses on $30bn of the acquired bank's most toxic assets.
+Of course, its role as rescuer did not absolve it from the need to do diligence and accept legal liabilities not covered by indemnity, but the Feds have nonetheless taken a very tough line.
+The scale of the fines will need to be justified by something other than the desire to make a political point.
+Were the government to prosecute JPMorgan for the behaviour of Bear Stearns or WaMu before the deals, it would risk sending a signal that potential rescuers of troubled banks should steer clear.
+One would hope that no bank will have to play the rescue role JPMorgan played in 2008.
+Alas we cannot be certain.
+In these circumstances, Washington should be wary of humiliating JPMorgan.

@@ -1,229 +1,29 @@
-Q23759131
-Q81054
-Q3242199
-Q3002772
-Q381072
-Q273120
-Q29
-Q29808993
-Q188473
-Q7188
-Q167412
-Q4877042
-Q104493
-Q1187312
-Q567303
-Q1489644
-Q41263
-Q1150070
-Q29
-Q21262209
-Q2814650
-Q381072
-Q21255921
-Q40719748
-Q176494
-Q2807
-Q4917
-Q159810
-Q1314
-Q2388316
-Q294217
-Q219858
-Q444600
-Q58093
-Q577
-Q58093
-Q577
-Q2509873
-Q5754843
-Q41171
-Q4877042
-Q179289
-Q1329910
-Q211198
-Q4697206
-Q3566043
-Q317623
-Q904999
-Q169489
-Q240673
-Q4917
-Q668
-Q11187553
-Q58093
-Q1547498
-Q40276
-Q41263
-Q83307
-Q29142
-Q37017
-Q345367
-Q41263
-Q188572
-Q17281278
-Q35221
-Q240673
-Q192451
-Q7275
-Q11471
-Q5780945
-Q17281278
-Q345367
-Q179289
-Q176494
-Q520952
-Q4917
-Q668
-Q17281278
-Q170924
-Q3196867
-Q621184
-Q567303
-Q190258
-Q5338673
-Q37654
-Q557880
-Q82955
-Q239
-Q64
-Q190507
-Q29
-Q381072
-Q8161
-Q11563
-Q181767
-Q900406
-Q41263
-Q170212
-Q1342838
-Q192581
-Q386724
-Q1375851
-Q836925
-Q16751793
-Q192276
-Q11379
-Q746418
-Q861536
-Q900406
-Q27942639
-Q159810
-Q381072
-Q14536140
-Q487623
-Q1034411
-Q211198
-Q625303
-Q41263
-Q174834
-Q15290
-Q11651
-Q7163
-Q190507
-Q1156854
-Q9788
-Q27942639
-Q159810
-Q14293544
-Q1714153
-Q900406
-Q19097421
-Q189756
-Q4348304
-Q178790
-Q39552
-Q23640
-Q2807
-Q25294
-Q2814650
-Q21083885
-Q553270
-Q216828
-Q36784
-Q5705
-Q14212
-Q83307
-Q10819
-Q620591
-Q381072
-Q677393
-Q11175
-Q8015
-Q5705
-Q30461
-Q1333366
-Q40231
-Q334600
-Q309314
-Q43109
-Q37055
-Q2807
-Q1920566
-Q104493
-Q380552
-Q381072
-Q27941381
-Q5879610
-Q7275
-Q6256
-Q2540351
-Q167903
-Q5119
-Q32518
-Q178790
-Q29
-Q381072
-Q7188
-Q4197743
-Q125161
-Q7889
-Q41176
-Q202722
-Q1312
-Q12335479
-Q1426138
-Q41263
-Q190507
-Q37144
-Q40231
-Q5783
-Q2995644
-Q27941381
-Q20861252
-Q1058733
-Q34442
-Q2027160
-Q200538
-Q46
-Q27941381
-Q190258
-Q3738757
-Q202722
-Q338754
-Q381072
-Q489398
-Q93288
-Q46
-Q23835475
-Q3151690
-Q2807
-Q1371925
-Q1368
-Q190258
-Q1425577
-Q1341429
-Q806737
-Q1071233
-Q2827815
-Q27941381
-Q29
-Q190258
-Q1341429
-Q189539
-Q184932
-Q304479
-Q1342838
-Q176494
-Q4697206
-Q732833
+What began as an economic storm has blown into a full-scale political crisis.
+Amid popular discontent and separatist protests, Spain has stumbled towards a crossroads: without decisive action by the government, the post-Franco democratic settlement is at risk.
+Yesterday's announcement of the 2013 budget does not change this.
+Spain is persisting with the excessive austerity favoured in the eurozone but which is making the crisis worse.
+In the middle of a swingeing recession, Madrid is taking some €40bn out of the economy to achieve a fall in the public sector deficit from 6.3 per cent this year to 4.5 per cent next year.
+The slump and obscenely high unemployment are at least in part caused by an overly rigorous view of public finances that are not that bad by eurozone standards.
+Social security costs are going up by €6.6bn or 0.6 per cent of gross domestic product.
+Cristobal Montoro, the budget minister, attempted to put a brave face on this by calling it a “clearly social” budget.
+In fact the increase reflects the higher cost of the welfare state at a time of economic suffering.
+Indeed this increase in social spending, caused by the recession, is almost as large as the €9.7bn increase in interest spending due to the debt problem.
+The announcements need not leave markets, investors and politicians from Brussels to Berlin entirely bereft of hope that Spain may muddle through the crisis.
+As important as the tax and spending numbers is the emphasis on continuing structural reforms.
+It may not be a budget “exclusively targeted on growth and job creation”, as Mr Montoro claims, but it is true that some of the non-budgetary measures – such as energy liberalisation and educational reform – should bring about a healthier Spanish economy once the crisis is over.
+Efforts to bring more transparency and efficiency to public spending – such as an independent budget authority – can also do much good.
+Given the current politics of the eurozone, however, it would be vain to hope for a looser policy that could let the Spanish economy breathe while it adjusts to structural reforms.
+The question is whether the political imperatives of European monetary union are compatible with the political pressures coming to a head in Madrid and beyond.
+Under the hammer of austerity, national unity and social cohesion are crumbling.
+From the more independent-minded regions, such as Catalonia, prime minister Mariano Rajoy's handling of the crisis looks very much intended to tighten central control.
+Artur Mas, Catalonia's president, has called a snap election which, in practice, will amount to a referendum on independence.
+Madrid's intransigent response risks triggering a constitutional crisis.
+Mr Rajoy must bear responsibility for the state of his country.
+Elected in a landslide, he had the political capital to lead a united Spain through this crisis.
+Instead his government has played a partisan game rather than building consensus.
+Last spring, for example, he delayed a budget in the hopes of winning a round of elections in Andalucia.
+As a result, Mr Rajoy has lost support in the streets, antagonised his opponents, and disappointed both his own party and his counterparts in Europe.
+Mr Rajoy needs both to forge a national consensus on how to manage these crises and reach firm agreement on how Europe can help.
+Today, Madrid will announce how much money it needs from the promised eurozone rescue of its banking system.
+Recent backsliding on the terms of this aid partially justifies Mr Rajoy's coyness on whether Spain will also need a fiscal rescue loan.
+As the political mood turns poisonous and the prospect of growth recedes further, this is not a decision that can be postponed for long.

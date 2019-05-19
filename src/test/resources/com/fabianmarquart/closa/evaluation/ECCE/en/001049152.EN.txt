@@ -1,301 +1,40 @@
-Q38
-Q1076105
-Q40231
-Q906997
-Q1403517
-Q23387
-Q557880
-Q24247591
-Q737014
-Q124964
-Q32518
-Q47556
-Q200446
-Q7188
-Q124964
-Q83306
-Q47904
-Q47683
-Q170579
-Q47817
-Q381936
-Q6926579
-Q18560095
-Q79986
-Q58093
-Q42904171
-Q333495
-Q24862
-Q38
-Q134556
-Q200538
-Q12785789
-Q29552
-Q11175
-Q375928
-Q3947
-Q59486
-Q1077396
-Q18000
-Q37654
-Q192957
-Q1403517
-Q909380
-Q490
-Q11921529
-Q2383321
-Q2324820
-Q11693
-Q810927
-Q5754843
-Q29485
-Q210439
-Q2995644
-Q42904171
-Q4916
-Q16751793
-Q46337
-Q1546796
-Q200538
-Q43109
-Q24037718
-Q1120307
-Q8142
-Q3278265
-Q184148
-Q831663
-Q200538
-Q8142
-Q49958
-Q49958
-Q7502926
-Q1058733
-Q4916
-Q38
-Q55082364
-Q5754843
-Q114380
-Q381072
-Q2814650
-Q779970
-Q6256
-Q1419959
-Q7188
-Q50708
-Q21075828
-Q47817
-Q13370881
-Q38
-Q385166
-Q18193
-Q577
-Q665184
-Q44364
-Q6821213
-Q46
-Q1150070
-Q6256
-Q1810004
-Q7748
-Q27987164
-Q333173
-Q1025
-Q1546796
-Q1558113
-Q628523
-Q280658
-Q170439
-Q737014
-Q29552
-Q11860
-Q844072
-Q5
-Q577351
-Q621695
-Q1185894
-Q29552
-Q338754
-Q708
-Q5151
-Q29818766
-Q3289701
-Q56019
-Q4
-Q11860
-Q831663
-Q23835475
-Q200538
-Q1366722
-Q4809
-Q20861252
-Q42904171
-Q1069941
-Q15290
-Q2995644
-Q1419959
-Q159391
-Q23806
-Q58093
-Q42904171
-Q5655097
-Q18560095
-Q1058733
-Q192276
-Q7188
-Q11402
-Q26186900
-Q3
-Q7203268
-Q4197743
-Q1954125
-Q11402
-Q38
-Q51591359
-Q2995644
-Q173253
-Q7174
-Q28640
-Q2912172
-Q368281
-Q59486
-Q26186900
-Q1954125
-Q1954125
-Q48352
-Q7275
-Q704271
-Q1220
-Q845436
-Q5375780
-Q1312
-Q18122778
-Q2995644
-Q55082364
-Q1954125
-Q40231
-Q40719727
-Q577
-Q190258
-Q621184
-Q2540351
-Q2995644
-Q288514
-Q570
-Q577
-Q41
-Q200446
-Q214252
-Q7188
-Q2995644
-Q1717246
-Q200538
-Q47436102
-Q1068288
-Q205663
-Q1323738
-Q131569
-Q12785789
-Q11175
-Q375928
-Q3947
-Q1185894
-Q29552
-Q3612401
-Q1499569
-Q200446
-Q7188
-Q131569
-Q210918
-Q1365748
-Q600134
-Q199
-Q1362683
-Q3975
-Q1142227
-Q2046602
-Q900406
-Q174320
-Q1150070
-Q728944
-Q176982
-Q240673
-Q7163
-Q336215
-Q1954125
-Q1810004
-Q7748
-Q192276
-Q211067
-Q170924
-Q200538
-Q1344851
-Q660064
-Q47817
-Q7502926
-Q33767
-Q1546796
-Q553079
-Q1274479
-Q83306
-Q105562
-Q200538
-Q900406
-Q728944
-Q1371819
-Q207333
-Q1425577
-Q26186900
-Q2540351
-Q7188
-Q1371819
-Q199388
-Q28108
-Q327055
-Q37654
-Q732833
-Q304479
-Q220
-Q179179
-Q736288
-Q652
-Q3196867
-Q38
-Q20861252
-Q37654
-Q29466124
-Q2648051
-Q11348
-Q1341429
-Q25392373
-Q8901
-Q27865861
-Q27318
-Q17285911
-Q294460
-Q8901
-Q30461
-Q1377846
-Q4916
-Q178354
-Q178648
-Q6256
-Q29
-Q1344851
-Q21645213
-Q3975
-Q40719727
-Q806805
-Q2995644
-Q38
-Q40231
-Q131427
-Q2662870
-Q3123740
-Q2144402
-Q190132
-Q38
-Q42904171
-Q2662870
-Q3123740
-Q12171
-Q1403517
+Italy's inconclusive general election has plunged the eurozone back into uncertainty.
+For weeks, investors had wrongly assumed that the centre-left coalition led by Pier Luigi Bersani would be able to form a government, perhaps in coalition with the centrist group around Mario Monti.
+But it was the comedian-cum-activist Beppe Grillo who had the last laugh.
+His Five Star Movement won an extraordinary 25 per cent of the national vote – falling just short of becoming Italy's single largest party.
+While Mr Bersani's Democrats took control of the lower house, the Senate has no overall majority.
+Markets reacted negatively to this uncertainty. Stocks in Milan fell sharply and the yields on 10-year government bonds hit a three-month high.
+It would be wrong to interpret this result as a vote against the euro.
+True, the manifesto of Mr Grillo's party calls for a referendum on the common currency. 
+Yet this was not the main theme of his campaign. Moreover, his party has never argued against staying in the currency bloc.
+Anyway, opinion polls show that support for the euro in Italy remains high.
+The economic crisis and the austerity imposed on the country by Mr Monti's technocratic government were certainly important factors.
+But the triumph of the Five Star Movement is, above all, a damning verdict against Italy's political class.
+For years, parliamentarians stubbornly refused to cut their wages, among the highest in Europe, and to change the country's unpopular electoral law.
+No wonder Mr Grillo's anti-establishment message struck a chord.
+Both the centre-left Democrats and Silvio Berlusconi's centre-right People of Liberty have themselves to blame.
+The Democrats managed to squander a lead that, until a month ago, looked unassailable. Their reluctance to take decisive steps to rejuvenate their ranks proved fatal.
+Mr Berlusconi's spirited campaign helped his party in the final stages. But it lost 6m votes compared with 2008, hardly a good result.
+As for Mr Monti, he only received about 10 per cent of the national vote. It was always going to be hard to win support after the tough measures his government was forced to take.
+But he did not make his life easier by allying himself with old political players, rather than launching a completely new force.
+Italy's election result is, in a sense, democracy at work.
+It is often a messy business. Still, the three-way split in the Senate makes the political outlook very uncertain.
+The new parliament will have to choose a new head of state when President Giorgio Napolitano's mandate ends in the spring.
+After that, the most likely outcome remains a new election, maybe as early as this year.
+This need not be a problem.
+When voters deliver an inconclusive result, it is only fair they are asked to speak again.
+Last year Greece was able to form a stable government after a first indecisive result.
+Yet this should not prevent all parties from following due process.
+The alliance around Mr Bersani has control of the lower house. The Democrats and their allies should be given the opportunity to form a government, seeking alliances from across the political spectrum.
+Of course, no one should expect this cabinet to pass a wide-ranging package of structural reforms.
+But there may be scope for some important political changes. These could include cutting the cost of politics, passing a new electoral law and measures against conflicts of interest.
+All parties should consider backing these initiatives. In particular, the Five Star Movement should show its hand.
+Mr Grillo, who will not sit in parliament, has repeated that his group will stay in opposition.
+But his party should not obstruct reforms it has included in its electoral programme. It should honour the promises it has made to its voters.
+A government with a limited programme to shake up the political system would only work if markets decided not to turn completely against Rome.
+Interest rates on Italian debt are still manageable, but were Italy to lose market access, it would be obliged to apply to the eurozone rescue fund and the European Central Bank.
+This would test the commitment by Mario Draghi, ECB president, to do whatever it takes to save the euro.
+For this reason, other peripheral countries, such as Spain, have to consider carefully what they would do in case of contagion.
+It is too early to tell what political outcome Italy's elections will produce.
+However, the eurozone should brace itself for renewed turbulence.
+After Italy's messy vote, the eurozone should brace itself for a period of uncertainty.

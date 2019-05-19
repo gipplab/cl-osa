@@ -1,160 +1,22 @@
-Q200092
-Q11424
-Q261636
-Q21262209
-Q22687
-Q5682593
-Q1759104
-Q137
-Q34006
-Q78
-Q26186900
-Q6501338
-Q17643783
-Q502117
-Q7502926
-Q23257209
-Q381072
-Q806798
-Q7188
-Q1073
-Q659974
-Q1639780
-Q1759104
-Q192906
-Q23257209
-Q900406
-Q14536140
-Q4697206
-Q609697
-Q2915026
-Q806798
-Q588378
-Q309195
-Q1436482
-Q11849872
-Q9332
-Q12171
-Q333173
-Q7188
-Q6055890
-Q1050390
-Q66344
-Q806748
-Q5074302
-Q25392373
-Q258127
-Q467064
-Q4927280
-Q7257279
-Q1239455
-Q8043
-Q16211712
-Q362482
-Q26186900
-Q21645213
-Q9788
-Q520952
-Q83306
-Q104493
-Q21262209
-Q1938414
-Q5879610
-Q3975
-Q26186900
-Q22687
-Q8043
-Q9332
-Q11849872
-Q259059
-Q2912172
-Q621184
-Q4697206
-Q3123740
-Q5
-Q1050390
-Q104493
-Q241625
-Q1368
-Q650241
-Q178706
-Q101072
-Q104493
-Q47035128
-Q1368
-Q55453026
-Q104493
-Q190258
-Q104493
-Q8425
-Q1077396
-Q795052
-Q775842
-Q21162272
-Q24114117
-Q1140245
-Q22687
-Q170212
-Q283976
-Q827451
-Q912546
-Q104493
-Q1416617
-Q22687
-Q4503831
-Q52834024
-Q283976
-Q926230
-Q423
-Q468489
-Q12802
-Q728
-Q21255605
-Q428148
-Q159810
-Q29812814
-Q491498
-Q43015
-Q210521
-Q5589178
-Q9788
-Q22687
-Q5119
-Q104555
-Q260765
-Q11442
-Q182076
-Q75794
-Q309363
-Q18530
-Q752034
-Q22687
-Q44602
-Q38348
-Q37507
-Q11986654
-Q8043
-Q105562
-Q1150070
-Q4697206
-Q5655097
-Q2191756
-Q138796
-Q471898
-Q11402
-Q19033
-Q283976
-Q317949
-Q5025838
-Q28962312
-Q1121708
-Q3566043
-Q806798
-Q15290
-Q7713255
-Q11366
-Q309195
-Q16575965
-Q162668
-Q283976
-Q1309431
+It could be a horror movie sequel: ""excessive risk-taking"" by banks is coming back to haunt us.
+That the warning comes not from Hollywood but from Basel makes it all the more worthy of attention.
+The Bank for International Settlements showed far more prescience ahead of the crisis than big bankers or the government brain trusts now reforming how they are regulated.
+What the BIS warning reveals is that so far, those reform efforts have not succeeded.
+In an invitation to a gathering for top central bankers and financiers the BIS worries that ""financial firms are returning to the aggressive behaviour [of] the pre-crisis period"".
+No surprise there: governments are paying them to do so.
+Financing is essentially free, with central banks charging next to nothing for funds and turning themselves into dumping grounds for dubious collateral.
+Public treasuries' rescue operations make it inconceivable they would now let a large financial group fail — so risks are ""excessive"" only for the taxpayers who ultimately bear them.
+There is even a case to be made that banks' behaviour is still not aggressive enough: households and businesses may well be wishing for somewhat more reckless lending.
+The problem is not risk-taking in itself.
+People should be free to take any risk they wish with their own money.
+But a financial institution that is systemically important by definition risks more than its own money.
+The risk that needs to be lowered is the risk to society overall;
+if that is done, individuals with the desire and the means to gamble can fend for themselves.
+The BIS suggests banks target lower returns on equity to reduce the risk in the financial system.
+But exhorting banks to aim for lesser returns will have about the same effect as politely asking North Korea not to pursue nuclear weapons.
+Only better regulation can untether economies from the fickle fortunes of finance — through resolution regimes to let big banks fail smoothly and stronger counter-cyclical capital rules to damp the cycle of credit bubbles.
+Progress towards that goal has stalled.
+Policymakers saved the banks too fast: their divisions and timidity are an easy match for financial lobbyists' opposition to meaningful change.
+It is not hard to see why they resist: a safe system would force average returns lower as high-yield activities came with more frequent, but systemically harmless, failures.
+That would be bad for bankers and good for everyone else.
+The alternative is the BIS's horror vision: a return to the brink of financial collapse.

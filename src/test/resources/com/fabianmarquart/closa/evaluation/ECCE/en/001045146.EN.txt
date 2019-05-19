@@ -1,165 +1,27 @@
-Q2191756
-Q11424
-Q463257
-Q28308492
-Q247792
-Q1342838
-Q7430019
-Q39552
-Q1340643
-Q272893
-Q178476
-Q1156854
-Q123
-Q10856
-Q18560095
-Q53536
-Q11849872
-Q851662
-Q851312
-Q189756
-Q53536
-Q27105472
-Q2735683
-Q37654
-Q865588
-Q625994
-Q23387
-Q157195
-Q1314
-Q186619
-Q2100949
-Q4157104
-Q3975
-Q1362683
-Q201795
-Q37017
-Q7748
-Q863946
-Q283976
-Q179179
-Q736288
-Q5371769
-Q13196750
-Q29814939
-Q1093742
-Q11187127
-Q7429143
-Q1530061
-Q1071233
-Q2197000
-Q577
-Q32043
-Q40231
-Q2995644
-Q884353
-Q190507
-Q830328
-Q11424
-Q2142560
-Q4916
-Q53536
-Q222749
-Q18122778
-Q7216332
-Q170584
-Q30
-Q1342838
-Q185789
-Q200
-Q724178
-Q577
-Q207988
-Q30
-Q41171
-Q23090331
-Q11921529
-Q44619
-Q30
-Q30
-Q736288
-Q1139344
-Q5151
-Q625994
-Q118
-Q53536
-Q186386
-Q58093
-Q1342838
-Q30
-Q1547498
-Q40276
-Q577
-Q201
-Q5151
-Q5457712
-Q333495
-Q126793
-Q194189
-Q187939
-Q53536
-Q1434353
-Q748250
-Q30
-Q35865
-Q4384217
-Q53536
-Q200
-Q58093
-Q170212
-Q2460215
-Q3278265
-Q189756
-Q174984
-Q188473
-Q625994
-Q192193
-Q1101080
-Q1775867
-Q7307215
-Q3033529
-Q7858456
-Q3033529
-Q7858456
-Q2197000
-Q18122778
-Q3975
-Q11849872
-Q21087400
-Q263725
-Q53536
-Q30
-Q30
-Q159810
-Q23640
-Q189114
-Q8187769
-Q317949
-Q5655097
-Q1403016
-Q4157104
-Q3975
-Q24245823
-Q35758
-Q30
-Q30
-Q107679
-Q577
-Q5151
-Q10225
-Q30
-Q30
-Q176494
-Q367293
-Q103076
-Q11410
-Q55082364
-Q5655097
-Q178476
-Q1156854
-Q55082364
-Q39546
-Q33767
-Q134566
-Q53536
-Q278368
+We have seen this movie before.
+As the American summer progresses, growth prospects are steadily downgraded and pressure builds on the US Federal Reserve to ease monetary policy further.
+By September, the doves win out and the Fed embarks on aggressive easing.
+That is what happened in 2010 and 2011.
+The only question is whether the Fed will move pre-emptively at its open market committee meeting this week or choose again to wait until autumn.
+The arguments are finely poised.
+The case for waiting has merit.
+Ben Bernanke faces the familiar law of diminishing returns.
+Having already pledged to maintain zero interest rates until 2014, there is little left to be squeezed from that lemon.
+Extending the zero-bound pledge to 2015, say, would have only marginal credibility. Mr Bernanke's term expires the previous year.
+In addition, the Greek election outcome raises hopes of a pause in that other movie: the trial and tribulations of the euro.
+But the merits to the Fed acting now are probably stronger.
+Many forecasters project US growth will drop below 2 per cent for the year – well below the level at which US unemployment would continue to fall.
+Some fear the US jobless rate may even rise in the coming months.
+At its last meeting in April, the Fed projected 2.7 per cent growth in US gross domestic product this year.
+After three months of flat or falling retail sales and manufacturing, the Fed will almost certainly revise its forecasts downwards.
+US inflation also looks to be heading below the Fed's 2 per cent target.
+The main question, therefore, is whether it signals a willingness to act at this meeting or whether it does so pre-emptively to stave off further deterioration.
+Should it be the latter, there is a choice between renewing Operation Twist or embarking on a QE3.
+As Operation Twist expires, there is probably a stronger case for aggressive quantitative easing.
+As Janet Yellen, Fed vice-chairman, recently put it, should the US economy head into a “self-reinforcing downward spiral of economic activity”, it may by then prove too hard to arrest.
+The case for pre-emptive QE3 is strong.
+There is also the small matter of the US fiscal cliff later this year.
+This month Mr Bernanke again cautioned Congress against plunging the US into a self-induced recession.
+But the manner in which the “taxmaggeddon” scenario will play out remains hard to predict.
+Meanwhile, monetary policy remains the only tool at hand.
+On balance, the Fed should use it.

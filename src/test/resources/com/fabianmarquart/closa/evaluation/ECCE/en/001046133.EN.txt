@@ -1,164 +1,20 @@
-Q199
-Q19750554
-Q6063
-Q7188
-Q1805337
-Q1156854
-Q47694
-Q6256
-Q25107
-Q128751
-Q18530
-Q557880
-Q1340643
-Q1954125
-Q199
-Q3045865
-Q280658
-Q3918409
-Q7737401
-Q7188
-Q732833
-Q646590
-Q1789452
-Q57699905
-Q29809817
-Q189756
-Q24994
-Q82604
-Q19033
-Q334600
-Q1471749
-Q36794
-Q182995
-Q557880
-Q200
-Q148
-Q194166
-Q774145
-Q10494269
-Q3030248
-Q1628136
-Q1371819
-Q148
-Q102538
-Q557880
-Q23445
-Q7366
-Q842438
-Q121359
-Q17608
-Q88272
-Q42889
-Q865422
-Q20151
-Q618532
-Q12725
-Q200726
-Q46737
-Q145
-Q148
-Q3278265
-Q1061648
-Q200535
-Q25392373
-Q468455
-Q2408951
-Q283
-Q148
-Q42962
-Q83306
-Q29415466
-Q1693
-Q1756083
-Q133346
-Q231043
-Q148
-Q88272
-Q11500
-Q213381
-Q53737447
-Q842438
-Q7188
-Q30269216
-Q172964
-Q46737
-Q145
-Q493386
-Q1433533
-Q463257
-Q33767
-Q2144456
-Q264661
-Q17641254
-Q48378
-Q3135308
-Q577
-Q159
-Q102673
-Q18122778
-Q51081147
-Q259013
-Q19357896
-Q2986261
-Q178354
-Q148
-Q131030
-Q19112425
-Q1628136
-Q278368
-Q7988576
-Q11016
-Q7864925
-Q159719
-Q719456
-Q57699905
-Q542869
-Q93288
-Q240673
-Q4013945
-Q271680
-Q517966
-Q1962593
-Q145
-Q11175
-Q381072
-Q7188
-Q190507
-Q206361
-Q799
-Q956
-Q29466124
-Q145
-Q11016
-Q12271
-Q6256
-Q1096907
-Q1519469
-Q1436482
-Q3073127
-Q4013945
-Q732833
-Q26186900
-Q51081147
-Q14284
-Q7188
-Q36161
-Q2388316
-Q211198
-Q1826679
-Q37105
-Q4925193
-Q5655097
-Q7949
-Q1717246
-Q82580
-Q344
-Q286583
-Q621206
-Q25107
-Q219858
-Q332142
-Q775842
-Q88272
-Q11500
+One of the aspirations of the UK government's energy policy is that a certain proportion of the country's power should come from nuclear sources.
+However, this goal has been threatened by the reluctance of investors to build new reactors.
+Only one European venture, EDF Energy, has put forward a firm proposal to do so.
+The government must accordingly decide whether to relax its criteria to encourage more bidders to enter the fray.
+As questions of safety and design are non-negotiable, what this means in practice is opening the door to a wider range of foreign investors.
+Two Chinese consortiums are jostling at the threshold, holding discussions about buying into the Horizon reactor programme.
+For a Chinese company to invest in a key piece of British infrastructure would not be unprecedented.
+CKI, an investment vehicle controlled by Li Ka-shing, already owns electricity distribution assets in the UK.
+China's main sovereign wealth fund has a stake in Thames Water and Chinese oil groups are active in the North Sea.
+However, it would push the boundaries to permit Chinese investment in such a sensitive area as nuclear generation.
+Traditionally, British governments have sought to keep such assets in UK or “friendly” (for which read European or American) hands.
+While no formal barriers have been put in the way of other foreign bidders, such a block was mooted a few years ago when Russia's Gazprom seemed likely to bid for Centrica.
+There is no obvious commercial reason to discriminate against a Chinese nuclear operator.
+The Horizon grouping would use western technology in its UK power stations, and would enter into long-term supply agreements from which it would provide against the ultimate costs of their decommissioning.
+The regulatory framework could be structured to allow the UK to take control in a crisis.
+However, the government should not be beguiled by its nuclear hopes into ignoring strategic concerns, such as whether it is wise to give Beijing access to UK atomic technology and to the architecture of the country's power grid.
+Such worries cannot be fixed with a few regulatory tweaks.
+Before any decisions are made, and more bids solicited, the government should set out to the public and any bidders where the red lines lie.
+Some hard truths now would avoid friction in future.
+It would be a real own-goal were disappointments in the power sector to deter desired and much-needed investment in non-sensitive areas.

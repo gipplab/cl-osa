@@ -1,253 +1,29 @@
-Q15031
-Q32518
-Q17427
-Q200538
-Q47035128
-Q577
-Q29818766
-Q26186900
-Q650711
-Q366
-Q184148
-Q484275
-Q192630
-Q577
-Q148
-Q1071447
-Q605704
-Q382887
-Q516519
-Q24245636
-Q47035128
-Q5
-Q186361
-Q366
-Q37136
-Q5338673
-Q34302
-Q17573152
-Q5140240
-Q344
-Q17427
-Q233591
-Q200538
-Q200
-Q1190554
-Q23387
-Q884353
-Q34302
-Q3039511
-Q2142560
-Q3571070
-Q8458
-Q780687
-Q40348
-Q557828
-Q956
-Q793638
-Q16887380
-Q1021386
-Q15253558
-Q104555
-Q599151
-Q382887
-Q2823610
-Q46737
-Q4402708
-Q3620816
-Q37105
-Q484275
-Q3039511
-Q2142560
-Q2915026
-Q766461
-Q5282724
-Q294199
-Q36602
-Q37136
-Q831663
-Q177239
-Q11574
-Q1190554
-Q732577
-Q10870555
-Q23
-Q11193
-Q43229
-Q1930187
-Q10870555
-Q836925
-Q47035128
-Q605704
-Q12758374
-Q21503252
-Q148
-Q1402561
-Q32518
-Q1724915
-Q102538
-Q11193
-Q25305
-Q25305
-Q499847
-Q178588
-Q159391
-Q16166292
-Q192906
-Q47035128
-Q53537825
-Q148
-Q8646
-Q572927
-Q278368
-Q272051
-Q283202
-Q664609
-Q213441
-Q200535
-Q317949
-Q148
-Q7748
-Q10870555
-Q1101080
-Q3267244
-Q148
-Q211198
-Q5338673
-Q204170
-Q6256
-Q1337
-Q200535
-Q1368
-Q2063826
-Q179651
-Q366
-Q148
-Q382887
-Q199
-Q707125
-Q233591
-Q200538
-Q47519884
-Q148
-Q695793
-Q189833
-Q1342838
-Q11398090
-Q908584
-Q850210
-Q193137
-Q160402
-Q131512
-Q148
-Q32518
-Q11471
-Q1408064
-Q321767
-Q105674
-Q6256
-Q31888506
-Q178146
-Q17641254
-Q1025
-Q37136
-Q321839
-Q621184
-Q177239
-Q188473
-Q1962593
-Q3039511
-Q691543
-Q3711325
-Q233591
-Q200538
-Q7958
-Q148
-Q484275
-Q26256512
-Q36161
-Q177239
-Q214339
-Q4197743
-Q15253558
-Q793638
-Q148
-Q241588
-Q18193
-Q366
-Q42005
-Q6256
-Q26643
-Q37136
-Q174493
-Q104493
-Q2388316
-Q211198
-Q184848
-Q831663
-Q6821213
-Q1637963
-Q44619
-Q7988576
-Q32518
-Q190258
-Q148
-Q366
-Q4697206
-Q86447
-Q304479
-Q10874
-Q7364
-Q16166292
-Q7988576
-Q22687
-Q4116214
-Q49371
-Q57261620
-Q574562
-Q102538
-Q148
-Q528166
-Q88272
-Q148
-Q1337
-Q577
-Q22687
-Q11921529
-Q265777
-Q845956
-Q174834
-Q1058733
-Q317949
-Q1489579
-Q190464
-Q2842797
-Q4917
-Q668
-Q30
-Q1639780
-Q6989196
-Q601401
-Q22670946
-Q247797
-Q794
-Q1016
-Q241
-Q39911
-Q11563
-Q22687
-Q1761451
-Q620591
-Q16021
-Q46737
-Q102014
-Q32518
-Q207942
-Q2988681
-Q2912172
-Q148
-Q7988576
-Q22687
-Q26186900
-Q4697206
-Q334600
+When Xi Jinping became leader of the Chinese Communist party a little more than a year ago, he made the fight against corruption a central theme of his leadership.
+Over the past year China has seen the detention of dozens of top officials on suspicion of financial improprieties. More than 180,000 people have been punished for corruption.
+Mr Xi has left little doubt that he believes unchecked graft threatens the future of the Chinese Communist party.
+Yet two events this week raise doubts about how sincere his drive really is.
+First, there is the trial of Xu Zhiyong, a human rights lawyer, which has started in Beijing.
+Mr Xu is part of a loose group of civic activists who are campaigning for rules requiring government officials to disclose their financial assets.
+The demands he is making appear to be perfectly in line with the leadership's anti-corruption drive.
+But he is now on trial for “gathering crowds to disrupt public order” – suggesting that Mr Xi's campaign has its limits.
+The second event was publication of a report by a Washington- based organisation called the International Consortium of Investigative Journalists.
+The report claims that more than a dozen family members of China's top political and military leaders are making use of offshore companies based in the British Virgin Islands.
+Financial records received by the ICIJ reveal that more than 21,000 mainland Chinese and Hong Kong residents have used offshore tax havens in the Caribbean to store their wealth.
+It is unclear how much of this activity is illegal under Chinese law.
+But the report is a reminder that the Chinese public has been left largely in the dark about how their country's elite has amassed its wealth – and where its money is deposited.
+The scale of corruption among Chinese officials is undoubtedly one of the biggest threats to the Communist party's long-term survival.
+China's rapid economic growth is creating internal tensions because of widening income differentials.
+If the popular perception grows that Chinese leaders are spending more time lining their own pockets than running the country effectively, then political unrest will surely follow.
+We should not dismiss the way Mr Xi is trying to deal with the problem.
+After all, there are limits to how quickly he can act.
+If he allows the anti-corruption drive to gather pace at uncontrolled speed, he may undermine the Communist party completely.
+This may explain why the Chinese leadership wants to set limits to the role played by activists such as Mr Xu.
+Still, the Chinese middle class is weary of the corruption and backhanders that have plagued the country's commerce.
+Mr Xi runs the risk of alienating the public unless he demonstrates that the anti-corruption campaign is waged with a minimum of fear or favour.
+In the meantime, western financial and corporate leaders need to realise that Chinese corruption is not an issue to which they can turn a blind eye, either.
+This is because the ICIJ suggests that western banks and accountancy firms have acted as middlemen in the establishment of offshore companies for Chinese clients.
+There is still much we do not know about the offshore investments by the Chinese elite.
+But over recent years, several banks have fallen foul of international authorities because of their support for illegal activities.
+In 2012 HSBC was fined $1.92bn by US regulators after illegally conducting transactions on behalf of customers in Iran, Libya and Cuba.
+A decade ago a number of European banks were embarrassed when it emerged that they were handling billions of dollars of assets linked to the former Nigerian leader Sani Abacha.
+Whatever the challenges of doing business with China may be, western banks should make sure that they are not fuelling corrupt practices.

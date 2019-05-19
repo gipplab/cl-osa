@@ -1,272 +1,43 @@
-Q493981
-Q11471
-Q192630
-Q38712
-Q5151
-Q32518
-Q830393
-Q134556
-Q8142
-Q16172260
-Q188473
-Q6468673
-Q2842797
-Q8171
-Q1121708
-Q4153227
-Q81009
-Q9510
-Q16502
-Q16502
-Q82794
-Q44619
-Q1347367
-Q7275
-Q906066
-Q3196867
-Q12887025
-Q170409
-Q1604733
-Q37654
-Q9418
-Q591707
-Q4877042
-Q104493
-Q767133
-Q134556
-Q8142
-Q178146
-Q570
-Q21170479
-Q8142
-Q11500
-Q842206
-Q542869
-Q187021
-Q1156854
-Q806737
-Q24759380
-Q584496
-Q166231
-Q22687
-Q22687
-Q3064135
-Q6055890
-Q4198163
-Q25392373
-Q8901
-Q27865861
-Q631425
-Q1003136
-Q5306030
-Q4133551
-Q133792
-Q322481
-Q3435731
-Q219858
-Q182076
-Q843478
-Q179651
-Q152810
-Q16502
-Q16502
-Q176494
-Q127418
-Q7577264
-Q381072
-Q557828
-Q4916
-Q82604
-Q18037037
-Q334600
-Q17955
-Q49371
-Q381072
-Q40139189
-Q4697206
-Q1650142
-Q189756
-Q4877042
-Q44946
-Q82955
-Q47035128
-Q603773
-Q17285911
-Q4916
-Q11471
-Q49371
-Q178790
-Q577
-Q14536140
-Q11366
-Q21255921
-Q733541
-Q767133
-Q157165
-Q157470
-Q6266
-Q37489299
-Q1403517
-Q19426
-Q93288
-Q26643
-Q46
-Q24234163
-Q203066
-Q40867
-Q577
-Q133346
-Q7429143
-Q25235
-Q1377846
-Q4916
-Q1101080
-Q104493
-Q381072
-Q4697206
-Q18340078
-Q160151
-Q1341429
-Q557828
-Q189114
-Q82955
-Q8043
-Q29822052
-Q468455
-Q5754843
-Q130
-Q8502
-Q16502
-Q16502
-Q1879813
-Q2988681
-Q37654
-Q1751574
-Q381072
-Q520952
-Q584496
-Q1137437
-Q650241
-Q178706
-Q34302
-Q7188
-Q1530061
-Q17641254
-Q129302
-Q37654
-Q4116378
-Q5655097
-Q1368
-Q14748
-Q17641254
-Q278368
-Q259397
-Q1593696
-Q884353
-Q520952
-Q10940
-Q160151
-Q1954125
-Q11693
-Q86447
-Q584496
-Q146505
-Q736288
-Q198976
-Q1436482
-Q884353
-Q1368
-Q51597
-Q381072
-Q304479
-Q8901
-Q55082364
-Q2307054
-Q733541
-Q8901
-Q47169504
-Q46834
-Q196878
-Q584496
-Q540626
-Q37654
-Q172964
-Q11693
-Q160151
-Q15290
-Q21255605
-Q36949023
-Q34442
-Q517596
-Q199
-Q36949023
-Q258127
-Q22687
-Q8901
-Q23835475
-Q43015
-Q17502905
-Q1650142
-Q7860
-Q2141565
-Q104555
-Q32518
-Q188473
-Q44602
-Q381072
-Q11471
-Q1344851
-Q1366722
-Q37654
-Q26256512
-Q1101080
-Q2298569
-Q4006
-Q2151613
-Q61509
-Q26186900
-Q61509
-Q23387
-Q46337
-Q183
-Q61061
-Q567
-Q121842
-Q32
-Q30461
-Q329
-Q529711
-Q6505497
-Q47035128
-Q903517
-Q611203
-Q177911
-Q11193
-Q381072
-Q152005
-Q6266
-Q17573263
-Q611203
-Q190258
-Q1801985
-Q199
-Q196431
-Q190507
-Q2814650
-Q774228
-Q210947
-Q6256
-Q183
-Q142
-Q32518
-Q386724
-Q12136
-Q15290
-Q1156854
-Q178790
-Q47519884
-Q379825
-Q26256512
-Q732833
-Q7502926
-Q19033
+Time and time again over the past 18 months, European leaders have pledged to do “whatever it takes” to preserve the single currency.
+Just as often their subsequent actions, or lack of them, have belied these fine words.
+The failure to fill in the gap between rhetoric and reality has taken the eurozone, and the world, to a perilous place.
+Fear about the ability of states to service their debts has become self-reinforcing.
+Absent a radical shift in market psychology, the very core of the eurozone is at risk.
+The break-up of the single currency, once dismissed as unthinkable, is now openly spoken of as a possibility.
+In a currency area where the money supply has been collectivised but fiscal policy and banking systems remain national, sovereign fragility has infected the banks.
+Across much of the eurozone, banks are both undercapitalised and facing a growing funding shortfall, making them unhealthily dependent on costly funds from the European Central Bank.
+This vulnerability is forcing them to pull money back from around the globe.
+Such is the size of the European banking sector that credit rationing on this scale could tip the world back into recession.
+Much ink has been spilt since the crisis started on the inadequacies of the euro's design, and its mismanagement in practice.
+Many of these criticisms are valid and must be acted on when the crisis has been overcome.
+But they are not the most pressing questions now.
+We are at a point where politicians must do more than talk about their commitment to the euro.
+It is time to act.
+Repairing monetary union will take years of effort.
+But the alternative is worse.
+The economic consequences of a break-up would be staggering both for creditor and debtor nations.
+Huge uncertainty about the value of any outstanding euro-denominated contracts could paralyse commerce within Europe and beyond.
+Political relations would be poisoned for years.
+It borders on hysterical to say there are but hours to save the euro, but there is a risk that if the crisis is not now tamed the price of a rescue might start to spiral out of politicians' grasp.
+The stakes are therefore very high at Friday's summit.
+The world cannot afford another half-baked solution.
+The overwhelming challenge is to stabilise markets – preventing a refinancing crisis for a large European sovereign, and putting the solvency of systemic financial institutions beyond doubt.
+So badly have European governments undermined their own credibility that the only way to shock markets back to confidence is by putting hard money on the table.
+The straightforward way would be to use the European Financial Stability Facility to the hilt.
+The EFSF would raise a large warchest to support the prices of new bonds issued by any sovereign that is solvent, at the lowest rates it can afford to charge.
+The worry is that the EFSF may not now be able to raise enough money to stop the rot.
+Given the urgency of the crisis, therefore, it may be necessary to turn to the ECB for assistance.
+The Financial Times remains very uncomfortable about the legality and political consequences of the ECB exposing as much of its balance sheet to the sovereign debt market as it takes to keep bond prices up for good.
+It would be better if its involvement were routed through less contentious mechanisms.
+One would involve turning the EFSF into a bank which the ECB would then help to finance.
+But given the pressing nature of the situation, nothing can be ruled out.
+The eurozone's leaders must act fast to stabilise the crisis.
+But they have more time to consider the final destination.
+What the markets want is a road map – an indication of the direction of travel and assurance that there is the political will to make the journey.
+This week's declaration from the German chancellor, Angela Merkel, and the French president, Nicolas Sarkozy, was an unpromising start.
+What they laid out was little more than a stability plan on steroids, based on a misdiagnosis of the crisis that divides the eurozone into nations that are fiscally virtuous and those deemed to be profligate “sinners”.
+A politically sustainable plan needs a more imaginative approach, and one that holds out the hope of rebalancing within the eurozone, not just an endless vista of austerity.
+It also requires the input of all eurozone countries, and not just Germany and France.
+What is important is that leaders create the political conditions for good policy.
+Monetary union can only survive if all of its members want it to.
+They must decide on this now – and show they mean it.

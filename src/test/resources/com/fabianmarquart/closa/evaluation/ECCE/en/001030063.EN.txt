@@ -1,154 +1,20 @@
-Q102538
-Q625303
-Q7188
-Q7492880
-Q104555
-Q612
-Q188613
-Q1187312
-Q189898
-Q3196867
-Q1060209
-Q618532
-Q191704
-Q4917
-Q3196867
-Q104555
-Q133442
-Q614467
-Q206361
-Q567303
-Q23387
-Q1060209
-Q26256512
-Q1426138
-Q3196867
-Q47035128
-Q381072
-Q612
-Q3123740
-Q57655
-Q9458
-Q806805
-Q42909
-Q845956
-Q557880
-Q16751793
-Q1246207
-Q240673
-Q281782
-Q612
-Q4917
-Q38526
-Q38526
-Q189898
-Q3196867
-Q5754843
-Q557880
-Q621695
-Q46744
-Q7310741
-Q612
-Q178706
-Q172964
-Q28119567
-Q851
-Q21503252
-Q878
-Q878
-Q306484
-Q38348
-Q612
-Q7275
-Q178706
-Q270791
-Q48422
-Q618532
-Q102538
-Q1392182
-Q937228
-Q28455008
-Q37105
-Q7275
-Q306484
-Q450
-Q57655
-Q9458
-Q188572
-Q54246577
-Q7310741
-Q23835475
-Q612
-Q891723
-Q102538
-Q25702570
-Q179057
-Q557880
-Q24247591
-Q7275
-Q1962593
-Q34394
-Q1060209
-Q8035322
-Q7275
-Q732833
-Q3196867
-Q26186900
-Q1150070
-Q557880
-Q2144456
-Q162351
-Q7275
-Q16502
-Q16502
-Q11189951
-Q281782
-Q1060209
-Q37004935
-Q212900
-Q990817
-Q189898
-Q4877042
-Q2979
-Q665184
-Q102538
-Q612
-Q1640172
-Q48302094
-Q160151
-Q1071233
-Q478594
-Q1519
-Q189898
-Q1962593
-Q24247591
-Q1510380
-Q612
-Q612
-Q260899
-Q1066984
-Q23595
-Q11464
-Q103808
-Q41176
-Q121359
-Q193946
-Q4697206
-Q45701
-Q612
-Q190258
-Q7958
-Q3123740
-Q557880
-Q192906
-Q179651
-Q3196867
-Q192276
-Q18122778
-Q850210
-Q7930989
-Q21073034
-Q473750
-Q159810
-Q174493
-Q49005
+""This company is independent of the government.""
+Sheikh Mohammed bin Rashid al-Maktoum, the ruler of Dubai, tetchily confirmed yesterday that his emirate will not guarantee the debts of Dubai World, the publicly owned local conglomerate now struggling with $59bn of debt.
+The hereditary ruler of the city-state also brushed aside concerns that the announcement last week that Dubai World wanted to delay the repayment of some of its debt indicated a greater crisis for Dubai itself.
+Sheikh Mohammed told reporters that international investors ""do not understand anything"".
+That may be true.
+The cost of insuring against a default by Dubai — now $56,931 to insure a million dollars of the emirate's debt — could be too high.
+Investors, however, cannot be blamed for not understanding the relationships between Dubai's institutions that are, whether intentionally or not, kept blurry and ambiguous.
+As in Saudi Arabia and the other members of the United Arab Emirates, there is no clear division in Dubai between state institutions, parastatal bodies, publicly owned companies and royal property.
+The line between the state and the state-owned, so clear in the mind of Sheikh Mohammed, is in fact ill-defined.
+This murky relationship helped Dubai's public companies to borrow cheaply during the boom: many investors assumed they enjoyed a state guarantee.
+Having allowed a belief in state-backing for Dubai World to become entrenched, the state's decision not to guarantee its debts therefore looked like reneging.
+It would make a salutory change for investors without formal guarantees not to be bailed out by a state.
+The world could absorb it: default by Dubai World would not be an Arabian Lehman Brothers.
+Legally, moreover, the emirate is at liberty to refuse to backstop the company.
+Dubai would, however, pay a heavy price in terms of reputation.
+So, too, would Abu Dhabi: the oil-rich emirate had allowed it to be assumed that it stood squarely behind Dubai.
+This would be regrettable.
+Dubai has a shot at being a serious financial centre: it ploughed much of its borrowings into building world-class infrastructure and has a still-viable entrepôt model.
+If that is not to be wasted, Dubai needs, at the very least, to explain itself to its investors, reveal the scale of its debts and measure realistically its likely revenues.
+This would be painful, but a city that aspires to be a hub in a global economy cannot be run from behind a curtain.

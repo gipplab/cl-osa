@@ -1,237 +1,33 @@
-Q202
-Q577
-Q381072
-Q173253
-Q485446
-Q29950338
-Q171318
-Q43059
-Q5119
-Q178648
-Q7188
-Q103808
-Q240673
-Q1150070
-Q27
-Q207326
-Q381072
-Q2383321
-Q1761
-Q11693
-Q38582
-Q58093
-Q23387
-Q177923
-Q1341429
-Q1371819
-Q1383865
-Q9142
-Q7188
-Q884353
-Q4917
-Q668
-Q736288
-Q58093
-Q27942639
-Q652
-Q11693
-Q4402708
-Q6256
-Q436048
-Q103808
-Q240673
-Q851662
-Q207988
-Q7907894
-Q35221
-Q11332268
-Q1604733
-Q17641254
-Q37654
-Q294460
-Q8901
-Q30461
-Q1144504
-Q1489579
-Q1377846
-Q4916
-Q13582404
-Q767133
-Q134556
-Q8142
-Q3030513
-Q557880
-Q14536140
-Q26186900
-Q6256
-Q29
-Q27
-Q159810
-Q16502
-Q5754843
-Q1827667
-Q209190
-Q2383321
-Q29950338
-Q1193004
-Q11693
-Q29485
-Q20665666
-Q817765
-Q444184
-Q362347
-Q41171
-Q2872553
-Q36977
-Q58093
-Q176494
-Q336751
-Q205663
-Q126
-Q160151
-Q1421509
-Q11187775
-Q58093
-Q577
-Q131427
-Q160151
-Q333495
-Q58093
-Q36977
-Q5151
-Q125
-Q178354
-Q17573152
-Q35865
-Q1314
-Q161081
-Q240673
-Q12335479
-Q7188
-Q1640172
-Q3196867
-Q16515105
-Q333495
-Q103808
-Q240673
-Q1193004
-Q4340119
-Q7188
-Q190258
-Q278368
-Q47694
-Q41263
-Q906066
-Q12695
-Q3196867
-Q37654
-Q39552
-Q176494
-Q1101080
-Q104493
-Q1156854
-Q5151
-Q41273
-Q41176
-Q3620816
-Q200473
-Q20665666
-Q210523
-Q108874
-Q795052
-Q1646605
-Q7275
-Q603773
-Q159810
-Q142
-Q38
-Q26186900
-Q247792
-Q34581
-Q37654
-Q211198
-Q55082364
-Q5754843
-Q1003136
-Q8161
-Q2912172
-Q183
-Q193946
-Q48942
-Q18193
-Q763681
-Q93288
-Q212101
-Q29552
-Q213654
-Q29552
-Q728944
-Q3289701
-Q732833
-Q1413228
-Q185836
-Q327055
-Q207988
-Q3039511
-Q26186900
-Q3435731
-Q219858
-Q1638980
-Q16120406
-Q1120307
-Q1205349
-Q22687
-Q1121708
-Q231823
-Q5470205
-Q3435731
-Q178790
-Q169737
-Q584496
-Q26726369
-Q262246
-Q24083211
-Q27862016
-Q8901
-Q27865861
-Q35865
-Q3109743
-Q8901
-Q200
-Q58093
-Q170212
-Q4358176
-Q23387
-Q37223985
-Q7502926
-Q12335479
-Q1954125
-Q1827667
-Q3435731
-Q219858
-Q1751574
-Q362482
-Q46
-Q227552
-Q1954125
-Q1954125
-Q60918
-Q577
-Q104493
-Q58917
-Q239
-Q5754843
-Q38118608
-Q444184
-Q774228
-Q29415466
-Q1801985
-Q103808
-Q240673
-Q178648
-Q7188
-Q1314
-Q16120406
-Q1342838
-Q1514415
-Q1542661
+Four years into the crisis, a sense of cautious optimism has returned to the eurozone.
+After a relative drought, capital is flowing back to peripheral governments, allowing their borrowing costs to tumble.
+This change of sentiment is most visible in Ireland.
+At the peak of the crisis, the yield on Dublin's 10-year bonds soared to 14 per cent.
+This week, in the first auction since its rescue programme exit, the Irish government raised €3.75bn at a rate of just 3.54 per cent.
+Spanish and Italian bonds are also back in demand – the countries' borrowing costs are down to 2010 levels.
+The reversal reflects a fundamental shift in the way markets have come to perceive the eurozone.
+Since Mario Draghi, European Central Bank president, vowed in 2012 to do “whatever it takes” to save the euro, the danger of a break-up of the single currency has all but disappeared.
+Investors are also encouraged by the efforts made by some countries – most notably Spain and Ireland – to improve the external competitiveness of their economies.
+In a world of high liquidity and low yields, the reasonable returns offered by the bonds of the eurozone periphery are attractive.
+It would be wrong, however, to conclude that the eurozone is on an irreversible path to recovery.
+Output is tentatively picking up but unemployment is stuck above 12 per cent.
+The recession has triggered a dangerous process of disinflation.
+In December, prices were a mere 0.8 per cent higher compared with a year earlier.
+With producer prices falling by 1.2 per cent in the 12 months to November, there is little reason to believe inflation will accelerate soon.
+Were the eurozone to fall into outright deflation, the costs could be huge: for example, it would become much harder for governments to pay back their debts.
+Amid these economic difficulties, falling borrowing costs offer some respite.
+Governments need to use a smaller proportion of their budgets to service the national debt.
+But as market pressures recede, there is a risk that eurozone policy makers once again become complacent.
+Already, over the past few months, the momentum behind building a more prosperous eurozone appears to have petered out.
+Such bleak conclusions stem from what is happening in individual member states.
+For all the talk of making their economies more competitive, France and Italy have made little progress towards unshackling their labour markets.
+Public spending remains too high, forcing extortionary taxes on to businesses.
+Even in Germany, the model pupil in the European class, the coalition agreement between the Social Democrats and the Christian Democrats includes several backward steps, starting with a decision to lower the retirement age for some workers.
+At the pan-European level, the drive to make the banking sector stronger has also slackened.
+The absence of a credible common backstop to handle bank failures undermines the ultimate purpose of forming a banking union: breaking the lethal embrace between sovereigns and lenders.
+There are even signs of complacency within the stronghold of the European Central Bank.
+Inflation has dipped well below the ECB's 2 per cent target.
+Yet the governing council is unlikely to take any expansionary move when it meets this week.
+Mr Draghi should show more urgency, extending for example new liquidity to the banking sector via a fixed-rate longer-term refinancing operation.
+As Europe prepares for a new parliament and a new commission this year, the risk of drift – particularly in Brussels – is high.
+But securing a sustainable recovery requires a more active approach than merely watching the borrowing costs of peripheral governments fall.
+In the absence of growth, even this benign trend could easily be reversed.

@@ -1,175 +1,23 @@
-Q6527
-Q741248
-Q1020994
-Q11402
-Q1050390
-Q23404
-Q40763
-Q179352
-Q35120
-Q4697206
-Q3566043
-Q483372
-Q1003136
-Q157165
-Q262246
-Q1121708
-Q584496
-Q3196867
-Q481609
-Q34302
-Q29815021
-Q584496
-Q182076
-Q281782
-Q656083
-Q37654
-Q32518
-Q3196867
-Q381072
-Q21255921
-Q327496
-Q1524
-Q8043
-Q2648051
-Q82604
-Q830393
-Q21262209
-Q1763329
-Q584496
-Q281782
-Q3196867
-Q179076
-Q11185
-Q7295719
-Q7430019
-Q1773152
-Q32518
-Q578508
-Q5655097
-Q1717246
-Q182076
-Q1190554
-Q16980630
-Q7653826
-Q719645
-Q3196867
-Q1640172
-Q17641254
-Q1666962
-Q23596314
-Q336751
-Q3247534
-Q3196867
-Q656083
-Q28389
-Q11693
-Q8043
-Q19426
-Q2114394
-Q2995644
-Q23596314
-Q235779
-Q1121708
-Q5375780
-Q178354
-Q3566043
-Q5655097
-Q22687
-Q32032
-Q1308239
-Q23596314
-Q2251595
-Q22687
-Q8043
-Q271960
-Q178648
-Q3196867
-Q1403016
-Q6055890
-Q37654
-Q105674
-Q235779
-Q20204892
-Q5655097
-Q1717246
-Q23596314
-Q3196867
-Q22085061
-Q44619
-Q23596314
-Q7429143
-Q29
-Q38
-Q1640172
-Q5025838
-Q44619
-Q4877042
-Q1139344
-Q2383321
-Q1555066
-Q1308239
-Q23596314
-Q2251595
-Q621695
-Q578508
-Q213426
-Q381072
-Q23596314
-Q134566
-Q29817121
-Q32032
-Q271960
-Q584496
-Q974
-Q4917
-Q616601
-Q1524
-Q8043
-Q4917
-Q3196867
-Q44946
-Q23596314
-Q1643184
-Q1604733
-Q104493
-Q26256512
-Q3306907
-Q22687
-Q306484
-Q32518
-Q26256512
-Q177239
-Q5420776
-Q315364
-Q104493
-Q37043294
-Q32518
-Q2154246
-Q3710
-Q29415466
-Q1060330
-Q584496
-Q974
-Q557880
-Q1395219
-Q611203
-Q278368
-Q1341429
-Q25392373
-Q43183
-Q584496
-Q3196867
-Q30230067
-Q11287
-Q37654
-Q2388316
-Q211198
-Q2383321
-Q3196867
-Q656083
-Q17768966
-Q37654
-Q23596314
-Q37654
-Q2383321
+Jean-Jacques Rousseau's assertion that citizens must be forced to be free has been characterised as a seed of tyranny.
+Things are not so bad with the eurozone's own Rousseauvian paradox: forcing creditors voluntarily to sign up for losses on Greek sovereign debt.
+The damage is still significant.
+By putting in doubt the viability of the sovereign credit default swap market, leaders are making the debt crisis worse.
+The “haircut” on Athens' obligations was designed so as to preserve the eurozone's (unnecessary) conceit that none of its sovereigns could default.
+It was naive to think a distressed debt exchange could ever escape a rating downgrade.
+But by insisting that bondholders participate “voluntarily”, leaders try hard to avoid a “credit event” – a ruling by the International Swaps and Derivatives Association that CDS on Greek debt are to pay out.
+They seem to have got their way: ISDA indicates that CDS will not be triggered by a voluntary debt swap, even if it writes the bonds' values down by half.
+As a result, CDS have become less credible hedges against losses.
+There is no end to reasons why this is bad.
+Although it is hard to know for sure, it seems that European banks are net buyers of CDS protection, not issuers of it.
+When banks' exposure to peripheral debt is threatening a cardiac arrest in the funding market, running roughshod through their hedges simply weakens them further.
+It also contributes to contagion.
+By working so hard to avoid CDS paying out on Greek debt, policymakers sow fear about whether CDS on, say, Spain or Italy would pay out if it came to it.
+This fear is at least partly behind the recent rise in yields across the eurozone.
+The only rationale for punishing buyers of CDS protection is the blame policymakers unjustifiably try to pin on them for the crisis.
+As it happens, CDS balances are tiny: net exposures to Greek sovereign CDS are €3bn, a trifle next to Athens' €350bn of debt.
+The deeper point is that CDS help to shift risk to those who want it and away from those, such as banks, who should stay clear.
+Inexplicably, leaders want to limit rather than expand this transfer of risk.
+Worst of all, these leaders are shooting themselves in the foot.
+Their active subversion of sovereign CDS must be feeding investor scepticism of their plan to use the eurozone rescue fund for insurance of troubled sovereign debt.
+It is possible to exploit markets for the public benefit – as with a Greek debt swap to capture market discounts.
+But subverting the CDS market altogether benefits no one.

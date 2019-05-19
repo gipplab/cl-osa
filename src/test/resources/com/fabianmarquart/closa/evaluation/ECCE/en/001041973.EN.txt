@@ -1,156 +1,18 @@
-Q107711
-Q41176
-Q133235
-Q6501338
-Q1640172
-Q235544
-Q128751
-Q168983
-Q9420
-Q40719727
-Q51134
-Q1345691
-Q650241
-Q178706
-Q134574
-Q16021
-Q46
-Q859031
-Q1058733
-Q283976
-Q7988576
-Q22687
-Q865422
-Q520952
-Q46
-Q806737
-Q5306030
-Q5119
-Q658255
-Q14536140
-Q1741
-Q660064
-Q5375780
-Q114380
-Q381072
-Q36784
-Q1717246
-Q650711
-Q830393
-Q1120307
-Q8142
-Q104493
-Q47035128
-Q911679
-Q4916
-Q381072
-Q47521
-Q806737
-Q1986893
-Q48742266
-Q11471
-Q37144
-Q621184
-Q4697206
-Q199
-Q7988576
-Q22687
-Q24759380
-Q29415466
-Q36784
-Q46
-Q806737
-Q5375780
-Q21262209
-Q1851760
-Q7988576
-Q3039511
-Q721931
-Q46737
-Q3057620
-Q5119
-Q809926
-Q201
-Q774228
-Q51134
-Q36784
-Q22687
-Q23759131
-Q29834548
-Q48302094
-Q12029
-Q6055890
-Q7566
-Q14536140
-Q2843407
-Q750458
-Q37654
-Q10940
-Q40719727
-Q4809
-Q21255921
-Q806737
-Q6256
-Q865422
-Q46
-Q22687
-Q26726369
-Q12335479
-Q11175
-Q38701
-Q36784
-Q178706
-Q6256
-Q28
-Q1156854
-Q5306030
-Q159810
-Q11471
-Q690194
-Q633403
-Q911679
-Q694268
-Q744865
-Q1383865
-Q481609
-Q7566
-Q22687
-Q42090655
-Q6256
-Q190258
-Q1717246
-Q49371
-Q7988576
-Q1639780
-Q193840
-Q159810
-Q192957
-Q684
-Q178564
-Q327055
-Q14536140
-Q36784
-Q3435731
-Q219858
-Q190258
-Q21255605
-Q18193
-Q381136
-Q623429
-Q23835475
-Q827451
-Q468455
-Q19020713
-Q46
-Q621184
-Q7988576
-Q46
-Q806737
-Q11461
-Q46
-Q107711
-Q178354
-Q327055
-Q6865248
-Q104493
-Q504481
+Every firefighter knows that when a building is burning, as much attention must be paid to preventing the flames from spreading as to tackling the source of the blaze.
+That was the thinking in early 2009 when international financial institutions pumped billions into central and eastern Europe in stimulus and financial support.
+In return, the western European banks that control large chunks of emerging Europe's banking system pledged not to pull capital from their regional subsidiaries, in a co-ordinated effort known as the Vienna Initiative.
+In the end, a systemic financial crisis in the region was avoided.
+Now, as the eurozone fights to preserve its common currency, the risk is greater than ever that sparks from the euro crisis could burn the banking systems of its eastern European neighbours.
+This time round the problem is not one of ensuring that western banks remain active in the region. It is instead to ensure that emerging Europe's still fragile banking system does not end up the unnecessary victim of a frantic western drive to shed assets and bolster capital ahead of more stringent Basel III requirements.
+Since 2009, the region's banks have begun to lessen their heavy dependence on funding from foreign parents.
+However, efforts to develop local capital markets to support domestic lending are still at early stages.
+Worse, the banking systems in many countries are controlled by some of Europe's weakest banks.
+Greek lenders, for example, control 15 of the region's systemic institutions.
+Meanwhile, countries such as Hungary have through ill-advised policies weakened the pull of their economies.
+In uncertain times, any suggestion of weakness could spark a collective rush for the exit that would damage the parent bank and host country.
+Co-ordination is needed to prevent unilateral acts by western regulators that would suffocate still-growing economies, or knee-jerk reaction in the east such as unwarranted nationalisation.
+Co-ordination will only work, however, if the efforts are backed by fire-power.
+The region's banking sector sorely needs a better class of shareholder.
+The European Bank for Reconstruction and Development can help by taking equity stakes.
+Ultimately, though, emerging Europe's problems will be resolved only when western Europe's banking system is sound.
+Until then, Europe's firefighters have every reason to work together to minimise the risk of a dangerous backdraft.

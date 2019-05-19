@@ -1,199 +1,29 @@
-Q557880
-Q192630
-Q23387
-Q30
-Q30
-Q192581
-Q10870555
-Q493615
-Q40719766
-Q30
-Q30
-Q444184
-Q2995644
-Q175331
-Q909380
-Q20861252
-Q283
-Q129
-Q334747
-Q201
-Q724178
-Q8146
-Q1314
-Q236740
-Q51134
-Q21255605
-Q1362683
-Q1412049
-Q34581
-Q37654
-Q32043
-Q192581
-Q119
-Q44619
-Q21255975
-Q37105
-Q192630
-Q36977
-Q5151
-Q159810
-Q32043
-Q192581
-Q5151
-Q41171
-Q1143561
-Q724178
-Q58093
-Q5
-Q192581
-Q37654
-Q262246
-Q605035
-Q633403
-Q37654
-Q1060285
-Q30
-Q909380
-Q30
-Q30
-Q444184
-Q5780945
-Q320553
-Q211198
-Q30
-Q82955
-Q779970
-Q159810
-Q11563
-Q7188
-Q192581
-Q591763
-Q219858
-Q47035128
-Q131207
-Q126473
-Q201795
-Q53536
-Q140686
-Q13109234
-Q15290
-Q38926
-Q21255975
-Q34581
-Q37654
-Q26256512
-Q21087400
-Q53536
-Q200
-Q23387
-Q600134
-Q179651
-Q46737
-Q1369832
-Q1155772
-Q3133
-Q220869
-Q444184
-Q3620816
-Q30
-Q30
-Q145
-Q7260944
-Q721834
-Q436048
-Q184848
-Q55638
-Q219858
-Q1139344
-Q119
-Q118
-Q329637
-Q362347
-Q5420776
-Q11471
-Q124
-Q46
-Q183
-Q93301
-Q41273
-Q487965
-Q739302
-Q118
-Q1139344
-Q58093
-Q47035128
-Q485178
-Q1362683
-Q17643783
-Q26487354
-Q21
-Q8901
-Q27865861
-Q23387
-Q172964
-Q178476
-Q1156854
-Q196431
-Q8901
-Q732833
-Q192276
-Q182076
-Q24245823
-Q6881511
-Q6256
-Q29
-Q38
-Q29485
-Q1362683
-Q11187553
-Q58093
-Q577
-Q35865
-Q11175
-Q8901
-Q278368
-Q39546
-Q23835475
-Q2568341
-Q1342838
-Q294460
-Q8901
-Q30461
-Q26256512
-Q82955
-Q16751793
-Q17
-Q66344
-Q22687
-Q1471749
-Q656656
-Q7188
-Q557880
-Q4393174
-Q132911
-Q1342838
-Q132345
-Q14212
-Q83307
-Q190258
-Q29485
-Q1371925
-Q2046602
-Q900406
-Q23387
-Q37654
-Q21981209
-Q21170479
-Q1827667
-Q3975
-Q1058733
-Q21255921
-Q1383865
-Q14767
-Q806798
-Q1156854
-Q40719727
-Q381072
-Q11471
-Q3289701
+Investors spent much of the past week fretting that the US jobs report would mark the end of the US recovery.
+As a result, the recent rally in global stocks lost steam.
+On Thursday, the dollar slid by 3 per cent against the yen, the sharpest one-day fall since July 2009.
+However, better than expected figures – the labour market added 175,000 jobs in May – soothed these fears.
+The improvement was in line with the past 12 months, when the economy added 172,000 jobs per month.
+Unemployment ticked up – from 7.5 per cent to 7.6 per cent – but this is because more people are coming back into the jobs market, a sign of strength, not weakness.
+Markets celebrated the lucky escape, with both US and European stocks moving upwards.
+The US recovery may be tepid, but it is not suffering too much from the indiscriminate cuts in public spending, also known as sequestration, that US politicians have imposed on the economy.
+While the number of government jobs shrank, the private sector more than made up for the contraction.
+Ben Bernanke, Federal Reserve chairman, will welcome the good news.
+But the “substantial improvement” in the labour market that he wants before slowing down quantitative easing is still not there.
+When the Fed meets in two weeks, it should stay the course rather than scale back its asset purchase scheme.
+Some green shoots of recovery have appeared beyond the US too.
+In the UK, the forward-looking purchasing managers' index for the services sector rose to 54.9 in May, up from 52.9 in April.
+Construction output also expanded for the first time since last October.
+Even in crisis-hit Europe, the German locomotive has regained some of its momentum.
+Industrial production in April rose by 1.8 per cent month-on-month, which was more than analysts expected.
+The Bank of England and the European Central Bank this week chose to keep monetary policy on hold.
+The ECB also decided to back off from unorthodox measures to get credit flowing to small and medium-sized enterprises in countries such as Spain and Italy.
+This was a mistake.
+The eurozone is still expected to shrink by 0.6 per cent this year.
+With inflation under control, the ECB should use both conventional and unconventional tools to help revive growth.
+Mario Draghi, ECB president, wants politicians to do their part.
+This is true everywhere – not just in the eurozone.
+In Japan, where the central bank has been particularly bold in opening the monetary taps, the government still has to convince investors that it can deliver the supply-side overhaul necessary to lift growth.
+Shinzo Abe, prime minister, needs to prove the sceptics wrong when he announces a package of reforms next week.
+Yet, with markets jittery about the possibility of evaporating liquidity, the case for less support – or, even worse, exit – is flimsy.
+Central bankers have been the most effective policy makers since the beginning of the crisis.
+This is not the time for them to step back.

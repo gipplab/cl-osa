@@ -1,161 +1,22 @@
-Q1920566
-Q185142
-Q211198
-Q23387
-Q11692
-Q213660
-Q2912172
-Q2715623
-Q54902132
-Q102538
-Q37654
-Q425951
-Q573
-Q42317
-Q11471
-Q850210
-Q185142
-Q784022
-Q148
-Q2715623
-Q54902132
-Q102538
-Q378408
-Q852662
-Q997419
-Q37413
-Q11471
-Q850210
-Q2267334
-Q37654
-Q11692
-Q380
-Q29834567
-Q1081889
-Q1055293
-Q179057
-Q557880
-Q11921529
-Q1851760
-Q12136
-Q5119
-Q16738024
-Q15290
-Q319845
-Q22687
-Q26911
-Q577714
-Q203994
-Q4697206
-Q30230067
-Q1208937
-Q2715623
-Q141488
-Q2912172
-Q749311
-Q43637
-Q5
-Q26256512
-Q278368
-Q2715623
-Q141488
-Q174320
-Q11348
-Q19033
-Q178697
-Q283976
-Q2125243
-Q1403517
-Q815823
-Q193946
-Q104493
-Q11016
-Q4686406
-Q26186900
-Q756115
-Q11692
-Q304479
-Q56404686
-Q37654
-Q1424605
-Q2413271
-Q49642078
-Q93586
-Q2715623
-Q141488
-Q1954125
-Q381136
-Q230788
-Q1931555
-Q189760
-Q780687
-Q557880
-Q926230
-Q205011
-Q827451
-Q174984
-Q207326
-Q476115
-Q827451
-Q179057
-Q907344
-Q23258835
-Q557880
-Q199
-Q1920566
-Q66344
-Q22687
-Q8043
-Q178476
-Q1156854
-Q3435731
-Q381072
-Q82604
-Q2165551
-Q7336262
-Q11284504
-Q489544
-Q286583
-Q283976
-Q2063826
-Q595597
-Q557880
-Q304479
-Q827451
-Q190507
-Q1413646
-Q283976
-Q345367
-Q54902132
-Q597663
-Q224530
-Q18560095
-Q75794
-Q1671968
-Q707125
-Q18122778
-Q43015
-Q827451
-Q3196867
-Q185935
-Q1148384
-Q1266169
-Q102538
-Q41318944
-Q5119
-Q24245823
-Q179651
-Q199
-Q35120
-Q32518
-Q1571747
-Q11471
-Q1436482
-Q107885
-Q216541
-Q5420776
-Q57775948
-Q46834
-Q196878
-Q262246
-Q3151690
+The response to the initial public offering last week of shares in LinkedIn, the business social networking company, was euphoric, with the market capitalisation on the first day approaching 40 times revenues.
+Yet this was modest compared with the earlier IPO of Renren, China's biggest social networking company, where the initial valuation was closer to 100 times revenues.
+In the secondary market, meantime, shares of Facebook and its ilk sell on equally fanciful multiples.
+As in the dotcom boom investors have fallen victim to long-termism, a disease that can be quite as damaging as short-termism to efficient capital allocation – though very good for investment bank profits.
+The comparison with the dotcom euphoria is admittedly inexact.
+It is not possible to have a multitude of social network IPOs because the business tends towards monopoly.
+Few people want to use a less popular social network, though there is scope for related applications.
+That means the dispersion of returns may often be very wide between the stratospheric and the non-existent.
+Along with the uncertainty over business models and the risk that newer technologies may undermine competitive advantage, this makes for extreme volatility in the shares, which is in turn exacerbated by the narrowness of the markets in which they trade.
+The other striking feature of the social network IPOs is that the new shareholders have been granted minimal voting rights.
+Investors are, in effect, buying junk equity, just as they did with the Blackstone IPO that signalled the peak of the private equity boom in 2007.
+Why, you might ask, are investors going overboard?
+One answer is that central banks' loose monetary policies since the banking crisis are designed precisely to stoke up risk appetite.
+The real return on deposits is negative, so investors naturally turn to equity in the hope of a positive return.
+And within the social networking universe there may be spectacular winners.
+Could this incipient bubble pose a systemic threat?
+Probably not, because it is largely financed by equity rather than debt.
+In that, it resembles the dotcom mania, where leverage was largely confined to telecoms companies rather than pure dotcom outfits.
+As yet the misallocation of capital is on a relatively small scale.
+But one thing sometimes leads to another.
+The time to worry will be when the speculation is driven by the expansion of bank balance sheets.
+Not much sign of that today.

@@ -1,200 +1,27 @@
-Q806798
-Q749311
-Q11185
-Q114380
-Q381072
-Q199
-Q28510
-Q4697206
-Q11185
-Q588378
-Q23090331
-Q1640172
-Q218005
-Q1368
-Q283976
-Q557880
-Q27318
-Q381072
-Q37141
-Q650241
-Q178706
-Q327968
-Q47694
-Q1640172
-Q2105346
-Q26911
-Q1459069
-Q181201
-Q1801985
-Q1962593
-Q2191756
-Q13276
-Q11692
-Q703534
-Q381136
-Q7754
-Q7502926
-Q140
-Q11692
-Q7743
-Q806798
-Q18193
-Q1640172
-Q4942650
-Q1640172
-Q557880
-Q5338673
-Q2912172
-Q1058733
-Q317949
-Q853614
-Q19033
-Q241673
-Q58093
-Q841361
-Q279264
-Q58093
-Q577
-Q11692
-Q508295
-Q181201
-Q2509873
-Q38701
-Q724178
-Q203
-Q58093
-Q557880
-Q529711
-Q1638113
-Q26256310
-Q381136
-Q1312
-Q728944
-Q653197
-Q1640172
-Q6107280
-Q1548033
-Q22687
-Q219508
-Q245343
-Q372657
-Q193199
-Q38178665
-Q22687
-Q1742093
-Q1156854
-Q9448
-Q476028
-Q392326
-Q1640172
-Q190139
-Q4503831
-Q38118608
-Q3053783
-Q11348765
-Q5843
-Q190507
-Q304479
-Q643669
-Q850210
-Q1962593
-Q18536342
-Q21503252
-Q1801985
-Q37654
-Q13109234
-Q557880
-Q190258
-Q3568
-Q332340
-Q171318
-Q207988
-Q1640172
-Q11471
-Q806798
-Q8043
-Q2640178
-Q179651
-Q240673
-Q557880
-Q11402
-Q1150070
-Q517966
-Q1640172
-Q611203
-Q23090331
-Q11193
-Q192276
-Q283976
-Q827451
-Q1020013
-Q160151
-Q16868672
-Q381136
-Q283976
-Q806798
-Q104493
-Q22687
-Q8043
-Q283976
-Q46737
-Q192276
-Q35140
-Q1150070
-Q39911
-Q11471
-Q22687
-Q46
-Q24759380
-Q1742093
-Q1156854
-Q1717246
-Q14536140
-Q1521829
-Q46834
-Q196878
-Q22687
-Q5119
-Q283976
-Q12147
-Q283976
-Q557880
-Q110304
-Q827451
-Q199
-Q22687
-Q45568
-Q884353
-Q41446476
-Q827451
-Q577
-Q368671
-Q5754843
-Q1640172
-Q4697206
-Q22687
-Q884353
-Q189756
-Q131030
-Q37654
-Q1156854
-Q5338673
-Q48302094
-Q6545604
-Q557880
-Q30269216
-Q11402
-Q22687
-Q180472
-Q1156854
-Q806798
-Q326561
-Q3710
-Q4013945
-Q7365
-Q190258
-Q166104
-Q47005650
-Q38348
-Q331224
+Bankers tend to feel they have been bashed too much since the financial crisis.
+But in one respect they have not been bashed enough.
+Financiers have continued to pay themselves breathtaking sums of money even as the returns they deliver to investors have shrivelled.
+The Financial Times has examined what has happened since the crisis to the payrolls of 13 global financial institutions – expressed as a proportion of pay plus net profits (including those distributed as dividends).
+This approach allows you to see how the “cake” has been shared out between employees and shareholders.
+What the analysis shows is that the lion's share has been taken home by the bankers in the form of pay and bonuses, rather than paid out to investors or left in the business to support lending activity.
+The part represented by payroll has on average gone up from 58 per cent in 2006 to 84 per cent last year.
+Meanwhile, the share accounted for by dividends has slumped by two-thirds – from 15 per cent to just 5 per cent.
+Investors are, understandably, beginning to kick against their treatment.
+The so-called shareholder spring has included a rash of pay revolts against large banks, including Citigroup, Barclays, Credit Suisse and UBS.
+This can and should intensify.
+Most banks have remuneration policies not dissimilar to those of Premier League football clubs.
+They pay up for talent with the aim of securing a slot in the leading pack, in the hope that this will in turn generate the revenues that allow them to out-pay competitors.
+It is an approach that is ill-suited to a shrinking market.
+It is to be welcomed that investors have finally understood the need to focus on absolute rather than relative levels of pay.
+In straitened times, bankers' pay scales can only be maintained at their expense.
+As part of the fightback, investors should force changes to the structure of pay plans.
+Most continue to be based around inappropriate measures, such as return on equity, share prices or total shareholder return.
+These encourage bankers to take more risk.
+Banks' return on assets – an unleveraged measure of performance – has barely changed in decades.
+Moreover, at a time when many banks in Europe remain severely undercapitalised, such remuneration policies hinder efforts to rebuild their balance sheets.
+Many banks are neither retaining sufficient capital to return to health, nor providing sufficient return to encourage investors to top up the equity.
+Only one European bank, UniCredit, has raised a significant amount of fresh equity this year.
+The persistence of high pay is not only weakening banks.
+It raises questions about whether they genuinely operate in a competitive market.
+Policy makers should not leave all the heavy lifting to investors as they seek to force banks to adopt more realistic policies.
+If the bankers drag their feet, regulatory muscle may be needed to enforce a more rational division of the spoils.

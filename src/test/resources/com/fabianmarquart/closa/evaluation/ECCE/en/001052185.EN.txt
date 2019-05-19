@@ -1,148 +1,19 @@
-Q6381684
-Q93288
-Q121
-Q1640172
-Q4917
-Q1818899
-Q3975
-Q20665666
-Q29485
-Q93288
-Q1962593
-Q1510380
-Q43423468
-Q6720521
-Q721834
-Q3537603
-Q35758
-Q211198
-Q178588
-Q496026
-Q1717246
-Q2142560
-Q903577
-Q104555
-Q24238907
-Q577
-Q32188232
-Q1640172
-Q520952
-Q2842797
-Q93288
-Q1150070
-Q17641254
-Q639907
-Q628939
-Q336751
-Q7935
-Q158668
-Q29809684
-Q953944
-Q1329910
-Q169737
-Q7748
-Q202785
-Q2912172
-Q334600
-Q160151
-Q1190554
-Q953944
-Q524778
-Q167412
-Q3918409
-Q192193
-Q496026
-Q29485
-Q183959
-Q9332
-Q1780466
-Q520952
-Q557880
-Q231043
-Q1760704
-Q1308999
-Q25392373
-Q1321905
-Q29466124
-Q1368
-Q42904171
-Q105731
-Q557880
-Q25392373
-Q1343202
-Q29466124
-Q1368
-Q496026
-Q47035128
-Q4917
-Q1640172
-Q8161
-Q953944
-Q23759131
-Q21004260
-Q319845
-Q22687
-Q15049
-Q199
-Q496026
-Q192388
-Q1851760
-Q601401
-Q82604
-Q131427
-Q160151
-Q49773
-Q179289
-Q15049
-Q1928899
-Q600751
-Q1344851
-Q265777
-Q637156
-Q329525
-Q73792
-Q188572
-Q496026
-Q93288
-Q167412
-Q188613
-Q6430706
-Q8043
-Q516519
-Q953944
-Q749311
-Q1818899
-Q3975
-Q7712882
-Q327333
-Q174984
-Q30269216
-Q847337
-Q6765918
-Q344
-Q3975
-Q28813
-Q19033
-Q3975
-Q2142560
-Q26186900
-Q707125
-Q18560095
-Q327209
-Q3975
-Q489398
-Q12731
-Q953944
-Q3975
-Q5290
-Q553
-Q496026
-Q847337
-Q158668
-Q27905
-Q7712882
-Q327333
-Q7502926
-Q21168708
-Q159394
-Q20861252
+When Philip Falcone agreed in July to pay $18m to settle a civil case brought by the Securities and Exchange Commission, many will have concluded that he must have done something wrong.
+Yet had that agreement been allowed to stand, the hedge fund manager's transgressions might never have become a matter of public record.
+Mr Falcone was to avoid trial, neither admitting nor denying that he had broken any rules.
+That would not have been unusual.
+For years, alleged malefactors have paid large fines and agreed to change their ways, while avoiding findings of guilt that can trigger an avalanche of private litigation.
+This has enabled the SEC to obtain redress more quickly than it otherwise could.
+But it may also have encouraged some to view breaking the law as a normal business practice that has its price.
+In the event, the SEC's commissioners rejected the settlement that was proposed by its staff, rightly insisting that Mr Falcone should own up to what he had done wrong.
+The resulting confession is startling for the brazenness of the behaviour it describes.
+Large investors who consented to withdrawal restrictions on a struggling fund were secretly rewarded with preferential access to their money, while those with fewer votes were locked in.
+Even as investors in another fund were denied access to their money, Mr Falcone took more than $100m to pay his personal tax bill, repaying it only after the SEC began its investigation.
+An investment bank that bet against one of Mr Falcone's positions became the victim of retaliatory and improper trades designed to produce artificial price movements that would cause the bet to sour.
+Prosecutors should consider whether such misconduct warrants criminal charges.
+The fact that Mr Falcone eventually agreed to a tougher settlement will confirm critics' suspicions that the SEC has tended to settle cases too easily.
+The agency has signalled that it will seek admissions of wrongdoing more often in future, especially in cases of egregious fraud, even if this means that it must take cases to trial.
+If it can make this threat credible, it may be able to win more significant concessions even in cases that do not reach court.
+It is encouraging that the SEC has chosen a high-profile case for this first display of its newly-sharpened teeth.
+Mr Falcone's admission, however, is unlikely to expose him to private suits.
+The agency must now show equal determination when dealing with defendants who have more to lose.

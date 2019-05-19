@@ -1,289 +1,37 @@
-Q573
-Q842438
-Q1740954
-Q23387
-Q192906
-Q1930187
-Q1105124
-Q145
-Q362482
-Q2144405
-Q11035
-Q8436
-Q132821
-Q1851760
-Q179289
-Q12323
-Q211198
-Q7112875
-Q179057
-Q2716528
-Q37172
-Q708562
-Q2031291
-Q28873693
-Q17502905
-Q1740954
-Q107425
-Q11402
-Q320346
-Q1449648
-Q11032
-Q23595
-Q192909
-Q657093
-Q3339146
-Q8035322
-Q2839009
-Q1403016
-Q7502926
-Q2514241
-Q262246
-Q178095
-Q12407601
-Q21004260
-Q11032
-Q2839009
-Q17502905
-Q38926
-Q8035322
-Q56557591
-Q903577
-Q7748
-Q196431
-Q508295
-Q199
-Q208084
-Q1772698
-Q173253
-Q701521
-Q35535
-Q17502905
-Q1740954
-Q385166
-Q18193
-Q4007160
-Q570
-Q17502905
-Q38926
-Q8035322
-Q16869121
-Q53944
-Q3149470
-Q3043314
-Q6505497
-Q879844
-Q14565199
-Q1867823
-Q21004260
-Q192
-Q14212
-Q83307
-Q1371925
-Q21004260
-Q196431
-Q35535
-Q17502905
-Q1740954
-Q5655097
-Q189756
-Q1920566
-Q36949023
-Q2144405
-Q11042
-Q1962593
-Q36424
-Q7860
-Q842438
-Q1740954
-Q2376564
-Q192193
-Q18122778
-Q600571
-Q17641254
-Q1105124
-Q16980630
-Q17502905
-Q1740954
-Q82916
-Q7257649
-Q659974
-Q17502905
-Q1193236
-Q48302094
-Q3242199
-Q9332
-Q6869239
-Q795052
-Q16172260
-Q842438
-Q82955
-Q240673
-Q192909
-Q5338673
-Q1089123
-Q577
-Q179875
-Q6805989
-Q428148
-Q515200
-Q177749
-Q17641254
-Q199
-Q130
-Q468777
-Q3247534
-Q317623
-Q1334191
-Q3067228
-Q18122778
-Q23009439
-Q900406
-Q1205349
-Q690194
-Q82955
-Q657076
-Q240673
-Q1772698
-Q2144405
-Q192909
-Q6658033
-Q1050390
-Q1193236
-Q199
-Q4817
-Q7174
-Q10659189
-Q1810951
-Q1347367
-Q196431
-Q508295
-Q690213
-Q1740954
-Q37017
-Q37442
-Q188728
-Q7748
-Q600571
-Q191783
-Q5
-Q16502
-Q16502
-Q502261
-Q7390
-Q853614
-Q173387
-Q707125
-Q1050390
-Q1193236
-Q600571
-Q1126281
-Q7188
-Q188473
-Q17502905
-Q1740954
-Q317623
-Q21004260
-Q51597
-Q1740954
-Q265777
-Q55707349
-Q614138
-Q11348
-Q4197743
-Q17502905
-Q1193236
-Q3880557
-Q1274479
-Q181593
-Q1139344
-Q2144405
-Q17502905
-Q1740954
-Q23090331
-Q39546
-Q7949
-Q150986
-Q7390
-Q836925
-Q848002
-Q17502905
-Q23692112
-Q8035322
-Q54894664
-Q32518
-Q181593
-Q1139344
-Q2144405
-Q131212
-Q5930459
-Q830077
-Q427532
-Q19033
-Q7949
-Q19033
-Q464980
-Q1190554
-Q4115667
-Q450
-Q1433533
-Q30230067
-Q1193236
-Q73368
-Q11060274
-Q903577
-Q104555
-Q17502905
-Q1740954
-Q6498684
-Q7748
-Q690213
-Q1740954
-Q2226474
-Q20204892
-Q11042
-Q16869121
-Q14289857
-Q174320
-Q11651
-Q428148
-Q11032
-Q3289701
-Q1414531
-Q600571
-Q23522973
-Q25107
-Q32098
-Q1740954
-Q48422
-Q164573
-Q45767
-Q428148
-Q1962593
-Q11185
-Q782612
-Q188728
-Q7748
-Q900406
-Q17641254
-Q6658033
-Q2388316
-Q211198
-Q14565199
-Q199
-Q23404
-Q294773
-Q4197743
-Q47013211
-Q573
-Q7429143
-Q199
-Q1050390
-Q1193236
-Q11032
-Q199
-Q1510380
-Q7112875
-Q11032
-Q1962593
-Q22688
+It has been a dreadful few days for the British media.
+This week's revelations about the conduct of journalists at News International's UK operations hacking into the phones of bereaved families and murder victims has finally caused the dam of public outrage to burst.
+The tidal wave of contempt thus released has already altered the media landscape. It has forced the closure of the venerable tabloid newspaper at the centre of the scandal, the News of the World.
+The drumbeat of allegations and arrests, meanwhile, shows no sign of slackening.
+The police investigation is still expanding and threatens to suck in other newspapers.
+If the allegations against the News of the World are correct, it broke the law and should clearly be held to account.
+One of the more troubling aspects of the affair has been the sense of collusion between the police and the media, and a political class that has seemed too cowed to speak out against the News of the World's powerful proprietor, Rupert Murdoch.
+This impression of forbearance must be laid firmly to rest.
+It is also right that there should be a proper investigation.
+David Cameron, the prime minister, has announced that inquiries will be held into the conduct of both the police and the media.
+There are hard questions to answer for those who were involved in hacking and the culture that allowed it to flourish in the newsroom.
+Given the competitive nature of the British media, and the easy interchange of staff between papers, it is likely that such abuses went way beyond News International.
+If so, the broader conduct of the media will come under the spotlight.
+Public trust in the press has inevitably taken a heavy blow because of the behaviour of a minority of individuals.
+Just as with British politicians and the expenses scandal, this will leave its mark for years to come.
+Inevitably, it will also stir a debate about media regulation.
+Mr Cameron has already paved the way for one, announcing on Friday that the existing voluntary standards watchdog, the Press Complaints Commission, has manifestly failed and is most likely to be replaced.
+Reform is necessary but it must be handled carefully.
+There should be no suggestion that politicians, stung by recent disclosures such as the expenses affair, are using the hacking scandal to protect themselves, the powerful and famous from legitimate scrutiny.
+A free press is one of the pillars of democracy.
+It must not be robbed of its vitality, irreverence and nosiness, nor its ability to hold the powerful to account.
+Britain's media already face increasing curbs from expanding privacy laws and also the abuse of our libel system by wealthy people from around the world to silence dissenting voices.
+These represent as grave a threat to a free press as the abuses which have prompted the government to act.
+The media standards inquiry should therefore look not just at how to stop media misconduct but how to secure the vital function played by the press.
+The objective should be both to ensure that there is no repetition of the sort of conduct that gave rise to hacking, and that the media should continue to have the tools at its disposal to expose the truth.
+Siren voices will claim that the “sensationalist” style espoused by the News of the World and its rivals leads inevitably to the sort of irresponsibility that gave rise to hacking.
+But this is bunkum.
+As the celebrated editor Hugh Cudlipp once observed: “Sensationalism does not mean distorting the truth.
+It means the vivid and dramatic presentation of events so as to give them a forceful impact on the mind of the reader.”
+It is possible to have a lively press, both online and in print, that does not break the rules.
+It would be more fruitful to look at the media ownership laws.
+Britain's tolerance of media concentration has unarguably contributed to a culture in which the conduct of powerful proprietors such as News Corp has gone unchallenged.
+There is scope to improve the current system of regulation, and newspapers must themselves take steps to correct abuses.
+The PCC – or its successor – should be given tougher powers of sanction, and any media body big enough to be subject to competition regulations should not be allowed to escape its oversight.
+Libel and privacy laws should be reformed in ways to protect the public's right to know.
+One of the characters in a Tom Stoppard play Night and Day says, “I'm with you on the free press; it's the newspapers I can't stand.”
+Righteous outrage at the newspapers must not be allowed to undermine press freedom.

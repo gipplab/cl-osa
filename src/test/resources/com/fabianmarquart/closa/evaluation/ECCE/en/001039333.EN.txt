@@ -1,151 +1,22 @@
-Q17
-Q7188
-Q1142227
-Q333894
-Q618532
-Q161176
-Q756
-Q50000
-Q2120090
-Q3289701
-Q34442
-Q3043314
-Q26186900
-Q17
-Q4072210
-Q8148
-Q33965709
-Q82794
-Q5655097
-Q1338171
-Q159904
-Q976350
-Q199
-Q965330
-Q668
-Q56557591
-Q152074
-Q102538
-Q21171241
-Q1640172
-Q157165
-Q171558
-Q1851760
-Q1366722
-Q240673
-Q1403517
-Q1137437
-Q8074
-Q1390101
-Q11213
-Q5729485
-Q7430019
-Q11693
-Q205011
-Q757382
-Q7188
-Q1717246
-Q5162775
-Q31603
-Q7748
-Q36161
-Q1338171
-Q1155772
-Q25392373
-Q25107
-Q102538
-Q7275
-Q7188
-Q20204892
-Q1338171
-Q240673
-Q327496
-Q732833
-Q26186900
-Q1338171
-Q6658033
-Q381136
-Q20861252
-Q88272
-Q26726369
-Q4066775
-Q1364290
-Q1376796
-Q17484331
-Q668
-Q11693
-Q668
-Q189539
-Q25392373
-Q220998
-Q1338171
-Q320553
-Q4402708
-Q1938414
-Q1376796
-Q728944
-Q1519469
-Q1150166
-Q368281
-Q213381
-Q200726
-Q201
-Q186619
-Q7188
-Q21253129
-Q26186900
-Q18689797
-Q105210
-Q56019
-Q1338171
-Q836925
-Q25107
-Q102538
-Q757382
-Q584496
-Q7188
-Q1150070
-Q7748
-Q3629141
-Q11574
-Q884353
-Q240673
-Q12725
-Q643669
-Q15290
-Q11693
-Q2383321
-Q35221
-Q37654
-Q8043
-Q286583
-Q160402
-Q171558
-Q104493
-Q7275
-Q1315911
-Q17
-Q1334191
-Q4930772
-Q34379
-Q37654
-Q1315911
-Q21924000
-Q22687
-Q1436482
-Q1376796
-Q31275820
-Q903517
-Q4877042
-Q26132734
-Q186619
-Q327496
-Q3975
-Q22687
-Q17
-Q138364
-Q1376796
-Q18449256
-Q49371
-Q21255605
-Q2169419
+Japan's government is struggling to pass its bail-out of Tokyo Electric Power Company, owner of the doomed Fukushima nuclear plant.
+But any success would be pyrrhic: a bail-out is another step down the road of forbearance that made Japan's nuclear industry so dysfunctional in the first place.
+It is hard to know what compensation Tepco will owe to those affected by its reactor meltdowns.
+One estimate, Y4,000bn-5,000bn, does not seem overblown.
+If correct, it could bankrupt the company, leaving it unable to pay creditors or accident victims their due.
+Even if the final cost is less, its uncertainty has been enough to put Tepco's solvency under a cloud: Standard &amp; Poor's has downgraded Tepco bonds to junk.
+Insolvency is what the government is trying to prevent.
+The draft law sets up a compensation scheme funded by power companies but guaranteed by the state.
+This commits the government to ensuring bondholders will never contribute to compensation costs through haircuts.
+Given the decision to make Tepco liable for compensation, it is unconscionable to protect bondholders while shareholders have lost virtually their entire investment and lenders are being asked to cancel debts.
+Restructuring ­Tepco's Y5,000bn of bonds and Y4,000bn in loans can fund a lot of compensation and cut demands on taxpayers.
+A restructuring should include a disposal of Tepco's grid to facilitate a split between generation and distribution.
+Three arguments for the government's zeal to make bondholders whole can all be refuted.
+The first is legal: bondholders rank above compensation claims in power company insolvencies.
+But a sovereign government can change the law, and in these extraordinary circumstances should do so.
+Second, haircutting Tepco's bondholders could raise financing costs for other electricity generators.
+But surely it is good that bond yields reflect markets' real perception of accident risk.
+Where state discipline has failed – as with Japan's industry-captured nuclear watchdogs – why blunt the instruments of market discipline as well?
+Third, many of Tepco's bondholders are banks, and some worry that restructuring would threaten financial stability.
+This is at best an argument for keeping haircuts modest.
+In any case it is cheaper to recapitalise directly any systemically important bank that fails.
+For Japan, a swift restructuring under special legislation is better than a bail-out of bondholders that perpetuates perverse incentives.

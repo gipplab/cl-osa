@@ -291,7 +291,7 @@ public class OntologyBasedSimilarityAnalysis {
         for (String token : tokens) {
 
             tokenCountMap.put(token, 1.0);
-            
+
             WikidataEntity tokenEntity = WikidataDumpUtil.getEntityById(token);
 
             for (Map.Entry<WikidataEntity, Long> ancestorEntry : WikidataDumpUtil.getAncestorsByMaxDepth(tokenEntity, 2L).entrySet()) {

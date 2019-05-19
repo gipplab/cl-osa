@@ -1,243 +1,36 @@
-Q584496
-Q3196867
-Q381072
-Q46
-Q1312
-Q851662
-Q192692
-Q5107
-Q381072
-Q38
-Q23387
-Q515895
-Q1190554
-Q108874
-Q220
-Q192193
-Q188473
-Q190258
-Q272893
-Q47436102
-Q105
-Q208450
-Q2383321
-Q652
-Q11693
-Q1139344
-Q129
-Q38
-Q11402
-Q1640172
-Q58093
-Q201
-Q577
-Q1049848
-Q44946
-Q47035128
-Q5151
-Q29818766
-Q1081889
-Q11472
-Q177923
-Q3196867
-Q178588
-Q652
-Q7275
-Q849829
-Q11471
-Q81938
-Q177923
-Q378915
-Q4382010
-Q3196867
-Q240673
-Q2383321
-Q12171
-Q34302
-Q38
-Q3196867
-Q219416
-Q1347367
-Q652
-Q22687
-Q25392373
-Q189964
-Q2383321
-Q9706
-Q1121708
-Q4116378
-Q1436654
-Q164359
-Q27
-Q7502926
-Q6256
-Q20861252
-Q9174
-Q37654
-Q19357621
-Q1717246
-Q2995644
-Q38
-Q32518
-Q188473
-Q105
-Q208450
-Q2226474
-Q450
-Q2307854
-Q2046602
-Q3918409
-Q732850
-Q7614320
-Q83307
-Q44602
-Q7758500
-Q1371819
-Q23257209
-Q625420
-Q4917
-Q192276
-Q4917
-Q774228
-Q2267334
-Q49371
-Q2259909
-Q29814939
-Q1076105
-Q40231
-Q1489644
-Q611203
-Q38
-Q3516239
-Q736288
-Q37654
-Q26382
-Q38
-Q1142227
-Q18427081
-Q2046602
-Q1426138
-Q7737401
-Q7188
-Q3918409
-Q2267334
-Q49371
-Q190258
-Q1183543
-Q30230067
-Q7577264
-Q105562
-Q192276
-Q37654
-Q38
-Q190258
-Q47035128
-Q2814650
-Q220
-Q190258
-Q877558
-Q306484
-Q628523
-Q23009442
-Q11860
-Q14212
-Q83307
-Q23009439
-Q11193
-Q7188
-Q32518
-Q26418641
-Q11860
-Q29142
-Q211391
-Q1663694
-Q2307854
-Q2046602
-Q192276
-Q1962593
-Q102538
-Q618532
-Q885383
-Q4917
-Q2842797
-Q104493
-Q6256
-Q1530061
-Q6658033
-Q200535
-Q708562
-Q18122778
-Q11023
-Q11860
-Q1383865
-Q38
-Q385166
-Q18193
-Q17641254
-Q7716611
-Q26132734
-Q1801985
-Q209163
-Q18427081
-Q2814650
-Q3039511
-Q1371819
-Q170409
-Q900406
-Q82604
-Q884353
-Q38
-Q627319
-Q9956
-Q3516239
-Q736288
-Q19357896
-Q82794
-Q557828
-Q6468673
-Q45767
-Q11563
-Q652
-Q28640
-Q746418
-Q29142
-Q900406
-Q15987302
-Q28640
-Q23387
-Q19435686
-Q40348
-Q1117578
-Q1801985
-Q14565199
-Q199
-Q1332873
-Q11574
-Q38
-Q34581
-Q37654
-Q652
-Q2111958
-Q900406
-Q21924000
-Q845249
-Q2478386
-Q779970
-Q240673
-Q102538
-Q278368
-Q4393174
-Q1101080
-Q11860
-Q14536140
-Q2151613
-Q82604
-Q6658033
-Q170924
-Q900406
-Q11471
-Q926230
-Q38
-Q446966
-Q37654
-Q4116378
+Since the sovereign debt crisis descended on Europe in spring 2010, the nightmare haunting the continent's policymakers has been the prospect of the crisis reaching Italy.
+In recent weeks the odds of such an event happening have shortened dramatically.
+If Rome is to stave it off, urgent and decisive action is needed.
+Having eased a little following Monday's panic, yields on Italian bonds rose again on Thursday.
+Italy was forced to pay 4.93 per cent – the highest for three years, and a percentage point more than a month ago – to sell five-year paper.
+A simultaneous auction of 15-year debt was the most expensive on record.
+The Italian state can cope for a time with the pain of expensive auctions.
+The maturity profile of its debt is favourable and the cost of higher yields would only become dangerous if sustained over a prolonged period.
+But any doubts about Italy's debt sustainability could impair the ability of Italian banks to fund themselves.
+That could be felt much sooner.
+Once yields balloon, a loss of confidence can quickly become self- fulfilling.
+As the experience of Ireland shows, once a country loses the faith of the market, it is almost impossible to regain.
+To avoid such an outcome, Italy's leaders must act boldly and swiftly.
+Monday's panic concentrated minds and the austerity packaged proposed by Giulio Tremonti, finance minister, is being fast-tracked through parliament.
+The programme is far from perfect.
+It envisages €45bn of fiscal tightening – yet measures worth €15bn will require secondary legislation.
+The bulk of the remaining squeeze will not occur until after the next general election in 2013.
+And the plan does little to boost Italy's anaemic growth rate.
+With markets on edge, Italy's parliament must pass Mr Tremonti's package without delay. The government must then propose the secondary legislation needed to implement it as soon as possible.
+Given that the implementation may well spill over into the next parliament, it is crucial that the opposition backs the measures too.
+However, to convince markets that it is credible, Italy needs more than austerity.
+Rome needs to send a clear message of intent.
+Ideally, this would be the removal of Silvio Berlusconi, prime minister, and his replacement by a broadly based government led by technocrats.
+Mr Berlusconi's attempt last weekend to insert into the austerity package a measure that would have allowed a company he owns to defer a €560m fine was beyond reckless.
+His willingness to risk his country's fiscal credibility to protect his personal wealth was beneath contempt.
+If, as seems likely, engineering Mr Berlusconi's exit is beyond Italy's political classes, they must find other ways of demonstrating their resolve.
+The best approach would be to supplement Mr Tremonti's austerity drive with a programme of radical structural reforms designed to raise Italy‘s long-run growth rate.
+An obvious place to start is the the lack of competition across a number of Italian professions.
+These must be liberalised.
+Sadly, an attempt to reform the legal profession this week foundered on the self-interest of lawyers in the Italian parliament.
+But the approach was the right one and should be replicated.
+Second, Italy's two-tier labour market, which impairs Italian productivity, must be reformed.
+Third, the lumbering legal system, which imposes huge costs on the companies that use it, must be overhauled.
+It is a disgrace that Mr Berlusconi's efforts in this direction have been almost entirely designed to protect his own complicated interests.
+Structural reforms will inevitably take time to have an effect, and will not be popular.
+But if Italy is to restore the market's confidence, they are indispensable.

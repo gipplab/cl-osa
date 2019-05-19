@@ -1,237 +1,32 @@
-Q21255605
-Q12335479
-Q11860
-Q1801985
-Q7188
-Q9332
-Q192630
-Q201
-Q573
-Q105
-Q37654
-Q157195
-Q3289701
-Q3612401
-Q3030248
-Q796919
-Q159904
-Q1395324
-Q2912172
-Q127
-Q42904171
-Q851662
-Q508295
-Q1759104
-Q18000
-Q20861252
-Q42904171
-Q750997
-Q652
-Q30461
-Q796919
-Q182060
-Q15290
-Q11471
-Q11860
-Q1144504
-Q529711
-Q1142227
-Q2046602
-Q900406
-Q1120221
-Q458
-Q11860
-Q859126
-Q836925
-Q6256
-Q170924
-Q11860
-Q29142
-Q4197743
-Q372436
-Q37654
-Q11693
-Q2383321
-Q997419
-Q724178
-Q127
-Q1151752
-Q5754843
-Q58093
-Q490
-Q20861252
-Q202
-Q58093
-Q262246
-Q37654
-Q39552
-Q652
-Q11693
-Q2383321
-Q161973
-Q324963
-Q2383321
-Q3196867
-Q11472
-Q16751793
-Q38
-Q2141565
-Q569612
-Q178354
-Q102014
-Q732833
-Q1609677
-Q3947
-Q17281278
-Q625360
-Q1424605
-Q429785
-Q601401
-Q652
-Q3196867
-Q1121708
-Q7958
-Q478798
-Q557880
-Q1436482
-Q11651
-Q3002772
-Q381072
-Q11860
-Q732833
-Q1426138
-Q796919
-Q40231
-Q31888506
-Q529711
-Q2191756
-Q6136036
-Q192630
-Q200
-Q39911
-Q44649
-Q16502
-Q11860
-Q29581471
-Q796919
-Q3620816
-Q7098963
-Q1117578
-Q20058545
-Q3123740
-Q221725
-Q900406
-Q2046602
-Q1142227
-Q40719727
-Q40719727
-Q23387
-Q1637963
-Q186081
-Q11471
-Q774228
-Q652
-Q3406566
-Q205663
-Q2046602
-Q177239
-Q44946
-Q93288
-Q220
-Q239
-Q873222
-Q7574446
-Q703087
-Q4503831
-Q38118608
-Q200538
-Q170924
-Q105562
-Q900406
-Q446966
-Q37654
-Q4116378
-Q178354
-Q123704
-Q1954125
-Q7188
-Q1756083
-Q900406
-Q1758159
-Q32518
-Q1412049
-Q1425577
-Q134566
-Q41263
-Q1183543
-Q1342838
-Q185451
-Q4097090
-Q11193
-Q728944
-Q47694
-Q11651
-Q844072
-Q18000
-Q830077
-Q2191756
-Q2995644
-Q11860
-Q10940
-Q1756083
-Q40231
-Q104555
-Q7188
-Q21083885
-Q21503252
-Q1152372
-Q124964
-Q2383321
-Q652
-Q11693
-Q9706
-Q6256
-Q608445
-Q2431801
-Q381072
-Q11471
-Q1954125
-Q7188
-Q34442
-Q917284
-Q21092971
-Q182995
-Q11332268
-Q38
-Q2110192
-Q134566
-Q21255605
-Q178648
-Q6266
-Q3196867
-Q19033
-Q378915
-Q23350
-Q577
-Q4917
-Q668
-Q32032
-Q200535
-Q50001
-Q47035128
-Q202
-Q11471
-Q6256
-Q12695
-Q3196867
-Q633403
-Q652
-Q159810
-Q21255605
-Q207961
-Q7163
-Q652
-Q28008314
-Q220
-Q286583
-Q1121708
+There could hardly be a better example of Silvio Berlusconi's approach to government than his behaviour over the past three days.
+Last Monday, as markets waited anxiously on his next steps, he reportedly met up with allies to discuss how his resignation might affect his family businesses.
+On Tuesday, he stubbornly went ahead with a vote on the 2010 accounts despite warnings that he was no longer backed by a majority.
+Having lost the vote, he then went to the Italian president, promising to resign his office – in his own good time.
+Mr Berlusconi vowed that, before his eventual departure, he would pass the package of reforms recommended by the European Union.
+In doing so – il Cavaliere claimed – he was putting his country's interest before his own.
+Mr Berlusconi's attempt to play the statesman did not convince the markets.
+The 10-year bond yield, which had closed at 6.77 per cent on Tuesday night, jumped as high as 7.48 per cent, while the Milan stock exchange lost nearly 4 per cent.
+In a further sign of market stress, the Italian bond yield curve inverted, with yields on shorter-term debt rising higher than those on longer-term paper.
+True, Italy's situation has worsened partly for technical reasons.
+The turmoil was linked to the decision by the clearing house LCH.Clearnet to increase the amount of margin that traders must post to insure trades on Italian debt against losses.
+However, that does not explain the full picture.
+Investors are also worried about how long it will take to resolve the current political crisis: Mr Berlusconi's decision to delay his resignation, and his call for an election to follow his departure, were seen as the latest irresponsible gamble of the greatest political survivor of the past two decades.
+In an ideal world, Mr Berlusconi would now reconsider and resign immediately.
+As this appears unrealistic, the Italian parliament must commit itself to a rigid timetable to ensure that the reform package is passed as early as the beginning of next week – the minimum period of time required by the ­Italian legislative process.
+For that to happen, the package must be limited to the points agreed between Rome and Brussels. It must exclude any ­special ­provisions aimed at securing personal or party interests.
+Then the opposition should back it ­unconditionally.
+On their own, these reforms will clearly not be sufficient to restore market confidence.
+For that reason, parliament must swing behind a new government which can push ahead with a reform agenda.
+It must be led by a figure who can credibly promise to balance the budget and implement a growth strategy.
+It must also have a broad parliamentary base, which should include a sizeable proportion of the current centre-right majority.
+Sceptical observers see this as an implausible outcome.
+Mr Berlusconi is urging his own supporters to push for an election and rule out a government of national unity.
+Yet, responsible members of his heterogeneous coalition must reject this.
+As yields on Italian bonds balloon and the country slides into deep crisis, it is clearly not a time for irresponsible ­partisanship.
+It is evident that the new government will have a very steep road to climb.
+Yet it will at least be able to rely on a range of decent economic fundamentals.
+Italy's primary balance is eminently better than the other peripheral eurozone nations.
+Its debt has an average maturity of about seven years.
+At €8,600bn, the net wealth of Italians is more than four times the country's public debt.
+Despite its many weaknesses, the Italian economy is in much better shape than its politics.
+Italian parliamentarians must do everything they can to address Rome's real failure.

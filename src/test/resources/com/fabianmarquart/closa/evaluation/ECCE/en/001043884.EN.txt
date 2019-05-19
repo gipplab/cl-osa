@@ -1,162 +1,20 @@
-Q148
-Q2039217
-Q418
-Q219858
-Q199
-Q23350
-Q8148
-Q216541
-Q601401
-Q8068
-Q83267
-Q165950
-Q133346
-Q102538
-Q18560095
-Q2912172
-Q160120
-Q16502
-Q16502
-Q11574
-Q16798631
-Q1762621
-Q860
-Q408
-Q259502
-Q749311
-Q1340643
-Q194163
-Q141488
-Q7737401
-Q7188
-Q206361
-Q32188232
-Q102014
-Q936190
-Q7188
-Q8473
-Q30
-Q30
-Q160120
-Q873222
-Q2912172
-Q131030
-Q408
-Q44619
-Q141488
-Q9788
-Q956
-Q2986261
-Q8473
-Q1503443
-Q160120
-Q327055
-Q5655097
-Q247299
-Q44619
-Q1193004
-Q7988576
-Q18536342
-Q138796
-Q128751
-Q188889
-Q23835475
-Q160120
-Q18560095
-Q93288
-Q194163
-Q749311
-Q16502
-Q16502
-Q145
-Q2872152
-Q190507
-Q1762621
-Q11344
-Q11016
-Q160120
-Q4697206
-Q23257209
-Q55082364
-Q6498684
-Q517966
-Q11471
-Q4071928
-Q81672
-Q7988576
-Q8513
-Q19435686
-Q1101080
-Q21503252
-Q5
-Q140686
-Q102014
-Q42276510
-Q906066
-Q5290
-Q9158
-Q234460
-Q148
-Q141488
-Q1685078
-Q102538
-Q1343202
-Q102014
-Q10870555
-Q26186900
-Q7188
-Q231043
-Q160120
-Q1762621
-Q24255051
-Q141488
-Q83267
-Q165950
-Q148
-Q159
-Q1931051
-Q7283
-Q613617
-Q169489
-Q206361
-Q132453
-Q6256
-Q148
-Q665184
-Q29466402
-Q3975
-Q1920566
-Q4071928
-Q81672
-Q102538
-Q26186900
-Q224952
-Q6881511
-Q2383321
-Q956
-Q24053882
-Q38118448
-Q131257
-Q937228
-Q780687
-Q7988576
-Q557880
-Q1962593
-Q44315
-Q836925
-Q258307
-Q169489
-Q160120
-Q605704
-Q37654
-Q40276
-Q5754843
-Q185957
-Q956
-Q29466402
-Q102538
-Q37017
-Q1031196
-Q1343202
-Q650711
-Q83267
+China has identified the telecommunications sector as one of seven strategic industries to drive foreign trade.
+Yet the flood of unchecked cyber crime and espionage emanating from within its borders is making it difficult for companies to win business abroad
+Huawei, the world's second largest telecom equipment supplier, has been barred from Australia's A$42bn tender to build a national broadband network.
+The government is concerned about alleged links to the Chinese government and its military.
+As in the US, where Huawei is practically excluded from doing business with the largest operators, Australia fears that allowing it into the national network would be to let Beijing eavesdrop on commercial and military secrets.
+Huawei has worked hard to counter these fears.
+It has offered safeguards that western competitors strongly resist – such as handing over source codes.
+These have helped Huawei win contracts in broadband tenders around the world, including in the UK.
+The Australian knock-back is harder to take given that it had hoped to supply elements that were not obviously sensitive, such as passive optic technology.
+Nonetheless, Huawei has not gone far enough.
+It remains evasive about its ownership structure at a time when cyber attacks on western databases are rising.
+Its founder is a former member of the People's Liberation Army and its chairman has been linked to the security services – which monitor everything from emails to texts on China's network.
+The company denies the link, but the reports make some governments uncomfortable.
+Even those that have approved Huawei as a supplier are now nervous about its pervasive presence in their networks.
+Cyber crime and espionage originating in China and Russia are overtaking terrorism as a major security concern in developed countries.
+China has steadfastly refused to accept that it has a case to answer on the cyber attacks and so its companies are made suspect.
+Some of these enterprises may also have benefited from Beijing's laxity in defending intellectual property rights of western investors.
+Protectionism must not be allowed to hide behind spurious claims of national security.
+Huawei has proved in dozens of markets that its products are competitive and high quality.
+But Beijing must also accept that its companies will always face higher hurdles as long as it denies its responsibilities in the fight against cyber crime.

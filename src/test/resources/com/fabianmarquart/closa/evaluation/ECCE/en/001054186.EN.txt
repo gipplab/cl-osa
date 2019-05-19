@@ -1,240 +1,39 @@
-Q114380
-Q381072
-Q473750
-Q159810
-Q22813352
-Q200
-Q3711325
-Q177323
-Q6256
-Q178193
-Q25107
-Q148
-Q11284504
-Q192355
-Q214609
-Q679
-Q2909116
-Q259059
-Q7275
-Q44364
-Q319608
-Q3196867
-Q192630
-Q36977
-Q5151
-Q478798
-Q1604733
-Q16172260
-Q4116378
-Q283976
-Q16502
-Q56557323
-Q160151
-Q546395
-Q37654
-Q124
-Q7804
-Q853630
-Q748250
-Q252
-Q155
-Q25392373
-Q17573152
-Q2259909
-Q1413646
-Q38926
-Q5371769
-Q6256
-Q30
-Q30
-Q159810
-Q1193004
-Q4927280
-Q485446
-Q1496089
-Q37654
-Q182003
-Q1827667
-Q23835475
-Q184260
-Q736288
-Q54862242
-Q34581
-Q37654
-Q22855
-Q950511
-Q88272
-Q167037
-Q278368
-Q520952
-Q1368
-Q250386
-Q1144593
-Q43015
-Q1954125
-Q170584
-Q30
-Q30
-Q159810
-Q26382
-Q997419
-Q1514415
-Q690213
-Q19279214
-Q1151752
-Q12204
-Q22687
-Q2912172
-Q2143576
-Q179179
-Q736288
-Q684
-Q48
-Q17
-Q38701
-Q577
-Q161081
-Q2827815
-Q859031
-Q66344
-Q22687
-Q7188
-Q31888506
-Q1371819
-Q900406
-Q4503831
-Q6545604
-Q1210151
-Q1342838
-Q3153559
-Q16502
-Q41171
-Q55082364
-Q5754843
-Q317949
-Q23090331
-Q621206
-Q142
-Q38
-Q29
-Q27
-Q200
-Q6256
-Q810927
-Q381072
-Q8502
-Q3196867
-Q51597
-Q18456057
-Q2988681
-Q8142
-Q806737
-Q471898
-Q46737
-Q185957
-Q265158
-Q8901
-Q27865861
-Q48103
-Q7188
-Q29466402
-Q219067
-Q190258
-Q46
-Q134556
-Q104493
-Q6256
-Q137
-Q53536
-Q2993680
-Q29818766
-Q272281
-Q625994
-Q140686
-Q201795
-Q1371925
-Q66344
-Q22687
-Q912546
-Q46737
-Q1369832
-Q4917
-Q4917
-Q5151
-Q37654
-Q21279192
-Q53536
-Q1425577
-Q172964
-Q736288
-Q209190
-Q9420
-Q628523
-Q2393575
-Q3711325
-Q5371769
-Q39552
-Q37654
-Q736288
-Q97
-Q30
-Q30
-Q129302
-Q8901
-Q27865861
-Q1229245
-Q728
-Q12335479
-Q1954125
-Q37144
-Q6055890
-Q22687
-Q2393575
-Q884353
-Q104493
-Q546395
-Q37654
-Q11693
-Q7988576
-Q557880
-Q25392373
-Q22698
-Q2221906
-Q6256
-Q520952
-Q746687
-Q508295
-Q444600
-Q1210151
-Q19357595
-Q47433
-Q43
-Q381072
-Q5151
-Q877558
-Q909380
-Q26326601
-Q16502
-Q148
-Q174834
-Q172964
-Q362347
-Q1342838
-Q23350
-Q724178
-Q956
-Q26256512
-Q2196000
-Q182076
-Q386724
-Q134566
-Q5655097
-Q32518
-Q32043
-Q3317029
-Q317088
-Q131427
-Q461499
-Q577
-Q199
+Since the financial crisis, the global economy has travelled at two speeds.
+Developing countries have steamed ahead, powered by China's voracious appetite for raw materials.
+Meanwhile, the west has limped along, as households and states cut back spending to address towering debts.
+In the past 12 months, however, this picture has shifted.
+Just as confidence has returned to parts of the rich world, plummeting commodity prices have exposed the frailties of emerging markets.
+In October, the International Monetary Fund slashed its forecasts for the likes of Indonesia and Brazil.
+The fund now believes that the bulk of positive news for 2014 will come from high-income countries.
+The US economy, in particular, offers grounds for optimism.
+The housing market has strengthened, after the massive injection of liquidity by the US Federal Reserve helped to lower mortgage rates.
+The labour market is becoming more buoyant and cheerier consumers have resumed spending.
+For now, investment is still lagging behind.
+But were corporations to use the large cash piles upon which they are sitting to finance new projects, the US economy could easily edge closer to its pre-crisis trend.
+Britain is also motoring, thanks to a sudden jump in consumption.
+However, banks are still lending too little to business, in spite of ultra-low interest rates.
+In east Asia, Japan is emerging from 15 years of deflation, aided by the mammoth monetary stimulus unleashed by its central bank.
+But for “Abenomics” to succeed, it is essential that the government follows up swiftly with its programme of structural reforms, aimed at lifting long run growth.
+The eurozone is still the worst performer in the rich world.
+Unemployment remains dangerously high and activity continues to disappoint, particularly in France and Italy.
+But Spain and Ireland, two of the countries worst hit by the crisis, are picking up.
+They have a mountain of debt to repay, but at least they have stopped shrinking.
+The challenge for the currency bloc is to put its banking system on a safe footing.
+The forthcoming asset quality review by the European Central Bank will be a make-or-break moment.
+Governments must accept that the exercise needs to be rigorous if Europe is to accelerate again.
+The single biggest risk for high-income countries comes from the Fed.
+A fortnight ago, during his valedictory press conference, chairman Ben Bernanke announced that the central bank would reduce its asset purchases from $85bn to $75bn a month.
+Markets were not too bothered, as the Fed also promised it would keep rates low for longer than previously thought.
+But this message may become less credible if “tapering” gathers speed in 2014.
+This will put upward pressure on market rates on both sides of the Atlantic.
+The US should be strong enough to withstand the shock.
+In the eurozone, the European Central Bank may have to deploy more unconventional weapons, for example launching a new round of cheap funding for banks.
+Conversely, tapering raises risks for emerging markets.
+As domestic bonds become attractive again, western investors will repatriate the funds parked in more exotic locations.
+Countries with large current account deficits could run into trouble.
+Note Turkey, where political the crisis this month has already sent stocks plunging.
+The outlook for the developing world largely hinges on what happens in China.
+The authorities are adamant that they can keep output growth above 7 per cent.
+But Beijing also wants to rein in credit creation.
+Striking this balance will be hard and could lead to a sudden deceleration.
+That would add to the misery of commodity producers – and transform an uncertain year into a difficult one.

@@ -1,152 +1,19 @@
-Q732833
-Q26186900
-Q458
-Q23387
-Q6658033
-Q1938414
-Q22687
-Q5879610
-Q46
-Q937228
-Q2118609
-Q16738026
-Q4080955
-Q726686
-Q7275
-Q650711
-Q7574446
-Q170924
-Q93288
-Q3289701
-Q280658
-Q14565199
-Q2151613
-Q93288
-Q1121708
-Q152074
-Q22687
-Q836925
-Q381136
-Q56019
-Q36602
-Q836925
-Q190258
-Q12177489
-Q210521
-Q5589178
-Q806737
-Q3624078
-Q7275
-Q1366722
-Q732833
-Q44946
-Q14565199
-Q158646
-Q574562
-Q381136
-Q157165
-Q1362683
-Q16363
-Q1078386
-Q3566043
-Q15049
-Q22687
-Q26186900
-Q104555
-Q82794
-Q381072
-Q9142
-Q3839081
-Q1156854
-Q29485
-Q29
-Q145
-Q3277092
-Q1368
-Q17126809
-Q22687
-Q104555
-Q157165
-Q19033
-Q7188
-Q17996230
-Q162351
-Q17641254
-Q6658033
-Q359385
-Q1938414
-Q3289701
-Q23257209
-Q458
-Q21609594
-Q26186900
-Q839782
-Q203
-Q58093
-Q22687
-Q8043
-Q546972
-Q23355
-Q58093
-Q28389
-Q7275
-Q520952
-Q806737
-Q2388316
-Q1929688
-Q467505
-Q16172260
-Q386724
-Q29818996
-Q1347367
-Q162351
-Q157165
-Q211198
-Q240673
-Q852220
-Q199
-Q20861252
-Q381072
-Q810927
-Q2995644
-Q51921823
-Q51921823
-Q6256
-Q219239
-Q5282724
-Q4013945
-Q327209
-Q2251595
-Q2063826
-Q676459
-Q508295
-Q795052
-Q24245823
-Q6881511
-Q7188
-Q83306
-Q6456916
-Q159810
-Q21092971
-Q22687
-Q22687
-Q21092971
-Q6055890
-Q26186900
-Q5
-Q37017
-Q16751793
-Q240673
-Q104493
-Q26186900
-Q46
-Q278113
-Q238053
-Q21255605
-Q104555
-Q458
-Q82794
-Q7366
-Q13698
-Q3435731
-Q178790
+The decisions made by the EU last week on how to protect taxpayers from failing banks bore Europe's characteristic hallmark of imperfect and ugly compromise between states fighting for special interests.
+Even so, the agreement is another step forward in the right direction.
+Ministers agreed on how to allocate the losses of a bankrupt bank among those who have a claim on it, from shareholders to depositors.
+Such a predictable rank order of claims is needed for an orderly resolution regime and also to sever the lethal embrace between national banking systems and sovereign states.
+The final decisions got some important points right.
+Above all, the principle of “bail-in” is now firmly established: not just shareholders but some creditors should now expect to shoulder the burden of the bad bets a bank makes.
+Had this rule been in place before the crisis, some of the Irish disaster and the policy mistakes in Spain could have been averted;the UK Treasury could have spent less money on its rescues of big banks.
+A rule of bailing in creditors should ideally have meant that governments will never again bail them out.
+Going all the way to protect innocent taxpayers, however, was a step too far for the EU.
+States can still make whole those holders of up to 5 per cent of banks' liabilities, provided eight per cent has been written down first.
+For states with large banking systems especially, that could be a hefty bill for the public purse.
+Just as serious is the unpredictability created by this vestigial ability to bail out creditors at public expense.
+Touted as “flexibility”, it guarantees both that no one knows exactly who loses what when a crisis hits, and that the outcome will be different in different countries.
+This could be a recipe for disruption and regulatory arbitrage.
+The concessions are understandable, however, as is the protection provided for insured deposits and the larger bank accounts of individuals, and small and medium-sized enterprises.
+Governments are often beholden to the groups that in their national economies rely most on banks and on whom banks rely most for funding.
+However, it is precisely this unwillingness to make people face the true cost of their risks that made Europe so vulnerable to a financial crash.
+Something is, however, better than nothing.
+By settling on bail-in rules the EU has put in place yet another piece of the puzzle to underpin its banking union.
