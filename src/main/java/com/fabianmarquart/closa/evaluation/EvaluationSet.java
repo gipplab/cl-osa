@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Class for an evaluationSet, containing suspicious and candidate documents.
@@ -146,10 +147,12 @@ public abstract class EvaluationSet {
 
         List<File> keys = new ArrayList<>(files.keySet());
 
-        for (int i = 0; i < keys.size(); i++) {
-            System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
-            initializeOneFilePair(keys.get(i), suspiciousLanguage, files.get(keys.get(i)), candidateLanguage);
-        }
+        IntStream.range(0, keys.size())
+                .parallel()
+                .forEach(i -> {
+                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
+                    initializeOneFilePair(keys.get(i), suspiciousLanguage, files.get(keys.get(i)), candidateLanguage);
+                });
     }
 
 
