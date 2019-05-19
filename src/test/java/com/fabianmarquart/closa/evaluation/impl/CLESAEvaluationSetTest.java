@@ -77,6 +77,22 @@ public class CLESAEvaluationSetTest {
         }
     }
 
+
+    @Test
+    public void testCLESAEnglishChinese() {
+
+        try {
+            CLESAEvaluationSet englishChineseECCEEvaluationSetCLESA = new CLESAEvaluationSet(
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/ECCE/en"), "en",
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/ECCE/zh"), "zh"
+            );
+            englishChineseECCEEvaluationSetCLESA.printEvaluation();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     @Test
     public void testCLESAPan11Documents() {
         /*
