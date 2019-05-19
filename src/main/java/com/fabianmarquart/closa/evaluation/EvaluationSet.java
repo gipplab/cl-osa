@@ -107,7 +107,7 @@ public abstract class EvaluationSet {
         System.out.println("Analyzing " + fileCountLimit + " file pairs... (" + this.getClass().getSimpleName() + ")");
 
         Map<File, File> files = FileUtils.listFiles(suspiciousFolder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
-                .stream()
+                .parallelStream()
                 .sorted()
                 .filter(file -> !file.getName().equals(".DS_Store"))
                 .filter(file -> !file.getName().substring(0, 1).equals("_"))

@@ -462,7 +462,6 @@ public class CLESAEvaluationSet extends EvaluationSet {
      * @param url                    article url
      * @param title                  article title
      * @param wikipediaArticleTokens article tokens
-     * @return a BSON document with the same fields.
      */
     private void storeWikipediaTokenDocument(String id, String url, String title, List<String> wikipediaArticleTokens, String documentLanguage) {
         MongoCollection<Document> tokensCollection = getMongoCollection(documentLanguage, tokensCollectionNameSuffix);

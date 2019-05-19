@@ -8,7 +8,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e0cd2083-bb37-47bf-87bf-140cc5c25b2d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/ConceptUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/ConceptUtil.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/TranslationUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/TranslationUtil.java" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -35,7 +38,7 @@
       <file leaf-file-name="CLCNGEvaluationSet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
+            <state relative-caret-position="372">
               <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
               <folding />
             </state>
@@ -55,8 +58,8 @@
       <file leaf-file-name="CLESAEvaluationSetTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="111" column="43" lean-forward="false" selection-start-line="111" selection-start-column="16" selection-end-line="111" selection-end-column="43" />
+            <state relative-caret-position="466">
+              <caret line="78" column="39" lean-forward="false" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -75,18 +78,18 @@
       <file leaf-file-name="TranslationUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/TranslationUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="31" column="35" lean-forward="true" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
+            <state relative-caret-position="374">
+              <caret line="94" column="59" lean-forward="false" selection-start-line="94" selection-start-column="59" selection-end-line="94" selection-end-column="59" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConceptUtil.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ConceptUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/ConceptUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="482" column="0" lean-forward="false" selection-start-line="482" selection-start-column="0" selection-end-line="482" selection-end-column="0" />
+            <state relative-caret-position="340">
+              <caret line="436" column="94" lean-forward="false" selection-start-line="436" selection-start-column="46" selection-end-line="436" selection-end-column="94" />
               <folding />
             </state>
           </provider>
@@ -95,8 +98,8 @@
       <file leaf-file-name="CLESAEvaluationSet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="189" column="133" lean-forward="false" selection-start-line="189" selection-start-column="133" selection-end-line="189" selection-end-column="133" />
+            <state relative-caret-position="5234">
+              <caret line="575" column="70" lean-forward="true" selection-start-line="575" selection-start-column="70" selection-end-line="575" selection-end-column="70" />
               <folding />
             </state>
           </provider>
@@ -112,11 +115,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EvaluationSet.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="EvaluationSet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="488" column="0" lean-forward="false" selection-start-line="488" selection-start-column="0" selection-end-line="488" selection-end-column="0" />
+            <state relative-caret-position="215">
+              <caret line="109" column="33" lean-forward="false" selection-start-line="109" selection-start-column="33" selection-end-line="109" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -210,12 +213,12 @@
         <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLOSAEvaluationSetTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysis.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSetTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/TranslationUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/ConceptUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/TranslationUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java" />
       </list>
     </option>
   </component>
@@ -885,13 +888,6 @@
       <option name="presentableId" value="Default" />
       <updated>1550154606114</updated>
     </task>
-    <task id="LOCAL-00015" summary="fields local">
-      <created>1555166298992</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1555166298992</updated>
-    </task>
     <task id="LOCAL-00016" summary="Turned off logging for Reflections">
       <created>1555182619042</created>
       <option name="number" value="00016" />
@@ -1228,28 +1224,17 @@
       <option name="project" value="LOCAL" />
       <updated>1558280919265</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="has page id in language">
+      <created>1558286464467</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1558286464467</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CLCNGEvaluationSetTest_testCLCNGEnglishChinese - 2019.05.19 at 15h 24m 19s.xml">
-      <configuration name="CLCNGEvaluationSetTest.testCLCNGEnglishChinese" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CLCNGEvaluationSetTest_testCLCNGEnglishChinese - 2019.05.19 at 15h 24m 55s.xml">
-      <configuration name="CLCNGEvaluationSetTest.testCLCNGEnglishChinese" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CLCNGEvaluationSetTest_testCLCNGEnglishChinese - 2019.05.19 at 15h 26m 07s.xml">
-      <configuration name="CLCNGEvaluationSetTest.testCLCNGEnglishChinese" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CLCNGEvaluationSetTest_testCLCNGEnglishChinese - 2019.05.19 at 15h 27m 28s.xml">
-      <configuration name="CLCNGEvaluationSetTest.testCLCNGEnglishChinese" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CLCNGEvaluationSetTest_testCLCNGEnglishChinese - 2019.05.19 at 16h 04m 30s.xml">
-      <configuration name="CLCNGEvaluationSetTest.testCLCNGEnglishChinese" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CLCNGEvaluationSetTest_testCLCNGEnglishJapanese - 2019.05.19 at 16h 19m 40s.xml">
-      <configuration name="CLCNGEvaluationSetTest.testCLCNGEnglishJapanese" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CLCNGEvaluationSetTest_testCLCNGEnglishJapanese - 2019.05.19 at 16h 20m 03s.xml">
       <configuration name="CLCNGEvaluationSetTest.testCLCNGEnglishJapanese" configurationId="JUnit" />
     </history-entry>
@@ -1260,6 +1245,24 @@
       <configuration name="CLCNGEvaluationSetTest.testCLOSAPan11Documents" configurationId="JUnit" />
     </history-entry>
     <history-entry file="CLCNGEvaluationSetTest_testCLOSAPan11Documents - 2019.05.19 at 16h 40m 59s.xml">
+      <configuration name="CLCNGEvaluationSetTest.testCLOSAPan11Documents" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CLCNGEvaluationSetTest_testCLOSAPan11Documents - 2019.05.19 at 20h 52m 31s.xml">
+      <configuration name="CLCNGEvaluationSetTest.testCLOSAPan11Documents" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CLCNGEvaluationSetTest_testCLOSAPan11Documents - 2019.05.19 at 20h 56m 55s.xml">
+      <configuration name="CLCNGEvaluationSetTest.testCLOSAPan11Documents" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CLCNGEvaluationSetTest_testCLOSAPan11Documents - 2019.05.19 at 21h 06m 11s.xml">
+      <configuration name="CLCNGEvaluationSetTest.testCLOSAPan11Documents" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CLCNGEvaluationSetTest_testCLOSAPan11Documents - 2019.05.19 at 21h 08m 15s.xml">
+      <configuration name="CLCNGEvaluationSetTest.testCLOSAPan11Documents" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CLCNGEvaluationSetTest_testCLOSAPan11Documents - 2019.05.19 at 21h 08m 23s.xml">
+      <configuration name="CLCNGEvaluationSetTest.testCLOSAPan11Documents" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CLCNGEvaluationSetTest_testCLOSAPan11Documents - 2019.05.19 at 21h 21m 43s.xml">
       <configuration name="CLCNGEvaluationSetTest.testCLOSAPan11Documents" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -1276,7 +1279,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5021299" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1256656" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.4978701" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3336291" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39751554" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24933451" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1329,15 +1332,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSet.java</url>
-          <line>107</line>
-          <properties />
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="32" />
+      <option name="time" value="33" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1665,26 +1660,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="488" column="0" lean-forward="false" selection-start-line="488" selection-start-column="0" selection-end-line="488" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/EvaluationSetTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="16" column="52" lean-forward="false" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="111" column="43" lean-forward="false" selection-start-line="111" selection-start-column="16" selection-end-line="111" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -1705,14 +1684,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSetTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="521">
@@ -1721,26 +1692,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/TranslationUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="31" column="35" lean-forward="true" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="189" column="133" lean-forward="false" selection-start-line="189" selection-start-column="133" selection-end-line="189" selection-end-column="133" />
+        <state relative-caret-position="466">
+          <caret line="78" column="39" lean-forward="false" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/ConceptUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="482" column="0" lean-forward="false" selection-start-line="482" selection-start-column="0" selection-end-line="482" selection-end-column="0" />
+        <state relative-caret-position="340">
+          <caret line="436" column="94" lean-forward="false" selection-start-line="436" selection-start-column="46" selection-end-line="436" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/TranslationUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="94" column="59" lean-forward="false" selection-start-line="94" selection-start-column="59" selection-end-line="94" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5234">
+          <caret line="575" column="70" lean-forward="true" selection-start-line="575" selection-start-column="70" selection-end-line="575" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="109" column="33" lean-forward="false" selection-start-line="109" selection-start-column="33" selection-end-line="109" selection-end-column="33" />
           <folding />
         </state>
       </provider>
