@@ -471,16 +471,23 @@ public class ConceptUtil {
             HttpResponse response = client.execute(get);
 
             JsonObject object = parser.parse(EntityUtils.toString(response.getEntity(), UTF_8)).getAsJsonObject();
-            Set<Map.Entry<String, JsonElement>> pages = object
-                    .getAsJsonObject("query")
-                    .getAsJsonObject("pages")
-                    .entrySet();
+            JsonObject query = object.getAsJsonObject("query");
 
-            if (!pages.iterator().hasNext()) {
+            if (query.has("pages")) {
+                Set<Map.Entry<String, JsonElement>> pages = query
+                        .getAsJsonObject("pages")
+                        .entrySet();
+
+                if (!pages.iterator().hasNext()) {
+                    return null;
+                }
+
+                return pages.iterator().next().getKey();
+
+            } else {
                 return null;
             }
-
-            return pages.iterator().next().getKey();
+            
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
         }

@@ -19,7 +19,6 @@ public class CLCNGEvaluationSetTest {
 
             Mean reciprocal rank: 82.56386671215749
 
-
             Aligned document similarities
 
             {40.0=27, 60.0=3, 30.0=3, 50.0=60}
@@ -29,7 +28,7 @@ public class CLCNGEvaluationSetTest {
         try {
             EvaluationSet englishJapaneseBBCEvaluationSetCLCNG = new CLCNGEvaluationSet(
                     new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/en"), "en",
-                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/ja-t"), "en");
+                    new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/ja"), "ja");
 
             englishJapaneseBBCEvaluationSetCLCNG.printEvaluation();
         } catch (IOException e) {
@@ -39,7 +38,20 @@ public class CLCNGEvaluationSetTest {
 
     @Test
     public void testCLCNGEnglishChinese() {
+        /*
+            Precision: [98.23183, 49.50884, 33.005894, 19.842829, 9.921414, 4.960707, 1.984283]
+            Recall: [98.23183, 99.01768, 99.01768, 99.21414, 99.21414, 99.21414, 99.21414]
+            F-Measure: [98.23183, 66.01179, 49.508842, 33.07138, 18.038937, 9.448966, 3.890751]
 
+            Mean reciprocal rank: 98.67567758325117
+
+
+            Aligned document similarities
+
+            {60.0=346, 40.0=3, 20.0=1, 10.0=1, 50.0=35, 70.0=123}
+
+            {10.0=0.19646366, 20.0=0.19646366, 40.0=0.58939093, 60.0=67.976425, 50.0=6.876228, 70.0=24.16503}
+         */
         try {
             EvaluationSet englishChineseECCEEvaluationSetCLCNG = new CLCNGEvaluationSet(
                     new File("src/test/resources/com/fabianmarquart/closa/evaluation/ECCE/en"), "en",
@@ -47,6 +59,20 @@ public class CLCNGEvaluationSetTest {
             );
             englishChineseECCEEvaluationSetCLCNG.printEvaluation();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testCLOSAPan11Documents() {
+        try {
+            CLCNGEvaluationSet englishSpanishPan11EvaluationSetCLCNG = new CLCNGEvaluationSet(
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es",
+                    500
+            );
+            englishSpanishPan11EvaluationSetCLCNG.printEvaluation();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

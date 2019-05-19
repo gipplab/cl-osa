@@ -28,8 +28,8 @@ public class TranslationUtil {
 
     // Yandex Key:
     // trnsl.1.1.20161215T095107Z.21e4715db6afd38f.99a817455e6c81e980aff628576c0a2fde2e610d
-    private static String yandexKey = "key=trnsl.1.1.20161215T095107Z.21e4715db6afd38f.99a817455e6c81e980aff628576c0a2fde2e610d";
-    private static String yandexKey2 = "key=trnsl.1.1.20170808T211059Z.614e9b96903bae53.3cc73e71fb5f01bbee37313819aa160fe31704d3";
+    private static String yandexKey1 = "key=trnsl.1.1.20161215T095107Z.21e4715db6afd38f.99a817455e6c81e980aff628576c0a2fde2e610d";
+    private static String yandexKey = "key=trnsl.1.1.20170808T211059Z.614e9b96903bae53.3cc73e71fb5f01bbee37313819aa160fe31704d3";
     private static String yandexText = "&text=";
     private static String yandexLang = "&lang=";
 
