@@ -187,7 +187,7 @@ public class CLESAEvaluationSet extends EvaluationSet {
                             boolean articlePresentInAllLanguages = true;
                             for (String language : documentLanguages) {
                                 articlePresentInAllLanguages =
-                                        articlePresentInAllLanguages && ConceptUtil.getPageIdInLanguage(id, documentLanguage, language) != null;
+                                        articlePresentInAllLanguages && ConceptUtil.hasPageIdLanguage(id, documentLanguage, language);
                             }
                             return articlePresentInAllLanguages;
                         })

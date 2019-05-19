@@ -451,6 +451,11 @@ public class ConceptUtil {
         return getPageIdByTitle(wikipediaPageTitleInLanguage, targetLanguage);
     }
 
+    public static boolean hasPageIdLanguage(String pageId, String originalLanguage, String targetLanguage) {
+        return originalLanguage.equals(targetLanguage) || getPageIdInLanguage(pageId, originalLanguage, targetLanguage) != null;
+
+    }
+
 
     /**
      * Map Wikipedia page title to page id in language.
@@ -487,7 +492,7 @@ public class ConceptUtil {
             } else {
                 return null;
             }
-            
+
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
         }
