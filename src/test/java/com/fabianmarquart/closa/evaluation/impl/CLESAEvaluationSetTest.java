@@ -95,22 +95,6 @@ public class CLESAEvaluationSetTest {
 
     @Test
     public void testCLESAPan11Documents() {
-        /*
-            True positives: 2794
-            Relevant elements: 2920
-            Irrelevant elements: 0
-            Collection size: 2920
-            Selected elements: 2920
-            False positives: 126
-            False negatives: 126
-
-            Ranks 1 to 1
-
-            Precision: [0.95684934]
-            Recall: [0.95684934]
-            F-Measure: [0.95684934]
-         */
-
         try {
             CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",

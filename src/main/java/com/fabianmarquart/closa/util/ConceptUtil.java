@@ -420,7 +420,6 @@ public class ConceptUtil {
             return pageId;
         }
 
-        String idInLanguage = null;
         String wikipediaPageTitleInLanguage = null;
 
         // get wikipedia page title in language

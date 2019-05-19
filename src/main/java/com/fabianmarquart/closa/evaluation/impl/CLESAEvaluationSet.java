@@ -184,8 +184,12 @@ public class CLESAEvaluationSet extends EvaluationSet {
                         .flatMap(Collection::stream)
                         .filter((Element document) -> {
                             String id = document.attr("id");
-                            return documentLanguages.stream()
-                                    .noneMatch(language -> ConceptUtil.getPageIdInLanguage(id, documentLanguage, language) == null);
+                            boolean articlePresentInAllLanguages = true;
+                            for (String language : documentLanguages) {
+                                articlePresentInAllLanguages =
+                                        articlePresentInAllLanguages && ConceptUtil.getPageIdInLanguage(id, documentLanguage, language) != null;
+                            }
+                            return articlePresentInAllLanguages;
                         })
                         .limit(wikipediaArticleLimit)
                         // 2.1 check if Wikipedia file has already been preprocessed to tokens
