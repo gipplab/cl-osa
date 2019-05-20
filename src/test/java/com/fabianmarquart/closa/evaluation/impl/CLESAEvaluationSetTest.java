@@ -92,6 +92,22 @@ public class CLESAEvaluationSetTest {
 
     @Test
     public void testCLESAPan11Documents() {
+        /*
+            Ranks 1 to 50
+
+            Precision: [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
+            Recall: [0.2, 0.4, 0.6, 1.0, 2.0, 4.0, 10.0]
+            F-Measure: [0.2, 0.26666668, 0.3, 0.33333334, 0.36363637, 0.3809524, 0.3921569]
+
+            Mean reciprocal rank: 0.8998410676658846
+
+
+            Aligned document similarities
+
+            {0.0=50}
+
+            {0.0=10.0}
+         */
         try {
             CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
@@ -107,6 +123,22 @@ public class CLESAEvaluationSetTest {
 
     @Test
     public void testCLESAJrcAcquisDocuments() {
+        /*
+            500
+
+            Precision: [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
+            Recall: [0.2004008, 0.4008016, 0.60120237, 1.002004, 2.004008, 4.008016, 10.02004]
+            F-Measure: [0.2002002, 0.2668446, 0.3001501, 0.3334445, 0.3637025, 0.3809887, 0.3921723]
+
+            Mean reciprocal rank: 0.9016443563786423
+
+
+            Aligned document similarities
+
+            {0.0=50}
+
+            {0.0=10.0}
+         */
         try {
             CLESAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
@@ -122,7 +154,20 @@ public class CLESAEvaluationSetTest {
 
     @Test
     public void testCLESAEuroparlDocuments() {
+        /*
+            Precision: [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
+            Recall: [0.2, 0.4, 0.6, 1.0, 2.0, 4.0, 10.0]
+            F-Measure: [0.2, 0.26666668, 0.3, 0.33333334, 0.36363637, 0.3809524, 0.3921569]
 
+            Mean reciprocal rank: 0.8998410676658849
+
+
+            Aligned document similarities
+
+            {0.0=50}
+
+            {0.0=10.0}
+         */
         try {
             CLESAEvaluationSet englishFrenchEuroparlEvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",

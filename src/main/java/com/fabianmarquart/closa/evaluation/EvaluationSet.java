@@ -108,7 +108,7 @@ public abstract class EvaluationSet {
         System.out.println("Analyzing " + fileCountLimit + " file pairs... (" + this.getClass().getSimpleName() + ")");
 
         Map<File, File> files = FileUtils.listFiles(suspiciousFolder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
-                .parallelStream()
+                .stream()
                 .sorted()
                 .filter(file -> !file.getName().equals(".DS_Store"))
                 .filter(file -> !file.getName().substring(0, 1).equals("_"))
@@ -148,7 +148,6 @@ public abstract class EvaluationSet {
         List<File> keys = new ArrayList<>(files.keySet());
 
         IntStream.range(0, keys.size())
-                .parallel()
                 .forEach(i -> {
                     System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
                     initializeOneFilePair(keys.get(i), suspiciousLanguage, files.get(keys.get(i)), candidateLanguage);

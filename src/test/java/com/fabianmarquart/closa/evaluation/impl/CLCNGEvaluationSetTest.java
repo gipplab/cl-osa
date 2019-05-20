@@ -64,7 +64,23 @@ public class CLCNGEvaluationSetTest {
     }
 
     @Test
-    public void testCLOSAPan11Documents() {
+    public void testCLCNGPan11Documents() {
+        /*
+            Ranks 1 to 50
+
+            Precision: [35.0, 19.8, 13.733334, 9.12, 4.9, 2.6100001, 1.076]
+            Recall: [35.0, 39.6, 41.2, 45.6, 49.0, 52.2, 53.8]
+            F-Measure: [35.0, 26.400003, 20.6, 15.2, 8.909091, 4.971429, 2.109804]
+
+            Mean reciprocal rank: 39.67356806548
+
+
+            Aligned document similarities
+
+            {40.0=67, 60.0=158, 30.0=32, 80.0=5, 50.0=87, 70.0=19}
+
+            {80.0=1.0, 30.0=6.4, 60.0=31.6, 40.0=13.4, 50.0=17.4, 70.0=3.8}
+         */
         try {
             CLCNGEvaluationSet englishSpanishPan11EvaluationSetCLCNG = new CLCNGEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
@@ -72,6 +88,23 @@ public class CLCNGEvaluationSetTest {
                     500
             );
             englishSpanishPan11EvaluationSetCLCNG.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testCLCNGJrcAcquisDocuments() {
+        /*
+
+         */
+        try {
+            CLCNGEvaluationSet englishFrenchJrcAcquisEvaluationSetCLCNG = new CLCNGEvaluationSet(
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr",
+                    500
+            );
+            englishFrenchJrcAcquisEvaluationSetCLCNG.printEvaluation();
         } catch (Exception e) {
             e.printStackTrace();
         }
