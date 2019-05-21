@@ -82,7 +82,7 @@ public class CLESAEvaluationSet extends EvaluationSet {
     // "If high retrieval speed or a high multilinguality is desired, documents should be represented as 1000- dimensional concept vectors.
     // At a lower dimension the retrieval quality deteriorates significantly.
     // A reasonable trade-off between retrieval quality and runtime is achieved for a concept space dimensionality between 1 000 and 10 000."
-    private static final int wikipediaArticleLimit = 5000;
+    private static final int wikipediaArticleLimit = 5;
     private static final int retrievalCountLimit = 50;
 
     private static MongoDatabase database;
@@ -167,7 +167,7 @@ public class CLESAEvaluationSet extends EvaluationSet {
 
 
                 // get the articles in the Wikipedia dump
-                Files.walk(wikipediaExtractedDumpPath)
+                List<Element> documents = Files.walk(wikipediaExtractedDumpPath)
                         .filter(Files::isRegularFile)
                         .filter(path -> !path.endsWith(".DS_Store"))
                         .sorted()
@@ -194,6 +194,7 @@ public class CLESAEvaluationSet extends EvaluationSet {
                         .limit(wikipediaArticleLimit)
                         // 2.1 check if Wikipedia file has already been preprocessed to tokens
                         .filter((Element document) -> {
+                            progressBarDumpInitial.step();
                             String id = document.attr("id");
                             MongoCollection<Document> tokensCollection = getMongoCollection(documentLanguage, tokensCollectionNameSuffix);
                             return tokensCollection.find(Filters.and(
@@ -201,21 +202,28 @@ public class CLESAEvaluationSet extends EvaluationSet {
                                     Filters.and(languageFilters)))
                                     .first() == null;
                         })
-                        .forEach((Element document) -> {
-                            String id = document.attr("id");
-                            String url = document.attr("url");
-                            String title = document.attr("title");
-                            String text = document.text();
+                        .collect(Collectors.toList());
 
-                            List<String> wikipediaArticleTokens;
 
-                            // 2.2 preprocess to tokens and save to MongoDB collection
-                            wikipediaArticleTokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(text, documentLanguage)
-                                    .stream().map(Token::getToken).collect(Collectors.toList());
+                // take the dump files and insert them into the mongo tokens collection
+                ProgressBar progressBarDump = new ProgressBar("Walk Wikipedia dump files:", documents.size(), ProgressBarStyle.ASCII).start();
 
-                            storeWikipediaTokenDocument(id, url, title, wikipediaArticleTokens, documentLanguage);
-                            progressBarDumpInitial.step();
-                        });
+                documents.parallelStream().forEach((Element document) -> {
+                    String id = document.attr("id");
+                    String url = document.attr("url");
+                    String title = document.attr("title");
+                    String text = document.text();
+
+                    List<String> wikipediaArticleTokens;
+
+                    // 2.2 preprocess to tokens and save to MongoDB collection
+                    wikipediaArticleTokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(text, documentLanguage)
+                            .stream().map(Token::getToken).collect(Collectors.toList());
+
+                    storeWikipediaTokenDocument(id, url, title, wikipediaArticleTokens, documentLanguage);
+
+                    progressBarDump.step();
+                });
 
                 progressBarDumpInitial.stop();
             }
