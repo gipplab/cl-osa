@@ -494,6 +494,7 @@ public class CLESAEvaluationSet extends EvaluationSet {
 
         // insert into to collection
         if (tokensCollection.find(new Document("id", id)).first() == null) {
+            System.out.println("Insert token document " + id);
             tokensCollection.insertOne(tokenDocument);
         }
     }

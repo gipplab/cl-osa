@@ -65,8 +65,8 @@
       <file leaf-file-name="CLESAEvaluationSet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="211" column="42" lean-forward="false" selection-start-line="211" selection-start-column="42" selection-end-line="211" selection-end-column="42" />
+            <state relative-caret-position="440">
+              <caret line="496" column="62" lean-forward="false" selection-start-line="496" selection-start-column="62" selection-end-line="496" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -897,13 +897,6 @@
       <option name="presentableId" value="Default" />
       <updated>1550154606114</updated>
     </task>
-    <task id="LOCAL-00021" summary="Resources path">
-      <created>1555245393619</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1555245393619</updated>
-    </task>
     <task id="LOCAL-00022" summary="Resolve language code zh to zh-CN">
       <created>1555246368097</created>
       <option name="number" value="00022" />
@@ -1240,7 +1233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1558465252515</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="parallelism">
+      <created>1558471593747</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1558471593747</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1312,7 +1312,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Restored Spanish" />
     <MESSAGE value="CL-ESA 5000" />
     <MESSAGE value="Aligned similarities in percent" />
     <MESSAGE value="Graph based analysis" />
@@ -1337,7 +1336,8 @@
     <MESSAGE value="10000 concept space" />
     <MESSAGE value="5000 concept space" />
     <MESSAGE value="output" />
-    <option name="LAST_COMMIT_MESSAGE" value="output" />
+    <MESSAGE value="parallelism" />
+    <option name="LAST_COMMIT_MESSAGE" value="parallelism" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1743,8 +1743,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="211" column="42" lean-forward="false" selection-start-line="211" selection-start-column="42" selection-end-line="211" selection-end-column="42" />
+        <state relative-caret-position="440">
+          <caret line="496" column="62" lean-forward="false" selection-start-line="496" selection-start-column="62" selection-end-line="496" selection-end-column="62" />
           <folding />
         </state>
       </provider>
