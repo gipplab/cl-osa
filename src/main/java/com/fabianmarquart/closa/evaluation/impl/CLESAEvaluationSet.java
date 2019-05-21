@@ -209,7 +209,7 @@ public class CLESAEvaluationSet extends EvaluationSet {
                 // take the dump files and insert them into the mongo tokens collection
                 ProgressBar progressBarDump = new ProgressBar("Walk Wikipedia dump files:", documents.size(), ProgressBarStyle.ASCII).start();
 
-                documents.forEach((Element document) -> {
+                documents.parallelStream().forEach((Element document) -> {
                     String id = document.attr("id");
                     String url = document.attr("url");
                     String title = document.attr("title");

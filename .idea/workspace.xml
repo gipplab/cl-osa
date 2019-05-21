@@ -65,8 +65,8 @@
       <file leaf-file-name="CLESAEvaluationSet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="333" column="66" lean-forward="false" selection-start-line="333" selection-start-column="66" selection-end-line="333" selection-end-column="66" />
+            <state relative-caret-position="230">
+              <caret line="211" column="42" lean-forward="false" selection-start-line="211" selection-start-column="42" selection-end-line="211" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -897,13 +897,6 @@
       <option name="presentableId" value="Default" />
       <updated>1550154606114</updated>
     </task>
-    <task id="LOCAL-00020" summary="Optimized imports">
-      <created>1555185009033</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1555185009033</updated>
-    </task>
     <task id="LOCAL-00021" summary="Resources path">
       <created>1555245393619</created>
       <option name="number" value="00021" />
@@ -1240,13 +1233,17 @@
       <option name="project" value="LOCAL" />
       <updated>1558464817298</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="output">
+      <created>1558465252515</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1558465252515</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CLCNGEvaluationSetTest_testCLCNGJrcAcquisDocuments - 2019.05.20 at 10h 14m 28s.xml">
-      <configuration name="CLCNGEvaluationSetTest.testCLCNGJrcAcquisDocuments" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CLCNGEvaluationSetTest_testCLCNGJrcAcquisDocuments - 2019.05.20 at 14h 11m 06s.xml">
       <configuration name="CLCNGEvaluationSetTest.testCLCNGJrcAcquisDocuments" configurationId="JUnit" />
     </history-entry>
@@ -1272,6 +1269,9 @@
       <configuration name="CLCNGEvaluationSetTest.testCLCNGJrcAcquisDocuments" configurationId="JUnit" />
     </history-entry>
     <history-entry file="CLCNGEvaluationSetTest_testCLCNGJrcAcquisDocuments - 2019.05.21 at 20h 53m 42s.xml">
+      <configuration name="CLCNGEvaluationSetTest.testCLCNGJrcAcquisDocuments" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CLCNGEvaluationSetTest_testCLCNGJrcAcquisDocuments - 2019.05.21 at 22h 39m 54s.xml">
       <configuration name="CLCNGEvaluationSetTest.testCLCNGJrcAcquisDocuments" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -1312,7 +1312,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="MRR" />
     <MESSAGE value="Restored Spanish" />
     <MESSAGE value="CL-ESA 5000" />
     <MESSAGE value="Aligned similarities in percent" />
@@ -1337,7 +1336,8 @@
     <MESSAGE value="parallel stream" />
     <MESSAGE value="10000 concept space" />
     <MESSAGE value="5000 concept space" />
-    <option name="LAST_COMMIT_MESSAGE" value="5000 concept space" />
+    <MESSAGE value="output" />
+    <option name="LAST_COMMIT_MESSAGE" value="output" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1743,8 +1743,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="333" column="66" lean-forward="false" selection-start-line="333" selection-start-column="66" selection-end-line="333" selection-end-column="66" />
+        <state relative-caret-position="230">
+          <caret line="211" column="42" lean-forward="false" selection-start-line="211" selection-start-column="42" selection-end-line="211" selection-end-column="42" />
           <folding />
         </state>
       </provider>
