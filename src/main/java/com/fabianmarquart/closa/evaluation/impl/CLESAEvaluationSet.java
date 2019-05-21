@@ -168,7 +168,6 @@ public class CLESAEvaluationSet extends EvaluationSet {
 
                 // get the articles in the Wikipedia dump
                 Files.walk(wikipediaExtractedDumpPath)
-                        .parallel()
                         .filter(Files::isRegularFile)
                         .filter(path -> !path.endsWith(".DS_Store"))
                         .sorted()

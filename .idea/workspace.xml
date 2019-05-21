@@ -65,8 +65,8 @@
       <file leaf-file-name="CLESAEvaluationSet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="204" column="0" lean-forward="false" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
+            <state relative-caret-position="15">
+              <caret line="170" column="0" lean-forward="false" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -898,13 +898,6 @@
       <option name="presentableId" value="Default" />
       <updated>1550154606114</updated>
     </task>
-    <task id="LOCAL-00026" summary="debugging">
-      <created>1557594913120</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1557594913120</updated>
-    </task>
     <task id="LOCAL-00027" summary="analysis fixed null-poiner exception">
       <created>1557595076158</created>
       <option name="number" value="00027" />
@@ -1241,7 +1234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1558473723127</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="Parallel">
+      <created>1558474198040</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1558474198040</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1313,7 +1313,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="CL-ESA Pan 11 documents" />
     <MESSAGE value="Ontology mongo query bugfix" />
     <MESSAGE value="Hierarchical cosine bug fix" />
     <MESSAGE value="Hierarchical vectors progress bar" />
@@ -1338,7 +1337,8 @@
     <MESSAGE value="Translate retry" />
     <MESSAGE value="CLCNG Europarl" />
     <MESSAGE value="Translate keys" />
-    <option name="LAST_COMMIT_MESSAGE" value="Translate keys" />
+    <MESSAGE value="Parallel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Parallel" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1744,8 +1744,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="204" column="0" lean-forward="false" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
+        <state relative-caret-position="15">
+          <caret line="170" column="0" lean-forward="false" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
           <folding />
         </state>
       </provider>
