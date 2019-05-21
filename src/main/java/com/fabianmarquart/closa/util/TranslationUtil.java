@@ -135,7 +135,7 @@ public class TranslationUtil {
                 }
 
                 return getXMLElement(xml);
-            } catch (URISyntaxException | SAXException | ParserConfigurationException | IOException e) {
+            } catch (URISyntaxException | NullPointerException | SAXException | ParserConfigurationException | IOException e) {
                 currentApiKey = (currentApiKey + 1) % apiKeys.size();
                 e.printStackTrace();
             }

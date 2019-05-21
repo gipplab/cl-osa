@@ -114,7 +114,7 @@ public class CLCNGEvaluationSetTest {
     @Test
     public void testCLCNGEuroparlDocuments() {
 
-        
+
         try {
             CLCNGEvaluationSet englishFrenchEuroparlEvaluationSetCLCNG = new CLCNGEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
