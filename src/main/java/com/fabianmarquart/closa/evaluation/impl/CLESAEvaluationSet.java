@@ -331,10 +331,11 @@ public class CLESAEvaluationSet extends EvaluationSet {
                         List<SparseRealVector> documentVectors = Dictionary.createVectorsFromDocuments(documentTokens, wikipediaArticleTokens);
 
                         similarityValue = Dictionary.cosineSimilarity(documentVectors.get(0), documentVectors.get(1));
+                        System.out.println("similarityValue = " + similarityValue);
 
                         Document similarityDocument = createSimilarityDocument(documentPath, id, url, title, similarityValue);
 
-                        // insert into to collection
+                        // insert into collection
                         similaritiesCollection.insertOne(similarityDocument);
                     } else {
                         // 3.2 retrieve existing similarity document for given suspicious/candidate document

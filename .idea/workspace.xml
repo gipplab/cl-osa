@@ -6,10 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0cd2083-bb37-47bf-87bf-140cc5c25b2d" name="Default" comment="10000 concept space">
+    <list default="true" id="e0cd2083-bb37-47bf-87bf-140cc5c25b2d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/TranslationUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/TranslationUtil.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -66,8 +65,8 @@
       <file leaf-file-name="CLESAEvaluationSet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="84" column="54" lean-forward="false" selection-start-line="84" selection-start-column="54" selection-end-line="84" selection-end-column="54" />
+            <state relative-caret-position="368">
+              <caret line="333" column="66" lean-forward="false" selection-start-line="333" selection-start-column="66" selection-end-line="333" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -134,6 +133,7 @@
       <find>candidate c</find>
       <find>replace</find>
       <find>alignment</find>
+      <find>cosin</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -897,13 +897,6 @@
       <option name="presentableId" value="Default" />
       <updated>1550154606114</updated>
     </task>
-    <task id="LOCAL-00019" summary="Updated readme">
-      <created>1555184620628</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1555184620628</updated>
-    </task>
     <task id="LOCAL-00020" summary="Optimized imports">
       <created>1555185009033</created>
       <option name="number" value="00020" />
@@ -1240,13 +1233,17 @@
       <option name="project" value="LOCAL" />
       <updated>1558387734075</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="5000 concept space">
+      <created>1558464817298</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1558464817298</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CLCNGEvaluationSetTest_testCLCNGJrcAcquisDocuments - 2019.05.20 at 10h 13m 14s.xml">
-      <configuration name="CLCNGEvaluationSetTest.testCLCNGJrcAcquisDocuments" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CLCNGEvaluationSetTest_testCLCNGJrcAcquisDocuments - 2019.05.20 at 10h 14m 28s.xml">
       <configuration name="CLCNGEvaluationSetTest.testCLCNGJrcAcquisDocuments" configurationId="JUnit" />
     </history-entry>
@@ -1272,6 +1269,9 @@
       <configuration name="CLCNGEvaluationSetTest.testCLCNGJrcAcquisDocuments" configurationId="JUnit" />
     </history-entry>
     <history-entry file="CLCNGEvaluationSetTest_testCLCNGJrcAcquisDocuments - 2019.05.21 at 07h 52m 13s.xml">
+      <configuration name="CLCNGEvaluationSetTest.testCLCNGJrcAcquisDocuments" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CLCNGEvaluationSetTest_testCLCNGJrcAcquisDocuments - 2019.05.21 at 20h 53m 42s.xml">
       <configuration name="CLCNGEvaluationSetTest.testCLCNGJrcAcquisDocuments" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -1312,7 +1312,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pan 11 500" />
     <MESSAGE value="MRR" />
     <MESSAGE value="Restored Spanish" />
     <MESSAGE value="CL-ESA 5000" />
@@ -1337,7 +1336,8 @@
     <MESSAGE value="has page id in language" />
     <MESSAGE value="parallel stream" />
     <MESSAGE value="10000 concept space" />
-    <option name="LAST_COMMIT_MESSAGE" value="10000 concept space" />
+    <MESSAGE value="5000 concept space" />
+    <option name="LAST_COMMIT_MESSAGE" value="5000 concept space" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1553,14 +1553,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/model/Dictionary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="90" column="13" lean-forward="true" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/wikidata/WikidataDumpUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -1741,10 +1733,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/model/Dictionary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="49" column="45" lean-forward="false" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="84" column="54" lean-forward="false" selection-start-line="84" selection-start-column="54" selection-end-line="84" selection-end-column="54" />
+        <state relative-caret-position="368">
+          <caret line="333" column="66" lean-forward="false" selection-start-line="333" selection-start-column="66" selection-end-line="333" selection-end-column="66" />
           <folding />
         </state>
       </provider>
