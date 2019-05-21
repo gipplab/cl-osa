@@ -110,4 +110,21 @@ public class CLCNGEvaluationSetTest {
         }
     }
 
+
+    @Test
+    public void testCLCNGEuroparlDocuments() {
+
+        
+        try {
+            CLCNGEvaluationSet englishFrenchEuroparlEvaluationSetCLCNG = new CLCNGEvaluationSet(
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
+                    500
+            );
+            englishFrenchEuroparlEvaluationSetCLCNG.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
