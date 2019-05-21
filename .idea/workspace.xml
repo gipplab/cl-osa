@@ -66,7 +66,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="538">
-              <caret line="84" column="54" lean-forward="false" selection-start-line="84" selection-start-column="54" selection-end-line="84" selection-end-column="54" />
+              <caret line="84" column="57" lean-forward="false" selection-start-line="84" selection-start-column="57" selection-end-line="84" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -898,13 +898,6 @@
       <option name="presentableId" value="Default" />
       <updated>1550154606114</updated>
     </task>
-    <task id="LOCAL-00028" summary="Changed rank steps">
-      <created>1557595947615</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1557595947615</updated>
-    </task>
     <task id="LOCAL-00029" summary="CL similarity distribution">
       <created>1557666591263</created>
       <option name="number" value="00029" />
@@ -1241,7 +1234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1558474289337</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Tst concept space dimension">
+      <created>1558474764309</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1558474764309</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1313,7 +1313,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Ontology mongo query bugfix" />
     <MESSAGE value="Hierarchical cosine bug fix" />
     <MESSAGE value="Hierarchical vectors progress bar" />
     <MESSAGE value="Hierarchical vectors power" />
@@ -1338,7 +1337,8 @@
     <MESSAGE value="CLCNG Europarl" />
     <MESSAGE value="Translate keys" />
     <MESSAGE value="Parallel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Parallel" />
+    <MESSAGE value="Tst concept space dimension" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tst concept space dimension" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1745,7 +1745,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="538">
-          <caret line="84" column="54" lean-forward="false" selection-start-line="84" selection-start-column="54" selection-end-line="84" selection-end-column="54" />
+          <caret line="84" column="57" lean-forward="false" selection-start-line="84" selection-start-column="57" selection-end-line="84" selection-end-column="57" />
           <folding />
         </state>
       </provider>
