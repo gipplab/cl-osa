@@ -32,15 +32,18 @@ public class TranslationUtil {
 
     private static String yandexApiCall = "https://translate.yandex.net/api/v1.5/tr/translate?";
 
-    // Yandex Key:
-    // trnsl.1.1.20161215T095107Z.21e4715db6afd38f.99a817455e6c81e980aff628576c0a2fde2e610d
-    private static String yandexKey1 = "trnsl.1.1.20161215T095107Z.21e4715db6afd38f.99a817455e6c81e980aff628576c0a2fde2e610d";
-    private static String yandexKey2 = "trnsl.1.1.20170808T211059Z.614e9b96903bae53.3cc73e71fb5f01bbee37313819aa160fe31704d3";
-    private static String yandexKey = "trnsl.1.1.20190519T185620Z.a13e2d466bfd0f48.e7fa74f26efcefd253902a5fe9bae0f0ff50aad4";
-    private static String yandexKey4 = "trnsl.1.1.20190520T114426Z.2ebf20d9cefb22c8.69a90c870b4819adb2b9480479231fc3b979d429";
-    private static String yandexKey5 = "trnsl.1.1.20190520T131347Z.c73bd4d3b19b69ba.400f2a1f6c82dc0d0687ed05a499bb169100df0b";
-    private static String yandexKey6 = "trnsl.1.1.20190520T131445Z.ccaedd5aed66182d.aba9d4025560c822a7fb2739dadf283a230c16f8";
-    private static String yandexKey7 ="trnsl.1.1.20190520T131614Z.7afb7f4f79efeec9.6cc1fb1511ce7eb034fa86d7ba0b69752ebd8403";
+    // Yandex Keys
+    private static List<String> apiKeys = Arrays.asList(
+            "trnsl.1.1.20161215T095107Z.21e4715db6afd38f.99a817455e6c81e980aff628576c0a2fde2e610d",
+            "trnsl.1.1.20170808T211059Z.614e9b96903bae53.3cc73e71fb5f01bbee37313819aa160fe31704d3",
+            "trnsl.1.1.20190519T185620Z.a13e2d466bfd0f48.e7fa74f26efcefd253902a5fe9bae0f0ff50aad4",
+            "trnsl.1.1.20190520T114426Z.2ebf20d9cefb22c8.69a90c870b4819adb2b9480479231fc3b979d429",
+            "trnsl.1.1.20190520T131347Z.c73bd4d3b19b69ba.400f2a1f6c82dc0d0687ed05a499bb169100df0b",
+            "trnsl.1.1.20190520T131445Z.ccaedd5aed66182d.aba9d4025560c822a7fb2739dadf283a230c16f8",
+            "trnsl.1.1.20190520T131614Z.7afb7f4f79efeec9.6cc1fb1511ce7eb034fa86d7ba0b69752ebd8403");
+
+    private static int currentApiKey = 0;
+
     private static String yandexText = "&text=";
     private static String yandexLang = "&lang=";
 
@@ -112,27 +115,30 @@ public class TranslationUtil {
      * @return translation or same text if failed.
      */
     private static String translateChunk(String text, String sourceLanguage, String targetLanguage) {
-        try {
-            URIBuilder builder = new URIBuilder("https://translate.yandex.net/api/v1.5/tr/translate");
+        for (int i = 0; i < apiKeys.size(); i++) {
+            try {
+                URIBuilder builder = new URIBuilder("https://translate.yandex.net/api/v1.5/tr/translate");
 
-            builder.addParameter("key", yandexKey)
-                    .addParameter("lang", String.format("%s-%s", sourceLanguage, targetLanguage))
-                    .addParameter("text", text);
+                builder.addParameter("key", apiKeys.get(currentApiKey))
+                        .addParameter("lang", String.format("%s-%s", sourceLanguage, targetLanguage))
+                        .addParameter("text", text);
 
-            HttpPost post = new HttpPost(builder.build());
+                HttpPost post = new HttpPost(builder.build());
 
-            HttpResponse response = client.execute(post);
+                HttpResponse response = client.execute(post);
 
-            // parse post from xml
-            String xml = EntityUtils.toString(response.getEntity(), UTF_8);
+                // parse post from xml
+                String xml = EntityUtils.toString(response.getEntity(), UTF_8);
 
-            if (xml.contains("Error code=\"413\"")) {
-                throw new IllegalStateException("The text size exceeds the maximum.");
+                if (xml.contains("Error code=\"413\"")) {
+                    throw new IllegalStateException("The text size exceeds the maximum.");
+                }
+
+                return getXMLElement(xml);
+            } catch (URISyntaxException | SAXException | ParserConfigurationException | IOException e) {
+                currentApiKey = (currentApiKey + 1) % apiKeys.size();
+                e.printStackTrace();
             }
-
-            return getXMLElement(xml);
-        } catch (URISyntaxException | SAXException | ParserConfigurationException | IOException e) {
-            e.printStackTrace();
         }
 
         return null;
