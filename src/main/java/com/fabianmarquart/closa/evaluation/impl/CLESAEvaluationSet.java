@@ -167,7 +167,8 @@ public class CLESAEvaluationSet extends EvaluationSet {
 
 
                 // get the articles in the Wikipedia dump
-                List<Element> documents = Files.walk(wikipediaExtractedDumpPath)
+                Files.walk(wikipediaExtractedDumpPath)
+                        .parallel()
                         .filter(Files::isRegularFile)
                         .filter(path -> !path.endsWith(".DS_Store"))
                         .sorted()
@@ -194,7 +195,6 @@ public class CLESAEvaluationSet extends EvaluationSet {
                         .limit(wikipediaArticleLimit)
                         // 2.1 check if Wikipedia file has already been preprocessed to tokens
                         .filter((Element document) -> {
-                            progressBarDumpInitial.step();
                             String id = document.attr("id");
                             MongoCollection<Document> tokensCollection = getMongoCollection(documentLanguage, tokensCollectionNameSuffix);
                             return tokensCollection.find(Filters.and(
@@ -202,31 +202,23 @@ public class CLESAEvaluationSet extends EvaluationSet {
                                     Filters.and(languageFilters)))
                                     .first() == null;
                         })
-                        .collect(Collectors.toList());
+                        .forEach((Element document) -> {
+                            String id = document.attr("id");
+                            String url = document.attr("url");
+                            String title = document.attr("title");
+                            String text = document.text();
+
+                            List<String> wikipediaArticleTokens;
+
+                            // 2.2 preprocess to tokens and save to MongoDB collection
+                            wikipediaArticleTokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(text, documentLanguage)
+                                    .stream().map(Token::getToken).collect(Collectors.toList());
+
+                            storeWikipediaTokenDocument(id, url, title, wikipediaArticleTokens, documentLanguage);
+                            progressBarDumpInitial.step();
+                        });
 
                 progressBarDumpInitial.stop();
-
-                // take the dump files and insert them into the mongo tokens collection
-                ProgressBar progressBarDump = new ProgressBar("Walk Wikipedia dump files:", documents.size(), ProgressBarStyle.ASCII).start();
-
-                documents.parallelStream().forEach((Element document) -> {
-                    String id = document.attr("id");
-                    String url = document.attr("url");
-                    String title = document.attr("title");
-                    String text = document.text();
-
-                    List<String> wikipediaArticleTokens;
-
-                    // 2.2 preprocess to tokens and save to MongoDB collection
-                    wikipediaArticleTokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(text, documentLanguage)
-                            .stream().map(Token::getToken).collect(Collectors.toList());
-
-                    storeWikipediaTokenDocument(id, url, title, wikipediaArticleTokens, documentLanguage);
-
-                    progressBarDump.step();
-                });
-
-                progressBarDump.stop();
             }
         } catch (IOException e) {
             e.printStackTrace();
