@@ -9,7 +9,6 @@
     <list default="true" id="e0cd2083-bb37-47bf-87bf-140cc5c25b2d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSetTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSetTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -66,8 +65,8 @@
       <file leaf-file-name="CLESAEvaluationSet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="213" column="56" lean-forward="false" selection-start-line="213" selection-start-column="56" selection-end-line="213" selection-end-column="56" />
+            <state relative-caret-position="622">
+              <caret line="235" column="133" lean-forward="false" selection-start-line="235" selection-start-column="133" selection-end-line="235" selection-end-column="133" />
               <folding />
             </state>
           </provider>
@@ -899,13 +898,6 @@
       <option name="presentableId" value="Default" />
       <updated>1550154606114</updated>
     </task>
-    <task id="LOCAL-00034" summary="Europarl only 500 documents">
-      <created>1557912987082</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1557912987082</updated>
-    </task>
     <task id="LOCAL-00035" summary="Europarl &amp; JRC 1000 pairs">
       <created>1557917268717</created>
       <option name="number" value="00035" />
@@ -1242,7 +1234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1558474988163</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="Bug in Stanfrod NLP Chinese tokenizer">
+      <created>1558504290328</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1558504290328</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1314,7 +1313,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Hierarchical cosine bug fix" />
     <MESSAGE value="Hierarchical vectors progress bar" />
     <MESSAGE value="Hierarchical vectors power" />
     <MESSAGE value="Chinese hierarchical" />
@@ -1339,7 +1337,8 @@
     <MESSAGE value="Translate keys" />
     <MESSAGE value="Parallel" />
     <MESSAGE value="Tst concept space dimension" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tst concept space dimension" />
+    <MESSAGE value="Bug in Stanfrod NLP Chinese tokenizer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug in Stanfrod NLP Chinese tokenizer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1745,8 +1744,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="213" column="56" lean-forward="false" selection-start-line="213" selection-start-column="56" selection-end-line="213" selection-end-column="56" />
+        <state relative-caret-position="622">
+          <caret line="235" column="133" lean-forward="false" selection-start-line="235" selection-start-column="133" selection-end-line="235" selection-end-column="133" />
           <folding />
         </state>
       </provider>

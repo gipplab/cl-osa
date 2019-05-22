@@ -35,6 +35,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -191,7 +192,7 @@ public class CLESAEvaluationSet extends EvaluationSet {
                             }
                             return articlePresentInAllLanguages;
                         })
-                        .limit(wikipediaArticleLimit)
+                        .limit(wikipediaArticleLimit + 100)
                         // 2.1 check if Wikipedia file has already been preprocessed to tokens
                         .filter((Element document) -> {
                             progressBarDumpInitial.step();
@@ -208,25 +209,31 @@ public class CLESAEvaluationSet extends EvaluationSet {
                 // take the dump files and insert them into the mongo tokens collection
                 ProgressBar progressBarDump = new ProgressBar("Walk Wikipedia dump files:", documents.size(), ProgressBarStyle.ASCII).start();
 
-                documents.parallelStream().forEach((Element document) -> {
-                    try {
-                        String id = document.attr("id");
-                        String url = document.attr("url");
-                        String title = document.attr("title");
-                        String text = document.text();
+                AtomicInteger failures = new AtomicInteger(0);
 
-                        List<String> wikipediaArticleTokens;
+                documents.parallelStream()
+                        .forEach((Element document) -> {
+                            try {
+                                String id = document.attr("id");
+                                String url = document.attr("url");
+                                String title = document.attr("title");
+                                String text = document.text();
 
-                        // 2.2 preprocess to tokens and save to MongoDB collection
-                        wikipediaArticleTokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(text, documentLanguage)
-                                .stream().map(Token::getToken).collect(Collectors.toList());
+                                List<String> wikipediaArticleTokens;
 
-                        storeWikipediaTokenDocument(id, url, title, wikipediaArticleTokens, documentLanguage);
-                    } catch (NullPointerException e) {
-                        e.printStackTrace();
-                    }
-                    progressBarDump.step();
-                });
+                                // 2.2 preprocess to tokens and save to MongoDB collection
+                                wikipediaArticleTokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(text, documentLanguage)
+                                        .stream().map(Token::getToken).collect(Collectors.toList());
+
+                                storeWikipediaTokenDocument(id, url, title, wikipediaArticleTokens, documentLanguage);
+                            } catch (NullPointerException e) {
+                                e.printStackTrace();
+                                failures.getAndIncrement();
+                            }
+                            progressBarDump.step();
+                        });
+
+                System.out.println("From " + (wikipediaArticleLimit + 100) + " articles, " + failures + " failed with Nullpointer.");
 
                 progressBarDumpInitial.stop();
             }
