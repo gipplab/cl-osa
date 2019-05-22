@@ -209,19 +209,22 @@ public class CLESAEvaluationSet extends EvaluationSet {
                 ProgressBar progressBarDump = new ProgressBar("Walk Wikipedia dump files:", documents.size(), ProgressBarStyle.ASCII).start();
 
                 documents.parallelStream().forEach((Element document) -> {
-                    String id = document.attr("id");
-                    String url = document.attr("url");
-                    String title = document.attr("title");
-                    String text = document.text();
+                    try {
+                        String id = document.attr("id");
+                        String url = document.attr("url");
+                        String title = document.attr("title");
+                        String text = document.text();
 
-                    List<String> wikipediaArticleTokens;
+                        List<String> wikipediaArticleTokens;
 
-                    // 2.2 preprocess to tokens and save to MongoDB collection
-                    wikipediaArticleTokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(text, documentLanguage)
-                            .stream().map(Token::getToken).collect(Collectors.toList());
+                        // 2.2 preprocess to tokens and save to MongoDB collection
+                        wikipediaArticleTokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(text, documentLanguage)
+                                .stream().map(Token::getToken).collect(Collectors.toList());
 
-                    storeWikipediaTokenDocument(id, url, title, wikipediaArticleTokens, documentLanguage);
-
+                        storeWikipediaTokenDocument(id, url, title, wikipediaArticleTokens, documentLanguage);
+                    } catch (NullPointerException e) {
+                        e.printStackTrace();
+                    }
                     progressBarDump.step();
                 });
 

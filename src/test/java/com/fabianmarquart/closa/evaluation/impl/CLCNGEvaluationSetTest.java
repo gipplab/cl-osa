@@ -96,6 +96,20 @@ public class CLCNGEvaluationSetTest {
     @Test
     public void testCLCNGJrcAcquisDocuments() {
         /*
+            Ranks 1 to 50
+
+            Precision: [92.0, 46.9, 31.866667, 19.28, 9.74, 4.89, 1.956]
+            Recall: [92.0, 93.8, 95.6, 96.4, 97.399994, 97.799995, 97.799995]
+            F-Measure: [92.0, 62.533337, 47.8, 32.13333, 17.709093, 9.314287, 3.8352945]
+
+            Mean reciprocal rank: 93.85399839437963
+
+
+            Aligned document similarities
+
+            {40.0=169, 60.0=79, 30.0=12, 80.0=1, 50.0=225, 70.0=6}
+
+            {80.0=0.2, 30.0=2.4, 60.0=15.8, 40.0=33.8, 50.0=45.0, 70.0=1.2}
 
          */
         try {
@@ -113,7 +127,22 @@ public class CLCNGEvaluationSetTest {
 
     @Test
     public void testCLCNGEuroparlDocuments() {
+        /*
+            Ranks 1 to 50
 
+            Precision: [23.991936, 12.298388, 8.333334, 5.040323, 2.560484, 1.2903225, 0.5241936]
+            Recall: [23.800001, 24.4, 24.8, 25.0, 25.400002, 25.6, 26.0]
+            F-Measure: [23.895582, 16.353886, 12.474849, 8.389261, 4.6520143, 2.4568138, 1.027668]
+
+            Mean reciprocal rank: 24.44609418197027
+
+
+            Aligned document similarities
+
+            {0.0=65, 60.0=77, 40.0=19, 30.0=12, 50.0=12, 70.0=15}
+
+            {30.0=2.4, 40.0=3.8, 60.0=15.4, 0.0=13.0, 50.0=2.4, 70.0=3.0}
+         */
 
         try {
             CLCNGEvaluationSet englishFrenchEuroparlEvaluationSetCLCNG = new CLCNGEvaluationSet(
