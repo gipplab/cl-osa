@@ -8,7 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e0cd2083-bb37-47bf-87bf-140cc5c25b2d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" afterPath="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -55,18 +56,18 @@
       <file leaf-file-name="CLESAEvaluationSetTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="126" column="14" lean-forward="false" selection-start-line="126" selection-start-column="14" selection-end-line="126" selection-end-column="14" />
+            <state relative-caret-position="579">
+              <caret line="93" column="26" lean-forward="false" selection-start-line="93" selection-start-column="26" selection-end-line="93" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CLESAEvaluationSet.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CLESAEvaluationSet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1603">
-              <caret line="194" column="52" lean-forward="false" selection-start-line="194" selection-start-column="31" selection-end-line="194" selection-end-column="52" />
+            <state relative-caret-position="510">
+              <caret line="85" column="55" lean-forward="false" selection-start-line="85" selection-start-column="55" selection-end-line="85" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -92,7 +93,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EvaluationSet.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EvaluationSet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="516">
@@ -132,9 +133,9 @@
       <find>Perfo</find>
       <find>candidate c</find>
       <find>replace</find>
-      <find>alignment</find>
       <find>cosin</find>
       <find>find rele</find>
+      <find>alignment</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -194,11 +195,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysis.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/ConceptUtil.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/util/TranslationUtil.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLCNGEvaluationSetTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java" />
       </list>
     </option>
   </component>
@@ -898,13 +899,6 @@
       <option name="presentableId" value="Default" />
       <updated>1550154606114</updated>
     </task>
-    <task id="LOCAL-00036" summary="pan 11 500">
-      <created>1557945633004</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1557945633004</updated>
-    </task>
     <task id="LOCAL-00037" summary="MRR">
       <created>1557947537889</created>
       <option name="number" value="00037" />
@@ -1241,7 +1235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1558506758902</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Parallel">
+      <created>1558511796273</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1558511796273</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1334,11 +1335,11 @@
     <MESSAGE value="Translate retry" />
     <MESSAGE value="CLCNG Europarl" />
     <MESSAGE value="Translate keys" />
-    <MESSAGE value="Parallel" />
     <MESSAGE value="Tst concept space dimension" />
     <MESSAGE value="Bug in Stanfrod NLP Chinese tokenizer" />
     <MESSAGE value="Error message" />
-    <option name="LAST_COMMIT_MESSAGE" value="Error message" />
+    <MESSAGE value="Parallel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Parallel" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1686,14 +1687,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="126" column="14" lean-forward="false" selection-start-line="126" selection-start-column="14" selection-end-line="126" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/model/Dictionary.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
@@ -1734,18 +1727,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1603">
-          <caret line="194" column="52" lean-forward="false" selection-start-line="194" selection-start-column="31" selection-end-line="194" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/EvaluationSet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="516">
           <caret line="150" column="27" lean-forward="false" selection-start-line="150" selection-start-column="27" selection-end-line="150" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSetTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="579">
+          <caret line="93" column="26" lean-forward="false" selection-start-line="93" selection-start-column="26" selection-end-line="93" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fabianmarquart/closa/evaluation/impl/CLESAEvaluationSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="85" column="55" lean-forward="false" selection-start-line="85" selection-start-column="55" selection-end-line="85" selection-end-column="55" />
           <folding />
         </state>
       </provider>

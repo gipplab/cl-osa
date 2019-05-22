@@ -77,6 +77,22 @@ public class CLESAEvaluationSetTest {
 
     @Test
     public void testCLESAEnglishChinese() {
+        /*
+            Ranks 1 to 50
+
+            Precision: [0.19646366, 0.19646366, 0.19646366, 0.19646366, 0.19646366, 0.19646366, 0.19646366]
+            Recall: [0.19646366, 0.39292732, 0.589391, 0.9823183, 1.9646366, 3.9292731, 9.823183]
+            F-Measure: [0.19646366, 0.26195154, 0.2946955, 0.32743946, 0.35720667, 0.37421653, 0.38522285]
+
+            Mean reciprocal rank: 0.8839303218721857
+
+
+            Aligned document similarities
+
+            {0.0=50}
+
+            {0.0=9.823183}
+         */
 
         try {
             CLESAEvaluationSet englishChineseECCEEvaluationSetCLESA = new CLESAEvaluationSet(
