@@ -1,2 +1,0 @@
-Candidate file path;Similarity score to src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/en/35157967/0.txt
-/Users/fabian/Documents/IdeaProjects/closa/src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/ja/35157967/0.txt;0.14713826488260678

@@ -158,7 +158,7 @@ Pre-processing steps will be saved to a directory named *preprocessed* which wil
 home directory if the input documents are also in the home directory. Otherwise, the directory will be created in
 the root directory.
 
-The [test class](/com/fabianmarquart/closa/OntologyBasedSimilarityAnalysisTest.java)
+The [test class](/com/iandadesign/closa/OntologyBasedSimilarityAnalysisTest.java)
 contains unit tests as demonstration. It uses the test resource files that come with the Java project.
 
 If you already know that your files are of a certain language or topic, instantiate a fitting
@@ -184,7 +184,7 @@ methods "extractEntitiesFromText" or "annotateEntitiesInText".
 
 #### .jar
 
-    java -cp closa-1.0-SNAPSHOT.jar com.fabianmarquart.closa.commandLine.WikidataEntityExtraction -i input.txt -o output.txt [-l lang1 lang2 -t topic1 topic2 -a]
+    java -cp closa-1.0-SNAPSHOT.jar com.iandadesign.closa.commandLine.WikidataEntityExtraction -i input.txt -o output.txt [-l lang1 lang2 -t topic1 topic2 -a]
 
 The -a flag switches from simple entity list output to entity annotations inside the text using xml-like tags, e.g.
 

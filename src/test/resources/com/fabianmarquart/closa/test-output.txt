@@ -1,1 +1,0 @@
-Scientists<span token="Scientists" qid="Q901"/> prove there is water<span token="water" qid="Q283"/> on Mars<span token="Mars" qid="Q111"/>

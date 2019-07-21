@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>closa</artifactId>
-    <groupId>com.fabianmarquart</groupId>
+    <groupId>com.iandadesign</groupId>
     <description>CL-OSA</description>
     <version>1.0</version>
     <packaging>jar</packaging>
@@ -46,7 +46,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.fabianmarquart.closa.commandLine.Main</mainClass>
+                            <mainClass>com.iandadesign.closa.commandLine.Main</mainClass>
                             <classpathPrefix>dependency-jars/</classpathPrefix>
                         </manifest>
                     </archive>

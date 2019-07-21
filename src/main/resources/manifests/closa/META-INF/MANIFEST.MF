@@ -1,2 +1,2 @@
 Manifest-Version: 1.0
-Main-Class: com.fabianmarquart.closa.commandLine.Main
+Main-Class: com.iandadesign.closa.commandLine.Main
