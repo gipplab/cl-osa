@@ -4,6 +4,7 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import com.iandadesign.closa.evaluation.EvaluationSet;
+import com.iandadesign.closa.model.Dictionary;
 import com.iandadesign.closa.model.Token;
 import com.iandadesign.closa.util.ConceptUtil;
 import com.iandadesign.closa.util.TokenUtil;

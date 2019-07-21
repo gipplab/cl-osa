@@ -1,6 +1,7 @@
 package com.iandadesign.closa.util.wikidata;
 
 
+import com.iandadesign.closa.model.Dictionary;
 import com.iandadesign.closa.model.Token;
 import com.iandadesign.closa.model.WikidataEntity;
 import com.iandadesign.closa.util.TokenUtil;

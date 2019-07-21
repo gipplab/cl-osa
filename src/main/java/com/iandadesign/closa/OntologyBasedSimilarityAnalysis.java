@@ -3,6 +3,7 @@ package com.iandadesign.closa;
 import com.iandadesign.closa.classification.Category;
 import com.iandadesign.closa.classification.TextClassifier;
 import com.iandadesign.closa.language.LanguageDetector;
+import com.iandadesign.closa.model.Dictionary;
 import com.iandadesign.closa.model.WikidataEntity;
 import com.iandadesign.closa.util.wikidata.WikidataDumpUtil;
 import com.iandadesign.closa.util.wikidata.WikidataEntityExtractor;
