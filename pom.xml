@@ -7,7 +7,7 @@
     <artifactId>closa</artifactId>
     <groupId>com.fabianmarquart</groupId>
     <description>CL-OSA</description>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -15,7 +15,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-
 
     <!-- creates uber-jar -->
     <build>

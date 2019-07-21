@@ -1,8 +1,13 @@
 version: '3'
+
 services:
   openjdk:
-    build: ./docker/openjdk
+    build:
+      context: ./
+      dockerfile: ./docker/openjdk/Dockerfile
   mongo:
-    build: ./docker/mongo
+    build:
+      context: ./
+      dockerfile: ./docker/mongo/Dockerfile
     ports:
       - "27017:27017"

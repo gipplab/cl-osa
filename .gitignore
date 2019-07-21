@@ -1,6 +1,6 @@
-target/
-out/
-.idea/
-target.zip
-.DS_Store
-.idea/*
+./target/*
+./out/*
+./.idea/*
+./target.zip
+./.DS_Store
+./.idea/*

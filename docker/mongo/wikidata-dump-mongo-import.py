@@ -7,17 +7,16 @@ Usage: wikidata-dump-mongo-import.py -h <host> -p <port>
 Example: wikidata-dump-mongo-import.py -h localhost -p 27017
 
 """
+import bz2
 import getopt
 import itertools
-import sys
+import json
 import os
+import pymongo
+import sys
 import time
 import urllib
-import bz2
-import json
 from bz2 import BZ2File
-
-import pymongo
 from pymongo import MongoClient
 
 local_dump_path = "latest-all.json.bz2"  # json file location
