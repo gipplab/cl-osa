@@ -158,7 +158,6 @@ public class OntologyBasedSimilarityAnalysis {
                 // pre-process the file
                 documentEntities = preProcess(documentPath, documentText, documentLanguage, documentCategory);
                 FileUtils.writeLines(new File(documentEntitiesPath), documentEntities);
-                System.out.println("Written entities to " + documentEntitiesPath);
             }
 
             return documentEntities;

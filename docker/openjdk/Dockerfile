@@ -5,8 +5,10 @@ FROM maven:3.6-jdk-8-alpine
 WORKDIR /usr/src/closa
 
 # copy other source files (keep in image)
-COPY ./src .
-COPY ./lib .
+RUN mkdir src
+RUN mkdir lib
+COPY ./src ./src
+COPY ./lib ./lib
 
 # install maven dependency packages (keep in image)
 COPY pom.xml .

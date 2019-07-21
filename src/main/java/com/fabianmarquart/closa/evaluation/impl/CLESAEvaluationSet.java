@@ -287,7 +287,6 @@ public class CLESAEvaluationSet extends EvaluationSet {
             }
 
             System.out.println("wikipediaIds.size() = " + wikipediaIds.size());
-            // System.out.println("wikipediaIds = " + wikipediaIds);
 
             // directly retrieve vector of {wikipediaArticleLimit} similarities from the document
             // db.enSimilarities.find( { $and: [ { "similarities.id": { $all:  [ "621" ] } }, { "documentId": "src/test/resources/org/sciplore/pds/test-bbc/en/40546743/0.txt" } ] } )

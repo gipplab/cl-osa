@@ -1,6 +1,5 @@
 package com.fabianmarquart.closa.util.wikidata;
 
-import com.fabianmarquart.closa.model.Token;
 import com.fabianmarquart.closa.model.WikidataEntity;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
@@ -23,7 +22,7 @@ public class WikidataSparqlUtilTest {
     public void testGetEntityById() {
         WikidataEntity tree = getEntityById("Q10884");
 
-        Assert.assertTrue(tree.getLabel().equals("tree"));
+        Assert.assertEquals("tree", tree.getLabel());
     }
 
 
@@ -43,45 +42,6 @@ public class WikidataSparqlUtilTest {
         System.out.println(getEntitiesByLabel("German", "en"));
 
         System.out.println(getEntitiesByLabel("Auschwitz", "en"));
-    }
-
-    @Test
-    public void testGetEntitiesByToken() {
-
-        Token auschwitz = new Token("Auschwitz", "Auschwitz", "NN", Token.NamedEntityType.LOCATION);
-
-        List<WikidataEntity> auschwitzEntities = getEntitiesByToken(auschwitz, "en");
-
-        System.out.println(auschwitzEntities);
-        Assert.assertTrue(auschwitzEntities.size() > 0);
-
-
-        Token jane = new Token("Jane", "Jane", "NN", Token.NamedEntityType.PERSON);
-
-        List<WikidataEntity> janeEntities = getEntitiesByToken(jane, "en");
-
-        System.out.println(janeEntities);
-        Assert.assertTrue(janeEntities.size() > 0);
-
-        Token femaleGivenName = new Token("female given name", "female given name", "NN", Token.NamedEntityType.O);
-
-        List<WikidataEntity> femaleGivenNameEntities = getEntitiesByToken(femaleGivenName, "en");
-
-        System.out.println(femaleGivenNameEntities);
-        Assert.assertTrue(femaleGivenNameEntities.size() > 0);
-
-        Token apple = new Token("Apple", "Apple", "NNP", Token.NamedEntityType.ORGANIZATION);
-        Assert.assertFalse(getEntitiesByToken(apple, "en").isEmpty());
-
-        Token sale = new Token("sales", "sale", "NNS", Token.NamedEntityType.O);
-        Assert.assertFalse(getEntitiesByToken(sale, "en").isEmpty());
-
-        Token product = new Token("product", "product", "NN", Token.NamedEntityType.O);
-        Assert.assertFalse(getEntitiesByToken(product, "en").isEmpty());
-
-        Token year = new Token("year", "year", "NN", Token.NamedEntityType.DATE);
-        Assert.assertFalse(getEntitiesByToken(year, "en").isEmpty());
-
     }
 
 
@@ -105,7 +65,6 @@ public class WikidataSparqlUtilTest {
 
         WikidataEntity tree = new WikidataEntity("Q10884");
         String subclassOfProperty = "P279";
-        // WikidataEntity humanLanguage = new WikidataEntity("Q20162172");
 
         if (isHumanLanguage(chineseLanguage)) {
             List<WikidataEntity> propertyValues = getProperty(chineseLanguage, countryProperty);
@@ -115,7 +74,6 @@ public class WikidataSparqlUtilTest {
             Assert.assertTrue(nonExistantPropertyValues.isEmpty());
 
             List<WikidataEntity> multiplePropertyValues = getProperty(tree, subclassOfProperty);
-            System.out.println(multiplePropertyValues);
         } else {
             Assert.fail();
         }
@@ -127,7 +85,7 @@ public class WikidataSparqlUtilTest {
         WikidataEntity tree = new WikidataEntity("Q10884", "tree");
         WikidataEntity carnivorousPlant = new WikidataEntity("Q18240", "carnivorous plant");
 
-        Assert.assertTrue(distance(tree, carnivorousPlant) == 3);
+        Assert.assertEquals(distance(tree, carnivorousPlant), 3);
     }
 
     @Test

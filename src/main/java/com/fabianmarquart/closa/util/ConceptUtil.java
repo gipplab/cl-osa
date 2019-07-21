@@ -372,7 +372,6 @@ public class ConceptUtil {
 
         for (Token concept : concepts) {
             String translatedConcept = translateTitle(concept.getToken(), sourceLanguage, targetLanguage);
-            // System.out.print(concept + ", " + translatedConcept + " -> ");
 
             // if Wikipedia has no translation
             if (translatedConcept == null
@@ -626,8 +625,6 @@ public class ConceptUtil {
             // get the title source language - title target language mappings
             Iterator<String> keyIterator = result.keySet().iterator();
             List<String> translations = new ArrayList<>();
-
-            // System.out.println(jsonFile);
 
             while (keyIterator.hasNext()) {
                 String currentKey = keyIterator.next();

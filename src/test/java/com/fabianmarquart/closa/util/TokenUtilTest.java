@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
  */
 public class TokenUtilTest {
 
-
     @Test
     public void testTokenization() {
         String text = "Paragraph 1 \n \n This is an example (text). Next sentence. \n \n" +

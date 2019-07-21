@@ -41,15 +41,13 @@ public class WikidataSimilarityUtilTest {
         double sim = similarityWuPalmer(tree, carnivorousPlant);
 
         System.out.println(sim);
-        Assert.assertTrue(sim == 2.0 / 3.0);
+        Assert.assertEquals(sim, 2.0 / 3.0);
 
         WikidataEntity hill = new WikidataEntity("Q54050", "hill");
         WikidataEntity coast = new WikidataEntity("Q93352", "coast");
 
         double sim2 = similarityWuPalmer(hill, coast);
 
-        System.out.println(sim2);
-        // System.out.println(sim2);
         Assert.assertTrue(sim2 == 8.0 / 13.0 || sim2 == 4.0 / 7.0); // first ist SPARQL, second is dump
     }
 

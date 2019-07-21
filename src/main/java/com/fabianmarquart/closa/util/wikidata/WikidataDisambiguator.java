@@ -9,7 +9,7 @@ import com.fabianmarquart.closa.util.TokenUtil;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.fabianmarquart.closa.util.wikidata.WikidataDumpUtil.*;
+import static com.fabianmarquart.closa.util.wikidata.WikidataDumpUtil.getAllAncestors;
 
 /**
  * Created by Fabian Marquart on 2018/08/03.
@@ -29,79 +29,6 @@ public class WikidataDisambiguator {
                 .orElse(null);
     }
 
-    /**
-     * Disambiguates a list of entities according to the given text.
-     *
-     * @param entities entities to be disambiguated.
-     * @param text     text for context
-     * @return the disambiguated entity.
-     */
-    @Deprecated
-    public static WikidataEntity graphDisambiguate(List<WikidataEntity> entities, String text, String languageCode) {
-        if (entities.size() == 1) {
-            return entities.get(0);
-        }
-
-        // replace instances in entities by their classes
-        entities = entities.stream()
-                .map(entity -> {
-                    if (isInstance(entity)) {
-                        return instanceOf(entity);
-                    } else {
-                        return Collections.singletonList(entity);
-                    }
-                }).flatMap(List::stream)
-                .collect(Collectors.toList());
-
-        // stores current iteration's subclasses and instance of the entities,
-        // initialize with empty parents and classes.
-        Map<WikidataEntity, Set<WikidataEntity>> currentNextLevel = entities.stream()
-                .collect(Collectors.toMap(entity -> entity, entity -> new HashSet<>(Collections.singletonList(entity))));
-
-        // stores each entity that has been disambiguated
-        Set<WikidataEntity> disambiguatedEntities = new HashSet<>();
-
-
-        // while the number of disambiguated entities is not exactly one
-        while (disambiguatedEntities.size() != 1 && !(currentNextLevel.values().isEmpty() && disambiguatedEntities.isEmpty())) {
-
-            // move up by one level:
-            // update the parents & classes by replacing them by their own parents & classes
-            currentNextLevel = currentNextLevel.entrySet().stream()
-                    .collect(Collectors.toMap(Map.Entry::getKey,
-                            entry -> entry.getValue().stream()
-                                    .map(WikidataSparqlUtil::subclassOf)
-                                    .flatMap(Collection::stream)
-                                    .collect(Collectors.toSet())))
-                    .entrySet().stream().filter(entry -> !entry.getValue().isEmpty())
-                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-            System.out.println(currentNextLevel.values());
-
-
-            // overwrite the set of disambiguations with all current entities that are contained in the text
-            disambiguatedEntities = currentNextLevel.entrySet()
-                    .stream()
-                    .map(entry -> new AbstractMap.SimpleEntry<>(entry.getKey(), entry.getValue().stream()
-                            // filter entries whose parent classes are not in the text
-                            .filter(entity -> entity.getLabels() != null
-                                    && entity.getLabels().containsKey(languageCode)
-                                    && text.contains(entity.getLabels().get(languageCode))
-                            ).collect(Collectors.toSet())))
-                    .filter(entry -> entry.getValue() != null && !entry.getValue().isEmpty())
-                    .map(Map.Entry::getKey)
-                    .collect(Collectors.toSet());
-
-
-            System.out.println("Disambiguated entities = " + disambiguatedEntities);
-        }
-
-        if (disambiguatedEntities.size() == 1) {
-            return disambiguatedEntities.stream().findFirst().get();
-        } else {
-            return disambiguateBySmallestId(entities);
-        }
-    }
 
 
     /**

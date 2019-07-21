@@ -55,10 +55,8 @@ public class CLCSAEvaluationSet extends EvaluationSet {
             if (candidateScoreMap.isEmpty()) {
                 System.out.println("False negative. Did not detect");
                 System.out.println(suspiciousId);
-                // System.out.println(suspiciousConcepts);
                 System.out.println("in");
                 System.out.println(suspiciousIdCandidateIdMap.get(suspiciousId));
-                // System.out.println(candidateIdTokensMap.get(suspiciousIdCandidateIdMap.get(suspiciousId)));
             } else {
                 String retrievedCandidateId = candidateScoreMap.entrySet()
                         .stream()
@@ -71,10 +69,8 @@ public class CLCSAEvaluationSet extends EvaluationSet {
                 } else {
                     System.out.println("False positive. Falsely detected ");
                     System.out.println(suspiciousId);
-                    // System.out.println(suspiciousConcepts);
                     System.out.println("in");
                     System.out.println(retrievedCandidateId);
-                    // System.out.println(candidateIdTokensMap.get(currentSourceId));
                 }
             }
 

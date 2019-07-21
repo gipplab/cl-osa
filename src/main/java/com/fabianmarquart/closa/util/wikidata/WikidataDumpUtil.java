@@ -309,8 +309,6 @@ public class WikidataDumpUtil {
             }
         }
 
-        // System.out.println("Results size for " + token.getToken() + " : " + results.size());
-
         // 2 consider the query result itself
         entities = results.stream()
                 .map(document -> {
@@ -386,7 +384,6 @@ public class WikidataDumpUtil {
 
 
         for (Document nextDocument : entitiesCollection.find(query)) {
-            // System.out.println(nextDocument.toJson());
             Document claims = (Document) nextDocument.get("claims");
 
             if (claims.containsKey(propertyId)) {
@@ -400,7 +397,6 @@ public class WikidataDumpUtil {
                         Document value = datavalue.get("value", Document.class);
                         String id = value.getString("id");
 
-                        // System.out.println(mainsnak.toJson());
                         WikidataEntity propertyMatch = new WikidataEntity(id);
                         propertyMatches.add(propertyMatch);
                     }
@@ -436,7 +432,6 @@ public class WikidataDumpUtil {
         for (Document nextDocument :
                 entitiesCollection.find(new Document("claims." + subclassOfProperty + ".mainsnak.datavalue.value.id",
                         entity.getId()))) {
-            // System.out.println(nextDocument);
             subclasses.add(new WikidataEntity(nextDocument.getString("id")));
         }
 
@@ -874,7 +869,6 @@ public class WikidataDumpUtil {
         if (!languages.contains(languageCode)) {
             throw new IllegalArgumentException(String.format("Language code %s is not supported", languageCode));
         }
-        System.out.println(getEntitiesForPrinting(entities, languageCode));
     }
 
     /**

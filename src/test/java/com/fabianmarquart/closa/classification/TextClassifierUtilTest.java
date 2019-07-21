@@ -1,30 +1,14 @@
 package com.fabianmarquart.closa.classification;
 
-import com.fabianmarquart.closa.language.LanguageDetector;
-import com.fabianmarquart.closa.model.Token;
-import com.fabianmarquart.closa.util.ConceptUtil;
 import com.fabianmarquart.closa.util.TokenUtil;
-import de.daslaboratorium.machinelearning.classifier.Classifier;
 import de.daslaboratorium.machinelearning.classifier.bayes.BayesClassifier;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
 
 public class TextClassifierUtilTest {
 
-
-    @Test
-    public void testConstructor() {
-        TextClassifier classifier = new TextClassifier(Arrays.asList("fiction", "neutral"));
-    }
 
     /**
      * Simple test for the bayesian classifier.
@@ -76,87 +60,8 @@ public class TextClassifierUtilTest {
                         "de l'OTAN situé à Aviano, trancha, lors d'un exercice à basse altitude - en deçà des limites de " +
                         "sécurité -, les câbles d'un téléphérique, causant la mort de plus de vingt citoyens européens.";
 
-        Assert.assertTrue(textClassifier.classifyText(englishText, "en").equals(Category.biology));
-        Assert.assertTrue(textClassifier.classifyText(germanText, "de").equals(Category.biology));
-    }
-
-
-    @Test
-    public void getClassificationCorpusFromWikipedia() {
-        TextClassifier textClassifier = new TextClassifier();
-
-        List<String> languages = Arrays.asList("zh", "en", "fr", "es", "ja", "de");
-
-        Map<String, String> categoriesByTitle = new HashMap<>();
-
-        // Wikipedia training articles
-        Arrays.asList(
-                "WHI3", "CHON", "Anesthesia", "Peptide", "Alpha helix", "Triosephosphate isomerase",
-                "Triosephosphate isomerase", "Hepatitis B", "Immunoglobulin G", "Epileptic seizure",
-                "Saccharomyces cerevisiae", "Carboxylic acid", "Papillary muscle", "Antibiotic",
-                "Adenosine triphosphate"
-        ).forEach(title -> categoriesByTitle.put(title, "biology"));
-
-        Arrays.asList(
-                "Hollywood", "Film industry", "Television show", "Cinematography", "The Rolling Stones", "Comedy"
-        ).forEach(title -> categoriesByTitle.put(title, "fiction"));
-
-        Arrays.asList(
-                "World Trade Organization", "Investment management", "Finance", "United States presidential election",
-                "United States Constitution"
-        ).forEach(title -> categoriesByTitle.put(title, "neutral"));
-
-
-        // for different languages
-        for (String language : languages) {
-            // Create a new bayes classifier with string categories and string features.
-            Classifier<String, String> bayesClassifier = new BayesClassifier<>();
-            bayesClassifier.setMemoryCapacity(Integer.MAX_VALUE);
-
-            // for all titles per category
-            for (Map.Entry<String, String> entry : categoriesByTitle.entrySet()) {
-                String title = entry.getKey();
-                String category = entry.getValue();
-
-                String pageId = ConceptUtil.getPageIdByTitle(title, "en");
-                String pageIdInLanguage = ConceptUtil.getPageIdInLanguage(pageId, "en", language);
-
-                if (pageIdInLanguage == null) {
-                    continue;
-                }
-
-                String text = ConceptUtil.getPageContent(pageIdInLanguage, language);
-                List<String> tokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(text, language)
-                        .stream()
-                        .map(Token::getToken)
-                        .collect(Collectors.toList());
-
-                try {
-                    String path = String.format("src/main/resources/corpus/categorization/%s/%s/%s.txt", language, category, title);
-                    FileUtils.writeLines(new File(path), tokens);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                bayesClassifier.learn(category, tokens);
-            }
-
-            textClassifier.getClassifierMap().put(language, bayesClassifier);
-        }
-
-        evaluateClassifier();
-    }
-
-    /**
-     * Get random series from list.
-     *
-     * @param givenList          given list
-     * @param randomSeriesLength number of elements to take from list.
-     * @return random series from list.
-     */
-    private List<String> getRandomSeriesFromList(List<String> givenList, int randomSeriesLength) {
-        Collections.shuffle(givenList);
-        return givenList.subList(0, randomSeriesLength);
+        Assert.assertEquals(textClassifier.classifyText(englishText, "en"), Category.biology);
+        Assert.assertEquals(textClassifier.classifyText(germanText, "de"), Category.biology);
     }
 
 
@@ -166,7 +71,7 @@ public class TextClassifierUtilTest {
     @Test
     public void testSimpleBayes() {
         // Create a new bayes classifier with string categories and string features.
-        Classifier<String, String> bayes = new BayesClassifier<>();
+        BayesClassifier<String, String> bayes = new BayesClassifier<>();
         bayes.setMemoryCapacity(Integer.MAX_VALUE);
 
         // Two examples to learn from.
@@ -195,65 +100,7 @@ public class TextClassifierUtilTest {
                 bayes.classify(unknownText3).getCategory());
 
         // Get more detailed classification result.
-        ((BayesClassifier<String, String>) bayes).classifyDetailed(unknownText1);
+        bayes.classifyDetailed(unknownText1);
     }
 
-    @Test
-    public void testTextClassificationFromFiles() {
-        TextClassifier textClassifier = new TextClassifier();
-        LanguageDetector languageDetector = new LanguageDetector();
-
-        File folder = new File(System.getProperty("user.home") + "/sts2016/txt/");
-
-        Map<String, String> pathTextMap = new HashMap<>();
-
-        FileUtils.listFiles(folder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
-                .stream()
-                .sorted()
-                .filter(file -> !file.getName().equals(".DS_Store"))
-                .map(File::getPath)
-                .forEach(path -> {
-                    try {
-                        pathTextMap.put(path, FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-
-        pathTextMap.forEach((path, text) -> {
-
-            String topicPath = path.replace(System.getProperty("user.home"), System.getProperty("user.home") + "/topic");
-            String topic = textClassifier.uClassifyText(text, languageDetector.detectLanguage(text)).name();
-
-            try {
-                FileUtils.writeStringToFile(new File(topicPath), topic, Charset.forName("UTF-8"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-    }
-
-
-    /**
-     * Test uClassify classifier.
-     */
-    @Test
-    public void testUClassifyText() {
-        TextClassifier textClassifier = new TextClassifier();
-
-        String text = "2.1.4 virulence factors virulence factors are defined as bacterial products that cause direct " +
-                "damage to the host cells. Virulence-associated factors enable the growth or Survival of the pathogen " +
-                "in the host and in this way contribute to infection and illness (MAHAN et al. 1996";
-        Topic topic = textClassifier.uClassifyText(text, "en");
-        System.out.println(topic);
-
-        Assert.assertTrue(topic.equals(Topic.Health));
-
-        text = "SD kann im empfindlichen Bereich durch eine einzelne Entladung eines epileptischen Fokus ausgelöst " +
-                "werden (spike triggered SD). In der Regel werden epileptiforme Feldpotentiale während der SD unterdrückt " +
-                "und erscheinen in wenigen Minuten wieder.";
-        topic = textClassifier.uClassifyText(text, "en");
-        System.out.println(topic);
-    }
 }

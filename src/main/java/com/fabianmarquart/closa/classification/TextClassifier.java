@@ -5,17 +5,10 @@ import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import com.fabianmarquart.closa.model.Token;
 import com.fabianmarquart.closa.util.TokenUtil;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
 import de.daslaboratorium.machinelearning.classifier.Classifier;
 import de.daslaboratorium.machinelearning.classifier.bayes.BayesClassifier;
 import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
@@ -24,8 +17,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -149,75 +140,6 @@ public class TextClassifier {
      */
     public Map<String, Classifier<String, String>> getClassifierMap() {
         return classifierMap;
-    }
-
-    /**
-     * Classify text into topic, using uClassify API.
-     *
-     * @param textToClassify text to classify.
-     * @return topic.
-     * @deprecated relies on external classifier.
-     */
-    @Deprecated
-    public Topic uClassifyText(String textToClassify, String language) {
-        if (!supportedLanguages.contains(language)) {
-            throw new IllegalArgumentException("Language " + language + " is not supported.");
-        }
-
-        for (int i = 0; i < apiKeys.size(); i++) {
-            PrintStream originalStream = System.out;
-            PrintStream dummyStream = new PrintStream(new OutputStream() {
-                public void write(int b) {
-                    // NO-OP
-                }
-            });
-            System.setOut(dummyStream);
-
-            String responseBody = "";
-
-            try {
-                String baseUrl = "https://api.uclassify.com/v1/";
-                String userName = "uClassify";
-                String classifierName = "Topics";
-                HttpPost post = new HttpPost(String.format("%s%s/%s/%s/classify", baseUrl, userName, classifierName, language));
-                post.addHeader("Content-Type", "application/json");
-                post.addHeader("Authorization", "Token " + apiKeys.get(currentApiKey));
-
-                JsonObject json = new JsonObject();
-                JsonArray textsArray = new JsonArray();
-                textsArray.add(textToClassify);
-                json.add("texts", textsArray);
-
-                StringEntity requestBody = new StringEntity(json.toString());
-
-                post.setEntity(requestBody);
-
-                HttpResponse response = httpClient.execute(post);
-
-                responseBody = IOUtils.toString(response.getEntity().getContent(), StandardCharsets.UTF_8);
-
-                ClassificationReport[] reports = new Gson().fromJson(responseBody, ClassificationReport[].class);
-
-                Topic topic = Topic.valueOf(reports[0].getClassification().stream()
-                        .max(Comparator.comparingDouble(ClassificationReport.Classification::getP))
-                        .get()
-                        .getClassName());
-
-                System.setOut(originalStream);
-
-                return topic;
-            } catch (JsonSyntaxException e) {
-                System.setOut(originalStream);
-                e.printStackTrace();
-                currentApiKey = (currentApiKey + 1) % apiKeys.size();
-            } catch (IOException e) {
-                System.setOut(originalStream);
-                e.printStackTrace();
-                System.out.println(responseBody);
-            }
-        }
-
-        throw new IllegalStateException();
     }
 
 

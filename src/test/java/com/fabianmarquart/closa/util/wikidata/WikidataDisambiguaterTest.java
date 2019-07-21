@@ -20,18 +20,6 @@ public class WikidataDisambiguaterTest {
         Assert.assertTrue(disambiguatedEntity.equals(tree1));
     }
 
-
-    @Test
-    public void testGraphDisambiguate() {
-        WikidataEntity tree1 = new WikidataEntity("Q10884", "tree", Collections.singletonMap("en", "tree"));
-        WikidataEntity tree2 = new WikidataEntity("Q272735", "tree", Collections.singletonMap("en", "tree"));
-
-        WikidataEntity disambiguatedEntity = WikidataDisambiguator.graphDisambiguate(Arrays.asList(tree1, tree2),
-                "A tree is a plant", "en");
-
-        Assert.assertTrue(disambiguatedEntity.equals(tree1));
-    }
-
     @Test
     public void testAncestorCountDisambiguate() {
         WikidataEntity tree1 = new WikidataEntity("Q10884", "tree", Collections.singletonMap("en", "tree"));

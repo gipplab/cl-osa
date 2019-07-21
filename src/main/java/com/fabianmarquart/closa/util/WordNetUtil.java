@@ -110,20 +110,13 @@ public class WordNetUtil {
         List<String> morphosemanticallyRelatedLemmas = new ArrayList<>();
 
         try {
-            // System.out.println("indexWord = " + indexWord);
-
             for (Synset sense : indexWord.getSenses()) {
-                // System.out.println("synset = " + sense);
-
                 for (Word word : sense.getWords()) {
                     if (word.getSenseKey().contains(indexWord.getLemma())) {
 
                         List<String> morphosemanticLinks = morphosemanticMap.get(word.getSenseKey());
 
                         if (morphosemanticLinks != null) {
-                            // System.out.println("\t word = " + word);
-                            // System.out.println("\t word senseKey = " + word.getSenseKey());
-                            // System.out.println("\t link = " + morphosemanticMap.get(word.getSenseKey()));
                             morphosemanticallyRelatedLemmas.addAll(morphosemanticLinks);
                         }
 

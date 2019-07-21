@@ -167,22 +167,6 @@ public class WikidataSparqlUtil {
 
 
     /**
-     * Retrieves the entity matching the token from Wikidata's SPARQL service:
-     * - tokens that are named entities only retrieve instances from Wikidata
-     * - tokens that are not named entities only retrieve classes from Wikidata
-     *
-     * @param token        : the token to find, by lemma.
-     * @param languageCode : the label language.
-     * @return the results as Wikidata entities.
-     * @deprecated could still be used, but is not accurate without using text classification.
-     */
-    @Deprecated
-    public static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode) {
-        return getEntitiesByToken(token, languageCode, Category.neutral);
-    }
-
-
-    /**
      * Retrieves the entity matching the token from MongoDB:
      * - tokens that are named entities only retrieve instances from Wikidata
      * - tokens that are not named entities only retrieve classes from Wikidata
@@ -239,8 +223,6 @@ public class WikidataSparqlUtil {
 
             }
         }
-
-        // System.out.println("Results size for " + token.getToken() + " : " + results.size());
 
         // 2 consider the query result itself
         entities = results.stream()
@@ -752,8 +734,6 @@ public class WikidataSparqlUtil {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
-        // System.out.println(bindings);
 
         return bindings;
     }

@@ -197,7 +197,6 @@ public class WikidataEntityExtractor {
                 }
 
                 // extract entities
-                // System.out.print(token + " => ");
                 List<WikidataEntity> currentEntities = getEntitiesByToken(token,
                         // if english text bits are contained in a chinese text
                         languageCode.equals("zh") && TokenUtil.isLatinAlphabet(token)
@@ -219,8 +218,6 @@ public class WikidataEntityExtractor {
                         .filter(entity -> !StringUtils.isNumeric(entity.getOriginalLemma())
                                 || (StringUtils.isNumeric(entity.getOriginalLemma()) && isNaturalNumber(entity)))
                         .collect(Collectors.toList());
-
-                // System.out.println(currentEntities);
 
                 tokenEntitiesMap.put(token, currentEntities);
 
