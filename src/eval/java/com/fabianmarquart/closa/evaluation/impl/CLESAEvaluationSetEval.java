@@ -11,7 +11,7 @@ public class CLESAEvaluationSetTest {
     /////////////////////////////////////////////////// CL-ESA //////////////////////////////////////////////////
 
     @Test
-    public void testCLESAEnglishJapaneseMonolingual() {
+    public void evalCLESAEnglishJapaneseMonolingual() {
         /*
             Top 10 ranked retrieval, concept space dimensionality 5000. Total time: 3 d 05:36 h
 
@@ -46,7 +46,7 @@ public class CLESAEvaluationSetTest {
     }
 
     @Test
-    public void testCLESAEnglishJapanese() {
+    public void evalCLESAEnglishJapanese() {
         /*
             Ranks 1 to 50
 
@@ -76,7 +76,7 @@ public class CLESAEvaluationSetTest {
 
 
     @Test
-    public void testCLESAEnglishChinese() {
+    public void evalCLESAEnglishChinese() {
         /*
             Ranks 1 to 50
 
@@ -107,7 +107,7 @@ public class CLESAEvaluationSetTest {
 
 
     @Test
-    public void testCLESAPan11Documents() {
+    public void evalCLESAPan11Documents() {
         /*
             Ranks 1 to 50
 
@@ -138,7 +138,7 @@ public class CLESAEvaluationSetTest {
     }
 
     @Test
-    public void testCLESAJrcAcquisDocuments() {
+    public void evalCLESAJrcAcquisDocuments() {
         /*
             500
 
@@ -169,7 +169,7 @@ public class CLESAEvaluationSetTest {
 
 
     @Test
-    public void testCLESAEuroparlDocuments() {
+    public void evalCLESAEuroparlDocuments() {
         /*
             Precision: [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
             Recall: [0.2, 0.4, 0.6, 1.0, 2.0, 4.0, 10.0]

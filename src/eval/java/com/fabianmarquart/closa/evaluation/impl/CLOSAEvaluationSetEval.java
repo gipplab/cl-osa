@@ -24,7 +24,7 @@ public class CLOSAEvaluationSetTest {
      * Granularity: full documents.
      */
     @Test
-    public void testCLOSAVroniPlag() {
+    public void evalCLOSAVroniPlag() {
         /*
             Cross-language analysis. With cosine similarity.
 
@@ -96,7 +96,7 @@ public class CLOSAEvaluationSetTest {
      * Granularity: full documents.
      */
     @Test
-    public void testCLOSAEnglishJapaneseCosineSimilarity() {
+    public void evalCLOSAEnglishJapaneseCosineSimilarity() {
         /*
             Cross-language analysis. With cosine similarity.
 
@@ -135,7 +135,7 @@ public class CLOSAEvaluationSetTest {
      * Granularity: full documents.
      */
     @Test
-    public void testCLOSAEnglishChineseCosineSimilarity() {
+    public void evalCLOSAEnglishChineseCosineSimilarity() {
         /*
             Cross-language analysis. With cosine similarity.
 
@@ -165,7 +165,7 @@ public class CLOSAEvaluationSetTest {
     }
 
     @Test
-    public void testCLOSAPan11Documents() {
+    public void evalCLOSAPan11Documents() {
         /*
             True positives: 2794
             Relevant elements: 2920
@@ -197,7 +197,7 @@ public class CLOSAEvaluationSetTest {
 
 
     @Test
-    public void testCLOSAPan11Chunks() {
+    public void evalCLOSAPan11Chunks() {
         /*
             True positives: 214
             Relevant elements: 692
@@ -226,7 +226,7 @@ public class CLOSAEvaluationSetTest {
 
 
     @Test
-    public void testCLOSAPan11Sentences() {
+    public void evalCLOSAPan11Sentences() {
         /*
             True positives: 2381
             Relevant elements: 2669
@@ -256,7 +256,7 @@ public class CLOSAEvaluationSetTest {
 
 
     @Test
-    public void testCLOSAJrcAcquisDocuments() {
+    public void evalCLOSAJrcAcquisDocuments() {
         try {
             CLOSAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
@@ -271,7 +271,7 @@ public class CLOSAEvaluationSetTest {
 
 
     @Test
-    public void testCLOSAEuroparlDocuments() {
+    public void evalCLOSAEuroparlDocuments() {
         /*
             True positives: 4317
             Relevant elements: 9428
@@ -301,7 +301,7 @@ public class CLOSAEvaluationSetTest {
 
 
     @Test
-    public void testCLOSAConferencePapersDocuments() {
+    public void evalCLOSAConferencePapersDocuments() {
         /*
             True positives: 459
             Relevant elements: 616
@@ -331,7 +331,7 @@ public class CLOSAEvaluationSetTest {
     }
 
     @Test
-    public void testSTS() {
+    public void evalSTS() {
         try {
             CLOSAEvaluationSet stsEvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(System.getProperty("user.home") + "/sts2016/txt"), "L", "R"

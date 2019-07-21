@@ -12,7 +12,7 @@ public class CLCSAEvaluationSetTest {
     // Don't forget: Results for T+CSA were better, but we're only comparing CL-Algorithms.
 
     @Test
-    public void testCLCSAEvaluationSetVroniPlag() {
+    public void evalCLCSAEvaluationSetVroniPlag() {
         /*
             True positives: 218
             Relevant elements: 309
@@ -42,7 +42,7 @@ public class CLCSAEvaluationSetTest {
 
 
     @Test
-    public void testCLCSAEvaluationSetEnglishJapanese() {
+    public void evalCLCSAEvaluationSetEnglishJapanese() {
          /*
              True positives: 90
              Relevant elements: 94
@@ -70,7 +70,7 @@ public class CLCSAEvaluationSetTest {
     }
 
     @Test
-    public void testCLCSAEvaluationSetEnglishChinese() {
+    public void evalCLCSAEvaluationSetEnglishChinese() {
         /*
             True positives: 426
             Relevant elements: 509

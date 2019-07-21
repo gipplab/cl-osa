@@ -17,7 +17,7 @@ public class TOSAEvaluationSetTest {
      * Granularity: full documents.
      */
     @Test
-    public void testTOSAVroniPlag() {
+    public void evalTOSAVroniPlag() {
         /*
             True positives: 306
             Relevant elements: 324
@@ -50,7 +50,7 @@ public class TOSAEvaluationSetTest {
      * Granularity: full documents.
      */
     @Test
-    public void testTOSAEnglishJapaneseCosineSimilarity() {
+    public void evalTOSAEnglishJapaneseCosineSimilarity() {
         /*
             Translation + monolingual analysis. With cosine similarity.
 
@@ -87,7 +87,7 @@ public class TOSAEvaluationSetTest {
      * Granularity: full documents.
      */
     @Test
-    public void testTOSAEnglishJapaneseWithExtraDocumentsCosineSimilarity() {
+    public void evalTOSAEnglishJapaneseWithExtraDocumentsCosineSimilarity() {
         try {
             EvaluationSet englishJapaneseBBCEvaluationSetCLOSA = new TOSAEvaluationSet(
                     new File("src/test/resources/com/fabianmarquart/closa/evaluation/test-bbc/en"), "en",
@@ -107,7 +107,7 @@ public class TOSAEvaluationSetTest {
      * Granularity: full documents.
      */
     @Test
-    public void testTOSAEnglishChineseCosineSimilarity() {
+    public void evalTOSAEnglishChineseCosineSimilarity() {
         /*
             Translation + monolingual analysis. With cosine similarity.
 

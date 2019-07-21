@@ -9,8 +9,6 @@ import java.util.Collections;
 public class EvaluationSetTest {
 
 
-    /////////////////////////////////////////////////// files ///////////////////////////////////////////////////
-
     @Test
     public void testFileHandling() {
         EvaluationSet englishJapaneseBBCEvaluationSetCLCSA = new TOSAEvaluationSet(

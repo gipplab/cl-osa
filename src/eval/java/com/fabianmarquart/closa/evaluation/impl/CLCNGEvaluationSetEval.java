@@ -9,7 +9,7 @@ import java.io.IOException;
 public class CLCNGEvaluationSetTest {
 
     @Test
-    public void testCLCNGEnglishJapanese() {
+    public void evalCLCNGEnglishJapanese() {
         /*
             Ranks 1 to 50
 
@@ -37,7 +37,7 @@ public class CLCNGEvaluationSetTest {
     }
 
     @Test
-    public void testCLCNGEnglishChinese() {
+    public void evalCLCNGEnglishChinese() {
         /*
             Precision: [98.23183, 49.50884, 33.005894, 19.842829, 9.921414, 4.960707, 1.984283]
             Recall: [98.23183, 99.01768, 99.01768, 99.21414, 99.21414, 99.21414, 99.21414]
@@ -64,7 +64,7 @@ public class CLCNGEvaluationSetTest {
     }
 
     @Test
-    public void testCLCNGPan11Documents() {
+    public void evalCLCNGPan11Documents() {
         /*
             Ranks 1 to 50
 
@@ -94,7 +94,7 @@ public class CLCNGEvaluationSetTest {
     }
 
     @Test
-    public void testCLCNGJrcAcquisDocuments() {
+    public void evalCLCNGJrcAcquisDocuments() {
         /*
             Ranks 1 to 50
 
@@ -126,7 +126,7 @@ public class CLCNGEvaluationSetTest {
 
 
     @Test
-    public void testCLCNGEuroparlDocuments() {
+    public void evalCLCNGEuroparlDocuments() {
         /*
             Ranks 1 to 50
 
