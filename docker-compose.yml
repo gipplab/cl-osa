@@ -11,3 +11,4 @@ services:
       dockerfile: ./docker/mongo/Dockerfile
     ports:
       - "27017:27017"
+      - "80:80"

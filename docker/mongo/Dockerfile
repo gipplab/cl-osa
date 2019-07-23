@@ -7,8 +7,9 @@ RUN apt-get install -y python-pip
 RUN pip install pymongo
 
 # copy python script
-COPY wikidata-dump-mongo-import.py wikidata-dump-mongo-import.py
+COPY docker/mongo/wikidata-dump-mongo-import.py wikidata-dump-mongo-import.py
 
 # copy creation bash script
-COPY mongo_create.sh /docker-entrypoint-initdb.d/
-
+COPY docker/mongo/mongo_create.sh /docker-entrypoint-initdb.d/
+RUN ["chmod", "+x", "/docker-entrypoint-initdb.d/mongo_create.sh"]
+RUN ["chmod", "777", "/home"]

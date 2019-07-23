@@ -1,3 +1,5 @@
 #!/bin/bash
 # Create from remote
-py ./wikidata-dump-mongo-import.py
+echo "Creating database from Python script..."
+cd home
+python /wikidata-dump-mongo-import.py
