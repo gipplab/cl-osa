@@ -18,6 +18,9 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.slf4j.LoggerFactory;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -49,7 +52,7 @@ public class WikidataDumpUtil {
     private static final WikidataEntity organization = new WikidataEntity("Q43229", "organization");
 
     // database
-    private static final String host = "localhost:27017";
+    private static String host;
     private static final String databaseName = "wikidata";
     private static final String entitiesCollectionName = "entities";
     private static final String entitiesHierarchyCollectionName = "entitiesHierarchyPersistent";
@@ -62,10 +65,50 @@ public class WikidataDumpUtil {
         Logger rootLogger = loggerContext.getLogger("org.mongodb.driver");
         rootLogger.setLevel(Level.OFF);
 
-        MongoClient mongoClient = new MongoClient(host);
-        MongoDatabase database = mongoClient.getDatabase(databaseName);
-        entitiesCollection = database.getCollection(entitiesCollectionName);
-        entitiesHierarchyCollection = database.getCollection(entitiesHierarchyCollectionName);
+        try {
+            getPropertyValues();
+
+            MongoClient mongoClient = new MongoClient(host);
+            MongoDatabase database = mongoClient.getDatabase(databaseName);
+            entitiesCollection = database.getCollection(entitiesCollectionName);
+            entitiesHierarchyCollection = database.getCollection(entitiesHierarchyCollectionName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Read MongoDB properties.
+     *
+     * @throws IOException When property file could not be loaded.
+     */
+    private static void getPropertyValues() throws IOException {
+        InputStream inputStream = null;
+
+        try {
+            Properties properties = new Properties();
+            String propFileName = "config.properties";
+
+            inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileName);
+
+            if (inputStream != null) {
+                properties.load(inputStream);
+            } else {
+                throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath");
+            }
+
+            // get the property value and print it out
+            String mongodbHost = properties.getProperty("mongodb_host");
+            String mongodbPort = properties.getProperty("mongodb_port");
+
+            host = mongodbHost + ":" + mongodbPort;
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+        } finally {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+        }
     }
 
     public static String getHost() {
