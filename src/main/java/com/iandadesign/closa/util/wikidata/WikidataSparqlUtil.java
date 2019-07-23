@@ -1,11 +1,11 @@
 package com.iandadesign.closa.util.wikidata;
 
-import com.iandadesign.closa.classification.Category;
-import com.iandadesign.closa.model.Token;
-import com.iandadesign.closa.model.WikidataEntity;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.iandadesign.closa.classification.Category;
+import com.iandadesign.closa.model.Token;
+import com.iandadesign.closa.model.WikidataEntity;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
  */
 public class WikidataSparqlUtil {
 
-    private static final String wikidataSparqlEndpoint = "https://query.wikidata.org/sparql";
+    private static String wikidataSparqlEndpoint;
 
     private static final String[] wikidataPrefixes = {"PREFIX wd: <http://www.wikidata.org/entity/>",
             "PREFIX wds: <http://www.wikidata.org/entity/statement/>",
@@ -75,6 +75,46 @@ public class WikidataSparqlUtil {
     private static final WikidataEntity gene = new WikidataEntity("Q7187", "gene");
 
     private static final String countryProperty = "P17";
+
+    static {
+        try {
+            getPropertyValues();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Read Wikidata SPARQL properties.
+     *
+     * @throws IOException When property file could not be loaded.
+     */
+    private static void getPropertyValues() throws IOException {
+        InputStream inputStream = null;
+
+        try {
+            Properties properties = new Properties();
+            String propFileName = "config.properties";
+
+            inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileName);
+
+            if (inputStream != null) {
+                properties.load(inputStream);
+            } else {
+                throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath");
+            }
+
+            // get the property value and print it out
+            wikidataSparqlEndpoint = properties.getProperty("wikidata_sparql_endpoint");
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+        } finally {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+        }
+    }
+
 
     /**
      * Retrieves the entity matching the id from the Wikidata SPARQL endpoint.
