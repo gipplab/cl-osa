@@ -87,7 +87,7 @@ public class WikidataDumpUtil {
 
         try {
             Properties properties = new Properties();
-            String propFileName = "config.properties";
+            String propFileName = "/com/iandadesign/closa/util/wikidata/config.properties";
 
             inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileName);
 
