@@ -94,7 +94,7 @@ public class WikidataSparqlUtil {
 
         try {
             Properties properties = new Properties();
-            String propFileName = "/com/iandadesign/closa/util/wikidata/config.properties";
+            String propFileName = "/config.properties";
 
             inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileName);
 
