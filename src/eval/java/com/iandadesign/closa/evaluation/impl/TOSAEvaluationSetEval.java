@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 
-public class TOSAEvaluationSetTest {
+public class TOSAEvaluationSetEval {
 
     /////////////////////////////////////////////////// T+OSA ///////////////////////////////////////////////////
 

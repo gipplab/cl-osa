@@ -3,14 +3,10 @@ package com.iandadesign.closa.util.wikidata;
 import com.iandadesign.closa.OntologyBasedSimilarityAnalysis;
 import com.iandadesign.closa.classification.TextClassifier;
 import com.iandadesign.closa.language.LanguageDetector;
-import com.iandadesign.closa.model.Dictionary;
 import com.iandadesign.closa.model.WikidataEntity;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.apache.commons.lang3.tuple.MutablePair;
-import org.apache.commons.lang3.tuple.Pair;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
@@ -20,9 +16,9 @@ import java.io.Reader;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.iandadesign.closa.util.wikidata.WikidataSimilarityUtil.*;
+import static com.iandadesign.closa.util.wikidata.WikidataSimilarityUtil.SimilarityFunction;
 
-public class WikidataSimilarityUtilTest {
+public class WikidataSimilarityUtilEval {
 
 
 

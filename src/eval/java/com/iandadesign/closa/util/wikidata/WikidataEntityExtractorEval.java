@@ -1,13 +1,11 @@
 package com.iandadesign.closa.util.wikidata;
 
-import com.iandadesign.closa.classification.Category;
-import com.iandadesign.closa.model.WikidataEntity;
 import com.google.common.collect.Sets;
+import com.iandadesign.closa.model.WikidataEntity;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.io.FileUtils;
-import org.jsoup.Jsoup;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,7 +17,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class WikidataEntityExtractorTests {
+public class WikidataEntityExtractorEval {
 
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_BLACK = "\u001B[30m";

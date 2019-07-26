@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 
-public class CLCSAEvaluationSetTest {
+public class CLCSAEvaluationSetEval {
 
     // Old stuff.
     // Don't forget: Results for T+CSA were better, but we're only comparing CL-Algorithms.

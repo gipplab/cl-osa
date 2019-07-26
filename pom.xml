@@ -6,7 +6,6 @@
 
     <artifactId>closa</artifactId>
     <groupId>com.iandadesign</groupId>
-    <description>CL-OSA</description>
     <version>1.0</version>
     <packaging>jar</packaging>
 
@@ -69,6 +68,29 @@
                             <outputDirectory>
                                 ${project.build.directory}/dependency-jars/
                             </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- signing -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <!-- This is necessary for gpg to not try to use the pinentry programs -->
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
                         </configuration>
                     </execution>
                 </executions>
@@ -326,4 +348,44 @@
         </dependency>
     </dependencies>
 
+    <name>CL-OSA (cross-language ontology-based similarity analysis)</name>
+    <description>Cross-Language Ontology Based Similarity Analysis (CL-OSA) is an algorithm that leverages ontology data
+        from Wikidata in order to perform ranked retrieval on possibly plagiarized documents across language boundaries.
+        This repository contains the source code, tests and evaluations for CL-OSA, written in Java.
+    </description>
+    <url>https://bitbucket.org/iandadesign/closa/src/master/</url>
+
+    <organization>
+        <name>com.iandadesign.closa</name>
+        <url>https://bitbucket.org/iandadesign/closa</url>
+    </organization>
+
+    <issueManagement>
+        <system>Bitbucket</system>
+        <url>https://bitbucket.org/iandadesign/closa/issues</url>
+    </issueManagement>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://bitbucket.org/iandadesign/closa/src/master/LICENSE.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://bitbucket.org/fabianmarquart/closa</url>
+        <connection>
+            scm:git:git://bitbucket.org:fabianmarquart/closa.git
+        </connection>
+        <developerConnection>
+            scm:git:ssh://git@bitbucket.org:fabianmarquart/closa.git
+        </developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Fabian Marquart</name>
+        </developer>
+    </developers>
 </project>
