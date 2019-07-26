@@ -25,7 +25,7 @@ public class WikidataDumpUtilTest {
     public void testGetEntityById() {
         WikidataEntity tree = getEntityById("Q10884");
 
-        Assert.assertTrue(tree.getLabel().equals("tree"));
+        Assert.assertEquals("tree", tree.getLabel());
     }
 
 
