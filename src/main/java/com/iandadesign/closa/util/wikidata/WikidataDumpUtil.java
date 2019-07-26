@@ -87,7 +87,7 @@ public class WikidataDumpUtil {
 
         try {
             Properties properties = new Properties();
-            String propFileName = "/config.properties";
+            String propFileName = "/corpus/punctuation/punctuation.txt"; //"/config.properties";
 
             inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileName);
 
