@@ -16,6 +16,8 @@ import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bson.Document;
 import org.bson.conversions.Bson;
+import org.reflections.Reflections;
+import org.reflections.scanners.ResourcesScanner;
 import org.slf4j.LoggerFactory;
 
 import java.io.FileNotFoundException;
@@ -86,8 +88,10 @@ public class WikidataDumpUtil {
         InputStream inputStream = null;
 
         try {
+            Reflections reflections = new Reflections("", new ResourcesScanner());
+
             Properties properties = new Properties();
-            String propFileName = "/config.properties";
+            String propFileName = "config.properties";
 
             inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileName);
 

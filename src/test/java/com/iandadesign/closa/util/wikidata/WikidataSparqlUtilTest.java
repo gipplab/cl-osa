@@ -2,8 +2,8 @@ package com.iandadesign.closa.util.wikidata;
 
 import com.iandadesign.closa.model.WikidataEntity;
 import org.apache.commons.io.FileUtils;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +22,7 @@ public class WikidataSparqlUtilTest {
     public void testGetEntityById() {
         WikidataEntity tree = getEntityById("Q10884");
 
-        Assert.assertEquals("tree", tree.getLabel());
+        Assertions.assertEquals("tree", tree.getLabel());
     }
 
 
@@ -35,8 +35,8 @@ public class WikidataSparqlUtilTest {
     public void testGetEntities() {
         List<WikidataEntity> entities = getEntitiesByLabel("tree", "en");
 
-        Assert.assertTrue(entities.contains(new WikidataEntity("Q10884", "tree")));
-        Assert.assertTrue(entities.contains(new WikidataEntity("Q272735", "tree")));
+        Assertions.assertTrue(entities.contains(new WikidataEntity("Q10884", "tree")));
+        Assertions.assertTrue(entities.contains(new WikidataEntity("Q272735", "tree")));
 
         System.out.println(entities);
         System.out.println(getEntitiesByLabel("German", "en"));
@@ -51,8 +51,8 @@ public class WikidataSparqlUtilTest {
 
         List<WikidataEntity> allAncestors = getAllAncestors(tree);
 
-        Assert.assertTrue(allAncestors.contains(new WikidataEntity("Q35120", "entity")));
-        Assert.assertTrue(allAncestors.contains(new WikidataEntity("Q756", "plant")));
+        Assertions.assertTrue(allAncestors.contains(new WikidataEntity("Q35120", "entity")));
+        Assertions.assertTrue(allAncestors.contains(new WikidataEntity("Q756", "plant")));
 
     }
 
@@ -68,14 +68,14 @@ public class WikidataSparqlUtilTest {
 
         if (isHumanLanguage(chineseLanguage)) {
             List<WikidataEntity> propertyValues = getProperty(chineseLanguage, countryProperty);
-            Assert.assertTrue(propertyValues.contains(peoplesRepublicOfChina));
+            Assertions.assertTrue(propertyValues.contains(peoplesRepublicOfChina));
 
             List<WikidataEntity> nonExistantPropertyValues = getProperty(chineseLanguage, "P1");
-            Assert.assertTrue(nonExistantPropertyValues.isEmpty());
+            Assertions.assertTrue(nonExistantPropertyValues.isEmpty());
 
             List<WikidataEntity> multiplePropertyValues = getProperty(tree, subclassOfProperty);
         } else {
-            Assert.fail();
+            Assertions.fail();
         }
     }
 
@@ -85,22 +85,22 @@ public class WikidataSparqlUtilTest {
         WikidataEntity tree = new WikidataEntity("Q10884", "tree");
         WikidataEntity carnivorousPlant = new WikidataEntity("Q18240", "carnivorous plant");
 
-        Assert.assertEquals(distance(tree, carnivorousPlant), 3);
+        Assertions.assertEquals(distance(tree, carnivorousPlant), 3);
     }
 
     @Test
     public void testGetRootDistance() {
         WikidataEntity entity = new WikidataEntity("Q35120", "entity");
         long depthEntity = getRootDistance(entity);
-        Assert.assertTrue(depthEntity == 0);
+        Assertions.assertTrue(depthEntity == 0);
 
         WikidataEntity object = new WikidataEntity("Q488383", "object");
         long depthObject = getRootDistance(object);
-        Assert.assertTrue(depthObject == 1);
+        Assertions.assertTrue(depthObject == 1);
 
         WikidataEntity perceptibleObject = new WikidataEntity("Q337060", "perceptible object");
         long depthPerceptibleObject = getRootDistance(perceptibleObject);
-        Assert.assertTrue(depthPerceptibleObject == 2);
+        Assertions.assertTrue(depthPerceptibleObject == 2);
 
         WikidataEntity scotus = new WikidataEntity("Q11201");
 
@@ -115,8 +115,8 @@ public class WikidataSparqlUtilTest {
         WikidataEntity perennialPlant = new WikidataEntity("Q157957");
         WikidataEntity organism = new WikidataEntity("Q7239");
 
-        Assert.assertTrue(getDistanceToAncestor(tree, perennialPlant) == 1);
-        Assert.assertTrue(WikidataDumpUtil.getDistanceToAncestor(tree, organism) == 3);
+        Assertions.assertTrue(getDistanceToAncestor(tree, perennialPlant) == 1);
+        Assertions.assertTrue(WikidataDumpUtil.getDistanceToAncestor(tree, organism) == 3);
     }
 
     @Test
@@ -128,8 +128,8 @@ public class WikidataSparqlUtilTest {
         WikidataEntity perennialPlant = new WikidataEntity("Q157957", "perennial plant");
         WikidataEntity woodyPlant = new WikidataEntity("Q757163", "woody plant");
 
-        Assert.assertTrue(subclassOf.contains(perennialPlant));
-        Assert.assertTrue(subclassOf.contains(woodyPlant));
+        Assertions.assertTrue(subclassOf.contains(perennialPlant));
+        Assertions.assertTrue(subclassOf.contains(woodyPlant));
     }
 
 
@@ -139,7 +139,7 @@ public class WikidataSparqlUtilTest {
 
         List<WikidataEntity> instanceOf = instanceOf(tomHanks);
 
-        Assert.assertTrue(instanceOf.contains(new WikidataEntity("Q5", "human")));
+        Assertions.assertTrue(instanceOf.contains(new WikidataEntity("Q5", "human")));
 
         WikidataEntity auschwitz = new WikidataEntity("Q7342", "Oświęcim");
 
@@ -156,7 +156,7 @@ public class WikidataSparqlUtilTest {
 
         List<WikidataEntity> subclasses = getSubclasses(tree);
 
-        Assert.assertTrue(subclasses.contains(new WikidataEntity("Q47128", "Christmas tree")));
+        Assertions.assertTrue(subclasses.contains(new WikidataEntity("Q47128", "Christmas tree")));
 
     }
 
@@ -167,7 +167,7 @@ public class WikidataSparqlUtilTest {
 
         List<WikidataEntity> instances = getInstances(fictionalDuck);
 
-        Assert.assertTrue(instances.contains(new WikidataEntity("Q6550", "Donald Duck")));
+        Assertions.assertTrue(instances.contains(new WikidataEntity("Q6550", "Donald Duck")));
     }
 
 
@@ -181,7 +181,7 @@ public class WikidataSparqlUtilTest {
         WikidataEntity temple = new WikidataEntity("Q44539");
         System.out.println(mostSpecificParentEntity);
 
-        Assert.assertEquals(mostSpecificParentEntity, temple);
+        Assertions.assertEquals(mostSpecificParentEntity, temple);
     }
 
     @Test
@@ -192,7 +192,7 @@ public class WikidataSparqlUtilTest {
 
         WikidataEntity tool = new WikidataEntity("Q39546");
 
-        Assert.assertTrue(getMostSpecificParentEntity(getMostSpecificParentEntity(lawnMower, snowBlower), chainsaw).equals(tool));
+        Assertions.assertTrue(getMostSpecificParentEntity(getMostSpecificParentEntity(lawnMower, snowBlower), chainsaw).equals(tool));
 
         // WikidataEntity bicycle = new WikidataEntity("Q11442");
         WikidataEntity ski = new WikidataEntity("Q172226");
@@ -207,10 +207,10 @@ public class WikidataSparqlUtilTest {
         WikidataEntity three = new WikidataEntity("Q201", "3");
         WikidataEntity threeDigit = new WikidataEntity("Q3431160", "3");
 
-        Assert.assertTrue(isNumber(one));
-        Assert.assertTrue(isNumber(three));
-        Assert.assertFalse(isNumber(threeDigit));
-        Assert.assertTrue(isNumber(pi));
+        Assertions.assertTrue(isNumber(one));
+        Assertions.assertTrue(isNumber(three));
+        Assertions.assertFalse(isNumber(threeDigit));
+        Assertions.assertTrue(isNumber(pi));
     }
 
 
@@ -219,8 +219,8 @@ public class WikidataSparqlUtilTest {
         WikidataEntity one = new WikidataEntity("Q199", "1");
         WikidataEntity pi = new WikidataEntity("Q167", "pi");
 
-        Assert.assertTrue(isNaturalNumber(one));
-        Assert.assertFalse(isNaturalNumber(pi));
+        Assertions.assertTrue(isNaturalNumber(one));
+        Assertions.assertFalse(isNaturalNumber(pi));
     }
 
 
@@ -230,16 +230,16 @@ public class WikidataSparqlUtilTest {
         WikidataEntity isna = new WikidataEntity("Q1672387", "ISNA");
         WikidataEntity starWars = new WikidataEntity("Q462");
 
-        Assert.assertTrue(isCreativeWork(theMinisters));
-        Assert.assertFalse(isCreativeWork(isna));
-        Assert.assertTrue(isCreativeWork(starWars));
+        Assertions.assertTrue(isCreativeWork(theMinisters));
+        Assertions.assertFalse(isCreativeWork(isna));
+        Assertions.assertTrue(isCreativeWork(starWars));
     }
 
     @Test
     public void testIsGene() {
         WikidataEntity hi = new WikidataEntity("Q29724302", "hi");
 
-        Assert.assertTrue(isGene(hi));
+        Assertions.assertTrue(isGene(hi));
     }
 
     @Test
@@ -248,48 +248,48 @@ public class WikidataSparqlUtilTest {
         WikidataEntity number = new WikidataEntity("Q11563", "number");
         WikidataEntity creativeWork = new WikidataEntity("Q17537576", "creative work");
 
-        Assert.assertTrue(isTransitiveInstanceOf(pi, number));
-        Assert.assertFalse(isTransitiveInstanceOf(pi, creativeWork));
+        Assertions.assertTrue(isTransitiveInstanceOf(pi, number));
+        Assertions.assertFalse(isTransitiveInstanceOf(pi, creativeWork));
     }
 
     @Test
     public void testIsHuman() {
         WikidataEntity tomHanks = new WikidataEntity("Q2263", "Tom Hanks");
 
-        Assert.assertTrue(isHuman(tomHanks));
+        Assertions.assertTrue(isHuman(tomHanks));
     }
 
     @Test
     public void testIsLocation() {
         WikidataEntity auschwitz = new WikidataEntity("Q7342", "Oświęcim");
 
-        Assert.assertTrue(isLocation(auschwitz));
+        Assertions.assertTrue(isLocation(auschwitz));
     }
 
     @Test
     public void testIsOrganization() {
         WikidataEntity apple = new WikidataEntity("Q312", "Apple Inc.");
 
-        Assert.assertTrue(isOrganization(apple));
+        Assertions.assertTrue(isOrganization(apple));
     }
 
     @Test
     public void testIsHumanLanguage() {
         WikidataEntity chineseLanguage = new WikidataEntity("Q7850");
 
-        Assert.assertTrue(isHumanLanguage(chineseLanguage));
+        Assertions.assertTrue(isHumanLanguage(chineseLanguage));
     }
 
     @Test
     public void testIsInstance() {
         // should be an instance of female given name
-        Assert.assertTrue(isInstance(new WikidataEntity("Q1682564", "Jane")));
+        Assertions.assertTrue(isInstance(new WikidataEntity("Q1682564", "Jane")));
     }
 
     @Test
     public void testIsClass() {
         // should be a class
-        Assert.assertTrue(isClass(new WikidataEntity("Q11879590", "female given name")));
+        Assertions.assertTrue(isClass(new WikidataEntity("Q11879590", "female given name")));
     }
 
 

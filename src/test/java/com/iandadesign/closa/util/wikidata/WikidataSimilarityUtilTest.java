@@ -7,8 +7,8 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileReader;
@@ -41,14 +41,14 @@ public class WikidataSimilarityUtilTest {
         double sim = similarityWuPalmer(tree, carnivorousPlant);
 
         System.out.println(sim);
-        Assert.assertEquals(sim, 2.0 / 3.0);
+        Assertions.assertEquals(sim, 2.0 / 3.0);
 
         WikidataEntity hill = new WikidataEntity("Q54050", "hill");
         WikidataEntity coast = new WikidataEntity("Q93352", "coast");
 
         double sim2 = similarityWuPalmer(hill, coast);
 
-        Assert.assertTrue(sim2 == 8.0 / 13.0 || sim2 == 4.0 / 7.0); // first ist SPARQL, second is dump
+        Assertions.assertTrue(sim2 == 8.0 / 13.0 || sim2 == 4.0 / 7.0); // first ist SPARQL, second is dump
     }
 
     @Test
@@ -132,8 +132,8 @@ public class WikidataSimilarityUtilTest {
         WikidataEntity hill = new WikidataEntity("Q54050", "hill");
         WikidataEntity coast = new WikidataEntity("Q93352", "coast");
 
-        Assert.assertTrue(WikidataSimilarityUtil.secoIntrinsicInformationContent(hill) == 0.2803218544469863);
-        Assert.assertTrue(WikidataSimilarityUtil.secoIntrinsicInformationContent(coast) == 0.4428415349722683);
+        Assertions.assertTrue(WikidataSimilarityUtil.secoIntrinsicInformationContent(hill) == 0.2803218544469863);
+        Assertions.assertTrue(WikidataSimilarityUtil.secoIntrinsicInformationContent(coast) == 0.4428415349722683);
     }
 
     @Test

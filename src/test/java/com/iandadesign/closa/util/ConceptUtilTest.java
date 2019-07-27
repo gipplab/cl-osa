@@ -1,8 +1,8 @@
 package com.iandadesign.closa.util;
 
 import com.iandadesign.closa.model.Token;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
@@ -21,8 +21,8 @@ public class ConceptUtilTest {
         Map<String, String> pageTitleMapEn = ConceptUtil.getPageTitleMap(englishText, "en");
         Map<String, String> pageTitleMapJa = ConceptUtil.getPageTitleMap(japaneseText, "ja");
 
-        Assert.assertEquals(pageTitleMapEn.get("bread"), "present");
-        Assert.assertEquals(pageTitleMapJa.get("パン"), "present");
+        Assertions.assertEquals(pageTitleMapEn.get("bread"), "present");
+        Assertions.assertEquals(pageTitleMapJa.get("パン"), "present");
     }
 
     @Test
@@ -41,12 +41,12 @@ public class ConceptUtilTest {
 
         List<Token> tokensEn = TokenUtil.tokenize(englishText, "en");
         List<Token> conceptsEn = ConceptUtil.getConceptsFromTokens(tokensEn, 3, "en");
-        Assert.assertEquals(conceptsEn.get(0), new Token("plagiarism"));
-        Assert.assertTrue(!conceptsEn.contains(new Token("and")));
+        Assertions.assertEquals(conceptsEn.get(0), new Token("plagiarism"));
+        Assertions.assertTrue(!conceptsEn.contains(new Token("and")));
 
         List<Token> tokensJa = TokenUtil.tokenize(japaneseText, "ja");
         List<Token> conceptsJa = ConceptUtil.getConceptsFromTokens(tokensJa, 3, "ja");
-        Assert.assertEquals(conceptsJa.get(0), new Token("盗作"));
+        Assertions.assertEquals(conceptsJa.get(0), new Token("盗作"));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class ConceptUtilTest {
         String patriotWhigsId = "4227252";
         String pageIdInLanguage = ConceptUtil.getPageIdInLanguage(patriotWhigsId, "en", "de");
 
-        Assert.assertTrue(pageIdInLanguage == null);
+        Assertions.assertTrue(pageIdInLanguage == null);
     }
 
     @Test

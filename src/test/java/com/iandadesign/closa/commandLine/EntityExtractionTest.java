@@ -1,9 +1,10 @@
 package com.iandadesign.closa.commandLine;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.*;
+
 
 public class EntityExtractionTest {
 
@@ -57,7 +58,7 @@ public class EntityExtractionTest {
         try {
             future.get(5, TimeUnit.MINUTES);
         } catch (TimeoutException | InterruptedException | ExecutionException e) {
-            Assert.fail();
+            Assertions.fail();
             e.printStackTrace();
         } finally {
             future.cancel(true); // may or may not desire this

@@ -1,8 +1,8 @@
 package com.iandadesign.closa.util.wikidata;
 
 import com.iandadesign.closa.model.WikidataEntity;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,7 +17,7 @@ public class WikidataDisambiguaterTest {
 
         WikidataEntity disambiguatedEntity = WikidataDisambiguator.disambiguateBySmallestId(Arrays.asList(tree1, tree2));
 
-        Assert.assertTrue(disambiguatedEntity.equals(tree1));
+        Assertions.assertTrue(disambiguatedEntity.equals(tree1));
     }
 
     @Test
@@ -28,7 +28,7 @@ public class WikidataDisambiguaterTest {
         WikidataEntity disambiguatedEntity = WikidataDisambiguator.ancestorCountDisambiguate(Arrays.asList(tree1, tree2),
                 "A tree is a plant", "en");
 
-        Assert.assertTrue(disambiguatedEntity.equals(tree1));
+        Assertions.assertTrue(disambiguatedEntity.equals(tree1));
     }
 
 
@@ -40,9 +40,9 @@ public class WikidataDisambiguaterTest {
         WikidataEntity disambiguatedEntity = WikidataDisambiguator.disambiguateByDescription(Arrays.asList(tree1, tree2),
                 "A tree is a plant", "en");
 
-        Assert.assertTrue(disambiguatedEntity.equals(tree1));
+        Assertions.assertTrue(disambiguatedEntity.equals(tree1));
 
-        Assert.assertTrue(WikidataDisambiguator.disambiguateByDescription(Arrays.asList(tree1, tree2),
+        Assertions.assertTrue(WikidataDisambiguator.disambiguateByDescription(Arrays.asList(tree1, tree2),
                 "A tree is a graph", "en")
                 .equals(tree2));
     }

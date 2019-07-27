@@ -4,8 +4,8 @@ import com.iandadesign.closa.classification.Category;
 import com.iandadesign.closa.model.WikidataEntity;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class WikidataEntityExtractorTests {
 
         System.out.println(entitiesEn);
 
-        Assert.assertTrue(entitiesEn.get(0).getLabel().equals("Oświęcim"));
+        Assertions.assertTrue(entitiesEn.get(0).getLabel().equals("Oświęcim"));
     }
 
     @Test
@@ -41,8 +41,8 @@ public class WikidataEntityExtractorTests {
 
         System.out.println(foundEntities);
 
-        Assert.assertTrue(foundEntities.contains(china) || foundEntities.contains(peoplesRepublicOfChina));
-        Assert.assertFalse(foundEntities.contains(chinese));
+        Assertions.assertTrue(foundEntities.contains(china) || foundEntities.contains(peoplesRepublicOfChina));
+        Assertions.assertFalse(foundEntities.contains(chinese));
     }
 
     @Test
@@ -55,8 +55,8 @@ public class WikidataEntityExtractorTests {
 
         WikidataEntity creativeWork = new WikidataEntity("Q17537576");
 
-        Assert.assertFalse(WikidataSparqlUtil.isCreativeWork(isna));
-        Assert.assertTrue(WikidataSparqlUtil.isCreativeWork(starWars));
+        Assertions.assertFalse(WikidataSparqlUtil.isCreativeWork(isna));
+        Assertions.assertTrue(WikidataSparqlUtil.isCreativeWork(starWars));
     }
 
 
@@ -68,7 +68,7 @@ public class WikidataEntityExtractorTests {
 
         System.out.println(entitiesEn);
 
-        Assert.assertTrue(entitiesEn.get(0).getLabel().equals("Supreme Court of the United States"));
+        Assertions.assertTrue(entitiesEn.get(0).getLabel().equals("Supreme Court of the United States"));
     }
 
     @Test
@@ -90,7 +90,7 @@ public class WikidataEntityExtractorTests {
 
         System.out.println(htmlText);
 
-        Assert.assertTrue(textEn.equals(htmlText));
+        Assertions.assertTrue(textEn.equals(htmlText));
     }
 
     @Test
@@ -120,8 +120,8 @@ public class WikidataEntityExtractorTests {
 
             System.out.println(entitiesEn);
 
-            Assert.assertTrue(entitiesEn.size() > 0);
-            Assert.assertTrue(entitiesEn.stream().noneMatch(Objects::isNull));
+            Assertions.assertTrue(entitiesEn.size() > 0);
+            Assertions.assertTrue(entitiesEn.stream().noneMatch(Objects::isNull));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -135,8 +135,8 @@ public class WikidataEntityExtractorTests {
 
             System.out.println(entitiesZh);
 
-            Assert.assertTrue(entitiesZh.size() > 0);
-            Assert.assertTrue(entitiesZh.stream().noneMatch(Objects::isNull));
+            Assertions.assertTrue(entitiesZh.size() > 0);
+            Assertions.assertTrue(entitiesZh.stream().noneMatch(Objects::isNull));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -219,8 +219,8 @@ public class WikidataEntityExtractorTests {
         WikidataEntity three = new WikidataEntity("Q201", "3");
         WikidataEntity five = new WikidataEntity("Q203", "5");
 
-        Assert.assertTrue(WikidataEntityExtractor.extractEntitiesFromText(text1, "en").contains(three));
-        Assert.assertTrue(WikidataEntityExtractor.extractEntitiesFromText(text2, "en").contains(five));
+        Assertions.assertTrue(WikidataEntityExtractor.extractEntitiesFromText(text1, "en").contains(three));
+        Assertions.assertTrue(WikidataEntityExtractor.extractEntitiesFromText(text2, "en").contains(five));
     }
 
     @Test
@@ -229,7 +229,7 @@ public class WikidataEntityExtractorTests {
 
         WikidataEntity theMinisters = new WikidataEntity("Q7751572", "The Ministers");
 
-        Assert.assertFalse(WikidataEntityExtractor.extractEntitiesFromText(text, "en").contains(theMinisters));
+        Assertions.assertFalse(WikidataEntityExtractor.extractEntitiesFromText(text, "en").contains(theMinisters));
     }
 
     @Test
@@ -238,7 +238,7 @@ public class WikidataEntityExtractorTests {
 
         WikidataEntity mp = new WikidataEntity("Q29732832", "mp");
 
-        Assert.assertFalse(WikidataEntityExtractor.extractEntitiesFromText(text, "en").contains(mp));
+        Assertions.assertFalse(WikidataEntityExtractor.extractEntitiesFromText(text, "en").contains(mp));
     }
 
     @Test
@@ -257,7 +257,7 @@ public class WikidataEntityExtractorTests {
         List<List<List<Integer>>> result = WikidataEntityExtractor.getSublistsOfSize(list, 3);
         System.out.println(result);
 
-        Assert.assertTrue(result.equals(Arrays.asList(
+        Assertions.assertTrue(result.equals(Arrays.asList(
                 Arrays.asList(Arrays.asList(1, 2, 3),
                         Arrays.asList(1, 2), Collections.singletonList(1)),
                 Arrays.asList(Arrays.asList(2, 3, 4),
@@ -271,21 +271,21 @@ public class WikidataEntityExtractorTests {
         List<List<List<Integer>>> result1 = WikidataEntityExtractor.getSublistsOfSize(list1, 3);
         System.out.println(result1);
 
-        Assert.assertTrue(result1.equals(Collections.singletonList(Collections.singletonList(list1))));
+        Assertions.assertTrue(result1.equals(Collections.singletonList(Collections.singletonList(list1))));
 
         List<Integer> list2 = Arrays.asList(1, 2);
 
         List<List<List<Integer>>> result2 = WikidataEntityExtractor.getSublistsOfSize(list2, 3);
         System.out.println(result2);
 
-        Assert.assertTrue(result2.equals(Collections.singletonList(Arrays.asList(list2, Collections.singletonList(1), Collections.singletonList(2)))));
+        Assertions.assertTrue(result2.equals(Collections.singletonList(Arrays.asList(list2, Collections.singletonList(1), Collections.singletonList(2)))));
     }
 
 
     @Test
     public void testVerbHandling() {
         String text = "Plane lands on airport.";
-        Assert.assertTrue(WikidataEntityExtractor.extractEntitiesFromText(text, "en")
+        Assertions.assertTrue(WikidataEntityExtractor.extractEntitiesFromText(text, "en")
                 .contains(new WikidataEntity("Q844947", "landing")));
     }
 
@@ -303,7 +303,7 @@ public class WikidataEntityExtractorTests {
             String text = FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8);
             WikidataEntityExtractor.extractEntitiesFromText(text, "en");
         } catch (IOException e) {
-            Assert.fail();
+            Assertions.fail();
             e.printStackTrace();
         }
     }

@@ -1,7 +1,7 @@
 package com.iandadesign.closa.evaluation.impl;
 
 import com.iandadesign.closa.evaluation.EvaluationSet;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;

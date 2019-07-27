@@ -2,8 +2,8 @@ package com.iandadesign.closa.util;
 
 import com.iandadesign.closa.model.Token;
 import edu.stanford.nlp.simple.Document;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +22,7 @@ public class TokenUtilTest {
                 "Paragraph 2 \n \n This text is the second paragraph.";
 
         List<Token> tokens = TokenUtil.tokenize(text, false);
-        Assert.assertTrue(tokens.size() == 7);
+        Assertions.assertTrue(tokens.size() == 7);
     }
 
     @Test
@@ -37,8 +37,8 @@ public class TokenUtilTest {
         List<List<Token>> tokensBySentence = TokenUtil.namedEntityTokenize(text, "en");
         System.out.println(tokensBySentence);
 
-        Assert.assertTrue(tokensBySentence.get(4).contains(new Token("Jane Smith", "Jane Smith", "NNP", Token.NamedEntityType.PERSON)));
-        Assert.assertTrue(tokensBySentence.get(5).contains(new Token("France", "France", "NNP", Token.NamedEntityType.LOCATION)));
+        Assertions.assertTrue(tokensBySentence.get(4).contains(new Token("Jane Smith", "Jane Smith", "NNP", Token.NamedEntityType.PERSON)));
+        Assertions.assertTrue(tokensBySentence.get(5).contains(new Token("France", "France", "NNP", Token.NamedEntityType.LOCATION)));
     }
 
     @Test
@@ -48,7 +48,7 @@ public class TokenUtilTest {
         List<List<Token>> tokensBySentence = TokenUtil.namedEntityTokenize(text, "en");
         System.out.println(tokensBySentence);
 
-        Assert.assertTrue(tokensBySentence.get(1).contains(new Token("Auschwitz", "Auschwitz", "NNP", Token.NamedEntityType.LOCATION)));
+        Assertions.assertTrue(tokensBySentence.get(1).contains(new Token("Auschwitz", "Auschwitz", "NNP", Token.NamedEntityType.LOCATION)));
 
     }
 
@@ -66,9 +66,9 @@ public class TokenUtilTest {
         String testStringPartialLatin = "菲利普•法尔科(Philip Falcone)";
         String testStringNoLatin = "菲利普•法尔科";
 
-        Assert.assertTrue(TokenUtil.isLatinAlphabet(testStringLatin));
-        Assert.assertFalse(TokenUtil.isLatinAlphabet(testStringPartialLatin));
-        Assert.assertFalse(TokenUtil.isLatinAlphabet(testStringNoLatin));
+        Assertions.assertTrue(TokenUtil.isLatinAlphabet(testStringLatin));
+        Assertions.assertFalse(TokenUtil.isLatinAlphabet(testStringPartialLatin));
+        Assertions.assertFalse(TokenUtil.isLatinAlphabet(testStringNoLatin));
     }
 
     @Test
@@ -80,9 +80,9 @@ public class TokenUtilTest {
         tokensEn = TokenUtil.stem(tokensEn, "en");
         List<Token> tokensDe = TokenUtil.tokenize(textDe, true);
 
-        Assert.assertTrue(tokensEn.contains(new Token("mani")));
-        Assert.assertTrue(tokensEn.contains(new Token("1970s")));
-        Assert.assertTrue(TokenUtil.stem(tokensDe, "de").contains(new Token("beschreib")));
+        Assertions.assertTrue(tokensEn.contains(new Token("mani")));
+        Assertions.assertTrue(tokensEn.contains(new Token("1970s")));
+        Assertions.assertTrue(TokenUtil.stem(tokensDe, "de").contains(new Token("beschreib")));
     }
 
     @Test
@@ -91,10 +91,10 @@ public class TokenUtilTest {
 
         List<Token> tokens = TokenUtil.tokenize(text, "en");
         tokens = TokenUtil.removeStopwords(tokens, "en");
-        Assert.assertEquals(tokens.size(), 2);
+        Assertions.assertEquals(tokens.size(), 2);
 
         tokens = TokenUtil.removeNumbers(tokens);
-        Assert.assertTrue(!tokens.contains(new Token("2")));
+        Assertions.assertTrue(!tokens.contains(new Token("2")));
     }
 
     @Test
@@ -111,14 +111,14 @@ public class TokenUtilTest {
 
         germanTokens = TokenUtil.keepNounPhrases(germanTokens, "de");
 
-        Assert.assertTrue(germanTokens.contains(new Token("Konfidenzmaß")));
-        Assert.assertTrue(!germanTokens.contains(new Token("aus")));
+        Assertions.assertTrue(germanTokens.contains(new Token("Konfidenzmaß")));
+        Assertions.assertTrue(!germanTokens.contains(new Token("aus")));
 
         List<Token> englishTokens = TokenUtil.tokenize("This is a noun, this is a modified noun", "en");
         englishTokens = TokenUtil.keepNounPhrases(englishTokens, "en");
         List<Token> testTokens = TokenUtil.tokenize("noun noun", "en");
 
-        Assert.assertEquals(englishTokens, testTokens);
+        Assertions.assertEquals(englishTokens, testTokens);
     }
 
     @Test
@@ -142,8 +142,8 @@ public class TokenUtilTest {
 
         List<Token> output = TokenUtil.germanLemmatize(TokenUtil.tokenize(input, "de"));
 
-        Assert.assertTrue(output.contains(new Token("dekadischer")));
-        Assert.assertTrue(output.contains(new Token("zentrales")));
+        Assertions.assertTrue(output.contains(new Token("dekadischer")));
+        Assertions.assertTrue(output.contains(new Token("zentrales")));
 
         String input2 = "Aktivierungs- und Relaxationslösung\n" +
                 "Um den isolierten kontraktilen Apparat des Myokards zu aktivieren bzw. wieder zu relaxieren, " +
@@ -161,7 +161,7 @@ public class TokenUtilTest {
 
         List<Token> output2 = TokenUtil.germanLemmatize(TokenUtil.tokenize(input2, "de"));
 
-        Assert.assertTrue(output2.contains(new Token("unterschiedliche")));
+        Assertions.assertTrue(output2.contains(new Token("unterschiedliche")));
     }
 
     @Test
@@ -181,10 +181,10 @@ public class TokenUtilTest {
                 "Formel von Fabiato und Fabiato (1979).";
 
         edu.stanford.nlp.simple.Document doc = new Document(text);
-        Assert.assertEquals(doc.sentence(0).posTags().get(0), "SYM");
+        Assertions.assertEquals(doc.sentence(0).posTags().get(0), "SYM");
 
         List<Token> tokens = TokenUtil.tokenize(text, true);
-        Assert.assertEquals(tokens.size(), 2);
+        Assertions.assertEquals(tokens.size(), 2);
     }
 
 
@@ -194,7 +194,7 @@ public class TokenUtilTest {
 
         List<Token> tokens = TokenUtil.tokenize(text, true);
 
-        Assert.assertTrue(tokens.contains(new Token("私")));
+        Assertions.assertTrue(tokens.contains(new Token("私")));
 
         String textWithNewlines = "盗作（とうさく）は、他人の著作物にある表現、その他独自性・" +
                 "独創性のあるアイディア・企画等を盗用し、それを独自に考え出したものとして公衆に提示する反倫理的な行為全般を指す。" +
@@ -206,7 +206,7 @@ public class TokenUtilTest {
 
         List<Token> tokensWithNewlines = TokenUtil.tokenize(textWithNewlines, true);
 
-        Assert.assertEquals(tokensWithNewlines.size(), 3);
+        Assertions.assertEquals(tokensWithNewlines.size(), 3);
     }
 
     @Test
@@ -216,14 +216,14 @@ public class TokenUtilTest {
 
         List<Token> tokens = TokenUtil.tokenize(text, true);
 
-        Assert.assertEquals(tokens.size(), 38);
+        Assertions.assertEquals(tokens.size(), 38);
     }
 
     @Test
     public void testNGramPartition() {
         String text = "Aktivierungslösung";
         List<String> nGrams = TokenUtil.nGramPartition(text, 3);
-        Assert.assertTrue(nGrams.size() == 16);
+        Assertions.assertTrue(nGrams.size() == 16);
     }
 
     @Test
@@ -236,14 +236,14 @@ public class TokenUtilTest {
         List<String> filteredTokens = TokenUtil.removePunctuation(tokens.stream().map(Token::new).collect(Collectors.toList()))
                 .stream().map(Token::getToken).collect(Collectors.toList());
 
-        Assert.assertFalse(filteredTokens.contains("。"));
-        Assert.assertFalse(filteredTokens.contains("、"));
+        Assertions.assertFalse(filteredTokens.contains("。"));
+        Assertions.assertFalse(filteredTokens.contains("、"));
     }
 
     @Test
     public void testGetPunctuation() {
         List<String> symbols = TokenUtil.getPunctuation();
 
-        Assert.assertFalse(symbols.isEmpty());
+        Assertions.assertFalse(symbols.isEmpty());
     }
 }

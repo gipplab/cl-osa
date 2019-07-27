@@ -6,8 +6,8 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.io.FileUtils;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileReader;
@@ -87,7 +87,7 @@ public class WikidataEntityExtractorEval {
                     .stream().flatMap(List::stream).collect(Collectors.toList());
             System.out.println(foundEntities);
 
-            Assert.assertTrue(foundEntities.stream().anyMatch(entitiesToFind::contains));
+            Assertions.assertTrue(foundEntities.stream().anyMatch(entitiesToFind::contains));
         }
     }
 

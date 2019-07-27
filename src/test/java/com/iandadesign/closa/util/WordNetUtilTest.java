@@ -4,8 +4,8 @@ import net.sf.extjwnl.JWNLException;
 import net.sf.extjwnl.data.IndexWord;
 import net.sf.extjwnl.data.POS;
 import net.sf.extjwnl.dictionary.Dictionary;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,14 +29,14 @@ public class WordNetUtilTest {
             for (Map.Entry<String, String> entry : verbToNounMap.entrySet()) {
                 IndexWord indexWord = dictionary.lookupIndexWord(POS.VERB, entry.getKey());
 
-                Assert.assertNotNull(indexWord);
+                Assertions.assertNotNull(indexWord);
 
                 List<String> links = WordNetUtil.getMorphosemanticLink(indexWord);
 
                 System.out.print(entry.getKey() + ": ");
                 System.out.println(links);
 
-                Assert.assertTrue(links.contains(entry.getValue()));
+                Assertions.assertTrue(links.contains(entry.getValue()));
             }
 
         } catch (JWNLException e) {

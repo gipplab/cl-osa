@@ -1,8 +1,8 @@
 package com.iandadesign.closa.util;
 
 import com.iandadesign.closa.model.Token;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -22,10 +22,10 @@ public class TranslationUtilTest {
         try {
             String yandexTranslatedText = TranslationUtil.translate(textJapanese, "ja", "en");
             String yandexTranslatedText2 = TranslationUtil.translate(textEnglish, "en", "ja");
-            Assert.assertTrue(yandexTranslatedText.equals(textEnglish));
-            Assert.assertTrue(yandexTranslatedText2.equals(textJapanese));
+            Assertions.assertTrue(yandexTranslatedText.equals(textEnglish));
+            Assertions.assertTrue(yandexTranslatedText2.equals(textJapanese));
         } catch (Exception e) {
-            Assert.fail();
+            Assertions.fail();
         }
     }
 
@@ -37,9 +37,9 @@ public class TranslationUtilTest {
         try {
             List<Token> translatedTokens = TranslationUtil.translateTokens(tokensEnglish, "en", "ja");
 
-            Assert.assertTrue(translatedTokens.equals(tokensJapanese));
+            Assertions.assertTrue(translatedTokens.equals(tokensJapanese));
         } catch (Exception e) {
-            Assert.fail();
+            Assertions.fail();
         }
     }
 

@@ -2,8 +2,8 @@ package com.iandadesign.closa.classification;
 
 import com.iandadesign.closa.util.TokenUtil;
 import de.daslaboratorium.machinelearning.classifier.bayes.BayesClassifier;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -60,8 +60,8 @@ public class TextClassifierUtilTest {
                         "de l'OTAN situé à Aviano, trancha, lors d'un exercice à basse altitude - en deçà des limites de " +
                         "sécurité -, les câbles d'un téléphérique, causant la mort de plus de vingt citoyens européens.";
 
-        Assert.assertEquals(textClassifier.classifyText(englishText, "en"), Category.biology);
-        Assert.assertEquals(textClassifier.classifyText(germanText, "de"), Category.biology);
+        Assertions.assertEquals(textClassifier.classifyText(englishText, "en"), Category.biology);
+        Assertions.assertEquals(textClassifier.classifyText(germanText, "de"), Category.biology);
     }
 
 

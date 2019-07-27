@@ -2,8 +2,8 @@ package com.iandadesign.closa.language;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,21 +18,21 @@ public class LanguageDetectorTest {
     @Test
     public void testLangDetectConstructor() {
         LanguageDetector languageDetector = new LanguageDetector(Arrays.asList("en", "ja"));
-        Assert.assertEquals(languageDetector.detectLanguage("Beispiel"), "en");
+        Assertions.assertEquals(languageDetector.detectLanguage("Beispiel"), "en");
     }
 
     @Test
     public void testLangDetectConstructorChinese() {
         LanguageDetector languageDetector = new LanguageDetector(Collections.singletonList("zh"));
-        Assert.assertEquals(languageDetector.detectLanguage("Beispiel"), "zh");
+        Assertions.assertEquals(languageDetector.detectLanguage("Beispiel"), "zh");
     }
 
     @Test
     public void testLangDetect() {
         LanguageDetector languageDetector = new LanguageDetector();
 
-        Assert.assertEquals(languageDetector.detectLanguage("Beispiel"), "de");
-        Assert.assertEquals(languageDetector.detectLanguage("a text should have sufficient length in order to" +
+        Assertions.assertEquals(languageDetector.detectLanguage("Beispiel"), "de");
+        Assertions.assertEquals(languageDetector.detectLanguage("a text should have sufficient length in order to" +
                 "be detected correctly"), "en");
     }
 
