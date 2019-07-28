@@ -107,7 +107,7 @@ public class TOSAEvaluationSet extends EvaluationSet {
 
 
     /**
-     * CL-OSA preprocessing: translation -> entity extraction
+     * CL-OSA preprocessing: translation and entity extraction
      *
      * @param documentPath     document text
      * @param documentLanguage the document's language

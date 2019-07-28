@@ -30,7 +30,6 @@ public class WikidataDisambiguator {
     }
 
 
-
     /**
      * Disambiguates to the entity whose ancestor entity labels occur most often in the text.
      *
@@ -80,8 +79,9 @@ public class WikidataDisambiguator {
     /**
      * Disambiguates a list of entities according to the given text.
      *
-     * @param entities entities to be disambiguated.
-     * @param text     text for context
+     * @param entities     entities to be disambiguated.
+     * @param text         text for context
+     * @param languageCode language code
      * @return the disambiguated entity.
      */
     public static WikidataEntity disambiguateByDescription(List<WikidataEntity> entities, String text, String languageCode) {

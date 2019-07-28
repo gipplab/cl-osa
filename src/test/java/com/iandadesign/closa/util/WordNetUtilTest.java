@@ -1,5 +1,6 @@
 package com.iandadesign.closa.util;
 
+import com.iandadesign.closa.model.Token;
 import net.sf.extjwnl.JWNLException;
 import net.sf.extjwnl.data.IndexWord;
 import net.sf.extjwnl.data.POS;
@@ -15,8 +16,15 @@ import java.util.Map;
 public class WordNetUtilTest {
 
     @Test
-    public void getMorphosemanticLinkTest() {
+    void mapVerbToNoun() {
+        Assertions.assertEquals(
+                WordNetUtil.mapVerbToNoun(new Token("discuss", "discuss")).getLemma(),
+                "discussion"
+        );
+    }
 
+    @Test
+    void getMorphosemanticLink() {
         try {
             Dictionary dictionary = Dictionary.getDefaultResourceInstance();
 
@@ -33,15 +41,16 @@ public class WordNetUtilTest {
 
                 List<String> links = WordNetUtil.getMorphosemanticLink(indexWord);
 
-                System.out.print(entry.getKey() + ": ");
-                System.out.println(links);
-
                 Assertions.assertTrue(links.contains(entry.getValue()));
             }
 
         } catch (JWNLException e) {
             e.printStackTrace();
         }
+    }
 
+    @Test
+    void getDictionary() {
+        Assertions.assertNotNull(WordNetUtil.getDictionary());
     }
 }

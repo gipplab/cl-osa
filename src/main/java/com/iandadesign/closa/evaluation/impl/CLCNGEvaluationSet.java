@@ -82,7 +82,7 @@ public class CLCNGEvaluationSet extends EvaluationSet {
     }
 
     /**
-     * CL-C3G preprocessing: text -> n-grams
+     * CL-C3G preprocessing: text to n-grams
      *
      * @param documentPath     document path
      * @param documentLanguage the document's language

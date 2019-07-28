@@ -42,6 +42,7 @@ public abstract class EvaluationSet {
      *
      * @param suspiciousFolder contains the suspicious files
      * @param candidateFolder  contains the candidate files, named identically to the suspicious ones.
+     * @throws IOException if files cannot be accessed.
      */
     public EvaluationSet(File suspiciousFolder, File candidateFolder) throws IOException {
         this(suspiciousFolder, candidateFolder, (int) Files.walk(candidateFolder.toPath()).parallel().filter(path -> !path.toFile().isDirectory()).count());
@@ -69,6 +70,7 @@ public abstract class EvaluationSet {
      *
      * @param suspiciousFolder contains the suspicious files
      * @param candidateFolder  contains the candidate files, named identically to the suspicious ones.
+     * @param fileCountLimit   file count limit
      */
     public EvaluationSet(File suspiciousFolder, File candidateFolder, int fileCountLimit) {
 

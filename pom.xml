@@ -6,7 +6,7 @@
 
     <artifactId>closa</artifactId>
     <groupId>com.iandadesign</groupId>
-    <version>1.0</version>
+    <version>1.3-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -15,8 +15,23 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
-    <!-- creates uber-jar -->
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>1.6.7</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <serverId>ossrh</serverId>
+                        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -95,6 +110,39 @@
                 </executions>
             </plugin>
 
+            <!-- attach sources -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- JavaDoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <source>8</source>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <!-- code signing -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -139,21 +187,18 @@
                 </includes>
             </testResource>
         </testResources>
-
     </build>
 
+    <!-- for Java Naive Bayes -->
     <repositories>
-        <repository>
-            <id>morpher-ws3-java-client-mvn-repo</id>
-            <url>https://raw.github.com/morpher-ru/morpher-ws3-java-client/mvn-repo</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
+        </repository>
+
+        <repository>
+            <id>Atilika Open Source repository</id>
+            <url>http://www.atilika.org/nexus/content/repositories/atilika</url>
         </repository>
     </repositories>
 
@@ -246,14 +291,6 @@
             <version>0.6</version>
         </dependency>
 
-        <!-- Russian morphological analyzer -->
-        <dependency>
-            <groupId>ru.morpher</groupId>
-            <artifactId>ws3.client</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-
         <dependency>
             <groupId>com.chenlb.mmseg4j</groupId>
             <artifactId>mmseg4j-core</artifactId>
@@ -266,8 +303,6 @@
             <version>3.7</version>
         </dependency>
 
-
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
@@ -354,20 +389,13 @@
             <version>1.4</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.atilika.kuromoji/kuromoji -->
         <dependency>
             <groupId>org.atilika.kuromoji</groupId>
             <artifactId>kuromoji</artifactId>
-            <scope>system</scope>
             <version>0.7.7</version>
-            <systemPath>${basedir}/lib/kuromoji-0.7.7.jar</systemPath>
-        </dependency>
-
-        <dependency>
-            <groupId>com.shef.ac.uk</groupId>
-            <artifactId>POSTaggerSpanishLanguage</artifactId>
-            <scope>system</scope>
-            <version>1.0.0</version>
-            <systemPath>${basedir}/lib/POSTaggerSpanishLanguage.jar</systemPath>
+            <type>jar</type>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -378,17 +406,12 @@
         </dependency>
     </dependencies>
 
-    <name>CL-OSA (cross-language ontology-based similarity analysis)</name>
+    <name>${project.groupId}:${project.artifactId}</name>
     <description>Cross-Language Ontology Based Similarity Analysis (CL-OSA) is an algorithm that leverages ontology data
         from Wikidata in order to perform ranked retrieval on possibly plagiarized documents across language boundaries.
         This repository contains the source code, tests and evaluations for CL-OSA, written in Java.
     </description>
     <url>https://bitbucket.org/iandadesign/closa/src/master/</url>
-
-    <organization>
-        <name>com.iandadesign.closa</name>
-        <url>https://bitbucket.org/iandadesign/closa</url>
-    </organization>
 
     <issueManagement>
         <system>Bitbucket</system>
@@ -398,24 +421,34 @@
     <licenses>
         <license>
             <name>MIT License</name>
-            <url>https://bitbucket.org/iandadesign/closa/src/master/LICENSE.txt</url>
-            <distribution>repo</distribution>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
         </license>
     </licenses>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+
     <scm>
+        <connection>scm:git:git://bitbucket.org:fabianmarquart/closa.git</connection>
+        <developerConnection>scm:git:ssh://bitbucket.org:fabianmarquart/closa.git</developerConnection>
         <url>https://bitbucket.org/fabianmarquart/closa</url>
-        <connection>
-            scm:git:git://bitbucket.org:fabianmarquart/closa.git
-        </connection>
-        <developerConnection>
-            scm:git:ssh://git@bitbucket.org:fabianmarquart/closa.git
-        </developerConnection>
     </scm>
 
     <developers>
         <developer>
             <name>Fabian Marquart</name>
+            <email>fabianmarquart93@gmail.com</email>
+            <organization>Bitbucket Profile</organization>
+            <organizationUrl>https://bitbucket.org/%7B9bc3f137-40c9-4391-8700-bacf2ac3e6e5%7D/</organizationUrl>
         </developer>
     </developers>
 </project>

@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
  * Several types of queries are supported:
  * - entity extraction by label
  * - entity extraction by id
- * - similarity measures (Wu & Palmer, Jaccard)
+ * - similarity measures (Wu and Palmer, Jaccard)
  * - distance measures (pairwise, to root, and to specified ancestor)
  * - sub class and parent class (and ancestor class) extraction
  * - instance class and instantiating class extraction
@@ -468,7 +468,9 @@ public class WikidataSparqlUtil {
      * Gets the depth between the given entity and the given entity's ancestor.
      * If there exist multiple paths, the shortest is used.
      *
-     * @return number of levels to the taxonomy root
+     * @param entity   specified entity
+     * @param ancestor specified entity's ancestor
+     * @return number of levels to the ancestor.
      */
     public static long getDistanceToAncestor(WikidataEntity entity, WikidataEntity ancestor) {
 
@@ -509,6 +511,7 @@ public class WikidataSparqlUtil {
      * Gets the depth between the given entity and the taxonomy root. If there exist multiple paths,
      * the shortest is used.
      *
+     * @param entity specified entity
      * @return number of levels to the taxonomy root
      */
     public static long getRootDistance(WikidataEntity entity) {

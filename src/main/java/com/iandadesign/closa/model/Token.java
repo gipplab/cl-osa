@@ -48,6 +48,7 @@ public class Token implements HasWord {
      *
      * @param token1 first token
      * @param token2 second token
+     * @param separator string to join the tokens in between
      */
     public Token(Token token1, Token token2, String separator) {
         this.token = token1.getToken() + separator + token2.getToken();
@@ -107,7 +108,13 @@ public class Token implements HasWord {
         this.token = token.getToken();
         this.startCharacter = token.getStartCharacter();
         this.endCharacter = token.getEndCharacter();
+        this.startCharacterCandidate = token.getStartCharacterCandidate();
+        this.endCharacterCandidate = token.getEndCharacterCandidate();
         this.index = token.getIndex();
+        this.lemma = token.getLemma();
+        this.partOfSpeech = token.getPartOfSpeech();
+        this.isNamedEntity = token.isNamedEntity();
+        this.namedEntityType = token.getNamedEntityType();
     }
 
     /**

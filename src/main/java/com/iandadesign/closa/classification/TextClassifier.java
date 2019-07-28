@@ -8,8 +8,6 @@ import com.iandadesign.closa.util.TokenUtil;
 import de.daslaboratorium.machinelearning.classifier.Classifier;
 import de.daslaboratorium.machinelearning.classifier.bayes.BayesClassifier;
 import org.apache.commons.io.IOUtils;
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
 import org.reflections.util.FilterBuilder;
@@ -33,15 +31,19 @@ public class TextClassifier {
 
     private final List<String> supportedLanguages = Arrays.asList("en", "fr", "es", "zh", "ja", "de");
     private final List<String> supportedCategories;
-    private final List<String> apiKeys = Arrays.asList(
-            "c3LtarI0DK1B",
-            "XRAkPoML5FH7", "XE4tzJVY85dj", "3Iehl2rAZdX0", "0SRglD0zYbWT", "4EGZdjVR0ogY",
-            "DR9Ix6mulbmP", "GQod5rweigdz", "pRh4lQEfx9tt", "L4YDONsJjtMw", "kxt4e1I52Pt8", "NLiolOwBVkbw"
-    );
-    private int currentApiKey = 0;
-    private HttpClient httpClient;
+
     // classifier map
     private Map<String, Classifier<String, String>> classifierMap;
+
+
+    /**
+     * Getter for classifier map.
+     *
+     * @return Classifier map.
+     */
+    public Map<String, Classifier<String, String>> getClassifierMap() {
+        return classifierMap;
+    }
 
 
     /**
@@ -72,9 +74,6 @@ public class TextClassifier {
      * Use languages and categories to train classifier.
      */
     private void trainClassifier() {
-        // initialize http client only once
-        httpClient = HttpClientBuilder.create().build();
-
         // initialize classifier map
         classifierMap = new HashMap<>();
 
@@ -118,6 +117,7 @@ public class TextClassifier {
      * Classify text into topic.
      *
      * @param textToClassify text to classify.
+     * @param language language code.
      * @return topic.
      */
     public Category classifyText(String textToClassify, String language) {
@@ -131,15 +131,6 @@ public class TextClassifier {
                 .collect(Collectors.toList());
 
         return Category.valueOf(classifierMap.get(language).classify(tokensToClassify).getCategory());
-    }
-
-    /**
-     * Getter for classifier map.
-     *
-     * @return Classifier map.
-     */
-    public Map<String, Classifier<String, String>> getClassifierMap() {
-        return classifierMap;
     }
 
 

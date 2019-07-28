@@ -10,8 +10,8 @@ public class CLOSAEvaluationSetEval {
 
     ///////////////////////////////////////////////// New Stuff /////////////////////////////////////////////////
 
-    // Translation -> Tokenization with Named Entity Recognition and POS-Tagging
-    // -> disambiguate using properties of wikidata entities (e.g. throw away named entities)
+    // Translation and Tokenization with Named Entity Recognition and POS-Tagging
+    // disambiguate using properties of wikidata entities (e.g. throw away named entities)
     // Hypothesis: • if something is instanceOf something, it is a NE
     //             • if something is subclassOf something, it is not a NE
 

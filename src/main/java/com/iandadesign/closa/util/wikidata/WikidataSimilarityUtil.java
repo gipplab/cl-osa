@@ -268,7 +268,7 @@ public class WikidataSimilarityUtil {
     }
 
     /**
-     * Wu & Palmer's similarity measure.
+     * Wu and Palmer's similarity measure.
      *
      * @param firstEntity  first entity.
      * @param secondEntity second entity.
@@ -318,7 +318,7 @@ public class WikidataSimilarityUtil {
     }
 
     /**
-     * Leacock & Chodorow's similarity measure.
+     * Leacock and Chodorow's similarity measure.
      *
      * @param firstEntity  first entity.
      * @param secondEntity second entity.
@@ -338,7 +338,7 @@ public class WikidataSimilarityUtil {
     }
 
     /**
-     * Nguyen & Al Mubaid's similarity measure.
+     * Nguyen and Al Mubaid's similarity measure.
      *
      * @param firstEntity  first entity.
      * @param secondEntity second entity.

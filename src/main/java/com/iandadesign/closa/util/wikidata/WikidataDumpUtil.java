@@ -547,6 +547,8 @@ public class WikidataDumpUtil {
      * Gets the depth between the given entity and the given entity's ancestor.
      * If there exist multiple paths, the shortest is used.
      *
+     * @param entity   specified entity
+     * @param ancestor specified entity's ancestor
      * @return number of levels to the taxonomy root
      */
     public static long getDistanceToAncestor(WikidataEntity entity, WikidataEntity ancestor) {
@@ -570,6 +572,7 @@ public class WikidataDumpUtil {
      * Gets the depth between the given entity and the taxonomy root. If there exist multiple paths,
      * the shortest is used.
      *
+     * @param entity specified entity
      * @return number of levels to the taxonomy root
      */
     public static long getRootDistance(WikidataEntity entity) {
@@ -725,8 +728,9 @@ public class WikidataDumpUtil {
     /**
      * Shortest path length between two entities in Wikidata, with cut-off distance threshold.
      *
-     * @param firstEntity  first entity.
-     * @param secondEntity second entity.
+     * @param firstEntity       first entity.
+     * @param secondEntity      second entity.
+     * @param distanceThreshold cut-off distance threshold
      * @return Shortest path length between both if below threshold, else ontology depth * 2.
      */
     public static long distanceWithThreshold(WikidataEntity firstEntity, WikidataEntity secondEntity, long distanceThreshold) {

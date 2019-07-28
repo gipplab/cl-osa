@@ -12,35 +12,32 @@ import java.util.List;
  */
 public class TranslationUtilTest {
 
-
     @Test
-    public void testSimpleTranslation() {
-        String textJapanese = "クロス言語剽窃検知";
-        String textEnglish = "Cross-language plagiarism detection";
-
-        // Yandex:
-        try {
-            String yandexTranslatedText = TranslationUtil.translate(textJapanese, "ja", "en");
-            String yandexTranslatedText2 = TranslationUtil.translate(textEnglish, "en", "ja");
-            Assertions.assertTrue(yandexTranslatedText.equals(textEnglish));
-            Assertions.assertTrue(yandexTranslatedText2.equals(textJapanese));
-        } catch (Exception e) {
-            Assertions.fail();
-        }
-    }
-
-    @Test
-    public void testTokenTranslation() {
+    void translateTokens() {
         List<Token> tokensEnglish = TokenUtil.tokenize("Cross-language plagiarism detection", "en");
         List<Token> tokensJapanese = TokenUtil.tokenize("クロス言語剽窃検知", "ja");
 
         try {
             List<Token> translatedTokens = TranslationUtil.translateTokens(tokensEnglish, "en", "ja");
 
-            Assertions.assertTrue(translatedTokens.equals(tokensJapanese));
+            Assertions.assertEquals(translatedTokens, tokensJapanese);
         } catch (Exception e) {
             Assertions.fail();
         }
     }
 
+    @Test
+    void translate() {
+        String textJapanese = "クロス言語剽窃検知";
+        String textEnglish = "Cross-language plagiarism detection";
+
+        try {
+            String yandexTranslatedText = TranslationUtil.translate(textJapanese, "ja", "en");
+            String yandexTranslatedText2 = TranslationUtil.translate(textEnglish, "en", "ja");
+            Assertions.assertEquals(yandexTranslatedText, textEnglish);
+            Assertions.assertEquals(yandexTranslatedText2, textJapanese);
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
 }

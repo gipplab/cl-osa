@@ -24,8 +24,6 @@ import org.languagetool.tagging.de.GermanTagger;
 import org.slf4j.LoggerFactory;
 import org.tartarus.snowball.SnowballProgram;
 import org.tartarus.snowball.ext.*;
-import ru.morpher.ws3.Client;
-import ru.morpher.ws3.ClientBuilder;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -108,21 +106,6 @@ public class TokenUtil {
         tokenList = removePunctuation(tokenList);
 
         return tokenList;
-    }
-
-
-    /**
-     * Advanced tokenization of Russian texts including named entity recognition.
-     *
-     * @param text the text.
-     * @return List of tokens.
-     */
-    private static List<List<Token>> namedEntityTokenizeRussian(String text) {
-        List<List<Token>> tokensBySentence = new ArrayList<>();
-
-        Client client = new ClientBuilder().build();
-
-        throw new NotImplementedException("");
     }
 
 
@@ -222,6 +205,7 @@ public class TokenUtil {
      *
      * @param text         the text.
      * @param languageCode the language code.
+     * @return tokenized text with named entity annotations on tokens.
      */
     public static List<List<Token>> namedEntityTokenize(String text, String languageCode) {
         List<List<Token>> tokensBySentence = new ArrayList<>();
@@ -301,8 +285,6 @@ public class TokenUtil {
                 break;
             case "ja":
                 return namedEntityTokenizeJapanese(text);
-            case "ru":
-                return namedEntityTokenizeRussian(text);
             default:
                 throw new IllegalArgumentException("Language code '" + languageCode + "' not supported");
         }
@@ -536,7 +518,8 @@ public class TokenUtil {
     /**
      * Takes a list of tokens and returns a stemmed version.
      *
-     * @param tokens the list of tokens
+     * @param tokens   the list of tokens
+     * @param language language code
      * @return the stemmed tokens
      */
     public static List<Token> stem(List<Token> tokens, String language) {

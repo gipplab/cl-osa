@@ -41,7 +41,7 @@ import java.util.stream.Collectors;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
- * Cross-Language Explicit Semantic Analysis, by Potthast, Stein & Anderka (2008).
+ * Cross-Language Explicit Semantic Analysis, by Potthast, Stein and Anderka (2008).
  * <p>
  * Created by Fabian Marquart on 2018/11/11.
  */
@@ -106,6 +106,7 @@ public class CLESAEvaluationSet extends EvaluationSet {
      * @param suspiciousLanguage suspicious files' language
      * @param candidateFolder    contains the candidate files, named identically to the suspicious ones.
      * @param candidateLanguage  candidate files' language
+     * @throws IOException if files not found.
      */
     public CLESAEvaluationSet(File suspiciousFolder, String suspiciousLanguage, File candidateFolder, String candidateLanguage) throws IOException {
         super(suspiciousFolder, suspiciousLanguage, candidateFolder, candidateLanguage);
@@ -121,7 +122,7 @@ public class CLESAEvaluationSet extends EvaluationSet {
      * @param candidateLanguage  candidate files' language
      * @param maxFileCount       maximum file count.
      */
-    public CLESAEvaluationSet(File suspiciousFolder, String suspiciousLanguage, File candidateFolder, String candidateLanguage, int maxFileCount) throws IOException {
+    public CLESAEvaluationSet(File suspiciousFolder, String suspiciousLanguage, File candidateFolder, String candidateLanguage, int maxFileCount) {
         super(suspiciousFolder, suspiciousLanguage, candidateFolder, candidateLanguage, maxFileCount);
     }
 

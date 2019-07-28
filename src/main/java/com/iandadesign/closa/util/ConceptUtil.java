@@ -2,10 +2,10 @@ package com.iandadesign.closa.util;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
-import com.iandadesign.closa.language.LanguageDetector;
-import com.iandadesign.closa.model.Token;
 import com.google.common.collect.Lists;
 import com.google.gson.*;
+import com.iandadesign.closa.language.LanguageDetector;
+import com.iandadesign.closa.model.Token;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -239,7 +239,8 @@ public class ConceptUtil {
      * This method sends a title request of multiple titles to any language wikipedia and
      * retrieves a map with titles and corresponding ids.
      *
-     * @param title the titles
+     * @param title        the titles
+     * @param languageCode language code
      * @return a map with titles and ids.
      */
     public static Map<String, String> getPageTitleMap(String title, String languageCode) {

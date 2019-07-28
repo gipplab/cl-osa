@@ -16,13 +16,11 @@ public class Dictionary<T> {
         return 0.0;
     };
 
-    private Double numberOfDocuments;
     private Set<T> terms;
     private Map<T, Map<String, Integer>> dictionary;
 
 
     public Dictionary(Map<String, List<T>> documentIdTokensMap) {
-        numberOfDocuments = 0.0;
         terms = new HashSet<>();
         dictionary = createDictionary(documentIdTokensMap);
     }
@@ -32,6 +30,7 @@ public class Dictionary<T> {
      *
      * @param tokens1 first tokens list
      * @param tokens2 second tokens list
+     * @param <T>     type parameter
      * @return similarity value.
      */
     public static <T> double cosineSimilarity(List<T> tokens1, List<T> tokens2) {
@@ -93,7 +92,6 @@ public class Dictionary<T> {
      */
     private Map<T, Map<String, Integer>> createDictionary(Map<String, List<T>> documentIdTokensMap) {
         Map<T, Map<String, Integer>> dictionary = new HashMap<>();
-        numberOfDocuments = (double) documentIdTokensMap.size();
 
         documentIdTokensMap.forEach((id, tokenList) -> tokenList.forEach(token -> {
             if (dictionary.containsKey(token)) {
@@ -136,7 +134,7 @@ public class Dictionary<T> {
         // 1.1 map term -> (docId -> freq)
         //     to docId -> term vector
         dictionary.forEach((term, value) -> {
-            Integer conceptIndex = termList.indexOf(term);
+            int conceptIndex = termList.indexOf(term);
             value.forEach((docId, freq) -> {
                 if (docIdVectorMap.containsKey(docId)) {
                     docIdVectorMap.get(docId).addToEntry(conceptIndex, freq);
@@ -152,7 +150,7 @@ public class Dictionary<T> {
         SparseRealVector queryVector = new OpenMapRealVector(dimension);
 
         for (T queryTerm : queryTerms) {
-            Integer conceptIndex = termList.indexOf(queryTerm);
+            int conceptIndex = termList.indexOf(queryTerm);
             queryVector.setEntry(conceptIndex, queryVector.getEntry(conceptIndex) + 1.0);
         }
 
@@ -187,8 +185,8 @@ public class Dictionary<T> {
             SparseRealVector documentVector = docIdVectorEntry.getValue();
 
             // 3.1 get queryVector and documentVector length
-            Double queryVectorLength = 0.0;
-            Double documentVectorLength = 0.0;
+            double queryVectorLength = 0.0;
+            double documentVectorLength = 0.0;
             for (int i = 0; i < dimension; i++) {
                 queryVectorLength += Math.pow(queryVector.getEntry(i), 2);
                 documentVectorLength += Math.pow(documentVector.getEntry(i), 2);
@@ -197,7 +195,7 @@ public class Dictionary<T> {
             documentVectorLength = Math.sqrt(documentVectorLength);
 
             // 3.3 calculate the score
-            Double score = 0.0;
+            double score = 0.0;
             for (int i = 0; i < dimension; i++) {
                 score += (queryVector.getEntry(i) / queryVectorLength)
                         * (documentVector.getEntry(i) / documentVectorLength);

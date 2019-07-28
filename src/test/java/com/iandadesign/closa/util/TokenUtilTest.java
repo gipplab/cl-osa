@@ -16,17 +16,9 @@ import java.util.stream.Collectors;
  */
 public class TokenUtilTest {
 
-    @Test
-    public void testTokenization() {
-        String text = "Paragraph 1 \n \n This is an example (text). Next sentence. \n \n" +
-                "Paragraph 2 \n \n This text is the second paragraph.";
-
-        List<Token> tokens = TokenUtil.tokenize(text, false);
-        Assertions.assertTrue(tokens.size() == 7);
-    }
 
     @Test
-    public void testNamedEntityTokenize() {
+    void namedEntityTokenize() {
         String text = "Joe Smith was born in California. " +
                 "In 2017, he went to Paris, France in the summer. " +
                 "His flight left at 3:00pm on July 10th, 2017. " +
@@ -35,107 +27,38 @@ public class TokenUtilTest {
                 "After hearing about Joe's trip, Jane decided she might go to France one day.";
 
         List<List<Token>> tokensBySentence = TokenUtil.namedEntityTokenize(text, "en");
-        System.out.println(tokensBySentence);
 
         Assertions.assertTrue(tokensBySentence.get(4).contains(new Token("Jane Smith", "Jane Smith", "NNP", Token.NamedEntityType.PERSON)));
         Assertions.assertTrue(tokensBySentence.get(5).contains(new Token("France", "France", "NNP", Token.NamedEntityType.LOCATION)));
-    }
 
-    @Test
-    public void testNamedEntityTokenize2() {
-        String text = "A German man has been charged with incitement to hatred after he was pictured with a tattoo apparently of the Nazi death camp at Auschwitz.";
+        text = "A German man has been charged with incitement to hatred after he was pictured with a tattoo apparently of the Nazi death camp at Auschwitz.";
 
-        List<List<Token>> tokensBySentence = TokenUtil.namedEntityTokenize(text, "en");
-        System.out.println(tokensBySentence);
+        tokensBySentence = TokenUtil.namedEntityTokenize(text, "en");
 
         Assertions.assertTrue(tokensBySentence.get(1).contains(new Token("Auschwitz", "Auschwitz", "NNP", Token.NamedEntityType.LOCATION)));
-
     }
 
     @Test
-    public void testNamedEntityTokenizeJapanese() {
-        String text = "ドイツ人男性が、ナチスドイツの強制収容所を描いたとされるタトゥーをプールでさらしたとして、憎悪扇動の罪で起訴された。";
+    void tokenize() {
+        String text = "Paragraph 1 \n \n This is an example (text). Next sentence. \n \n" +
+                "Paragraph 2 \n \n This text is the second paragraph.";
 
-        List<List<Token>> tokensBySentence = TokenUtil.namedEntityTokenize(text, "ja");
-        System.out.println(tokensBySentence);
+        List<Token> tokens = TokenUtil.tokenize(text, false);
+        Assertions.assertEquals(7, tokens.size());
     }
 
     @Test
-    public void testIsLatinAlphabet() {
-        String testStringLatin = "Philip Falcone";
-        String testStringPartialLatin = "菲利普•法尔科(Philip Falcone)";
-        String testStringNoLatin = "菲利普•法尔科";
+    void tokenizeLowercaseStemAndRemoveStopwords() {
+        String text = "Paragraph 1 \n \n This is an example (text). Next sentence. \n \n" +
+                "Paragraph 2 \n \n This text is the second paragraph.";
 
-        Assertions.assertTrue(TokenUtil.isLatinAlphabet(testStringLatin));
-        Assertions.assertFalse(TokenUtil.isLatinAlphabet(testStringPartialLatin));
-        Assertions.assertFalse(TokenUtil.isLatinAlphabet(testStringNoLatin));
+        List<Token> tokens = TokenUtil.tokenize(text, false);
+        Assertions.assertEquals(17, tokens.size());
     }
 
-    @Test
-    public void testStemming() {
-        String textEn = "english words don't have many possibilities to be stemmed 70s";
-        String textDe = "Deutsche Wörter, vor allem beschreibende Adjektive, sind viel komplizierter";
-
-        List<Token> tokensEn = TokenUtil.tokenize(textEn, true);
-        tokensEn = TokenUtil.stem(tokensEn, "en");
-        List<Token> tokensDe = TokenUtil.tokenize(textDe, true);
-
-        Assertions.assertTrue(tokensEn.contains(new Token("mani")));
-        Assertions.assertTrue(tokensEn.contains(new Token("1970s")));
-        Assertions.assertTrue(TokenUtil.stem(tokensDe, "de").contains(new Token("beschreib")));
-    }
 
     @Test
-    public void testPreprocessing() {
-        String text = "and and or he she it test 2";
-
-        List<Token> tokens = TokenUtil.tokenize(text, "en");
-        tokens = TokenUtil.removeStopwords(tokens, "en");
-        Assertions.assertEquals(tokens.size(), 2);
-
-        tokens = TokenUtil.removeNumbers(tokens);
-        Assertions.assertTrue(!tokens.contains(new Token("2")));
-    }
-
-    @Test
-    public void testNounPhraseDiscrimination() {
-
-        List<Token> germanTokens = TokenUtil.tokenize("Soft-Decision-Fusion Soft-Decision-Fusionsalgorithmen kombinieren Ansätze aus der " +
-                "Early-Signal -Fusion und der Late-Semantic-Fusion. Es werden nicht nur die Konfidenzmaße " +
-                "des eigentlichen Erkennerergebnisses in die Fusion mit einbezogen, sondern auch N-best-Listen " +
-                "aus jedem Erkenner. \n" +
-                "\n" +
-                "[So kann sichergestellt werden, dass bei der Fusion nicht unbedingt immer das " +
-                "Einzelerkennerergebnis mit der höchsten Konfidenz verwendet wird, sondern das Ergebnis, " +
-                "das zur höchsten Gesamtkonfidenz beiträgt.] ", "de");
-
-        germanTokens = TokenUtil.keepNounPhrases(germanTokens, "de");
-
-        Assertions.assertTrue(germanTokens.contains(new Token("Konfidenzmaß")));
-        Assertions.assertTrue(!germanTokens.contains(new Token("aus")));
-
-        List<Token> englishTokens = TokenUtil.tokenize("This is a noun, this is a modified noun", "en");
-        englishTokens = TokenUtil.keepNounPhrases(englishTokens, "en");
-        List<Token> testTokens = TokenUtil.tokenize("noun noun", "en");
-
-        Assertions.assertEquals(englishTokens, testTokens);
-    }
-
-    @Test
-    public void testLemmatization() {
-        String input = "Asian";
-
-        List<Token> output = TokenUtil.namedEntityTokenize(input, "en")
-                .stream()
-                .flatMap(List::stream)
-                .collect(Collectors.toList());
-
-        System.out.println(output);
-    }
-
-    @Test
-    public void testComplexLemmatization() {
-
+    void germanLemmatize() {
         String input = "das zentrale Nervensystem, der dekadische Logarithmus, ein dekadischer Logarithmus, " +
                 " die erzwungene Schwingung," +
                 " die erzwungenen Schwingungen, elektrodynamische Lautsprecher";
@@ -165,7 +88,119 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testGermanTokenization() {
+    void stem() {
+        String textEn = "english words don't have many possibilities to be stemmed 70s";
+        String textDe = "Deutsche Wörter, vor allem beschreibende Adjektive, sind viel komplizierter";
+
+        List<Token> tokensEn = TokenUtil.tokenize(textEn, true);
+        tokensEn = TokenUtil.stem(tokensEn, "en");
+        List<Token> tokensDe = TokenUtil.tokenize(textDe, true);
+
+        Assertions.assertTrue(tokensEn.contains(new Token("mani")));
+        Assertions.assertTrue(tokensEn.contains(new Token("1970s")));
+        Assertions.assertTrue(TokenUtil.stem(tokensDe, "de").contains(new Token("beschreib")));
+    }
+
+    @Test
+    void keepNounPhrases() {
+        List<Token> germanTokens = TokenUtil.tokenize("Soft-Decision-Fusion Soft-Decision-Fusionsalgorithmen kombinieren Ansätze aus der " +
+                "Early-Signal -Fusion und der Late-Semantic-Fusion. Es werden nicht nur die Konfidenzmaße " +
+                "des eigentlichen Erkennerergebnisses in die Fusion mit einbezogen, sondern auch N-best-Listen " +
+                "aus jedem Erkenner. \n" +
+                "\n" +
+                "[So kann sichergestellt werden, dass bei der Fusion nicht unbedingt immer das " +
+                "Einzelerkennerergebnis mit der höchsten Konfidenz verwendet wird, sondern das Ergebnis, " +
+                "das zur höchsten Gesamtkonfidenz beiträgt.] ", "de");
+
+        germanTokens = TokenUtil.keepNounPhrases(germanTokens, "de");
+
+        Assertions.assertTrue(germanTokens.contains(new Token("Konfidenzmaß")));
+        Assertions.assertFalse(germanTokens.contains(new Token("aus")));
+
+        List<Token> englishTokens = TokenUtil.tokenize("This is a noun, this is a modified noun", "en");
+        englishTokens = TokenUtil.keepNounPhrases(englishTokens, "en");
+        List<Token> testTokens = TokenUtil.tokenize("noun noun", "en");
+
+        Assertions.assertEquals(englishTokens, testTokens);
+    }
+
+    @Test
+    void removeNumbers() {
+        String text = "test 2";
+        List<Token> tokens = TokenUtil.tokenize(text, "en");
+
+        tokens = TokenUtil.removeNumbers(tokens);
+        Assertions.assertFalse(tokens.contains(new Token("2")));
+    }
+
+    @Test
+    void getPunctuation() {
+        List<String> symbols = TokenUtil.getPunctuation();
+        Assertions.assertFalse(symbols.isEmpty());
+    }
+
+    @Test
+    void removePunctuation() {
+        List<String> tokens = Arrays.asList("。", "教授", "言語", "フランス語", "アラビア", "語", "両方", "なっ", "おり",
+                "、", "大", "多数", "国民", "フランス語", "話す", "こと", "可能", "。", "アラビア", "語", "チュニジア", "方言",
+                "マルタ", "語", "近い", "。", "また", "、", "ごく", "少数", "ながら", "ベルベル", "語", "一つ", "シェルハ",
+                "話さ", "いる", "。", " ");
+
+        List<String> filteredTokens = TokenUtil.removePunctuation(tokens.stream().map(Token::new).collect(Collectors.toList()))
+                .stream().map(Token::getToken).collect(Collectors.toList());
+
+        Assertions.assertFalse(filteredTokens.contains("。"));
+        Assertions.assertFalse(filteredTokens.contains("、"));
+    }
+
+    @Test
+    void getStopwords() {
+        List<String> languages = Arrays.asList("de", "en", "es", "fr", "ja", "zh");
+
+        for (String language : languages) {
+            List<String> stopwords = TokenUtil.getStopwords(language);
+            Assertions.assertFalse(stopwords.isEmpty());
+        }
+    }
+
+    @Test
+    void removeStopwords() {
+        String text = "and and or he she it test 2";
+
+        List<Token> tokens = TokenUtil.tokenize(text, "en");
+        tokens = TokenUtil.removeStopwords(tokens, "en");
+        Assertions.assertEquals(tokens.size(), 2);
+    }
+
+    @Test
+    void nGramPartition() {
+        String text = "Aktivierungslösung";
+        List<String> nGrams = TokenUtil.nGramPartition(text, 3);
+        Assertions.assertEquals(16, nGrams.size());
+    }
+
+
+    @Test
+    void isLatinAlphabet() {
+        String testStringLatin = "Philip Falcone";
+        String testStringPartialLatin = "菲利普•法尔科(Philip Falcone)";
+        String testStringNoLatin = "菲利普•法尔科";
+
+        Assertions.assertTrue(TokenUtil.isLatinAlphabet(testStringLatin));
+        Assertions.assertFalse(TokenUtil.isLatinAlphabet(testStringPartialLatin));
+        Assertions.assertFalse(TokenUtil.isLatinAlphabet(testStringNoLatin));
+    }
+
+    @Test
+    public void namedEntityTokenizeJapanese() {
+        String text = "ドイツ人男性が、ナチスドイツの強制収容所を描いたとされるタトゥーをプールでさらしたとして、憎悪扇動の罪で起訴された。";
+
+        List<List<Token>> tokensBySentence = TokenUtil.namedEntityTokenize(text, "ja");
+    }
+
+
+    @Test
+    public void germanTokenization() {
         String text = "Aktivierungs- und Relaxationslösung\n" +
                 "Um den isolierten kontraktilen Apparat des Myokards zu aktivieren bzw. wieder zu relaxieren," +
                 "wurden Lösungen mit unterschiedlichen Calciumkonzentrationen verwendet:\n" +
@@ -189,7 +224,7 @@ public class TokenUtilTest {
 
 
     @Test
-    public void testJapaneseTokenization() {
+    public void japaneseTokenize() {
         String text = "私はバカです。宜しくお願い致します。";
 
         List<Token> tokens = TokenUtil.tokenize(text, true);
@@ -210,7 +245,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testChineseTokenization() {
+    public void chineseTokenize() {
         String text = "克林顿说，华盛顿将逐步落实对韩国的经济援助。"
                 + "金大中对克林顿的讲话报以掌声：克林顿总统在会谈中重申，他坚定地支持韩国摆脱经济危机。";
 
@@ -219,31 +254,6 @@ public class TokenUtilTest {
         Assertions.assertEquals(tokens.size(), 38);
     }
 
-    @Test
-    public void testNGramPartition() {
-        String text = "Aktivierungslösung";
-        List<String> nGrams = TokenUtil.nGramPartition(text, 3);
-        Assertions.assertTrue(nGrams.size() == 16);
-    }
 
-    @Test
-    public void testRemovePunctuation() {
-        List<String> tokens = Arrays.asList("。", "教授", "言語", "フランス語", "アラビア", "語", "両方", "なっ", "おり",
-                "、", "大", "多数", "国民", "フランス語", "話す", "こと", "可能", "。", "アラビア", "語", "チュニジア", "方言",
-                "マルタ", "語", "近い", "。", "また", "、", "ごく", "少数", "ながら", "ベルベル", "語", "一つ", "シェルハ",
-                "話さ", "いる", "。", " ");
 
-        List<String> filteredTokens = TokenUtil.removePunctuation(tokens.stream().map(Token::new).collect(Collectors.toList()))
-                .stream().map(Token::getToken).collect(Collectors.toList());
-
-        Assertions.assertFalse(filteredTokens.contains("。"));
-        Assertions.assertFalse(filteredTokens.contains("、"));
-    }
-
-    @Test
-    public void testGetPunctuation() {
-        List<String> symbols = TokenUtil.getPunctuation();
-
-        Assertions.assertFalse(symbols.isEmpty());
-    }
 }

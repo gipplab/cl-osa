@@ -80,7 +80,7 @@ public class CLCSAEvaluationSet extends EvaluationSet {
     }
 
     /**
-     * CL-CSA preprocessing: text -> concepts -> translation -> stemming & stop-word removal
+     * CL-CSA preprocessing: text, concepts, translation, stemming, stop-word removal
      *
      * @param documentPath     document path
      * @param documentLanguage the document's language

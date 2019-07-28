@@ -50,7 +50,7 @@ public class OntologyBasedSimilarityAnalysis {
     }
 
     /**
-     * CL-OSA pre-processing: translation -> entity extraction
+     * CL-OSA pre-processing: translation and entity extraction
      *
      * @param documentId       document id
      * @param documentText     document text
@@ -125,7 +125,7 @@ public class OntologyBasedSimilarityAnalysis {
     }
 
     /**
-     * CL-OSA pre-processing: translation -> entity extraction
+     * CL-OSA pre-processing: translation and entity extraction
      *
      * @param documentPath     document path
      * @param documentLanguage the document's language
@@ -171,8 +171,8 @@ public class OntologyBasedSimilarityAnalysis {
     /**
      * Cosine similarity analysis.
      *
-     * @param suspiciousIdTokensMap map: suspicious id -> tokens list
-     * @param candidateIdTokensMap  map: candidate id -> tokens list
+     * @param suspiciousIdTokensMap map: suspicious id to tokens list
+     * @param candidateIdTokensMap  map: candidate id to tokens list
      * @return retrieved candidates.
      */
     public Map<String, Map<String, Double>> performCosineSimilarityAnalysis(
@@ -213,8 +213,8 @@ public class OntologyBasedSimilarityAnalysis {
     /**
      * Ontology-enhanced cosine similarity analysis.
      *
-     * @param suspiciousIdTokensMap map: suspicious id -> tokens list
-     * @param candidateIdTokensMap  map: candidate id -> tokens list
+     * @param suspiciousIdTokensMap map: suspicious id to tokens list
+     * @param candidateIdTokensMap  map: candidate id to tokens list
      * @return retrieved candidates.
      */
     public Map<String, Map<String, Double>> performEnhancedCosineSimilarityAnalysis(

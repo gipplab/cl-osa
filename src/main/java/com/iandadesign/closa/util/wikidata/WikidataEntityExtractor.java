@@ -25,7 +25,7 @@ public class WikidataEntityExtractor {
     /**
      * Extract Wikidata entities from given text, language.
      * <p>
-     * Tokenization / POS-tagging / lemmatization / NER -> filter by POS -> entity extraction -> entity disambiguation
+     * Tokenization / POS-tagging / lemmatization / NER, filter by POS, entity extraction, entity disambiguation
      *
      * @param text         the text
      * @param languageCode language
@@ -38,7 +38,7 @@ public class WikidataEntityExtractor {
     /**
      * Annotate Wikidata entities in a given text, with language and topic.
      * <p>
-     * Tokenization / POS-tagging / lemmatization / NER -> filter by POS -> entity extraction -> entity disambiguation
+     * Tokenization / POS-tagging / lemmatization / NER, filter by POS, entity extraction, entity disambiguation
      *
      * @param text         the text
      * @param languageCode language
@@ -75,7 +75,7 @@ public class WikidataEntityExtractor {
     /**
      * Extract Wikidata entities from given text, language and topic.
      * <p>
-     * Tokenization / POS-tagging / lemmatization / NER -> filter by POS -> entity extraction -> entity disambiguation
+     * Tokenization / POS-tagging / lemmatization / NER, filter by POS, entity extraction, entity disambiguation
      *
      * @param text         the text
      * @param languageCode language
@@ -102,7 +102,7 @@ public class WikidataEntityExtractor {
     /**
      * Extract Wikidata entities from given text, language.
      * <p>
-     * Tokenization / POS-tagging / lemmatization / NER -> filter by POS -> entity extraction.
+     * Tokenization / POS-tagging / lemmatization / NER, filter by POS, entity extraction.
      *
      * @param text         the text
      * @param languageCode language
@@ -118,7 +118,7 @@ public class WikidataEntityExtractor {
     /**
      * Extract Wikidata entities from given text, language and topic.
      * <p>
-     * Tokenization / POS-tagging / lemmatization / NER -> filter by POS -> entity extraction.
+     * Tokenization / POS-tagging / lemmatization / NER, filter by POS, entity extraction.
      *
      * @param text         the text
      * @param languageCode language
@@ -135,7 +135,7 @@ public class WikidataEntityExtractor {
     /**
      * Extract Wikidata entities from given text, language and topic.
      * <p>
-     * Tokenization / POS-tagging / lemmatization / NER -> filter by POS -> entity extraction.
+     * Tokenization / POS-tagging / lemmatization / NER, filter by POS, entity extraction.
      *
      * @param text         the text
      * @param languageCode language
@@ -240,10 +240,11 @@ public class WikidataEntityExtractor {
     /**
      * Extract Wikidata entities from given text and language.
      * <p>
-     * Tokenization / POS-tagging / lemmatization / NER -> filter by POS -> entity extraction.
+     * Tokenization / POS-tagging / lemmatization / NER, filter by POS, entity extraction.
      *
-     * @param text         the text
-     * @param languageCode language
+     * @param text           the text
+     * @param languageCode   language
+     * @param textClassifier text classifier to use
      * @return list of Wikidata entity candidate lists found in the text
      */
     public static List<List<WikidataEntity>> extractEntitiesFromTextWithoutDisambiguation(String text, String languageCode, TextClassifier textClassifier) {

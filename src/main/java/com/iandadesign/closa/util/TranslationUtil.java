@@ -30,8 +30,6 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  */
 public class TranslationUtil {
 
-    private static String yandexApiCall = "https://translate.yandex.net/api/v1.5/tr/translate?";
-
     // Yandex Keys
     private static List<String> apiKeys = Arrays.asList(
             "trnsl.1.1.20161215T095107Z.21e4715db6afd38f.99a817455e6c81e980aff628576c0a2fde2e610d",
@@ -43,9 +41,6 @@ public class TranslationUtil {
             "trnsl.1.1.20190520T131614Z.7afb7f4f79efeec9.6cc1fb1511ce7eb034fa86d7ba0b69752ebd8403");
 
     private static int currentApiKey = 0;
-
-    private static String yandexText = "&text=";
-    private static String yandexLang = "&lang=";
 
     private static HttpClient client = HttpClientBuilder.create().build();
 

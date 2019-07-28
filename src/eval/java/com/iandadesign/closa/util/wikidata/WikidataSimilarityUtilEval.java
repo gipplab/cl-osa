@@ -21,7 +21,6 @@ import static com.iandadesign.closa.util.wikidata.WikidataSimilarityUtil.Similar
 public class WikidataSimilarityUtilEval {
 
 
-
     @Test
     public void ontologyEnhancedCosineEval() {
         // retrieve manually annotated pairs of roughly equivalent wikidata entity documents
@@ -96,7 +95,7 @@ public class WikidataSimilarityUtilEval {
                 Recall     = 0.6818181818181818
                 F-Measure  = 0.6818181818181818
 
-            Wu & Palmer:
+            Wu and Palmer:
                 Precision  = 0.4090909090909091
                 Recall     = 0.4090909090909091
                 F-Measure  = 0.4090909090909091
@@ -106,12 +105,12 @@ public class WikidataSimilarityUtilEval {
                 Recall     = 0.9545454545454546
                 F-Measure  = 0.9545454545454546
 
-            Leacock & Chodorow:
+            Leacock and Chodorow:
                 Precision  = 0.09090909090909091
                 Recall     = 0.09090909090909091
                 F-Measure  = 0.09090909090909091
 
-            Ngyuen & Al Mubaid:
+            Ngyuen and Al Mubaid:
                 Precision  = 0.5909090909090909
                 Recall     = 0.5909090909090909
                 F-Measure  = 0.5909090909090909

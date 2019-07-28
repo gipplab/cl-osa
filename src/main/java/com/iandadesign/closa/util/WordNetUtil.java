@@ -30,7 +30,12 @@ public class WordNetUtil {
 
     private static final String morphosemanticLinksPath = "/wordnet/morphosemantic-links.csv";
     private static Map<String, List<String>> morphosemanticMap;
+
     private static Dictionary dictionary;
+
+    public static Dictionary getDictionary() {
+        return dictionary;
+    }
 
     /*
       Initializes with the records given by the csv file.
@@ -135,7 +140,4 @@ public class WordNetUtil {
         return morphosemanticallyRelatedLemmas;
     }
 
-    public static Dictionary getDictionary() {
-        return dictionary;
-    }
 }
