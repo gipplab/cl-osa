@@ -77,17 +77,6 @@ def wikidata_dump_mongo_import(host, port):
 
     languages = ["en", "de", "fr", "es", "it", "ru", "hi", "ja", "zh"]  # supported languages
 
-    # index creation for id, labels and aliases
-    db['entities'].create_index([('id', pymongo.ASCENDING)], unique=True)
-
-    for language in languages:
-        db['entities'].create_index([('labels.' + language + '.value', pymongo.ASCENDING)])
-        db['entities'].create_index([('aliases.' + language + '.value', pymongo.ASCENDING)])
-
-    # index for instanceOf and subclassOf
-    db['entities'].create_index([('claims.P279.mainsnak.datavalue.value.id', pymongo.ASCENDING)])
-    db['entities'].create_index([('claims.P31.mainsnak.datavalue.value.id', pymongo.ASCENDING)])
-
     # import into database
     print "Importing " + local_dump_path + " into " \
           + host + ":" + str(port) + "[" + database_name + "]" + "[entities]"
@@ -111,6 +100,20 @@ def wikidata_dump_mongo_import(host, port):
         i += 1
 
     source_file.close()
+
+    print "Indexing..."
+
+    # index creation for id, labels and aliases
+    db['entities'].create_index([('id', pymongo.ASCENDING)], unique=True)
+
+    for language in languages:
+        db['entities'].create_index([('labels.' + language + '.value', pymongo.ASCENDING)])
+        db['entities'].create_index([('aliases.' + language + '.value', pymongo.ASCENDING)])
+
+    # index for instanceOf and subclassOf
+    db['entities'].create_index([('claims.P279.mainsnak.datavalue.value.id', pymongo.ASCENDING)])
+    db['entities'].create_index([('claims.P31.mainsnak.datavalue.value.id', pymongo.ASCENDING)])
+
 
     # create collection entitiesGraph
     print "\n"
