@@ -103,7 +103,7 @@ def wikidata_dump_mongo_import(host, port):
 
         source_file.close()
     else:
-        print "Skipped import because database contains " + skip + " of required " + limit + " entities"
+        print "Skipped import because database contains " + str(skip) + " of required " + str(limit) + " entities"
 
     print "Indexing..."
 
