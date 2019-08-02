@@ -84,7 +84,7 @@ def wikidata_dump_mongo_import(host, port):
     source_file = bz2.BZ2File(local_dump_path, "r")  # type: BZ2File
     i = 0
 
-    limit = 54633441
+    limit = 54633440
     skip = db['entities'].count()
 
     if limit > skip:
