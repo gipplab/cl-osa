@@ -5,7 +5,7 @@
 
     <artifactId>closa</artifactId>
     <groupId>com.iandadesign</groupId>
-    <version>1.3</version>
+    <version>1.3.1</version>
     <packaging>jar</packaging>
 
     <properties>

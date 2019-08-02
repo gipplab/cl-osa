@@ -434,7 +434,7 @@ Settings file ~/.m2/settings.xml should look like the following:
     
 Deploying:
 
-    $ mvn deploy
+    $ mvn deploy -Denv=deployment
 
 Releasing is performed under [OSS Sonatype Nexus Repository Manager](https://oss.sonatype.org/#stagingRepositories).
 A repository called comiandadesign should be present with status open. Close it and wait for the tests to succeed.

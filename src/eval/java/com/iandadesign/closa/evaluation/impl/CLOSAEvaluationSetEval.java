@@ -185,8 +185,7 @@ public class CLOSAEvaluationSetEval {
         try {
             CLOSAEvaluationSet englishSpanishPan11EvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es",
-                    500
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es"
             );
             // englishSpanishPan11EvaluationSetCLOSA.setGraphBasedAnalysis(true);
             englishSpanishPan11EvaluationSetCLOSA.printEvaluation();
