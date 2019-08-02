@@ -75,7 +75,7 @@ def wikidata_dump_mongo_import(host, port):
     client = MongoClient(host, port)
     db = client[database_name]
 
-    languages = ["en", "de", "fr", "es", "it", "ru", "hi", "ja", "zh"]  # supported languages
+    languages = ["en", "de", "fr", "es", "ja", "zh"]  # supported languages
 
     # import into database
     print "Importing " + local_dump_path + " into " \
