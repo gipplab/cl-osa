@@ -22,7 +22,8 @@ The output is
 To execute the application as a standalone, you need to
 
 * [Set up a MongoDB database](#setting-up-the-mongodb-database)
-* [Import the Java sources](#importing-the-java-sources)
+* [Import the Maven project](#import-the-maven-project)
+* [Import the Java sources (optional)](#importing-the-java-sources)
 * [Use the OntologyUtil class](#how-to-use)
 
 Use the code snippet and adjust the file paths
@@ -93,6 +94,13 @@ However, this alternative is only recommended for testing purposes as
 
 ### The setup process
 
+#### Docker
+
+Set up using docker-compose.yml
+
+
+#### Local MongoDB (not recommended)
+
 Launch a new MongoDB instance on your desired host and port. 
 
 The default is a MongoDB instance running on localhost, port 27017. When using a different host or port,
@@ -116,9 +124,37 @@ for the database, about 275 GB.
 When the import and index creation has finished, you should have a database called "wikidata", containing
 the collections "entities", "entitiesGraph", and "entitiesHierarchyPersistent".
 
+Import the Maven project
+------------------------
+
+### Include the library
+
+Add the following dependency to your pom.xml:
+
+     <dependency>
+        <groupId>com.iandadesign</groupId>
+        <artifactId>closa</artifactId>
+        <version>1.3</version>
+     </dependency>
+
+
+### Configuration
+
+If your MongoDB instance runs not on localhost or a port other than 27017, or if you plan to use
+a different Wikidata SPARQL host, create a config.properties file inside your main resources folder.
+
+Standard configuration is the following:
+
+    mongodb_host=localhost
+    mongodb_port=27017
+    wikidata_sparql_endpoint=https://query.wikidata.org/sparql
+
 
 Importing the Java sources
 --------------------------
+
+Note: this only applies if you would like to contribute to the project or if you plan to making direct
+changes to the code.
 
 I recommend using IntelliJ IDEA to open the project and install the Maven dependencies. If you prefer using other tools,
 you will still need Maven. Checkout the project from the
@@ -328,3 +364,77 @@ The methods called, starting with the "main" method executeAlgorithmAndComputeSc
     * OntologyBasedSimilarityAnalysis.performCosineSimilarityAnalysis
         * Dictionary
         
+        
+Issue management
+----------------
+
+You can create issues here:
+
+https://bitbucket.org/iandadesign/closa/issues?status=new&status=open
+        
+        
+Contributing
+------------
+
+If you wish to contribute, please create a feature branch named YYYY-MM-dd_name_of_feature.
+When your branch is ready to review, please create a pull request.
+        
+        
+DevOps
+------
+
+### Moving to a new version number
+
+A new snapshot version is set like this:
+
+    $ mvn versions:set -DnewVersion=1.x-SNAPSHOT
+
+A new version is set like the following:
+
+    $ mvn versions:set -DnewVersion=1.x
+
+
+### Deploying to Maven Central
+
+Create a GPG key for signing.
+
+    gpg --gen-key
+    
+The public key's last 8 characters are the key id:
+
+    gpg --list-keys
+
+Publish the key:
+
+    gpg --keyserver keyserver.ubuntu.com --send-keys {{keyId}}
+
+Settings file ~/.m2/settings.xml should look like the following:
+
+    <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0">
+      <servers>
+        <server>
+          <id>ossrh</id>
+          <username>{{username}}</username>
+          <password>{{password}}</password>
+        </server>
+      </servers>
+      <profiles>
+        <profile>
+          <id>ossrh</id>
+          <activation>
+            <activeByDefault>true</activeByDefault>
+          </activation>
+          <properties>
+            <gpg.executable>gpg</gpg.executable>
+            <gpg.passphrase>{{passphrase}}</gpg.passphrase>
+          </properties>
+        </profile>
+      </profiles>
+    </settings>
+    
+Deploying:
+
+    $ mvn deploy
+
+Releasing is performed under [OSS Sonatype Nexus Repository Manager](https://oss.sonatype.org/#stagingRepositories).
+A repository called comiandadesign should be present with status open. Close it and wait for the tests to succeed.
