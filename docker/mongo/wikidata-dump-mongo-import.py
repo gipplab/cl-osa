@@ -83,23 +83,27 @@ def wikidata_dump_mongo_import(host, port):
 
     source_file = bz2.BZ2File(local_dump_path, "r")  # type: BZ2File
     i = 0
+
     limit = 54633441
     skip = db['entities'].count()
 
-    for line in itertools.islice(source_file, skip, limit, None):
-        if len(line) > 2:
-            try:
-                # insert into collection entities
-                # print line[:-2]
-                entity_id = db['entities'].insert_one(json.loads(line[:-2])).inserted_id
-                # print entity_id
-            except pymongo.errors.DuplicateKeyError:
-                # skip document because it already exists in collection
-                continue
-        reporthook(i, 1, limit - skip)
-        i += 1
+    if limit > skip:
+        for line in itertools.islice(source_file, skip, limit, None):
+            if len(line) > 2:
+                try:
+                    # insert into collection entities
+                    # print line[:-2]
+                    entity_id = db['entities'].insert_one(json.loads(line[:-2])).inserted_id
+                    # print entity_id
+                except pymongo.errors.DuplicateKeyError:
+                    # skip document because it already exists in collection
+                    continue
+            reporthook(i, 1, limit - skip)
+            i += 1
 
-    source_file.close()
+        source_file.close()
+    else:
+        print "Skipped import because database contains " + skip + " of required " + limit + " entities"
 
     print "Indexing..."
 
