@@ -214,7 +214,7 @@ public class CLESAEvaluationSet extends EvaluationSet {
                 AtomicInteger failures = new AtomicInteger(0);
                 AtomicInteger progress = new AtomicInteger(0);
 
-                ForkJoinPool customThreadPool = new ForkJoinPool(6);
+                ForkJoinPool customThreadPool = new ForkJoinPool(1);
 
                 customThreadPool.submit(() -> documents.parallelStream()
                         .forEach((Element document) -> {
