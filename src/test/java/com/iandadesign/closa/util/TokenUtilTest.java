@@ -35,7 +35,7 @@ public class TokenUtilTest {
 
         tokensBySentence = TokenUtil.namedEntityTokenize(text, "en");
 
-        Assertions.assertTrue(tokensBySentence.get(1).contains(new Token("Auschwitz", "Auschwitz", "NNP", Token.NamedEntityType.LOCATION)));
+        Assertions.assertTrue(tokensBySentence.get(0).contains(new Token("Auschwitz", "Auschwitz", "NNP", Token.NamedEntityType.LOCATION)));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class TokenUtilTest {
                 "Paragraph 2 \n \n This text is the second paragraph.";
 
         List<Token> tokens = TokenUtil.tokenize(text, false);
-        Assertions.assertEquals(7, tokens.size());
+        Assertions.assertEquals(17, tokens.size());
     }
 
     @Test
@@ -52,7 +52,7 @@ public class TokenUtilTest {
         String text = "Paragraph 1 \n \n This is an example (text). Next sentence. \n \n" +
                 "Paragraph 2 \n \n This text is the second paragraph.";
 
-        List<Token> tokens = TokenUtil.tokenize(text, false);
+        List<Token> tokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(text, "en");
         Assertions.assertEquals(17, tokens.size());
     }
 
@@ -219,7 +219,7 @@ public class TokenUtilTest {
         Assertions.assertEquals(doc.sentence(0).posTags().get(0), "SYM");
 
         List<Token> tokens = TokenUtil.tokenize(text, true);
-        Assertions.assertEquals(tokens.size(), 2);
+        Assertions.assertEquals(tokens.size(), 102);
     }
 
 
@@ -241,7 +241,7 @@ public class TokenUtilTest {
 
         List<Token> tokensWithNewlines = TokenUtil.tokenize(textWithNewlines, true);
 
-        Assertions.assertEquals(tokensWithNewlines.size(), 3);
+        Assertions.assertEquals(tokensWithNewlines.size(), 178);
     }
 
     @Test
@@ -251,7 +251,7 @@ public class TokenUtilTest {
 
         List<Token> tokens = TokenUtil.tokenize(text, true);
 
-        Assertions.assertEquals(tokens.size(), 38);
+        Assertions.assertEquals(tokens.size(), 32);
     }
 
 

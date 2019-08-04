@@ -35,6 +35,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -213,7 +214,10 @@ public class CLESAEvaluationSet extends EvaluationSet {
                 AtomicInteger failures = new AtomicInteger(0);
                 AtomicInteger progress = new AtomicInteger(0);
 
-                documents.forEach((Element document) -> {
+                ForkJoinPool customThreadPool = new ForkJoinPool(6);
+
+                customThreadPool.submit(() -> documents.parallelStream()
+                        .forEach((Element document) -> {
                             try {
                                 String id = document.attr("id");
                                 String url = document.attr("url");
@@ -232,7 +236,8 @@ public class CLESAEvaluationSet extends EvaluationSet {
                                 failures.getAndIncrement();
                             }
                             progressBarDump.stepTo(progress.incrementAndGet());
-                });
+                        })
+                );
 
                 System.out.println("From " + (wikipediaArticleLimit + 100) + " articles, " + failures + " failed with Nullpointer.");
 
