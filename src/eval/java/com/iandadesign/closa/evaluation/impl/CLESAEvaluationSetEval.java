@@ -35,8 +35,8 @@ public class CLESAEvaluationSetEval {
 
         try {
             EvaluationSet englishJapaneseBBCEvaluationSetCLESA = new CLESAEvaluationSet(
-                    new File("src/test/resources/com/iandadesign/closa/evaluation/preprocessed-t/test-bbc/en"), "en",
-                    new File("src/test/resources/com/iandadesign/closa/evaluation/preprocessed-t/test-bbc/ja"), "en"
+                    new File("src/eval/resources/com/iandadesign/closa/evaluation/preprocessed-t/test-bbc/en"), "en",
+                    new File("src/eval/resources/com/iandadesign/closa/evaluation/preprocessed-t/test-bbc/ja"), "en"
             );
 
             englishJapaneseBBCEvaluationSetCLESA.printEvaluation();
@@ -64,8 +64,8 @@ public class CLESAEvaluationSetEval {
          */
         try {
             EvaluationSet englishJapaneseBBCEvaluationSetCLESA = new CLESAEvaluationSet(
-                    new File("src/test/resources/com/iandadesign/closa/evaluation/test-bbc/en"), "en",
-                    new File("src/test/resources/com/iandadesign/closa/evaluation/test-bbc/ja"), "ja"
+                    new File("src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/en"), "en",
+                    new File("src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/ja"), "ja"
             );
 
             englishJapaneseBBCEvaluationSetCLESA.printEvaluation();
@@ -96,8 +96,8 @@ public class CLESAEvaluationSetEval {
 
         try {
             CLESAEvaluationSet englishChineseECCEEvaluationSetCLESA = new CLESAEvaluationSet(
-                    new File("src/test/resources/com/iandadesign/closa/evaluation/ECCE/en"), "en",
-                    new File("src/test/resources/com/iandadesign/closa/evaluation/ECCE/zh"), "zh"
+                    new File("src/eval/resources/com/iandadesign/closa/evaluation/ECCE/en"), "en",
+                    new File("src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"), "zh"
             );
             englishChineseECCEEvaluationSetCLESA.printEvaluation();
         } catch (IOException e) {
