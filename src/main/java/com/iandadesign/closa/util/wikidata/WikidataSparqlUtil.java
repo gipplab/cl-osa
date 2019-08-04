@@ -807,7 +807,7 @@ public class WikidataSparqlUtil {
                     numberOfTries += 1;
 
                     // create file for error report.
-                    String path = "src/test/resources/org/sciplore/pds/error-reports";
+                    String path = "~/closa-error-reports";
 
                     // Custom message
                     String message = e.getMessage().contains("response code: 500") ? "Internal server error." : e.getMessage();

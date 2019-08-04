@@ -14,9 +14,9 @@ public class OntologyBasedSimilarityAnalysisTest {
 
     @Test
     void executeAlgorithmAndComputeScores() {
-        String suspiciousPath = "/Users/fabian/citeplag-dev-backend/pds-backend-core/src/test/resources/org/sciplore/pds/test-bbc/en/35157967/0.txt";
+        String suspiciousPath = "src/test/resources/com/iandadesign/closa/evaluation/test-bbc/en/35157967/0.txt";
 
-        String candidateFolderPath = "/Users/fabian/citeplag-dev-backend/pds-backend-core/src/test/resources/org/sciplore/pds/test-bbc/en/";
+        String candidateFolderPath = "src/test/resources/com/iandadesign/closa/evaluation/test-bbc/en/";
 
         List<String> candidatePaths = FileUtils.listFiles(new File(candidateFolderPath), TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .stream()
@@ -34,9 +34,9 @@ public class OntologyBasedSimilarityAnalysisTest {
 
     @Test
     void executeOntologyEnhancedAlgorithmAndComputeScores() {
-        String suspiciousPath = "/Users/fabian/citeplag-dev-backend/pds-backend-core/src/test/resources/org/sciplore/pds/test-bbc/en/35157967/0.txt";
+        String suspiciousPath = "src/test/resources/com/iandadesign/closa/evaluation/test-bbc/en/35157967/0.txt";
 
-        String candidateFolderPath = "/Users/fabian/citeplag-dev-backend/pds-backend-core/src/test/resources/org/sciplore/pds/test-bbc/en/";
+        String candidateFolderPath = "src/test/resources/com/iandadesign/closa/evaluation/test-bbc/en/";
 
         List<String> candidatePaths = FileUtils.listFiles(new File(candidateFolderPath), TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .stream()

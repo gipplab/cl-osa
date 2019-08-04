@@ -290,7 +290,7 @@ public class CLESAEvaluationSet extends EvaluationSet {
             System.out.println("wikipediaIds.size() = " + wikipediaIds.size());
 
             // directly retrieve vector of {wikipediaArticleLimit} similarities from the document
-            // db.enSimilarities.find( { $and: [ { "similarities.id": { $all:  [ "621" ] } }, { "documentId": "src/test/resources/org/sciplore/pds/test-bbc/en/40546743/0.txt" } ] } )
+            // db.enSimilarities.find( { $and: [ { "similarities.id": { $all:  [ "621" ] } }, { "documentId": "ssrc/test/resources/com/iandadesign/closa/evaluation/test-bbc/en/40546743/0.txt" } ] } )
             MongoCollection<Document> wikipediaSimilaritiesCollection = getMongoCollection(documentLanguage, similaritiesCollectionNameSuffix);
 
             for (Document documents : wikipediaSimilaritiesCollection.find(Filters.and(

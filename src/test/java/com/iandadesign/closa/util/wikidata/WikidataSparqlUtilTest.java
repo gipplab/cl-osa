@@ -325,7 +325,7 @@ public class WikidataSparqlUtilTest {
 
     @Test
     public void testErrorReport() {
-        String path = "src/test/resources/org/sciplore/pds/error-reports";
+        String path = "src/test/resources/com/iandadesign/closa/evaluation/error-reports";
 
         try {
             if (Files.notExists(Paths.get(path))) {

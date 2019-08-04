@@ -73,7 +73,7 @@ public class WikidataSimilarityUtilTest {
     @Test
     public void testComputeSimilaritiesForManuallyAnnotatedText() {
         // retrieve manually annotated pairs of roughly equivalent wikidata entity documents
-        File csvFile = new File("src/test/resources/org/sciplore/pds/test-wikidata/sts-hdl2016.csv");
+        File csvFile = new File("src/test/resources/com/iandadesign/closa/util/wikidata/sts-hdl2016.csv");
 
         Map<String, Pair<List<WikidataEntity>, List<WikidataEntity>>> documents = new HashMap<>();
 

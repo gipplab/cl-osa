@@ -80,7 +80,7 @@ Setting up the MongoDB database
 
 To use CL-OSA, you need to setup a MongoDB database. Alternatively, you can use the Wikidata SPARQL API directly.
 In this case, you have to change the static import inside
-[WikidataEntityExtractor](/pds-backend-core/src/main/java/org/sciplore/pds/util/wikidata/WikidataEntityExtractor.java) from
+[WikidataEntityExtractor](src/main/java/com/iandadesign/closa/util/wikidata/WikidataEntityExtractor.java) from
 > import static org.sciplore.pds.util.wikidata.WikidataDumpUtil.*;
 
 to
@@ -103,10 +103,8 @@ Set up using docker-compose.yml
 
 Launch a new MongoDB instance on your desired host and port. 
 
-The default is a MongoDB instance running on localhost, port 27017. When using a different host or port,
-you need to modify the "host" variable inside [WikidataDumpUtil](/pds-backend-core/src/main/java/org/sciplore/pds/util/wikidata/WikidataDumpUtil.java).
-
-Then, run this [Python script](/pds-backend-core/wikidata-dump-mongo-import.py) to import the Wikidata dump.
+The default is a MongoDB instance running on localhost, port 27017. 
+Then, run this [Python script](docker/mongo/wikidata-dump-mongo-import.py) to import the Wikidata dump.
 
 Usage is
     
@@ -165,7 +163,7 @@ To get all dependencies running, run
 
     mvn install
     
-inside the *citeplag-dev-backend/pds-backend-core* directory. 
+inside the cloned repository directory. 
 
 How to use
 ----------

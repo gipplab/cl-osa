@@ -115,7 +115,7 @@ public class WikidataEntityExtractorTests {
     @Test
     public void testExtractEntitiesFromEnglishArticle() {
         try {
-            String textEn = FileUtils.readFileToString(new File("src/test/resources/org/sciplore/pds/test-bbc/en/35157967/0.txt"), StandardCharsets.UTF_8);
+            String textEn = FileUtils.readFileToString(new File("src/test/resources/com/iandadesign/closa/evaluation/test-bbc/en/35157967/0.txt"), StandardCharsets.UTF_8);
             List<WikidataEntity> entitiesEn = WikidataEntityExtractor.extractEntitiesFromText(textEn, "en");
 
             System.out.println(entitiesEn);
@@ -130,7 +130,7 @@ public class WikidataEntityExtractorTests {
     @Test
     public void testExtractEntitiesFromChineseArticle() {
         try {
-            String textZh = FileUtils.readFileToString(new File("src/test/resources/org/sciplore/pds/ECCE/zh/001052744.ZH.txt"), StandardCharsets.UTF_8);
+            String textZh = FileUtils.readFileToString(new File("src/test/resources/com/iandadesign/closa/evaluation/ECCE/zh/001052744.ZH.txt"), StandardCharsets.UTF_8);
             List<WikidataEntity> entitiesZh = WikidataEntityExtractor.extractEntitiesFromText(textZh, "zh");
 
             System.out.println(entitiesZh);
@@ -170,7 +170,7 @@ public class WikidataEntityExtractorTests {
          */
 
         try {
-            String textEn = FileUtils.readFileToString(new File("src/test/resources/org/sciplore/pds/test-bbc/en/35157967/0.txt"), StandardCharsets.UTF_8);
+            String textEn = FileUtils.readFileToString(new File("src/test/resources/com/iandadesign/closa/evaluation/test-bbc/en/35157967/0.txt"), StandardCharsets.UTF_8);
 
             for (int k = 0; k <= 10; k++) {
                 long startTime = System.currentTimeMillis();
@@ -297,7 +297,7 @@ public class WikidataEntityExtractorTests {
 
     @Test
     public void testExtractEntitiesFromDocument() {
-        String path = "src/test/resources/org/sciplore/pds/test-bbc/en/38482208/0.txt";
+        String path = "src/test/resources/com/iandadesign/closa/evaluation/test-bbc/en/38482208/0.txt";
 
         try {
             String text = FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8);
