@@ -53,7 +53,7 @@ public class TokenUtilTest {
                 "Paragraph 2 \n \n This text is the second paragraph.";
 
         List<Token> tokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(text, "en");
-        Assertions.assertEquals(17, tokens.size());
+        Assertions.assertEquals(10, tokens.size());
     }
 
 
