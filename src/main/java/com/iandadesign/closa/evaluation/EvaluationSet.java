@@ -45,7 +45,7 @@ public abstract class EvaluationSet {
      * @throws IOException if files cannot be accessed.
      */
     public EvaluationSet(File suspiciousFolder, File candidateFolder) throws IOException {
-        this(suspiciousFolder, candidateFolder, (int) Files.walk(candidateFolder.toPath()).parallel().filter(path -> !path.toFile().isDirectory()).count());
+        this(suspiciousFolder, candidateFolder, (int) Files.walk(candidateFolder.toPath()).filter(path -> !path.toFile().isDirectory()).count());
     }
 
     /**
@@ -61,7 +61,7 @@ public abstract class EvaluationSet {
     public EvaluationSet(File suspiciousFolder, String suspiciousLanguage,
                          File candidateFolder, String candidateLanguage) throws IOException {
         this(suspiciousFolder, suspiciousLanguage, candidateFolder, candidateLanguage,
-                (int) Files.walk(candidateFolder.toPath()).parallel().filter(path -> !path.toFile().isDirectory()).count());
+                (int) Files.walk(candidateFolder.toPath()).filter(path -> !path.toFile().isDirectory()).count());
     }
 
     /**
@@ -150,7 +150,6 @@ public abstract class EvaluationSet {
         List<File> keys = new ArrayList<>(files.keySet());
 
         IntStream.range(0, keys.size())
-                .parallel()
                 .forEach(i -> {
                     System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
                     initializeOneFilePair(keys.get(i), suspiciousLanguage, files.get(keys.get(i)), candidateLanguage);
@@ -239,7 +238,7 @@ public abstract class EvaluationSet {
                          File candidateFolder, String candidateLanguage,
                          File extraCandidateFolder) throws IOException {
         this(suspiciousFolder, suspiciousLanguage, candidateFolder, candidateLanguage, extraCandidateFolder,
-                (int) Files.walk(candidateFolder.toPath()).parallel().filter(path -> !path.toFile().isDirectory()).count());
+                (int) Files.walk(candidateFolder.toPath()).filter(path -> !path.toFile().isDirectory()).count());
     }
 
 
@@ -462,7 +461,6 @@ public abstract class EvaluationSet {
     private long fileCount(Path directory) {
         try {
             return Files.walk(directory)
-                    .parallel()
                     .filter(path -> !path.toFile().isDirectory())
                     .count();
         } catch (IOException e) {
