@@ -1,0 +1,25 @@
+When big data meets intrusive government snooping it is a civil libertarian's nightmare.
+The stream of leaks this year about excessive US government surveillance has revealed the risks to civil society of having so much personal information concentrated in the hands of the small number of data companies that dominate the digital age.
+Most big US internet companies joined forces this month to call on governments to show restraint.
+But such joint efforts have had little effect in the past: a similar united front five years ago against internet censorship and state intrusions on privacy, known as the Global Network Initiative, has produced few results.
+It is time for the internet groups to face up to their own responsibilities.
+The exponential rise in the amount of data being collected makes a more effective response essential.
+Already on the horizon are “wearables”, such as smartwatches, that collect masses of intimate data from around the body; billions of sensors embedded in the “internet of things”, ready to track the world around them in minute detail; and robots and drones that monitor the people and places they encounter.
+The Googles and Facebooks that tower over the data landscape cannot be held responsible for laws forcing them to hand over information about users.
+More troubling has been a lingering sense that internet companies have not taken enough care with the data under their control or fought hard enough for users' rights against government over-reach.
+The economics of online advertising rest on collecting as much information as possible about users in order to make increasingly refined judgments about their preferences.
+That approach has played into the hands of intelligence agencies, for whom the reservoirs of data are tempting places to fish.
+The lack of encryption that Google and Yahoo applied to data they shipped wholesale around their networks, often over lines rented from other companies, left an opening for agencies to hack in and hints at a lack of care.
+Worse, some companies may be guilty of tacit complicity in the surveillance sweep.
+Experience shows that not all are prepared to stand up to their own government.
+Several caved in to a US demand in 2006 to hand over data about web searches, with only Google resisting.
+It would be surprising if the same range of responses, from the stiff backbone to the supine, were not also at work when it comes to government surveillance.
+As they become repositories of ever-larger bodies of information, internet companies must take more rigorous steps to protect users' interests.
+One is to rethink how much data they keep, and for how long.
+Users should also be told more about what information is being stored and given the power to have more of it deleted.
+If even a company as sophisticated as Google is vulnerable to National Security Agency hacking, it seems clear security procedures for personal data need to be rethought.
+Independent monitoring and reporting to users about internal security and compliance procedures – including the circumstances in which they hand information to governments – may also be desirable.
+Proposals by countries such as Brazil that would require all data about citizens to be held locally are a step too far, and would risk undermining the benefits of an open, global internet.
+But it is not enough for the companies to reject such ideas out of hand: they should consider ways to compartmentalise the data they hold if it would safeguard users better, even if that risks weakening their current business model.
+If they fail, calls to break up the big data pools will only grow louder.
+The companies will not be able to blame the backlash entirely on the spooks.

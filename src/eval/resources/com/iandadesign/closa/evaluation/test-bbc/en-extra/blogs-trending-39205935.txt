@@ -1,0 +1,24 @@
+
+
+A technology initially used to fight traffic fines is now helping refugees with legal claims.
+When Joshua Browder developed DoNotPay he called it "the world's first robot lawyer". It's a chatbot - a computer program that carries out conversations through texts or vocal commands - and it uses Facebook Messenger to gather information about a case before spitting out advice and legal documents.
+It was originally designed to help people wiggle out of parking or speeding tickets. But now Browder - a 20-year-old British man currently studying at Stanford University - has adapted his bot to help asylum seekers.
+In the US and Canada, it's helping refugees complete immigration applications, and in the UK, it can aid asylum seekers in obtaining financial support from the government.
+Browder developed the chatbot through the help of lawyers from each of the countries.
+"It works by asking a series of questions to determine if a refugee is eligible for asylum protection under international law," he tells BBC Trending, "for example: 'are you afraid of being subjected to torture in your home country?'
+"Once it knows a user can claim asylum, it takes down hundreds of details and automatically fills in a completed immigration application. Crucially, all the questions that the bot asks are in plain English and artificial intelligence generated feedback appears during the conversation."
+The bot suggests ways the asylum seeker can answer questions to maximise their chances of having applications accepted, for example: "The best answer for your situation will include a description of when the mistreatment started in your home country."
+Visit the Trending Facebook page
+In addition to a completed application, a refugee also receives location specific submission instructions, details of additional documentation needed and resources for further help.
+Currently, the lawyer bot is available via the Facebook Messenger app, making it accessible to Android and Apple device users. Browder says that he hopes to roll the service out to more languages and apps in the future, including Whatsapp.
+DoNotPay got plenty of attention after it was first launched in March 2016, and Browder says hundreds of thousands of people have used the app to challenge parking tickets. His own brushes with traffic police inspired him to create the bot.
+"When I started driving at 18, I began to receive a large number of parking tickets and created the the service as a side project," he says, "I could never have imagined that just over a year later, it would successfully appeal over 250,000 tickets."
+He expanded the service to help with emergency housing in August of last year.
+However, some tech industry experts say that Browder's creation may struggle to achieve the same level of popularity with asylum seekers.
+"Browder's chatbot is a great example of tech to help those in need," says Oliver Smith, senior reporter at tech and business site The Memo. "However, as refugees are often among the least internet-connected groups in society, a Facebook chatbot may not be the best way to help them.
+"While governments moving their services online and into digital formats is a boon for people living in a country with consistent wifi or internet-connected smartphones, those who have fled their home countries often struggle to get online in refugee camps or when travelling across countries."
+The UN has said that for refugees, connectivity is "as vital to them as food, water, or shelter", but just 39% have mobile internet access.
+Blog by Megha Mohan
+Next story: The Swedish Trump fans who secretly record journalists
+A far-right Swedish website is secretly recording phone calls with journalists and academics - and then posting the edited versions online. READ MORE
+You can follow BBC Trending on Twitter @BBCtrending, and find us on Facebook. All our stories are at bbc.com/trending.

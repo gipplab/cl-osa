@@ -1,0 +1,15 @@
+Russia behind cyber-attack, says Ukraine's security service
+
+Ukraine says it has proof that Russian security services were involved in the cyber-attack that targeted businesses around the world earlier this week.
+The country's security service, the SBU, said it had obtained data that points to a link with an attack on the nation's capital, Kiev, in December.
+Ukrainian firms were among the first to report issues with malicious software on Tuesday, before the virus spread.
+Moscow denied any involvement, adding that the allegations were "unfounded".
+The virus, which disrupted IT systems across the globe, froze computers and demanded a ransom be paid in the digital currency Bitcoin, which is untraceable.
+However, the attack also hit major Russian firms, leading some cyber security researchers to suggest that Moscow was not behind it.
+But on Saturday, Ukraine's SBU said in a statement that - through data obtained from international anti-virus companies - it had established a connection with a previous attack involving the so-called Petya virus, which it alleges was not designed to secure ransom payments.
+The SBU later said the ransom demand was a cover, adding that the attack was aimed at disrupting the operations of state and private companies in Ukraine and causing political destabilisation.
+The lack of any real mechanism for securing financial payments, the SBU said, led the agency to this assumption.
+Ukraine appears to have been particularly badly hit in the recent attacks.
+The police received about 1,000 messages on intrusions in the operations of computer networks over a 24-hour period. A total of 150 companies filed official complaints with the police.
+In December, the country's financial, transport and energy systems were targeted by what investigators judged to be a cyber-attack. The incident resulted in a power cut in Kiev.
+The attack earlier this week comes two months after another global ransomware assault, known as WannaCry, which caused major problems for the UK's National Health Service.

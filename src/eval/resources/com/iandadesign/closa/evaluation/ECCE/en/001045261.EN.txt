@@ -1,0 +1,19 @@
+Ever since the financial crisis, there have been doubts about the functioning of the London interbank offered rate, a benchmark for hundreds of trillions of financial instruments and contracts worldwide.
+These have centred on fears that the rate might have been manipulated by the banks that participate in setting it.
+On Wednesday, Barclays was fined more than $450m by British and US regulators, after admitting to attempting to manipulate Libor.
+While Barclays is not the first bank to be fined over similar allegations, its settlement is much bigger than past ones.
+Nor is it likely to be the last: investigations into interest-rate rigging involve regulators from three continents, looking at more than 20 banks involved in the rate-setting process.
+Libor works on the assumption that banks submit an honest assessment of the rate at which they believe they can borrow on a given day.
+But, as the Barclays settlement shows, the bank's submissions were over a long period tainted by self-interest – whether to help some of its derivatives traders or out of a desire to protect its reputation in the market.
+The watchdogs found that some of the rigging had been done to paint a rosy picture of the bank's funding costs at times of stress.
+A number of staff have been disciplined and some are expected to leave.
+But the regulators have been unable to determine whether top managers were responsible in any way for the policy of dressing up quotes to flatter the bank.
+After an investigation in which the bank claims to have co-operated fully with the regulator, this is frankly puzzling.
+Bob Diamond, chief executive, and three other directors have since given up their bonuses for 2012.
+If it emerged that the company's board knew or had anything to do with this practice, Mr Diamond's position would become untenable.
+Investigations into other banks should, of course, go ahead.
+But it is also important that the industry and the regulators now rethink the way in which Libor is calculated.
+Benchmark rates should be based on actual interbank lending rates, which are more difficult to manipulate.
+Estimates should only be used when hard data are not available and these should be routinely cross-checked against other data on bank-risk, with corroboration sought from other banks, so as to identify who is cheating.
+From personal loans to mortgages, Libor affects the entire credit market.
+A benchmark that cannot be trusted has no point.

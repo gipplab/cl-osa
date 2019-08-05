@@ -1,0 +1,24 @@
+Apple defends complying with China over VPNs
+
+Apple boss Tim Cook has defended his company’s decision to comply with the Chinese government’s demand it remove VPN software from the App Store.
+Virtual Private Networks are often used to skirt censorship and surveillance in countries with tight restrictions on internet use.
+The company has been heavily criticised for removing several VPN apps, and was accused of “aiding Chinese censorship efforts”.
+Apple said it disagreed with China’s position but had to comply with the country’s laws.
+"We would obviously rather not remove the apps,” Apple chief executive Tim Cook said on Tuesday.
+"But like we do in other countries we follow the law wherever we do business.
+Mr Cook said comparisons to a legal battle in the US last year - in which the firm refused to help the FBI unlock a dead terrorist's iPhone - were unfair.
+"They’re very different,” he said.
+"In the case of the US, the law in the US supported us. I was very clear. In the case of China, the law is also very clear there. Like we would if the US changed the law here, we’d have to abide by them in both cases."
+Activists and indeed regular citizens in China have been finding ways to poke holes in the country’s infamous Great Firewall of China which blocks “questionable” content and is heavily monitored.
+To operate a VPN service in the country, companies must be authorised by the Chinese authorities.
+Apple sales boosted by services growth
+Those without permission, such as ExpressVPN, have been singled out for removal from Apple’s App Store.
+“We’re disappointed in this development, as it represents the most drastic measure the Chinese government has taken to block the use of VPNs to date,” said ExpressVPN in a blog post.
+“We are troubled to see Apple aiding China’s censorship efforts. ExpressVPN strongly condemns these measures, which threaten free speech and civil liberties.”
+Mr Cook said Apple stated its opposition to the removal through the “appropriate” channels.
+"We believe in engaging with governments even when we disagree,” he said.
+"In this particular case, we are hopeful that over time the [restrictions] we’re seeing are loosened, because innovation requires freedom to collaborate and communicate.”
+Mr Cook’s remarks were made during the firm’s quarterly earnings call. While the firm performed strongly in most of the world, it continues to struggle in China where revenues dropped 10% compared to this time last year.
+___________
+Follow Dave Lee on Twitter @DaveLeeBBC
+You can reach Dave securely through encrypted messaging app Signal on: +1 (628) 400-7370

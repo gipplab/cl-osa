@@ -1,0 +1,16 @@
+Election 2017: The seats still to watch out for
+
+The UK is to have a hung parliament after the Conservatives failed to win an overall majority in the general election.
+The Conservatives ended the night with 318 seats, Labour with 262, the SNP with 35 and the Lib Dems with 14. Parties require 326 seats to command a majority.
+Prime Minister Theresa May's party may now have to depend on Northern Irish Unionist support to maintain its position in office.
+Based on analysis by professor of politics John Curtice and his team, this page tracked undeclared seats where the main parties were still likely to make gains or where the result was too close to call.
+You can find your constituency results when they are declared by using the search box below or browsing our A-Z listings.
+Sorry, your browser cannot display this content.
+Enter a postcode or seat name
+
+Analysis for this page is carried out by professor of politics John Curtice, of Strathclyde University, and his team.
+The BBC/ITV/Sky exit poll is conducted by asking a random sample of voters at 144 polling locations scattered around the country to complete in private a mock ballot paper to indicate how they just voted.
+Nearly all the locations are ones in which the 2015 exit poll was also conducted. The share of the vote recorded for each party at each polling location this time around is compared with the share obtained in the 2015 exit poll in order to derive 144 estimates of change in support for each party.
+These estimated changes in vote share are then statistically modelled to (i) ascertain any systematic geographical variation in the estimated changes in vote shares, and (ii) derive estimated vote shares for every party in every constituency in Great Britain.
+From the latter, the probability as to which party will win each seat is derived. For each party the exit poll forecast of seats won is the sum of these probabilities of winning across all constituencies.
+Once declarations begin, forecasts are then based on a combination of exit poll and real results.

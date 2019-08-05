@@ -1,0 +1,32 @@
+Petya hackers issue fresh ransom demand
+
+The perpetrators of a recent cyber-attack that disrupted businesses across the world appear to have accessed the ransom payments they raised.
+Just over £7,900-worth of virtual currency has been moved from the Bitcoin address listed in the blackmail demand that appeared on hacked PCs.
+One expert said there was little doubt the funds had been tapped by those responsible for the crime.
+And it seems they have now made a fresh ransom demand.
+However, analysts suggest the move is intended to confuse investigations into the matter.
+In other related developments, Ukraine's interior minister has said the police managed to prevent a second wave of attacks by shutting down and confiscating computer servers used by a local software company, which is thought to have unwittingly helped the Petya-variant virus to spread.
+And after having repeatedly denied any involvement in the transmission of the malware, the developer Intellect Service has acknowledged an upgrade to its MeDoc tax software was indeed "contaminated", allowing the attack to be carried out.
+"As of today, every computer which is on the same local network as our product is a threat," the company's chief executive Olesya Bilousova told reporters.
+She added that one million computers in Ukraine had MeDoc installed on them.
+The police have recommended that everyone stops using the program and turns off computers that have it.
+Although the majority of the detected attacks occurred within Ukraine, according to analysis by security firm Eset the malware also affected businesses across the world.
+Their computers became inaccessible after the code spread over their internal networks, scrambling a part of the PCs' operating systems used to locate where files are stored.
+High-profile casualties included Nurofen-maker Reckitt Benckiser, Oreo cookie manufacturer Mondelez International, the shipping group Maersk and the advertising agency WPP.
+Most of those struck did not, however, pay the ransom demand. This was in part because the email address given by the attackers to contact them was shut down by its German operator.
+And until Tuesday, the funds that were raised lay dormant.
+But at 22:32 BST on Tuesday, three transfers were triggered.
+Two of these were sent to Bitcoin wallets used to collect donations to the PasteBin and DeepPaste text-sharing services - platforms often used by hackers to announce their activities.
+The third and largest of the transfers went to an address that had previously been empty.
+A little later, a post appeared on DeepPaste demanding 100 bitcoins ($256,300; £198,500) for a "private key to decrypt any hard disk" affected by the attack.
+"Unless the hackers gave away the Bitcoin account linked to the original ransom demand, only they could have moved the funds," Prof Alan Woodward from the University of Surrey told the BBC.
+"People are gobsmacked they have gone anywhere near it - they can't be daft enough to try and cash it out.
+"As far as we can tell, there's no way to actually decrypt affected PCs even if you paid the new demand.
+"So, it may be that they are trying to lead a false trail away from themselves."
+Ukraine has accused Russia of being involved in the attack, but the Kremlin has denied any responsibility.
+The news site Motherboard said it spoke to someone claiming to be one of the hackers on a dark web chatroom.
+The supposed criminal offered to demonstrate that they could decrypt any file scrambled by the Petya-variant. And Motherboard reports that they did indeed manage to decrypt a test file after a two hour wait.
+But Prof Woodward said this did not necessarily mean the key could be used to recover all the lost data.
+"Once the PC's MFT [Master File Table] is corrupted the files on that disc are lost," he explained, referring to the fact that the virus had scrambled a critical part of the PCs' operating systems and not just individual documents.
+"And as far as we can tell, there is an error in the encryption they used, so larger files can't be decrypted."
+Update 6 July 2017: This article was updated to reflect the fact the hackers demonstrated their private key could decrypt files

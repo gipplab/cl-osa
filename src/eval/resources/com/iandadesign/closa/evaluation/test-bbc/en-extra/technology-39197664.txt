@@ -1,0 +1,20 @@
+CIA faces huge problem over malware claims
+
+Already embroiled in a row with President Donald Trump amid his claims that spies are leaking secrets against him, now the CIA is facing its own damaging leaks.
+This time it's the American intelligence community's familiar foe - Wikileaks - with another cache of what look like highly sensitive secret documents, this time about the CIA's technical capabilities.
+The National Security Agency faced its problems when Edward Snowden passed on documents to journalists - but this time it's the NSA's sister agency.
+While the NSA is the agency charged with collecting what is called signals intelligence and the CIA's job is to recruit human spies, the reality is that the technical and the human side of espionage have been drawing closer for years.
+The CIA created a Directorate of Digital Innovation whose director told me the priority was making sure the agency stayed on top of technology.
+While the NSA may sift global internet traffic looking for intelligence, the CIA prioritises close access against specific targets who it is interested in.
+And getting into someone's electronic devices can be vital if you are trying to target them - either to recruit them as an agent or for a drone strike against a suspected terrorist.
+These latest leaks will be a huge problem for the CIA as the Snowden leaks were for the NSA (although there will be less surprise about these capabilities now since we learned so much from the Snowden files).
+There is the embarrassment factor - that an agency whose job is to steal other people's secrets has not been able to keep their own.
+This will be added to by the revelations that the US consulate in Frankfurt was used as a base for the technical operations which may cause problems in Germany where the Edward Snowden revelations caused intense domestic debate.
+Then there will be the fear of a loss of intelligence coverage by the CIA against their targets who may change their behaviour because they now know the spies can do.
+And then there will be the questions over whether the CIA's technical capabilities were too expansive and too secret.
+Because many of the initial documents point to capabilities targeting consumer devices, the hardest questions may revolve around what is known as the "equities" problem - when you find a vulnerability in a piece of technology, how do you balance the benefit of leaving that vulnerability in place so the intelligence agency can exploit it to collect intelligence with the benefit to the public of informing the manufacturer so they can close it and improve everyone's security?
+If an intelligence agency has found a vulnerability then other hackers might do as well. The NSA faced questions about whether it had found the right balance and now it may be the CIA's turn.
+There will be anger in the CIA and some of that will be directed at Wikileaks.
+Wikileaks has said the source of this latest cache of documents came from a former US government hacker or contractor.
+But it is an organisation that the US intelligence community has claimed may have been a route for information hacked from the Democrats by the Russians during last year's election to make it into the public domain.
+No doubt the CIA will be trying to establish the exact source of the latest leak and understand the timing - coming right in the middle of an intensifying row between American spies and their own president.

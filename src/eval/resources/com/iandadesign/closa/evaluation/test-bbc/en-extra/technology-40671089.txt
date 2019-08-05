@@ -1,0 +1,25 @@
+Facebook calls for a more people-centric security industry
+
+The security industry needs to worry less about technology and more about people, said Facebook's security boss.
+Alex Stamos scolded the security industry in the opening keynote of the 2017 Black Hat conference.
+He said there was too much focus on technically complex "stunt" hacks and not enough on finding ways to help the mass of people stay safe.
+The problem would only worsen if the industry did not become more diverse and exhibit more empathy, he said.
+"We have perfected the art of finding problems without fixing real world issues," he told attendees. "We focus too much on complexity, not harm."
+He cited examples of technically brilliant presentations at the show, such as insulin pumps being hacked, that had little relation to real issues experienced by people who use technology rather than work with it or understand it well.
+Cyber-hacks season:
+Also, he said, the security industry concentrated too much on the small number of complex hack attacks aimed at large corporations that were mounted by the most sophisticated adversaries.
+By contrast, he said, most Facebook users who lost data were not being targeted by spies or nation-states.
+"The things that we see, that we come across every day, that cause people to lose control of their information are not that advanced," he said. "Adversaries will do the simplest thing they need to do to make an attack work."
+The lack of focus on those more mundane problems came about because often security experts had little interest in or empathy for people, he said. This attitude was exemplified by the thought he often heard security pros express that there would be fewer breaches and less data lost if people were perfect, he added.
+Instead, Mr Stamos said, it would be better if the industry tried to work with those imperfections by giving people tools and services that were more straight-forward to use.
+This lack of empathy also showed itself in the way many in the industry reacted when real world issues bumped up against security.
+This was evident in the way Facebook subsidiary WhatsApp rolled out end-to-end encryption, he said. The security team at WhatsApp who developed the system had to make "difficult choices" about how they implemented it to make it easier to use.
+However, he added, this led to vigorous criticism by many cyber experts who said the usability trade-offs fundamentally broke the system and limited its ability to protect messages.
+That was not the case, he said, but many commentators did not appreciate why WhatsApp pursued the course it did.
+These blind spots could be tackled by the security industry becoming more tolerant and diverse, he said.
+Facebook had set up initiatives that sought to make its workforce more balanced and which encouraged people with non-technical backgrounds to get involved in developing secure systems, products and features.
+"Things are not getting better, they are getting worse," he said. "That's because we do not have enough people and not the right people to make the difference."
+The growing importance and influence of cyber-security meant the industry had a real chance to improve peoples' lives, he said.
+"We have the world's attention, now we have to ask what we are going to do with it."
+This week BBC News is taking a close look at all aspects of cyber-security. The coverage is timed to coincide with the two biggest shows in the security calendar - Black Hat and Def Con. 
+Follow all our coverage via this link

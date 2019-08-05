@@ -1,0 +1,45 @@
+Galaxy Zoo: Citizen science trailblazer marks tenth birthday
+
+Galaxy Zoo began with a call for volunteers to help classify distant galaxies in space telescope images. The collaborative project made spectacular discoveries, spawning a family of similar projects - collectively known as the Zooniverse. We look back on 10 years of a citizen science phenomenon.
+It started with a strange blue smudge on a computer screen.
+Now that mysterious blob, spotted by a Dutch primary school teacher during a few idle hours one evening, has become one of the most remarkable recent discoveries in astronomy.
+Hanny's Voorwerp, named after its discoverer Hanny van Arkel, is providing scientists with a striking new window on the universe.
+They have found these distant clouds of glowing gas provide a kind of time capsule that can reveal what their neighbouring galaxies have been doing in the previous few thousand years.
+For Miss van Arkel, it is fitting for the object that now bears her name to be providing such insights - it marks 10 years since she first encountered it during her summer break from teaching.
+She had been taking part in a citizen science project called Galaxy Zoo, which asked members of the public to classify different types of galaxies from images taken by robotic telescopes.
+Launched in July 2007, Galaxy Zoo has resulted in 125 million galaxies of a wide variety of shapes and size being identified and produced 60 peer reviewed academic papers.
+It is an output far beyond any computer or expert, but by harnessing the power of the general public, researchers have gained an unprecedented insight into the Universe around us.
+"What started as a small project has been completely transformed by the enthusiasm and efforts of the volunteers," said Prof Chris Lintott, an astrophysicist at the University of Oxford and co-founder of the Galaxy Zoo project. "It has had a real impact on our understanding of galaxy evolution."
+Miss van Arkel's own contribution started on a whim. A huge Queen fan, she had been browsing the website of guitarist and astrophysicist Brian May one evening while tinkering on her own guitar.
+There she saw some images of some distant galaxies May had posted along with a comment urging people to sign up to the project.
+"He said nobody has seen these galaxies before and that everyone could discover their own," explained Miss van Arkel. "That got me interested and as I was on my summer break I signed up."
+She had only been taking part for a week when she spotted the bizarre blue blob.
+"I had no idea what it was," she said. "I thought it could have been a smudge on the camera maybe. There was this tutorial that showed us what we might expect to see but it didn't look anything like those on there so I sent an email to the team to ask about it."
+She also posted the image on the project's forum, which is where the object earned its name from other members who christened it Hanny's Voorwerp, or Hanny's thing.
+It turned out to be an entirely new object in space - one that was completely unknown to science at the time.
+It took almost a year of analysis and research before scientists began to unravel what it was she had found - the blue smudge was an extremely hot gas cloud with no stars in it.
+They believe the huge cloud of gas, which is 16,000 light-years across, had been excited by material dropping towards the supermassive black hole at the centre of a nearby galaxy, creating a kind of "light echo" that reverberates around inside.
+When the news broke, it turned Miss van Arkel into a minor celebrity in the astronomy world.
+"The first time someone asked me for my autograph I thought they were joking," the 34-year-old explained.
+A decade later, another 20 of these rare intergalactic objects are thought to have been found - although many remain "candidate" voorwerpen until they can be examined more closely.
+Astronomers have turned some of the most powerful telescopes at their disposal - including the Hubble Space Telescope - towards them in an attempt to find out more.
+In a new paper published in the Astrophysical Journal, scientists who led the Galaxy Zoo project at the University of Alabama and University of Oxford, have examined eight of these voorwerpen, including the one originally found by van Arkel.
+They found they could detect variations in luminosity of the gas clouds that appear to correlate with changes in the activity of the neighbouring galaxy.
+In the voorwerp the researchers could detect distinct bands of brightening and fading in the light echo, which appears correlate to changes that occurred in the galaxy in the past.
+In the voorwerp next to the distinctive Teacup galaxy, which is 1.1 billion light years from Earth, the researchers saw a brightening and then two periods of fading, which indicate a rise and then drop in activity, all within a period of 55,000 years.
+They saw similar patterns in the other voorwerp they looked at, including Hanny's Voorwerp, which lies next to a galaxy called IC 2497.
+"It suggests parts of the Universe where we have active galaxies can change very rapidly," explained Professor Lintott.
+"When we talk about activity at the centre of galaxies, we're talking about material dropping toward the black hole. This can lead to material being ejected from the centre in the form of jets of material moving close to the speed of light. These jets are what we think excite the gas in the voorwerpen.
+"If things can change so rapidly in active galaxies, it may cause us to change how we think about our own galaxy, which is thought to be not active. These findings suggest it might have been in the recent past. Those systems close to the galactic centre would not have been pleasant places to be."
+Peering at galaxies millions of light years away means we are also seeing them millions of years in the past. The voorwerp light echos, however, provide a record of what has happened in a galaxy's recent past - something that would be otherwise impossible to see.
+"It is fantastic, as we don't have anything else that lets us see what is going on in the Universe on this sort of timescale," said Professor Lintott. "We can see what is going on during a human lifetime and we can look back millions of years at a population of galaxies far away, so this could be really useful as we find more of them."
+For Miss van Arkel, however, it the beauty of the object she discovered that is still most striking.
+"The Hubble images have been amazing," said Miss van Arkel. "Some images it is green and kind of looks like a tree frog. You can see these orange spots where the eyes would be and apparently this is where new stars are forming."
+But the voorwerpen are not the only discovery to have emerged from the Galaxy Zoo project. Strange green balls - which became known as Green Peas by the affable "zooites" involved in the project - were a completely new type of galaxy that was spotted by participants. The eagle-eyed Ms van Arkel was also among the first to notice these too.
+Galaxy Zoo was so successful it has also spawned a whole family of other citizen science projects that are now conducted under the umbrella of the Zooniverse project.
+Members of the public can log on to classify everything from snapshots of animals in the Serengeti and count seals in the Weddell Sea to helping computers recognise animal faces and transcribing handwritten documents from the time of Shakespeare.
+It became so vast it quickly outgrew its old servers at Johns Hopkins University in the US, and now runs off the virtual servers hosted by Amazon Web Services.
+One offspring project to identify objects in our own galaxy has resulted in another recent discovery - small, round yellow objects scattered throughout the Milky Way.
+These "Yellow Balls" were found to be extremely massive stars cocooned inside dust. The project has found thousands in our galaxy.
+But the legacy of Galaxy Zoo could be something even more significant than a handful of new objects - it has changed the way science is done.
+Dr Karen Masters, an astrophysicist at Portsmouth University and project scientist for Galaxy Zoo said: "We're genuinely asking for help with something we cannot do ourselves and the results have made a big contribution to the field."

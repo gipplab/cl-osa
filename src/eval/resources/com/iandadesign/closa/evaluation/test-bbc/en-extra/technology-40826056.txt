@@ -1,0 +1,17 @@
+Wannacry money laundering attempt thwarted
+
+The hackers behind the Wannacry ransomware have tried to conceal who they are by using a virtual currency that is more anonymous than Bitcoin.
+Victims paid more than $140,000 (£107,000) in bitcoins to recover files scrambled by Wannacry.
+Earlier this week the gang behind the attack started to move the bitcoins out of the wallets they were paid into.
+But the operators of the exchange they used to swap the bitcoins have now frozen the accounts they used.
+Wannacry caught out thousands of firms around the world when it infected computers on corporate networks and encrypted their files, making them useless.
+Victims were told to pay between $300 (£229) and $600 (£458) in bitcoins to have their files unscrambled and return computers to a working state.
+Many security experts believed the money paid into three bitcoin wallets set up by the Wannacry creators would never be moved, because there was so much attention focused on who was behind the attack.
+Moving the cash might expose key details about the attackers that could be used to track them down.
+But the bitcoins were moved earlier this week and some were piped to an exchange network called Shapeshift.io in an attempt to convert them to another virtual currency called Monero.
+The Monero crypto-currency was set up to be more anonymous than Bitcoin and seeks to hide as much information as possible about every transaction.
+The Wannacry gang is believed to have chosen Shapeshift.io for the digital cash transfer because the service can be used without signing up for an account.
+However, the attempt to launder the cash via the platform seems to have been thwarted soon after it was told what was happening.
+"As of today, we have taken measures to blacklist all addresses associated with the WannaCry attackers that are known to the ShapeShift team," a spokesman told American business magazine Forbes.
+Shapeshift said it would block any further attempts to change the Wannacry bitcoins into Monero or any other crypto-currency.
+"Additionally, we are engaging directly with law enforcement involved with the WannaCry case and will assist them with any needs they may request to apprehend the perpetrators," the spokesman added.
