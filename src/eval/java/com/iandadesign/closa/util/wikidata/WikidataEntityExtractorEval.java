@@ -122,7 +122,7 @@ public class WikidataEntityExtractorEval {
          */
 
         try {
-            String textEn = FileUtils.readFileToString(new File("src/test/resources/com/iandadesign/closa/evaluation/test-bbc/en/35157967/0.txt"), StandardCharsets.UTF_8);
+            String textEn = FileUtils.readFileToString(new File("src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/en/35157967/0.txt"), StandardCharsets.UTF_8);
 
             for (int k = 0; k <= 10; k++) {
                 long startTime = System.currentTimeMillis();
@@ -158,7 +158,7 @@ public class WikidataEntityExtractorEval {
      */
     @Test
     public void evalExtractEntitiesFromManuallyAnnotatedText() {
-        File csvFile = new File("src/test/resources/com/iandadesign/closa/util/wikidata/sts-hdl2016.csv");
+        File csvFile = new File("src/eval/resources/com/iandadesign/closa/util/wikidata/sts-hdl2016.csv");
 
         int relevantElements = 0;
         int selectedElements = 0;
