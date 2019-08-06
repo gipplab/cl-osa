@@ -80,7 +80,10 @@ public class ConceptUtilTest {
     @Test
     void getWikidataIdByTitle() {
         String kofoworola = "Kofoworola Abeni Pratt";
+        String portugal = "Portugal";
 
         Assertions.assertEquals(ConceptUtil.getWikidataIdByTitle(kofoworola, "en"), "Q25796287");
+        Assertions.assertEquals(ConceptUtil.getWikidataIdByTitle(portugal, "en"), "Q45");
+
     }
 }

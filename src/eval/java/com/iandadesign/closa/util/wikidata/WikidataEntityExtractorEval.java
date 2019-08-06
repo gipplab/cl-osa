@@ -188,6 +188,9 @@ public class WikidataEntityExtractorEval {
                                         }
                                     }
 
+                                    System.out.println("Contained Wikipedia Titles");
+                                    System.out.println(containedWikipediaTitles);
+
                                     return containedWikipediaTitles.stream()
                                             .map(title -> ConceptUtil.getWikidataIdByTitle(title, "en"))
                                             .filter(title -> title != null)
