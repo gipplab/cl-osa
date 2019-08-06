@@ -506,6 +506,63 @@ public class ConceptUtil {
 
 
     /**
+     * Map Wikipedia page title to Wikidata id in language.
+     *
+     * @param pageTitle page title
+     * @param language  language
+     * @return Wikidata id.
+     */
+    public static String getWikidataIdByTitle(String pageTitle, String language) {
+        try {
+            URIBuilder builder = new URIBuilder(String.format("https://%s.wikipedia.org/w/api.php", language));
+            builder.addParameter("action", "query")
+                    .addParameter("prop", "pageprops")
+                    .addParameter("titles", pageTitle)
+                    .addParameter("format", "json");
+
+            HttpGet get = new HttpGet(builder.build());
+            HttpResponse response = client.execute(get);
+
+            JsonObject object = parser.parse(EntityUtils.toString(response.getEntity(), UTF_8)).getAsJsonObject();
+
+            if (!object.has("query")) {
+                return null;
+            }
+
+            JsonObject query = object.getAsJsonObject("query");
+
+            if (!query.has("pages")) {
+                return null;
+            }
+
+            Set<Map.Entry<String, JsonElement>> pages = query
+                    .getAsJsonObject("pages")
+                    .entrySet();
+
+            if (!pages.iterator().hasNext()) {
+                return null;
+            }
+
+            JsonObject pageEntry = pages.iterator().next()
+                    .getValue()
+                    .getAsJsonObject();
+
+            JsonObject pageprops = pageEntry
+                    .getAsJsonObject("pageprops");
+
+            if (!pageprops.has("wikibase_item")) {
+                return null;
+            }
+
+            return pageprops.get("wikibase_item").getAsString();
+        } catch (URISyntaxException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    /**
      * Get Wikipedia page summmary by title and language code.
      *
      * @param pageId   page id

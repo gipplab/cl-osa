@@ -206,6 +206,7 @@
                 <directory>src/main/resources/</directory>
                 <includes>
                     <include>config.properties</include>
+                    <include>config-local.properties</include>
                 </includes>
             </testResource>
         </testResources>

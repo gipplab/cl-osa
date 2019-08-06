@@ -7,6 +7,8 @@ import com.iandadesign.closa.classification.Category;
 import com.iandadesign.closa.model.Token;
 import com.iandadesign.closa.model.WikidataEntity;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -16,8 +18,6 @@ import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bson.Document;
 import org.bson.conversions.Bson;
-import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
 import org.slf4j.LoggerFactory;
 
 import java.io.FileNotFoundException;
@@ -53,9 +53,10 @@ public class WikidataDumpUtil {
     private static final WikidataEntity human = new WikidataEntity("Q5", "human");
     private static final WikidataEntity organization = new WikidataEntity("Q43229", "organization");
 
+    private static final String mongoDatabase = "wikidata";
     // database
-    private static String host;
-    private static final String databaseName = "wikidata";
+    private static ServerAddress serverAddress;
+    private static MongoCredential mongoCredential;
     private static final String entitiesCollectionName = "entities";
     private static final String entitiesHierarchyCollectionName = "entitiesHierarchyPersistent";
 
@@ -70,8 +71,9 @@ public class WikidataDumpUtil {
         try {
             getPropertyValues();
 
-            MongoClient mongoClient = new MongoClient(host);
-            MongoDatabase database = mongoClient.getDatabase(databaseName);
+            MongoClient mongoClient = new MongoClient(serverAddress, Collections.singletonList(mongoCredential));
+
+            MongoDatabase database = mongoClient.getDatabase(mongoDatabase);
             entitiesCollection = database.getCollection(entitiesCollectionName);
             entitiesHierarchyCollection = database.getCollection(entitiesHierarchyCollectionName);
         } catch (IOException e) {
@@ -88,24 +90,37 @@ public class WikidataDumpUtil {
         InputStream inputStream = null;
 
         try {
-            Reflections reflections = new Reflections("", new ResourcesScanner());
-
             Properties properties = new Properties();
             String propFileName = "config.properties";
+            String propFileLocalName = "config-local.properties";
 
-            inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileName);
+            // switch to config-local if it exists
+            if (WikidataDumpUtil.class.getClassLoader().getResource(propFileLocalName) != null) {
+                inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileLocalName);
 
-            if (inputStream != null) {
-                properties.load(inputStream);
+                if (inputStream != null) {
+                    properties.load(inputStream);
+                } else {
+                    throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath");
+                }
             } else {
-                throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath");
+                inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileName);
+
+                if (inputStream != null) {
+                    properties.load(inputStream);
+                } else {
+                    throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath");
+                }
             }
 
             // get the property value and print it out
-            String mongodbHost = properties.getProperty("mongodb_host");
-            String mongodbPort = properties.getProperty("mongodb_port");
+            String mongoHost = properties.getProperty("mongo_host");
+            int mongoPort = Integer.parseInt(properties.getProperty("mongo_port"));
+            String mongoUsername = properties.getProperty("mongo_username");
+            String mongoPassword = properties.getProperty("mongo_password");
 
-            host = mongodbHost + ":" + mongodbPort;
+            mongoCredential = MongoCredential.createCredential(mongoUsername, mongoDatabase, mongoPassword.toCharArray());
+            serverAddress = new ServerAddress(mongoHost, mongoPort);
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         } finally {
@@ -116,11 +131,11 @@ public class WikidataDumpUtil {
     }
 
     public static String getHost() {
-        return host;
+        return serverAddress.getHost();
     }
 
-    public static String getDatabaseName() {
-        return databaseName;
+    public static String getMongoDatabase() {
+        return mongoDatabase;
     }
 
     public static long getOntologyMaxDepth() {

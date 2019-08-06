@@ -76,4 +76,11 @@ public class ConceptUtilTest {
 
         System.out.println(ConceptUtil.getPageContent(ConceptUtil.getPageIdInLanguage(stackOverflow, "en", "ja"), "ja"));
     }
+
+    @Test
+    void getWikidataIdByTitle() {
+        String kofoworola = "Kofoworola Abeni Pratt";
+
+        Assertions.assertEquals(ConceptUtil.getWikidataIdByTitle(kofoworola, "en"), "Q25796287");
+    }
 }

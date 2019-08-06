@@ -2,10 +2,14 @@ package com.iandadesign.closa.util.wikidata;
 
 import com.google.common.collect.Sets;
 import com.iandadesign.closa.model.WikidataEntity;
+import com.iandadesign.closa.util.ConceptUtil;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.TrueFileFilter;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +19,8 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class WikidataEntityExtractorEval {
@@ -92,8 +98,6 @@ public class WikidataEntityExtractorEval {
     }
 
 
-
-
     @Test
     public void testExtractionRuntime() {
         // base number tokens: 222
@@ -141,6 +145,76 @@ public class WikidataEntityExtractorEval {
         }
     }
 
+
+    @Test
+    public void evalExtractEntitiesFromWikifiedStories() {
+        File wikifiedStoriesFolder = new File("src/eval/resources/com/iandadesign/closa/util/wikidata/wikifiedStories");
+
+        int relevantElements = 0;
+        int selectedElements = 0;
+        int truePositives = 0;
+        int falsePositives = 0;
+
+        Map<String, Set<WikidataEntity>> documentContainedEntitiesMap =
+                FileUtils.listFiles(wikifiedStoriesFolder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
+                        .stream()
+                        .sorted()
+                        .filter((File file) -> !file.getName().equals(".DS_Store"))
+                        .map((File file) -> {
+                            try {
+                                String text = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+                                Document document = Jsoup.parse(text);
+                                return document.body().text();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            return null;
+                        })
+                        .collect(Collectors.toMap(
+                                (String bodyText) -> bodyText,
+                                (String bodyText) -> {
+                                    List<String> containedWikipediaTitles = new ArrayList<>();
+
+                                    Pattern pattern = Pattern.compile("\\[\\[(.*?)\\]\\]");
+                                    Matcher matcher = pattern.matcher(bodyText);
+
+                                    while (matcher.find()) {
+                                        String group = matcher.group(1);
+
+                                        if (group.contains("|")) {
+                                            containedWikipediaTitles.add(group.split("|")[0]);
+                                        } else {
+                                            containedWikipediaTitles.add(group);
+                                        }
+                                    }
+
+                                    return containedWikipediaTitles.stream()
+                                            .map(title -> ConceptUtil.getWikidataIdByTitle(title, "en"))
+                                            .map(WikidataEntity::new)
+                                            .collect(Collectors.toSet());
+                                }));
+
+        for (Map.Entry<String, Set<WikidataEntity>> entry : documentContainedEntitiesMap.entrySet()) {
+            Set<WikidataEntity> extractedEntities =
+                    new HashSet<>(WikidataEntityExtractor.extractEntitiesFromText(entry.getKey(), "en"));
+
+            Set<WikidataEntity> actualEntities = entry.getValue();
+
+            // update values
+            relevantElements += actualEntities.size();
+            selectedElements += extractedEntities.size();
+            truePositives += Sets.intersection(actualEntities, extractedEntities).size();
+            falsePositives += Sets.difference(extractedEntities, actualEntities).size();
+        }
+
+        double precision = (double) truePositives / (selectedElements);
+        double recall = (double) truePositives / (relevantElements);
+        double fMeasure = 2 * (precision * recall) / (precision + recall);
+
+        System.out.println("Precision  = " + precision);
+        System.out.println("Recall     = " + recall);
+        System.out.println("F-Measure  = " + fMeasure);
+    }
 
 
     /**
