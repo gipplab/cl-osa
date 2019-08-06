@@ -191,7 +191,7 @@ public class WikidataEntityExtractorEval {
                                     return containedWikipediaTitles.stream()
                                             .map(title -> ConceptUtil.getWikidataIdByTitle(title, "en"))
                                             .filter(title -> title != null)
-                                            .map(WikidataEntity::new)
+                                            .map(WikidataSparqlUtil::getEntityById)
                                             .collect(Collectors.toSet());
                                 }));
 
@@ -200,6 +200,11 @@ public class WikidataEntityExtractorEval {
                     new HashSet<>(WikidataEntityExtractor.extractEntitiesFromText(entry.getKey(), "en"));
 
             Set<WikidataEntity> actualEntities = entry.getValue();
+
+            System.out.println("Actual:     " + Sets.intersection(actualEntities, extractedEntities)
+                    + ANSI_BLUE + Sets.difference(actualEntities, extractedEntities) + ANSI_RESET);
+            System.out.println("Extracted:  " + ANSI_GREEN + Sets.intersection(actualEntities, extractedEntities)
+                    + ANSI_RED + Sets.difference(extractedEntities, actualEntities) + ANSI_RESET);
 
             // update values
             relevantElements += actualEntities.size();
