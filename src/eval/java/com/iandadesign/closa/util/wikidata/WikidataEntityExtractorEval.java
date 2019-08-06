@@ -180,6 +180,7 @@ public class WikidataEntityExtractorEval {
 
                                     while (matcher.find()) {
                                         String group = matcher.group(1);
+                                        System.out.println("GROUP: " + group);
 
                                         if (group.contains("|")) {
                                             containedWikipediaTitles.add(group.split("|")[0]);
