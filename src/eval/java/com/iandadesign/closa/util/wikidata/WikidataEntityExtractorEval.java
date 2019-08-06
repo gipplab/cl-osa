@@ -201,6 +201,7 @@ public class WikidataEntityExtractorEval {
 
             Set<WikidataEntity> actualEntities = entry.getValue();
 
+            System.out.println(entry.getKey());
             System.out.println("Actual:     " + Sets.intersection(actualEntities, extractedEntities)
                     + ANSI_BLUE + Sets.difference(actualEntities, extractedEntities) + ANSI_RESET);
             System.out.println("Extracted:  " + ANSI_GREEN + Sets.intersection(actualEntities, extractedEntities)
