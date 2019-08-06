@@ -190,6 +190,7 @@ public class WikidataEntityExtractorEval {
 
                                     return containedWikipediaTitles.stream()
                                             .map(title -> ConceptUtil.getWikidataIdByTitle(title, "en"))
+                                            .filter(title -> title != null)
                                             .map(WikidataEntity::new)
                                             .collect(Collectors.toSet());
                                 }));

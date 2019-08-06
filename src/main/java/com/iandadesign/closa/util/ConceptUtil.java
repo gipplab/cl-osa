@@ -550,7 +550,7 @@ public class ConceptUtil {
             JsonObject pageprops = pageEntry
                     .getAsJsonObject("pageprops");
 
-            if (!pageprops.has("wikibase_item")) {
+            if (pageprops == null || !pageprops.has("wikibase_item")) {
                 return null;
             }
 
