@@ -183,7 +183,7 @@ public class WikidataEntityExtractorEval {
                                         System.out.println("GROUP: " + group);
 
                                         if (group.contains("|")) {
-                                            containedWikipediaTitles.add(group.split("|")[0]);
+                                            containedWikipediaTitles.add(group.split("\\|")[0]);
                                         } else {
                                             containedWikipediaTitles.add(group);
                                         }
