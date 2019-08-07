@@ -425,20 +425,38 @@ public class WikidataDumpUtil {
         return entities;
     }
 
-    public static Map<String, WikidataEntity> getProperties(WikidataEntity entity) {
+    public static Map<String, List<WikidataEntity>> getProperties(WikidataEntity entity) {
+        Map<String, List<WikidataEntity>> propertyValues = new HashMap<>();
+
         Document query = new Document("id", entity.getId());
 
-        Document document = entitiesCollection.find(query)
-                .first();
+        Document document = entitiesCollection.find(query).first();
 
         // read data
         Document claims = document.get("claims", Document.class);
 
         for (Map.Entry<String, Object> entry : claims.entrySet()) {
-            System.out.println(entry);
+            List<Document> propertyDocuments = (ArrayList) entry.getValue();
+            String property = entry.getKey();
+
+            for (Document propertyDocument : propertyDocuments) {
+                Document mainsnak = propertyDocument.get("mainsnak", Document.class);
+
+                String dataType = mainsnak.getString("datatype");
+
+                if (dataType.equals("wikibase-item") && mainsnak.containsKey("datavalue")) {
+                    String entityId = mainsnak.get("datavalue", Document.class)
+                            .get("value", Document.class).getString("id");
+
+                    if (!propertyValues.containsKey(property)) {
+                        propertyValues.put(property, new ArrayList<>());
+                    }
+                    propertyValues.get(property).add(new WikidataEntity(entityId));
+                }
+            }
         }
 
-        return new HashMap<>();
+        return propertyValues;
     }
 
 

@@ -96,7 +96,7 @@ public class WikidataEntityExtractor {
         for (List<WikidataEntity> currentEntities : extractedEntities) {
             // disambiguate
             if (currentEntities.size() > 1) {
-                WikidataEntity disambiguatedEntity = WikidataDisambiguator.disambiguateByDescription(currentEntities, text, languageCode);
+                WikidataEntity disambiguatedEntity = WikidataDisambiguator.disambiguateByProperties(currentEntities, disambiguatedEntities, text, languageCode);
 
                 if (disambiguatedEntity != null) {
                     disambiguatedEntities.add(disambiguatedEntity);

@@ -1,6 +1,7 @@
 package com.iandadesign.closa.util.wikidata;
 
 
+import com.google.common.collect.Sets;
 import com.iandadesign.closa.model.Dictionary;
 import com.iandadesign.closa.model.Token;
 import com.iandadesign.closa.model.WikidataEntity;
@@ -134,7 +135,12 @@ public class WikidataDisambiguator {
      * @param languageCode        language code
      * @return the entity candidate that has the most relations to the resolved entities.
      */
-    public static WikidataEntity disambiguateIterative(List<WikidataEntity> ambiguousEntities, List<WikidataEntity> unambiguousEntities, String text, String languageCode) {
+    public static WikidataEntity disambiguateIterative(
+            List<WikidataEntity> ambiguousEntities,
+            List<WikidataEntity> unambiguousEntities,
+            String text,
+            String languageCode
+    ) {
         Map<WikidataEntity, Long> wikidataEntityDistanceMap = new HashMap<>();
 
         for (WikidataEntity ambiguousEntity : ambiguousEntities) {
@@ -171,8 +177,37 @@ public class WikidataDisambiguator {
         } else {
             // fallback
             System.out.println("fallback");
-            return disambiguateByDescription(minimumKeys, text, languageCode);
+            return ancestorCountDisambiguate(ambiguousEntities, text, languageCode);
         }
+    }
+
+    /**
+     * Iteratively disambiguates by using already unambiguous entities and linking them to the ambiguous ones
+     * using property relationships.
+     *
+     * @param ambiguousEntities   entity candidates
+     * @param unambiguousEntities already resolved entities
+     * @param text                text for context
+     * @param languageCode        language code
+     * @return the entity candidate that has the most relations to the resolved entities.
+     */
+    public static WikidataEntity disambiguateByProperties(
+            List<WikidataEntity> ambiguousEntities,
+            List<WikidataEntity> unambiguousEntities,
+            String text,
+            String languageCode
+    ) {
+        return ambiguousEntities.stream()
+                .max(Comparator.comparingInt(entity -> {
+                    Set<WikidataEntity> propertyLinkedEntities = WikidataDumpUtil.getProperties(entity)
+                            .values()
+                            .stream()
+                            .flatMap(List::stream)
+                            .collect(Collectors.toSet());
+
+                    return Sets.intersection(propertyLinkedEntities, new HashSet<>(unambiguousEntities)).size();
+                }))
+                .orElse(ancestorCountDisambiguate(ambiguousEntities, text, languageCode));
     }
 
 }
