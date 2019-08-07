@@ -171,7 +171,7 @@ public class WikidataDisambiguator {
         } else {
             // fallback
             System.out.println("fallback");
-            return null; // disambiguateByDescription(minimumKeys, text, languageCode);
+            return disambiguateByDescription(minimumKeys, text, languageCode);
         }
     }
 
