@@ -207,7 +207,7 @@ public class WikidataDisambiguator {
 
                     return Sets.intersection(propertyLinkedEntities, new HashSet<>(unambiguousEntities)).size();
                 }))
-                .orElse(ancestorCountDisambiguate(ambiguousEntities, text, languageCode));
+                .orElse(null);
     }
 
 }
