@@ -39,7 +39,7 @@ public class WikidataDisambiguator {
      * @param languageCode the text and entity language code
      * @return the disambiguated entity
      */
-    public static WikidataEntity ancestorCountDisambiguate(List<WikidataEntity> entities, String text, String languageCode) {
+    public static WikidataEntity disambiguateByAncestorCount(List<WikidataEntity> entities, String text, String languageCode) {
         // retrieve all ancestors per entity
         Map<WikidataEntity, Set<WikidataEntity>> entitiesSubclassOf = new HashSet<>(entities).stream()
                 .collect(Collectors.toMap(entity -> entity,
@@ -177,7 +177,7 @@ public class WikidataDisambiguator {
         } else {
             // fallback
             System.out.println("fallback");
-            return ancestorCountDisambiguate(ambiguousEntities, text, languageCode);
+            return disambiguateByAncestorCount(ambiguousEntities, text, languageCode);
         }
     }
 

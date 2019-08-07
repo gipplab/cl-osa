@@ -55,7 +55,7 @@ public class WikidataEntityExtractor {
         tokenEntitiesMap.forEach((token, entities) -> {
             // disambiguate
             if (entities.size() > 1) {
-                tokenEntityMap.put(token, WikidataDisambiguator.ancestorCountDisambiguate(entities, text, languageCode));
+                tokenEntityMap.put(token, WikidataDisambiguator.disambiguateByAncestorCount(entities, text, languageCode));
             } else if (entities.size() == 1) {
                 tokenEntityMap.put(token, entities.get(0));
             }
@@ -96,7 +96,7 @@ public class WikidataEntityExtractor {
         for (List<WikidataEntity> currentEntities : extractedEntities) {
             // disambiguate
             if (currentEntities.size() > 1) {
-                WikidataEntity disambiguatedEntity = WikidataDisambiguator.disambiguateByProperties(currentEntities, disambiguatedEntities, text, languageCode);
+                WikidataEntity disambiguatedEntity = WikidataDisambiguator.disambiguateByAncestorCount(currentEntities, text, languageCode);
 
                 if (disambiguatedEntity != null) {
                     disambiguatedEntities.add(disambiguatedEntity);

@@ -236,6 +236,12 @@ public class WikidataEntityExtractorEval {
      * Precision  = 0.6089108910891089
      * Recall     = 0.5442477876106194
      * F-Measure  = 0.5747663551401868
+     * <p>
+     * Disambiguation by Properties:
+     * <p>
+     * Precision  = 0.42857142857142855
+     * Recall     = 0.39823008849557523
+     * F-Measure  = 0.41284403669724773
      */
     @Test
     public void evalExtractEntitiesFromManuallyAnnotatedText() {
@@ -255,12 +261,12 @@ public class WikidataEntityExtractorEval {
                 System.out.println("////////////////// Pair " + i + " //////////////////");
                 CSVRecord record = records.get(i);
 
-                // get information from csv and from SPARQL
+                // get information from csv and from Dump
                 String sentence1 = record.get(5);
                 System.out.println("Sentence 1: " + sentence1);
 
                 Set<WikidataEntity> manualEntities1 = Arrays.stream(record.get(9).split(" "))
-                        .map(WikidataSparqlUtil::getEntityById)
+                        .map(WikidataDumpUtil::getEntityById)
                         .collect(Collectors.toSet());
 
                 Set<WikidataEntity> extractedEntities1 = new HashSet<>(WikidataEntityExtractor.extractEntitiesFromText(sentence1, "en"));
@@ -274,7 +280,7 @@ public class WikidataEntityExtractorEval {
                 System.out.println("Sentence 2: " + sentence2);
 
                 Set<WikidataEntity> manualEntities2 = Arrays.stream(record.get(10).split(" "))
-                        .map(WikidataSparqlUtil::getEntityById)
+                        .map(WikidataDumpUtil::getEntityById)
                         .collect(Collectors.toSet());
 
                 Set<WikidataEntity> extractedEntities2 = new HashSet<>(WikidataEntityExtractor.extractEntitiesFromText(sentence2, "en"));
