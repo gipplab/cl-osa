@@ -316,4 +316,8 @@ public class WikidataDumpUtilTest {
     }
 
 
+    @Test
+    void getProperties() {
+        WikidataDumpUtil.getProperties(new WikidataEntity("Q1"));
+    }
 }

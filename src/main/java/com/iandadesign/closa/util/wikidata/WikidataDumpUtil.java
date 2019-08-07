@@ -70,7 +70,7 @@ public class WikidataDumpUtil {
         rootLogger.setLevel(Level.OFF);
 
         try {
-            getPropertyValues();
+            loadDatabaseFromConfig();
 
             MongoClient mongoClient = new MongoClient(serverAddress, Collections.singletonList(mongoCredential));
 
@@ -87,7 +87,7 @@ public class WikidataDumpUtil {
      *
      * @throws IOException When property file could not be loaded.
      */
-    private static void getPropertyValues() throws IOException {
+    private static void loadDatabaseFromConfig() throws IOException {
         InputStream inputStream = null;
 
         try {
@@ -423,6 +423,22 @@ public class WikidataDumpUtil {
                 .collect(Collectors.toList());
 
         return entities;
+    }
+
+    public static Map<String, WikidataEntity> getProperties(WikidataEntity entity) {
+        Document query = new Document("id", entity.getId());
+
+        Document document = entitiesCollection.find(query)
+                .first();
+
+        // read data
+        Document claims = document.get("claims", Document.class);
+
+        for (Map.Entry<String, Object> entry : claims.entrySet()) {
+            System.out.println(entry);
+        }
+
+        return new HashMap<>();
     }
 
 
