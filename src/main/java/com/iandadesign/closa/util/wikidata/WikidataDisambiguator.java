@@ -88,7 +88,7 @@ public class WikidataDisambiguator {
 
         if (entities.stream()
                 .allMatch(entity -> entity.getDescriptions() == null || !entity.getDescriptions().containsKey(languageCode))) {
-            throw new IllegalArgumentException("The entities need to contain a description to disambiguate from.");
+            return disambiguateBySmallestId(new ArrayList<>(entities));
         }
 
         List<Token> textTokens = TokenUtil.tokenize(text, languageCode);
@@ -101,7 +101,6 @@ public class WikidataDisambiguator {
         entities.stream()
                 .filter(entity -> entity.getDescriptions() != null || entity.getDescriptions().containsKey(languageCode))
                 .forEach(entity -> {
-
                     List<Token> descriptionTokens = TokenUtil.tokenize(entity.getDescriptions().get(languageCode), languageCode);
                     descriptionTokens.forEach(Token::toLowerCase);
                     descriptionTokens = TokenUtil.removeStopwords(descriptionTokens, languageCode);

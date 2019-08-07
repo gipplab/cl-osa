@@ -364,12 +364,10 @@ public class WikidataDumpUtil {
                 break;
             }
 
-            if (results.size() == 0) {
-                // if no results are found, query aliases instead
-                // query = new Document("aliases." + languageCode + ".value", capitalizeIfFirstLetterIsUppercase(queryLemma));
-                // if no results are found for lemma, assume wrong lemmatization and query token instead
-                query = createLabelQuery(token.getToken(), languageCode);
-            }
+            // if no results are found, query aliases instead
+            // query = new Document("aliases." + languageCode + ".value", capitalizeIfFirstLetterIsUppercase(queryLemma));
+            // if no results are found for lemma, assume wrong lemmatization and query token instead
+            query = createLabelQuery(token.getToken(), languageCode);
         }
 
         // 2 consider the query result itself
