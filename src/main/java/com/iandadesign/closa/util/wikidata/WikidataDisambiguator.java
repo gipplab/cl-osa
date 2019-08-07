@@ -73,7 +73,6 @@ public class WikidataDisambiguator {
         } else {
             return disambiguateBySmallestId(new ArrayList<>(maxKeys));
         }
-
     }
 
     /**
@@ -125,5 +124,54 @@ public class WikidataDisambiguator {
         return entities.stream().filter(entity -> entity.getId().equals(matchingId)).findFirst().orElse(entities.get(0));
     }
 
+
+    /**
+     * Iteratively disambiguates by using already unambiguous entities and linking them to the ambiguous ones
+     * using property relationships.
+     *
+     * @param ambiguousEntities   entity candidates
+     * @param unambiguousEntities already resolved entities
+     * @param text                text for context
+     * @param languageCode        language code
+     * @return the entity candidate that has the most relations to the resolved entities.
+     */
+    public static WikidataEntity disambiguateIterative(List<WikidataEntity> ambiguousEntities, List<WikidataEntity> unambiguousEntities, String text, String languageCode) {
+        Map<WikidataEntity, Long> wikidataEntityDistanceMap = new HashMap<>();
+
+        for (WikidataEntity ambiguousEntity : ambiguousEntities) {
+            long minimalDistance = Long.MAX_VALUE;
+
+            for (WikidataEntity unambiguousEntity : unambiguousEntities) {
+                long distance = WikidataDumpUtil.distanceWithThreshold(ambiguousEntity, unambiguousEntity, 4L);
+
+                if (distance < minimalDistance) {
+                    minimalDistance = distance;
+                }
+            }
+
+            wikidataEntityDistanceMap.put(ambiguousEntity, minimalDistance);
+        }
+
+        long minimumValue = wikidataEntityDistanceMap.entrySet()
+                .stream()
+                .min(Comparator.comparingLong(Map.Entry::getValue))
+                .get()
+                .getValue();
+
+        List<WikidataEntity> minimumKeys = new ArrayList<>();
+
+        for (Map.Entry<WikidataEntity, Long> entry : wikidataEntityDistanceMap.entrySet()) {
+            if (entry.getValue() == minimumValue) {
+                minimumKeys.add(entry.getKey());
+            }
+        }
+
+        if (minimumKeys.size() == 1) {
+            return minimumKeys.get(0);
+        } else {
+            // fallback
+            return disambiguateByDescription(minimumKeys, text, languageCode);
+        }
+    }
 
 }

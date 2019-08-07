@@ -13,6 +13,7 @@ import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -787,6 +788,10 @@ public class WikidataDumpUtil {
         return depths.stream()
                 .mapToLong(l -> l)
                 .sum();
+    }
+
+    public static long distanceByProperties(WikidataEntity firstEntity, WikidataEntity secondEntity) {
+        throw new NotImplementedException("");
     }
 
     /**

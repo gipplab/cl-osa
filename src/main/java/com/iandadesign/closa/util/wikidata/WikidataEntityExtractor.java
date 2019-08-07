@@ -86,12 +86,17 @@ public class WikidataEntityExtractor {
         List<List<WikidataEntity>> extractedEntities = extractEntitiesFromTextWithoutDisambiguation(text, languageCode, category);
         List<WikidataEntity> disambiguatedEntities = new ArrayList<>();
 
+        // first pass to see which entities are already unambiguous
+        for (List<WikidataEntity> currentEntities : extractedEntities) {
+            if (currentEntities.size() == 1) {
+                disambiguatedEntities.add(currentEntities.get(0));
+            }
+        }
+
         for (List<WikidataEntity> currentEntities : extractedEntities) {
             // disambiguate
             if (currentEntities.size() > 1) {
-                disambiguatedEntities.add(WikidataDisambiguator.ancestorCountDisambiguate(currentEntities, text, languageCode));
-            } else if (currentEntities.size() == 1) {
-                disambiguatedEntities.add(currentEntities.get(0));
+                disambiguatedEntities.add(WikidataDisambiguator.disambiguateIterative(currentEntities, disambiguatedEntities, text, languageCode));
             }
         }
 

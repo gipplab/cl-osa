@@ -180,7 +180,6 @@ public class WikidataEntityExtractorEval {
 
                                     while (matcher.find()) {
                                         String group = matcher.group(1);
-                                        System.out.println("GROUP: " + group);
 
                                         if (group.contains("|")) {
                                             containedWikipediaTitles.add(group.split("\\|")[0]);
@@ -192,11 +191,16 @@ public class WikidataEntityExtractorEval {
                                     System.out.println("Contained Wikipedia Titles");
                                     System.out.println(containedWikipediaTitles);
 
-                                    return containedWikipediaTitles.stream()
+                                    Set<WikidataEntity> containedEntities = containedWikipediaTitles.stream()
                                             .map(title -> ConceptUtil.getWikidataIdByTitle(title, "en"))
                                             .filter(title -> title != null)
-                                            .map(WikidataSparqlUtil::getEntityById)
+                                            .map(WikidataDumpUtil::getEntityById)
                                             .collect(Collectors.toSet());
+
+                                    System.out.println("Contained Wikidata Entities");
+                                    System.out.println(containedEntities);
+
+                                    return containedEntities;
                                 }));
 
         for (Map.Entry<String, Set<WikidataEntity>> entry : documentContainedEntitiesMap.entrySet()) {
