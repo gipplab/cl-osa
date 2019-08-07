@@ -96,7 +96,10 @@ public class WikidataEntityExtractor {
         for (List<WikidataEntity> currentEntities : extractedEntities) {
             // disambiguate
             if (currentEntities.size() > 1) {
-                disambiguatedEntities.add(WikidataDisambiguator.disambiguateIterative(currentEntities, disambiguatedEntities, text, languageCode));
+                WikidataEntity disambiguatedEntity = WikidataDisambiguator.disambiguateIterative(currentEntities, disambiguatedEntities, text, languageCode);
+                if (disambiguatedEntity != null) {
+                    disambiguatedEntities.add(disambiguatedEntity);
+                }
             }
         }
 

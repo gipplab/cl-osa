@@ -188,19 +188,11 @@ public class WikidataEntityExtractorEval {
                                         }
                                     }
 
-                                    System.out.println("Contained Wikipedia Titles");
-                                    System.out.println(containedWikipediaTitles);
-
-                                    Set<WikidataEntity> containedEntities = containedWikipediaTitles.stream()
+                                    return containedWikipediaTitles.stream()
                                             .map(title -> ConceptUtil.getWikidataIdByTitle(title, "en"))
                                             .filter(title -> title != null)
                                             .map(WikidataDumpUtil::getEntityById)
                                             .collect(Collectors.toSet());
-
-                                    System.out.println("Contained Wikidata Entities");
-                                    System.out.println(containedEntities);
-
-                                    return containedEntities;
                                 }));
 
         for (Map.Entry<String, Set<WikidataEntity>> entry : documentContainedEntitiesMap.entrySet()) {

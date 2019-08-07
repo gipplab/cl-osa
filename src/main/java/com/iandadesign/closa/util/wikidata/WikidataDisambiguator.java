@@ -166,10 +166,12 @@ public class WikidataDisambiguator {
         }
 
         if (minimumKeys.size() == 1) {
+            System.out.println("Minimum dist for " + ambiguousEntities + " is " + minimumKeys.get(0));
             return minimumKeys.get(0);
         } else {
             // fallback
-            return disambiguateByDescription(minimumKeys, text, languageCode);
+            System.out.println("fallback");
+            return null; // disambiguateByDescription(minimumKeys, text, languageCode);
         }
     }
 
