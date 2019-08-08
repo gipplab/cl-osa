@@ -285,7 +285,8 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
         if (existingDocument == null) {
             articleCollection.insertOne(articleDocument);
         } else {
-            articleCollection.updateOne(new Document("id", idInLanguage), existingDocument);
+            articleCollection.updateOne(new Document("id", idInLanguage),
+                    new Document("$set", new Document("text." + documentLanguage, text)));
         }
     }
 }
