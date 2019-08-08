@@ -249,12 +249,7 @@ public class Token implements HasWord {
 
     @Override
     public String toString() {
-        return "{" +
-                " " + token +
-                ", " + lemma +
-                ", " + partOfSpeech +
-                ", " + namedEntityType +
-                "}";
+        return token;
     }
 
     @Override
