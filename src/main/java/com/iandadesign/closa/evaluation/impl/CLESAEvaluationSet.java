@@ -105,6 +105,8 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
             if (articleCollection.count() == 0) {
                 for (String language : supportedLanguages) {
+                    System.out.println("Current language = " + language);
+
                     Path wikipediaExtractedDumpPath = Paths.get(System.getProperty("user.home") + "/wikipedia/output_" + language + "/");
 
                     // check wikipedia dump files
