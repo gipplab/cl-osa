@@ -109,65 +109,64 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
             //     only if not all have been processed into the MongoDB collection
             articleCollection.createIndex(new Document("id", 1), new IndexOptions().unique(true));
 
-            if (articleCollection.count() == 0) {
-                for (Map.Entry<String, Integer> languageEntry : supportedLanguages.entrySet()) {
-                    String language = languageEntry.getKey();
+            for (Map.Entry<String, Integer> languageEntry : supportedLanguages.entrySet()) {
+                String language = languageEntry.getKey();
 
-                    System.out.println("Current language = " + language);
+                System.out.println("Current language = " + language);
 
-                    if (articleCollection.find(new Document("text." + language, "$exists")).iterator().hasNext()) {
-                        System.out.println("Language present.");
-                        continue;
-                    }
-
-                    Path wikipediaExtractedDumpPath = Paths.get(System.getProperty("user.home") + "/wikipedia/output_" + language + "/");
-
-                    // check wikipedia dump files
-                    if (Files.notExists(Paths.get(System.getProperty("user.home") + "/wikipedia/output_" + language + "/"))) {
-                        throw new FileNotFoundException("The WikiExtractor.py output file is missing or not named according " +
-                                "to the format \"output-{LANGUAGE_CODE}\".");
-                    }
-
-
-                    System.out.println("Preprocess Wikipedia dump.");
-
-                    ProgressBar progressBar = new ProgressBar("Find relevant Wikipedia dump files:", languageEntry.getValue(), ProgressBarStyle.ASCII).start();
-                    AtomicInteger progress = new AtomicInteger(0);
-
-                    // get the articles in the Wikipedia dump
-                    Files.walk(wikipediaExtractedDumpPath)
-                            .filter(Files::isRegularFile)
-                            .filter(path -> !path.endsWith(".DS_Store"))
-                            .sorted()
-                            .map(path -> {
-                                // split the file into the documents it contains
-                                try {
-                                    org.jsoup.nodes.Document parsedFile = Jsoup.parse(FileUtils.readFileToString(new File(path.toUri()), UTF_8));
-                                    return parsedFile.select("doc");
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                                return null;
-                            })
-                            .filter(Objects::nonNull)
-                            .flatMap(Collection::stream)
-                            .forEach((Element document) -> {
-                                try {
-                                    String id = document.attr("id");
-                                    String url = document.attr("url");
-                                    String title = document.attr("title");
-                                    String text = document.text();
-
-                                    storeWikipediaArticleDocument(id, url, title, text, language);
-                                } catch (NullPointerException e) {
-                                    e.printStackTrace();
-                                }
-                                progressBar.stepTo(progress.incrementAndGet());
-                            });
-
-                    progressBar.stop();
+                if (articleCollection.find(new Document("text." + language, "$exists")).iterator().hasNext()) {
+                    System.out.println("Language present.");
+                    continue;
                 }
+
+                Path wikipediaExtractedDumpPath = Paths.get(System.getProperty("user.home") + "/wikipedia/output_" + language + "/");
+
+                // check wikipedia dump files
+                if (Files.notExists(Paths.get(System.getProperty("user.home") + "/wikipedia/output_" + language + "/"))) {
+                    throw new FileNotFoundException("The WikiExtractor.py output file is missing or not named according " +
+                            "to the format \"output-{LANGUAGE_CODE}\".");
+                }
+
+
+                System.out.println("Preprocess Wikipedia dump.");
+
+                ProgressBar progressBar = new ProgressBar("Find relevant Wikipedia dump files:", languageEntry.getValue(), ProgressBarStyle.ASCII).start();
+                AtomicInteger progress = new AtomicInteger(0);
+
+                // get the articles in the Wikipedia dump
+                Files.walk(wikipediaExtractedDumpPath)
+                        .filter(Files::isRegularFile)
+                        .filter(path -> !path.endsWith(".DS_Store"))
+                        .sorted()
+                        .map(path -> {
+                            // split the file into the documents it contains
+                            try {
+                                org.jsoup.nodes.Document parsedFile = Jsoup.parse(FileUtils.readFileToString(new File(path.toUri()), UTF_8));
+                                return parsedFile.select("doc");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            return null;
+                        })
+                        .filter(Objects::nonNull)
+                        .flatMap(Collection::stream)
+                        .forEach((Element document) -> {
+                            try {
+                                String id = document.attr("id");
+                                String url = document.attr("url");
+                                String title = document.attr("title");
+                                String text = document.text();
+
+                                storeWikipediaArticleDocument(id, url, title, text, language);
+                            } catch (NullPointerException e) {
+                                e.printStackTrace();
+                            }
+                            progressBar.stepTo(progress.incrementAndGet());
+                        });
+
+                progressBar.stop();
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
