@@ -73,7 +73,11 @@ public class WikidataDumpUtil {
         try {
             loadDatabaseFromConfig();
 
-            mongoClient = new MongoClient(serverAddress, Collections.singletonList(mongoCredential));
+            if (mongoCredential.getUserName().equals("") || mongoCredential.getPassword().length == 0) {
+                mongoClient = new MongoClient(serverAddress);
+            } else {
+                mongoClient = new MongoClient(serverAddress, Collections.singletonList(mongoCredential));
+            }
             MongoDatabase database = mongoClient.getDatabase(mongoDatabaseName);
             entitiesCollection = database.getCollection(entitiesCollectionName);
             entitiesHierarchyCollection = database.getCollection(entitiesHierarchyCollectionName);
