@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
 
-public class CLOSAEvaluationSetEval {
+class CLOSAEvaluationSetEval {
 
 
     ///////////////////////////////////////////////// New Stuff /////////////////////////////////////////////////
@@ -24,7 +24,7 @@ public class CLOSAEvaluationSetEval {
      * Granularity: full documents.
      */
     @Test
-    public void evalCLOSAVroniPlag() {
+    void evalCLOSAVroniPlag() {
         /*
             Cross-language analysis. With cosine similarity.
 
@@ -96,9 +96,9 @@ public class CLOSAEvaluationSetEval {
      * Granularity: full documents.
      */
     @Test
-    public void evalCLOSAEnglishJapaneseCosineSimilarity() {
+    void evalCLOSAEnglishJapaneseCosineSimilarity() {
         /*
-            Cross-language analysis. With cosine similarity.
+            Cross-language analysis. With cosine similarity (graph-based analysis true).
 
             True positives: 90
             Relevant elements: 94
@@ -119,7 +119,7 @@ public class CLOSAEvaluationSetEval {
                     new File("src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/ja"), "ja"
             );
 
-            englishJapaneseBBCEvaluationSetCLOSA.setGraphBasedAnalysis(true);
+            englishJapaneseBBCEvaluationSetCLOSA.setLinkedDataBasedAnalysis(true);
             englishJapaneseBBCEvaluationSetCLOSA.printEvaluation();
         } catch (IOException e) {
             e.printStackTrace();
@@ -133,7 +133,7 @@ public class CLOSAEvaluationSetEval {
      * Granularity: full documents.
      */
     @Test
-    public void evalCLOSAEnglishChineseCosineSimilarity() {
+    void evalCLOSAEnglishChineseCosineSimilarity() {
         /*
             Cross-language analysis. With cosine similarity.
 
@@ -163,7 +163,7 @@ public class CLOSAEvaluationSetEval {
     }
 
     @Test
-    public void evalCLOSAPan11Documents() {
+    void evalCLOSAPan11Documents() {
         /*
             True positives: 2794
             Relevant elements: 2920
@@ -194,7 +194,7 @@ public class CLOSAEvaluationSetEval {
 
 
     @Test
-    public void evalCLOSAPan11Chunks() {
+    void evalCLOSAPan11Chunks() {
         /*
             True positives: 214
             Relevant elements: 692
@@ -223,7 +223,7 @@ public class CLOSAEvaluationSetEval {
 
 
     @Test
-    public void evalCLOSAPan11Sentences() {
+    void evalCLOSAPan11Sentences() {
         /*
             True positives: 2381
             Relevant elements: 2669
@@ -253,7 +253,7 @@ public class CLOSAEvaluationSetEval {
 
 
     @Test
-    public void evalCLOSAJrcAcquisDocuments() {
+    void evalCLOSAJrcAcquisDocuments() {
         try {
             CLOSAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
@@ -267,7 +267,7 @@ public class CLOSAEvaluationSetEval {
 
 
     @Test
-    public void evalCLOSAEuroparlDocuments() {
+    void evalCLOSAEuroparlDocuments() {
         /*
             True positives: 4317
             Relevant elements: 9428
@@ -326,7 +326,7 @@ public class CLOSAEvaluationSetEval {
     }
 
     @Test
-    public void evalSTS() {
+    void evalSTS() {
         try {
             CLOSAEvaluationSet stsEvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(System.getProperty("user.home") + "/sts2016/txt"), "L", "R"
