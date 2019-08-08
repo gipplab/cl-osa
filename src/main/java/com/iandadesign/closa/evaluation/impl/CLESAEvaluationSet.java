@@ -114,6 +114,11 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
                     System.out.println("Current language = " + language);
 
+                    if (articleCollection.find(new Document("text." + language, "$exists")).iterator().hasNext()) {
+                        System.out.println("Language present.");
+                        continue;
+                    }
+
                     Path wikipediaExtractedDumpPath = Paths.get(System.getProperty("user.home") + "/wikipedia/output_" + language + "/");
 
                     // check wikipedia dump files
