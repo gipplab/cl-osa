@@ -7,6 +7,7 @@ import com.iandadesign.closa.model.Token;
 import com.iandadesign.closa.util.ConceptUtil;
 import com.iandadesign.closa.util.TokenUtil;
 import com.iandadesign.closa.util.wikidata.WikidataDumpUtil;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.IndexOptions;
@@ -188,8 +189,13 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
                 query.append("text." + language, new Document("$exists", true));
             }
 
-            for (Document article : articleCollection.find(query)
-                    .limit(wikipediaArticleLimit)) {
+            FindIterable<Document> queryResult = articleCollection.find(query).limit(wikipediaArticleLimit);
+
+            if (!queryResult.iterator().hasNext()) {
+                throw new IllegalStateException("No common articles");
+            }
+
+            for (Document article : queryResult) {
                 String articleText = article.get("text", Document.class)
                         .getString(documentLanguage);
 
