@@ -1,5 +1,6 @@
 package com.iandadesign.closa.evaluation.impl;
 
+import com.google.common.collect.ImmutableMap;
 import com.iandadesign.closa.evaluation.EvaluationSet;
 import com.iandadesign.closa.model.Dictionary;
 import com.iandadesign.closa.model.Token;
@@ -62,8 +63,12 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
         articleCollection = database.getCollection(articleCollectionName);
     }
 
-    private static final List<String> supportedLanguages = Arrays.asList("en", "fr", "es", "zh", "ja");
-
+    private static final Map<String, Integer> supportedLanguages = ImmutableMap.of(
+            "en", 5904000,
+            "fr", 2128000,
+            "es", 1536000,
+            "zh", 1068000,
+            "ja", 1162000);
 
     /**
      * Initializes the evaluationSet. The files have to be named identically, only the directories
@@ -104,7 +109,9 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
             articleCollection.createIndex(new Document("id", 1), new IndexOptions().unique(true));
 
             if (articleCollection.count() == 0) {
-                for (String language : supportedLanguages) {
+                for (Map.Entry<String, Integer> languageEntry : supportedLanguages.entrySet()) {
+                    String language = languageEntry.getKey();
+
                     System.out.println("Current language = " + language);
 
                     Path wikipediaExtractedDumpPath = Paths.get(System.getProperty("user.home") + "/wikipedia/output_" + language + "/");
@@ -118,7 +125,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
                     System.out.println("Preprocess Wikipedia dump.");
 
-                    ProgressBar progressBar = new ProgressBar("Find relevant Wikipedia dump files:", 0, ProgressBarStyle.ASCII).start();
+                    ProgressBar progressBar = new ProgressBar("Find relevant Wikipedia dump files:", languageEntry.getValue(), ProgressBarStyle.ASCII).start();
                     AtomicInteger progress = new AtomicInteger(0);
 
                     // get the articles in the Wikipedia dump
@@ -266,10 +273,8 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
         Document existingDocument = articleCollection.find(new Document("id", id)).first();
 
         if (existingDocument == null) {
-            System.out.println("Insert text document " + id);
             articleCollection.insertOne(articleDocument);
         } else {
-            System.out.println("Update text document " + id);
             articleCollection.updateOne(existingDocument, existingDocument.get("text", Document.class)
                     .append(documentLanguage, text));
         }
