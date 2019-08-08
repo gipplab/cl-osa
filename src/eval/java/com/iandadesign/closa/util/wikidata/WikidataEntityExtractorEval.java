@@ -242,6 +242,12 @@ public class WikidataEntityExtractorEval {
      * Precision  = 0.42857142857142855
      * Recall     = 0.39823008849557523
      * F-Measure  = 0.41284403669724773
+     * <p>
+     * Disamiguation by ancestor count:
+     * <p>
+     * Precision  = 0.5761904761904761
+     * Recall     = 0.5353982300884956
+     * F-Measure  = 0.555045871559633
      */
     @Test
     public void evalExtractEntitiesFromManuallyAnnotatedText() {

@@ -54,13 +54,13 @@ public class WikidataDumpUtil {
     private static final WikidataEntity human = new WikidataEntity("Q5", "human");
     private static final WikidataEntity organization = new WikidataEntity("Q43229", "organization");
 
-    private static final String mongoDatabase = "wikidata";
+    private static final String mongoDatabaseName = "wikidata";
+    private static final String entitiesCollectionName = "entities";
+    private static final String entitiesHierarchyCollectionName = "entitiesHierarchyPersistent";
     // database
     private static ServerAddress serverAddress;
     private static MongoCredential mongoCredential;
-    private static final String entitiesCollectionName = "entities";
-    private static final String entitiesHierarchyCollectionName = "entitiesHierarchyPersistent";
-
+    private static MongoDatabase database;
     private static MongoCollection<Document> entitiesCollection;
     private static MongoCollection<Document> entitiesHierarchyCollection;
 
@@ -74,12 +74,16 @@ public class WikidataDumpUtil {
 
             MongoClient mongoClient = new MongoClient(serverAddress, Collections.singletonList(mongoCredential));
 
-            MongoDatabase database = mongoClient.getDatabase(mongoDatabase);
+            database = mongoClient.getDatabase(mongoDatabaseName);
             entitiesCollection = database.getCollection(entitiesCollectionName);
             entitiesHierarchyCollection = database.getCollection(entitiesHierarchyCollectionName);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static MongoDatabase getDatabase() {
+        return database;
     }
 
     /**
@@ -120,7 +124,7 @@ public class WikidataDumpUtil {
             String mongoUsername = properties.getProperty("mongo_username");
             String mongoPassword = properties.getProperty("mongo_password");
 
-            mongoCredential = MongoCredential.createCredential(mongoUsername, mongoDatabase, mongoPassword.toCharArray());
+            mongoCredential = MongoCredential.createCredential(mongoUsername, mongoDatabaseName, mongoPassword.toCharArray());
             serverAddress = new ServerAddress(mongoHost, mongoPort);
         } catch (Exception e) {
             System.out.println("Exception: " + e);
@@ -129,14 +133,6 @@ public class WikidataDumpUtil {
                 inputStream.close();
             }
         }
-    }
-
-    public static String getHost() {
-        return serverAddress.getHost();
-    }
-
-    public static String getMongoDatabase() {
-        return mongoDatabase;
     }
 
     public static long getOntologyMaxDepth() {

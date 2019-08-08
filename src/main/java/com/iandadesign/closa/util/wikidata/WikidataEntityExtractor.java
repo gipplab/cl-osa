@@ -233,7 +233,6 @@ public class WikidataEntityExtractor {
                 // if biggest group has result, don't consider smaller token groups anymore
                 if (currentEntities.size() > 0) {
                     if (i + 1 < subtokensList.size() && subtokens.size() > subtokensList.get(i + 1).size()) {
-                        // progressBarSubtokens.stop();
                         break;
                     }
                 }
