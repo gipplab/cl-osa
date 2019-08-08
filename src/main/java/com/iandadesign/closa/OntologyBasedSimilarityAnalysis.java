@@ -139,13 +139,8 @@ public class OntologyBasedSimilarityAnalysis {
             String documentEntitiesPath;
             String userHome = System.getProperty("user.home");
 
-            if (documentPath.contains(userHome)) {
-                documentEntitiesPath = Paths.get(userHome, "preprocessed", documentPath.replace(userHome, ""))
-                        .toAbsolutePath().toString();
-            } else {
-                documentEntitiesPath = Paths.get("preprocessed", documentPath)
-                        .toAbsolutePath().toString();
-            }
+            documentEntitiesPath = Paths.get(userHome, "preprocessed", documentPath.replace(userHome, ""))
+                    .toAbsolutePath().toString();
 
             List<String> documentEntities;
             Category documentCategory = textClassifier.classifyText(documentText, documentLanguage);
@@ -157,6 +152,12 @@ public class OntologyBasedSimilarityAnalysis {
             } else {
                 // pre-process the file
                 documentEntities = preProcess(documentPath, documentText, documentLanguage, documentCategory);
+
+                if (documentEntities.size() == 0 && !documentText.equals("")) {
+                    System.out.println("text = " + documentText);
+                    throw new IllegalStateException("Empty preprocessing.");
+                }
+
                 FileUtils.writeLines(new File(documentEntitiesPath), documentEntities);
             }
 
