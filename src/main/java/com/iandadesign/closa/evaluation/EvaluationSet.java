@@ -20,17 +20,17 @@ import java.util.stream.IntStream;
  * Class for an evaluationSet, containing suspicious and candidate documents.
  * Can perform evaluation on the documents.
  */
-public abstract class EvaluationSet {
+public abstract class EvaluationSet<T> {
 
     // documents
     protected Map<String, String> suspiciousIdCandidateIdMap = new HashMap<>();
-    protected Map<String, List<String>> candidateIdTokensMap = new HashMap<>();
-    protected Map<String, List<String>> suspiciousIdTokensMap = new HashMap<>();
+    protected Map<String, List<T>> candidateIdTokensMap = new HashMap<>();
+    protected Map<String, List<T>> suspiciousIdTokensMap = new HashMap<>();
 
     protected Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap;
 
-    protected Map<String, String> suspiciousIdLanguageMap = new HashMap<>();
-    protected Map<String, String> candidateIdLanguageMap = new HashMap<>();
+    private Map<String, String> suspiciousIdLanguageMap = new HashMap<>();
+    private Map<String, String> candidateIdLanguageMap = new HashMap<>();
 
     protected Set<String> documentLanguages = new HashSet<>();
 
@@ -111,7 +111,6 @@ public abstract class EvaluationSet {
 
         Map<File, File> files = FileUtils.listFiles(suspiciousFolder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .stream()
-                .sorted()
                 .filter(file -> !file.getName().equals(".DS_Store"))
                 .filter(file -> !file.getName().substring(0, 1).equals("_"))
                 .collect(Collectors.toMap(file -> file,
@@ -171,7 +170,6 @@ public abstract class EvaluationSet {
 
         Map<File, File> files = FileUtils.listFiles(folder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .stream()
-                .sorted()
                 .filter(file -> !file.getName().equals(".DS_Store"))
                 .filter(file -> !file.getName().substring(0, 1).equals("_"))
                 .filter(file -> file.getName().endsWith(suspiciousSuffix + ".txt"))
@@ -214,7 +212,7 @@ public abstract class EvaluationSet {
                 .filter(file -> !file.getName().equals(".DS_Store"))
                 .filter(file -> !file.getName().substring(0, 1).equals("_"))
                 .forEach(extraCandidateFile -> {
-                    List<String> extraCandidateTokens = preProcess(extraCandidateFile.getPath(),
+                    List<T> extraCandidateTokens = preProcess(extraCandidateFile.getPath(),
                             candidateLanguage);
 
                     saveDocumentTokensToFile(extraCandidateFile.getPath(), extraCandidateTokens);
@@ -257,10 +255,10 @@ public abstract class EvaluationSet {
         documentLanguages.add(suspiciousLanguage);
         documentLanguages.add(candidateLanguage);
 
-        List<String> suspiciousTokens = preProcess(suspiciousFile.getPath(), suspiciousLanguage);
+        List<T> suspiciousTokens = preProcess(suspiciousFile.getPath(), suspiciousLanguage);
         saveDocumentTokensToFile(suspiciousFile.getPath(), suspiciousTokens);
 
-        List<String> candidateTokens = preProcess(candidateFile.getPath(), candidateLanguage);
+        List<T> candidateTokens = preProcess(candidateFile.getPath(), candidateLanguage);
         saveDocumentTokensToFile(candidateFile.getPath(), candidateTokens);
 
         suspiciousIdLanguageMap.put(suspiciousFile.getPath(), suspiciousLanguage);
@@ -298,7 +296,7 @@ public abstract class EvaluationSet {
      * @param documentLanguage the document's language
      * @return the preprocessed document as token list.
      */
-    protected abstract List<String> preProcess(String documentPath, String documentLanguage);
+    protected abstract List<T> preProcess(String documentPath, String documentLanguage);
 
 
     /**
@@ -452,22 +450,6 @@ public abstract class EvaluationSet {
     }
 
 
-    /**
-     * Count files in directory and subdirectories.
-     *
-     * @param directory parent directory
-     * @return file count in directory and subdirectories.
-     */
-    private long fileCount(Path directory) {
-        try {
-            return Files.walk(directory)
-                    .filter(path -> !path.toFile().isDirectory())
-                    .count();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
 
     /**
      * Method that should be used for saving intermediate results.
@@ -475,7 +457,7 @@ public abstract class EvaluationSet {
      * @param originalDocumentPath : path to the original document.
      * @param documentTokens       : the tokens that have been extracted from the document.
      */
-    protected void saveDocumentTokensToFile(String originalDocumentPath, List<String> documentTokens) {
+    protected void saveDocumentTokensToFile(String originalDocumentPath, List<T> documentTokens) {
         if (documentTokens == null) {
             throw new IllegalArgumentException("Document tokens have to be non-null.");
         }
@@ -508,8 +490,8 @@ public abstract class EvaluationSet {
         try {
             writer = new BufferedWriter(new FileWriter(newFile));
 
-            for (String token : documentTokens) {
-                writer.write(token);
+            for (T token : documentTokens) {
+                writer.write(token.toString());
                 writer.write("\n");
             }
         } catch (IOException e) {

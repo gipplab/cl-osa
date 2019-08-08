@@ -15,7 +15,7 @@ import java.util.List;
  * <p>
  * Created by Fabian Marquart on 2018/08/06.
  */
-public class CLOSAEvaluationSet extends EvaluationSet {
+public class CLOSAEvaluationSet extends EvaluationSet<String> {
 
     private OntologyBasedSimilarityAnalysis analysis;
     private boolean graphBasedAnalysis = false;

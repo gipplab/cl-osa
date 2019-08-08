@@ -57,10 +57,11 @@ public class WikidataDumpUtil {
     private static final String mongoDatabaseName = "wikidata";
     private static final String entitiesCollectionName = "entities";
     private static final String entitiesHierarchyCollectionName = "entitiesHierarchyPersistent";
+
     // database
     private static ServerAddress serverAddress;
     private static MongoCredential mongoCredential;
-    private static MongoDatabase database;
+    private static MongoClient mongoClient;
     private static MongoCollection<Document> entitiesCollection;
     private static MongoCollection<Document> entitiesHierarchyCollection;
 
@@ -72,9 +73,8 @@ public class WikidataDumpUtil {
         try {
             loadDatabaseFromConfig();
 
-            MongoClient mongoClient = new MongoClient(serverAddress, Collections.singletonList(mongoCredential));
-
-            database = mongoClient.getDatabase(mongoDatabaseName);
+            mongoClient = new MongoClient(serverAddress, Collections.singletonList(mongoCredential));
+            MongoDatabase database = mongoClient.getDatabase(mongoDatabaseName);
             entitiesCollection = database.getCollection(entitiesCollectionName);
             entitiesHierarchyCollection = database.getCollection(entitiesHierarchyCollectionName);
         } catch (IOException e) {
@@ -82,8 +82,8 @@ public class WikidataDumpUtil {
         }
     }
 
-    public static MongoDatabase getDatabase() {
-        return database;
+    public static MongoClient getMongoClient() {
+        return mongoClient;
     }
 
     /**

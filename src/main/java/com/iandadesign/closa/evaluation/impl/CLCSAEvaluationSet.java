@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  * <p>
  * Created by Fabian Marquart on 2018/01/01.
  */
-public class CLCSAEvaluationSet extends EvaluationSet {
+public class CLCSAEvaluationSet extends EvaluationSet<String> {
 
     public CLCSAEvaluationSet(File suspiciousFolder, String suspiciousLanguage, File candidateFolder, String candidateLanguage, int i) {
         super(suspiciousFolder, suspiciousLanguage, candidateFolder, candidateLanguage, i);
@@ -107,10 +107,7 @@ public class CLCSAEvaluationSet extends EvaluationSet {
             documentTokens = TokenUtil.stem(documentTokens, "en");
             documentTokens = TokenUtil.removeStopwords(documentTokens, "en");
 
-            // FIXME : return empty list
-            List<String> tokens = documentTokens.stream().map(Token::getToken).collect(Collectors.toList());
-            System.out.println(tokens);
-            return tokens;
+            return documentTokens.stream().map(Token::getToken).collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
         }
