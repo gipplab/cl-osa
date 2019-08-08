@@ -80,8 +80,8 @@ public class CLOSAEvaluationSetEval {
 
         try {
             CLOSAEvaluationSet vroniPlagEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File("src/test/resources/com/iandadesign/closa/evaluation/test-vroniplag/fragments-text"),
-                    new File("src/test/resources/com/iandadesign/closa/evaluation/test-vroniplag/sources-text")
+                    new File("src/eval/resources/com/iandadesign/closa/evaluation/test-vroniplag/fragments-text"),
+                    new File("src/eval/resources/com/iandadesign/closa/evaluation/test-vroniplag/sources-text")
             );
 
             vroniPlagEvaluationSetCLOSA.printEvaluation();
@@ -113,19 +113,14 @@ public class CLOSAEvaluationSetEval {
             Recall: 0.9574468
             F-Measure: 0.942408388550284
          */
-        try {
-            CLOSAEvaluationSet englishJapaneseBBCEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File("src/test/resources/com/iandadesign/closa/evaluation/test-bbc/en"), "en",
-                    new File("src/test/resources/com/iandadesign/closa/evaluation/test-bbc/ja"), "ja"
-            );
+        CLOSAEvaluationSet englishJapaneseBBCEvaluationSetCLOSA = new CLOSAEvaluationSet(
+                new File("src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/en"), "en",
+                new File("src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/ja"), "ja",
+                5
+        );
 
-            englishJapaneseBBCEvaluationSetCLOSA.setGraphBasedAnalysis(true);
-            englishJapaneseBBCEvaluationSetCLOSA.printEvaluation();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        englishJapaneseBBCEvaluationSetCLOSA.setGraphBasedAnalysis(true);
+        englishJapaneseBBCEvaluationSetCLOSA.printEvaluation();
     }
 
 
@@ -154,8 +149,8 @@ public class CLOSAEvaluationSetEval {
 
         try {
             CLOSAEvaluationSet englishChineseECCEEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File("src/test/resources/com/iandadesign/closa/evaluation/ECCE/en"), "en",
-                    new File("src/test/resources/com/iandadesign/closa/evaluation/ECCE/zh"), "zh"
+                    new File("src/eval/resources/com/iandadesign/closa/evaluation/ECCE/en"), "en",
+                    new File("src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"), "zh"
             );
             englishChineseECCEEvaluationSetCLOSA.setGraphBasedAnalysis(true);
             englishChineseECCEEvaluationSetCLOSA.printEvaluation();

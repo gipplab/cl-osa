@@ -279,6 +279,74 @@ public class OntologyBasedSimilarityAnalysis {
 
 
     /**
+     * Ontology-enhanced cosine similarity analysis.
+     *
+     * @param suspiciousIdTokensMap map: suspicious id to tokens list
+     * @param candidateIdTokensMap  map: candidate id to tokens list
+     * @return retrieved candidates.
+     */
+    public Map<String, Map<String, Double>> performPropertyCosineSimilarityAnalysis(
+            Map<String, List<String>> suspiciousIdTokensMap,
+            Map<String, List<String>> candidateIdTokensMap) {
+        Map<String, Map<String, Double>> suspiciousIdDetectedCandidateIdsMap = new HashMap<>();
+
+        ProgressBar ontologyProgressBar = new ProgressBar("Enhancing vectors with property data",
+                suspiciousIdTokensMap.size() + candidateIdTokensMap.size(),
+                ProgressBarStyle.ASCII);
+        ontologyProgressBar.start();
+
+        Map<String, Map<String, Double>> suspiciousIdTokenCountMap = new HashMap<>();
+        Map<String, Map<String, Double>> candidateIdTokenCountMap = new HashMap<>();
+
+        for (Map.Entry<String, List<String>> suspiciousIdTokensMapEntry : suspiciousIdTokensMap.entrySet()) {
+            String id = suspiciousIdTokensMapEntry.getKey();
+            List<String> tokens = suspiciousIdTokensMapEntry.getValue();
+            Map<String, Double> countMap = getPropertyCountMap(tokens);
+            suspiciousIdTokenCountMap.put(id, countMap);
+            ontologyProgressBar.step();
+        }
+
+        for (Map.Entry<String, List<String>> candidateIdTokensMapEntry : candidateIdTokensMap.entrySet()) {
+            String id = candidateIdTokensMapEntry.getKey();
+            List<String> tokens = candidateIdTokensMapEntry.getValue();
+            Map<String, Double> countMap = getPropertyCountMap(tokens);
+            candidateIdTokenCountMap.put(id, countMap);
+            ontologyProgressBar.step();
+        }
+
+        ontologyProgressBar.stop();
+
+
+        // perform detailed analysis
+        logger.info("Perform detailed analysis");
+
+        // progress bar
+        ProgressBar progressBar = new ProgressBar("Perform cosine similarity analysis",
+                suspiciousIdTokenCountMap.size() * candidateIdTokenCountMap.size(),
+                ProgressBarStyle.ASCII);
+        progressBar.start();
+
+        // iterate the suspicious documents
+        for (Map.Entry<String, Map<String, Double>> suspiciousEntry : suspiciousIdTokenCountMap.entrySet()) {
+
+            Map<String, Double> candidateSimilarities = new HashMap<>();
+
+            for (Map.Entry<String, Map<String, Double>> candidateEntry : candidateIdTokenCountMap.entrySet()) {
+                double similarity = WikidataSimilarityUtil.cosineSimilarity(suspiciousEntry.getValue(), candidateEntry.getValue());
+                candidateSimilarities.put(candidateEntry.getKey(), similarity);
+                progressBar.step();
+            }
+
+            suspiciousIdDetectedCandidateIdsMap.put(suspiciousEntry.getKey(), candidateSimilarities);
+        }
+
+        progressBar.stop();
+
+        return suspiciousIdDetectedCandidateIdsMap;
+    }
+
+
+    /**
      * Add two levels of hierarchy, taking their inverse depth as count.
      *
      * @param tokens tokens.
@@ -297,6 +365,33 @@ public class OntologyBasedSimilarityAnalysis {
                 String ancestorId = ancestorEntry.getKey().getId();
 
                 tokenCountMap.put(ancestorId, 1.0 / Math.pow(2.0, (ancestorEntry.getValue())));
+
+            }
+        }
+
+        return tokenCountMap;
+    }
+
+    /**
+     * Add two levels of hierarchy, taking their inverse depth as count.
+     *
+     * @param tokens tokens.
+     * @return tokens, with ancestors added.
+     */
+    private Map<String, Double> getPropertyCountMap(List<String> tokens) {
+        Map<String, Double> tokenCountMap = new TreeMap<>();
+
+        for (String token : tokens) {
+
+            tokenCountMap.put(token, 1.0);
+
+            WikidataEntity tokenEntity = WikidataDumpUtil.getEntityById(token);
+
+            for (Map.Entry<String, List<WikidataEntity>> propertyEntry : WikidataDumpUtil.getProperties(tokenEntity).entrySet()) {
+                for (WikidataEntity propertyValue : propertyEntry.getValue()) {
+                    String ancestorId = propertyValue.getId();
+                    tokenCountMap.put(ancestorId, 1.0 / 2.0);
+                }
 
             }
         }
