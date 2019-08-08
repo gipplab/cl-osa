@@ -450,7 +450,6 @@ public abstract class EvaluationSet<T> {
     }
 
 
-
     /**
      * Method that should be used for saving intermediate results.
      *
@@ -458,17 +457,12 @@ public abstract class EvaluationSet<T> {
      * @param documentTokens       : the tokens that have been extracted from the document.
      */
     protected void saveDocumentTokensToFile(String originalDocumentPath, List<T> documentTokens) {
-        if (documentTokens == null) {
+        if (documentTokens == null || documentTokens.size() == 0) {
             throw new IllegalArgumentException("Document tokens have to be non-null.");
         }
 
-        Path newFullPath;
-        if (originalDocumentPath.contains("evaluation")) {
-            newFullPath = Paths.get(originalDocumentPath.replace("evaluation", "evaluation/preprocessed/" + this.getClass().getSimpleName()));
-        } else {
-            newFullPath = Paths.get(originalDocumentPath.replace(System.getProperty("user.home"),
-                    System.getProperty("user.home") + "/preprocessed/" + this.getClass().getSimpleName()));
-        }
+        Path newFullPath = Paths.get(originalDocumentPath.replace(System.getProperty("user.home"),
+                System.getProperty("user.home") + "/preprocessed/" + this.getClass().getSimpleName()));
 
         File newFile = new File(newFullPath.toString());
 
