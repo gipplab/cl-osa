@@ -62,7 +62,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
         articleCollection = database.getCollection(articleCollectionName);
     }
 
-    private List<String> supportedLanguages = Arrays.asList("en", "fr", "es", "zh", "ja");
+    private static final List<String> supportedLanguages = Arrays.asList("en", "fr", "es", "zh", "ja");
 
 
     /**
