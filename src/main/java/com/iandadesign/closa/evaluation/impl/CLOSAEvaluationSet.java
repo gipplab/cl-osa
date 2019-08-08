@@ -79,7 +79,13 @@ public class CLOSAEvaluationSet extends EvaluationSet<String> {
     @Override
     protected List<String> preProcess(String documentPath, String documentLanguage) {
         this.analysis = new OntologyBasedSimilarityAnalysis(new LanguageDetector(), new TextClassifier());
-        return analysis.preProcess(documentPath, documentLanguage);
+        List<String> preProcessed = analysis.preProcess(documentPath, documentLanguage);
+
+        if (preProcessed.size() == 0) {
+            throw new IllegalStateException("Empty preprocessing.");
+        }
+
+        return preProcessed;
     }
 
 
