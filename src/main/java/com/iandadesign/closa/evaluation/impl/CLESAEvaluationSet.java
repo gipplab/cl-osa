@@ -280,12 +280,12 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
         articleDocument.append("text", new Document(documentLanguage, text));
 
         // insert into to collection
-        Document existingDocument = articleCollection.find(new Document("id", id)).first();
+        Document existingDocument = articleCollection.find(new Document("id", idInLanguage)).first();
 
         if (existingDocument == null) {
             articleCollection.insertOne(articleDocument);
         } else {
-            articleCollection.updateOne(new Document("id", id), existingDocument);
+            articleCollection.updateOne(new Document("id", idInLanguage), existingDocument);
         }
     }
 }
