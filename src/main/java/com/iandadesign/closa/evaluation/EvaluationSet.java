@@ -458,7 +458,8 @@ public abstract class EvaluationSet<T> {
      */
     protected void saveDocumentTokensToFile(String originalDocumentPath, List<T> documentTokens) {
         if (documentTokens == null || documentTokens.size() == 0) {
-            throw new IllegalArgumentException("Document tokens have to be non-null.");
+            return;
+            // Document tokens have to be non-null
         }
 
         Path newFullPath = Paths.get(originalDocumentPath.replace(System.getProperty("user.home"),
