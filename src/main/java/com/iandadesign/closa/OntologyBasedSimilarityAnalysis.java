@@ -154,6 +154,7 @@ public class OntologyBasedSimilarityAnalysis {
                 documentEntities = preProcess(documentPath, documentText, documentLanguage, documentCategory);
 
                 if (documentEntities.size() == 0 && !documentText.equals("")) {
+                    System.out.println("documentPath = " + documentPath);
                     System.out.println("text = " + documentText);
                     throw new IllegalStateException("Empty preprocessing.");
                 }
