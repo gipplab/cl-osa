@@ -119,7 +119,7 @@ class CLOSAEvaluationSetEval {
                     new File("src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/ja"), "ja"
             );
 
-            englishJapaneseBBCEvaluationSetCLOSA.setLinkedDataBasedAnalysis(true);
+            englishJapaneseBBCEvaluationSetCLOSA.setGraphBasedAnalysis(true);
             englishJapaneseBBCEvaluationSetCLOSA.printEvaluation();
         } catch (IOException e) {
             e.printStackTrace();
