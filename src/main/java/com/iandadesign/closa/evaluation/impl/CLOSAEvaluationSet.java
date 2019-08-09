@@ -60,12 +60,12 @@ public class CLOSAEvaluationSet extends EvaluationSet<String> {
      */
     @Override
     protected void performAnalysis() {
-        if (!graphBasedAnalysis) {
-            suspiciousIdCandidateScoresMap = analysis.performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
-        } else if (!linkedDataBasedAnalysis) {
+        if (graphBasedAnalysis) {
+            suspiciousIdCandidateScoresMap = analysis.performEnhancedCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
+        } else if (linkedDataBasedAnalysis) {
             suspiciousIdCandidateScoresMap = analysis.performPropertyCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
         } else {
-            suspiciousIdCandidateScoresMap = analysis.performEnhancedCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
+            suspiciousIdCandidateScoresMap = analysis.performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
         }
     }
 
