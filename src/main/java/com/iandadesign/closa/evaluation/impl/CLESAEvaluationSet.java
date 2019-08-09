@@ -111,6 +111,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
             for (Map.Entry<String, Integer> languageEntry : supportedLanguages.entrySet()) {
                 String language = languageEntry.getKey();
+                articleCollection.createIndex(new Document("text." + language, 1), new IndexOptions().unique(true));
 
                 System.out.println("Current language = " + language);
 
