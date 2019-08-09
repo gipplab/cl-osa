@@ -111,7 +111,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
             for (Map.Entry<String, Integer> languageEntry : supportedLanguages.entrySet()) {
                 String language = languageEntry.getKey();
-                articleCollection.createIndex(new Document("text." + language, 1), new IndexOptions().unique(true));
+                articleCollection.createIndex(new Document("languages", 1), new IndexOptions());
 
                 System.out.println("Current language = " + language);
 
@@ -183,11 +183,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
             String documentText = FileUtils.readFileToString(new File(documentPath), UTF_8);
             List<Token> documentTokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(documentText, documentLanguage);
 
-            Document query = new Document();
-
-            for (String language : documentLanguages) {
-                query.append("text." + language, new Document("$exists", true));
-            }
+            Document query = new Document("languages", new Document("$all", documentLanguages));
 
             FindIterable<Document> queryResult = articleCollection.find(query).limit(wikipediaArticleLimit);
 
@@ -275,6 +271,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
         // main information
         Document articleDocument = new Document("id", idInLanguage)
+                .append("languages", Collections.singletonList(documentLanguage))
                 .append("url", url)
                 .append("title", title);
 
@@ -287,7 +284,8 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
             articleCollection.insertOne(articleDocument);
         } else {
             articleCollection.updateOne(new Document("id", idInLanguage),
-                    new Document("$set", new Document("text." + documentLanguage, text)));
+                    new Document("$set", new Document("text." + documentLanguage, text)
+                            .append("$push", new Document("languages", documentLanguage))));
         }
     }
 }
