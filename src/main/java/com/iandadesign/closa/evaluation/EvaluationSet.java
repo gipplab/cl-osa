@@ -81,7 +81,7 @@ public abstract class EvaluationSet<T> {
         System.out.println("Analyzing " + fileCountLimit + " file pairs...");
 
         FileUtils.listFiles(suspiciousFolder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
-                .stream()
+                .parallelStream()
                 .sorted()
                 .filter(file -> !file.getName().equals(".DS_Store"))
                 .filter(file -> !file.getName().substring(0, 1).equals("_"))
@@ -114,7 +114,8 @@ public abstract class EvaluationSet<T> {
         System.out.println("Analyzing " + fileCountLimit + " file pairs... (" + this.getClass().getSimpleName() + ")");
 
         Map<File, File> files = FileUtils.listFiles(suspiciousFolder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
-                .stream()
+                .parallelStream()
+                .sorted()
                 .filter(file -> !file.getName().equals(".DS_Store"))
                 .filter(file -> !file.getName().substring(0, 1).equals("_"))
                 .collect(Collectors.toMap(file -> file,
@@ -173,7 +174,8 @@ public abstract class EvaluationSet<T> {
                 .size() + " files... (" + this.getClass().getSimpleName() + ")");
 
         Map<File, File> files = FileUtils.listFiles(folder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
-                .stream()
+                .parallelStream()
+                .sorted()
                 .filter(file -> !file.getName().equals(".DS_Store"))
                 .filter(file -> !file.getName().substring(0, 1).equals("_"))
                 .filter(file -> file.getName().endsWith(suspiciousSuffix + ".txt"))
