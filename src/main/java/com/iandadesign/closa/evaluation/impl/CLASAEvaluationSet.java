@@ -133,8 +133,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                                                 .append("probability", probability))));
                                     } else {
                                         translationsCollection.updateOne(query,
-                                                new Document("foreign",
-                                                        new Document("$push",
+                                                new Document("$push",
+                                                        new Document("foreign",
                                                                 new Document("translation", foreignWord)
                                                                         .append("probability", probability))));
                                     }
