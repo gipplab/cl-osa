@@ -96,8 +96,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                         if (englishToForeign) {
                             translationsCollection.createIndex(new Document("native", 1), new IndexOptions().unique(true));
-                        } else {
-                            translationsCollection.createIndex(new Document("foreign", 1), new IndexOptions().unique(true));
                         }
 
                         Path translationFilePath = Paths.get(System.getProperty("user.home") + "/eu-bilingual/"
