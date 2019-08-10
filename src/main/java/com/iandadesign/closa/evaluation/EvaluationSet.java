@@ -56,12 +56,16 @@ public abstract class EvaluationSet<T> {
      * @param suspiciousLanguage suspicious files' language
      * @param candidateFolder    contains the candidate files, named identically to the suspicious ones.
      * @param candidateLanguage  candidate files' language
-     * @throws IOException if files cannot be accessed.
      */
-    public EvaluationSet(File suspiciousFolder, String suspiciousLanguage,
-                         File candidateFolder, String candidateLanguage) throws IOException {
-        this(suspiciousFolder, suspiciousLanguage, candidateFolder, candidateLanguage,
-                (int) Files.walk(candidateFolder.toPath()).filter(path -> !path.toFile().isDirectory()).count());
+    public EvaluationSet(File suspiciousFolder,
+                         String suspiciousLanguage,
+                         File candidateFolder,
+                         String candidateLanguage) {
+        this(suspiciousFolder,
+                suspiciousLanguage,
+                candidateFolder,
+                candidateLanguage,
+                Objects.requireNonNull(candidateFolder.listFiles()).length);
     }
 
     /**

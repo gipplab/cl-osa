@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 class CLOSAEvaluationSetEval {
 
@@ -152,8 +153,12 @@ class CLOSAEvaluationSetEval {
 
         try {
             CLOSAEvaluationSet englishChineseECCEEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File("src/eval/resources/com/iandadesign/closa/evaluation/ECCE/en"), "en",
-                    new File("src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"), "zh"
+                    new File(System.getProperty("user.home")
+                            + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/en"),
+                    "en",
+                    new File(System.getProperty("user.home")
+                            + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"),
+                    "zh"
             );
             englishChineseECCEEvaluationSetCLOSA.setGraphBasedAnalysis(true);
             englishChineseECCEEvaluationSetCLOSA.printEvaluation();
