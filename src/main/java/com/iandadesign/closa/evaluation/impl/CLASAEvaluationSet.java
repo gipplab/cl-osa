@@ -101,14 +101,15 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         }
 
                         Path translationFilePath = Paths.get(System.getProperty("user.home") + "/eu-bilingual/"
-                                + languagePair + "/lex." + translationDirection);
+                                + languageEntry.getKey() + "/lex." + translationDirection);
 
                         // check translation files
                         if (Files.notExists(translationFilePath)) {
                             throw new FileNotFoundException("The translation file is missing: " + translationFilePath.toString());
                         }
 
-                        ProgressBar progressBar = new ProgressBar("Preprocess translation files: " + languagePair, Files.lines(translationFilePath).count(), ProgressBarStyle.ASCII);
+                        ProgressBar progressBar = new ProgressBar("Preprocess translation files: " + languagePair,
+                                Files.lines(translationFilePath).count(), ProgressBarStyle.ASCII);
                         progressBar.start();
 
                         Files.lines(translationFilePath)
