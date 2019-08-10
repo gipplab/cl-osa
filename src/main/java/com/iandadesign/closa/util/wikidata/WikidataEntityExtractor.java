@@ -243,9 +243,6 @@ public class WikidataEntityExtractor {
         }
         progressBar.stop();
 
-        System.out.println(tokenEntitiesMap.entrySet().stream().filter(entry -> entry.getValue().size() > 0)
-                .collect(Collectors.toList()));
-
         return tokenEntitiesMap;
     }
 
