@@ -132,11 +132,18 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                                         new Document("translation", foreignWord)
                                                                 .append("probability", probability))));
                                     } else {
-                                        translationsCollection.updateOne(query,
-                                                new Document("$push",
-                                                        new Document("foreign",
-                                                                new Document("translation", foreignWord)
-                                                                        .append("probability", probability))));
+                                        List<Document> translations = existingDocument.get("foreign", ArrayList.class);
+
+                                        if (translations.stream()
+                                                .map(t -> t.getString("translation"))
+                                                .noneMatch(t -> t.equals(foreignWord))) {
+
+                                            translationsCollection.updateOne(query,
+                                                    new Document("$push",
+                                                            new Document("foreign",
+                                                                    new Document("translation", foreignWord)
+                                                                            .append("probability", probability))));
+                                        }
                                     }
 
                                     progressBar.step();
