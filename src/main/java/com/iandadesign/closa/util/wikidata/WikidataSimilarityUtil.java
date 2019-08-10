@@ -1,16 +1,12 @@
 package com.iandadesign.closa.util.wikidata;
 
 
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.Logger;
-import ch.qos.logback.classic.LoggerContext;
 import com.iandadesign.closa.model.WikidataEntity;
 import me.tongfei.progressbar.ProgressBar;
 import org.apache.commons.collections4.SetUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.math3.linear.OpenMapRealVector;
 import org.apache.commons.math3.linear.SparseRealVector;
-import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -22,12 +18,6 @@ import static com.iandadesign.closa.util.wikidata.WikidataDumpUtil.*;
  * Created by Fabian Marquart 2018/11/02.
  */
 public class WikidataSimilarityUtil {
-
-    static {
-        LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
-        Logger mongoDbDriverLogger = loggerContext.getLogger("org.mongodb.driver");
-        mongoDbDriverLogger.setLevel(Level.OFF);
-    }
 
 
     /**
@@ -103,6 +93,8 @@ public class WikidataSimilarityUtil {
             secondVector.addToEntry(union.indexOf(secondEntityCount.getKey()), secondEntityCount.getValue());
             if (progressBar != null) progressBar.step();
         }
+
+        System.out.println(firstVector);
 
         return firstVector.dotProduct(secondVector) / (firstVector.getNorm() * secondVector.getNorm());
     }

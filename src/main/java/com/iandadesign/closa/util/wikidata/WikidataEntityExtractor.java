@@ -165,6 +165,7 @@ public class WikidataEntityExtractor {
             tokenList = TokenUtil.removeStopwords(tokenList, languageCode);
         }
 
+
         List<List<List<Token>>> subtokensLists = getSublistsOfSize(tokenList, 3);
 
         // filter
@@ -205,6 +206,7 @@ public class WikidataEntityExtractor {
                     }
                 }
 
+
                 // extract entities
                 List<WikidataEntity> currentEntities = getEntitiesByToken(token,
                         // if english text bits are contained in a chinese text
@@ -240,6 +242,9 @@ public class WikidataEntityExtractor {
             progressBar.step();
         }
         progressBar.stop();
+
+        System.out.println(tokenEntitiesMap.entrySet().stream().filter(entry -> entry.getValue().size() > 0)
+                .collect(Collectors.toList()));
 
         return tokenEntitiesMap;
     }

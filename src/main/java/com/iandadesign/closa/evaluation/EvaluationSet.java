@@ -29,8 +29,8 @@ public abstract class EvaluationSet<T> {
 
     protected Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap;
 
-    private Map<String, String> suspiciousIdLanguageMap = new HashMap<>();
-    private Map<String, String> candidateIdLanguageMap = new HashMap<>();
+    protected Map<String, String> suspiciousIdLanguageMap = new HashMap<>();
+    protected Map<String, String> candidateIdLanguageMap = new HashMap<>();
 
     protected Set<String> documentLanguages = new HashSet<>();
 

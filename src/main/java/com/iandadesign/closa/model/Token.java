@@ -46,8 +46,8 @@ public class Token implements HasWord {
     /**
      * Initialize with two tokens that should be joined into one.
      *
-     * @param token1 first token
-     * @param token2 second token
+     * @param token1    first token
+     * @param token2    second token
      * @param separator string to join the tokens in between
      */
     public Token(Token token1, Token token2, String separator) {
@@ -249,7 +249,7 @@ public class Token implements HasWord {
 
     @Override
     public String toString() {
-        return token;
+        return token + " & " + partOfSpeech + " & " + namedEntityType + " &";
     }
 
     @Override
