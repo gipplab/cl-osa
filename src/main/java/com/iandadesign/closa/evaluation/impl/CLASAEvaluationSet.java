@@ -127,7 +127,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                     Document query = new Document("native", nativeWord);
                                     Document existingDocument = translationsCollection.find(query).first();
 
-                                    if (existingDocument != null) {
+                                    if (existingDocument == null) {
                                         translationsCollection.insertOne(new Document(
                                                 "native", nativeWord)
                                                 .append("foreign", Collections.singletonList(
