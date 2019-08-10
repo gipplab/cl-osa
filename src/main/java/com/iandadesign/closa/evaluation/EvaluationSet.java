@@ -211,7 +211,7 @@ public abstract class EvaluationSet<T> {
         this(suspiciousFolder, suspiciousLanguage, candidateFolder, candidateLanguage, fileCountLimit);
 
         FileUtils.listFiles(extraCandidateFolder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
-                .stream()
+                .parallelStream()
                 .sorted()
                 .filter(file -> !file.getName().equals(".DS_Store"))
                 .filter(file -> !file.getName().substring(0, 1).equals("_"))
