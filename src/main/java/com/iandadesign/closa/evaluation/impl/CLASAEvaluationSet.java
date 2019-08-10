@@ -8,6 +8,8 @@ import com.iandadesign.closa.util.wikidata.WikidataDumpUtil;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.IndexOptions;
+import me.tongfei.progressbar.ProgressBar;
+import me.tongfei.progressbar.ProgressBarStyle;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
@@ -106,7 +108,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             throw new FileNotFoundException("The translation file is missing: " + translationFilePath.toString());
                         }
 
-                        System.out.println("Preprocess translation files: " + languagePair);
+                        ProgressBar progressBar = new ProgressBar("Preprocess translation files: " + languagePair, Files.lines(translationFilePath).count(), ProgressBarStyle.ASCII);
+                        progressBar.start();
 
                         Files.lines(translationFilePath)
                                 .forEach((String line) -> {
@@ -136,7 +139,11 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                                                 new Document("translation", foreignWord)
                                                                         .append("probability", probability))));
                                     }
+
+                                    progressBar.step();
                                 });
+
+                        progressBar.stop();
                     }
                 }
             }
@@ -163,6 +170,9 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
     @Override
     protected void performAnalysis() {
+        ProgressBar progressBar = new ProgressBar("Calculate similarities:", suspiciousIdTokensMap.size() * candidateIdTokensMap.size(), ProgressBarStyle.ASCII);
+        progressBar.start();
+
         for (Map.Entry<String, List<String>> suspiciousEntry : suspiciousIdTokensMap.entrySet()) {
             String suspiciousLanguage = suspiciousIdLanguageMap.get(suspiciousEntry.getKey());
 
@@ -181,8 +191,12 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                 suspiciousIdCandidateScoresMap.get(suspiciousEntry.getKey())
                         .put(candidateEntry.getKey(), similarity);
+
+                progressBar.step();
             }
         }
+
+        progressBar.stop();
     }
 
     /**
