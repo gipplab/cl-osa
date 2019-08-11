@@ -166,7 +166,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
     @Override
     protected void performAnalysis() {
-        ProgressBar progressBar = new ProgressBar("Calculate similarities:", suspiciousIdTokensMap.size() * candidateIdTokensMap.size(), ProgressBarStyle.ASCII);
+        ProgressBar progressBar = new ProgressBar("Calculate similarities:", suspiciousIdTokensMap.size(), ProgressBarStyle.ASCII);
         progressBar.start();
 
         for (Map.Entry<String, List<String>> suspiciousEntry : suspiciousIdTokensMap.entrySet()) {
@@ -174,24 +174,17 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
             String suspiciousLanguage = suspiciousIdLanguageMap.get(suspiciousKey);
 
-            for (Map.Entry<String, List<String>> candidateEntry : candidateIdTokensMap.entrySet()) {
-                String candidateLanguage = candidateIdLanguageMap.get(candidateEntry.getKey());
+            Map<String, Double> candidateScoresMap = candidateIdTokensMap.entrySet()
+                    .parallelStream()
+                    .collect(Collectors.toMap(candidateEntry -> candidateEntry.getKey(),
+                            candidateEntry -> getTranslationProbability(
+                                    suspiciousEntry.getValue(),
+                                    candidateEntry.getValue(),
+                                    suspiciousLanguage,
+                                    candidateIdLanguageMap.get(candidateEntry.getKey()))));
 
-                double similarity = getTranslationProbability(
-                        suspiciousEntry.getValue(),
-                        candidateEntry.getValue(),
-                        suspiciousLanguage,
-                        candidateLanguage);
-
-                if (!suspiciousIdCandidateScoresMap.containsKey(suspiciousKey)) {
-                    suspiciousIdCandidateScoresMap.put(suspiciousKey, new HashMap<>());
-                }
-
-                suspiciousIdCandidateScoresMap.get(suspiciousKey)
-                        .put(candidateEntry.getKey(), similarity);
-
-                progressBar.step();
-            }
+            suspiciousIdCandidateScoresMap.put(suspiciousKey, candidateScoresMap);
+            progressBar.step();
         }
 
         progressBar.stop();
