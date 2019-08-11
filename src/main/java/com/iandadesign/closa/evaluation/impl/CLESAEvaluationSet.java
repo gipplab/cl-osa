@@ -62,6 +62,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
     static {
         MongoDatabase database = WikidataDumpUtil.getMongoClient().getDatabase(databaseName);
         articleCollection = database.getCollection(articleCollectionName);
+        extractWikipediaArticlesAndStore();
     }
 
     private static final Map<String, Integer> supportedLanguages = ImmutableMap.of(
@@ -103,7 +104,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
      * Get Wikipedia articles (in document language) from Wikipedia dump that has been preprocessed
      * by WikiExtractor.py, tokenize them and store them into the mongo collection {{documentLanguage}}Tokens.
      */
-    private void extractWikipediaArticlesAndStore() {
+    private static void extractWikipediaArticlesAndStore() {
         try {
             // 2.1 Walk the Wikipedia dump files
             //     only if not all have been processed into the MongoDB collection
@@ -175,7 +176,6 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
     @Override
     protected List<Double> preProcess(String documentPath, String documentLanguage) {
-        extractWikipediaArticlesAndStore();
 
         List<Double> preProcessed = new ArrayList<>();
 
@@ -264,7 +264,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
      * @param text             article text
      * @param documentLanguage language code
      */
-    private void storeWikipediaArticleDocument(String title, String url, String text, String documentLanguage) {
+    private static void storeWikipediaArticleDocument(String title, String url, String text, String documentLanguage) {
         // title in language
         String titleInEnglish = WikidataDumpUtil.getSiteLinkInEnglish(title, documentLanguage);
 

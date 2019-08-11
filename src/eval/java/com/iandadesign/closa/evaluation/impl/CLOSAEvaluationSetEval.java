@@ -230,19 +230,20 @@ class CLOSAEvaluationSetEval {
     @Test
     void evalCLOSAPan11Sentences() {
         /*
-            True positives: 2381
-            Relevant elements: 2669
-            Irrelevant elements: 0
-            Collection size: 2669
-            Selected elements: 2657
-            False positives: 276
-            False negatives: 288
+            Ranks 1 to 50
 
-            Ranks 1 to 1
+            Precision: [93.987976, 47.895794, 32.06413, 19.318638, 9.699399, 4.8597193, 1.9519038]
+            Recall: [93.8, 95.6, 96.0, 96.4, 96.8, 97.0, 97.399994]
+            F-Measure: [93.89389, 63.818424, 48.0721, 32.186977, 17.63206, 9.255725, 3.8271117]
 
-            Precision: [0.89612347]
-            Recall: [0.89209443]
-            F-Measure: [0.89410436]
+            Mean reciprocal rank: 95.00687178457385
+
+
+            Aligned document similarities
+
+            {30.0=287, 10.0=30, 20.0=111, 40.0=54, 0.0=12, 50.0=4, 70.0=1}
+
+            {30.0=57.4, 10.0=6.0, 20.0=22.2, 40.0=10.8, 0.0=2.4, 50.0=0.8, 70.0=0.2}
          */
 
         try {
