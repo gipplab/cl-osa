@@ -8,6 +8,13 @@ import java.io.IOException;
 
 public class CLESAEvaluationSetEval {
 
+
+    @Test
+    public void buildDatabase() {
+        CLESAEvaluationSet.extractWikipediaArticlesAndStore();
+    }
+
+
     /////////////////////////////////////////////////// CL-ESA //////////////////////////////////////////////////
 
     @Test
@@ -72,11 +79,6 @@ public class CLESAEvaluationSetEval {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @Test
-    public void buildDatabase() {
-        CLESAEvaluationSet.extractWikipediaArticlesAndStore();
     }
 
     @Test

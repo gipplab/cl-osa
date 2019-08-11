@@ -36,4 +36,19 @@ class CLASAEvaluationSetEval {
         }
     }
 
+    @Test
+    void evalCLASAJrcAcquis() {
+        try {
+            CLASAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLASA = new CLASAEvaluationSet(
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr",
+                    500
+            );
+            englishFrenchJrcAcquisEvaluationSetCLASA.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
