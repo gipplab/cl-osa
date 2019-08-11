@@ -158,7 +158,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
                                 String title = document.attr("title");
                                 String text = document.text();
 
-                                storeWikipediaArticleDocument(id, url, title, text, language);
+                                storeWikipediaArticleDocument(title, url, text, language);
                             } catch (NullPointerException e) {
                                 e.printStackTrace();
                             }
@@ -259,31 +259,29 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
      * text:  { en: "...", ja: "..." }
      * }
      *
-     * @param id               article id
-     * @param url              article url
      * @param title            article title
+     * @param url              article url
      * @param text             article text
      * @param documentLanguage language code
      */
-    private void storeWikipediaArticleDocument(String id, String url, String title, String text, String documentLanguage) {
-        // id in language
-        String idInLanguage = ConceptUtil.getPageIdInLanguage(id, documentLanguage, "en");
+    private void storeWikipediaArticleDocument(String title, String url, String text, String documentLanguage) {
+        // title in language
+        String titleInEnglish = WikidataDumpUtil.getSiteLinkInEnglish(title, documentLanguage);
 
         // main information
-        Document articleDocument = new Document("id", idInLanguage)
+        Document articleDocument = new Document("title", title)
                 .append("languages", Collections.singletonList(documentLanguage))
-                .append("url", url)
-                .append("title", title);
+                .append("url", url);
 
         articleDocument.append("text", new Document(documentLanguage, text));
 
         // insert into to collection
-        Document existingDocument = articleCollection.find(new Document("id", idInLanguage)).first();
+        Document existingDocument = articleCollection.find(new Document("title", titleInEnglish)).first();
 
         if (existingDocument == null) {
             articleCollection.insertOne(articleDocument);
         } else {
-            articleCollection.updateOne(new Document("id", idInLanguage),
+            articleCollection.updateOne(new Document("title", titleInEnglish),
                     new Document("$set", new Document("text." + documentLanguage, text))
                             .append("$push", new Document("languages", documentLanguage)));
         }

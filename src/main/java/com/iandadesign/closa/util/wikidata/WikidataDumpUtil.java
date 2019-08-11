@@ -941,11 +941,35 @@ public class WikidataDumpUtil {
     }
 
 
-    static String getSiteLinkInLanguage(String englishSiteLink, String language) {
+    /**
+     * Wikipedia site link.
+     * @param englishSiteLink
+     * @param language
+     * @return
+     */
+    public static String getSiteLinkInLanguage(String englishSiteLink, String language) {
         Document entityEntry = entitiesCollection.find(new Document("sitelinks.enwiki.title", englishSiteLink)).first();
 
         return entityEntry.get("sitelinks", Document.class)
                 .get(language + "wiki", Document.class)
+                .getString("title");
+    }
+
+    /**
+     * Wikipedia site link.
+     * @param siteLink
+     * @param language
+     * @return
+     */
+    public static String getSiteLinkInEnglish(String siteLink, String language) {
+        if (language.equals("en")) {
+            return siteLink;
+        }
+
+        Document entityEntry = entitiesCollection.find(new Document("sitelinks." + language + "wiki.title", siteLink)).first();
+
+        return entityEntry.get("sitelinks", Document.class)
+                .get( "enwiki", Document.class)
                 .getString("title");
     }
 

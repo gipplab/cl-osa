@@ -295,4 +295,11 @@ class WikidataDumpUtilTest {
 
         Assertions.assertEquals(WikidataDumpUtil.getSiteLinkInLanguage(englishSiteLink, "af"), "New York Stad");
     }
+
+    @Test
+    void getSiteLinkInEnglish() {
+        String afrikaansSiteLink = "New York Stad";
+
+        Assertions.assertEquals(WikidataDumpUtil.getSiteLinkInEnglish(afrikaansSiteLink, "af"), "New York City");
+    }
 }
