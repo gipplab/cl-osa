@@ -5,6 +5,7 @@ import com.iandadesign.closa.evaluation.EvaluationSet;
 import com.iandadesign.closa.model.Token;
 import com.iandadesign.closa.util.TokenUtil;
 import com.iandadesign.closa.util.wikidata.WikidataDumpUtil;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.IndexOptions;
@@ -218,23 +219,22 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
         List<Double> similarities = new ArrayList<>();
 
-        for (String nativeWord : nativeWords) {
-            Document document = translationsCollection.find(new Document("native", nativeWord)).first();
+        Document query = new Document("$or", nativeWords.stream().map(nativeWord -> new Document("native", nativeWord)));
+        FindIterable<Document> nativeWordDocuments = translationsCollection.find(query);
 
-            if (document != null) {
-                List<Document> foreignProbabilities = document.get("foreign", ArrayList.class);
+        for (Document document : nativeWordDocuments) {
+            List<Document> foreignProbabilities = document.get("foreign", ArrayList.class);
 
-                List<Document> foreignIntersection = foreignProbabilities.stream()
-                        .filter((Document foreignProbabilityDocument) ->
-                                foreignWords.contains(foreignProbabilityDocument.getString("translation")))
-                        .collect(Collectors.toList());
+            List<Document> foreignIntersection = foreignProbabilities.stream()
+                    .filter((Document foreignProbabilityDocument) ->
+                            foreignWords.contains(foreignProbabilityDocument.getString("translation")))
+                    .collect(Collectors.toList());
 
-                if (!foreignIntersection.isEmpty()) {
-                    similarities.add(foreignIntersection.stream()
-                            .map(foreignDocument -> foreignDocument.getDouble("probability"))
-                            .mapToDouble(Double::doubleValue)
-                            .sum());
-                }
+            if (!foreignIntersection.isEmpty()) {
+                similarities.add(foreignIntersection.stream()
+                        .map(foreignDocument -> foreignDocument.getDouble("probability"))
+                        .mapToDouble(Double::doubleValue)
+                        .sum());
             }
         }
 
