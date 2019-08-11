@@ -972,6 +972,7 @@ public class WikidataDumpUtil {
         if (!languages.contains(languageCode)) {
             throw new IllegalArgumentException(String.format("Language code %s is not supported", languageCode));
         }
+        System.out.println(getEntitiesForPrinting(entities, languageCode));
     }
 
     /**

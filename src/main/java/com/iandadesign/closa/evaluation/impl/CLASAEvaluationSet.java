@@ -125,9 +125,12 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             currentTranslationsToInsert.add(new Document("translation", foreignWord)
                                     .append("probability", probability));
 
+                            // if next native word is different
                             if (i < lines.size() - 1 && !lines.get(i + 1).split("\\s")[0].equals(nativeWord)) {
                                 translationsCollection.insertOne(new Document("native", nativeWord)
                                         .append("foreign", currentTranslationsToInsert));
+
+                                currentTranslationsToInsert = new ArrayList<>();
                             }
 
 
