@@ -941,6 +941,13 @@ public class WikidataDumpUtil {
     }
 
 
+    static String getSiteLinkInLanguage(String englishSiteLink, String language) {
+        Document entityEntry = entitiesCollection.find(new Document("sitelinks.enwiki.title", englishSiteLink)).first();
+
+        return entityEntry.getString("sitelinks." + language + "wiki.title");
+    }
+
+
     /**
      * If a string's first letter is uppercase but contains multiple whitespace-separated words,
      * those are also capitalized.

@@ -288,4 +288,11 @@ class WikidataDumpUtilTest {
     void getProperties() {
         Assertions.assertTrue(WikidataDumpUtil.getProperties(new WikidataEntity("Q1")).containsKey("P279"));
     }
+
+    @Test
+    void getSiteLinkInLanguage() {
+        String englishSiteLink = "New York City";
+
+        Assertions.assertEquals(WikidataDumpUtil.getSiteLinkInLanguage(englishSiteLink, "af"), "New York Stad");
+    }
 }
