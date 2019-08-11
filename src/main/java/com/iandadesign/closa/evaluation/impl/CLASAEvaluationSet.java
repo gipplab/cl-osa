@@ -122,6 +122,9 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             String foreignWord = parts[1];
                             Double probability = Double.parseDouble(parts[2]);
 
+                            System.out.println(line);
+                            System.out.println(nativeWord + "|" + foreignWord + "|" + probability);
+
                             currentTranslationsToInsert.add(new Document("translation", foreignWord)
                                     .append("probability", probability));
 
