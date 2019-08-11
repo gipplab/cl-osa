@@ -269,7 +269,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
         String titleInEnglish = WikidataDumpUtil.getSiteLinkInEnglish(title, documentLanguage);
 
         // main information
-        Document articleDocument = new Document("title", title)
+        Document articleDocument = new Document("title", titleInEnglish)
                 .append("languages", Collections.singletonList(documentLanguage))
                 .append("url", url);
 
