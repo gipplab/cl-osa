@@ -943,6 +943,7 @@ public class WikidataDumpUtil {
 
     /**
      * Wikipedia site link.
+     *
      * @param englishSiteLink
      * @param language
      * @return
@@ -957,6 +958,7 @@ public class WikidataDumpUtil {
 
     /**
      * Wikipedia site link.
+     *
      * @param siteLink
      * @param language
      * @return
@@ -968,9 +970,19 @@ public class WikidataDumpUtil {
 
         Document entityEntry = entitiesCollection.find(new Document("sitelinks." + language + "wiki.title", siteLink)).first();
 
-        return entityEntry.get("sitelinks", Document.class)
-                .get( "enwiki", Document.class)
-                .getString("title");
+        Document siteLinks = entityEntry.get("sitelinks", Document.class);
+
+        if (siteLinks == null) {
+            return null;
+        }
+
+        Document enWiki = siteLinks.get("enwiki", Document.class);
+
+        if (enWiki == null) {
+            return null;
+        }
+
+        return enWiki.getString("title");
     }
 
 

@@ -95,6 +95,22 @@ public class CLCNGEvaluationSetEval {
 
     @Test
     public void evalCLCNGPan11Sentences() {
+        /*
+            Ranks 1 to 50
+
+            Precision: [40.6, 21.1, 14.266666, 8.76, 4.58, 2.3600001, 0.984]
+            Recall: [40.6, 42.2, 42.8, 43.8, 45.8, 47.2, 49.2]
+            F-Measure: [40.6, 28.13333, 21.4, 14.599999, 8.327271, 4.4952383, 1.9294119]
+
+            Mean reciprocal rank: 42.36612540375742
+
+
+            Aligned document similarities
+
+            {60.0=142, 40.0=68, 30.0=37, 50.0=54}
+
+            {60.0=28.4, 40.0=13.6, 30.0=7.4, 50.0=10.8}
+         */
 
         try {
             CLCNGEvaluationSet englishSpanishPan11EvaluationSetCLCNG = new CLCNGEvaluationSet(
