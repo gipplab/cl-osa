@@ -153,6 +153,7 @@ public abstract class EvaluationSet<T> {
         List<File> keys = new ArrayList<>(files.keySet());
 
         IntStream.range(0, keys.size())
+                .parallel()
                 .forEach(i -> {
                     System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
                     initializeOneFilePair(keys.get(i), suspiciousLanguage, files.get(keys.get(i)), candidateLanguage);
@@ -188,10 +189,12 @@ public abstract class EvaluationSet<T> {
 
         List<File> keys = new ArrayList<>(files.keySet());
 
-        for (int i = 0; i < keys.size(); i++) {
+        IntStream.range(0, keys.size())
+                .parallel()
+                .forEachOrdered(i -> {
             System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
             initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
-        }
+        });
     }
 
     /**
