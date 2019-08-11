@@ -127,7 +127,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             if (previousNativeWord == null || !previousNativeWord.equals(nativeWord)) {
                                 currentDocumentToInsert = new Document(
                                         "native", nativeWord)
-                                        .append("foreign", Collections.singletonList(
+                                        .append("foreign", Arrays.asList(
                                                 new Document("translation", foreignWord)
                                                         .append("probability", probability)));
                             } else {
