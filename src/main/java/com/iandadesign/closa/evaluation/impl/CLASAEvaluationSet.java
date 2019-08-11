@@ -22,6 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class CLASAEvaluationSet extends EvaluationSet<String> {
@@ -166,26 +167,32 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
     @Override
     protected void performAnalysis() {
-        ProgressBar progressBar = new ProgressBar("Calculate similarities:", suspiciousIdTokensMap.size(), ProgressBarStyle.ASCII);
+        ProgressBar progressBar = new ProgressBar("Calculate similarities:",
+                suspiciousIdTokensMap.size() * candidateIdTokensMap.size(),
+                ProgressBarStyle.ASCII);
         progressBar.start();
 
-        for (Map.Entry<String, List<String>> suspiciousEntry : suspiciousIdTokensMap.entrySet()) {
-            String suspiciousKey = suspiciousEntry.getKey();
+        AtomicInteger current = new AtomicInteger(0);
 
-            String suspiciousLanguage = suspiciousIdLanguageMap.get(suspiciousKey);
+        suspiciousIdCandidateScoresMap = suspiciousIdTokensMap.entrySet()
+                .parallelStream()
+                .collect(Collectors.toMap(suspiciousEntry -> suspiciousEntry.getKey(),
+                        suspiciousEntry -> {
+                            String suspiciousLanguage = suspiciousIdLanguageMap.get(suspiciousEntry.getKey());
 
-            Map<String, Double> candidateScoresMap = candidateIdTokensMap.entrySet()
-                    .parallelStream()
-                    .collect(Collectors.toMap(candidateEntry -> candidateEntry.getKey(),
-                            candidateEntry -> getTranslationProbability(
-                                    suspiciousEntry.getValue(),
-                                    candidateEntry.getValue(),
-                                    suspiciousLanguage,
-                                    candidateIdLanguageMap.get(candidateEntry.getKey()))));
+                            return candidateIdTokensMap.entrySet()
+                                    .parallelStream()
+                                    .collect(Collectors.toMap(candidateEntry -> candidateEntry.getKey(),
+                                            candidateEntry -> {
+                                        progressBar.stepTo(current.incrementAndGet());
 
-            suspiciousIdCandidateScoresMap.put(suspiciousKey, candidateScoresMap);
-            progressBar.step();
-        }
+                                                return getTranslationProbability(
+                                                        suspiciousEntry.getValue(),
+                                                        candidateEntry.getValue(),
+                                                        suspiciousLanguage,
+                                                        candidateIdLanguageMap.get(candidateEntry.getKey()));
+                                            }));
+                        }));
 
         progressBar.stop();
     }
