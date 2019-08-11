@@ -110,35 +110,26 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                 Files.lines(translationFilePath).count(), ProgressBarStyle.ASCII);
                         progressBar.start();
 
-                        String previousNativeWord = null;
-                        Document currentDocumentToInsert = new Document();
+                        List<Document> currentTranslationsToInsert = new ArrayList<>();
 
-                        for (String line : Files.lines(translationFilePath).sorted().collect(Collectors.toList())) {
+                        List<String> lines = Files.lines(translationFilePath).sorted().collect(Collectors.toList());
+
+                        for (int i = 0; i < lines.size(); i++) {
+                            String line = lines.get(i);
                             String[] parts = line.split("\\s");
-
-                            if (parts.length != 3) {
-                                throw new IllegalStateException("Could not split line into 3 parts: " + Arrays.toString(parts));
-                            }
 
                             String nativeWord = parts[0];
                             String foreignWord = parts[1];
                             Double probability = Double.parseDouble(parts[2]);
 
-                            if (previousNativeWord == null || !previousNativeWord.equals(nativeWord)) {
-                                currentDocumentToInsert = new Document(
-                                        "native", nativeWord)
-                                        .append("foreign", Arrays.asList(
-                                                new Document("translation", foreignWord)
-                                                        .append("probability", probability)));
-                            } else {
-                                List<Document> translations = currentDocumentToInsert.get("foreign", ArrayList.class);
-                                translations.add(new Document("translation", foreignWord)
-                                        .append("probability", probability));
+                            currentTranslationsToInsert.add(new Document("translation", foreignWord)
+                                    .append("probability", probability));
+
+                            if (i < lines.size() - 1 && !lines.get(i + 1).split("\\s")[0].equals(nativeWord)) {
+                                translationsCollection.insertOne(new Document("native", nativeWord)
+                                        .append("foreign", currentTranslationsToInsert));
                             }
 
-                            translationsCollection.insertOne(currentDocumentToInsert);
-
-                            previousNativeWord = nativeWord;
 
                             progressBar.step();
                         }
