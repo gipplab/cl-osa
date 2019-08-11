@@ -140,6 +140,23 @@ public class CLESAEvaluationSetEval {
         }
     }
 
+
+    @Test
+    public void evalCLESAPan11Sentences() {
+
+        try {
+            CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/en"), "en",
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es",
+                    500
+            );
+
+            englishSpanishPan11EvaluationSetCLESA.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Test
     public void evalCLESAJrcAcquisDocuments() {
         /*
