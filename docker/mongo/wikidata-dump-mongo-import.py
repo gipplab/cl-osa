@@ -113,6 +113,7 @@ def wikidata_dump_mongo_import(host, port):
     for language in languages:
         db['entities'].create_index([('labels.' + language + '.value', pymongo.ASCENDING)])
         db['entities'].create_index([('aliases.' + language + '.value', pymongo.ASCENDING)])
+        db['entities'].create_index([('sitelinks.' + language + 'wiki.title', pymongo.ASCENDING)])
 
     # index for instanceOf and subclassOf
     db['entities'].create_index([('claims.P279.mainsnak.datavalue.value.id', pymongo.ASCENDING)])

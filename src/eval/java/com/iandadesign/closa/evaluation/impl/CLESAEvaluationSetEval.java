@@ -94,15 +94,12 @@ public class CLESAEvaluationSetEval {
             {0.0=9.823183}
          */
 
-        try {
             CLESAEvaluationSet englishChineseECCEEvaluationSetCLESA = new CLESAEvaluationSet(
                     new File("src/eval/resources/com/iandadesign/closa/evaluation/ECCE/en"), "en",
-                    new File("src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"), "zh"
+                    new File("src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"), "zh",
+                    500
             );
             englishChineseECCEEvaluationSetCLESA.printEvaluation();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 
@@ -127,7 +124,8 @@ public class CLESAEvaluationSetEval {
         try {
             CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es"
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es",
+                    500
             );
 
             englishSpanishPan11EvaluationSetCLESA.printEvaluation();
@@ -186,7 +184,8 @@ public class CLESAEvaluationSetEval {
         try {
             CLESAEvaluationSet englishFrenchEuroparlEvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr"
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
+                    500
             );
             englishFrenchEuroparlEvaluationSetCLESA.printEvaluation();
         } catch (Exception e) {
