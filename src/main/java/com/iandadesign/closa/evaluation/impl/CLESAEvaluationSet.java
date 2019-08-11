@@ -117,7 +117,8 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
                 System.out.println("Current language = " + language);
 
-                if (articleCollection.find(new Document("text." + language, new Document("$exists", true))).first() != null) {
+                if (articleCollection.find(new Document("text." + language, new Document("$exists", true))).first() != null
+                        && !language.equals("es")) {
                     System.out.println("Language present.");
                     continue;
                 }

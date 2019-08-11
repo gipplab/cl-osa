@@ -970,6 +970,10 @@ public class WikidataDumpUtil {
 
         Document entityEntry = entitiesCollection.find(new Document("sitelinks." + language + "wiki.title", siteLink)).first();
 
+        if (entityEntry == null) {
+            return null;
+        }
+
         Document siteLinks = entityEntry.get("sitelinks", Document.class);
 
         if (siteLinks == null) {
