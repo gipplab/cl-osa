@@ -7,6 +7,7 @@ import com.iandadesign.closa.model.Token;
 import com.iandadesign.closa.util.ConceptUtil;
 import com.iandadesign.closa.util.TokenUtil;
 import com.iandadesign.closa.util.wikidata.WikidataDumpUtil;
+import com.mongodb.DuplicateKeyException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -276,16 +277,19 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
         articleDocument.append("text", new Document(documentLanguage, text));
 
         // insert into to collection
-        Document existingDocument = articleCollection.find(new Document("title", titleInEnglish)
-                .append("languages", new Document("$ne", documentLanguage))).first();
+        Document existingDocument = articleCollection.find(new Document("title", titleInEnglish)).first();
 
-        if (existingDocument == null) {
-            articleCollection.insertOne(articleDocument);
-        } else {
-            articleCollection.updateOne(new Document("title", titleInEnglish),
-                    new Document("$set", new Document("text." + documentLanguage, text))
-                            .append("$push", new Document("languages", documentLanguage)));
+        try {
+            if (existingDocument == null) {
+                articleCollection.insertOne(articleDocument);
+            } else {
+                articleCollection.updateOne(new Document("title", titleInEnglish),
+                        new Document("$set", new Document("text." + documentLanguage, text))
+                                .append("$push", new Document("languages", documentLanguage)));
 
+            }
+        } catch (DuplicateKeyException e) {
+            e.printStackTrace();
         }
     }
 }
