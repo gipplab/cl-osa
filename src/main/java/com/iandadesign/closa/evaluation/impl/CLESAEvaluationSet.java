@@ -187,11 +187,16 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
             Document query = new Document("languages", new Document("$all", documentLanguages));
 
-            FindIterable<Document> queryResult = articleCollection.find(query).limit(wikipediaArticleLimit);
+            FindIterable<Document> queryResult = articleCollection.find(query)
+                    .sort(new Document("title", 1))
+                    .limit(wikipediaArticleLimit);
 
             if (!queryResult.iterator().hasNext()) {
                 throw new IllegalStateException("No common articles");
             }
+
+            ProgressBar progressBar = new ProgressBar("Preprocessing", wikipediaArticleLimit, ProgressBarStyle.ASCII);
+            progressBar.start();
 
             for (Document article : queryResult) {
                 String articleText = article.get("text", Document.class)
@@ -201,7 +206,10 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
                 double similarity = Dictionary.cosineSimilarity(documentTokens, articleTokens);
                 preProcessed.add(similarity);
+                progressBar.step();
             }
+
+            progressBar.stop();
 
             return preProcessed;
         } catch (IOException e) {
