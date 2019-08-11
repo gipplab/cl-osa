@@ -62,7 +62,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
     static {
         MongoDatabase database = WikidataDumpUtil.getMongoClient().getDatabase(databaseName);
         articleCollection = database.getCollection(articleCollectionName);
-        extractWikipediaArticlesAndStore();
+        // extractWikipediaArticlesAndStore();
     }
 
     private static final Map<String, Integer> supportedLanguages = ImmutableMap.of(
@@ -104,7 +104,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
      * Get Wikipedia articles (in document language) from Wikipedia dump that has been preprocessed
      * by WikiExtractor.py, tokenize them and store them into the mongo collection {{documentLanguage}}Tokens.
      */
-    private static void extractWikipediaArticlesAndStore() {
+    public static void extractWikipediaArticlesAndStore() {
         try {
             // 2.1 Walk the Wikipedia dump files
             //     only if not all have been processed into the MongoDB collection

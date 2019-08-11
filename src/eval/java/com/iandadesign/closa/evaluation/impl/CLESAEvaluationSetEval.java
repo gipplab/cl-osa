@@ -74,6 +74,10 @@ public class CLESAEvaluationSetEval {
         }
     }
 
+    @Test
+    public void buildDatabase() {
+        CLESAEvaluationSet.extractWikipediaArticlesAndStore();
+    }
 
     @Test
     public void evalCLESAEnglishChinese() {
