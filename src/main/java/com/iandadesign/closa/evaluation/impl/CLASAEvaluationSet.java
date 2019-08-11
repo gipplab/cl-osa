@@ -231,10 +231,14 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                 foreignWords.contains(foreignProbabilityDocument.getString("translation")))
                         .collect(Collectors.toList());
 
-                similarities.add(foreignIntersection.stream()
-                        .map(foreignDocument -> document.getDouble("probability"))
-                        .mapToDouble(Double::doubleValue)
-                        .sum());
+                System.out.println("foreignIntersection" + foreignIntersection);
+
+                if (!foreignIntersection.isEmpty()) {
+                    similarities.add(foreignIntersection.stream()
+                            .map(foreignDocument -> document.getDouble("probability"))
+                            .mapToDouble(Double::doubleValue)
+                            .sum());
+                }
             }
         }
 
