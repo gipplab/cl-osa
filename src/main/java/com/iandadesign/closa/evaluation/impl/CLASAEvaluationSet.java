@@ -172,7 +172,9 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
         progressBar.start();
 
         for (Map.Entry<String, List<String>> suspiciousEntry : suspiciousIdTokensMap.entrySet()) {
-            String suspiciousLanguage = suspiciousIdLanguageMap.get(suspiciousEntry.getKey());
+            String suspiciousKey = suspiciousEntry.getKey();
+
+            String suspiciousLanguage = suspiciousIdLanguageMap.get(suspiciousKey);
 
             for (Map.Entry<String, List<String>> candidateEntry : candidateIdTokensMap.entrySet()) {
                 String candidateLanguage = candidateIdLanguageMap.get(candidateEntry.getKey());
@@ -185,11 +187,11 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                 System.out.println("similarity" + similarity);
 
-                if (!suspiciousIdCandidateScoresMap.containsKey(suspiciousEntry.getKey())) {
-                    suspiciousIdCandidateScoresMap.put(suspiciousEntry.getKey(), new HashMap<>());
+                if (!suspiciousIdCandidateScoresMap.containsKey(suspiciousKey)) {
+                    suspiciousIdCandidateScoresMap.put(suspiciousKey, new HashMap<>());
                 }
 
-                suspiciousIdCandidateScoresMap.get(suspiciousEntry.getKey())
+                suspiciousIdCandidateScoresMap.get(suspiciousKey)
                         .put(candidateEntry.getKey(), similarity);
 
                 progressBar.step();
@@ -230,8 +232,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         .filter((Document foreignProbabilityDocument) ->
                                 foreignWords.contains(foreignProbabilityDocument.getString("translation")))
                         .collect(Collectors.toList());
-
-                System.out.println("foreignIntersection" + foreignIntersection);
 
                 if (!foreignIntersection.isEmpty()) {
                     similarities.add(foreignIntersection.stream()
