@@ -108,7 +108,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
         try {
             // 2.1 Walk the Wikipedia dump files
             //     only if not all have been processed into the MongoDB collection
-            articleCollection.createIndex(new Document("id", 1), new IndexOptions().unique(true));
+            articleCollection.createIndex(new Document("title", 1), new IndexOptions().unique(true));
 
             for (Map.Entry<String, Integer> languageEntry : supportedLanguages.entrySet()) {
                 String language = languageEntry.getKey();
@@ -281,9 +281,11 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
         if (existingDocument == null) {
             articleCollection.insertOne(articleDocument);
         } else {
-            articleCollection.updateOne(new Document("title", titleInEnglish),
-                    new Document("$set", new Document("text." + documentLanguage, text))
-                            .append("$push", new Document("languages", documentLanguage)));
+            if (!existingDocument.get("languages", ArrayList.class).contains(documentLanguage)) {
+                articleCollection.updateOne(new Document("title", titleInEnglish),
+                        new Document("$set", new Document("text." + documentLanguage, text))
+                                .append("$push", new Document("languages", documentLanguage)));
+            }
         }
     }
 }
