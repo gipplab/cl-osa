@@ -157,8 +157,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                     .map(Token::getToken)
                     .collect(Collectors.toList());
 
-            System.out.println(tokens);
-
             return tokens;
         } catch (IOException e) {
             e.printStackTrace();
@@ -184,8 +182,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         candidateEntry.getValue(),
                         suspiciousLanguage,
                         candidateLanguage);
-
-                System.out.println("similarity" + similarity);
 
                 if (!suspiciousIdCandidateScoresMap.containsKey(suspiciousKey)) {
                     suspiciousIdCandidateScoresMap.put(suspiciousKey, new HashMap<>());
