@@ -154,12 +154,14 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
         extractTranslationProbabilitiesAndStore();
 
         try {
-            List<String> tokens = TokenUtil.tokenize(FileUtils.readFileToString(new File(documentPath), StandardCharsets.UTF_8), documentLanguage)
-                    .stream()
-                    .map(Token::getToken)
-                    .collect(Collectors.toList());
+            List<Token> tokens = TokenUtil.tokenize(FileUtils.readFileToString(new File(documentPath), StandardCharsets.UTF_8), documentLanguage);
+            tokens = TokenUtil.removeStopwords(tokens, documentLanguage);
+            tokens = TokenUtil.removePunctuation(tokens);
 
-            return tokens;
+            return tokens.stream()
+                    .map(Token::getToken)
+                    .map(String::toLowerCase)
+                    .collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
             throw new IllegalStateException("Could not preprocess file " + documentPath);
