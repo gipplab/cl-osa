@@ -235,7 +235,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                 if (!foreignIntersection.isEmpty()) {
                     similarities.add(foreignIntersection.stream()
-                            .map(foreignDocument -> document.getDouble("probability"))
+                            .map(foreignDocument -> foreignDocument.getDouble("probability"))
                             .mapToDouble(Double::doubleValue)
                             .sum());
                 }
