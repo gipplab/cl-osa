@@ -122,9 +122,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             String foreignWord = parts[1];
                             Double probability = Double.parseDouble(parts[2]);
 
-                            System.out.println(line);
-                            System.out.println(nativeWord + "|" + foreignWord + "|" + probability);
-
                             currentTranslationsToInsert.add(new Document("translation", foreignWord)
                                     .append("probability", probability));
 
@@ -155,10 +152,14 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
         extractTranslationProbabilitiesAndStore();
 
         try {
-            return TokenUtil.tokenize(FileUtils.readFileToString(new File(documentPath), StandardCharsets.UTF_8), documentLanguage)
+            List<String> tokens = TokenUtil.tokenize(FileUtils.readFileToString(new File(documentPath), StandardCharsets.UTF_8), documentLanguage)
                     .stream()
                     .map(Token::getToken)
                     .collect(Collectors.toList());
+
+            System.out.println(tokens);
+
+            return tokens;
         } catch (IOException e) {
             e.printStackTrace();
             throw new IllegalStateException("Could not preprocess file " + documentPath);
@@ -181,6 +182,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         candidateEntry.getValue(),
                         suspiciousLanguage,
                         candidateLanguage);
+
+                System.out.println("similarity" + similarity);
 
                 if (!suspiciousIdCandidateScoresMap.containsKey(suspiciousEntry.getKey())) {
                     suspiciousIdCandidateScoresMap.put(suspiciousEntry.getKey(), new HashMap<>());
@@ -236,7 +239,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
         }
 
         double similarity = similarities.stream()
-                .reduce(1.0, (a, b) -> a * b);
+                .reduce(1.0, (a, b) -> a + b);
 
         double lengthModel = 1.0 / Math.pow(nativeWords.size() + 1.0, foreignWords.size());
 
