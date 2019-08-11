@@ -219,7 +219,9 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
         List<Double> similarities = new ArrayList<>();
 
-        Document query = new Document("$or", nativeWords.stream().map(nativeWord -> new Document("native", nativeWord)));
+        Document query = new Document("$or",
+                nativeWords.stream().map(nativeWord -> new Document("native", nativeWord)).collect(Collectors.toList()));
+
         FindIterable<Document> nativeWordDocuments = translationsCollection.find(query);
 
         for (Document document : nativeWordDocuments) {
