@@ -276,16 +276,16 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
         articleDocument.append("text", new Document(documentLanguage, text));
 
         // insert into to collection
-        Document existingDocument = articleCollection.find(new Document("title", titleInEnglish)).first();
+        Document existingDocument = articleCollection.find(new Document("title", titleInEnglish)
+                .append("languages", new Document("$ne", documentLanguage))).first();
 
         if (existingDocument == null) {
             articleCollection.insertOne(articleDocument);
         } else {
-            if (!existingDocument.get("languages", ArrayList.class).contains(documentLanguage)) {
-                articleCollection.updateOne(new Document("title", titleInEnglish),
-                        new Document("$set", new Document("text." + documentLanguage, text))
-                                .append("$push", new Document("languages", documentLanguage)));
-            }
+            articleCollection.updateOne(new Document("title", titleInEnglish),
+                    new Document("$set", new Document("text." + documentLanguage, text))
+                            .append("$push", new Document("languages", documentLanguage)));
+
         }
     }
 }
