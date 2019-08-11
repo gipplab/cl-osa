@@ -110,44 +110,38 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                 Files.lines(translationFilePath).count(), ProgressBarStyle.ASCII);
                         progressBar.start();
 
-                        Files.lines(translationFilePath)
-                                .forEach((String line) -> {
-                                    String[] parts = line.split("\\s");
+                        String previousNativeWord = null;
+                        Document currentDocumentToInsert = new Document();
 
-                                    if (parts.length != 3) {
-                                        throw new IllegalStateException("Could not split line into 3 parts: " + Arrays.toString(parts));
-                                    }
+                        for (String line : Files.lines(translationFilePath).sorted().collect(Collectors.toList())) {
+                            String[] parts = line.split("\\s");
 
-                                    String nativeWord = parts[0];
-                                    String foreignWord = parts[1];
-                                    Double probability = Double.parseDouble(parts[2]);
+                            if (parts.length != 3) {
+                                throw new IllegalStateException("Could not split line into 3 parts: " + Arrays.toString(parts));
+                            }
 
-                                    Document query = new Document("native", nativeWord);
-                                    Document existingDocument = translationsCollection.find(query).first();
+                            String nativeWord = parts[0];
+                            String foreignWord = parts[1];
+                            Double probability = Double.parseDouble(parts[2]);
 
-                                    if (existingDocument == null) {
-                                        translationsCollection.insertOne(new Document(
-                                                "native", nativeWord)
-                                                .append("foreign", Collections.singletonList(
-                                                        new Document("translation", foreignWord)
-                                                                .append("probability", probability))));
-                                    } else {
-                                        List<Document> translations = existingDocument.get("foreign", ArrayList.class);
+                            if (previousNativeWord == null || !previousNativeWord.equals(nativeWord)) {
+                                currentDocumentToInsert = new Document(
+                                        "native", nativeWord)
+                                        .append("foreign", Collections.singletonList(
+                                                new Document("translation", foreignWord)
+                                                        .append("probability", probability)));
+                            } else {
+                                List<Document> translations = currentDocumentToInsert.get("foreign", ArrayList.class);
+                                translations.add(new Document("translation", foreignWord)
+                                        .append("probability", probability));
+                            }
 
-                                        if (translations.stream()
-                                                .map(t -> t.getString("translation"))
-                                                .noneMatch(t -> t.equals(foreignWord))) {
+                            translationsCollection.insertOne(currentDocumentToInsert);
 
-                                            translationsCollection.updateOne(query,
-                                                    new Document("$push",
-                                                            new Document("foreign",
-                                                                    new Document("translation", foreignWord)
-                                                                            .append("probability", probability))));
-                                        }
-                                    }
+                            previousNativeWord = nativeWord;
 
-                                    progressBar.step();
-                                });
+                            progressBar.step();
+                        }
 
                         progressBar.stop();
                     }
