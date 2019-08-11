@@ -13,7 +13,7 @@ class CLASAEvaluationSetEval {
             CLASAEvaluationSet englishSpanishPan11EvaluationSetCLASA = new CLASAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es",
-                    10
+                    500
             );
             englishSpanishPan11EvaluationSetCLASA.printEvaluation();
         } catch (Exception e) {
