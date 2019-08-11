@@ -944,6 +944,8 @@ public class WikidataDumpUtil {
     static String getSiteLinkInLanguage(String englishSiteLink, String language) {
         Document entityEntry = entitiesCollection.find(new Document("sitelinks.enwiki.title", englishSiteLink)).first();
 
+        System.out.println(entityEntry.get("sitelinks", Document.class).toJson());
+
         return entityEntry.getString("sitelinks." + language + "wiki.title");
     }
 

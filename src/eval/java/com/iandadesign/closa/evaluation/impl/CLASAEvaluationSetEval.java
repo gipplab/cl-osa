@@ -8,7 +8,22 @@ class CLASAEvaluationSetEval {
 
     @Test
     void evalCLASAPan11Documents() {
-
+        /*
+         * Ranks 1 to 50
+         *
+         * Precision: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
+         * Recall: [10.0, 20.0, 30.000002, 50.0, 100.0, 100.0, 100.0]
+         * F-Measure: [10.000001, 13.333334, 15.000001, 16.666666, 18.181818, 18.181818, 18.181818]
+         *
+         * Mean reciprocal rank: 29.289682539682545
+         *
+         *
+         * Aligned document similarities
+         *
+         * {0.0=10}
+         *
+         * {0.0=100.0}
+         */
         try {
             CLASAEvaluationSet englishSpanishPan11EvaluationSetCLASA = new CLASAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
