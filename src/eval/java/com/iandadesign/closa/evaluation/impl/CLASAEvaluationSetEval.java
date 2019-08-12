@@ -64,5 +64,18 @@ class CLASAEvaluationSetEval {
         }
     }
 
+    @Test
+    void evalCLASAEuroparl() {
+        try {
+            CLASAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLASA = new CLASAEvaluationSet(
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
+                    500
+            );
+            englishFrenchJrcAcquisEvaluationSetCLASA.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
