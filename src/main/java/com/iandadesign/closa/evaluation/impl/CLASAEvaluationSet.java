@@ -253,7 +253,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         new Document("$or", foreignWords.stream()
                                 .map(foreignWord -> new Document("foreign.translation", foreignWord))
                                 .collect(Collectors.toList()))),
-                new Document("$group",
+                new Document("$project",
                         new Document("totalProbability",
                                 new Document("$sum", "$foreign.probability")))
         )).first().getDouble("totalProbability");
