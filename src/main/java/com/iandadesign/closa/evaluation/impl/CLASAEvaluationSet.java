@@ -226,6 +226,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
         FindIterable<Document> nativeWordDocuments = translationsCollection.find(query);
 
+        /*
         for (Document document : nativeWordDocuments) {
             List<Document> foreignProbabilities = document.get("foreign", ArrayList.class);
 
@@ -246,7 +247,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
         System.out.println(nativeWords.stream().map(s -> "\"" + s + "\"").collect(Collectors.toList()));
         System.out.println("foreignWords");
         System.out.println(foreignWords.stream().map(s -> "\"" + s + "\"").collect(Collectors.toList()));
-
+        */
 
         double totalProbability = translationsCollection.aggregate(Arrays.asList(
                 new Document("$match",
@@ -258,20 +259,21 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         new Document("$or", foreignWords.stream()
                                 .map(foreignWord -> new Document("foreign.translation", foreignWord))
                                 .collect(Collectors.toList()))),
-                new Document("$project",
-                        new Document("totalProbability",
-                                new Document("$sum", "$foreign.probability")))
+                new Document("$group",
+                        new Document("_id", null)
+                                .append("totalProbability",
+                                        new Document("$sum", "$foreign.probability")))
         )).first().getDouble("totalProbability");
 
-        double similarity = similarities.stream()
+        /*double similarity = similarities.stream()
                 .reduce(1.0, (a, b) -> a + b);
 
         if (totalProbability != similarity) {
             System.out.println("totalProbability = " + totalProbability + ", similarity = " + similarity);
             throw new IllegalStateException();
         }
+*/
 
-
-        return similarity / Math.pow(nativeWords.size() + 1.0, foreignWords.size());
+        return totalProbability / Math.pow(nativeWords.size() + 1.0, foreignWords.size());
     }
 }
