@@ -37,6 +37,20 @@ class CLASAEvaluationSetEval {
     }
 
     @Test
+    void evalCLASAPan11Sentences() {
+        try {
+            CLASAEvaluationSet englishSpanishPan11EvaluationSetCLASA = new CLASAEvaluationSet(
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/en"), "en",
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es",
+                    500
+            );
+            englishSpanishPan11EvaluationSetCLASA.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     void evalCLASAJrcAcquis() {
         try {
             CLASAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLASA = new CLASAEvaluationSet(
