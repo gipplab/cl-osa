@@ -242,11 +242,31 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
             }
         }
 
+
+        double totalProbability = translationsCollection.aggregate(Arrays.asList(
+                new Document("$match",
+                        new Document("$or", nativeWords.stream()
+                                .map(nativeWord -> new Document("native", nativeWord))
+                                .collect(Collectors.toList()))),
+                new Document("$unwind", "foreign"),
+                new Document("$match",
+                        new Document("$or", foreignWords.stream()
+                                .map(foreignWord -> new Document("foreign.translation", foreignWord))
+                                .collect(Collectors.toList()))),
+                new Document("$group",
+                        new Document("totalProbability",
+                                new Document("$sum", "$foreign.probability")))
+        )).first().getDouble("totalProbability");
+
         double similarity = similarities.stream()
                 .reduce(1.0, (a, b) -> a + b);
 
-        double lengthModel = 1.0 / Math.pow(nativeWords.size() + 1.0, foreignWords.size());
+        if (totalProbability != similarity) {
+            System.out.println("totalProbability = " + totalProbability + ", similarity = " + similarity);
+            throw new IllegalStateException();
+        }
 
-        return lengthModel * similarity;
+
+        return similarity / Math.pow(nativeWords.size() + 1.0, foreignWords.size());
     }
 }
