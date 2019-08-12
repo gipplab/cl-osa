@@ -192,9 +192,10 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                             .filter(line -> line.equals(""))
                                             .collect(Collectors.toMap(line -> line.split(";")[0],
                                                     line -> Double.parseDouble(line.split(";")[1])));
+                                } else {
+                                    probabilitiesFile.getParentFile().mkdirs();
+                                    probabilitiesFile.createNewFile();
                                 }
-
-                                boolean newFile = probabilitiesFile.createNewFile();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
