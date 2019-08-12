@@ -243,9 +243,9 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
         }
 
         System.out.println("nativeWords");
-        System.out.println(nativeWords);
+        System.out.println(nativeWords.stream().map(s -> "\"" + s + "\"").collect(Collectors.toList()));
         System.out.println("foreignWords");
-        System.out.println(foreignWords);
+        System.out.println(foreignWords.stream().map(s -> "\"" + s + "\"").collect(Collectors.toList()));
 
 
         double totalProbability = translationsCollection.aggregate(Arrays.asList(
