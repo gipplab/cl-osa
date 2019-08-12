@@ -179,22 +179,25 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
         suspiciousIdCandidateScoresMap = suspiciousIdTokensMap.entrySet()
                 .parallelStream()
+                .filter(suspiciousEntry -> suspiciousIdLanguageMap.containsKey(suspiciousEntry.getKey()))
                 .collect(Collectors.toMap(Map.Entry::getKey,
                         suspiciousEntry -> {
-                            String suspiciousLanguage = suspiciousIdLanguageMap.get(suspiciousEntry.getKey());
 
-                            return candidateIdTokensMap.entrySet()
-                                    .parallelStream()
-                                    .collect(Collectors.toMap(Map.Entry::getKey,
-                                            candidateEntry -> {
-                                                progressBar.stepTo(current.incrementAndGet());
+                                String suspiciousLanguage = suspiciousIdLanguageMap.get(suspiciousEntry.getKey());
 
-                                                return getTranslationProbability(
-                                                        suspiciousEntry.getValue(),
-                                                        candidateEntry.getValue(),
-                                                        suspiciousLanguage,
-                                                        candidateIdLanguageMap.get(candidateEntry.getKey()));
-                                            }));
+                                return candidateIdTokensMap.entrySet()
+                                        .parallelStream()
+                                        .collect(Collectors.toMap(Map.Entry::getKey,
+                                                candidateEntry -> {
+                                                    progressBar.stepTo(current.incrementAndGet());
+
+                                                    return getTranslationProbability(
+                                                            suspiciousEntry.getValue(),
+                                                            candidateEntry.getValue(),
+                                                            suspiciousLanguage,
+                                                            candidateIdLanguageMap.get(candidateEntry.getKey()));
+                                                }));
+
                         }));
 
         progressBar.stop();
