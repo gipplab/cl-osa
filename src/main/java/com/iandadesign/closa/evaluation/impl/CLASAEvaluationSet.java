@@ -265,6 +265,10 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                         new Document("$sum", "$foreign.probability")))
         )).first();
 
+        if (totalProbabilityDocument == null) {
+            return 0.0;
+        }
+
         double totalProbability = totalProbabilityDocument.containsKey("totalProbability")
                 ? totalProbabilityDocument.getDouble("totalProbability")
                 : 0.0;
