@@ -242,6 +242,11 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
             }
         }
 
+        System.out.println("nativeWords");
+        System.out.println(nativeWords);
+        System.out.println("foreignWords");
+        System.out.println(foreignWords);
+
 
         double totalProbability = translationsCollection.aggregate(Arrays.asList(
                 new Document("$match",
