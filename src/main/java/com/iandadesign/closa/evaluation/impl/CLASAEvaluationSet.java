@@ -19,9 +19,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -177,26 +175,50 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
         AtomicInteger current = new AtomicInteger(0);
 
+
         suspiciousIdCandidateScoresMap = suspiciousIdTokensMap.entrySet()
                 .parallelStream()
                 .filter(suspiciousEntry -> suspiciousIdLanguageMap.containsKey(suspiciousEntry.getKey()))
                 .collect(Collectors.toMap(Map.Entry::getKey,
                         suspiciousEntry -> {
+                            Path probabilitiesFilePath = Paths.get(System.getProperty("user.home") + "/preprocessed-clasa/" + suspiciousEntry.getKey());
 
-                                String suspiciousLanguage = suspiciousIdLanguageMap.get(suspiciousEntry.getKey());
+                            if (Files.exists(probabilitiesFilePath)) {
+                                File probabilitiesFile = new File(probabilitiesFilePath.toUri());
 
-                                return candidateIdTokensMap.entrySet()
-                                        .parallelStream()
-                                        .collect(Collectors.toMap(Map.Entry::getKey,
-                                                candidateEntry -> {
-                                                    progressBar.stepTo(current.incrementAndGet());
+                                try {
+                                    List<String> lines = FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8);
+                                    return lines.stream()
+                                            .collect(Collectors.toMap(line -> line.split(";")[0],
+                                                    line -> Double.parseDouble(line.split(";")[1])));
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
 
-                                                    return getTranslationProbability(
-                                                            suspiciousEntry.getValue(),
-                                                            candidateEntry.getValue(),
-                                                            suspiciousLanguage,
-                                                            candidateIdLanguageMap.get(candidateEntry.getKey()));
-                                                }));
+                            String suspiciousLanguage = suspiciousIdLanguageMap.get(suspiciousEntry.getKey());
+
+                            return candidateIdTokensMap.entrySet()
+                                    .parallelStream()
+                                    .collect(Collectors.toMap(Map.Entry::getKey,
+                                            candidateEntry -> {
+                                                progressBar.stepTo(current.incrementAndGet());
+
+                                                double probability = getTranslationProbability(
+                                                        suspiciousEntry.getValue(),
+                                                        candidateEntry.getValue(),
+                                                        suspiciousLanguage,
+                                                        candidateIdLanguageMap.get(candidateEntry.getKey()));
+
+                                                try {
+                                                    String line = candidateEntry.getKey() + ";" + probability;
+                                                    Files.write(probabilitiesFilePath, line.getBytes(), StandardOpenOption.APPEND);
+                                                } catch (IOException e) {
+                                                    e.printStackTrace();
+                                                }
+
+                                                return probability;
+                                            }));
 
                         }));
 
