@@ -248,37 +248,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                 + StringUtils.capitalize(nativeLanguage)
                 + StringUtils.capitalize(foreignLanguage));
 
-        List<Double> similarities = new ArrayList<>();
 
-        Document query = new Document("$or",
-                nativeWords.stream().map(nativeWord -> new Document("native", nativeWord)).collect(Collectors.toList()));
-
-        FindIterable<Document> nativeWordDocuments = translationsCollection.find(query);
-
-        /*
-        for (Document document : nativeWordDocuments) {
-            List<Document> foreignProbabilities = document.get("foreign", ArrayList.class);
-
-            List<Document> foreignIntersection = foreignProbabilities.stream()
-                    .filter((Document foreignProbabilityDocument) ->
-                            foreignWords.contains(foreignProbabilityDocument.getString("translation")))
-                    .collect(Collectors.toList());
-
-            if (!foreignIntersection.isEmpty()) {
-                similarities.add(foreignIntersection.stream()
-                        .map(foreignDocument -> foreignDocument.getDouble("probability"))
-                        .mapToDouble(Double::doubleValue)
-                        .sum());
-            }
-        }
-
-        System.out.println("nativeWords");
-        System.out.println(nativeWords.stream().map(s -> "\"" + s + "\"").collect(Collectors.toList()));
-        System.out.println("foreignWords");
-        System.out.println(foreignWords.stream().map(s -> "\"" + s + "\"").collect(Collectors.toList()));
-        */
-
-        double totalProbability = translationsCollection.aggregate(Arrays.asList(
+        Document totalProbabilityDocument = translationsCollection.aggregate(Arrays.asList(
                 new Document("$match",
                         new Document("$or", nativeWords.stream()
                                 .map(nativeWord -> new Document("native", nativeWord))
@@ -292,16 +263,11 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         new Document("_id", null)
                                 .append("totalProbability",
                                         new Document("$sum", "$foreign.probability")))
-        )).first().getDouble("totalProbability");
+        )).first();
 
-        /*double similarity = similarities.stream()
-                .reduce(1.0, (a, b) -> a + b);
-
-        if (totalProbability != similarity) {
-            System.out.println("totalProbability = " + totalProbability + ", similarity = " + similarity);
-            throw new IllegalStateException();
-        }
-*/
+        double totalProbability = totalProbabilityDocument.containsKey("totalProbability")
+                ? totalProbabilityDocument.getDouble("totalProbability")
+                : 0.0;
 
         return totalProbability / Math.pow(nativeWords.size() + 1.0, foreignWords.size());
     }
