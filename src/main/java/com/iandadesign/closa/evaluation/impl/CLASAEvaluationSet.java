@@ -248,7 +248,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         new Document("$or", nativeWords.stream()
                                 .map(nativeWord -> new Document("native", nativeWord))
                                 .collect(Collectors.toList()))),
-                new Document("$unwind", "foreign"),
+                new Document("$unwind", "$foreign"),
                 new Document("$match",
                         new Document("$or", foreignWords.stream()
                                 .map(foreignWord -> new Document("foreign.translation", foreignWord))
