@@ -191,7 +191,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                                     List<String> lines = FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8);
                                     return lines.stream()
-                                            .filter(line -> line.equals(""))
+                                            .filter(line -> line.matches("\\s"))
                                             .collect(Collectors.toMap(line -> line.split(";")[0],
                                                     line -> Double.parseDouble(line.split(";")[1])));
                                 } else {
