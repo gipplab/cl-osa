@@ -367,12 +367,18 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
             throw new IllegalStateException("No matches!");
         }
 
+        int j = 0;
 
         for (String foreignWordsKey : foreignWordsMap.keySet()) {
             if (!translationProbabilitiesByCandidate.containsKey(foreignWordsKey)) {
                 translationProbabilitiesByCandidate.put(foreignWordsKey, 0.0);
+
+            } else {
+                j++;
             }
         }
+
+        System.out.println("Zero probs = " + j);
 
         return translationProbabilitiesByCandidate;
     }
