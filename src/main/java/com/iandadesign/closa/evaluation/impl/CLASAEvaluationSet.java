@@ -5,7 +5,7 @@ import com.iandadesign.closa.evaluation.EvaluationSet;
 import com.iandadesign.closa.model.Token;
 import com.iandadesign.closa.util.TokenUtil;
 import com.iandadesign.closa.util.wikidata.WikidataDumpUtil;
-import com.mongodb.client.FindIterable;
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.IndexOptions;
@@ -19,7 +19,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -169,12 +171,11 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
     @Override
     protected void performAnalysis() {
         ProgressBar progressBar = new ProgressBar("Calculate similarities:",
-                suspiciousIdTokensMap.size() * candidateIdTokensMap.size(),
+                suspiciousIdTokensMap.size(),
                 ProgressBarStyle.ASCII);
         progressBar.start();
 
         AtomicInteger current = new AtomicInteger(0);
-
 
         suspiciousIdCandidateScoresMap = suspiciousIdTokensMap.entrySet()
                 .parallelStream()
@@ -202,19 +203,15 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             }
 
                             String suspiciousLanguage = suspiciousIdLanguageMap.get(suspiciousEntry.getKey());
+                            String candidateLanguage = candidateIdLanguageMap.get(candidateIdLanguageMap.keySet().iterator().next());
 
-                            Map<String, Double> candidateIdProbabilityMap = candidateIdTokensMap.entrySet()
-                                    .stream()
-                                    .collect(Collectors.toMap(Map.Entry::getKey,
-                                            candidateEntry -> {
-                                                progressBar.stepTo(current.incrementAndGet());
+                            Map<String, Double> candidateIdProbabilityMap = getTranslationProbabilitiesByCandidate(
+                                    suspiciousEntry.getValue(),
+                                    candidateIdTokensMap,
+                                    suspiciousLanguage,
+                                    candidateLanguage);
 
-                                                return getTranslationProbability(
-                                                        suspiciousEntry.getValue(),
-                                                        candidateEntry.getValue(),
-                                                        suspiciousLanguage,
-                                                        candidateIdLanguageMap.get(candidateEntry.getKey()));
-                                            }));
+                            progressBar.stepTo(current.incrementAndGet());
 
                             try {
                                 List<String> lines = candidateIdProbabilityMap.entrySet()
@@ -278,5 +275,59 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                 : 0.0;
 
         return totalProbability / Math.pow(nativeWords.size() + 1.0, foreignWords.size());
+    }
+
+    /**
+     * CL-ASA algorithm.
+     *
+     * @param nativeWords
+     * @param foreignWordsMap
+     * @param nativeLanguage
+     * @param foreignLanguage
+     * @return
+     */
+    private Map<String, Double> getTranslationProbabilitiesByCandidate(
+            List<String> nativeWords,
+            Map<String, List<String>> foreignWordsMap,
+            String nativeLanguage,
+            String foreignLanguage
+    ) {
+        Map<String, Double> translationProbabilitiesByCandidate = new HashMap<>();
+
+        MongoCollection<Document> translationsCollection = database.getCollection(translationsCollectionName
+                + StringUtils.capitalize(nativeLanguage)
+                + StringUtils.capitalize(foreignLanguage));
+
+        AggregateIterable<Document> totalProbabilityDocuments = translationsCollection.aggregate(Arrays.asList(
+                new Document("$match",
+                        new Document("$or", nativeWords.stream()
+                                .map(nativeWord -> new Document("native", nativeWord))
+                                .collect(Collectors.toList()))),
+                new Document("$unwind", "$foreign"),
+                new Document("$addFields",
+                        new Document("candidateId", foreignWordsMap.keySet())),
+                new Document("$unwind", "$candidateId"),
+                new Document("$match",
+                        new Document("$or", foreignWordsMap.entrySet()
+                                .stream()
+                                .map(foreignWordEntry -> new Document("$and", Arrays.asList(
+                                        new Document("candidateId", foreignWordEntry.getKey()),
+                                        new Document("foreign.translation", foreignWordEntry.getValue()))))
+                                .collect(Collectors.toList()))),
+                new Document("$group",
+                        new Document("_id", null)
+                                .append("totalProbability",
+                                        new Document("$sum", "$foreign.probability")))
+        ));
+
+
+        for (Document totalProbabilityDocument : totalProbabilityDocuments) {
+            String candidateId = totalProbabilityDocument.getString("_id");
+            double totalProbability = totalProbabilityDocument.getDouble("totalProbability");
+
+            translationProbabilitiesByCandidate.put(candidateId, totalProbability / Math.pow(nativeWords.size() + 1.0, foreignWordsMap.get(candidateId).size()));
+        }
+
+        return translationProbabilitiesByCandidate;
     }
 }
