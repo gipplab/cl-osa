@@ -185,7 +185,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             File probabilitiesFile = new File(probabilitiesFilePath.toUri());
 
                             try {
-                                if (Files.exists(probabilitiesFilePath)) {
+                                if (Files.exists(probabilitiesFilePath) &&
+                                        FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8).size() >= candidateIdTokensMap.size()) {
 
                                     List<String> lines = FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8);
                                     return lines.stream()
@@ -202,28 +203,31 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                             String suspiciousLanguage = suspiciousIdLanguageMap.get(suspiciousEntry.getKey());
 
-                            return candidateIdTokensMap.entrySet()
-                                    .parallelStream()
+                            Map<String, Double> candidateIdProbabilityMap = candidateIdTokensMap.entrySet()
+                                    .stream()
                                     .collect(Collectors.toMap(Map.Entry::getKey,
                                             candidateEntry -> {
                                                 progressBar.stepTo(current.incrementAndGet());
 
-                                                double probability = getTranslationProbability(
+                                                return getTranslationProbability(
                                                         suspiciousEntry.getValue(),
                                                         candidateEntry.getValue(),
                                                         suspiciousLanguage,
                                                         candidateIdLanguageMap.get(candidateEntry.getKey()));
-
-                                                try {
-                                                    String line = candidateEntry.getKey() + ";" + probability + "\n";
-                                                    Files.write(probabilitiesFilePath, line.getBytes(), StandardOpenOption.APPEND);
-                                                } catch (IOException e) {
-                                                    e.printStackTrace();
-                                                }
-
-                                                return probability;
                                             }));
 
+                            try {
+                                List<String> lines = candidateIdProbabilityMap.entrySet()
+                                        .stream()
+                                        .map(entry -> entry.getKey() + ";" + entry.getValue() + "\n")
+                                        .collect(Collectors.toList());
+
+                                FileUtils.writeLines(probabilitiesFile, lines);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            return candidateIdProbabilityMap;
                         }));
 
         progressBar.stop();
