@@ -187,16 +187,14 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                             try {
                                 if (Files.exists(probabilitiesFilePath) &&
-                                        FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8).size() >= candidateIdTokensMap.size()) {
+                                        FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8).size() == candidateIdTokensMap.size()) {
 
                                     List<String> lines = FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8);
                                     return lines.stream()
-                                            .filter(line -> line.matches("\\s"))
                                             .collect(Collectors.toMap(line -> line.split(";")[0],
                                                     line -> Double.parseDouble(line.split(";")[1])));
                                 } else {
                                     probabilitiesFile.getParentFile().mkdirs();
-                                    probabilitiesFile.createNewFile();
                                 }
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -220,10 +218,10 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             try {
                                 List<String> lines = candidateIdProbabilityMap.entrySet()
                                         .stream()
-                                        .map(entry -> entry.getKey() + ";" + entry.getValue() + "\n")
+                                        .map(entry -> entry.getKey() + ";" + entry.getValue())
                                         .collect(Collectors.toList());
 
-                                FileUtils.writeLines(probabilitiesFile, lines);
+                                FileUtils.writeStringToFile(probabilitiesFile, StringUtils.join(lines, "\n"), StandardCharsets.UTF_8);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -257,10 +255,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
         if (chunkedList.size() < chunks) {
             chunkedList.add(currentMap);
-        }
-
-        if (chunkedList.stream().map(Map::size).reduce(Integer::sum).orElse(0) != map.entrySet().size()) {
-            throw new IllegalStateException("Wrong chunking");
         }
 
         return chunkedList;
@@ -310,7 +304,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                 ? totalProbabilityDocument.getDouble("totalProbability")
                 : 0.0;
 
-        return totalProbability / Math.pow(nativeWords.size() + 1.0, foreignWords.size());
+        return totalProbability;
     }
 
     /**
@@ -361,7 +355,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
             String candidateId = totalProbabilityDocument.getString("_id");
             double totalProbability = totalProbabilityDocument.getDouble("totalProbability");
 
-            translationProbabilitiesByCandidate.put(candidateId, totalProbability / Math.pow(nativeWords.size() + 1.0, foreignWordsMap.get(candidateId).size()));
+            translationProbabilitiesByCandidate.put(candidateId, totalProbability);
         }
 
         return translationProbabilitiesByCandidate;
