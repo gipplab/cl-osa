@@ -342,9 +342,13 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                 new Document("$match",
                         new Document("$or", foreignWordsMap.entrySet()
                                 .stream()
-                                .map(foreignWordEntry -> new Document("$and", Arrays.asList(
-                                        new Document("candidateId", foreignWordEntry.getKey()),
-                                        new Document("foreign.translation", foreignWordEntry.getValue()))))
+                                .map(foreignWordEntry -> new Document("$and",
+                                        foreignWordEntry.getValue().stream()
+                                                .map(foreignWord ->
+                                                        Arrays.asList(
+                                                                new Document("candidateId", foreignWordEntry.getKey()),
+                                                                new Document("foreign.translation", foreignWord)))
+                                                .collect(Collectors.toList())))
                                 .collect(Collectors.toList()))),
                 new Document("$group",
                         new Document("_id", null)
@@ -353,38 +357,10 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
         ));
 
 
-        int i = 0;
         for (Document totalProbabilityDocument : totalProbabilityDocuments) {
             String candidateId = totalProbabilityDocument.getString("_id");
             double totalProbability = totalProbabilityDocument.getDouble("totalProbability");
-
             translationProbabilitiesByCandidate.put(candidateId, totalProbability);
-            i++;
-        }
-
-        if (i == 0) {
-            int j = 0;
-
-            for (Document doc :
-            translationsCollection.aggregate(Arrays.asList(
-                    new Document("$match",
-                            new Document("$or", nativeWords.stream()
-                                    .map(nativeWord -> new Document("native", nativeWord))
-                                    .collect(Collectors.toList()))),
-                    new Document("$unwind", "$foreign")))) {
-                j++;
-            }
-
-            System.out.println("Number of english documents found: " + j);
-
-            String spanishOrQuery = new Document("$or", foreignWordsMap.entrySet()
-                    .stream()
-                    .map(foreignWordEntry -> new Document("$and", Arrays.asList(
-                            new Document("candidateId", foreignWordEntry.getKey()),
-                            new Document("foreign.translation", foreignWordEntry.getValue()))))
-                    .collect(Collectors.toList())).toJson();
-
-            System.out.println("Spanish or query: " + spanishOrQuery);
         }
 
 
