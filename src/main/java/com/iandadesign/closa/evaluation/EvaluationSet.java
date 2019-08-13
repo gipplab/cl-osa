@@ -323,11 +323,23 @@ public abstract class EvaluationSet<T> {
 
         double meanReciprocalRank = 0.0;
 
+        double maxScore = suspiciousIdCandidateScoresMap.values()
+                .stream()
+                .map(stringDoubleMap -> stringDoubleMap.values().stream().mapToDouble(v -> v).max().orElse(0.0))
+                .mapToDouble(v -> v)
+                .max()
+                .orElse(0.0);
+
         for (String suspiciousId : suspiciousIdCandidateScoresMap.keySet()) {
             String candidateId = suspiciousIdCandidateIdMap.get(suspiciousId);
 
             if (suspiciousIdCandidateScoresMap.get(suspiciousId).containsKey(candidateId)) {
                 Float alignedDocumentSimilarityPercent = (float) (suspiciousIdCandidateScoresMap.get(suspiciousId).get(candidateId) * 100);
+
+                if (maxScore > 1.0) {
+                    alignedDocumentSimilarityPercent = alignedDocumentSimilarityPercent / (float) maxScore;
+                }
+
                 alignedDocumentSimilarityPercent = Math.round(alignedDocumentSimilarityPercent / 10.0f) * 10.0f;
                 if (alignedDocumentSimilarities.containsKey(alignedDocumentSimilarityPercent)) {
                     alignedDocumentSimilarities.put(alignedDocumentSimilarityPercent, alignedDocumentSimilarities.get(alignedDocumentSimilarityPercent) + 1);
@@ -354,17 +366,12 @@ public abstract class EvaluationSet<T> {
             }
         }
 
-        int maxScore = alignedDocumentSimilarities.entrySet()
-                .stream()
-                .max(Map.Entry.comparingByValue())
-                .get()
-                .getValue();
 
         Map<Float, Float> alignedDocumentSimilaritiesPercent = alignedDocumentSimilarities.entrySet()
                 .stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
-                        e -> (float) ((float) e.getValue() / maxScore > 1.0 ? maxScore : 1.0) * 100.0f / suspiciousIdCandidateScoresMap.size()));
+                        e -> (float) e.getValue() * 100.0f / suspiciousIdCandidateScoresMap.size()));
 
         meanReciprocalRank = meanReciprocalRank / suspiciousIdCandidateIdMap.size();
 
