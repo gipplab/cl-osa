@@ -187,6 +187,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
             Document query = new Document("languages", new Document("$all", documentLanguages));
 
             FindIterable<Document> queryResult = articleCollection.find(query)
+                    .noCursorTimeout(true)
                     .sort(new Document("title", 1))
                     .limit(wikipediaArticleLimit);
 
@@ -289,7 +290,9 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
         articleDocument.append("text", new Document(documentLanguage, text));
 
         // insert into to collection
-        Document existingDocument = articleCollection.find(new Document("title", titleInEnglish)).first();
+        Document existingDocument = articleCollection.find(new Document("title", titleInEnglish))
+                .noCursorTimeout(true)
+                .first();
 
         try {
             if (existingDocument == null) {
