@@ -205,11 +205,15 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             String suspiciousLanguage = suspiciousIdLanguageMap.get(suspiciousEntry.getKey());
                             String candidateLanguage = candidateIdLanguageMap.get(candidateIdLanguageMap.keySet().iterator().next());
 
-                            Map<String, Double> candidateIdProbabilityMap = getTranslationProbabilitiesByCandidate(
-                                    suspiciousEntry.getValue(),
-                                    candidateIdTokensMap,
-                                    suspiciousLanguage,
-                                    candidateLanguage);
+                            Map<String, Double> candidateIdProbabilityMap = new HashMap<>();
+
+                            for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 3)) {
+                                candidateIdProbabilityMap.putAll(getTranslationProbabilitiesByCandidate(
+                                        suspiciousEntry.getValue(),
+                                        subMap,
+                                        suspiciousLanguage,
+                                        candidateLanguage));
+                            }
 
                             progressBar.stepTo(current.incrementAndGet());
 
@@ -228,6 +232,34 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         }));
 
         progressBar.stop();
+    }
+
+
+    private List<Map<String, List<String>>> getSubMaps(Map<String, List<String>> map, int chunks) {
+        List<Map<String, List<String>>> chunkedList = new ArrayList<>();
+        int chunkSize = map.size() / chunks;
+
+        int i = 0;
+
+        Map<String, List<String>> currentMap = new HashMap<>();
+
+        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+            currentMap.put(entry.getKey(), entry.getValue());
+
+            if (i >= chunkSize) {
+                chunkedList.add(currentMap);
+                currentMap = new HashMap<>();
+                i = 0;
+            } else {
+                i++;
+            }
+        }
+
+        if (chunkedList.size() < chunks) {
+            chunkedList.add(currentMap);
+        }
+
+        return chunkedList;
     }
 
     /**
