@@ -358,6 +358,12 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
             translationProbabilitiesByCandidate.put(candidateId, totalProbability);
         }
 
+        for (String foreignWordsKey : foreignWordsMap.keySet()) {
+            if (!translationProbabilitiesByCandidate.containsKey(foreignWordsKey)) {
+                translationProbabilitiesByCandidate.put(foreignWordsKey, 0.0);
+            }
+        }
+
         return translationProbabilitiesByCandidate;
     }
 }
