@@ -343,14 +343,11 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         new Document("$or",
                                 foreignWordsMap.entrySet()
                                         .stream()
-                                        .map(foreignWordEntry -> {
-                                            Document candidateAnd = new Document("$and",
-                                                    foreignWordEntry.getValue().stream()
-                                                            .map(foreignWord -> new Document("foreign.translation", foreignWord))
-                                                            .collect(Collectors.toList()));
-                                            candidateAnd.append("candidateId", foreignWordEntry.getKey());
-                                            return candidateAnd;
-                                        })
+                                        .map(foreignWordEntry ->
+                                                new Document("$and",
+                                                        new Document("foreign.translation",
+                                                                new Document("$in", foreignWordEntry.getValue())))
+                                                        .append("candidateId", foreignWordEntry.getKey()))
                                         .collect(Collectors.toList()))),
                 new Document("$group",
                         new Document("_id", null)
@@ -358,11 +355,17 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                         new Document("$sum", "$foreign.probability")))
         ));
 
+        int i = 0;
 
         for (Document totalProbabilityDocument : totalProbabilityDocuments) {
             String candidateId = totalProbabilityDocument.getString("_id");
             double totalProbability = totalProbabilityDocument.getDouble("totalProbability");
             translationProbabilitiesByCandidate.put(candidateId, totalProbability);
+            i++;
+        }
+
+        if (i == 0) {
+            throw new IllegalStateException("No matches!");
         }
 
 
