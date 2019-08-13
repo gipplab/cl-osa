@@ -177,6 +177,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
         AtomicInteger current = new AtomicInteger(0);
 
+
         suspiciousIdCandidateScoresMap = suspiciousIdTokensMap.entrySet()
                 .parallelStream()
                 .filter(suspiciousEntry -> suspiciousIdLanguageMap.containsKey(suspiciousEntry.getKey()))
@@ -184,6 +185,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         suspiciousEntry -> {
                             Path probabilitiesFilePath = Paths.get(System.getProperty("user.home") + "/preprocessed-clasa/" + suspiciousEntry.getKey());
                             File probabilitiesFile = new File(probabilitiesFilePath.toUri());
+                            int suspiciousSize = suspiciousEntry.getValue().size();
 
                             try {
                                 if (Files.exists(probabilitiesFilePath) &&
@@ -192,7 +194,13 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                     List<String> lines = FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8);
                                     Map<String, Double> candidateIdProbabilityMap = lines.stream()
                                             .collect(Collectors.toMap(line -> line.split(";")[0],
-                                                    line -> Double.parseDouble(line.split(";")[1])));
+                                                    line -> {
+                                                        String candidateId = line.split(";")[0];
+                                                        double candidateSize = candidateIdTokensMap.get(candidateId).size();
+                                                        double lengthModel = Math.exp(-0.5 * Math.pow((candidateSize / suspiciousSize - 1.093) / 0.157, 2.0));
+
+                                                        return lengthModel * Double.parseDouble(line.split(";")[1]);
+                                                    }));
 
                                     return candidateIdProbabilityMap;
                                 } else {
