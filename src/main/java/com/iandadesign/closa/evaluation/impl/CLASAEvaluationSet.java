@@ -340,16 +340,16 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         new Document("candidateId", foreignWordsMap.keySet())),
                 new Document("$unwind", "$candidateId"),
                 new Document("$match",
-                        new Document("$or", foreignWordsMap.entrySet()
-                                .stream()
-                                .map(foreignWordEntry -> new Document("$and",
-                                        foreignWordEntry.getValue().stream()
-                                                .map(foreignWord ->
-                                                        Arrays.asList(
-                                                                new Document("candidateId", foreignWordEntry.getKey()),
-                                                                new Document("foreign.translation", foreignWord)))
-                                                .collect(Collectors.toList())))
-                                .collect(Collectors.toList()))),
+                        new Document("$or",
+                                foreignWordsMap.entrySet()
+                                        .stream()
+                                        .map(foreignWordEntry -> new Document("$and",
+                                                foreignWordEntry.getValue().stream()
+                                                        .map(foreignWord ->
+                                                                new Document("candidateId", foreignWordEntry.getKey())
+                                                                        .append("foreign.translation", foreignWord))
+                                                        .collect(Collectors.toList())))
+                                        .collect(Collectors.toList()))),
                 new Document("$group",
                         new Document("_id", null)
                                 .append("totalProbability",
