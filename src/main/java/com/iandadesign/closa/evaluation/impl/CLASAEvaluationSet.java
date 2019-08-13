@@ -259,6 +259,10 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
             chunkedList.add(currentMap);
         }
 
+        if (chunkedList.stream().map(Map::size).reduce(Integer::sum).orElse(0) != map.entrySet().size()) {
+            throw new IllegalStateException("Wrong chunking");
+        }
+
         return chunkedList;
     }
 
