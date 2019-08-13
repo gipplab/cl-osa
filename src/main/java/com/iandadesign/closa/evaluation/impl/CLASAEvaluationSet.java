@@ -345,7 +345,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                         .stream()
                                         .map(foreignWordEntry ->
                                                 new Document("foreign.translation",
-                                                        new Document("$in", foreignWordEntry.getValue())))
+                                                        new Document("$in", foreignWordEntry.getValue()))
                                                         .append("candidateId", foreignWordEntry.getKey()))
                                         .collect(Collectors.toList()))),
                 new Document("$group",
