@@ -194,8 +194,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                             .collect(Collectors.toMap(line -> line.split(";")[0],
                                                     line -> Double.parseDouble(line.split(";")[1])));
 
-                                    long nonZeroProbabilities = candidateIdProbabilityMap.values().stream().filter(v -> v != 0.0).count();
-                                    System.out.println("non zero probabilities : " + nonZeroProbabilities);
                                     return candidateIdProbabilityMap;
                                 } else {
                                     probabilitiesFile.getParentFile().mkdirs();
@@ -216,9 +214,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                         suspiciousLanguage,
                                         candidateLanguage));
                             }
-
-                            long nonZeroProbabilities = candidateIdProbabilityMap.values().stream().filter(v -> v != 0.0).count();
-                            System.out.println("non zero probabilities : " + nonZeroProbabilities);
 
                             progressBar.stepTo(current.incrementAndGet());
 
@@ -335,9 +330,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                 + StringUtils.capitalize(nativeLanguage)
                 + StringUtils.capitalize(foreignLanguage));
 
-        System.out.println("native words: " + nativeWords);
-        System.out.println("foreign words: " + foreignWordsMap);
-
         AggregateIterable<Document> totalProbabilityDocuments = translationsCollection.aggregate(Arrays.asList(
                 new Document("$match",
                         new Document("$or", nativeWords.stream()
@@ -361,12 +353,40 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
         ));
 
 
+        int i = 0;
         for (Document totalProbabilityDocument : totalProbabilityDocuments) {
             String candidateId = totalProbabilityDocument.getString("_id");
             double totalProbability = totalProbabilityDocument.getDouble("totalProbability");
 
             translationProbabilitiesByCandidate.put(candidateId, totalProbability);
+            i++;
         }
+
+        if (i == 0) {
+            int j = 0;
+
+            for (Document doc :
+            translationsCollection.aggregate(Arrays.asList(
+                    new Document("$match",
+                            new Document("$or", nativeWords.stream()
+                                    .map(nativeWord -> new Document("native", nativeWord))
+                                    .collect(Collectors.toList()))),
+                    new Document("$unwind", "$foreign")))) {
+                j++;
+            }
+
+            System.out.println("Number of english documents found: " + j);
+
+            String spanishOrQuery = new Document("$or", foreignWordsMap.entrySet()
+                    .stream()
+                    .map(foreignWordEntry -> new Document("$and", Arrays.asList(
+                            new Document("candidateId", foreignWordEntry.getKey()),
+                            new Document("foreign.translation", foreignWordEntry.getValue()))))
+                    .collect(Collectors.toList())).toJson();
+
+            System.out.println("Spanish or query: " + spanishOrQuery);
+        }
+
 
         for (String foreignWordsKey : foreignWordsMap.keySet()) {
             if (!translationProbabilitiesByCandidate.containsKey(foreignWordsKey)) {
