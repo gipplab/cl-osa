@@ -357,6 +357,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
         int i = 0;
 
         for (Document totalProbabilityDocument : totalProbabilityDocuments) {
+            System.out.println("totalProbDoc = " + totalProbabilityDocument);
             String candidateId = totalProbabilityDocument.getString("_id");
             double totalProbability = totalProbabilityDocument.getDouble("totalProbability");
             translationProbabilitiesByCandidate.put(candidateId, totalProbability);
@@ -378,7 +379,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
             }
         }
 
-        System.out.println("Zero probs = " + j);
+        // System.out.println("Zero probs = " + j);
 
         return translationProbabilitiesByCandidate;
     }
