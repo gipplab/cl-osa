@@ -7,6 +7,7 @@ import com.iandadesign.closa.classification.Category;
 import com.iandadesign.closa.model.Token;
 import com.iandadesign.closa.model.WikidataEntity;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.client.AggregateIterable;
@@ -72,12 +73,15 @@ public class WikidataDumpUtil {
 
         try {
             loadDatabaseFromConfig();
+            MongoClientOptions.Builder builder = new MongoClientOptions.Builder();
+            MongoClientOptions options = builder.connectionsPerHost(1000).build();
 
             if (mongoCredential.getUserName().equals("") || mongoCredential.getPassword().length == 0) {
-                mongoClient = new MongoClient(serverAddress);
+                mongoClient = new MongoClient(serverAddress, options);
             } else {
-                mongoClient = new MongoClient(serverAddress, Collections.singletonList(mongoCredential));
+                mongoClient = new MongoClient(serverAddress, Collections.singletonList(mongoCredential), options);
             }
+
             MongoDatabase database = mongoClient.getDatabase(mongoDatabaseName);
             entitiesCollection = database.getCollection(entitiesCollectionName);
             entitiesHierarchyCollection = database.getCollection(entitiesHierarchyCollectionName);
