@@ -343,12 +343,14 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         new Document("$or",
                                 foreignWordsMap.entrySet()
                                         .stream()
-                                        .map(foreignWordEntry -> new Document("$and",
-                                                foreignWordEntry.getValue().stream()
-                                                        .map(foreignWord ->
-                                                                new Document("candidateId", foreignWordEntry.getKey())
-                                                                        .append("foreign.translation", foreignWord))
-                                                        .collect(Collectors.toList())))
+                                        .map(foreignWordEntry -> {
+                                            Document candidateAnd = new Document("$and",
+                                                    foreignWordEntry.getValue().stream()
+                                                            .map(foreignWord -> new Document("foreign.translation", foreignWord))
+                                                            .collect(Collectors.toList()));
+                                            candidateAnd.append("candidateId", foreignWordEntry.getKey());
+                                            return candidateAnd;
+                                        })
                                         .collect(Collectors.toList()))),
                 new Document("$group",
                         new Document("_id", null)
