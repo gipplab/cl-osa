@@ -192,9 +192,9 @@ public abstract class EvaluationSet<T> {
         IntStream.range(0, keys.size())
                 .parallel()
                 .forEachOrdered(i -> {
-            System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
-            initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
-        });
+                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
+                    initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
+                });
     }
 
     /**
@@ -354,11 +354,17 @@ public abstract class EvaluationSet<T> {
             }
         }
 
+        int maxScore = alignedDocumentSimilarities.entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue())
+                .get()
+                .getValue();
+
         Map<Float, Float> alignedDocumentSimilaritiesPercent = alignedDocumentSimilarities.entrySet()
                 .stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
-                        e -> (float) e.getValue() * 100.0f / suspiciousIdCandidateScoresMap.size()));
+                        e -> (float) ((float) e.getValue() / maxScore > 1.0 ? maxScore : 1.0) * 100.0f / suspiciousIdCandidateScoresMap.size()));
 
         meanReciprocalRank = meanReciprocalRank / suspiciousIdCandidateIdMap.size();
 

@@ -132,18 +132,18 @@ public class CLESAEvaluationSetEval {
         /*
             Ranks 1 to 50
 
-            Precision: [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
-            Recall: [0.2, 0.4, 0.6, 1.0, 2.0, 4.0, 10.0]
-            F-Measure: [0.2, 0.26666668, 0.3, 0.33333334, 0.36363637, 0.3809524, 0.3921569]
+            Precision: [1.4000001, 0.9, 0.6666667, 0.48000002, 0.52, 0.37, 0.352]
+            Recall: [1.4000001, 1.8, 2.0, 2.4, 5.2000003, 7.4, 17.6]
+            F-Measure: [1.4000001, 1.1999999, 1.0, 0.8, 0.94545454, 0.7047618, 0.69019616]
 
-            Mean reciprocal rank: 0.8998410676658846
+            Mean reciprocal rank: 3.071126406984371
 
 
             Aligned document similarities
 
-            {0.0=50}
+            {80.0=264, 60.0=54, 30.0=4, 40.0=5, 90.0=76, 50.0=23, 70.0=74}
 
-            {0.0=10.0}
+            {80.0=52.8, 60.0=10.8, 30.0=0.8, 40.0=1.0, 90.0=15.2, 50.0=4.6, 70.0=14.8}
          */
         try {
             CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
