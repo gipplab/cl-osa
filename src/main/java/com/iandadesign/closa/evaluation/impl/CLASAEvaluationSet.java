@@ -207,7 +207,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                             Map<String, Double> candidateIdProbabilityMap = new HashMap<>();
 
-                            for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 6)) {
+                            for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 10)) {
                                 candidateIdProbabilityMap.putAll(getTranslationProbabilitiesByCandidate(
                                         suspiciousEntry.getValue(),
                                         subMap,
