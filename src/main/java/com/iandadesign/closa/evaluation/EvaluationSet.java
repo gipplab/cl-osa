@@ -388,7 +388,6 @@ public abstract class EvaluationSet<T> {
             for (String suspiciousId : suspiciousIdCandidateScoresMap.keySet()) {
                 int candidateCount = suspiciousIdCandidateScoresMap.get(suspiciousId).size();
 
-
                 if (candidateCount > 0) {
                     selectedElements += suspiciousIdCandidateScoresMap
                             .get(suspiciousId)

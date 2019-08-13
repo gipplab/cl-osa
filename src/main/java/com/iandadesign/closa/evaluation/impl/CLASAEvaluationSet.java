@@ -190,9 +190,13 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                         FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8).size() == candidateIdTokensMap.size()) {
 
                                     List<String> lines = FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8);
-                                    return lines.stream()
+                                    Map<String, Double> candidateIdProbabilityMap = lines.stream()
                                             .collect(Collectors.toMap(line -> line.split(";")[0],
                                                     line -> Double.parseDouble(line.split(";")[1])));
+
+                                    long nonZeroProbabilities = candidateIdProbabilityMap.values().stream().filter(v -> v != 0.0).count();
+                                    System.out.println("non zero probabilities : " + nonZeroProbabilities);
+                                    return candidateIdProbabilityMap;
                                 } else {
                                     probabilitiesFile.getParentFile().mkdirs();
                                 }
@@ -212,6 +216,9 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                         suspiciousLanguage,
                                         candidateLanguage));
                             }
+
+                            long nonZeroProbabilities = candidateIdProbabilityMap.values().stream().filter(v -> v != 0.0).count();
+                            System.out.println("non zero probabilities : " + nonZeroProbabilities);
 
                             progressBar.stepTo(current.incrementAndGet());
 
