@@ -349,7 +349,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                                         .append("candidateId", foreignWordEntry.getKey()))
                                         .collect(Collectors.toList()))),
                 new Document("$group",
-                        new Document("_id", null)
+                        new Document("_id", "$candidateId")
                                 .append("totalProbability",
                                         new Document("$sum", "$foreign.probability")))
         ));
@@ -357,7 +357,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
         int i = 0;
 
         for (Document totalProbabilityDocument : totalProbabilityDocuments) {
-            System.out.println("totalProbDoc = " + totalProbabilityDocument);
+            // System.out.println("totalProbDoc = " + totalProbabilityDocument);
             String candidateId = totalProbabilityDocument.getString("_id");
             double totalProbability = totalProbabilityDocument.getDouble("totalProbability");
             translationProbabilitiesByCandidate.put(candidateId, totalProbability);
