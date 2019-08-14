@@ -329,58 +329,11 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
     /**
      * CL-ASA algorithm.
      *
-     * @param nativeWords
-     * @param foreignWords
-     * @param nativeLanguage
-     * @param foreignLanguage
-     * @return
-     */
-    private double getTranslationProbability(
-            List<String> nativeWords,
-            List<String> foreignWords,
-            String nativeLanguage,
-            String foreignLanguage
-    ) {
-        MongoCollection<Document> translationsCollection = database.getCollection(translationsCollectionName
-                + StringUtils.capitalize(nativeLanguage)
-                + StringUtils.capitalize(foreignLanguage));
-
-
-        Document totalProbabilityDocument = translationsCollection.aggregate(Arrays.asList(
-                new Document("$match",
-                        new Document("$or", nativeWords.stream()
-                                .map(nativeWord -> new Document("native", nativeWord))
-                                .collect(Collectors.toList()))),
-                new Document("$unwind", "$foreign"),
-                new Document("$match",
-                        new Document("$or", foreignWords.stream()
-                                .map(foreignWord -> new Document("foreign.translation", foreignWord))
-                                .collect(Collectors.toList()))),
-                new Document("$group",
-                        new Document("_id", null)
-                                .append("totalProbability",
-                                        new Document("$sum", "$foreign.probability")))
-        )).first();
-
-        if (totalProbabilityDocument == null) {
-            return 0.0;
-        }
-
-        double totalProbability = totalProbabilityDocument.containsKey("totalProbability")
-                ? totalProbabilityDocument.getDouble("totalProbability")
-                : 0.0;
-
-        return totalProbability;
-    }
-
-    /**
-     * CL-ASA algorithm.
-     *
-     * @param nativeWords
-     * @param foreignWordsMap
-     * @param nativeLanguage
-     * @param foreignLanguage
-     * @return
+     * @param nativeWords     native words
+     * @param foreignWordsMap map of foreign words by id
+     * @param nativeLanguage  native language
+     * @param foreignLanguage foreign language
+     * @return map of probability by id.
      */
     private Map<String, Double> getTranslationProbabilitiesByCandidate(
             List<String> nativeWords,
@@ -396,8 +349,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
         AggregateIterable<Document> totalProbabilityDocuments = translationsCollection.aggregate(Arrays.asList(
                 new Document("$match",
-                        new Document("$or", nativeWords.stream()
-                                .map(nativeWord -> new Document("native", nativeWord))
+                        new Document("$and", nativeWords.stream()
+                                .map(nativeWord -> new Document("cheating", nativeWord))
                                 .collect(Collectors.toList()))),
                 new Document("$unwind", "$foreign"),
                 new Document("$addFields",
