@@ -56,7 +56,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
     private static final Map<String, List<String>> languagePairs = ImmutableMap.of(
             "es-en", Collections.singletonList("EnEs"),
-            "fr-en", Collections.singletonList("EnFr")
+            "fr-en", Collections.singletonList("EnFr"),
+            "zh-en", Collections.singletonList("EnZh")
     );
 
     /**
@@ -100,12 +101,15 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                     if (translationsCollection.count() == 0) {
                         String translationDirection = languagePair.substring(0, 1).equals("En") ? "e2f" : "f2e";
                         boolean englishToForeign = translationDirection.equals("e2f");
+                        boolean chinese = languagePair.contains("Zh");
 
                         if (englishToForeign) {
                             translationsCollection.createIndex(new Document("native", 1), new IndexOptions().unique(true));
                         }
 
-                        Path translationFilePath = Paths.get(System.getProperty("user.home") + "/eu-bilingual/"
+                        Path translationFilePath = chinese
+                                ? Paths.get(System.getProperty("user.home") + "/TED_Paracorpus/out/align.1.pt")
+                                : Paths.get(System.getProperty("user.home") + "/eu-bilingual/"
                                 + languageEntry.getKey() + "/lex." + translationDirection);
 
                         // check translation files
@@ -123,11 +127,13 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                         for (int i = 0; i < lines.size(); i++) {
                             String line = lines.get(i);
-                            String[] parts = line.split("\\s");
+                            String[] parts = line.split(chinese ? "|||" : "\\s");
 
-                            String nativeWord = parts[0];
-                            String foreignWord = parts[1];
-                            Double probability = Double.parseDouble(parts[2]);
+                            String nativeWord = chinese ? parts[0].trim() : parts[0];
+                            String foreignWord = chinese ? parts[1].trim() : parts[1];
+                            Double probability = chinese
+                                    ? Double.parseDouble(parts[2].trim().split("\\s")[1])
+                                    : Double.parseDouble(parts[2]);
 
                             currentTranslationsToInsert.add(new Document("translation", foreignWord)
                                     .append("probability", probability));
@@ -230,14 +236,14 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                         subMap,
                                         suspiciousLanguage,
                                         candidateLanguage)
-                                .entrySet()
-                                .stream()
-                                .collect(Collectors.toMap(Map.Entry::getKey,
-                                        candidateEntry -> {
-                                            double candidateSize = candidateIdTokensMap.get(candidateEntry.getKey()).size();
-                                            double lengthModel = Math.exp(-0.5 * Math.pow((candidateSize / suspiciousSize - mean) / standardDeviation, 2.0));
-                                            return lengthModel * candidateEntry.getValue();
-                                        })));
+                                        .entrySet()
+                                        .stream()
+                                        .collect(Collectors.toMap(Map.Entry::getKey,
+                                                candidateEntry -> {
+                                                    double candidateSize = candidateIdTokensMap.get(candidateEntry.getKey()).size();
+                                                    double lengthModel = Math.exp(-0.5 * Math.pow((candidateSize / suspiciousSize - mean) / standardDeviation, 2.0));
+                                                    return lengthModel * candidateEntry.getValue();
+                                                })));
                             }
 
                             progressBar.stepTo(current.incrementAndGet());
