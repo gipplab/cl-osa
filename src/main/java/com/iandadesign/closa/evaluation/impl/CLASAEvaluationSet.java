@@ -230,10 +230,12 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             int suspiciousSize = suspiciousEntry.getValue().size();
 
                             try {
-                                if (Files.exists(probabilitiesFilePath) &&
-                                        FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8).size() == candidateIdTokensMap.size()) {
+                                List<String> lines = FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8);
 
-                                    List<String> lines = FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8);
+                                if (Files.exists(probabilitiesFilePath) &&
+                                        lines.size() == candidateIdTokensMap.size()) {
+
+                                    System.out.println("Import");
 
                                     return lines.stream()
                                             .collect(Collectors.toMap(line -> line.split(";")[0],
