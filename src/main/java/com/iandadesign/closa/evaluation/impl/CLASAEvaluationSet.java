@@ -233,10 +233,10 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                 if (Files.exists(probabilitiesFilePath) &&
                                         FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8).size() == candidateIdTokensMap.size()) {
 
-                                    List<String> inputLines = FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8);
+                                    List<String> lines = FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8);
 
-                                    Map<String, Double> candidateIdProbabilitiesMap = inputLines.stream()
-                                            .collect(Collectors.toMap((String line) -> line.split(";")[0],
+                                    Map<String, Double> candidateProbabilityMap = lines.stream()
+                                            .collect(Collectors.toMap(line -> line.split(";")[0],
                                                     line -> {
                                                         String candidateId = line.split(";")[0];
                                                         double candidateSize = candidateIdTokensMap.get(candidateId).size();
@@ -247,47 +247,48 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                                         return lengthModel * Double.parseDouble(line.split(";")[1]);
                                                     }));
 
+                                    progressBar.stepTo(current.getAndIncrement());
 
-                                    progressBar.stepTo(current.incrementAndGet());
-
-                                    return candidateIdProbabilitiesMap;
+                                    return candidateProbabilityMap;
                                 } else {
                                     probabilitiesFile.getParentFile().mkdirs();
-
-                                    Map<String, Double> candidateIdProbabilityMap = new HashMap<>();
-
-                                    for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 50)) {
-                                        candidateIdProbabilityMap.putAll(getTranslationProbabilitiesByCandidate(
-                                                suspiciousEntry.getValue(),
-                                                subMap,
-                                                suspiciousLanguage,
-                                                candidateLanguage)
-                                                .entrySet()
-                                                .stream()
-                                                .collect(Collectors.toMap(Map.Entry::getKey,
-                                                        candidateEntry -> {
-                                                            double candidateSize = candidateIdTokensMap.get(candidateEntry.getKey()).size();
-                                                            double lengthModel = Math.exp(-0.5 * Math.pow((candidateSize / suspiciousSize - mean) / standardDeviation, 2.0));
-                                                            return lengthModel * candidateEntry.getValue();
-                                                        })));
-                                    }
-
-                                    progressBar.stepTo(current.incrementAndGet());
-
-                                    List<String> outputLines = candidateIdProbabilityMap.entrySet()
-                                            .stream()
-                                            .map(entry -> entry.getKey() + ";" + entry.getValue())
-                                            .collect(Collectors.toList());
-
-                                    FileUtils.writeStringToFile(probabilitiesFile, StringUtils.join(outputLines, "\n"), StandardCharsets.UTF_8);
-                                    return candidateIdProbabilityMap;
-
                                 }
                             } catch (IOException e) {
                                 e.printStackTrace();
-                                return null;
                             }
 
+                            Map<String, Double> candidateIdProbabilityMap = new HashMap<>();
+
+                            for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 50)) {
+                                candidateIdProbabilityMap.putAll(getTranslationProbabilitiesByCandidate(
+                                        suspiciousEntry.getValue(),
+                                        subMap,
+                                        suspiciousLanguage,
+                                        candidateLanguage)
+                                        .entrySet()
+                                        .stream()
+                                        .collect(Collectors.toMap(Map.Entry::getKey,
+                                                candidateEntry -> {
+                                                    double candidateSize = candidateIdTokensMap.get(candidateEntry.getKey()).size();
+                                                    double lengthModel = Math.exp(-0.5 * Math.pow((candidateSize / suspiciousSize - mean) / standardDeviation, 2.0));
+                                                    return lengthModel * candidateEntry.getValue();
+                                                })));
+                            }
+
+                            progressBar.stepTo(current.incrementAndGet());
+
+                            try {
+                                List<String> lines = candidateIdProbabilityMap.entrySet()
+                                        .stream()
+                                        .map(entry -> entry.getKey() + ";" + entry.getValue())
+                                        .collect(Collectors.toList());
+
+                                FileUtils.writeStringToFile(probabilitiesFile, StringUtils.join(lines, "\n"), StandardCharsets.UTF_8);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            return candidateIdProbabilityMap;
                         }));
 
         progressBar.stop();
