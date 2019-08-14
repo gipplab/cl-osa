@@ -142,6 +142,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         while (lineIterator.hasNext()) {
                             String line = lineIterator.next();
 
+                            System.out.println(line);
+
                             String[] parts = line.split(chinese ? "\\|\\|\\|" : "\\s");
 
                             String nativeWord = chinese
