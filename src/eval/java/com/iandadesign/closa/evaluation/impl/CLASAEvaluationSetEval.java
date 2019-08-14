@@ -12,8 +12,8 @@ class CLASAEvaluationSetEval {
          */
 
         CLASAEvaluationSet englishChineseECCEEvaluationSetCLASA = new CLASAEvaluationSet(
-                new File("src/eval/resources/com/iandadesign/closa/evaluation/ECCE/en"), "en",
-                new File("src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"), "zh",
+                new File(System.getProperty("user.home") + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/en"), "en",
+                new File(System.getProperty("user.home") + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"), "zh",
                 500
         );
         englishChineseECCEEvaluationSetCLASA.printEvaluation();
