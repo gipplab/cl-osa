@@ -11,6 +11,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.IndexOptions;
 import me.tongfei.progressbar.ProgressBar;
 import me.tongfei.progressbar.ProgressBarStyle;
+import org.apache.commons.collections4.iterators.PeekingIterator;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
@@ -130,13 +131,15 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                         System.out.println("Get lines");
 
-                        List<String> lines = Files.lines(translationFilePath, StandardCharsets.UTF_8)
-                                .sorted().collect(Collectors.toList());
+                        PeekingIterator<String> lineIterator = new PeekingIterator<>(Files.lines(translationFilePath, StandardCharsets.UTF_8)
+                                .sorted()
+                                .iterator());
 
                         System.out.println("Iterate lines");
 
-                        for (int i = 0; i < lines.size(); i++) {
-                            String line = lines.get(i);
+                        while (lineIterator.hasNext()) {
+                            String line = lineIterator.next();
+
                             String[] parts = line.split(chinese ? "\\|\\|\\|" : "\\s");
 
                             String nativeWord = chinese
@@ -154,16 +157,24 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             currentTranslationsToInsert.add(new Document("translation", foreignWord)
                                     .append("probability", probability));
 
-                            // if next native word is different
-                            if (i < lines.size() - 1 && !lines.get(i + 1).split("\\s")[0].equals(nativeWord)) {
-                                translationsCollection.insertOne(new Document("native", nativeWord)
-                                        .append("foreign", currentTranslationsToInsert));
+                            String nextLine = lineIterator.peek();
 
-                                currentTranslationsToInsert = new ArrayList<>();
+                            if (nextLine != null) {
+                                String[] nextParts = nextLine.split(chinese ? "\\|\\|\\|" : "\\s");
+                                String nextWord = chinese
+                                        ? nextParts[0].trim()
+                                        : nextParts[0];
+
+                                if (nativeWord.equals(nextWord)) {
+                                    translationsCollection.insertOne(new Document("native", nativeWord)
+                                            .append("foreign", currentTranslationsToInsert));
+
+                                    currentTranslationsToInsert = new ArrayList<>();
+                                }
                             }
 
-
                             progressBar.step();
+
                         }
 
                         progressBar.stop();
