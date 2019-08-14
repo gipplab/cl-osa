@@ -112,10 +112,15 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                 : Paths.get(System.getProperty("user.home") + "/eu-bilingual/"
                                 + languageEntry.getKey() + "/lex." + translationDirection);
 
+                        System.out.println("Test exists");
+
                         // check translation files
                         if (Files.notExists(translationFilePath)) {
                             throw new FileNotFoundException("The translation file is missing: " + translationFilePath.toString());
                         }
+
+                        System.out.println("Build progressbar");
+
 
                         ProgressBar progressBar = new ProgressBar("Preprocess translation files: " + languagePair,
                                 Files.lines(translationFilePath).count(), ProgressBarStyle.ASCII);
@@ -123,8 +128,12 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                         List<Document> currentTranslationsToInsert = new ArrayList<>();
 
+                        System.out.println("Get lines");
+
                         List<String> lines = Files.lines(translationFilePath, StandardCharsets.UTF_8)
                                 .sorted().collect(Collectors.toList());
+
+                        System.out.println("Iterate lines");
 
                         for (int i = 0; i < lines.size(); i++) {
                             String line = lines.get(i);
