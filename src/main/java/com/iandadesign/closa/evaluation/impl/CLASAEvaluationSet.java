@@ -351,6 +351,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                 + StringUtils.capitalize(nativeLanguage)
                 + StringUtils.capitalize(foreignLanguage));
 
+        /*
         AggregateIterable<Document> totalProbabilityDocuments = translationsCollection.aggregate(Arrays.asList(
                 new Document("$match",
                         new Document("$or", nativeWords.stream()
@@ -388,8 +389,10 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
         if (i == 0) {
             System.out.println("No matches!");
         }
-
+*/
         int j = 0;
+
+
 
         for (String foreignWordsKey : foreignWordsMap.keySet()) {
             if (!translationProbabilitiesByCandidate.containsKey(foreignWordsKey)) {
