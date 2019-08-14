@@ -123,7 +123,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
 
                         ProgressBar progressBar = new ProgressBar("Preprocess translation files: " + languagePair,
-                                Files.lines(translationFilePath, StandardCharsets.UTF_8).count(), ProgressBarStyle.ASCII);
+                                1792776, ProgressBarStyle.ASCII);
                         progressBar.start();
 
                         List<Document> currentTranslationsToInsert = new ArrayList<>();
@@ -139,10 +139,14 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             String line = lines.get(i);
                             String[] parts = line.split(chinese ? "\\|\\|\\|" : "\\s");
 
-                            String nativeWord = chinese ? parts[0].trim() : parts[0];
+                            String nativeWord = chinese
+                                    ? parts[0].trim()
+                                    : parts[0];
+
                             String foreignWord = chinese
                                     ? parts[1].trim().replaceAll("\\s", "")
                                     : parts[1];
+
                             Double probability = chinese
                                     ? Double.parseDouble(parts[2].trim().split("\\s")[1])
                                     : Double.parseDouble(parts[2]);
