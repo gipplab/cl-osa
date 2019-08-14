@@ -110,7 +110,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         }
 
                         Path translationFilePath = chinese
-                                ? Paths.get(System.getProperty("user.home") + "/TED_Paracorpus/out/align.1.pt")
+                                ? Paths.get(System.getProperty("user.home") + "/TED_Paracorpus/out/align.utf8.1.pt")
                                 : Paths.get(System.getProperty("user.home") + "/eu-bilingual/"
                                 + languageEntry.getKey() + "/lex." + translationDirection);
 
@@ -125,15 +125,14 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
 
                         ProgressBar progressBar = new ProgressBar("Preprocess translation files: " + languagePair,
-                                1792776, ProgressBarStyle.ASCII);
+                                Files.lines(translationFilePath, StandardCharsets.UTF_8).count(), ProgressBarStyle.ASCII);
                         progressBar.start();
 
                         List<Document> currentTranslationsToInsert = new ArrayList<>();
 
                         System.out.println("Get lines");
 
-                        PeekingIterator<String> lineIterator = new PeekingIterator<>(Files.lines(translationFilePath,
-                                chinese ? Charset.forName("GB18030") : StandardCharsets.UTF_8)
+                        PeekingIterator<String> lineIterator = new PeekingIterator<>(Files.lines(translationFilePath, StandardCharsets.UTF_8)
                                 .sorted()
                                 .iterator());
 
@@ -240,6 +239,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                     List<String> lines = FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8);
 
                                     Map<String, Double> candidateProbabilityMap = lines.stream()
+                                            .filter(line -> line.contains(";"))
                                             .collect(Collectors.toMap(line -> line.split(";")[0],
                                                     line -> {
                                                         String candidateId = line.split(";")[0];
