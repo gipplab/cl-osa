@@ -235,9 +235,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                 if (Files.exists(probabilitiesFilePath) &&
                                         inputLines.size() == candidateIdTokensMap.size()) {
 
-                                    progressBar.stepTo(current.incrementAndGet());
 
-                                    return inputLines.stream()
+                                    Map<String, Double> candidateIdProbabilitiesMap = inputLines.stream()
                                             .collect(Collectors.toMap((String line) -> line.split(";")[0],
                                                     line -> {
                                                         String candidateId = line.split(";")[0];
@@ -248,6 +247,11 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                                                         return lengthModel * Double.parseDouble(line.split(";")[1]);
                                                     }));
+
+
+                                    progressBar.stepTo(current.incrementAndGet());
+
+                                    return candidateIdProbabilitiesMap;
                                 } else {
                                     probabilitiesFile.getParentFile().mkdirs();
 
