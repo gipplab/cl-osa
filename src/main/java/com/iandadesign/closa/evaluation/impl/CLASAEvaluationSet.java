@@ -123,7 +123,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                         List<Document> currentTranslationsToInsert = new ArrayList<>();
 
-                        List<String> lines = Files.lines(translationFilePath).sorted().collect(Collectors.toList());
+                        List<String> lines = Files.lines(translationFilePath, StandardCharsets.UTF_8)
+                                .sorted().collect(Collectors.toList());
 
                         for (int i = 0; i < lines.size(); i++) {
                             String line = lines.get(i);
