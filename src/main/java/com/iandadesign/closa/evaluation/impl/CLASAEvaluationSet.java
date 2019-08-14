@@ -189,8 +189,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
     @Override
     protected List<String> preProcess(String documentPath, String documentLanguage) {
-        extractTranslationProbabilitiesAndStore();
-
         try {
             List<Token> tokens = TokenUtil.tokenize(FileUtils.readFileToString(new File(documentPath), StandardCharsets.UTF_8), documentLanguage);
             tokens = TokenUtil.removeStopwords(tokens, documentLanguage);
