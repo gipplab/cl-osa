@@ -131,7 +131,9 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             String[] parts = line.split(chinese ? "\\|\\|\\|" : "\\s");
 
                             String nativeWord = chinese ? parts[0].trim() : parts[0];
-                            String foreignWord = chinese ? parts[1].trim() : parts[1];
+                            String foreignWord = chinese
+                                    ? parts[1].trim().replaceAll("\\s", "")
+                                    : parts[1];
                             Double probability = chinese
                                     ? Double.parseDouble(parts[2].trim().split("\\s")[1])
                                     : Double.parseDouble(parts[2]);
