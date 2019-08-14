@@ -128,7 +128,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                         for (int i = 0; i < lines.size(); i++) {
                             String line = lines.get(i);
-                            String[] parts = line.split(chinese ? "|||" : "\\s");
+                            String[] parts = line.split(chinese ? "\\|\\|\\|" : "\\s");
 
                             String nativeWord = chinese ? parts[0].trim() : parts[0];
                             String foreignWord = chinese ? parts[1].trim() : parts[1];
