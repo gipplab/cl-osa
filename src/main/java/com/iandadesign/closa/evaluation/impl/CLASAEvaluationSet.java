@@ -123,7 +123,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
 
                         ProgressBar progressBar = new ProgressBar("Preprocess translation files: " + languagePair,
-                                Files.lines(translationFilePath).count(), ProgressBarStyle.ASCII);
+                                Files.lines(translationFilePath, StandardCharsets.UTF_8).count(), ProgressBarStyle.ASCII);
                         progressBar.start();
 
                         List<Document> currentTranslationsToInsert = new ArrayList<>();
