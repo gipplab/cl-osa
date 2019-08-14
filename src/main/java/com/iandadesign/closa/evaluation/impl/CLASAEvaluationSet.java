@@ -236,6 +236,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                 if (Files.exists(probabilitiesFilePath) &&
                                         FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8).size() == candidateIdTokensMap.size()) {
 
+                                    System.out.println("exists: import " + probabilitiesFilePath);
+
                                     List<String> lines = FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8);
 
                                     Map<String, Double> candidateProbabilityMap = lines.stream()
@@ -262,6 +264,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             }
 
                             Map<String, Double> candidateIdProbabilityMap = new HashMap<>();
+
+                            System.out.println("does not exist: create");
 
                             for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 50)) {
                                 candidateIdProbabilityMap.putAll(getTranslationProbabilitiesByCandidate(
@@ -349,8 +353,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
         AggregateIterable<Document> totalProbabilityDocuments = translationsCollection.aggregate(Arrays.asList(
                 new Document("$match",
-                        new Document("$and", nativeWords.stream()
-                                .map(nativeWord -> new Document("cheating", nativeWord))
+                        new Document("$or", nativeWords.stream()
+                                .map(nativeWord -> new Document("native", nativeWord))
                                 .collect(Collectors.toList()))),
                 new Document("$unwind", "$foreign"),
                 new Document("$addFields",
