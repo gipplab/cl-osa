@@ -396,7 +396,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
         }
 
         if (i == 0) {
-            throw new IllegalStateException("No matches!");
+            System.out.println("No matches!");
         }
 
         int j = 0;
