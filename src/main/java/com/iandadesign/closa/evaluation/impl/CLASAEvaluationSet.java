@@ -91,7 +91,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
     /**
      * Reads the files from the EU dictionary and stores them to MongoDB.
      */
-    private void extractTranslationProbabilitiesAndStore() {
+    public static void extractTranslationProbabilitiesAndStore() {
         try {
             for (Map.Entry<String, List<String>> languageEntry : languagePairs.entrySet()) {
 
@@ -162,8 +162,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
     @Override
     protected List<String> preProcess(String documentPath, String documentLanguage) {
-        extractTranslationProbabilitiesAndStore();
-
         try {
             List<Token> tokens = TokenUtil.tokenize(FileUtils.readFileToString(new File(documentPath), StandardCharsets.UTF_8), documentLanguage);
             tokens = TokenUtil.removeStopwords(tokens, documentLanguage);
