@@ -19,6 +19,7 @@ import org.bson.Document;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -131,7 +132,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                         System.out.println("Get lines");
 
-                        PeekingIterator<String> lineIterator = new PeekingIterator<>(Files.lines(translationFilePath, StandardCharsets.UTF_8)
+                        PeekingIterator<String> lineIterator = new PeekingIterator<>(Files.lines(translationFilePath,
+                                chinese ? Charset.forName("GB18030") : StandardCharsets.UTF_8)
                                 .sorted()
                                 .iterator());
 
