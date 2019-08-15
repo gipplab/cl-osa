@@ -271,7 +271,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                             int i = 0;
                             for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 50)) {
-                                System.out.println("getTranslationProbabilitiesByCandidate for " + suspiciousEntry.getValue() + " , submap " + i + " of 50");
+                                System.out.println("getTranslationProbabilitiesByCandidate for " + suspiciousEntry.getKey() + " , submap " + i + " of 50");
 
                                 candidateIdProbabilityMap.putAll(getTranslationProbabilitiesByCandidate(
                                         suspiciousEntry.getValue(),
