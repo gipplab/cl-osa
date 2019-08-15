@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -199,12 +200,16 @@ public abstract class EvaluationSet<T> {
                 .boxed()
                 .collect(Collectors.toList());
 
-        customThreadPool.submit(
-                () -> integers.parallelStream()
-                        .forEach(i -> {
-                            System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
-                            initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
-                        }));
+        try {
+            customThreadPool.submit(
+                    () -> integers.parallelStream()
+                            .forEach(i -> {
+                                System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
+                                initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
+                            })).get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
 
     }
 
