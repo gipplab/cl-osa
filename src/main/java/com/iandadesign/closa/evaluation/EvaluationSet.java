@@ -509,8 +509,11 @@ public abstract class EvaluationSet<T> {
             // Document tokens have to be non-null
         }
 
-        Path newFullPath = Paths.get(originalDocumentPath.replace(System.getProperty("user.home"),
-                System.getProperty("user.home") + "/preprocessed/" + this.getClass().getName() + "/"));
+        Path newFullPath =
+                originalDocumentPath.contains(System.getProperty("user.home"))
+                        ? Paths.get(originalDocumentPath.replace(System.getProperty("user.home"),
+                                System.getProperty("user.home") + "/preprocessed/" + this.getClass().getName() + "/"))
+                        : Paths.get(originalDocumentPath.replace("src", "src/preprocessed/" + this.getClass().getName() + "/"));
 
         if (newFullPath.toString().equals(originalDocumentPath)) {
             throw new IllegalStateException("Don't overwrite original!");
