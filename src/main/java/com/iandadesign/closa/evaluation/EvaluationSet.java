@@ -156,12 +156,24 @@ public abstract class EvaluationSet<T> {
 
         List<File> keys = new ArrayList<>(files.keySet());
 
-        IntStream.range(0, keys.size())
-                //.parallel()
-                .forEach(i -> {
-                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
-                    initializeOneFilePair(keys.get(i), suspiciousLanguage, files.get(keys.get(i)), candidateLanguage);
-                });
+        ForkJoinPool customThreadPool = new ForkJoinPool(4);
+
+        List<Integer> integers = IntStream.range(0, keys.size())
+                .sorted()
+                .boxed()
+                .collect(Collectors.toList());
+
+        try {
+            customThreadPool.submit(
+                    () -> integers.parallelStream()
+                            .forEach(i -> {
+                                System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
+                                initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
+                            })).get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
