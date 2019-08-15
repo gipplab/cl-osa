@@ -52,6 +52,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
     private static double enFrMean = 1.093;
     private static double enFrStandardDeviation = 0.175;
 
+    private static int zeroProbs = 0;
+
     static {
         database = WikidataDumpUtil.getMongoClient().getDatabase(databaseName);
     }
@@ -299,6 +301,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             return candidateIdProbabilityMap;
                         }));
 
+        System.out.println("Have " + zeroProbs + " of " + 250000);
+
         progressBar.stop();
     }
 
@@ -401,7 +405,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
             }
         }
 
-        System.out.println("Zero probs = " + j);
+        zeroProbs += j;
 
         return translationProbabilitiesByCandidate;
     }
