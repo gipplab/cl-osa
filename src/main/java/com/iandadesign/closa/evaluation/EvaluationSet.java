@@ -1,5 +1,6 @@
 package com.iandadesign.closa.evaluation;
 
+import com.google.common.collect.Lists;
 import com.iandadesign.closa.language.LanguageDetector;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
@@ -13,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -188,12 +190,20 @@ public abstract class EvaluationSet<T> {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
         List<File> keys = new ArrayList<>(files.keySet());
+        final AtomicInteger counter = new AtomicInteger();
 
-        IntStream.range(0, keys.size())
-                //.parallel()
-                .forEachOrdered(i -> {
-                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
-                    initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
+        Lists.partition(IntStream.range(0, keys.size())
+                        .sorted()
+                        .boxed()
+                        .collect(Collectors.toList()),
+                100)
+                .stream()
+                .parallel()
+                .forEach((List<Integer> ints) -> {
+                    ints.forEach(i -> {
+                        System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
+                        initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
+                    });
                 });
     }
 
