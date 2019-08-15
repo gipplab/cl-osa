@@ -255,7 +255,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                                         return lengthModel * Double.parseDouble(line.split(";")[1]);
                                                     }));
 
-                                    progressBar.stepTo(current.getAndIncrement());
+                                    progressBar.stepTo(current.incrementAndGet());
 
                                     return candidateProbabilityMap;
                                 } else {
