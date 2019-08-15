@@ -112,6 +112,23 @@ class CLASAEvaluationSetEval {
 
     @Test
     void evalCLASAEuroparl() {
+        /*
+            Ranks 1 to 50
+
+            Precision: [20.4, 12.700001, 9.533333, 7.0, 4.5, 3.06, 1.672]
+            Recall: [20.4, 25.400002, 28.600002, 35.0, 45.0, 61.199997, 83.600006]
+            F-Measure: [20.400002, 16.933332, 14.300001, 11.666667, 8.181818, 5.8285713, 3.2784314]
+
+            Mean reciprocal rank: 28.75150835340408
+
+
+            Aligned document similarities
+
+            {0.0=499, 10.0=1}
+
+            {0.0=99.8, 10.0=0.2}
+
+         */
         try {
             CLASAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLASA = new CLASAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
