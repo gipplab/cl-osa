@@ -117,7 +117,6 @@ public abstract class EvaluationSet<T> {
 
         System.out.println("Analyzing " + fileCountLimit + " file pairs... (" + this.getClass().getSimpleName() + ")");
 
-        // FIXME: ECCE is overwritten
         Map<File, File> files = FileUtils.listFiles(suspiciousFolder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .stream()
                 .filter(file -> !file.getName().equals(".DS_Store"))
@@ -544,6 +543,7 @@ public abstract class EvaluationSet<T> {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
+            System.out.println("Written to " + newFullPath.toString());
             try {
                 assert writer != null;
                 writer.close();

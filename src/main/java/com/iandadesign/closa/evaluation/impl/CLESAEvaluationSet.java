@@ -177,7 +177,6 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
     @Override
     protected List<Double> preProcess(String documentPath, String documentLanguage) {
-
         List<Double> preProcessed = new ArrayList<>();
 
         try {
