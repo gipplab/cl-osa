@@ -269,7 +269,10 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                             System.out.println("does not exist: create");
 
+                            int i = 0;
                             for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 50)) {
+                                System.out.println("getTranslationProbabilitiesByCandidate for " + suspiciousEntry.getValue() + " , submap " + i + " of 50");
+
                                 candidateIdProbabilityMap.putAll(getTranslationProbabilitiesByCandidate(
                                         suspiciousEntry.getValue(),
                                         subMap,
@@ -283,6 +286,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                                     double lengthModel = Math.exp(-0.5 * Math.pow((candidateSize / suspiciousSize - mean) / standardDeviation, 2.0));
                                                     return lengthModel * candidateEntry.getValue();
                                                 })));
+                                i++;
                             }
 
                             progressBar.stepTo(current.incrementAndGet());
