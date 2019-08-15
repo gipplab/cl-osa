@@ -510,7 +510,7 @@ public abstract class EvaluationSet<T> {
         }
 
         Path newFullPath = Paths.get(originalDocumentPath.replace(System.getProperty("user.home"),
-                System.getProperty("user.home") + "/preprocessed/" + this.getClass().getSimpleName() + "/"));
+                System.getProperty("user.home") + "/preprocessed/" + this.getClass().getName() + "/"));
 
         if (newFullPath.toString().equals(originalDocumentPath)) {
             throw new IllegalStateException("Don't overwrite original!");
