@@ -401,7 +401,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
             }
         }
 
-        // System.out.println("Zero probs = " + j);
+        System.out.println("Zero probs = " + j);
 
         return translationProbabilitiesByCandidate;
     }
