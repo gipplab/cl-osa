@@ -196,11 +196,9 @@ public abstract class EvaluationSet<T> {
                         .sorted()
                         .boxed()
                         .collect(Collectors.toList()),
-                100)
-                .stream()
-                .parallel()
+                5)
                 .forEach((List<Integer> ints) -> {
-                    ints.forEach(i -> {
+                    ints.stream().parallel().forEach(i -> {
                         System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
                         initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
                     });
