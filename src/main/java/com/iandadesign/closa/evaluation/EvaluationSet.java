@@ -117,6 +117,7 @@ public abstract class EvaluationSet<T> {
 
         System.out.println("Analyzing " + fileCountLimit + " file pairs... (" + this.getClass().getSimpleName() + ")");
 
+        // FIXME: ECCE is overwritten
         Map<File, File> files = FileUtils.listFiles(suspiciousFolder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .stream()
                 .filter(file -> !file.getName().equals(".DS_Store"))
@@ -510,7 +511,11 @@ public abstract class EvaluationSet<T> {
         }
 
         Path newFullPath = Paths.get(originalDocumentPath.replace(System.getProperty("user.home"),
-                System.getProperty("user.home") + "/preprocessed/" + this.getClass().getSimpleName()));
+                System.getProperty("user.home") + "/preprocessed/" + this.getClass().getSimpleName() + "/"));
+
+        if (newFullPath.toString().equals(originalDocumentPath)) {
+            throw new IllegalStateException("Don't overwrite original!");
+        }
 
         File newFile = new File(newFullPath.toString());
 
