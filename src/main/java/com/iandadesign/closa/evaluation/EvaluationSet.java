@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -190,19 +191,21 @@ public abstract class EvaluationSet<T> {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
         List<File> keys = new ArrayList<>(files.keySet());
-        final AtomicInteger counter = new AtomicInteger();
 
-        Lists.partition(IntStream.range(0, keys.size())
-                        .sorted()
-                        .boxed()
-                        .collect(Collectors.toList()),
-                5)
-                .forEach((List<Integer> ints) -> {
-                    ints.stream().parallel().forEach(i -> {
-                        System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
-                        initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
-                    });
-                });
+        ForkJoinPool customThreadPool = new ForkJoinPool(4);
+
+        List<Integer> integers = IntStream.range(0, keys.size())
+                .sorted()
+                .boxed()
+                .collect(Collectors.toList());
+
+        customThreadPool.submit(
+                () -> integers.parallelStream()
+                        .forEach(i -> {
+                            System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
+                            initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
+                        }));
+
     }
 
     /**
