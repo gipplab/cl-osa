@@ -62,7 +62,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
             "es-en", Collections.singletonList("EnEs"),
             "fr-en", Collections.singletonList("EnFr"),
             "zh-en", Collections.singletonList("EnZh"),
-            "ja-en", Collections.singletonList("EnJA")
+            "ja-en", Collections.singletonList("EnJa")
     );
 
     /**
