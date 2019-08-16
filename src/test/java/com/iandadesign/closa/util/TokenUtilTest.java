@@ -288,5 +288,33 @@ public class TokenUtilTest {
         }
     }
 
+    @Test
+    void japaneseTokenizeTanakaCorpus() {
+        String path = "/Users/fabianmarquart/tanaka-corpus/ja.utf";
+        String pathTokens = "/Users/fabianmarquart/tanaka-corpus/ja-tokenized.utf";
+
+        try {
+            List<String> lines = FileUtils.readLines(new File(path), StandardCharsets.UTF_8);
+            List<String> outputLines = lines.stream()
+                    .map((String line) -> {
+                        // System.out.println(line);
+                        try {
+                            return TokenUtil.tokenize(line, "ja")
+                                    .stream()
+                                    .map(Token::getToken)
+                                    .collect(Collectors.joining(" "));
+                        } catch (IndexOutOfBoundsException e) {
+                            e.printStackTrace();
+                            return "";
+                        }
+                    })
+                    .collect(Collectors.toList());
+
+            FileUtils.writeLines(new File(pathTokens), outputLines);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

@@ -9,6 +9,20 @@ class CLASAEvaluationSetEval {
     @Test
     void evalCLASAEnglishChinese() {
         /*
+            Ranks 1 to 50
+
+            Precision: [70.0, 36.6, 24.666668, 14.96, 7.5400004, 3.81, 1.544]
+            Recall: [70.0, 73.2, 74.0, 74.8, 75.4, 76.200005, 77.200005]
+            F-Measure: [70.0, 48.8, 37.0, 24.933334, 13.709092, 7.2571425, 3.027451]
+
+            Mean reciprocal rank: 72.3303432121858
+
+
+            Aligned document similarities
+
+            {20.0=148, 0.0=120, 30.0=134, 60.0=6, 40.0=57, 10.0=16, 50.0=17, 100.0=1, 70.0=1}
+
+            {20.0=29.6, 0.0=24.0, 30.0=26.8, 60.0=1.2, 40.0=11.4, 10.0=3.2, 50.0=3.4, 100.0=0.2, 70.0=0.2}
          */
 
         CLASAEvaluationSet englishChineseECCEEvaluationSetCLASA = new CLASAEvaluationSet(

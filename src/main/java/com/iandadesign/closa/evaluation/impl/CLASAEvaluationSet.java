@@ -61,7 +61,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
     private static final Map<String, List<String>> languagePairs = ImmutableMap.of(
             "es-en", Collections.singletonList("EnEs"),
             "fr-en", Collections.singletonList("EnFr"),
-            "zh-en", Collections.singletonList("EnZh")
+            "zh-en", Collections.singletonList("EnZh"),
+            "ja-en", Collections.singletonList("EnJA")
     );
 
     /**
@@ -106,12 +107,16 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         String translationDirection = languagePair.substring(0, 1).equals("En") ? "e2f" : "f2e";
                         boolean englishToForeign = translationDirection.equals("e2f");
                         boolean chinese = languagePair.contains("Zh");
+                        boolean japanese = languagePair.contains("Ja");
+                        boolean fromPiAlign = chinese || japanese;
 
                         if (englishToForeign) {
                             translationsCollection.createIndex(new Document("native", 1), new IndexOptions().unique(true));
                         }
 
-                        Path translationFilePath = chinese
+                        Path translationFilePath = japanese
+                                ? Paths.get(System.getProperty("user.home") + "/tanaka-corpus/out/align.1.pt")
+                                : chinese
                                 ? Paths.get(System.getProperty("user.home") + "/TED_Paracorpus/out/align.utf8.1.pt")
                                 : Paths.get(System.getProperty("user.home") + "/eu-bilingual/"
                                 + languageEntry.getKey() + "/lex." + translationDirection);
@@ -145,17 +150,17 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                             System.out.println(line);
 
-                            String[] parts = line.split(chinese ? "\\|\\|\\|" : "\\s");
+                            String[] parts = line.split(fromPiAlign ? "\\|\\|\\|" : "\\s");
 
-                            String nativeWord = chinese
+                            String nativeWord = fromPiAlign
                                     ? parts[0].trim()
                                     : parts[0];
 
-                            String foreignWord = chinese
+                            String foreignWord = fromPiAlign
                                     ? parts[1].trim().replaceAll("\\s", "")
                                     : parts[1];
 
-                            Double probability = chinese
+                            Double probability = fromPiAlign
                                     ? Double.parseDouble(parts[2].trim().split("\\s")[1])
                                     : Double.parseDouble(parts[2]);
 
@@ -165,8 +170,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             String nextLine = lineIterator.peek();
 
                             if (nextLine != null) {
-                                String[] nextParts = nextLine.split(chinese ? "\\|\\|\\|" : "\\s");
-                                String nextWord = chinese
+                                String[] nextParts = nextLine.split(fromPiAlign ? "\\|\\|\\|" : "\\s");
+                                String nextWord = fromPiAlign
                                         ? nextParts[0].trim()
                                         : nextParts[0];
 
