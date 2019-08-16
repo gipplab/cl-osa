@@ -360,47 +360,52 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
     ) {
         Map<String, Double> translationProbabilitiesByCandidate = new HashMap<>();
 
-        MongoCollection<Document> translationsCollection = database.getCollection(translationsCollectionName
-                + StringUtils.capitalize(nativeLanguage)
-                + StringUtils.capitalize(foreignLanguage));
+        if (nativeWords.size() != 0) {
+            MongoCollection<Document> translationsCollection = database.getCollection(translationsCollectionName
+                    + StringUtils.capitalize(nativeLanguage)
+                    + StringUtils.capitalize(foreignLanguage));
 
 
-        AggregateIterable<Document> totalProbabilityDocuments = translationsCollection.aggregate(Arrays.asList(
-                new Document("$match",
-                        new Document("$or", nativeWords.stream()
-                                .map(nativeWord -> new Document("native", nativeWord))
-                                .collect(Collectors.toList()))),
-                new Document("$unwind", "$foreign"),
-                new Document("$addFields",
-                        new Document("candidateId", foreignWordsMap.keySet())),
-                new Document("$unwind", "$candidateId"),
-                new Document("$match",
-                        new Document("$or",
-                                foreignWordsMap.entrySet()
-                                        .stream()
-                                        .map(foreignWordEntry ->
-                                                new Document("foreign.translation",
-                                                        new Document("$in", foreignWordEntry.getValue()))
-                                                        .append("candidateId", foreignWordEntry.getKey()))
-                                        .collect(Collectors.toList()))),
-                new Document("$group",
-                        new Document("_id", "$candidateId")
-                                .append("totalProbability",
-                                        new Document("$sum", "$foreign.probability")))
-        ));
+            AggregateIterable<Document> totalProbabilityDocuments = translationsCollection.aggregate(Arrays.asList(
+                    new Document("$match",
+                            new Document("$or", nativeWords.stream()
+                                    .map(nativeWord -> new Document("native", nativeWord))
+                                    .collect(Collectors.toList()))),
+                    new Document("$unwind", "$foreign"),
+                    new Document("$addFields",
+                            new Document("candidateId", foreignWordsMap.keySet())),
+                    new Document("$unwind", "$candidateId"),
+                    new Document("$match",
+                            new Document("$or",
+                                    foreignWordsMap.entrySet()
+                                            .stream()
+                                            .map(foreignWordEntry ->
+                                                    new Document("foreign.translation",
+                                                            new Document("$in", foreignWordEntry.getValue()))
+                                                            .append("candidateId", foreignWordEntry.getKey()))
+                                            .collect(Collectors.toList()))),
+                    new Document("$group",
+                            new Document("_id", "$candidateId")
+                                    .append("totalProbability",
+                                            new Document("$sum", "$foreign.probability")))
+            ));
 
-        int i = 0;
+            int i = 0;
 
-        for (Document totalProbabilityDocument : totalProbabilityDocuments) {
-            // System.out.println("totalProbDoc = " + totalProbabilityDocument);
-            String candidateId = totalProbabilityDocument.getString("_id");
-            double totalProbability = totalProbabilityDocument.getDouble("totalProbability");
-            translationProbabilitiesByCandidate.put(candidateId, totalProbability);
-            i++;
-        }
+            for (Document totalProbabilityDocument : totalProbabilityDocuments) {
+                // System.out.println("totalProbDoc = " + totalProbabilityDocument);
+                String candidateId = totalProbabilityDocument.getString("_id");
+                double totalProbability = totalProbabilityDocument.getDouble("totalProbability");
+                translationProbabilitiesByCandidate.put(candidateId, totalProbability);
+                i++;
+            }
 
-        if (i == 0) {
-            System.out.println("No matches!");
+
+            if (i == 0) {
+                System.out.println("No matches!");
+            }
+        } else {
+            System.out.println("Empty suspicious input!");
         }
 
         int j = 0;
