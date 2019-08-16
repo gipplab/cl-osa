@@ -360,7 +360,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
     ) {
         Map<String, Double> translationProbabilitiesByCandidate = new HashMap<>();
 
-        if (nativeWords.size() != 0) {
+        if (nativeWords.size() != 0 && foreignWordsMap.values().stream().noneMatch(foreignWords -> foreignWords.size() == 0)) {
             MongoCollection<Document> translationsCollection = database.getCollection(translationsCollectionName
                     + StringUtils.capitalize(nativeLanguage)
                     + StringUtils.capitalize(foreignLanguage));
