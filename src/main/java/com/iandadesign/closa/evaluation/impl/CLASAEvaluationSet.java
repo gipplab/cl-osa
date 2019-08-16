@@ -379,6 +379,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             new Document("$or",
                                     foreignWordsMap.entrySet()
                                             .stream()
+                                            .filter(foreignWordEntry -> foreignWordEntry.getValue().size() != 0)
                                             .map(foreignWordEntry ->
                                                     new Document("foreign.translation",
                                                             new Document("$in", foreignWordEntry.getValue()))
