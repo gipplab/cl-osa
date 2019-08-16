@@ -3,8 +3,24 @@ package com.iandadesign.closa.evaluation.impl;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.IOException;
 
 class CLASAEvaluationSetEval {
+
+    @Test
+    void evalCLASAEnglishJapanese() {
+
+        try {
+            CLASAEvaluationSet englishJapaneseBBCEvaluationSetCLASA = new CLASAEvaluationSet(
+                    new File(System.getProperty("user.home") + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/en"), "en",
+                    new File(System.getProperty("user.home") + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/ja"), "ja"
+            );
+            englishJapaneseBBCEvaluationSetCLASA.printEvaluation();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Test
     void evalCLASAEnglishChinese() {
