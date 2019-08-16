@@ -156,7 +156,7 @@ public abstract class EvaluationSet<T> {
 
         List<File> keys = new ArrayList<>(files.keySet());
 
-        ForkJoinPool customThreadPool = new ForkJoinPool(4);
+        ForkJoinPool customThreadPool = new ForkJoinPool(16);
 
         List<Integer> integers = IntStream.range(0, keys.size())
                 .sorted()
@@ -205,7 +205,7 @@ public abstract class EvaluationSet<T> {
 
         List<File> keys = new ArrayList<>(files.keySet());
 
-        ForkJoinPool customThreadPool = new ForkJoinPool(4);
+        ForkJoinPool customThreadPool = new ForkJoinPool(16);
 
         List<Integer> integers = IntStream.range(0, keys.size())
                 .sorted()

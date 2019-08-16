@@ -9,7 +9,23 @@ class CLASAEvaluationSetEval {
 
     @Test
     void evalCLASAEnglishJapanese() {
+        /*
+            Ranks 1 to 50
 
+            Precision: [77.77778, 42.22222, 28.88889, 18.0, 9.444445, 4.833333, 1.9777778]
+            Recall: [77.77778, 84.44444, 86.666664, 90.0, 94.44444, 96.666664, 98.888885]
+            F-Measure: [77.77777, 56.296295, 43.333332, 30.000002, 17.171719, 9.206348, 3.877996]
+
+            Mean reciprocal rank: 83.46916977001935
+
+
+            Aligned document similarities
+
+            {60.0=8, 40.0=19, 30.0=15, 80.0=7, 20.0=12, 10.0=9, 0.0=2, 90.0=1, 50.0=13, 100.0=1, 70.0=3}
+
+            {60.0=8.888889, 40.0=21.11111, 30.0=16.666666, 80.0=7.7777777, 20.0=13.333333, 10.0=10.0, 0.0=2.2222223, 90.0=1.1111112, 50.0=14.444445, 100.0=1.1111112, 70.0=3.3333333}
+
+         */
         try {
             CLASAEvaluationSet englishJapaneseBBCEvaluationSetCLASA = new CLASAEvaluationSet(
                     new File(System.getProperty("user.home") + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/en"), "en",
