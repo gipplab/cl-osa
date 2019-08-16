@@ -121,7 +121,7 @@ public class CLESAEvaluationSetEval {
             CLESAEvaluationSet englishChineseECCEEvaluationSetCLESA = new CLESAEvaluationSet(
                     new File("src/eval/resources/com/iandadesign/closa/evaluation/ECCE/en"), "en",
                     new File("src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"), "zh",
-                    500
+                    137
             );
             englishChineseECCEEvaluationSetCLESA.printEvaluation();
     }
