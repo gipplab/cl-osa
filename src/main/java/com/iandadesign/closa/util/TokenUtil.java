@@ -483,10 +483,7 @@ public class TokenUtil {
                 return tokenList;
             case "zh":
                 // Chinese
-                return namedEntityTokenize(textContent, "zh")
-                        .stream()
-                        .flatMap(Collection::stream)
-                        .collect(Collectors.toList());
+                return chineseTokenize(textContent, "zh");
             default:
                 // white-space separated language
                 return tokenize(textContent, false);
