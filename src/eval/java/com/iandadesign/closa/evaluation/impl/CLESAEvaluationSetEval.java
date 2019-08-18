@@ -6,40 +6,22 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
 
-public class CLESAEvaluationSetEval {
+class CLESAEvaluationSetEval {
 
 
     @Test
-    public void buildDatabase() {
+    void buildDatabase() {
         CLESAEvaluationSet.extractWikipediaArticlesAndStore();
     }
 
 
     /////////////////////////////////////////////////// CL-ESA //////////////////////////////////////////////////
 
+
     @Test
-    public void evalCLESAEnglishJapaneseMonolingual() {
+    void evalCLESAEnglishJapanese() {
         /*
-            Top 10 ranked retrieval, concept space dimensionality 5000. Total time: 3 d 05:36 h
-
-            Potthast 2008:
-            "If high retrieval speed or a high multilinguality is desired, documents should be represented as 1000-dimensional concept vectors.
-            At a lower dimension the retrieval quality deteriorates significantly.
-            A reasonable trade-off between retrieval quality and runtime is achieved for a concept space dimensionality between 1 000 and 10 000."
-
-            True positives: 10
-            Relevant elements: 94
-            Irrelevant elements: 0
-            Collection size: 94
-            Selected elements: 940
-            False positives: 84
-            False negatives: 84
-
-            Precision: 0.010638298
-            Recall: 0.10638298
-            F-Measure: 0.019342358701873702
-
-
+           
             Concept space dimensionality 10000.
             Ranks 1 to 50
 
@@ -55,37 +37,6 @@ public class CLESAEvaluationSetEval {
             {80.0=28, 0.0=1, 60.0=10, 50.0=2, 70.0=49}
 
             {80.0=31.11111, 0.0=1.1111112, 60.0=11.111111, 50.0=2.2222223, 70.0=54.444443}
-
-        */
-
-        try {
-            EvaluationSet englishJapaneseBBCEvaluationSetCLESA = new CLESAEvaluationSet(
-                    new File("src/eval/resources/com/iandadesign/closa/evaluation/preprocessed-t/test-bbc/en"), "en",
-                    new File("src/eval/resources/com/iandadesign/closa/evaluation/preprocessed-t/test-bbc/ja"), "en"
-            );
-
-            englishJapaneseBBCEvaluationSetCLESA.printEvaluation();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void evalCLESAEnglishJapanese() {
-        /*
-            Ranks 1 to 50
-
-            Precision: [1.0638298, 1.0638298, 1.0638298, 1.0638298, 1.0638298, 1.0638298, 1.0638298]
-            Recall: [1.0638298, 2.1276596, 3.1914895, 5.319149, 10.638298, 21.276596, 53.19149]
-            F-Measure: [1.0638298, 1.4184396, 1.5957447, 1.7730495, 1.9342359, 2.0263424, 2.0859408]
-
-            Mean reciprocal rank: 4.78638865779726
-
-            Aligned document similarities
-
-            {0.0=50}
-
-            {0.0=53.19149}
          */
         try {
             EvaluationSet englishJapaneseBBCEvaluationSetCLESA = new CLESAEvaluationSet(
@@ -100,7 +51,7 @@ public class CLESAEvaluationSetEval {
     }
 
     @Test
-    public void evalCLESAEnglishChinese() {
+    void evalCLESAEnglishChinese() {
         /*
             Ranks 1 to 50
 
@@ -118,17 +69,20 @@ public class CLESAEvaluationSetEval {
             {0.0=9.823183}
          */
 
+        try {
             CLESAEvaluationSet englishChineseECCEEvaluationSetCLESA = new CLESAEvaluationSet(
                     new File("src/eval/resources/com/iandadesign/closa/evaluation/ECCE/en"), "en",
-                    new File("src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"), "zh",
-                    137
+                    new File("src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"), "zh"
             );
             englishChineseECCEEvaluationSetCLESA.printEvaluation();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
     @Test
-    public void evalCLESAPan11Documents() {
+    void evalCLESAPan11Documents() {
         /*
             Ranks 1 to 50
 
@@ -148,8 +102,7 @@ public class CLESAEvaluationSetEval {
         try {
             CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es",
-                    500
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es"
             );
 
             englishSpanishPan11EvaluationSetCLESA.printEvaluation();
@@ -160,7 +113,7 @@ public class CLESAEvaluationSetEval {
 
 
     @Test
-    public void evalCLESAPan11Sentences() {
+    void evalCLESAPan11Sentences() {
         /*
             Ranks 1 to 50
 
@@ -181,8 +134,7 @@ public class CLESAEvaluationSetEval {
         try {
             CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es",
-                    500
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es"
             );
 
             englishSpanishPan11EvaluationSetCLESA.printEvaluation();
@@ -192,7 +144,7 @@ public class CLESAEvaluationSetEval {
     }
 
     @Test
-    public void evalCLESAJrcAcquisDocuments() {
+    void evalCLESAJrcAcquisDocuments() {
         /*
 
             Ranks 1 to 50
@@ -214,8 +166,7 @@ public class CLESAEvaluationSetEval {
         try {
             CLESAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr",
-                    500
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr"
             );
             englishFrenchJrcAcquisEvaluationSetCLESA.printEvaluation();
         } catch (Exception e) {
@@ -225,7 +176,7 @@ public class CLESAEvaluationSetEval {
 
 
     @Test
-    public void evalCLESAEuroparlDocuments() {
+    void evalCLESAEuroparlDocuments() {
         /*
             Ranks 1 to 50
 
@@ -245,8 +196,7 @@ public class CLESAEvaluationSetEval {
         try {
             CLESAEvaluationSet englishFrenchEuroparlEvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
-                    500
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr"
             );
             englishFrenchEuroparlEvaluationSetCLESA.printEvaluation();
         } catch (Exception e) {

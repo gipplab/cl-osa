@@ -57,12 +57,15 @@ class CLASAEvaluationSetEval {
             {20.0=29.6, 0.0=24.0, 30.0=26.8, 60.0=1.2, 40.0=11.4, 10.0=3.2, 50.0=3.4, 100.0=0.2, 70.0=0.2}
          */
 
-        CLASAEvaluationSet englishChineseECCEEvaluationSetCLASA = new CLASAEvaluationSet(
-                new File(System.getProperty("user.home") + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/en"), "en",
-                new File(System.getProperty("user.home") + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"), "zh",
-                500
-        );
-        englishChineseECCEEvaluationSetCLASA.printEvaluation();
+        try {
+            CLASAEvaluationSet englishChineseECCEEvaluationSetCLASA = new CLASAEvaluationSet(
+                    new File(System.getProperty("user.home") + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/en"), "en",
+                    new File(System.getProperty("user.home") + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"), "zh"
+            );
+            englishChineseECCEEvaluationSetCLASA.printEvaluation();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -87,8 +90,7 @@ class CLASAEvaluationSetEval {
         try {
             CLASAEvaluationSet englishSpanishPan11EvaluationSetCLASA = new CLASAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es",
-                    500
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es"
             );
             englishSpanishPan11EvaluationSetCLASA.printEvaluation();
         } catch (Exception e) {
@@ -118,8 +120,7 @@ class CLASAEvaluationSetEval {
         try {
             CLASAEvaluationSet englishSpanishPan11EvaluationSetCLASA = new CLASAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es",
-                    500
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es"
             );
             englishSpanishPan11EvaluationSetCLASA.printEvaluation();
         } catch (Exception e) {
@@ -147,8 +148,7 @@ class CLASAEvaluationSetEval {
         try {
             CLASAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLASA = new CLASAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr",
-                    500
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr"
             );
             englishFrenchJrcAcquisEvaluationSetCLASA.printEvaluation();
         } catch (Exception e) {
@@ -178,8 +178,7 @@ class CLASAEvaluationSetEval {
         try {
             CLASAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLASA = new CLASAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
-                    500
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr"
             );
             englishFrenchJrcAcquisEvaluationSetCLASA.printEvaluation();
         } catch (Exception e) {

@@ -84,8 +84,7 @@ public class CLCNGEvaluationSetEval {
         try {
             CLCNGEvaluationSet englishSpanishPan11EvaluationSetCLCNG = new CLCNGEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es",
-                    500
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es"
             );
             englishSpanishPan11EvaluationSetCLCNG.printEvaluation();
         } catch (Exception e) {
@@ -115,8 +114,7 @@ public class CLCNGEvaluationSetEval {
         try {
             CLCNGEvaluationSet englishSpanishPan11EvaluationSetCLCNG = new CLCNGEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es",
-                    500
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es"
             );
             englishSpanishPan11EvaluationSetCLCNG.printEvaluation();
         } catch (Exception e) {
@@ -146,8 +144,7 @@ public class CLCNGEvaluationSetEval {
         try {
             CLCNGEvaluationSet englishFrenchJrcAcquisEvaluationSetCLCNG = new CLCNGEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr",
-                    500
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr"
             );
             englishFrenchJrcAcquisEvaluationSetCLCNG.printEvaluation();
         } catch (Exception e) {
@@ -178,8 +175,7 @@ public class CLCNGEvaluationSetEval {
         try {
             CLCNGEvaluationSet englishFrenchEuroparlEvaluationSetCLCNG = new CLCNGEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
-                    500
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr"
             );
             englishFrenchEuroparlEvaluationSetCLCNG.printEvaluation();
         } catch (Exception e) {
