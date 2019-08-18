@@ -129,6 +129,21 @@ class CLASAEvaluationSetEval {
     }
 
     @Test
+    void evalCLASAPan11Chunks() {
+        /*
+         */
+        try {
+            CLASAEvaluationSet englishSpanishPan11EvaluationSetCLASA = new CLASAEvaluationSet(
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/en"), "en",
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/es"), "es"
+            );
+            englishSpanishPan11EvaluationSetCLASA.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     void evalCLASAJrcAcquis() {
         /*
             Ranks 1 to 50
