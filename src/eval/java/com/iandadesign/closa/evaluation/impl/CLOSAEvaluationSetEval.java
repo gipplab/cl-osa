@@ -277,12 +277,14 @@ class CLOSAEvaluationSetEval {
             {40.0=191, 30.0=254, 20.0=33, 60.0=1, 50.0=20, 70.0=1}
 
             {40.0=38.2, 30.0=50.8, 20.0=6.6, 60.0=0.2, 50.0=4.0, 70.0=0.2}
+
+
+
          */
         try {
             CLOSAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr",
-                    500
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr"
             );
             englishFrenchJrcAcquisEvaluationSetCLOSA.printEvaluation();
         } catch (Exception e) {

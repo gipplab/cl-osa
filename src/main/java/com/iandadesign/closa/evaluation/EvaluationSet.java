@@ -2,6 +2,7 @@ package com.iandadesign.closa.evaluation;
 
 import com.google.common.collect.Lists;
 import com.iandadesign.closa.language.LanguageDetector;
+import com.iandadesign.closa.util.EmailUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 
@@ -486,6 +487,8 @@ public abstract class EvaluationSet<T> {
         evaluation.append(alignedDocumentSimilaritiesPercent);
 
         System.out.println(evaluation);
+
+        EmailUtil.sendMail(this.getClass().getName(), evaluation.toString());
 
         File evaluationFile = new File(String.format("%s/preprocessed/evaluation.txt", System.getProperty("user.home")));
         try {
