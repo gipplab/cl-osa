@@ -144,6 +144,23 @@ class CLESAEvaluationSetEval {
     }
 
     @Test
+    void evalCLESAPan11Chunks() {
+        /*
+
+         */
+        try {
+            CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/en"), "en",
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/es"), "es"
+            );
+
+            englishSpanishPan11EvaluationSetCLESA.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     void evalCLESAJrcAcquisDocuments() {
         /*
 
