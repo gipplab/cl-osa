@@ -133,8 +133,8 @@ class CLOSAEvaluationSetEval {
     @Test
     void evalCLOSAAspec() {
             CLOSAEvaluationSet englishJapaneseASPECEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/ASPECx/en"), "en",
                     new File(System.getProperty("user.home") + "/ASPECx/ja"), "ja",
+                    new File(System.getProperty("user.home") + "/ASPECx/en"), "en",
                     10000
             );
 
@@ -142,6 +142,17 @@ class CLOSAEvaluationSetEval {
         englishJapaneseASPECEvaluationSetCLOSA.printEvaluation();
     }
 
+    @Test
+    void evalCLOSAAspecChinese() {
+        CLOSAEvaluationSet englishJapaneseASPECEvaluationSetCLOSA = new CLOSAEvaluationSet(
+                new File(System.getProperty("user.home") + "/ASPECxc/ja"), "ja",
+                new File(System.getProperty("user.home") + "/ASPECxc/zh"), "zh",
+                10000
+        );
+
+        englishJapaneseASPECEvaluationSetCLOSA.setGraphBasedAnalysis(true);
+        englishJapaneseASPECEvaluationSetCLOSA.printEvaluation();
+    }
 
     /**
      * Tests CL-OSA with ECCE, core documents only.

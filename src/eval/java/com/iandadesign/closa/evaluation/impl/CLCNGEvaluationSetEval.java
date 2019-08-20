@@ -37,6 +37,28 @@ public class CLCNGEvaluationSetEval {
     }
 
     @Test
+    void evalCLCNGAspec() {
+        CLCNGEvaluationSet englishJapaneseASPECEvaluationSetCLCNG = new CLCNGEvaluationSet(
+                new File(System.getProperty("user.home") + "/ASPECx/ja"), "ja",
+                new File(System.getProperty("user.home") + "/ASPECx/en"), "en",
+                10000
+        );
+
+        englishJapaneseASPECEvaluationSetCLCNG.printEvaluation();
+    }
+
+    @Test
+    void evalCLCNGAspecChinese() {
+        CLCNGEvaluationSet chineseJapaneseASPECEvaluationSetCLCNG = new CLCNGEvaluationSet(
+                new File(System.getProperty("user.home") + "/ASPECxc/ja"), "ja",
+                new File(System.getProperty("user.home") + "/ASPECxc/zh"), "zh",
+                10000
+        );
+
+        chineseJapaneseASPECEvaluationSetCLCNG.printEvaluation();
+    }
+
+    @Test
     public void evalCLCNGEnglishChinese() {
         /*
             Precision: [98.23183, 49.50884, 33.005894, 19.842829, 9.921414, 4.960707, 1.984283]

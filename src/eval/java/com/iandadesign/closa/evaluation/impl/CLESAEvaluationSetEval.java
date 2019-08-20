@@ -51,6 +51,28 @@ class CLESAEvaluationSetEval {
     }
 
     @Test
+    void evalCLESAAspec() {
+        CLESAEvaluationSet englishJapaneseASPECEvaluationSetCLOSA = new CLESAEvaluationSet(
+                new File(System.getProperty("user.home") + "/ASPECx/ja"), "ja",
+                new File(System.getProperty("user.home") + "/ASPECx/en"), "en",
+                10000
+        );
+
+        englishJapaneseASPECEvaluationSetCLOSA.printEvaluation();
+    }
+
+    @Test
+    void evalCLESAAspecChinese() {
+        CLESAEvaluationSet chineseJapaneseASPECEvaluationSetCLOSA = new CLESAEvaluationSet(
+                new File(System.getProperty("user.home") + "/ASPECxc/ja"), "ja",
+                new File(System.getProperty("user.home") + "/ASPECxc/zh"), "zh",
+                10000
+        );
+
+        chineseJapaneseASPECEvaluationSetCLOSA.printEvaluation();
+    }
+
+    @Test
     void evalCLESAEnglishChinese() {
         /*
             Ranks 1 to 50
