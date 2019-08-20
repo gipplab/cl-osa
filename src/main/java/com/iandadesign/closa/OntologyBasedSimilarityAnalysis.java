@@ -202,7 +202,7 @@ public class OntologyBasedSimilarityAnalysis {
             .stream()
             .collect(Collectors.toMap(entry -> entry.getKey(),
                 entry -> { 
-                    progressBar.stepTo(progress.incrementAndGet();
+                    progressBar.stepTo(progress.incrementAndGet());
                     
                     // look in dictionary
                     return dictionary.query(entry.getValue());
