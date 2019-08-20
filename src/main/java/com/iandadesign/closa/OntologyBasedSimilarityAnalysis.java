@@ -194,18 +194,20 @@ public class OntologyBasedSimilarityAnalysis {
         // progress bar
         ProgressBar progressBar = new ProgressBar("Perform cosine similarity analysis", suspiciousIdTokensMap.entrySet().size(), ProgressBarStyle.ASCII);
         progressBar.start();
+        
+        AtomicInteger progress = new AtomicInteger(0);
 
         // iterate the suspicious documents
-        for (Map.Entry<String, List<String>> entry : suspiciousIdTokensMap.entrySet()) {
-            String suspiciousId = entry.getKey();
-            List<String> suspiciousConcepts = entry.getValue();
-
-            // look in dictionary
-            Map<String, Double> detectedSourceIdScoreMap = dictionary.query(suspiciousConcepts);
-
-            progressBar.step();
-            suspiciousIdCandidateScoresMap.put(suspiciousId, detectedSourceIdScoreMap);
-        }
+        suspiciousIdTokensMap.entrySet()
+            .stream()
+            .collect(Collectors.toMap(entry -> entry.getKey(),
+                entry -> { 
+                    progressBar.stepTo(progress.incrementAndGet();
+                    
+                    // look in dictionary
+                    return dictionary.query(entry.getValue());
+                }
+            ));
 
         progressBar.stop();
 
