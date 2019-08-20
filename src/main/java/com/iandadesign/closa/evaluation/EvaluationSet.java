@@ -488,9 +488,7 @@ public abstract class EvaluationSet<T> {
 
         System.out.println(evaluation);
 
-        EmailUtil.sendMail(this.getClass().getName(), evaluation.toString());
-
-        File evaluationFile = new File(String.format("%s/preprocessed/evaluation.txt", System.getProperty("user.home")));
+        File evaluationFile = new File(String.format("%s/evaluation/%s.txt", System.getProperty("user.home"), this.getClass().getName()));
         try {
             FileUtils.writeStringToFile(evaluationFile, evaluation.toString(), "UTF-8");
             System.out.println("Evaluation written to " + evaluationFile.getPath());
