@@ -115,7 +115,8 @@ public class WikidataEntity {
 
     @Override
     public String toString() {
-        return "{" + id + ", " + label + ", " + originalLemma + ", " + (descriptions != null ? descriptions.getOrDefault("en", "") : "") + "}";
+        return "$q_{" + id.substring(1) + "} & " + label;
+        // return "{" + id + ", " + label + ", " + originalLemma + ", " + (descriptions != null ? descriptions.getOrDefault("en", "") : "") + "}";
     }
 
     /**

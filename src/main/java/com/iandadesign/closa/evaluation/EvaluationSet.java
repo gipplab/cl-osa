@@ -1,6 +1,8 @@
 package com.iandadesign.closa.evaluation;
 
+import com.google.common.collect.Lists;
 import com.iandadesign.closa.language.LanguageDetector;
+import com.iandadesign.closa.util.EmailUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 
@@ -13,6 +15,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -20,14 +25,14 @@ import java.util.stream.IntStream;
  * Class for an evaluationSet, containing suspicious and candidate documents.
  * Can perform evaluation on the documents.
  */
-public abstract class EvaluationSet {
+public abstract class EvaluationSet<T> {
 
     // documents
     protected Map<String, String> suspiciousIdCandidateIdMap = new HashMap<>();
-    protected Map<String, List<String>> candidateIdTokensMap = new HashMap<>();
-    protected Map<String, List<String>> suspiciousIdTokensMap = new HashMap<>();
+    protected TreeMap<String, List<T>> candidateIdTokensMap = new TreeMap<>();
+    protected Map<String, List<T>> suspiciousIdTokensMap = new HashMap<>();
 
-    protected Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap;
+    protected Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap = new HashMap<>();
 
     protected Map<String, String> suspiciousIdLanguageMap = new HashMap<>();
     protected Map<String, String> candidateIdLanguageMap = new HashMap<>();
@@ -56,12 +61,16 @@ public abstract class EvaluationSet {
      * @param suspiciousLanguage suspicious files' language
      * @param candidateFolder    contains the candidate files, named identically to the suspicious ones.
      * @param candidateLanguage  candidate files' language
-     * @throws IOException if files cannot be accessed.
      */
-    public EvaluationSet(File suspiciousFolder, String suspiciousLanguage,
-                         File candidateFolder, String candidateLanguage) throws IOException {
-        this(suspiciousFolder, suspiciousLanguage, candidateFolder, candidateLanguage,
-                (int) Files.walk(candidateFolder.toPath()).filter(path -> !path.toFile().isDirectory()).count());
+    public EvaluationSet(File suspiciousFolder,
+                         String suspiciousLanguage,
+                         File candidateFolder,
+                         String candidateLanguage) {
+        this(suspiciousFolder,
+                suspiciousLanguage,
+                candidateFolder,
+                candidateLanguage,
+                Objects.requireNonNull(candidateFolder.listFiles()).length);
     }
 
     /**
@@ -111,7 +120,6 @@ public abstract class EvaluationSet {
 
         Map<File, File> files = FileUtils.listFiles(suspiciousFolder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .stream()
-                .sorted()
                 .filter(file -> !file.getName().equals(".DS_Store"))
                 .filter(file -> !file.getName().substring(0, 1).equals("_"))
                 .collect(Collectors.toMap(file -> file,
@@ -149,11 +157,24 @@ public abstract class EvaluationSet {
 
         List<File> keys = new ArrayList<>(files.keySet());
 
-        IntStream.range(0, keys.size())
-                .forEach(i -> {
-                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
-                    initializeOneFilePair(keys.get(i), suspiciousLanguage, files.get(keys.get(i)), candidateLanguage);
-                });
+        ForkJoinPool customThreadPool = new ForkJoinPool(4);
+
+        List<Integer> integers = IntStream.range(0, keys.size())
+                .sorted()
+                .boxed()
+                .collect(Collectors.toList());
+
+        try {
+            customThreadPool.submit(
+                    () -> integers.parallelStream()
+                            .forEach(i -> {
+                                System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
+                                initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
+                            })).get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -171,7 +192,6 @@ public abstract class EvaluationSet {
 
         Map<File, File> files = FileUtils.listFiles(folder, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .stream()
-                .sorted()
                 .filter(file -> !file.getName().equals(".DS_Store"))
                 .filter(file -> !file.getName().substring(0, 1).equals("_"))
                 .filter(file -> file.getName().endsWith(suspiciousSuffix + ".txt"))
@@ -186,10 +206,24 @@ public abstract class EvaluationSet {
 
         List<File> keys = new ArrayList<>(files.keySet());
 
-        for (int i = 0; i < keys.size(); i++) {
-            System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
-            initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
+        ForkJoinPool customThreadPool = new ForkJoinPool(4);
+
+        List<Integer> integers = IntStream.range(0, keys.size())
+                .sorted()
+                .boxed()
+                .collect(Collectors.toList());
+
+        try {
+            customThreadPool.submit(
+                    () -> integers.parallelStream()
+                            .forEach(i -> {
+                                System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
+                                initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
+                            })).get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
         }
+
     }
 
     /**
@@ -214,7 +248,7 @@ public abstract class EvaluationSet {
                 .filter(file -> !file.getName().equals(".DS_Store"))
                 .filter(file -> !file.getName().substring(0, 1).equals("_"))
                 .forEach(extraCandidateFile -> {
-                    List<String> extraCandidateTokens = preProcess(extraCandidateFile.getPath(),
+                    List<T> extraCandidateTokens = preProcess(extraCandidateFile.getPath(),
                             candidateLanguage);
 
                     saveDocumentTokensToFile(extraCandidateFile.getPath(), extraCandidateTokens);
@@ -257,10 +291,10 @@ public abstract class EvaluationSet {
         documentLanguages.add(suspiciousLanguage);
         documentLanguages.add(candidateLanguage);
 
-        List<String> suspiciousTokens = preProcess(suspiciousFile.getPath(), suspiciousLanguage);
+        List<T> suspiciousTokens = preProcess(suspiciousFile.getPath(), suspiciousLanguage);
         saveDocumentTokensToFile(suspiciousFile.getPath(), suspiciousTokens);
 
-        List<String> candidateTokens = preProcess(candidateFile.getPath(), candidateLanguage);
+        List<T> candidateTokens = preProcess(candidateFile.getPath(), candidateLanguage);
         saveDocumentTokensToFile(candidateFile.getPath(), candidateTokens);
 
         suspiciousIdLanguageMap.put(suspiciousFile.getPath(), suspiciousLanguage);
@@ -298,7 +332,7 @@ public abstract class EvaluationSet {
      * @param documentLanguage the document's language
      * @return the preprocessed document as token list.
      */
-    protected abstract List<String> preProcess(String documentPath, String documentLanguage);
+    protected abstract List<T> preProcess(String documentPath, String documentLanguage);
 
 
     /**
@@ -318,11 +352,23 @@ public abstract class EvaluationSet {
 
         double meanReciprocalRank = 0.0;
 
+        double maxScore = suspiciousIdCandidateScoresMap.values()
+                .stream()
+                .map(stringDoubleMap -> stringDoubleMap.values().stream().mapToDouble(v -> v).max().orElse(0.0))
+                .mapToDouble(v -> v)
+                .max()
+                .orElse(0.0);
+
         for (String suspiciousId : suspiciousIdCandidateScoresMap.keySet()) {
             String candidateId = suspiciousIdCandidateIdMap.get(suspiciousId);
 
             if (suspiciousIdCandidateScoresMap.get(suspiciousId).containsKey(candidateId)) {
                 Float alignedDocumentSimilarityPercent = (float) (suspiciousIdCandidateScoresMap.get(suspiciousId).get(candidateId) * 100);
+
+                if (maxScore > 1.0) {
+                    alignedDocumentSimilarityPercent = alignedDocumentSimilarityPercent / (float) maxScore;
+                }
+
                 alignedDocumentSimilarityPercent = Math.round(alignedDocumentSimilarityPercent / 10.0f) * 10.0f;
                 if (alignedDocumentSimilarities.containsKey(alignedDocumentSimilarityPercent)) {
                     alignedDocumentSimilarities.put(alignedDocumentSimilarityPercent, alignedDocumentSimilarities.get(alignedDocumentSimilarityPercent) + 1);
@@ -348,6 +394,7 @@ public abstract class EvaluationSet {
                 rank++;
             }
         }
+
 
         Map<Float, Float> alignedDocumentSimilaritiesPercent = alignedDocumentSimilarities.entrySet()
                 .stream()
@@ -382,7 +429,6 @@ public abstract class EvaluationSet {
 
             for (String suspiciousId : suspiciousIdCandidateScoresMap.keySet()) {
                 int candidateCount = suspiciousIdCandidateScoresMap.get(suspiciousId).size();
-
 
                 if (candidateCount > 0) {
                     selectedElements += suspiciousIdCandidateScoresMap
@@ -442,6 +488,8 @@ public abstract class EvaluationSet {
 
         System.out.println(evaluation);
 
+        EmailUtil.sendMail(this.getClass().getName(), evaluation.toString());
+
         File evaluationFile = new File(String.format("%s/preprocessed/evaluation.txt", System.getProperty("user.home")));
         try {
             FileUtils.writeStringToFile(evaluationFile, evaluation.toString(), "UTF-8");
@@ -453,39 +501,25 @@ public abstract class EvaluationSet {
 
 
     /**
-     * Count files in directory and subdirectories.
-     *
-     * @param directory parent directory
-     * @return file count in directory and subdirectories.
-     */
-    private long fileCount(Path directory) {
-        try {
-            return Files.walk(directory)
-                    .filter(path -> !path.toFile().isDirectory())
-                    .count();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
-
-    /**
      * Method that should be used for saving intermediate results.
      *
      * @param originalDocumentPath : path to the original document.
      * @param documentTokens       : the tokens that have been extracted from the document.
      */
-    protected void saveDocumentTokensToFile(String originalDocumentPath, List<String> documentTokens) {
-        if (documentTokens == null) {
-            throw new IllegalArgumentException("Document tokens have to be non-null.");
+    protected void saveDocumentTokensToFile(String originalDocumentPath, List<T> documentTokens) {
+        if (documentTokens == null || documentTokens.size() == 0) {
+            return;
+            // Document tokens have to be non-null
         }
 
-        Path newFullPath;
-        if (originalDocumentPath.contains("evaluation")) {
-            newFullPath = Paths.get(originalDocumentPath.replace("evaluation", "evaluation/preprocessed/" + this.getClass().getSimpleName()));
-        } else {
-            newFullPath = Paths.get(originalDocumentPath.replace(System.getProperty("user.home"),
-                    System.getProperty("user.home") + "/preprocessed/" + this.getClass().getSimpleName()));
+        Path newFullPath =
+                originalDocumentPath.contains(System.getProperty("user.home"))
+                        ? Paths.get(originalDocumentPath.replace(System.getProperty("user.home"),
+                                System.getProperty("user.home") + "/preprocessed/" + this.getClass().getName() + "/"))
+                        : Paths.get(originalDocumentPath.replace("src", "src/preprocessed/" + this.getClass().getName() + "/"));
+
+        if (newFullPath.toString().equals(originalDocumentPath)) {
+            throw new IllegalStateException("Don't overwrite original!");
         }
 
         File newFile = new File(newFullPath.toString());
@@ -508,13 +542,14 @@ public abstract class EvaluationSet {
         try {
             writer = new BufferedWriter(new FileWriter(newFile));
 
-            for (String token : documentTokens) {
-                writer.write(token);
+            for (T token : documentTokens) {
+                writer.write(token.toString());
                 writer.write("\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
+            System.out.println("Written to " + newFullPath.toString());
             try {
                 assert writer != null;
                 writer.close();

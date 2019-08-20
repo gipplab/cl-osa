@@ -15,10 +15,11 @@ import java.util.List;
  * <p>
  * Created by Fabian Marquart on 2018/08/06.
  */
-public class CLOSAEvaluationSet extends EvaluationSet {
+public class CLOSAEvaluationSet extends EvaluationSet<String> {
 
     private OntologyBasedSimilarityAnalysis analysis;
     private boolean graphBasedAnalysis = false;
+    private boolean linkedDataBasedAnalysis = false;
 
     public CLOSAEvaluationSet(File folder, String suspiciousSuffix, String candidateSuffix) {
         super(folder, suspiciousSuffix, candidateSuffix);
@@ -46,8 +47,8 @@ public class CLOSAEvaluationSet extends EvaluationSet {
         super(suspiciousFolder, candidateFolder, fileCountLimit);
     }
 
-    public boolean isGraphBasedAnalysis() {
-        return graphBasedAnalysis;
+    public void setLinkedDataBasedAnalysis(boolean linkedDataBasedAnalysis) {
+        this.linkedDataBasedAnalysis = linkedDataBasedAnalysis;
     }
 
     public void setGraphBasedAnalysis(boolean graphBasedAnalysis) {
@@ -59,10 +60,12 @@ public class CLOSAEvaluationSet extends EvaluationSet {
      */
     @Override
     protected void performAnalysis() {
-        if (!graphBasedAnalysis) {
-            suspiciousIdCandidateScoresMap = analysis.performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
-        } else {
+        if (graphBasedAnalysis) {
             suspiciousIdCandidateScoresMap = analysis.performEnhancedCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
+        } else if (linkedDataBasedAnalysis) {
+            suspiciousIdCandidateScoresMap = analysis.performPropertyCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
+        } else {
+            suspiciousIdCandidateScoresMap = analysis.performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
         }
     }
 
@@ -76,7 +79,9 @@ public class CLOSAEvaluationSet extends EvaluationSet {
     @Override
     protected List<String> preProcess(String documentPath, String documentLanguage) {
         this.analysis = new OntologyBasedSimilarityAnalysis(new LanguageDetector(), new TextClassifier());
-        return analysis.preProcess(documentPath, documentLanguage);
+        List<String> preProcessed = analysis.preProcess(documentPath, documentLanguage);
+
+        return preProcessed;
     }
 
 

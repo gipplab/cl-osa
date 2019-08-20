@@ -292,6 +292,7 @@ public class TokenUtil {
         Annotation document = new Annotation(text);
 
         // run all Annotators on this text
+
         pipeline.annotate(document);
 
         // these are all the sentences in this document
@@ -362,6 +363,62 @@ public class TokenUtil {
         return tokensBySentence;
     }
 
+
+    public static List<Token> chineseTokenize(String text, String languageCode) {
+        List<Token> tokens = new ArrayList<>();
+
+        StanfordCoreNLP pipeline = new StanfordCoreNLP(
+                PropertiesUtils.asProperties(
+                        "annotators", "tokenize, ssplit, pos, lemma",
+                        "ssplit.isOneSentence", "true",
+                        // segment
+                        "tokenize.language", "zh",
+                        "segment.model", "edu/stanford/nlp/models/segmenter/chinese/ctb.gz",
+                        "segment.sighanCorporaDict", "edu/stanford/nlp/models/segmenter/chinese",
+                        "segment.serDictionary", "edu/stanford/nlp/models/segmenter/chinese/dict-chris6.ser.gz",
+                        "segment.sighanPostProcessing", "true",
+                        // sentence split
+                        "ssplit.boundaryTokenRegex", "[.。]|[!?！？]+"
+                        ));
+
+
+        Annotation document = new Annotation(text);
+
+        // run all Annotators on this text
+        try {
+            pipeline.annotate(document);
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+
+        // these are all the sentences in this document
+        // a CoreMap is essentially a Map that uses class objects as keys and has values with custom types
+        List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
+
+        for (CoreMap sentence : sentences) {
+
+            // traversing the words in the current sentence
+            // a CoreLabel is a CoreMap with additional token-specific methods
+            for (CoreLabel coreLabel : sentence.get(TokensAnnotation.class)) {
+                // get token, lemma, pos and ner
+                String tokenString = coreLabel.get(CoreAnnotations.TextAnnotation.class);
+                String lemma = coreLabel.get(CoreAnnotations.LemmaAnnotation.class);
+                String partOfSpeech = coreLabel.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+                Token.NamedEntityType namedEntityType = Token.NamedEntityType.O;
+
+                Token currentToken = new Token(tokenString, lemma, partOfSpeech, namedEntityType);
+                currentToken.setStartCharacter(coreLabel.beginPosition());
+                currentToken.setEndCharacter(coreLabel.endPosition());
+
+                tokens.add(currentToken);
+            }
+
+        }
+
+        return tokens;
+    }
+
     /**
      * Simple tokenization of texts in different languages.
      *
@@ -426,10 +483,7 @@ public class TokenUtil {
                 return tokenList;
             case "zh":
                 // Chinese
-                return namedEntityTokenize(textContent, "zh")
-                        .stream()
-                        .flatMap(Collection::stream)
-                        .collect(Collectors.toList());
+                return chineseTokenize(textContent, "zh");
             default:
                 // white-space separated language
                 return tokenize(textContent, false);

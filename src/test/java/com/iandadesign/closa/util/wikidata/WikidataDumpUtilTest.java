@@ -7,110 +7,93 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static com.iandadesign.closa.util.wikidata.WikidataDumpUtil.*;
 
-public class WikidataDumpUtilTest {
+class WikidataDumpUtilTest {
 
     @Test
-    public void testExists() {
+    void exists() {
         WikidataEntity tree = new WikidataEntity("Q10884");
-        Assertions.assertTrue(exists(tree));
+        Assertions.assertTrue(WikidataDumpUtil.exists(tree));
 
-        Assertions.assertTrue(exists("Auschwitz", "en"));
+        Assertions.assertTrue(WikidataDumpUtil.exists("Auschwitz", "en"));
     }
 
 
     @Test
-    public void testGetEntityById() {
-        WikidataEntity tree = getEntityById("Q10884");
+    void getEntityById() {
+        WikidataEntity tree = WikidataDumpUtil.getEntityById("Q10884");
 
         Assertions.assertEquals("tree", tree.getLabel());
     }
 
 
     @Test
-    public void testGetEntitiesByLabel() {
-        List<WikidataEntity> trees = getEntitiesByLabel("tree", "en");
-        System.out.println(trees);
+    void getEntitiesByLabel() {
+        List<WikidataEntity> trees = WikidataDumpUtil.getEntitiesByLabel("tree", "en");
         Assertions.assertFalse(trees.isEmpty());
 
-        List<WikidataEntity> jane = getEntitiesByLabel("Jane", "en");
-        System.out.println(jane);
+        List<WikidataEntity> jane = WikidataDumpUtil.getEntitiesByLabel("Jane", "en");
         Assertions.assertFalse(jane.isEmpty());
 
-        List<WikidataEntity> auschwitz = getEntitiesByLabel("Auschwitz", "en");
-        System.out.println(auschwitz);
+        List<WikidataEntity> auschwitz = WikidataDumpUtil.getEntitiesByLabel("Auschwitz", "en");
         Assertions.assertFalse(auschwitz.isEmpty());
 
-        List<WikidataEntity> three = getEntitiesByLabel("three", "en");
-        System.out.println(three);
+        List<WikidataEntity> three = WikidataDumpUtil.getEntitiesByLabel("three", "en");
         Assertions.assertFalse(three.isEmpty());
     }
 
     @Test
-    public void testGetEntitiesByToken() {
+    void getEntitiesByToken() {
         Token auschwitz = new Token("Auschwitz", "Auschwitz", "NN", Token.NamedEntityType.LOCATION);
-
-        List<WikidataEntity> auschwitzEntities = getEntitiesByToken(auschwitz, "en");
-
-        System.out.println(auschwitzEntities);
+        List<WikidataEntity> auschwitzEntities = WikidataDumpUtil.getEntitiesByToken(auschwitz, "en");
         Assertions.assertTrue(auschwitzEntities.size() > 0);
 
-
         Token jane = new Token("Jane", "Jane", "NN", Token.NamedEntityType.PERSON);
-
-        List<WikidataEntity> janeEntities = getEntitiesByToken(jane, "en");
-
-        System.out.println(janeEntities);
+        List<WikidataEntity> janeEntities = WikidataDumpUtil.getEntitiesByToken(jane, "en");
         Assertions.assertTrue(janeEntities.size() > 0);
 
         Token femaleGivenName = new Token("female given name", "female given name", "NN", Token.NamedEntityType.O);
-
-        List<WikidataEntity> femaleGivenNameEntities = getEntitiesByToken(femaleGivenName, "en");
-
-        System.out.println(femaleGivenNameEntities);
+        List<WikidataEntity> femaleGivenNameEntities = WikidataDumpUtil.getEntitiesByToken(femaleGivenName, "en");
         Assertions.assertTrue(femaleGivenNameEntities.size() > 0);
     }
 
     @Test
-    public void testGetEntitiesByTokenJapanese() {
+    void getEntitiesByTokenJapanese() {
         Token tokyo = new Token("東京", "東京", "名詞,固有名詞,地域,一般", Token.NamedEntityType.LOCATION);
 
-        List<WikidataEntity> tokyoEntities = getEntitiesByToken(tokyo, "ja");
+        List<WikidataEntity> tokyoEntities = WikidataDumpUtil.getEntitiesByToken(tokyo, "ja");
 
         System.out.println(tokyoEntities);
         Assertions.assertTrue(tokyoEntities.size() > 0);
     }
 
     @Test
-    public void testGetProperty() {
+    void getProperty() {
         String countryProperty = "P17";
         WikidataEntity chineseLanguage = new WikidataEntity("Q7850");
         WikidataEntity peoplesRepublicOfChina = new WikidataEntity("Q148");
 
         WikidataEntity tree = new WikidataEntity("Q10884");
         String subclassOfProperty = "P279";
-        // WikidataEntity humanLanguage = new WikidataEntity("Q20162172");
 
-        if (isHumanLanguage(chineseLanguage)) {
-            List<WikidataEntity> propertyValues = getProperty(chineseLanguage, countryProperty);
+        if (WikidataDumpUtil.isHumanLanguage(chineseLanguage)) {
+            List<WikidataEntity> propertyValues = WikidataDumpUtil.getProperty(chineseLanguage, countryProperty);
             Assertions.assertTrue(propertyValues.contains(peoplesRepublicOfChina));
 
-            List<WikidataEntity> nonExistantPropertyValues = getProperty(chineseLanguage, "P1");
+            List<WikidataEntity> nonExistantPropertyValues = WikidataDumpUtil.getProperty(chineseLanguage, "P1");
             Assertions.assertTrue(nonExistantPropertyValues.isEmpty());
 
-            List<WikidataEntity> multiplePropertyValues = getProperty(tree, subclassOfProperty);
-            System.out.println(multiplePropertyValues);
+            List<WikidataEntity> multiplePropertyValues = WikidataDumpUtil.getProperty(tree, subclassOfProperty);
         } else {
             Assertions.fail();
         }
     }
 
     @Test
-    public void testSubclassOf() {
+    void subclassOf() {
         WikidataEntity tree = new WikidataEntity("Q10884", "tree");
 
-        List<WikidataEntity> subclassOf = subclassOf(tree);
+        List<WikidataEntity> subclassOf = WikidataDumpUtil.subclassOf(tree);
 
         WikidataEntity perennialPlant = new WikidataEntity("Q157957", "perennial plant");
         WikidataEntity woodyPlant = new WikidataEntity("Q757163", "woody plant");
@@ -119,109 +102,97 @@ public class WikidataDumpUtilTest {
         Assertions.assertTrue(subclassOf.contains(woodyPlant));
 
         WikidataEntity highCourt = new WikidataEntity("Q16984027");
-        System.out.println(subclassOf(highCourt));
+        System.out.println(WikidataDumpUtil.subclassOf(highCourt));
 
         WikidataEntity skid = new WikidataEntity("Q4186259", "skid");
-        System.out.println(subclassOf(skid));
+        System.out.println(WikidataDumpUtil.subclassOf(skid));
     }
 
     @Test
-    public void testGetSubclasses() {
+    void getSubclasses() {
         WikidataEntity perennialPlant = new WikidataEntity("Q157957", "perennial plant");
-
-        System.out.println(getSubclasses(perennialPlant));
+        Assertions.assertFalse(WikidataDumpUtil.getSubclasses(perennialPlant).isEmpty());
     }
 
     @Test
-    public void testInstanceOf() {
+    void instanceOf() {
         WikidataEntity mars = new WikidataEntity("Q111");
         WikidataEntity innerPlanet = new WikidataEntity("Q3504248");
 
-        Assertions.assertTrue(instanceOf(mars).contains(innerPlanet));
-
-        WikidataEntity skid = new WikidataEntity("Q4186259", "skid");
-        System.out.println(instanceOf(skid));
-        // depending on the dump version, the above entity is instance or not
+        Assertions.assertTrue(WikidataDumpUtil.instanceOf(mars).contains(innerPlanet));
     }
 
     @Test
-    public void testGetInstances() {
+    void getInstances() {
         WikidataEntity tree = new WikidataEntity("Q10884", "tree");
-
-        System.out.println(getInstances(tree));
+        Assertions.assertFalse(WikidataDumpUtil.getInstances(tree).isEmpty());
     }
 
 
     @Test
-    public void testIsTransitiveInstanceOf() {
+    void isTransitiveInstanceOf() {
         WikidataEntity pi = new WikidataEntity("Q167", "pi");
         WikidataEntity number = new WikidataEntity("Q11563", "number");
         WikidataEntity creativeWork = new WikidataEntity("Q17537576", "creative work");
 
-        Assertions.assertTrue(isTransitiveInstanceOf(pi, number));
-        Assertions.assertFalse(isTransitiveInstanceOf(pi, creativeWork));
+        Assertions.assertTrue(WikidataDumpUtil.isTransitiveInstanceOf(pi, number));
+        Assertions.assertFalse(WikidataDumpUtil.isTransitiveInstanceOf(pi, creativeWork));
     }
 
 
     @Test
-    public void testIsAncestor() {
+    void isAncestor() {
         WikidataEntity tree = new WikidataEntity("Q10884");
         WikidataEntity perennialPlant = new WikidataEntity("Q157957");
         WikidataEntity organism = new WikidataEntity("Q7239");
 
-        Assertions.assertTrue(isAncestor(tree, perennialPlant));
-        Assertions.assertTrue(isAncestor(tree, organism));
+        Assertions.assertTrue(WikidataDumpUtil.isAncestor(tree, perennialPlant));
+        Assertions.assertTrue(WikidataDumpUtil.isAncestor(tree, organism));
     }
 
 
     @Test
-    public void testGetDistanceToAncestor() {
+    void getDistanceToAncestor() {
         WikidataEntity tree = new WikidataEntity("Q10884");
         WikidataEntity perennialPlant = new WikidataEntity("Q157957");
         WikidataEntity organism = new WikidataEntity("Q7239");
-
-        System.out.println(getDistanceToAncestor(tree, perennialPlant));
-        System.out.println(getDistanceToAncestor(tree, organism));
 
         WikidataEntity volkswagen = new WikidataEntity("Q246");
         WikidataEntity automobileMarque = new WikidataEntity("Q17412622");
 
-        System.out.println(getDistanceToAncestor(volkswagen, automobileMarque));
-
-        Assertions.assertTrue(getDistanceToAncestor(tree, perennialPlant) == 1);
-        Assertions.assertTrue(getDistanceToAncestor(tree, organism) == 3);
-        Assertions.assertTrue(getDistanceToAncestor(volkswagen, automobileMarque) == 1);
+        Assertions.assertEquals(1, WikidataDumpUtil.getDistanceToAncestor(tree, perennialPlant));
+        Assertions.assertEquals(3, WikidataDumpUtil.getDistanceToAncestor(tree, organism));
+        Assertions.assertEquals(1, WikidataDumpUtil.getDistanceToAncestor(volkswagen, automobileMarque));
     }
 
 
     @Test
-    public void testGetRootDistance() {
+    void getRootDistance() {
         WikidataEntity entity = new WikidataEntity("Q35120", "entity");
-        long depthEntity = getRootDistance(entity);
-        Assertions.assertTrue(depthEntity == 0);
+        long depthEntity = WikidataDumpUtil.getRootDistance(entity);
+        Assertions.assertEquals(0, depthEntity);
 
         WikidataEntity object = new WikidataEntity("Q488383", "object");
-        long depthObject = getRootDistance(object);
-        System.out.println(depthObject);
-        Assertions.assertTrue(depthObject == 1);
+        long depthObject = WikidataDumpUtil.getRootDistance(object);
+        Assertions.assertEquals(1, depthObject);
 
         WikidataEntity perceptibleObject = new WikidataEntity("Q337060", "perceptible object");
-        long depthPerceptibleObject = getRootDistance(perceptibleObject);
-        Assertions.assertTrue(depthPerceptibleObject == 2);
+        long depthPerceptibleObject = WikidataDumpUtil.getRootDistance(perceptibleObject);
+        Assertions.assertEquals(2, depthPerceptibleObject);
     }
 
     @Test
-    public void testGetRootDistanceOverInstances() {
+    void getRootDistanceOverInstances() {
         WikidataEntity mars = new WikidataEntity("Q111");
 
-        Assertions.assertTrue(getRootDistance(mars) == 9);
+        Assertions.assertEquals(9, WikidataDumpUtil.getRootDistance(mars));
     }
 
     @Test
-    public void testGetAllAncestors() {
+    void getAllAncestors() {
         WikidataEntity tree = new WikidataEntity("Q10884");
 
-        List<WikidataEntity> allAncestors = getAllAncestors(tree);
+        List<WikidataEntity> allAncestors = WikidataDumpUtil.getAllAncestors(tree);
 
         Assertions.assertTrue(allAncestors.contains(new WikidataEntity("Q35120", "entity")));
         Assertions.assertTrue(allAncestors.contains(new WikidataEntity("Q756", "plant")));
@@ -230,23 +201,21 @@ public class WikidataDumpUtilTest {
 
 
     @Test
-    public void testGetAllDescendants() {
+    void getAllDescendants() {
         WikidataEntity tree = new WikidataEntity("Q10884");
 
-        List<WikidataEntity> allDescendants = getAllDescendants(tree);
+        List<WikidataEntity> allDescendants = WikidataDumpUtil.getAllDescendants(tree);
 
         Assertions.assertTrue(allDescendants.contains(new WikidataEntity("Q47128", "Christmas tree")));
     }
 
 
     @Test
-    public void testGetMostSpecificParentEntity() {
+    void getMostSpecificParentEntity() {
         WikidataEntity mosque = new WikidataEntity("Q32815");
         WikidataEntity synagogue = new WikidataEntity("Q34627");
 
-        WikidataEntity mostSpecificParentEntity = getMostSpecificParentEntity(mosque, synagogue);
-
-        System.out.println(mostSpecificParentEntity);
+        WikidataEntity mostSpecificParentEntity = WikidataDumpUtil.getMostSpecificParentEntity(mosque, synagogue);
 
         WikidataEntity placeOfWorship = new WikidataEntity("Q1370598");
         WikidataEntity temple = new WikidataEntity("Q44539");
@@ -254,66 +223,83 @@ public class WikidataDumpUtilTest {
 
         WikidataEntity tree = new WikidataEntity("Q10884");
         WikidataEntity perennialPlant = new WikidataEntity("Q157957");
-        Assertions.assertEquals(getMostSpecificParentEntity(tree, perennialPlant), perennialPlant);
+        Assertions.assertEquals(WikidataDumpUtil.getMostSpecificParentEntity(tree, perennialPlant), perennialPlant);
     }
 
 
     @Test
-    public void testIsNaturalNumber() {
+    void isNaturalNumber() {
         WikidataEntity one = new WikidataEntity("Q199", "1");
         WikidataEntity pi = new WikidataEntity("Q167", "pi");
 
-        Assertions.assertTrue(isNaturalNumber(one));
-        Assertions.assertFalse(isNaturalNumber(pi));
+        Assertions.assertTrue(WikidataDumpUtil.isNaturalNumber(one));
+        Assertions.assertFalse(WikidataDumpUtil.isNaturalNumber(pi));
     }
 
     @Test
-    public void testIsCreativeWork() {
+    void isCreativeWork() {
         WikidataEntity theMinisters = new WikidataEntity("Q7751572", "The Ministers");
         WikidataEntity isna = new WikidataEntity("Q1672387", "ISNA");
         WikidataEntity starWars = new WikidataEntity("Q462");
 
-        Assertions.assertTrue(isCreativeWork(theMinisters));
-        Assertions.assertFalse(isCreativeWork(isna));
-        Assertions.assertTrue(isCreativeWork(starWars));
+        Assertions.assertTrue(WikidataDumpUtil.isCreativeWork(theMinisters));
+        Assertions.assertFalse(WikidataDumpUtil.isCreativeWork(isna));
+        Assertions.assertTrue(WikidataDumpUtil.isCreativeWork(starWars));
     }
 
     @Test
-    public void testIsGene() {
+    void testIsGene() {
         WikidataEntity hi = new WikidataEntity("Q29724302", "hi");
-        Assertions.assertTrue(isGene(hi));
+        Assertions.assertTrue(WikidataDumpUtil.isGene(hi));
     }
 
 
     @Test
-    public void testIsHuman() {
+    void isHuman() {
         WikidataEntity tomHanks = new WikidataEntity("Q2263", "Tom Hanks");
-        Assertions.assertTrue(isHuman(tomHanks));
+        Assertions.assertTrue(WikidataDumpUtil.isHuman(tomHanks));
     }
 
     @Test
-    public void testIsLocation() {
+    void isLocation() {
         WikidataEntity auschwitz = new WikidataEntity("Q7342", "Oświęcim");
-        Assertions.assertTrue(isLocation(auschwitz));
+        Assertions.assertTrue(WikidataDumpUtil.isLocation(auschwitz));
     }
 
     @Test
-    public void testIsOrganization() {
+    void isOrganization() {
         WikidataEntity apple = new WikidataEntity("Q312", "Apple Inc.");
-        Assertions.assertTrue(isOrganization(apple));
+        Assertions.assertTrue(WikidataDumpUtil.isOrganization(apple));
     }
 
     @Test
-    public void testIsHumanLanguage() {
+    void isHumanLanguage() {
         WikidataEntity chineseLanguage = new WikidataEntity("Q7850");
-        Assertions.assertTrue(isHumanLanguage(chineseLanguage));
+        Assertions.assertTrue(WikidataDumpUtil.isHumanLanguage(chineseLanguage));
     }
 
     @Test
-    public void testCapitalizeIfFirstLetterIsUppercase() {
-        Assertions.assertTrue(capitalizeIfFirstLetterIsUppercase("Central African republic")
+    void capitalizeIfFirstLetterIsUppercase() {
+        Assertions.assertTrue(WikidataDumpUtil.capitalizeIfFirstLetterIsUppercase("Central African republic")
                 .contains("Republic"));
     }
 
+    @Test
+    void getProperties() {
+        Assertions.assertTrue(WikidataDumpUtil.getProperties(new WikidataEntity("Q1")).containsKey("P279"));
+    }
 
+    @Test
+    void getSiteLinkInLanguage() {
+        String englishSiteLink = "New York City";
+
+        Assertions.assertEquals(WikidataDumpUtil.getSiteLinkInLanguage(englishSiteLink, "af"), "New York Stad");
+    }
+
+    @Test
+    void getSiteLinkInEnglish() {
+        String afrikaansSiteLink = "New York Stad";
+
+        Assertions.assertEquals(WikidataDumpUtil.getSiteLinkInEnglish(afrikaansSiteLink, "af"), "New York City");
+    }
 }

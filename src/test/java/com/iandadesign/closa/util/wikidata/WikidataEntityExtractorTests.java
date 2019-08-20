@@ -1,5 +1,6 @@
 package com.iandadesign.closa.util.wikidata;
 
+import com.iandadesign.closa.OntologyBasedSimilarityAnalysis;
 import com.iandadesign.closa.classification.Category;
 import com.iandadesign.closa.model.WikidataEntity;
 import org.apache.commons.io.FileUtils;
@@ -316,6 +317,23 @@ public class WikidataEntityExtractorTests {
         List<WikidataEntity> entities = WikidataEntityExtractor.extractEntitiesFromText(textEs, "es");
 
         System.out.println(entities);
+    }
+
+    @Test
+    public void additionalTest() {
+        String english = "US tax authorities are finally finding their teeth.\n" +
+                "After a long battle with politicians, the Internal Revenue Service appears be toughening its stance on international tax arbitrage that leaves taxpayers short-changed.";
+
+        String chinese = "美国税务当局终于变得强硬起来。\n" +
+                "在与政界人士进行了旷日持久的斗争之后，美国国税局(IRS)似乎正在强化对导致纳税人蒙受损失的跨境税收套利的立场。";
+
+        List<WikidataEntity> englishTokens = WikidataEntityExtractor.extractEntitiesFromText(english, "en");
+        List<WikidataEntity> chineseTokens = WikidataEntityExtractor.extractEntitiesFromText(chinese, "zh");
+
+        System.out.println(englishTokens);
+        System.out.println(chineseTokens);
+
+        WikidataSimilarityUtil.ontologyEnhancedCosineSimilarity(englishTokens, chineseTokens);
     }
 
 

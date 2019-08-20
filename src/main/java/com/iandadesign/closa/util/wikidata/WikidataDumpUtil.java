@@ -7,17 +7,19 @@ import com.iandadesign.closa.classification.Category;
 import com.iandadesign.closa.model.Token;
 import com.iandadesign.closa.model.WikidataEntity;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bson.Document;
 import org.bson.conversions.Bson;
-import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
 import org.slf4j.LoggerFactory;
 
 import java.io.FileNotFoundException;
@@ -53,12 +55,14 @@ public class WikidataDumpUtil {
     private static final WikidataEntity human = new WikidataEntity("Q5", "human");
     private static final WikidataEntity organization = new WikidataEntity("Q43229", "organization");
 
-    // database
-    private static String host;
-    private static final String databaseName = "wikidata";
+    private static final String mongoDatabaseName = "wikidata";
     private static final String entitiesCollectionName = "entities";
     private static final String entitiesHierarchyCollectionName = "entitiesHierarchyPersistent";
 
+    // database
+    private static ServerAddress serverAddress;
+    private static MongoCredential mongoCredential;
+    private static MongoClient mongoClient;
     private static MongoCollection<Document> entitiesCollection;
     private static MongoCollection<Document> entitiesHierarchyCollection;
 
@@ -68,10 +72,17 @@ public class WikidataDumpUtil {
         rootLogger.setLevel(Level.OFF);
 
         try {
-            getPropertyValues();
+            loadDatabaseFromConfig();
+            MongoClientOptions.Builder builder = new MongoClientOptions.Builder();
+            MongoClientOptions options = builder.connectionsPerHost(1000).build();
 
-            MongoClient mongoClient = new MongoClient(host);
-            MongoDatabase database = mongoClient.getDatabase(databaseName);
+            if (mongoCredential.getUserName().equals("") || mongoCredential.getPassword().length == 0) {
+                mongoClient = new MongoClient(serverAddress, options);
+            } else {
+                mongoClient = new MongoClient(serverAddress, Collections.singletonList(mongoCredential), options);
+            }
+
+            MongoDatabase database = mongoClient.getDatabase(mongoDatabaseName);
             entitiesCollection = database.getCollection(entitiesCollectionName);
             entitiesHierarchyCollection = database.getCollection(entitiesHierarchyCollectionName);
         } catch (IOException e) {
@@ -79,33 +90,50 @@ public class WikidataDumpUtil {
         }
     }
 
+    public static MongoClient getMongoClient() {
+        return mongoClient;
+    }
+
     /**
      * Read MongoDB properties.
      *
      * @throws IOException When property file could not be loaded.
      */
-    private static void getPropertyValues() throws IOException {
+    private static void loadDatabaseFromConfig() throws IOException {
         InputStream inputStream = null;
 
         try {
-            Reflections reflections = new Reflections("", new ResourcesScanner());
-
             Properties properties = new Properties();
             String propFileName = "config.properties";
+            String propFileLocalName = "config-local.properties";
 
-            inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileName);
+            // switch to config-local if it exists
+            if (WikidataDumpUtil.class.getClassLoader().getResource(propFileLocalName) != null) {
+                inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileLocalName);
 
-            if (inputStream != null) {
-                properties.load(inputStream);
+                if (inputStream != null) {
+                    properties.load(inputStream);
+                } else {
+                    throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath");
+                }
             } else {
-                throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath");
+                inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileName);
+
+                if (inputStream != null) {
+                    properties.load(inputStream);
+                } else {
+                    throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath");
+                }
             }
 
             // get the property value and print it out
-            String mongodbHost = properties.getProperty("mongodb_host");
-            String mongodbPort = properties.getProperty("mongodb_port");
+            String mongoHost = properties.getProperty("mongo_host");
+            int mongoPort = Integer.parseInt(properties.getProperty("mongo_port"));
+            String mongoUsername = properties.getProperty("mongo_username");
+            String mongoPassword = properties.getProperty("mongo_password");
 
-            host = mongodbHost + ":" + mongodbPort;
+            mongoCredential = MongoCredential.createCredential(mongoUsername, mongoDatabaseName, mongoPassword.toCharArray());
+            serverAddress = new ServerAddress(mongoHost, mongoPort);
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         } finally {
@@ -113,14 +141,6 @@ public class WikidataDumpUtil {
                 inputStream.close();
             }
         }
-    }
-
-    public static String getHost() {
-        return host;
-    }
-
-    public static String getDatabaseName() {
-        return databaseName;
     }
 
     public static long getOntologyMaxDepth() {
@@ -348,12 +368,10 @@ public class WikidataDumpUtil {
                 break;
             }
 
-            if (results.size() == 0) {
-                // if no results are found, query aliases instead
-                // query = new Document("aliases." + languageCode + ".value", capitalizeIfFirstLetterIsUppercase(queryLemma));
-                // if no results are found for lemma, assume wrong lemmatization and query token instead
-                query = createLabelQuery(token.getToken(), languageCode);
-            }
+            // if no results are found, query aliases instead
+            // query = new Document("aliases." + languageCode + ".value", capitalizeIfFirstLetterIsUppercase(queryLemma));
+            // if no results are found for lemma, assume wrong lemmatization and query token instead
+            query = createLabelQuery(token.getToken(), languageCode);
         }
 
         // 2 consider the query result itself
@@ -409,6 +427,40 @@ public class WikidataDumpUtil {
                 .collect(Collectors.toList());
 
         return entities;
+    }
+
+    public static Map<String, List<WikidataEntity>> getProperties(WikidataEntity entity) {
+        Map<String, List<WikidataEntity>> propertyValues = new HashMap<>();
+
+        Document query = new Document("id", entity.getId());
+
+        Document document = entitiesCollection.find(query).first();
+
+        // read data
+        Document claims = document.get("claims", Document.class);
+
+        for (Map.Entry<String, Object> entry : claims.entrySet()) {
+            List<Document> propertyDocuments = (ArrayList) entry.getValue();
+            String property = entry.getKey();
+
+            for (Document propertyDocument : propertyDocuments) {
+                Document mainsnak = propertyDocument.get("mainsnak", Document.class);
+
+                String dataType = mainsnak.getString("datatype");
+
+                if (dataType.equals("wikibase-item") && mainsnak.containsKey("datavalue")) {
+                    String entityId = mainsnak.get("datavalue", Document.class)
+                            .get("value", Document.class).getString("id");
+
+                    if (!propertyValues.containsKey(property)) {
+                        propertyValues.put(property, new ArrayList<>());
+                    }
+                    propertyValues.get(property).add(new WikidataEntity(entityId));
+                }
+            }
+        }
+
+        return propertyValues;
     }
 
 
@@ -774,6 +826,10 @@ public class WikidataDumpUtil {
                 .sum();
     }
 
+    public static long distanceByProperties(WikidataEntity firstEntity, WikidataEntity secondEntity) {
+        throw new NotImplementedException("");
+    }
+
     /**
      * Returns true if the entity is instance of natural number.
      *
@@ -890,6 +946,55 @@ public class WikidataDumpUtil {
 
 
     /**
+     * Wikipedia site link.
+     *
+     * @param englishSiteLink
+     * @param language
+     * @return
+     */
+    public static String getSiteLinkInLanguage(String englishSiteLink, String language) {
+        Document entityEntry = entitiesCollection.find(new Document("sitelinks.enwiki.title", englishSiteLink)).first();
+
+        return entityEntry.get("sitelinks", Document.class)
+                .get(language + "wiki", Document.class)
+                .getString("title");
+    }
+
+    /**
+     * Wikipedia site link.
+     *
+     * @param siteLink
+     * @param language
+     * @return
+     */
+    public static String getSiteLinkInEnglish(String siteLink, String language) {
+        if (language.equals("en")) {
+            return siteLink;
+        }
+
+        Document entityEntry = entitiesCollection.find(new Document("sitelinks." + language + "wiki.title", siteLink)).first();
+
+        if (entityEntry == null) {
+            return null;
+        }
+
+        Document siteLinks = entityEntry.get("sitelinks", Document.class);
+
+        if (siteLinks == null) {
+            return null;
+        }
+
+        Document enWiki = siteLinks.get("enwiki", Document.class);
+
+        if (enWiki == null) {
+            return null;
+        }
+
+        return enWiki.getString("title");
+    }
+
+
+    /**
      * If a string's first letter is uppercase but contains multiple whitespace-separated words,
      * those are also capitalized.
      *
@@ -920,6 +1025,7 @@ public class WikidataDumpUtil {
         if (!languages.contains(languageCode)) {
             throw new IllegalArgumentException(String.format("Language code %s is not supported", languageCode));
         }
+        System.out.println(getEntitiesForPrinting(entities, languageCode));
     }
 
     /**

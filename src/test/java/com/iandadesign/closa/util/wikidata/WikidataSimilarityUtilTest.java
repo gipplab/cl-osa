@@ -28,9 +28,6 @@ public class WikidataSimilarityUtilTest {
 
         firstEntities.addAll(WikidataDumpUtil.getRandomEntities(20));
         secondEntities.addAll(WikidataDumpUtil.getRandomEntities(20));
-
-        System.out.println(WikidataSimilarityUtil.cosineSimilarity(firstEntities, secondEntities));
-        System.out.println(Dictionary.cosineSimilarity(firstEntities, secondEntities));
     }
 
     @Test
@@ -40,7 +37,6 @@ public class WikidataSimilarityUtilTest {
 
         double sim = similarityWuPalmer(tree, carnivorousPlant);
 
-        System.out.println(sim);
         Assertions.assertEquals(sim, 2.0 / 3.0);
 
         WikidataEntity hill = new WikidataEntity("Q54050", "hill");

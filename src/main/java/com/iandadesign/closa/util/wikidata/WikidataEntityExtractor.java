@@ -55,7 +55,7 @@ public class WikidataEntityExtractor {
         tokenEntitiesMap.forEach((token, entities) -> {
             // disambiguate
             if (entities.size() > 1) {
-                tokenEntityMap.put(token, WikidataDisambiguator.ancestorCountDisambiguate(entities, text, languageCode));
+                tokenEntityMap.put(token, WikidataDisambiguator.disambiguateByAncestorCount(entities, text, languageCode));
             } else if (entities.size() == 1) {
                 tokenEntityMap.put(token, entities.get(0));
             }
@@ -86,12 +86,21 @@ public class WikidataEntityExtractor {
         List<List<WikidataEntity>> extractedEntities = extractEntitiesFromTextWithoutDisambiguation(text, languageCode, category);
         List<WikidataEntity> disambiguatedEntities = new ArrayList<>();
 
+        // first pass to see which entities are already unambiguous
+        for (List<WikidataEntity> currentEntities : extractedEntities) {
+            if (currentEntities.size() == 1) {
+                disambiguatedEntities.add(currentEntities.get(0));
+            }
+        }
+
         for (List<WikidataEntity> currentEntities : extractedEntities) {
             // disambiguate
             if (currentEntities.size() > 1) {
-                disambiguatedEntities.add(WikidataDisambiguator.ancestorCountDisambiguate(currentEntities, text, languageCode));
-            } else if (currentEntities.size() == 1) {
-                disambiguatedEntities.add(currentEntities.get(0));
+                WikidataEntity disambiguatedEntity = WikidataDisambiguator.disambiguateByAncestorCount(currentEntities, text, languageCode);
+
+                if (disambiguatedEntity != null) {
+                    disambiguatedEntities.add(disambiguatedEntity);
+                }
             }
         }
 
@@ -156,6 +165,7 @@ public class WikidataEntityExtractor {
             tokenList = TokenUtil.removeStopwords(tokenList, languageCode);
         }
 
+
         List<List<List<Token>>> subtokensLists = getSublistsOfSize(tokenList, 3);
 
         // filter
@@ -196,6 +206,7 @@ public class WikidataEntityExtractor {
                     }
                 }
 
+
                 // extract entities
                 List<WikidataEntity> currentEntities = getEntitiesByToken(token,
                         // if english text bits are contained in a chinese text
@@ -224,7 +235,6 @@ public class WikidataEntityExtractor {
                 // if biggest group has result, don't consider smaller token groups anymore
                 if (currentEntities.size() > 0) {
                     if (i + 1 < subtokensList.size() && subtokens.size() > subtokensList.get(i + 1).size()) {
-                        // progressBarSubtokens.stop();
                         break;
                     }
                 }

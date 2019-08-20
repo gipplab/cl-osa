@@ -1,6 +1,7 @@
 package com.iandadesign.closa.util.wikidata;
 
 
+import com.google.common.collect.Sets;
 import com.iandadesign.closa.model.Dictionary;
 import com.iandadesign.closa.model.Token;
 import com.iandadesign.closa.model.WikidataEntity;
@@ -38,7 +39,7 @@ public class WikidataDisambiguator {
      * @param languageCode the text and entity language code
      * @return the disambiguated entity
      */
-    public static WikidataEntity ancestorCountDisambiguate(List<WikidataEntity> entities, String text, String languageCode) {
+    public static WikidataEntity disambiguateByAncestorCount(List<WikidataEntity> entities, String text, String languageCode) {
         // retrieve all ancestors per entity
         Map<WikidataEntity, Set<WikidataEntity>> entitiesSubclassOf = new HashSet<>(entities).stream()
                 .collect(Collectors.toMap(entity -> entity,
@@ -73,7 +74,6 @@ public class WikidataDisambiguator {
         } else {
             return disambiguateBySmallestId(new ArrayList<>(maxKeys));
         }
-
     }
 
     /**
@@ -89,7 +89,7 @@ public class WikidataDisambiguator {
 
         if (entities.stream()
                 .allMatch(entity -> entity.getDescriptions() == null || !entity.getDescriptions().containsKey(languageCode))) {
-            throw new IllegalArgumentException("The entities need to contain a description to disambiguate from.");
+            return disambiguateBySmallestId(new ArrayList<>(entities));
         }
 
         List<Token> textTokens = TokenUtil.tokenize(text, languageCode);
@@ -102,7 +102,6 @@ public class WikidataDisambiguator {
         entities.stream()
                 .filter(entity -> entity.getDescriptions() != null || entity.getDescriptions().containsKey(languageCode))
                 .forEach(entity -> {
-
                     List<Token> descriptionTokens = TokenUtil.tokenize(entity.getDescriptions().get(languageCode), languageCode);
                     descriptionTokens.forEach(Token::toLowerCase);
                     descriptionTokens = TokenUtil.removeStopwords(descriptionTokens, languageCode);
@@ -125,5 +124,90 @@ public class WikidataDisambiguator {
         return entities.stream().filter(entity -> entity.getId().equals(matchingId)).findFirst().orElse(entities.get(0));
     }
 
+
+    /**
+     * Iteratively disambiguates by using already unambiguous entities and linking them to the ambiguous ones
+     * using property relationships.
+     *
+     * @param ambiguousEntities   entity candidates
+     * @param unambiguousEntities already resolved entities
+     * @param text                text for context
+     * @param languageCode        language code
+     * @return the entity candidate that has the most relations to the resolved entities.
+     */
+    public static WikidataEntity disambiguateIterative(
+            List<WikidataEntity> ambiguousEntities,
+            List<WikidataEntity> unambiguousEntities,
+            String text,
+            String languageCode
+    ) {
+        Map<WikidataEntity, Long> wikidataEntityDistanceMap = new HashMap<>();
+
+        for (WikidataEntity ambiguousEntity : ambiguousEntities) {
+            long minimalDistance = Long.MAX_VALUE;
+
+            for (WikidataEntity unambiguousEntity : unambiguousEntities) {
+                long distance = WikidataDumpUtil.distanceWithThreshold(ambiguousEntity, unambiguousEntity, 4L);
+
+                if (distance < minimalDistance) {
+                    minimalDistance = distance;
+                }
+            }
+
+            wikidataEntityDistanceMap.put(ambiguousEntity, minimalDistance);
+        }
+
+        long minimumValue = wikidataEntityDistanceMap.entrySet()
+                .stream()
+                .min(Comparator.comparingLong(Map.Entry::getValue))
+                .get()
+                .getValue();
+
+        List<WikidataEntity> minimumKeys = new ArrayList<>();
+
+        for (Map.Entry<WikidataEntity, Long> entry : wikidataEntityDistanceMap.entrySet()) {
+            if (entry.getValue() == minimumValue) {
+                minimumKeys.add(entry.getKey());
+            }
+        }
+
+        if (minimumKeys.size() == 1) {
+            System.out.println("Minimum dist for " + ambiguousEntities + " is " + minimumKeys.get(0));
+            return minimumKeys.get(0);
+        } else {
+            // fallback
+            System.out.println("fallback");
+            return disambiguateByAncestorCount(ambiguousEntities, text, languageCode);
+        }
+    }
+
+    /**
+     * Iteratively disambiguates by using already unambiguous entities and linking them to the ambiguous ones
+     * using property relationships.
+     *
+     * @param ambiguousEntities   entity candidates
+     * @param unambiguousEntities already resolved entities
+     * @param text                text for context
+     * @param languageCode        language code
+     * @return the entity candidate that has the most relations to the resolved entities.
+     */
+    public static WikidataEntity disambiguateByProperties(
+            List<WikidataEntity> ambiguousEntities,
+            List<WikidataEntity> unambiguousEntities,
+            String text,
+            String languageCode
+    ) {
+        return ambiguousEntities.stream()
+                .max(Comparator.comparingInt(entity -> {
+                    Set<WikidataEntity> propertyLinkedEntities = WikidataDumpUtil.getProperties(entity)
+                            .values()
+                            .stream()
+                            .flatMap(List::stream)
+                            .collect(Collectors.toSet());
+
+                    return Sets.intersection(propertyLinkedEntities, new HashSet<>(unambiguousEntities)).size();
+                }))
+                .orElse(null);
+    }
 
 }

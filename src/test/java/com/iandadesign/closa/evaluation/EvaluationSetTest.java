@@ -1,17 +1,16 @@
 package com.iandadesign.closa.evaluation;
 
-import com.iandadesign.closa.evaluation.impl.TOSAEvaluationSet;
+import com.iandadesign.closa.evaluation.impl.CLOSAEvaluationSet;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.Collections;
 
-public class EvaluationSetTest {
-
+class EvaluationSetTest {
 
     @Test
-    public void testFileHandling() {
-        EvaluationSet englishJapaneseBBCEvaluationSetCLCSA = new TOSAEvaluationSet(
+    void testFileHandling() {
+        EvaluationSet<String> englishJapaneseBBCEvaluationSetCLCSA = new CLOSAEvaluationSet(
                 new File("src/test/resources/com/iandadesign/closa/evaluation/test-bbc/en"), "en",
                 new File("src/test/resources/com/iandadesign/closa/evaluation/test-bbc/ja"), "ja",
                 0

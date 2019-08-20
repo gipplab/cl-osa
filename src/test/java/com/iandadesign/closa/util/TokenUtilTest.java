@@ -2,9 +2,14 @@ package com.iandadesign.closa.util;
 
 import com.iandadesign.closa.model.Token;
 import edu.stanford.nlp.simple.Document;
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -254,6 +259,62 @@ public class TokenUtilTest {
         Assertions.assertEquals(tokens.size(), 32);
     }
 
+
+    @Test
+    void chineseTokenizeTEDCorpus() {
+        String path = "/Users/fabianmarquart/TED_Paracorpus/TED.ZH.txt";
+        String pathTokenized = "/Users/fabianmarquart/TED_Paracorpus/TED.ZH-tokenized.txt";
+
+        try {
+            List<String> lines = FileUtils.readLines(new File(path), StandardCharsets.UTF_8);
+            List<String> outputLines = lines.stream()
+                    .map((String line) -> {
+                        // System.out.println(line);
+                        try {
+                            return TokenUtil.chineseTokenize(line, "zh")
+                                    .stream()
+                                    .map(Token::getToken)
+                                    .collect(Collectors.joining(" "));
+                        } catch (IndexOutOfBoundsException e) {
+                            e.printStackTrace();
+                            return "";
+                        }
+                    })
+                    .collect(Collectors.toList());
+
+            FileUtils.writeLines(new File(pathTokenized), outputLines);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void japaneseTokenizeTanakaCorpus() {
+        String path = "/Users/fabianmarquart/tanaka-corpus/ja.utf";
+        String pathTokens = "/Users/fabianmarquart/tanaka-corpus/ja-tokenized.utf";
+
+        try {
+            List<String> lines = FileUtils.readLines(new File(path), StandardCharsets.UTF_8);
+            List<String> outputLines = lines.stream()
+                    .map((String line) -> {
+                        // System.out.println(line);
+                        try {
+                            return TokenUtil.tokenize(line, "ja")
+                                    .stream()
+                                    .map(Token::getToken)
+                                    .collect(Collectors.joining(" "));
+                        } catch (IndexOutOfBoundsException e) {
+                            e.printStackTrace();
+                            return "";
+                        }
+                    })
+                    .collect(Collectors.toList());
+
+            FileUtils.writeLines(new File(pathTokens), outputLines);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

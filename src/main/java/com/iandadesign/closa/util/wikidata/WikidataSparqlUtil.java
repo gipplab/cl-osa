@@ -78,7 +78,7 @@ public class WikidataSparqlUtil {
 
     static {
         try {
-            getPropertyValues();
+            loadEndpointFromConfig();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -89,7 +89,7 @@ public class WikidataSparqlUtil {
      *
      * @throws IOException When property file could not be loaded.
      */
-    private static void getPropertyValues() throws IOException {
+    private static void loadEndpointFromConfig() throws IOException {
         InputStream inputStream = null;
 
         try {

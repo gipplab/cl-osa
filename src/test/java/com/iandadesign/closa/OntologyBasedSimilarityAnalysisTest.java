@@ -1,5 +1,7 @@
 package com.iandadesign.closa;
 
+import com.iandadesign.closa.model.Token;
+import com.iandadesign.closa.util.TokenUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.junit.jupiter.api.Assertions;

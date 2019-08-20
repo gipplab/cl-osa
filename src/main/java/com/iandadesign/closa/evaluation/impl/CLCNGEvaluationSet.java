@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  * <p>
  * Created by Fabian Marquart on 2018/01/01.
  */
-public class CLCNGEvaluationSet extends EvaluationSet {
+public class CLCNGEvaluationSet extends EvaluationSet<String> {
 
     private static final int n = 3;
 
@@ -94,7 +94,6 @@ public class CLCNGEvaluationSet extends EvaluationSet {
             // read in the file
             String documentText = FileUtils.readFileToString(new File(documentPath), StandardCharsets.UTF_8);
 
-            // FIXME: include translation
             if (!documentLanguage.equals("en")) {
                 String translatedDocumentPath = documentPath.replace(String.format("/%s/", documentLanguage), String.format("/%s-t/", documentLanguage));
 
