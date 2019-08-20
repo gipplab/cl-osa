@@ -186,8 +186,6 @@ public class OntologyBasedSimilarityAnalysis {
         logger.info("Create dictionary");
         Dictionary<String> dictionary = new Dictionary<>(candidateIdTokensMap);
 
-        Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap = new HashMap<>();
-
         // perform detailed analysis
         logger.info("Perform detailed analysis");
 
@@ -198,7 +196,7 @@ public class OntologyBasedSimilarityAnalysis {
         AtomicInteger progress = new AtomicInteger(0);
 
         // iterate the suspicious documents
-        suspiciousIdTokensMap.entrySet()
+        Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap = suspiciousIdTokensMap.entrySet()
             .stream()
             .collect(Collectors.toMap(entry -> entry.getKey(),
                 entry -> { 
