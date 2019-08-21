@@ -251,6 +251,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                             .filter(line -> line.contains(";"))
                                             .collect(Collectors.toMap(line -> line.split(";")[0],
                                                     line -> {
+                                                        // FIXME: NullPointer somewhere here
                                                         String candidateId = line.split(";")[0];
                                                         double candidateSize = candidateIdTokensMap.get(candidateId).size();
                                                         double lengthModel =

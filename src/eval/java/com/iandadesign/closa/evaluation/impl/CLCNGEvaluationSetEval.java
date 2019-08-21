@@ -1,10 +1,17 @@
 package com.iandadesign.closa.evaluation.impl;
 
 import com.iandadesign.closa.evaluation.EvaluationSet;
+import com.iandadesign.closa.model.Token;
+import com.iandadesign.closa.util.TokenUtil;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.TrueFileFilter;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.stream.Collectors;
 
 public class CLCNGEvaluationSetEval {
 
@@ -222,4 +229,69 @@ public class CLCNGEvaluationSetEval {
         }
     }
 
+    @Test
+    void copy10000files() {
+        File directory = new File(System.getProperty("user.home") + "/ASPECxc/zh");
+        String destinationDirectory = System.getProperty("user.home") + "/ASPECxc/zh10000/";
+
+        FileUtils.listFiles(directory, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
+                .stream()
+                .sorted()
+                .limit(10000)
+                .forEach(file -> {
+                    String fileName = file.getName();
+                    try {
+                        FileUtils.copyFile(file, new File(destinationDirectory + fileName));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+    }
+
+    @Test
+    void tokenizeChineseFiles() {
+        File directory = new File(System.getProperty("user.home") + "/ASPECxc/zh10000");
+        String destinationDirectory = System.getProperty("user.home") + "/ASPECxc/zh10000-tokenized/";
+
+        FileUtils.listFiles(directory, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
+                .stream()
+                .sorted()
+                .limit(10000)
+                .forEach(file -> {
+                    String fileName = file.getName();
+                    try {
+                        String text = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+                        String tokenized = StringUtils.join(TokenUtil.chineseTokenize(text, "zh").stream()
+                                .map(Token::getToken)
+                                .collect(Collectors.toList()), " ");
+
+                        FileUtils.writeStringToFile(new File(destinationDirectory + fileName), tokenized, StandardCharsets.UTF_8);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+    }
+    @Test
+    void tokenizeJapaneseXFiles() {
+        File directory = new File(System.getProperty("user.home") + "/ASPECx/ja10000");
+        String destinationDirectory = System.getProperty("user.home") + "/ASPECx/ja10000-tokenized/";
+
+        FileUtils.listFiles(directory, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
+                .stream()
+                .sorted()
+                .limit(10000)
+                .forEach(file -> {
+                    String fileName = file.getName();
+                    try {
+                        String text = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+                        String tokenized = StringUtils.join(TokenUtil.tokenize(text, "ja").stream()
+                                .map(Token::getToken)
+                                .collect(Collectors.toList()), " ");
+
+                        FileUtils.writeStringToFile(new File(destinationDirectory + fileName), tokenized, StandardCharsets.UTF_8);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+    }
 }
