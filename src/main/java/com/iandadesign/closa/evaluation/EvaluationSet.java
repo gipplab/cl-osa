@@ -488,7 +488,11 @@ public abstract class EvaluationSet<T> {
 
         System.out.println(evaluation);
 
-        File evaluationFile = new File(String.format("%s/evaluation/%s.txt", System.getProperty("user.home"), this.getClass().getName()));
+        File evaluationFile = new File(String.format("%s/evaluation/%s/%s.txt",
+                System.getProperty("user.home"),
+                this.suspiciousIdCandidateScoresMap.keySet().iterator().next(),
+                this.getClass().getName()));
+
         try {
             FileUtils.writeStringToFile(evaluationFile, evaluation.toString(), "UTF-8");
             System.out.println("Evaluation written to " + evaluationFile.getPath());
