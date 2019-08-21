@@ -145,6 +145,23 @@ public class CLCNGEvaluationSetEval {
     }
 
     @Test
+    public void evalCLCNGPan11Chunks() {
+        /*
+
+         */
+
+        try {
+            CLCNGEvaluationSet englishSpanishPan11EvaluationSetCLCNG = new CLCNGEvaluationSet(
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/en"), "en",
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/es"), "es"
+            );
+            englishSpanishPan11EvaluationSetCLCNG.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     public void evalCLCNGJrcAcquisDocuments() {
         /*
             Ranks 1 to 50
