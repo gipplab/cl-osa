@@ -243,7 +243,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                 if (Files.exists(probabilitiesFilePath) &&
                                         FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8).size() == candidateIdTokensMap.size()) {
 
-                                    System.out.println("exists: import " + probabilitiesFilePath);
+                                    // System.out.println("exists: import " + probabilitiesFilePath);
 
                                     List<String> lines = FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8);
 
@@ -272,11 +272,11 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                             Map<String, Double> candidateIdProbabilityMap = new HashMap<>();
 
-                            System.out.println("does not exist: create");
+                            // System.out.println("does not exist: create");
 
                             int i = 0;
                             for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 50)) {
-                                System.out.println("getTranslationProbabilitiesByCandidate for " + suspiciousEntry.getKey() + " , submap " + i + " of 50");
+                                // System.out.println("getTranslationProbabilitiesByCandidate for " + suspiciousEntry.getKey() + " , submap " + i + " of 50");
 
                                 candidateIdProbabilityMap.putAll(getTranslationProbabilitiesByCandidate(
                                         suspiciousEntry.getValue(),
