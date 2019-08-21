@@ -1,8 +1,6 @@
 package com.iandadesign.closa.evaluation;
 
-import com.google.common.collect.Lists;
 import com.iandadesign.closa.language.LanguageDetector;
-import com.iandadesign.closa.util.EmailUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 
@@ -17,7 +15,6 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -40,6 +37,8 @@ public abstract class EvaluationSet<T> {
     protected Set<String> documentLanguages = new HashSet<>();
 
     private LanguageDetector languageDetector = new LanguageDetector();
+
+    private final int parallelism = 1;
 
     /**
      * Initializes the evaluationSet. The files have to be named identically, only the directories
@@ -157,7 +156,7 @@ public abstract class EvaluationSet<T> {
 
         List<File> keys = new ArrayList<>(files.keySet());
 
-        ForkJoinPool customThreadPool = new ForkJoinPool(4);
+        ForkJoinPool customThreadPool = new ForkJoinPool(parallelism);
 
         List<Integer> integers = IntStream.range(0, keys.size())
                 .sorted()
@@ -206,7 +205,7 @@ public abstract class EvaluationSet<T> {
 
         List<File> keys = new ArrayList<>(files.keySet());
 
-        ForkJoinPool customThreadPool = new ForkJoinPool(4);
+        ForkJoinPool customThreadPool = new ForkJoinPool(parallelism);
 
         List<Integer> integers = IntStream.range(0, keys.size())
                 .sorted()
