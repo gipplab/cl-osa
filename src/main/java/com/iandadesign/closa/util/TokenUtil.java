@@ -740,9 +740,12 @@ public class TokenUtil {
      * @return list of stop words.
      */
     public static List<String> getStopwords(String language) {
-        InputStream inputStream = WordNetUtil.class.getResourceAsStream(String.format("/corpus/stopwords/stopwords_%s.txt", language));
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        return reader.lines().collect(Collectors.toList());
+        InputStream inputStream = TokenUtil.class.getResourceAsStream(String.format("/corpus/stopwords/stopwords_%s.txt", language));
+        if (inputStream != null) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            return reader.lines().collect(Collectors.toList());
+        }
+        return new ArrayList<>();
     }
 
     /**
