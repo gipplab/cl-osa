@@ -403,10 +403,10 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
 
             if (i == 0) {
-                System.out.println("No matches!");
+                // System.out.println("No matches!");
             }
         } else {
-            System.out.println("Empty suspicious input!");
+            // System.out.println("Empty suspicious input!");
         }
 
         int j = 0;
