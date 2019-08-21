@@ -276,7 +276,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             // System.out.println("does not exist: create");
 
                             int i = 0;
-                            for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 50)) {
+                            for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 500)) {
                                 // System.out.println("getTranslationProbabilitiesByCandidate for " + suspiciousEntry.getKey() + " , submap " + i + " of 50");
 
                                 candidateIdProbabilityMap.putAll(getTranslationProbabilitiesByCandidate(
