@@ -164,12 +164,19 @@ public abstract class EvaluationSet<T> {
                 .collect(Collectors.toList());
 
         try {
-            customThreadPool.submit(
-                    () -> integers.parallelStream()
-                            .forEach(i -> {
-                                System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
-                                initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
-                            })).get();
+            if (parallelism > 1) {
+                customThreadPool.submit(
+                        () -> integers.parallelStream()
+                                .forEach(i -> {
+                                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
+                                    initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
+                                })).get();
+            } else {
+                integers.forEach(i -> {
+                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
+                    initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
+                });
+            }
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
@@ -213,12 +220,19 @@ public abstract class EvaluationSet<T> {
                 .collect(Collectors.toList());
 
         try {
-            customThreadPool.submit(
-                    () -> integers.parallelStream()
-                            .forEach(i -> {
-                                System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
-                                initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
-                            })).get();
+            if (parallelism > 1) {
+                customThreadPool.submit(
+                        () -> integers.parallelStream()
+                                .forEach(i -> {
+                                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
+                                    initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
+                                })).get();
+            } else {
+                integers.forEach(i -> {
+                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
+                    initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
+                });
+            }
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
@@ -516,7 +530,7 @@ public abstract class EvaluationSet<T> {
         Path newFullPath =
                 originalDocumentPath.contains(System.getProperty("user.home"))
                         ? Paths.get(originalDocumentPath.replace(System.getProperty("user.home"),
-                                System.getProperty("user.home") + "/preprocessed/" + this.getClass().getName() + "/"))
+                        System.getProperty("user.home") + "/preprocessed/" + this.getClass().getName() + "/"))
                         : Paths.get(originalDocumentPath.replace("src", "src/preprocessed/" + this.getClass().getName() + "/"));
 
         if (newFullPath.toString().equals(originalDocumentPath)) {
