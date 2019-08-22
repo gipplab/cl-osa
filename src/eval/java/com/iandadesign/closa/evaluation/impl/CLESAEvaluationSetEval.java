@@ -41,7 +41,7 @@ class CLESAEvaluationSetEval {
         try {
             EvaluationSet englishJapaneseBBCEvaluationSetCLESA = new CLESAEvaluationSet(
                     new File("src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/en"), "en",
-                    new File("src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/ja"), "ja"
+                    new File("src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/ja"), "ja",
             );
 
             englishJapaneseBBCEvaluationSetCLESA.printEvaluation();
@@ -124,7 +124,8 @@ class CLESAEvaluationSetEval {
         try {
             CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es"
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es",
+                    500
             );
 
             englishSpanishPan11EvaluationSetCLESA.printEvaluation();
@@ -205,7 +206,8 @@ class CLESAEvaluationSetEval {
         try {
             CLESAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr"
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr",
+                    500
             );
             englishFrenchJrcAcquisEvaluationSetCLESA.printEvaluation();
         } catch (Exception e) {
@@ -235,7 +237,8 @@ class CLESAEvaluationSetEval {
         try {
             CLESAEvaluationSet englishFrenchEuroparlEvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr"
+                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
+                    500
             );
             englishFrenchEuroparlEvaluationSetCLESA.printEvaluation();
         } catch (Exception e) {
