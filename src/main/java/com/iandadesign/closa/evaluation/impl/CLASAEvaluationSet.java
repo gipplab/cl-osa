@@ -276,7 +276,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             // System.out.println("does not exist: create");
 
                             int i = 0;
-                            for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 500)) {
+                            for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 10)) {
                                 // System.out.println("getTranslationProbabilitiesByCandidate for " + suspiciousEntry.getKey() + " , submap " + i + " of 50");
 
                                 candidateIdProbabilityMap.putAll(getTranslationProbabilitiesByCandidate(
@@ -317,9 +317,9 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
     }
 
 
-    private List<Map<String, List<String>>> getSubMaps(Map<String, List<String>> map, int chunks) {
+    private List<Map<String, List<String>>> getSubMaps(Map<String, List<String>> map, int chunkSize) {
         List<Map<String, List<String>>> chunkedList = new ArrayList<>();
-        int chunkSize = map.size() / chunks;
+        int chunks = map.size() / chunkSize;
 
         int i = 0;
 
