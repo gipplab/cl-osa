@@ -41,7 +41,7 @@ class CLESAEvaluationSetEval {
         try {
             EvaluationSet englishJapaneseBBCEvaluationSetCLESA = new CLESAEvaluationSet(
                     new File("src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/en"), "en",
-                    new File("src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/ja"), "ja",
+                    new File("src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/ja"), "ja"
             );
 
             englishJapaneseBBCEvaluationSetCLESA.printEvaluation();
