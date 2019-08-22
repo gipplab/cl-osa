@@ -19,6 +19,7 @@ import java.io.StringReader;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -84,20 +85,13 @@ public class TranslationUtil {
      * @return translation or same text if failed.
      */
     public static String translate(String text, String sourceLanguage, String targetLanguage) {
-        String[] sentences = text.split(". ");
-
-        StringBuilder currentTranslation = new StringBuilder();
-        StringBuilder currentSentence = new StringBuilder();
-        for (String sentence : sentences) {
-            if (currentSentence.length() + sentence.length() + ". ".length() >= 1000) {
-                currentTranslation.append(translateChunk(currentSentence.toString(), sourceLanguage, targetLanguage)).append(". ");
-                currentSentence = new StringBuilder();
-            } else {
-                currentSentence.append(sentence).append(". ");
-            }
+        if (text.contains(". ")) {
+            return Arrays.stream(text.split(". "))
+                    .map(currentSentence -> translateChunk(currentSentence, sourceLanguage, targetLanguage))
+                    .collect(Collectors.joining(". "));
         }
 
-        return currentTranslation.toString();
+        return translateChunk(text, sourceLanguage, targetLanguage);
     }
 
 

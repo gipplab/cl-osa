@@ -103,7 +103,9 @@ public class CLCNGEvaluationSet extends EvaluationSet<String> {
                     documentText = TranslationUtil.translate(documentText, documentLanguage, "en");
                     FileUtils.writeStringToFile(new File(translatedDocumentPath), documentText, Charset.forName("UTF-8"));
                 }
+                System.out.println(documentText);
             }
+
 
             List<Token> documentTokens = TokenUtil.tokenize(documentText, "en");
             documentTokens = TokenUtil.nGramPartition(documentTokens, n);
