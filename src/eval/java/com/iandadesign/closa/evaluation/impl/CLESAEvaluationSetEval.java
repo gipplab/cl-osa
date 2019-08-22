@@ -55,7 +55,7 @@ class CLESAEvaluationSetEval {
         CLESAEvaluationSet englishJapaneseASPECEvaluationSetCLOSA = new CLESAEvaluationSet(
                 new File(System.getProperty("user.home") + "/ASPECx/ja"), "ja",
                 new File(System.getProperty("user.home") + "/ASPECx/en"), "en",
-                10000
+                500
         );
 
         englishJapaneseASPECEvaluationSetCLOSA.printEvaluation();

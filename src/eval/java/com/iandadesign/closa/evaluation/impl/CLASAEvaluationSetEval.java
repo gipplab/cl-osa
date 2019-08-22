@@ -42,7 +42,7 @@ class CLASAEvaluationSetEval {
         CLASAEvaluationSet englishJapaneseASPECEvaluationSetCLASA = new CLASAEvaluationSet(
                 new File(System.getProperty("user.home") + "/ASPECx/en"), "en",
                 new File(System.getProperty("user.home") + "/ASPECx/ja"), "ja",
-                10000
+                500
         );
 
         englishJapaneseASPECEvaluationSetCLASA.printEvaluation();

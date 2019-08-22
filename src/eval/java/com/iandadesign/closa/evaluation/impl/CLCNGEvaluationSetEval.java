@@ -48,7 +48,7 @@ public class CLCNGEvaluationSetEval {
         CLCNGEvaluationSet englishJapaneseASPECEvaluationSetCLCNG = new CLCNGEvaluationSet(
                 new File(System.getProperty("user.home") + "/ASPECx/ja"), "ja",
                 new File(System.getProperty("user.home") + "/ASPECx/en"), "en",
-                10000
+                500
         );
 
         englishJapaneseASPECEvaluationSetCLCNG.printEvaluation();
