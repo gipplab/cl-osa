@@ -136,7 +136,7 @@ public class TranslationUtil {
             }
         }
 
-        return null;
+        throw new IllegalStateException("No translation service");
     }
 
     /**
