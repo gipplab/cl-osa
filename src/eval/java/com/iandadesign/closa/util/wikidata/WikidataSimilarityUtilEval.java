@@ -24,7 +24,7 @@ public class WikidataSimilarityUtilEval {
     @Test
     public void ontologyEnhancedCosineEval() {
         // retrieve manually annotated pairs of roughly equivalent wikidata entity documents
-        File csvFile = new File("src/test/resources/com/iandadesign/closa/util/wikidata/sts-hdl2016.csv");
+        File csvFile = new File("src/eval/resources/com/iandadesign/closa/util/wikidata/sts-hdl2016.csv");
 
         Map<String, List<String>> suspiciousDocuments = new HashMap<>();
         Map<String, List<String>> candidateDocuments = new HashMap<>();
