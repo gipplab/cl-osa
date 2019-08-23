@@ -38,7 +38,7 @@ public abstract class EvaluationSet<T> {
 
     private LanguageDetector languageDetector = new LanguageDetector();
 
-    private final int parallelism = 8;
+    private final int parallelism = 1;
 
     /**
      * Initializes the evaluationSet. The files have to be named identically, only the directories
