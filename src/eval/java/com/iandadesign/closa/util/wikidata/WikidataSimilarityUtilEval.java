@@ -35,6 +35,11 @@ public class WikidataSimilarityUtilEval {
             List<CSVRecord> records = CSVParser.parse(reader, format).getRecords();
 
             for (CSVRecord record : records) {
+                String id = record.get(3);
+                if (!id.equals("1283")) {
+                    continue;
+                }
+
                 List<String> suspiciousEntities = Arrays.stream(record.get(9).split(" "))
                         .collect(Collectors.toList());
 
