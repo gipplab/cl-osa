@@ -35,7 +35,7 @@ public class WikidataSimilarityUtilEval {
             List<CSVRecord> records = CSVParser.parse(reader, format).getRecords();
 
             for (CSVRecord record : records) {
-                String id = record.get(3);
+                String id = record.get(3).trim();
                 if (!id.equals("603")) {
                     continue;
                 }
