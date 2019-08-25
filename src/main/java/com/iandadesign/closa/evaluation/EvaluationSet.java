@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
 import java.util.concurrent.ForkJoinPool;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -156,7 +157,7 @@ public abstract class EvaluationSet<T> {
 
         List<File> keys = new ArrayList<>(files.keySet());
 
-        ForkJoinPool customThreadPool = new ForkJoinPool(parallelism);
+        ForkJoinPool customThreadPool = (ForkJoinPool) Executors.newWorkStealingPool(parallelism);
 
         List<Integer> integers = IntStream.range(0, keys.size())
                 .sorted()
@@ -212,7 +213,7 @@ public abstract class EvaluationSet<T> {
 
         List<File> keys = new ArrayList<>(files.keySet());
 
-        ForkJoinPool customThreadPool = new ForkJoinPool(parallelism);
+        ForkJoinPool customThreadPool = (ForkJoinPool) Executors.newWorkStealingPool(parallelism);
 
         List<Integer> integers = IntStream.range(0, keys.size())
                 .sorted()

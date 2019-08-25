@@ -397,8 +397,8 @@ public class WikidataDumpUtil {
                         // TODO: check if all proteins have the word "protein" in their description
                         !category.equals(Category.biology)
                                 || results.size() <= 50
-                                || entity.getDescriptions().getOrDefault("en", "").contains("protein")
-                                || entity.getDescriptions().getOrDefault("en", "").contains("gene"))
+                                || entity.getDescriptions().getOrDefault("en", "").matches(".*protein.*")
+                                || entity.getDescriptions().getOrDefault("en", "").matches(".*gene.*"))
                 .filter(entity ->
                         results.size() <= 1 // no filter if only one result
                                 || !token.isNamedEntity()

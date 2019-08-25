@@ -40,28 +40,24 @@ public class WikidataDisambiguator {
      * @return the disambiguated entity
      */
     public static WikidataEntity disambiguateByAncestorCount(List<WikidataEntity> entities, String text, String languageCode) {
-        // retrieve all ancestors per entity
-        Map<WikidataEntity, Set<WikidataEntity>> entitiesSubclassOf = new HashSet<>(entities).stream()
+        // retrieve all ancestors per entity and count the occurrences in the text per entity
+        Map<WikidataEntity, Integer> entityOccurrences = entities.stream()
                 .collect(Collectors.toMap(entity -> entity,
-                        entity -> new HashSet<>(getAllAncestors(entity))));
-
-        // count the occurrences for all ancestors in the text per entity
-        Map<WikidataEntity, Integer> entityOccurrences = new HashMap<>();
-
-        entitiesSubclassOf.forEach((key, value) -> {
-            int occurrences = Math.toIntExact(value.stream()
-                    .filter(entity -> entity.getLabels() != null && entity.getLabels().containsKey(languageCode))
-                    .filter(entity -> text.contains(entity.getLabels().get(languageCode)))
-                    .count());
-
-            entityOccurrences.put(key, occurrences);
-        });
+                        entity -> new HashSet<>(getAllAncestors(entity))))
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(Map.Entry::getKey,
+                        entry -> Math.toIntExact(entry.getValue().stream()
+                                .filter(entity -> entity.getLabels() != null && entity.getLabels().containsKey(languageCode))
+                                .filter(entity -> text.contains(entity.getLabels().get(languageCode)))
+                                .count())));
 
         // the entity whose ancestors appear in the greatest number in the text wins
-        long max = entityOccurrences.values()
+        long max = entityOccurrences.entrySet()
                 .stream()
-                .max(Comparator.naturalOrder())
-                .get();
+                .max(Map.Entry.comparingByValue())
+                .get()
+                .getValue();
 
         Set<WikidataEntity> maxKeys = entityOccurrences.entrySet()
                 .stream()
@@ -71,9 +67,9 @@ public class WikidataDisambiguator {
 
         if (maxKeys.size() == 1) {
             return maxKeys.iterator().next();
-        } else {
-            return disambiguateBySmallestId(new ArrayList<>(maxKeys));
         }
+
+        return disambiguateBySmallestId(new ArrayList<>(maxKeys));
     }
 
     /**
