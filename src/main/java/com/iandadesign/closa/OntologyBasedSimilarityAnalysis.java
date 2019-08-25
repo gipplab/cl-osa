@@ -196,20 +196,20 @@ public class OntologyBasedSimilarityAnalysis {
         // progress bar
         ProgressBar progressBar = new ProgressBar("Perform cosine similarity analysis", suspiciousIdTokensMap.entrySet().size(), ProgressBarStyle.ASCII);
         progressBar.start();
-        
+
         AtomicInteger progress = new AtomicInteger(0);
 
         // iterate the suspicious documents
         Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap = suspiciousIdTokensMap.entrySet()
-            .stream()
-            .collect(Collectors.toMap(entry -> entry.getKey(),
-                entry -> { 
-                    progressBar.stepTo(progress.incrementAndGet());
-                    
-                    // look in dictionary
-                    return dictionary.query(entry.getValue());
-                }
-            ));
+                .stream()
+                .collect(Collectors.toMap(entry -> entry.getKey(),
+                        entry -> {
+                            progressBar.stepTo(progress.incrementAndGet());
+
+                            // look in dictionary
+                            return dictionary.query(entry.getValue());
+                        }
+                ));
 
         progressBar.stop();
 
@@ -340,7 +340,6 @@ public class OntologyBasedSimilarityAnalysis {
 
             for (Map.Entry<String, Map<String, Double>> candidateEntry : candidateIdTokenCountMap.entrySet()) {
                 double similarity = WikidataSimilarityUtil.cosineSimilarity(suspiciousEntry.getValue(), candidateEntry.getValue());
-                System.out.println(similarity);
                 candidateSimilarities.put(candidateEntry.getKey(), similarity);
                 progressBar.step();
             }
@@ -349,7 +348,7 @@ public class OntologyBasedSimilarityAnalysis {
         }
 
         progressBar.stop();
-
+        System.out.println(suspiciousIdDetectedCandidateIdsMap);
         return suspiciousIdDetectedCandidateIdsMap;
     }
 
