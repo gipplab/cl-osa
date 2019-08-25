@@ -332,7 +332,6 @@ public class WikidataSparqlUtilTest {
                 Files.createDirectories(Paths.get(path));
             }
             String fileName = LocalDateTime.now().toString() + ".txt";
-            System.out.println(fileName);
 
             Files.createFile(Paths.get(path, fileName));
             FileUtils.writeStringToFile(new File(path, fileName), "test", StandardCharsets.UTF_8);

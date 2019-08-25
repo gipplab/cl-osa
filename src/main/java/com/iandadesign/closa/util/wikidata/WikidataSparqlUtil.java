@@ -195,8 +195,6 @@ public class WikidataSparqlUtil {
                 label,
                 languageCode);
 
-        System.out.println(queryString);
-
         Map<String, List<String>> queryResult = sendQuery(queryString);
 
         return queryResult.containsKey("item") ?
@@ -218,7 +216,7 @@ public class WikidataSparqlUtil {
      * @param category     : the text's category from which the token was taken.
      * @return the results as Wikidata entities.
      */
-    private static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode, Category category) {
+    public static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode, Category category) {
         if (token.getLemma() == null) {
             throw new IllegalArgumentException("The token lemma is null");
         } else if (token.getLemma().equals("")) {
@@ -542,8 +540,6 @@ public class WikidataSparqlUtil {
                         "}\n" +
                         "ORDER BY ASC(?depth)",
                 entity.getId());
-
-        System.out.println(queryString);
 
         return sendQuery(queryString).get("parent")
                 .stream()

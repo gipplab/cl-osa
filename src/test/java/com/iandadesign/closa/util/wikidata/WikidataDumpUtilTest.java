@@ -63,7 +63,6 @@ class WikidataDumpUtilTest {
 
         List<WikidataEntity> tokyoEntities = WikidataDumpUtil.getEntitiesByToken(tokyo, "ja");
 
-        System.out.println(tokyoEntities);
         Assertions.assertTrue(tokyoEntities.size() > 0);
     }
 

@@ -13,7 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.iandadesign.closa.util.wikidata.WikidataDumpUtil.*;
+import static com.iandadesign.closa.util.wikidata.WikidataSparqlUtil.*;
 
 /**
  * WikidataEntityExtractor is an almost singleton class that performs entity extraction from a text.

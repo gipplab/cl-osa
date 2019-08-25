@@ -137,6 +137,8 @@ public class OntologyBasedSimilarityAnalysis {
             // read in the file
             String documentText = FileUtils.readFileToString(new File(documentPath), StandardCharsets.UTF_8);
 
+            System.out.println(documentText);
+
             String documentEntitiesPath;
             String userHome = System.getProperty("user.home");
 
@@ -162,6 +164,8 @@ public class OntologyBasedSimilarityAnalysis {
 
                 FileUtils.writeLines(new File(documentEntitiesPath), documentEntities);
             }
+
+            System.out.println(documentEntities);
 
             return documentEntities;
         } catch (IOException e) {
@@ -336,6 +340,7 @@ public class OntologyBasedSimilarityAnalysis {
 
             for (Map.Entry<String, Map<String, Double>> candidateEntry : candidateIdTokenCountMap.entrySet()) {
                 double similarity = WikidataSimilarityUtil.cosineSimilarity(suspiciousEntry.getValue(), candidateEntry.getValue());
+                System.out.println(similarity);
                 candidateSimilarities.put(candidateEntry.getKey(), similarity);
                 progressBar.step();
             }

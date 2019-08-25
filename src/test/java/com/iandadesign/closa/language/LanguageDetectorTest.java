@@ -57,7 +57,5 @@ public class LanguageDetectorTest {
                 })
                 .map(languageDetector::detectLanguage)
                 .collect(Collectors.toList());
-
-        System.out.println(languages);
     }
 }
