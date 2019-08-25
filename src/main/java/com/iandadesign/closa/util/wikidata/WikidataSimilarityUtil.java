@@ -94,10 +94,6 @@ public class WikidataSimilarityUtil {
             if (progressBar != null) progressBar.step();
         }
 
-        System.out.println(Arrays.toString(firstVector.toArray()));
-        System.out.println(Arrays.toString(secondVector.toArray()));
-
-
         double sim = firstVector.dotProduct(secondVector) / (firstVector.getNorm() * secondVector.getNorm());
 
         System.out.println(sim);
