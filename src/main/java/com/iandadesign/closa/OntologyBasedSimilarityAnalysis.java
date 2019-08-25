@@ -349,8 +349,6 @@ public class OntologyBasedSimilarityAnalysis {
 
         progressBar.stop();
 
-        System.out.println("suspiciousIdDetectedCandidateIdsMap");
-        System.out.println(suspiciousIdDetectedCandidateIdsMap);
         return suspiciousIdDetectedCandidateIdsMap;
     }
 

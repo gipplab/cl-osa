@@ -366,6 +366,8 @@ public abstract class EvaluationSet<T> {
 
         double meanReciprocalRank = 0.0;
 
+        System.out.println(suspiciousIdCandidateScoresMap);
+
         double maxScore = suspiciousIdCandidateScoresMap.values()
                 .stream()
                 .map(stringDoubleMap -> stringDoubleMap.values().stream().mapToDouble(v -> v).max().orElse(0.0))
