@@ -108,7 +108,7 @@ public class WordNetUtil {
     /**
      * Gets related morphosemantically related words from WordNet.
      *
-     * @param indexWord the word to query.
+     * @param indexWord the word to sendQuery.
      * @return morphosemantically related words.
      */
     public static List<String> getMorphosemanticLink(IndexWord indexWord) {

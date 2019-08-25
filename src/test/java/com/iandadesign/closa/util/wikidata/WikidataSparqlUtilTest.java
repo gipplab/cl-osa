@@ -32,24 +32,24 @@ public class WikidataSparqlUtilTest {
     }
 
     @Test
-    public void testGetEntities() {
-        List<WikidataEntity> entities = getEntitiesByLabel("tree", "en");
+    public void getEntitiesByLabel() {
+        List<WikidataEntity> entities = WikidataSparqlUtil.getEntitiesByLabel("tree", "en");
 
         Assertions.assertTrue(entities.contains(new WikidataEntity("Q10884", "tree")));
         Assertions.assertTrue(entities.contains(new WikidataEntity("Q272735", "tree")));
 
         System.out.println(entities);
-        System.out.println(getEntitiesByLabel("German", "en"));
+        System.out.println(WikidataSparqlUtil.getEntitiesByLabel("German", "en"));
 
-        System.out.println(getEntitiesByLabel("Auschwitz", "en"));
+        System.out.println(WikidataSparqlUtil.getEntitiesByLabel("Auschwitz", "en"));
     }
 
 
     @Test
-    public void testGetAllAncestors() {
+    public void getAllAncestors() {
         WikidataEntity tree = new WikidataEntity("Q10884");
 
-        List<WikidataEntity> allAncestors = getAllAncestors(tree);
+        List<WikidataEntity> allAncestors = WikidataSparqlUtil.getAllAncestors(tree);
 
         Assertions.assertTrue(allAncestors.contains(new WikidataEntity("Q35120", "entity")));
         Assertions.assertTrue(allAncestors.contains(new WikidataEntity("Q756", "plant")));
@@ -147,7 +147,7 @@ public class WikidataSparqlUtilTest {
 
         System.out.println(instanceOf2);
 
-        instanceOf2.forEach(classEntity -> System.out.println(getAllAncestors(classEntity)));
+        instanceOf2.forEach(classEntity -> System.out.println(WikidataSparqlUtil.getAllAncestors(classEntity)));
     }
 
     @Test
@@ -304,7 +304,7 @@ public class WikidataSparqlUtilTest {
                         "    SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE], en\" . }\n" +
                         "  }";
 
-        query(queryString);
+        sendQuery(queryString);
     }
 
 
@@ -318,7 +318,7 @@ public class WikidataSparqlUtilTest {
                         "LIMIT 100";
 
         IntStream.range(1, 100).forEach(integer -> {
-            query(queryString);
+            sendQuery(queryString);
         });
     }
 

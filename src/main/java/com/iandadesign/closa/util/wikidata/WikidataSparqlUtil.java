@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
  * - property extraction
  * - checking of various properties related to hierarchy: location, human, organization, number, natural number,
  * human language, creative work, gene, instance class, instantiating class.
- * - general SPARQL query
+ * - general SPARQL sendQuery
  * <p>
  * Created by Fabian Marquart on 2018/08/03.
  */
@@ -135,7 +135,7 @@ public class WikidataSparqlUtil {
                         "LIMIT 1",
                 id);
 
-        Map<String, List<String>> queryResult = query(queryString);
+        Map<String, List<String>> queryResult = sendQuery(queryString);
 
         if (queryResult.isEmpty()) {
             return new WikidataEntity(id);
@@ -159,7 +159,7 @@ public class WikidataSparqlUtil {
     /**
      * Retrieves the label matching the entity from the Wikidata SPARQL endpoint.
      *
-     * @param entityId     : the entityId to query.
+     * @param entityId     : the entityId to sendQuery.
      * @param languageCode : the label language.
      * @return the label.
      */
@@ -173,7 +173,7 @@ public class WikidataSparqlUtil {
                 entityId,
                 languageCode);
 
-        return query(queryString).get("label").get(0);
+        return sendQuery(queryString).get("label").get(0);
     }
 
 
@@ -195,7 +195,9 @@ public class WikidataSparqlUtil {
                 label,
                 languageCode);
 
-        Map<String, List<String>> queryResult = query(queryString);
+        System.out.println(queryString);
+
+        Map<String, List<String>> queryResult = sendQuery(queryString);
 
         return queryResult.containsKey("item") ?
                 queryResult.get("item")
@@ -252,19 +254,19 @@ public class WikidataSparqlUtil {
                 return new ArrayList<>();
             }
 
-            // if the lemma query is successful, exit the loop
+            // if the lemma sendQuery is successful, exit the loop
             if (results.size() > 0) {
                 break;
             }
 
             if (results.size() == 0) {
-                // if no results are found for lemma, assume wrong lemmatization and query token instead
+                // if no results are found for lemma, assume wrong lemmatization and sendQuery token instead
                 queriedEntities = getEntitiesByLabel(token.getToken(), languageCode);
 
             }
         }
 
-        // 2 consider the query result itself
+        // 2 consider the sendQuery result itself
         entities = results.stream()
                 .filter(entity -> entity.getId().contains("Q"))
                 .map(entity -> {
@@ -340,7 +342,7 @@ public class WikidataSparqlUtil {
                 "  FILTER((LANG(?prop_label)) = \"en\")\n" +
                 "}", entity.getId(), propertyId);
 
-        Map<String, List<String>> resultMap = query(queryString);
+        Map<String, List<String>> resultMap = sendQuery(queryString);
 
         if (resultMap.containsKey("entity_item")) {
             return resultMap.get("entity_item").stream()
@@ -373,7 +375,7 @@ public class WikidataSparqlUtil {
                         "}",
                 entity.getId());
 
-        Map<String, List<String>> queryResult = query(queryString);
+        Map<String, List<String>> queryResult = sendQuery(queryString);
 
         return queryResult.containsKey("parent")
                 ? queryResult.get("parent")
@@ -396,7 +398,7 @@ public class WikidataSparqlUtil {
                         "}",
                 entity.getId());
 
-        return query(queryString).get("subclass")
+        return sendQuery(queryString).get("subclass")
                 .stream()
                 .map(subclassString -> new WikidataEntity(subclassString.split("entity/")[1]))
                 .collect(Collectors.toList());
@@ -418,7 +420,7 @@ public class WikidataSparqlUtil {
                 entity.getId());
 
         List<WikidataEntity> instanceOf = new ArrayList<>();
-        Map<String, List<String>> queryResult = query(queryString);
+        Map<String, List<String>> queryResult = sendQuery(queryString);
 
         if (queryResult.containsKey("class")) {
             for (int i = 0; i < queryResult.get("class").size(); i++) {
@@ -445,7 +447,7 @@ public class WikidataSparqlUtil {
                         "}",
                 entity.getId());
 
-        return query(queryString).get("instance")
+        return sendQuery(queryString).get("instance")
                 .stream()
                 .map(instanceString -> new WikidataEntity(instanceString.split("entity/")[1]))
                 .collect(Collectors.toList());
@@ -493,7 +495,7 @@ public class WikidataSparqlUtil {
                 entity.getId(),
                 ancestor.getId());
 
-        Map<String, List<String>> queryResult = query(queryString);
+        Map<String, List<String>> queryResult = sendQuery(queryString);
 
         if (queryResult.containsKey("depth")) {
             return queryResult.get("depth")
@@ -525,7 +527,6 @@ public class WikidataSparqlUtil {
      * @return the list of parent / ancestor entities.
      */
     public static List<WikidataEntity> getAllAncestors(WikidataEntity entity) {
-        // FIXME: often results in org.openrdf.query.MalformedQueryException
         String queryString = String.format("PREFIX gas: <http://www.bigdata.com/rdf/gas#>\n" +
                         "\n" +
                         "SELECT ?parent ?parentLabel ?depth WHERE {\n" +
@@ -542,7 +543,9 @@ public class WikidataSparqlUtil {
                         "ORDER BY ASC(?depth)",
                 entity.getId());
 
-        return query(queryString).get("parent")
+        System.out.println(queryString);
+
+        return sendQuery(queryString).get("parent")
                 .stream()
                 .map(parentString -> new WikidataEntity(parentString.split("entity/")[1]))
                 .collect(Collectors.toList());
@@ -555,7 +558,7 @@ public class WikidataSparqlUtil {
      * @return the list of child / descendant entities.
      */
     public static List<WikidataEntity> getAllDescendants(WikidataEntity entity) {
-        // FIXME: often results in org.openrdf.query.MalformedQueryException
+        // FIXME: often results in org.openrdf.sendQuery.MalformedQueryException
         String queryString = String.format("PREFIX gas: <http://www.bigdata.com/rdf/gas#>\n" +
                         "\n" +
                         "SELECT ?parent ?parentLabel ?depth WHERE {\n" +
@@ -572,7 +575,7 @@ public class WikidataSparqlUtil {
                         "ORDER BY ASC(?depth)",
                 entity.getId());
 
-        return query(queryString).get("parent")
+        return sendQuery(queryString).get("parent")
                 .stream()
                 .map(parentString -> new WikidataEntity(parentString.split("entity/")[1]))
                 .collect(Collectors.toList());
@@ -597,7 +600,7 @@ public class WikidataSparqlUtil {
                 firstEntity.getId(),
                 secondEntity.getId());
 
-        return query(queryString).get("lcs")
+        return sendQuery(queryString).get("lcs")
                 .stream()
                 .map(lcsString -> new WikidataEntity(lcsString.split("entity/")[1]))
                 .findFirst().orElse(rootEntity);
@@ -731,12 +734,12 @@ public class WikidataSparqlUtil {
 
 
     /**
-     * Performs a SPARQL query to WikiData.
+     * Performs a SPARQL sendQuery to WikiData.
      *
-     * @param queryString : A SPARQL query string.
+     * @param queryString : A SPARQL sendQuery string.
      * @return : the result set returned by the server.
      */
-    public static Map<String, List<String>> query(String queryString) {
+    public static Map<String, List<String>> sendQuery(String queryString) {
 
         Map<String, List<String>> bindings = new HashMap<>();
         String urlString;
@@ -744,7 +747,7 @@ public class WikidataSparqlUtil {
         // build url string and perform get request
         try {
             urlString = wikidataSparqlEndpoint +
-                    "?query=" + URLEncoder.encode(String.join("\n", wikidataPrefixes) + "\n" + queryString, "UTF-8");
+                    "?sendQuery=" + URLEncoder.encode(String.join("\n", wikidataPrefixes) + "\n" + queryString, "UTF-8");
 
             String jsonString = httpGetJson(urlString);
 
@@ -777,7 +780,7 @@ public class WikidataSparqlUtil {
             return bindings;
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-            throw new IllegalStateException("Wikidata SPARL communication failed because UTF-8 query could not be built.");
+            throw new IllegalStateException("Wikidata SPARL communication failed because UTF-8 sendQuery could not be built.");
         }
     }
 

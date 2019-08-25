@@ -115,7 +115,7 @@ public class Dictionary<T> {
     /**
      * Queries the inverted index dictionary.
      *
-     * @param queryTerms query
+     * @param queryTerms sendQuery
      * @return the document ids - score map.
      */
     public Map<String, Double> query(final List<T> queryTerms) {
@@ -146,7 +146,7 @@ public class Dictionary<T> {
             });
         });
 
-        // 1.2 map query to query vector
+        // 1.2 map sendQuery to sendQuery vector
         SparseRealVector queryVector = new OpenMapRealVector(dimension);
 
         for (T queryTerm : queryTerms) {
@@ -172,7 +172,7 @@ public class Dictionary<T> {
                     .map(booleanWeighing));
         }
 
-        // 2.4 weigh the query vector
+        // 2.4 weigh the sendQuery vector
         queryVector = (OpenMapRealVector) queryVector
                 .map(booleanWeighing);
 

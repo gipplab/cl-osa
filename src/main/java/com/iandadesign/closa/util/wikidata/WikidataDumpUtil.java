@@ -183,7 +183,7 @@ public class WikidataDumpUtil {
      * @return the result as Wikidata entity.
      */
     public static WikidataEntity getEntityById(String id) {
-        // query
+        // sendQuery
         Document query = new Document("id", id);
 
         Document document = entitiesCollection.find(query)
@@ -363,18 +363,18 @@ public class WikidataDumpUtil {
                 return new ArrayList<>();
             }
 
-            // if the lemma query is successful, exit the loop
+            // if the lemma sendQuery is successful, exit the loop
             if (results.size() > 0) {
                 break;
             }
 
-            // if no results are found, query aliases instead
-            // query = new Document("aliases." + languageCode + ".value", capitalizeIfFirstLetterIsUppercase(queryLemma));
-            // if no results are found for lemma, assume wrong lemmatization and query token instead
+            // if no results are found, sendQuery aliases instead
+            // sendQuery = new Document("aliases." + languageCode + ".value", capitalizeIfFirstLetterIsUppercase(queryLemma));
+            // if no results are found for lemma, assume wrong lemmatization and sendQuery token instead
             query = createLabelQuery(token.getToken(), languageCode);
         }
 
-        // 2 consider the query result itself
+        // 2 consider the sendQuery result itself
         entities = results.stream()
                 .map(document -> {
                     String jsonId = document.get("id").toString();
@@ -927,12 +927,12 @@ public class WikidataDumpUtil {
 
 
     /**
-     * Creates a basic or query looking for the query string in the labels or in the aliases of
+     * Creates a basic or sendQuery looking for the sendQuery string in the labels or in the aliases of
      * entities.
      *
      * @param languageCode two letter language code.
      * @param queryString  the string to be queried.
-     * @return a query document.
+     * @return a sendQuery document.
      */
     private static Document createLabelQuery(String queryString, String languageCode) {
         if (!languages.contains(languageCode)) {

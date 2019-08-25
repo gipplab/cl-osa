@@ -42,7 +42,7 @@ public class ConceptUtil {
 
     private static Logger logger = Logger.getLogger(TokenUtil.class);
 
-    private static String wikipediaTitleQuery = ".wikipedia.org/w/api.php?action=query&titles=";
+    private static String wikipediaTitleQuery = ".wikipedia.org/w/api.php?action=sendQuery&titles=";
     private static String wikipediaPropsAndFormat = "&prop=pageprops&ppprop=disambiguation&format=json";
 
     @SuppressWarnings("FieldCanBeLocal")
@@ -116,7 +116,7 @@ public class ConceptUtil {
             }
         }
 
-        // 1.3 create title query strings from the token lists
+        // 1.3 create title sendQuery strings from the token lists
         List<Token> titlesToBeQueried = new ArrayList<>();
 
         for (List<Token> tokenGroup : tokensToBeRequested) {
@@ -300,7 +300,7 @@ public class ConceptUtil {
             JsonParser parser = new JsonParser();
             JsonElement element = parser.parse(jsonFile);
             JsonObject object = element.getAsJsonObject();
-            JsonObject pages = object.getAsJsonObject("query").getAsJsonObject("pages");
+            JsonObject pages = object.getAsJsonObject("sendQuery").getAsJsonObject("pages");
 
             // pull all ids from the pages object into a map
             Map<String, String> intermediateMap = new HashMap<>();
@@ -415,7 +415,7 @@ public class ConceptUtil {
      * @return page id in given language.
      */
     public static String getPageIdInLanguage(String pageId, String originalLanguage, String targetLanguage) {
-        // no query if the languages are the same
+        // no sendQuery if the languages are the same
         if (originalLanguage.equals(targetLanguage)) {
             return pageId;
         }
@@ -425,7 +425,7 @@ public class ConceptUtil {
         // get wikipedia page title in language
         try {
             URIBuilder builder = new URIBuilder("https://" + originalLanguage + ".wikipedia.org/w/api.php");
-            builder.addParameter("action", "query")
+            builder.addParameter("action", "sendQuery")
                     .addParameter("pageids", pageId)
                     .addParameter("prop", "langlinks")
                     .addParameter("lllang", targetLanguage)
@@ -435,7 +435,7 @@ public class ConceptUtil {
             HttpResponse response = client.execute(get);
 
             JsonObject object = parser.parse(EntityUtils.toString(response.getEntity(), UTF_8)).getAsJsonObject();
-            JsonObject page = object.getAsJsonObject("query")
+            JsonObject page = object.getAsJsonObject("sendQuery")
                     .getAsJsonObject("pages")
                     .getAsJsonObject(pageId);
 
@@ -469,7 +469,7 @@ public class ConceptUtil {
         // get id in language
         try {
             URIBuilder builder = new URIBuilder(String.format("https://%s.wikipedia.org/w/api.php", language));
-            builder.addParameter("action", "query")
+            builder.addParameter("action", "sendQuery")
                     .addParameter("titles", pageTitle)
                     .addParameter("format", "json");
 
@@ -478,11 +478,11 @@ public class ConceptUtil {
 
             JsonObject object = parser.parse(EntityUtils.toString(response.getEntity(), UTF_8)).getAsJsonObject();
 
-            if (!object.has("query")) {
+            if (!object.has("sendQuery")) {
                 return null;
             }
 
-            JsonObject query = object.getAsJsonObject("query");
+            JsonObject query = object.getAsJsonObject("sendQuery");
 
             if (!query.has("pages")) {
                 return null;
@@ -515,7 +515,7 @@ public class ConceptUtil {
     public static String getWikidataIdByTitle(String pageTitle, String language) {
         try {
             URIBuilder builder = new URIBuilder(String.format("https://%s.wikipedia.org/w/api.php", language));
-            builder.addParameter("action", "query")
+            builder.addParameter("action", "sendQuery")
                     .addParameter("prop", "pageprops")
                     .addParameter("titles", pageTitle)
                     .addParameter("format", "json");
@@ -525,11 +525,11 @@ public class ConceptUtil {
 
             JsonObject object = parser.parse(EntityUtils.toString(response.getEntity(), UTF_8)).getAsJsonObject();
 
-            if (!object.has("query")) {
+            if (!object.has("sendQuery")) {
                 return null;
             }
 
-            JsonObject query = object.getAsJsonObject("query");
+            JsonObject query = object.getAsJsonObject("sendQuery");
 
             if (!query.has("pages")) {
                 return null;
@@ -572,7 +572,7 @@ public class ConceptUtil {
     public static String getPageContent(String pageId, String language) {
         try {
             URIBuilder builder = new URIBuilder(String.format("https://%s.wikipedia.org/w/api.php", language));
-            builder.addParameter("action", "query")
+            builder.addParameter("action", "sendQuery")
                     .addParameter("prop", "extracts")
                     .addParameter("redirects", "1")
                     .addParameter("pageids", pageId)
@@ -583,7 +583,7 @@ public class ConceptUtil {
 
             JsonObject object = parser.parse(EntityUtils.toString(response.getEntity(), UTF_8)).getAsJsonObject();
             Set<Map.Entry<String, JsonElement>> pages = object
-                    .getAsJsonObject("query")
+                    .getAsJsonObject("sendQuery")
                     .getAsJsonObject("pages")
                     .entrySet();
 
