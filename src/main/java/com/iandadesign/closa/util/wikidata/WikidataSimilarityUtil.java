@@ -94,6 +94,10 @@ public class WikidataSimilarityUtil {
             if (progressBar != null) progressBar.step();
         }
 
+        System.out.println(firstVector);
+        System.out.println(secondVector);
+
+
         return firstVector.dotProduct(secondVector) / (firstVector.getNorm() * secondVector.getNorm());
     }
 
