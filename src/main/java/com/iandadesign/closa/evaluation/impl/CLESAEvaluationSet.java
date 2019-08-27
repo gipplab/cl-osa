@@ -24,11 +24,13 @@ import org.jsoup.nodes.Element;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -178,6 +180,22 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
     @Override
     protected List<Double> preProcess(String documentPath, String documentLanguage) {
         List<Double> preProcessed = new ArrayList<>();
+
+        Path newFullPath =
+                documentPath.contains(System.getProperty("user.home"))
+                        ? Paths.get(documentPath.replace(System.getProperty("user.home"),
+                        System.getProperty("user.home") + "/preprocessed/" + this.getClass().getName() + "/"))
+                        : Paths.get(documentPath.replace("src", "src/preprocessed/" + this.getClass().getName() + "/"));
+
+        try {
+            List<String> lines = FileUtils.readLines(new File(newFullPath.toUri()), UTF_8);
+
+            if (lines.size() == wikipediaArticleLimit) {
+                return lines.stream().map(Double::parseDouble).collect(Collectors.toList());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try {
             String documentText = FileUtils.readFileToString(new File(documentPath), UTF_8);
