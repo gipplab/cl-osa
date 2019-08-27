@@ -135,7 +135,7 @@ class CLOSAEvaluationSetEval {
             CLOSAEvaluationSet englishJapaneseASPECEvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(System.getProperty("user.home") + "/ASPECx/ja"), "ja",
                     new File(System.getProperty("user.home") + "/ASPECx/en"), "en",
-                    10
+                    50
             );
 
         englishJapaneseASPECEvaluationSetCLOSA.setGraphBasedAnalysis(true);
