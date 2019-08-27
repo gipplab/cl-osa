@@ -271,7 +271,13 @@ public class OntologyBasedSimilarityAnalysis {
             Map<String, Double> candidateSimilarities = new HashMap<>();
 
             for (Map.Entry<String, Map<String, Double>> candidateEntry : candidateIdTokenCountMap.entrySet()) {
+                System.out.println(suspiciousEntry.getValue());
+                System.out.println(candidateEntry.getValue());
+
                 double similarity = WikidataSimilarityUtil.cosineSimilarity(suspiciousEntry.getValue(), candidateEntry.getValue());
+
+                System.out.println(similarity);
+
                 candidateSimilarities.put(candidateEntry.getKey(), similarity);
                 progressBar.step();
             }
