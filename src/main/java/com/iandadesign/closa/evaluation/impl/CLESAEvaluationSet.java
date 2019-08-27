@@ -187,14 +187,16 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
                         System.getProperty("user.home") + "/preprocessed/" + this.getClass().getName() + "/"))
                         : Paths.get(documentPath.replace("src", "src/preprocessed/" + this.getClass().getName() + "/"));
 
-        try {
-            List<String> lines = FileUtils.readLines(new File(newFullPath.toUri()), UTF_8);
+        if (new File(newFullPath.toUri()).exists()) {
+            try {
+                List<String> lines = FileUtils.readLines(new File(newFullPath.toUri()), UTF_8);
 
-            if (lines.size() == wikipediaArticleLimit) {
-                return lines.stream().map(Double::parseDouble).collect(Collectors.toList());
+                if (lines.size() == wikipediaArticleLimit) {
+                    return lines.stream().map(Double::parseDouble).collect(Collectors.toList());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
         try {
