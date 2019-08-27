@@ -96,8 +96,6 @@ public class WikidataSimilarityUtil {
 
         double sim = firstVector.dotProduct(secondVector) / (firstVector.getNorm() * secondVector.getNorm());
 
-        System.out.println(sim);
-
         return sim;
     }
 
