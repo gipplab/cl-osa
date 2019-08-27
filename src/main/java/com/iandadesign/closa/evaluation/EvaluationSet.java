@@ -366,8 +366,6 @@ public abstract class EvaluationSet<T> {
 
         double meanReciprocalRank = 0.0;
 
-        System.out.println(suspiciousIdCandidateScoresMap);
-
         double maxScore = suspiciousIdCandidateScoresMap.values()
                 .stream()
                 .map(stringDoubleMap -> stringDoubleMap.values().stream().mapToDouble(v -> v).max().orElse(0.0))
@@ -403,7 +401,6 @@ public abstract class EvaluationSet<T> {
 
             for (String currentCandidateId : candidatesSorted) {
                 if (currentCandidateId.equals(candidateId)) {
-                    System.out.println("Candidate " + candidateId + " on rank " + rank);
                     meanReciprocalRank += 1.0 / rank;
                     break;
                 }
