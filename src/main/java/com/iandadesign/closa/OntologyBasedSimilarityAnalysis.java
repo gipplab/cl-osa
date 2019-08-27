@@ -268,7 +268,7 @@ public class OntologyBasedSimilarityAnalysis {
 
                 double similarity = WikidataSimilarityUtil.cosineSimilarity(suspiciousEntry.getValue(), candidateEntry.getValue());
 
-                if (similarity > 0.6 && suspiciousEntry.getKey().equals(candidateEntry.getKey().replace("/en/", "/ja/"))) {
+                if (similarity > 0.5 && suspiciousEntry.getKey().equals(candidateEntry.getKey().replace("/en/", "/ja/"))) {
                     System.out.println(suspiciousEntry.getValue());
                     System.out.println(candidateEntry.getValue());
 
