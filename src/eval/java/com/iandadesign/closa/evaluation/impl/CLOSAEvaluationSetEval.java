@@ -184,7 +184,7 @@ class CLOSAEvaluationSetEval {
                 new File(System.getProperty("user.home")
                         + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"),
                 "zh",
-                10
+                30
         );
         englishChineseECCEEvaluationSetCLOSA.setGraphBasedAnalysis(true);
         englishChineseECCEEvaluationSetCLOSA.printEvaluation();
