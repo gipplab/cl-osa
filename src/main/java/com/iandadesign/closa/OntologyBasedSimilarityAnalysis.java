@@ -269,7 +269,7 @@ public class OntologyBasedSimilarityAnalysis {
 
                 double similarity = WikidataSimilarityUtil.cosineSimilarity(suspiciousEntry.getValue(), candidateEntry.getValue());
 
-                if (similarity > 0.4) {
+                if (similarity > 0.35) {
                     System.out.println();
                     System.out.println(suspiciousEntry.getKey());
                     System.out.println(candidateEntry.getKey());
