@@ -38,7 +38,6 @@ public class WikidataSparqlUtilTest {
         Assertions.assertTrue(entities.contains(new WikidataEntity("Q10884", "tree")));
         Assertions.assertTrue(entities.contains(new WikidataEntity("Q272735", "tree")));
 
-        System.out.println(entities);
         System.out.println(WikidataSparqlUtil.getEntitiesByLabel("German", "en"));
 
         System.out.println(WikidataSparqlUtil.getEntitiesByLabel("Auschwitz", "en"));
