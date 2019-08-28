@@ -248,6 +248,8 @@ class CLOSAEvaluationSetEval {
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/es"), "es",
                     50
             );
+            englishSpanishPan11EvaluationSetCLOSA.setGraphBasedAnalysis(true);
+
             englishSpanishPan11EvaluationSetCLOSA.printEvaluation();
         } catch (Exception e) {
             e.printStackTrace();
@@ -280,6 +282,8 @@ class CLOSAEvaluationSetEval {
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es",
                     50
             );
+            englishSpanishPan11EvaluationSetCLOSA.setGraphBasedAnalysis(true);
+
             englishSpanishPan11EvaluationSetCLOSA.printEvaluation();
         } catch (Exception e) {
             e.printStackTrace();
@@ -314,6 +318,7 @@ class CLOSAEvaluationSetEval {
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr",
                     50
             );
+            englishFrenchJrcAcquisEvaluationSetCLOSA.setGraphBasedAnalysis(true);
             englishFrenchJrcAcquisEvaluationSetCLOSA.printEvaluation();
         } catch (Exception e) {
             e.printStackTrace();
@@ -344,6 +349,7 @@ class CLOSAEvaluationSetEval {
                     new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
                     50
             );
+            englishFrenchEuroparlEvaluationSetCLOSA.setGraphBasedAnalysis(true);
             englishFrenchEuroparlEvaluationSetCLOSA.printEvaluation();
         } catch (Exception e) {
             e.printStackTrace();
