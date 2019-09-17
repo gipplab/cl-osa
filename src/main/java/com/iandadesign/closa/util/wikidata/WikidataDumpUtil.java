@@ -944,9 +944,9 @@ public class WikidataDumpUtil {
     /**
      * Wikipedia site link.
      *
-     * @param englishSiteLink
-     * @param language
-     * @return
+     * @param englishSiteLink site link in english.
+     * @param language language to get the site link in.
+     * @return site link in given language.
      */
     public static String getSiteLinkInLanguage(String englishSiteLink, String language) {
         Document entityEntry = entitiesCollection.find(new Document("sitelinks.enwiki.title", englishSiteLink)).first();
@@ -959,9 +959,9 @@ public class WikidataDumpUtil {
     /**
      * Wikipedia site link.
      *
-     * @param siteLink
-     * @param language
-     * @return
+     * @param siteLink site link in given language.
+     * @param language given language.
+     * @return site link in english.
      */
     public static String getSiteLinkInEnglish(String siteLink, String language) {
         if (language.equals("en")) {
