@@ -81,8 +81,6 @@ public class WikidataDisambiguator {
      * @return the disambiguated entity.
      */
     public static WikidataEntity disambiguateByDescription(List<WikidataEntity> entities, String text, String languageCode) {
-        // TODO: disambiguate by alias
-
         if (entities.stream()
                 .allMatch(entity -> entity.getDescriptions() == null || !entity.getDescriptions().containsKey(languageCode))) {
             return disambiguateBySmallestId(new ArrayList<>(entities));

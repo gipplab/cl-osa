@@ -271,9 +271,6 @@ public class TokenUtil {
                                 "untokenizable", "noneDelete"));
                 break;
             case "es":
-                // TODO: lemmatize
-                // return namedEntityTokenizeSpanish(text);
-
                 pipeline = new StanfordCoreNLP(
                         PropertiesUtils.asProperties(
                                 "annotators", "tokenize, ssplit, pos, lemma, ner", //, parse",

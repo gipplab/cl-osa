@@ -234,15 +234,12 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                 if (Files.exists(probabilitiesFilePath) &&
                                         FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8).size() == candidateIdTokensMap.size()) {
 
-                                    // System.out.println("exists: import " + probabilitiesFilePath);
-
                                     List<String> lines = FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8);
 
                                     Map<String, Double> candidateProbabilityMap = lines.stream()
                                             .filter(line -> line.contains(";"))
                                             .collect(Collectors.toMap(line -> line.split(";")[0],
                                                     line -> {
-                                                        // FIXME: NullPointer somewhere here
                                                         String candidateId = line.split(";")[0];
                                                         double candidateSize = candidateIdTokensMap.get(candidateId).size();
                                                         double lengthModel =
@@ -264,12 +261,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                             Map<String, Double> candidateIdProbabilityMap = new HashMap<>();
 
-                            // System.out.println("does not exist: create");
-
                             int i = 0;
                             for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 10)) {
-                                // System.out.println("getTranslationProbabilitiesByCandidate for " + suspiciousEntry.getKey() + " , submap " + i + " of 50");
-
                                 candidateIdProbabilityMap.putAll(getTranslationProbabilitiesByCandidate(
                                         suspiciousEntry.getValue(),
                                         subMap,
@@ -386,21 +379,13 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
             int i = 0;
 
             for (Document totalProbabilityDocument : totalProbabilityDocuments) {
-                // System.out.println("totalProbDoc = " + totalProbabilityDocument);
                 String candidateId = totalProbabilityDocument.getString("_id");
                 double totalProbability = totalProbabilityDocument.getDouble("totalProbability");
                 translationProbabilitiesByCandidate.put(candidateId, totalProbability);
                 i++;
             }
 
-
-            if (i == 0) {
-                // System.out.println("No matches!");
-            }
-        } else {
-            // System.out.println("Empty suspicious input!");
         }
-
         int j = 0;
 
         for (String foreignWordsKey : foreignWordsMap.keySet()) {

@@ -374,7 +374,7 @@ class CLOSAEvaluationSetEval {
             Recall: [0.7451299]
             F-Measure: [0.7451298]
 
-            TODO: this result is bad because the document pairs of this corpus are not aligned correctly
+            this result is bad because the document pairs of this corpus are not aligned correctly
          */
         try {
             CLOSAEvaluationSet englishFrenchConferencePapersEvaluationSetCLOSA = new CLOSAEvaluationSet(

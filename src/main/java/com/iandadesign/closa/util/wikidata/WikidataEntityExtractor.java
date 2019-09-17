@@ -232,7 +232,6 @@ public class WikidataEntityExtractor {
         ProgressBar progressBar = new ProgressBar(String.format("Extract entities from %s %s text.", languageCode, category), subtokensLists.size(), ProgressBarStyle.ASCII);
         progressBar.start();
 
-        // TODO: use Java 8 streams
         for (List<List<Token>> subtokensList : subtokensLists) {
 
             for (int i = 0; i < subtokensList.size(); i++) {
@@ -280,7 +279,6 @@ public class WikidataEntityExtractor {
                         .filter(entity -> category.equals(Category.fiction) || !isCreativeWork(entity))
                         // if text is not about biology, remove pages about genes
                         .filter(entity -> category.equals(Category.biology) || !isGene(entity))
-                        // TODO: if category is not linguistics, remove entities like "the (definite article)"
                         // only keep pages about numbers when the token is numeric
                         .filter(entity -> !StringUtils.isNumeric(entity.getOriginalLemma())
                                 || (StringUtils.isNumeric(entity.getOriginalLemma()) && isNaturalNumber(entity)))

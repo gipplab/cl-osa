@@ -358,8 +358,6 @@ public class WikidataDumpUtil {
 
             if (results.size() > 250) {
                 // too many results means the search was too broad, use exact match
-                // or TODO return nothing
-                // basicQuery = createEqualityQuery(queryLemma, languageCode);
                 return new ArrayList<>();
             }
 
@@ -394,7 +392,6 @@ public class WikidataDumpUtil {
                         entity.getLabels() != null && !entity.getLabels().isEmpty()
                                 && entity.getDescriptions() != null && !entity.getDescriptions().isEmpty())
                 .filter(entity ->
-                        // TODO: check if all proteins have the word "protein" in their description
                         !category.equals(Category.biology)
                                 || results.size() <= 50
                                 || entity.getDescriptions().getOrDefault("en", "").matches(".*protein.*")
@@ -418,7 +415,6 @@ public class WikidataDumpUtil {
                         if (!propertyValues.isEmpty()) {
                             entity.setId(propertyValues.get(0).getId());
                             entity.setLabel(propertyValues.get(0).getLabel());
-                            // TODO: reset nextDocument to new Entity
                             return entity;
                         }
                     }

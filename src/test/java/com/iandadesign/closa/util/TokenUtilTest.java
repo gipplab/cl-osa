@@ -269,7 +269,6 @@ public class TokenUtilTest {
             List<String> lines = FileUtils.readLines(new File(path), StandardCharsets.UTF_8);
             List<String> outputLines = lines.stream()
                     .map((String line) -> {
-                        // System.out.println(line);
                         try {
                             return TokenUtil.chineseTokenize(line, "zh")
                                     .stream()

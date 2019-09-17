@@ -226,7 +226,6 @@ public class ConceptUtil {
         Set<Token> foundConcepts;
 
         if (titlesToBeQueried != null) {
-            // FIXME : is empty
             return titlesToBeQueried;
         } else {
             foundConcepts = new HashSet<>();
