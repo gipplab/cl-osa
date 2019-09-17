@@ -10,10 +10,12 @@ import me.tongfei.progressbar.ProgressBar;
 import me.tongfei.progressbar.ProgressBarStyle;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.iandadesign.closa.util.wikidata.WikidataDumpUtil.*;
 
 /**
  * WikidataEntityExtractor is an almost singleton class that performs entity extraction from a text.
@@ -21,6 +23,60 @@ import static com.iandadesign.closa.util.wikidata.WikidataDumpUtil.*;
  * Created by Fabian Marquart on 2018/08/03.
  */
 public class WikidataEntityExtractor {
+
+    private static boolean useSparql = false;
+
+    static {
+        try {
+            loadConfig();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Read MongoDB properties.
+     *
+     * @throws IOException When property file could not be loaded.
+     */
+    private static void loadConfig() throws IOException {
+        InputStream inputStream = null;
+
+        try {
+            Properties properties = new Properties();
+            String propFileName = "config.properties";
+            String propFileLocalName = "config-local.properties";
+
+            // switch to config-local if it exists
+            if (WikidataDumpUtil.class.getClassLoader().getResource(propFileLocalName) != null) {
+                inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileLocalName);
+
+                if (inputStream != null) {
+                    properties.load(inputStream);
+                } else {
+                    throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath");
+                }
+            } else {
+                inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileName);
+
+                if (inputStream != null) {
+                    properties.load(inputStream);
+                } else {
+                    throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath");
+                }
+            }
+
+            // get the property value and print it out
+            useSparql = properties.getProperty("use_sparql").equals("true");
+
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+        } finally {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+        }
+    }
 
     /**
      * Extract Wikidata entities from given text, language.
@@ -245,6 +301,62 @@ public class WikidataEntityExtractor {
 
         return tokenEntitiesMap;
     }
+
+    /**
+     * Use either SPARQL or MongoDB implementation according to config.
+     *
+     * Retrieves the entity matching the token:
+     * - tokens that are named entities only retrieve instances from Wikidata
+     * - tokens that are not named entities only retrieve classes from Wikidata
+     *
+     * @param token        : the token to find, by lemma.
+     * @param languageCode : the label language.
+     * @param category     : the text's category from which the token was taken.
+     * @return the results as Wikidata entities.
+     */
+    private static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode, Category category) {
+        return useSparql
+                ? WikidataSparqlUtil.getEntitiesByToken(token, languageCode, category)
+                : WikidataDumpUtil.getEntitiesByToken(token, languageCode, category);
+    }
+
+    /**
+     * Use either SPARQL or MongoDB implementation according to config.
+     *
+     * Returns true if the entity is instance of gene.
+     *
+     * @param entity entity
+     * @return true if the entity is instance of gene.
+     */
+    private static boolean isGene(WikidataEntity entity) {
+        return useSparql ? WikidataSparqlUtil.isGene(entity) : WikidataDumpUtil.isGene(entity);
+    }
+
+    /**
+     * Use either SPARQL or MongoDB implementation according to config.
+     *
+     * Returns true if the entity is instance of a subclass of creative work.
+     *
+     * @param entity entity
+     * @return true if the entity is instance of a subclass of creative work.
+     */
+    private static boolean isCreativeWork(WikidataEntity entity) {
+        return useSparql ? WikidataSparqlUtil.isCreativeWork(entity) : WikidataDumpUtil.isCreativeWork(entity);
+    }
+
+
+    /**
+     * Use either SPARQL or MongoDB implementation according to config.
+     * Returns true if the entity is instance of natural number.
+     *
+     *
+     * @param entity entity
+     * @return true if the entity is instance of natural number.
+     */
+    private static boolean isNaturalNumber(WikidataEntity entity) {
+        return useSparql ? WikidataSparqlUtil.isNaturalNumber(entity) : WikidataDumpUtil.isNaturalNumber(entity);
+    }
+
 
 
     /**
