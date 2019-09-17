@@ -1,6 +1,5 @@
 package com.iandadesign.closa.util.wikidata;
 
-import com.iandadesign.closa.OntologyBasedSimilarityAnalysis;
 import com.iandadesign.closa.classification.Category;
 import com.iandadesign.closa.model.WikidataEntity;
 import org.apache.commons.io.FileUtils;
