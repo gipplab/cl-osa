@@ -50,6 +50,8 @@ public class TokenUtil {
     private static final String verbJa = "動詞";
     private static final String fullStopJa = "句点";
 
+    private static final List<String> punctuationSymbols;
+
     private static final LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
     private static final Logger stanfordNlpLogger = loggerContext.getLogger("edu.stanford.nlp");
 
@@ -58,6 +60,8 @@ public class TokenUtil {
     static {
         stanfordNlpLogger.setLevel(Level.ERROR);
         TokenUtil.languageDetector = new LanguageDetector();
+
+        punctuationSymbols = getPunctuation();
     }
 
     /**
@@ -314,7 +318,7 @@ public class TokenUtil {
                 currentToken.setEndCharacter(coreLabel.endPosition());
 
                 // no punctuation
-                if (partOfSpeech.equals(".") || getPunctuation().contains(tokenString)) {
+                if (partOfSpeech.equals(".") || punctuationSymbols.contains(tokenString)) {
                     continue;
                 }
 
@@ -376,7 +380,7 @@ public class TokenUtil {
                         "segment.sighanPostProcessing", "true",
                         // sentence split
                         "ssplit.boundaryTokenRegex", "[.。]|[!?！？]+"
-                        ));
+                ));
 
 
         Annotation document = new Annotation(text);
@@ -701,7 +705,7 @@ public class TokenUtil {
      * @return list of punctuation symbols.
      */
     static List<String> getPunctuation() {
-        InputStream inputStream = WordNetUtil.class.getResourceAsStream("/corpus/punctuation/punctuation.txt");
+        InputStream inputStream = TokenUtil.class.getResourceAsStream("/corpus/punctuation/punctuation.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
         // create list of punctuation symbols

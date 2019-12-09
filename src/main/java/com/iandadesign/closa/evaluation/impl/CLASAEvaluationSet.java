@@ -115,10 +115,10 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         }
 
                         Path translationFilePath = japanese
-                                ? Paths.get(System.getProperty("user.home") + "/tanaka-corpus/out/align.1.pt")
+                                ? Paths.get("data/test/tanaka-corpus/out/align.1.pt")
                                 : chinese
-                                ? Paths.get(System.getProperty("user.home") + "/TED_Paracorpus/out/align.utf8.1.pt")
-                                : Paths.get(System.getProperty("user.home") + "/eu-bilingual/"
+                                ? Paths.get("data/test/TED_Paracorpus/out/align.utf8.1.pt")
+                                : Paths.get("data/test/eu-bilingual/"
                                 + languageEntry.getKey() + "/lex." + translationDirection);
 
 
