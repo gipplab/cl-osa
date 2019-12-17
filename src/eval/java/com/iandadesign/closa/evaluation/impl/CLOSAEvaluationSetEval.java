@@ -52,9 +52,9 @@ class CLOSAEvaluationSetEval {
     @Test
     void evalCLOSAAspec() {
         CLOSAEvaluationSet englishJapaneseASPECEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                new File(pathPrefix + "/ASPECx/ja"), "ja",
-                new File(pathPrefix + "/ASPECx/en"), "en",
-                5
+                new File(pathPrefix + "/ASPECx/ja10000"), "ja",
+                new File(pathPrefix + "/ASPECx/en10000"), "en",
+                2000
         );
 
         englishJapaneseASPECEvaluationSetCLOSA.setGraphBasedAnalysis(true);
@@ -64,9 +64,9 @@ class CLOSAEvaluationSetEval {
     @Test
     void evalCLOSAAspecChinese() {
         CLOSAEvaluationSet englishJapaneseASPECEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                new File(pathPrefix + "/ASPECxc/ja"), "ja",
-                new File(pathPrefix + "/ASPECxc/zh"), "zh",
-                10000
+                new File(pathPrefix + "/ASPECxc/ja10000"), "ja",
+                new File(pathPrefix + "/ASPECxc/zh10000"), "zh",
+                2000
         );
 
         englishJapaneseASPECEvaluationSetCLOSA.setGraphBasedAnalysis(true);
