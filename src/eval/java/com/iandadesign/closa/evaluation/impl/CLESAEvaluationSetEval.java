@@ -125,9 +125,9 @@ class CLESAEvaluationSetEval {
          */
         try {
             CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es",
-                    500
+                    new File(pathPrefix + "/pan11/en"), "en",
+                    new File(pathPrefix + "/pan11/es"), "es",
+                    5
             );
 
             englishSpanishPan11EvaluationSetCLESA.printEvaluation();
@@ -160,23 +160,6 @@ class CLESAEvaluationSetEval {
             CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/en"), "en",
                     new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es"
-            );
-
-            englishSpanishPan11EvaluationSetCLESA.printEvaluation();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    void evalCLESAPan11Chunks() {
-        /*
-
-         */
-        try {
-            CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/en"), "en",
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/es"), "es"
             );
 
             englishSpanishPan11EvaluationSetCLESA.printEvaluation();
