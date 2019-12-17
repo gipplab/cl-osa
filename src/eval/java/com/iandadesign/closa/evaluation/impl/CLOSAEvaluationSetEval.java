@@ -131,42 +131,10 @@ class CLOSAEvaluationSetEval {
             CLOSAEvaluationSet englishSpanishPan11EvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(pathPrefix + "/pan11/en"), "en",
                     new File(pathPrefix + "/pan11/es"), "es",
-                    10
+                    2000
             );
 
             englishSpanishPan11EvaluationSetCLOSA.setGraphBasedAnalysis(true);
-            englishSpanishPan11EvaluationSetCLOSA.printEvaluation();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @Test
-    void evalCLOSAPan11Chunks() {
-        /*
-            True positives: 214
-            Relevant elements: 692
-            Irrelevant elements: 0
-            Collection size: 692
-            Selected elements: 436
-            False positives: 222
-            False negatives: 478
-
-            Ranks 1 to 1
-
-            Precision: [0.49082568]
-            Recall: [0.30924857]
-            F-Measure: [0.37943262]
-         */
-        try {
-            CLOSAEvaluationSet englishSpanishPan11EvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/en"), "en",
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/es"), "es",
-                    10
-            );
-            englishSpanishPan11EvaluationSetCLOSA.setGraphBasedAnalysis(true);
-
             englishSpanishPan11EvaluationSetCLOSA.printEvaluation();
         } catch (Exception e) {
             e.printStackTrace();
@@ -231,9 +199,9 @@ class CLOSAEvaluationSetEval {
          */
         try {
             CLOSAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr",
-                    50
+                    new File(pathPrefix + "/jrc/en"), "en",
+                    new File(pathPrefix + "/jrc/fr"), "fr",
+                    2000
             );
             englishFrenchJrcAcquisEvaluationSetCLOSA.setGraphBasedAnalysis(true);
             englishFrenchJrcAcquisEvaluationSetCLOSA.printEvaluation();
@@ -262,9 +230,9 @@ class CLOSAEvaluationSetEval {
          */
         try {
             CLOSAEvaluationSet englishFrenchEuroparlEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
-                    50
+                    new File(pathPrefix + "/europarl/en"), "en",
+                    new File(pathPrefix + "/europarl/fr"), "fr",
+                    2000
             );
             englishFrenchEuroparlEvaluationSetCLOSA.setGraphBasedAnalysis(true);
             englishFrenchEuroparlEvaluationSetCLOSA.printEvaluation();
