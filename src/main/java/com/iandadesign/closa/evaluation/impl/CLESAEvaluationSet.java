@@ -43,6 +43,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
     private static final String databaseName = "wikipedia";
+    private static final String pathPrefix = "/data/test";
 
     // text stores documents with format:
     //
@@ -124,10 +125,10 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
                     continue;
                 }
 
-                Path wikipediaExtractedDumpPath = Paths.get(System.getProperty("user.home") + "/wikipedia/output_" + language + "/");
+                Path wikipediaExtractedDumpPath = Paths.get(pathPrefix + "/wikipedia/output_" + language + "/");
 
                 // check wikipedia dump files
-                if (Files.notExists(Paths.get(System.getProperty("user.home") + "/wikipedia/output_" + language + "/"))) {
+                if (Files.notExists(Paths.get(pathPrefix + "/wikipedia/output_" + language + "/"))) {
                     throw new FileNotFoundException("The WikiExtractor.py output file is missing or not named according " +
                             "to the format \"output-{LANGUAGE_CODE}\".");
                 }
@@ -182,9 +183,9 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
         List<Double> preProcessed = new ArrayList<>();
 
         Path newFullPath =
-                documentPath.contains(System.getProperty("user.home"))
-                        ? Paths.get(documentPath.replace(System.getProperty("user.home"),
-                        System.getProperty("user.home") + "/preprocessed/" + this.getClass().getName() + "/"))
+                documentPath.contains(pathPrefix)
+                        ? Paths.get(documentPath.replace(pathPrefix,
+                        pathPrefix + "/preprocessed/" + this.getClass().getName() + "/"))
                         : Paths.get(documentPath.replace("src", "src/preprocessed/" + this.getClass().getName() + "/"));
 
         if (new File(newFullPath.toUri()).exists()) {
