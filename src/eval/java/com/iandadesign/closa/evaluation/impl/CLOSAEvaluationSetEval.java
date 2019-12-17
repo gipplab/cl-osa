@@ -129,8 +129,8 @@ class CLOSAEvaluationSetEval {
 
         try {
             CLOSAEvaluationSet englishSpanishPan11EvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es",
+                    new File(pathPrefix + "/pan11/en"), "en",
+                    new File(pathPrefix + "/pan11/es"), "es",
                     10
             );
 
