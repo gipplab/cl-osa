@@ -8,6 +8,8 @@ import java.io.IOException;
 
 class CLESAEvaluationSetEval {
 
+    String pathPrefix = "/data/test";
+
 
     @Test
     void buildDatabase() {
@@ -53,8 +55,8 @@ class CLESAEvaluationSetEval {
     @Test
     void evalCLESAAspec() {
         CLESAEvaluationSet englishJapaneseASPECEvaluationSetCLOSA = new CLESAEvaluationSet(
-                new File(System.getProperty("user.home") + "/ASPECx/ja"), "ja",
-                new File(System.getProperty("user.home") + "/ASPECx/en"), "en",
+                new File(pathPrefix + "/ASPECx/ja"), "ja",
+                new File(pathPrefix + "/ASPECx/en"), "en",
                 500
         );
 
@@ -64,8 +66,8 @@ class CLESAEvaluationSetEval {
     @Test
     void evalCLESAAspecChinese() {
         CLESAEvaluationSet chineseJapaneseASPECEvaluationSetCLOSA = new CLESAEvaluationSet(
-                new File(System.getProperty("user.home") + "/ASPECxc/ja"), "ja",
-                new File(System.getProperty("user.home") + "/ASPECxc/zh"), "zh",
+                new File(pathPrefix + "/ASPECxc/ja"), "ja",
+                new File(pathPrefix + "/ASPECxc/zh"), "zh",
                 10000
         );
 
@@ -123,8 +125,8 @@ class CLESAEvaluationSetEval {
          */
         try {
             CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es",
                     500
             );
 
@@ -156,8 +158,8 @@ class CLESAEvaluationSetEval {
          */
         try {
             CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es"
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es"
             );
 
             englishSpanishPan11EvaluationSetCLESA.printEvaluation();
@@ -173,8 +175,8 @@ class CLESAEvaluationSetEval {
          */
         try {
             CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/es"), "es"
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/es"), "es"
             );
 
             englishSpanishPan11EvaluationSetCLESA.printEvaluation();
@@ -205,8 +207,8 @@ class CLESAEvaluationSetEval {
          */
         try {
             CLESAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLESA = new CLESAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr",
                     500
             );
             englishFrenchJrcAcquisEvaluationSetCLESA.printEvaluation();
@@ -236,8 +238,8 @@ class CLESAEvaluationSetEval {
          */
         try {
             CLESAEvaluationSet englishFrenchEuroparlEvaluationSetCLESA = new CLESAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
                     500
             );
             englishFrenchEuroparlEvaluationSetCLESA.printEvaluation();

@@ -16,6 +16,8 @@ import java.util.stream.Collectors;
 
 public class CLCNGEvaluationSetEval {
 
+    String pathPrefix = "/data/test";
+
     @Test
     public void evalCLCNGEnglishJapanese() {
         /*
@@ -47,8 +49,8 @@ public class CLCNGEvaluationSetEval {
     @Test
     void evalCLCNGAspec() {
         CLCNGEvaluationSet englishJapaneseASPECEvaluationSetCLCNG = new CLCNGEvaluationSet(
-                new File(System.getProperty("user.home") + "/ASPECx/ja"), "ja",
-                new File(System.getProperty("user.home") + "/ASPECx/en"), "en",
+                new File(pathPrefix + "/ASPECx/ja"), "ja",
+                new File(pathPrefix + "/ASPECx/en"), "en",
                 500
         );
 
@@ -58,8 +60,8 @@ public class CLCNGEvaluationSetEval {
     @Test
     void evalCLCNGAspecChinese() {
         CLCNGEvaluationSet chineseJapaneseASPECEvaluationSetCLCNG = new CLCNGEvaluationSet(
-                new File(System.getProperty("user.home") + "/ASPECxc/ja"), "ja",
-                new File(System.getProperty("user.home") + "/ASPECxc/zh"), "zh",
+                new File(pathPrefix + "/ASPECxc/ja"), "ja",
+                new File(pathPrefix + "/ASPECxc/zh"), "zh",
                 10000
         );
 
@@ -113,8 +115,8 @@ public class CLCNGEvaluationSetEval {
          */
         try {
             CLCNGEvaluationSet englishSpanishPan11EvaluationSetCLCNG = new CLCNGEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es"
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es"
             );
             englishSpanishPan11EvaluationSetCLCNG.printEvaluation();
         } catch (Exception e) {
@@ -143,8 +145,8 @@ public class CLCNGEvaluationSetEval {
 
         try {
             CLCNGEvaluationSet englishSpanishPan11EvaluationSetCLCNG = new CLCNGEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es"
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es"
             );
             englishSpanishPan11EvaluationSetCLCNG.printEvaluation();
         } catch (Exception e) {
@@ -160,8 +162,8 @@ public class CLCNGEvaluationSetEval {
 
         try {
             CLCNGEvaluationSet englishSpanishPan11EvaluationSetCLCNG = new CLCNGEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/es"), "es"
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/es"), "es"
             );
             englishSpanishPan11EvaluationSetCLCNG.printEvaluation();
         } catch (Exception e) {
@@ -190,8 +192,8 @@ public class CLCNGEvaluationSetEval {
          */
         try {
             CLCNGEvaluationSet englishFrenchJrcAcquisEvaluationSetCLCNG = new CLCNGEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr"
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr"
             );
             englishFrenchJrcAcquisEvaluationSetCLCNG.printEvaluation();
         } catch (Exception e) {
@@ -221,8 +223,8 @@ public class CLCNGEvaluationSetEval {
 
         try {
             CLCNGEvaluationSet englishFrenchEuroparlEvaluationSetCLCNG = new CLCNGEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr"
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr"
             );
             englishFrenchEuroparlEvaluationSetCLCNG.printEvaluation();
         } catch (Exception e) {
@@ -232,8 +234,8 @@ public class CLCNGEvaluationSetEval {
 
     @Test
     void copy10000files() {
-        File directory = new File(System.getProperty("user.home") + "/ASPECxc/zh");
-        String destinationDirectory = System.getProperty("user.home") + "/ASPECxc/zh10000/";
+        File directory = new File(pathPrefix + "/ASPECxc/zh");
+        String destinationDirectory = pathPrefix + "/ASPECxc/zh10000/";
 
         FileUtils.listFiles(directory, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .stream()
@@ -251,8 +253,8 @@ public class CLCNGEvaluationSetEval {
 
     @Test
     void tokenizeChineseFiles() {
-        File directory = new File(System.getProperty("user.home") + "/ASPECxc/zh10000");
-        String destinationDirectory = System.getProperty("user.home") + "/ASPECxc/zh10000-tokenized-prepr/";
+        File directory = new File(pathPrefix + "/ASPECxc/zh10000");
+        String destinationDirectory = pathPrefix + "/ASPECxc/zh10000-tokenized-prepr/";
 
         FileUtils.listFiles(directory, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .stream()
@@ -280,8 +282,8 @@ public class CLCNGEvaluationSetEval {
 
     @Test
     void tokenizeSentencesChineseFiles() {
-        File directory = new File(System.getProperty("user.home") + "/ASPECxc/zh10000");
-        String destinationDirectory = System.getProperty("user.home") + "/ASPECxc/zh200-sents-tokenized-prepr/";
+        File directory = new File(pathPrefix + "/ASPECxc/zh10000");
+        String destinationDirectory = pathPrefix + "/ASPECxc/zh200-sents-tokenized-prepr/";
 
         FileUtils.listFiles(directory, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .stream()
@@ -323,8 +325,8 @@ public class CLCNGEvaluationSetEval {
 
     @Test
     void preprocessEnglishFiles() {
-        File directory = new File(System.getProperty("user.home") + "/ASPECx/en10000");
-        String destinationDirectory = System.getProperty("user.home") + "/ASPECx/en10000-prepr/";
+        File directory = new File(pathPrefix + "/ASPECx/en10000");
+        String destinationDirectory = pathPrefix + "/ASPECx/en10000-prepr/";
 
         FileUtils.listFiles(directory, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .stream()
@@ -353,8 +355,8 @@ public class CLCNGEvaluationSetEval {
 
     @Test
     void tokenizeSentencesEnglishFiles() {
-        File directory = new File(System.getProperty("user.home") + "/ASPECx/en10000");
-        String destinationDirectory = System.getProperty("user.home") + "/ASPECx/en2000-sents-prepr/";
+        File directory = new File(pathPrefix + "/ASPECx/en10000");
+        String destinationDirectory = pathPrefix + "/ASPECx/en2000-sents-prepr/";
 
         FileUtils.listFiles(directory, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .stream()
@@ -388,8 +390,8 @@ public class CLCNGEvaluationSetEval {
 
     @Test
     void tokenizeJapaneseXFiles() {
-        File directory = new File(System.getProperty("user.home") + "/ASPECxc/ja10000");
-        String destinationDirectory = System.getProperty("user.home") + "/ASPECxc/ja10000-tokenized-prepr/";
+        File directory = new File(pathPrefix + "/ASPECxc/ja10000");
+        String destinationDirectory = pathPrefix + "/ASPECxc/ja10000-tokenized-prepr/";
 
         FileUtils.listFiles(directory, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .stream()
@@ -418,8 +420,8 @@ public class CLCNGEvaluationSetEval {
 
     @Test
     void tokenizeSentencesJapaneseXFiles() {
-        File directory = new File(System.getProperty("user.home") + "/ASPECx/ja10000");
-        String destinationDirectory = System.getProperty("user.home") + "/ASPECx/ja2000-sents-tokenized-prepr/";
+        File directory = new File(pathPrefix + "/ASPECx/ja10000");
+        String destinationDirectory = pathPrefix + "/ASPECx/ja2000-sents-tokenized-prepr/";
 
         FileUtils.listFiles(directory, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                 .stream()

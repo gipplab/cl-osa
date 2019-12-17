@@ -7,6 +7,8 @@ import java.io.IOException;
 
 class CLASAEvaluationSetEval {
 
+    String pathPrefix = "/data/test";
+
     @Test
     void evalCLASAEnglishJapanese() {
         /*
@@ -28,8 +30,8 @@ class CLASAEvaluationSetEval {
          */
         try {
             CLASAEvaluationSet englishJapaneseBBCEvaluationSetCLASA = new CLASAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/en"), "en",
-                    new File(System.getProperty("user.home") + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/ja"), "ja"
+                    new File(pathPrefix + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/en"), "en",
+                    new File(pathPrefix + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/ja"), "ja"
             );
             englishJapaneseBBCEvaluationSetCLASA.printEvaluation();
         } catch (IOException e) {
@@ -40,8 +42,8 @@ class CLASAEvaluationSetEval {
     @Test
     void evalCLASAAspec() {
         CLASAEvaluationSet englishJapaneseASPECEvaluationSetCLASA = new CLASAEvaluationSet(
-                new File(System.getProperty("user.home") + "/ASPECx/en"), "en",
-                new File(System.getProperty("user.home") + "/ASPECx/ja"), "ja",
+                new File(pathPrefix + "/ASPECx/en"), "en",
+                new File(pathPrefix + "/ASPECx/ja"), "ja",
                 500
         );
 
@@ -71,8 +73,8 @@ class CLASAEvaluationSetEval {
 
         try {
             CLASAEvaluationSet englishChineseECCEEvaluationSetCLASA = new CLASAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/en"), "en",
-                    new File(System.getProperty("user.home") + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"), "zh"
+                    new File(pathPrefix + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/en"), "en",
+                    new File(pathPrefix + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"), "zh"
             );
             englishChineseECCEEvaluationSetCLASA.printEvaluation();
         } catch (IOException e) {
@@ -101,8 +103,8 @@ class CLASAEvaluationSetEval {
          */
         try {
             CLASAEvaluationSet englishSpanishPan11EvaluationSetCLASA = new CLASAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es"
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es"
             );
             englishSpanishPan11EvaluationSetCLASA.printEvaluation();
         } catch (Exception e) {
@@ -131,8 +133,8 @@ class CLASAEvaluationSetEval {
          */
         try {
             CLASAEvaluationSet englishSpanishPan11EvaluationSetCLASA = new CLASAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es"
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es"
             );
             englishSpanishPan11EvaluationSetCLASA.printEvaluation();
         } catch (Exception e) {
@@ -146,8 +148,8 @@ class CLASAEvaluationSetEval {
          */
         try {
             CLASAEvaluationSet englishSpanishPan11EvaluationSetCLASA = new CLASAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/es"), "es"
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/es"), "es"
             );
             englishSpanishPan11EvaluationSetCLASA.printEvaluation();
         } catch (Exception e) {
@@ -174,8 +176,8 @@ class CLASAEvaluationSetEval {
             {0.0=44.8, 10.0=44.8, 20.0=6.2, 30.0=2.6, 40.0=0.4, 60.0=0.4, 80.0=0.2, 50.0=0.4, 70.0=0.2}   */
         try {
             CLASAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLASA = new CLASAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr"
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr"
             );
             englishFrenchJrcAcquisEvaluationSetCLASA.printEvaluation();
         } catch (Exception e) {
@@ -204,8 +206,8 @@ class CLASAEvaluationSetEval {
          */
         try {
             CLASAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLASA = new CLASAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr"
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr"
             );
             englishFrenchJrcAcquisEvaluationSetCLASA.printEvaluation();
         } catch (Exception e) {

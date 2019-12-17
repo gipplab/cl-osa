@@ -10,90 +10,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 class CLOSAEvaluationSetEval {
-
-
-    ///////////////////////////////////////////////// New Stuff /////////////////////////////////////////////////
-
-    // Translation and Tokenization with Named Entity Recognition and POS-Tagging
-    // disambiguate using properties of wikidata entities (e.g. throw away named entities)
-    // Hypothesis: • if something is instanceOf something, it is a NE
-    //             • if something is subclassOf something, it is not a NE
-
-
-    ////////////////////////////////////////////////// CL-OSA ///////////////////////////////////////////////////
-
-    /**
-     * Tests T+OSA with VroniPlag, core documents only.
-     * <p>
-     * Granularity: full documents.
-     */
-    @Test
-    void evalCLOSAVroniPlag() {
-        /*
-            Cross-language analysis. With cosine similarity.
-
-            True positives: 219
-            Relevant elements: 309
-            Irrelevant elements: 0
-            Collection size: 309
-            Selected elements: 315
-            False positives: 90
-            False negatives: 90
-
-
-            Precision: 0.6952381
-            Recall: 0.70873785
-            F-Measure: 0.701923063860253
-
-
-                #Server 2019/02/23:
-
-            True positives: 183
-            Relevant elements: 309
-            Irrelevant elements: 0
-            Collection size: 309
-            Selected elements: 306
-            False positives: 123
-            False negatives: 126
-
-            Ranks 1 to 1
-
-            Precision: [0.5980392]
-            Recall: [0.592233]
-            F-Measure: [0.5951219]
-
-
-                #MacBook Pro 2019/02/24:
-
-            Values for ranks 1 to 1:
-
-            True positives: 214
-            Relevant elements: 309
-            Irrelevant elements: 0
-            Collection size: 309
-            Selected elements: 307
-            False positives: 93
-            False negatives: 95
-
-            Ranks 1 to 1
-
-            Precision: [0.6970684]
-            Recall: [0.6925566]
-            F-Measure: [0.69480515]
-        */
-
-        try {
-            CLOSAEvaluationSet vroniPlagEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File("src/eval/resources/com/iandadesign/closa/evaluation/test-vroniplag/fragments-text"),
-                    new File("src/eval/resources/com/iandadesign/closa/evaluation/test-vroniplag/sources-text")
-            );
-
-            vroniPlagEvaluationSetCLOSA.printEvaluation();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    
+    String pathPrefix = "/data/test";
+    
     /**
      * Tests CL-OSA with BBC English-Japanese, core documents only.
      * <p>
@@ -133,8 +52,8 @@ class CLOSAEvaluationSetEval {
     @Test
     void evalCLOSAAspec() {
         CLOSAEvaluationSet englishJapaneseASPECEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                new File(System.getProperty("user.home") + "/ASPECx/ja"), "ja",
-                new File(System.getProperty("user.home") + "/ASPECx/en"), "en",
+                new File(pathPrefix + "/ASPECx/ja"), "ja",
+                new File(pathPrefix + "/ASPECx/en"), "en",
                 5
         );
 
@@ -145,8 +64,8 @@ class CLOSAEvaluationSetEval {
     @Test
     void evalCLOSAAspecChinese() {
         CLOSAEvaluationSet englishJapaneseASPECEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                new File(System.getProperty("user.home") + "/ASPECxc/ja"), "ja",
-                new File(System.getProperty("user.home") + "/ASPECxc/zh"), "zh",
+                new File(pathPrefix + "/ASPECxc/ja"), "ja",
+                new File(pathPrefix + "/ASPECxc/zh"), "zh",
                 10000
         );
 
@@ -178,11 +97,9 @@ class CLOSAEvaluationSetEval {
         */
 
         CLOSAEvaluationSet englishChineseECCEEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                new File(System.getProperty("user.home")
-                        + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/en"),
+                new File(pathPrefix  + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/en"),
                 "en",
-                new File(System.getProperty("user.home")
-                        + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"),
+                new File(pathPrefix + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"),
                 "zh",
                 50
         );
@@ -212,8 +129,8 @@ class CLOSAEvaluationSetEval {
 
         try {
             CLOSAEvaluationSet englishSpanishPan11EvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/PAN11/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/PAN11/es"), "es",
                     10
             );
 
@@ -244,8 +161,8 @@ class CLOSAEvaluationSetEval {
          */
         try {
             CLOSAEvaluationSet englishSpanishPan11EvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/es"), "es",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/chunks/PAN11/es"), "es",
                     10
             );
             englishSpanishPan11EvaluationSetCLOSA.setGraphBasedAnalysis(true);
@@ -278,8 +195,8 @@ class CLOSAEvaluationSetEval {
 
         try {
             CLOSAEvaluationSet englishSpanishPan11EvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es",
                     50
             );
             englishSpanishPan11EvaluationSetCLOSA.setGraphBasedAnalysis(true);
@@ -314,8 +231,8 @@ class CLOSAEvaluationSetEval {
          */
         try {
             CLOSAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr",
                     50
             );
             englishFrenchJrcAcquisEvaluationSetCLOSA.setGraphBasedAnalysis(true);
@@ -345,8 +262,8 @@ class CLOSAEvaluationSetEval {
          */
         try {
             CLOSAEvaluationSet englishFrenchEuroparlEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
                     50
             );
             englishFrenchEuroparlEvaluationSetCLOSA.setGraphBasedAnalysis(true);
@@ -378,8 +295,8 @@ class CLOSAEvaluationSetEval {
          */
         try {
             CLOSAEvaluationSet englishFrenchConferencePapersEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Conference_papers/en"), "en",
-                    new File(System.getProperty("user.home") + "/Cross-Language-Dataset-master/dataset/documents/Conference_papers/fr"), "fr"
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Conference_papers/en"), "en",
+                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Conference_papers/fr"), "fr"
             );
             englishFrenchConferencePapersEvaluationSetCLOSA.printEvaluation();
         } catch (Exception e) {
@@ -391,7 +308,7 @@ class CLOSAEvaluationSetEval {
     void evalSTS() {
         try {
             CLOSAEvaluationSet stsEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File(System.getProperty("user.home") + "/sts2016/txt"), "L", "R"
+                    new File(pathPrefix + "/sts2016/txt"), "L", "R"
             );
             stsEvaluationSetCLOSA.printEvaluation();
         } catch (Exception e) {
@@ -401,7 +318,7 @@ class CLOSAEvaluationSetEval {
 
     @Test
     void prepareASPEC() {
-        File enJaFile = new File(System.getProperty("user.home") + "/ASPEC/ASPEC-JE/train/train-1.txt");
+        File enJaFile = new File(pathPrefix + "/ASPEC/ASPEC-JE/train/train-1.txt");
 
         Map<String, Map<Integer, String>> idEnglishDocumentMap = new HashMap<>();
         Map<String, Map<Integer, String>> idJapaneseDocumentMap = new HashMap<>();
@@ -430,7 +347,7 @@ class CLOSAEvaluationSetEval {
 
             idEnglishDocumentMap.forEach((key, value) -> {
                 try {
-                    File file = new File(System.getProperty("user.home") + "/ASPECx/en/" + key + ".txt");
+                    File file = new File(pathPrefix + "/ASPECx/en/" + key + ".txt");
                     Files.createParentDirs(file);
                     FileUtils.writeLines(file, value.values());
                 } catch (IOException e) {
@@ -440,7 +357,7 @@ class CLOSAEvaluationSetEval {
 
             idJapaneseDocumentMap.forEach((key, value) -> {
                 try {
-                    File file = new File(System.getProperty("user.home") + "/ASPECx/ja/" + key + ".txt");
+                    File file = new File(pathPrefix + "/ASPECx/ja/" + key + ".txt");
                     Files.createParentDirs(file);
                     FileUtils.writeLines(file, value.values());
                 } catch (IOException e) {
@@ -455,7 +372,7 @@ class CLOSAEvaluationSetEval {
 
     @Test
     void prepareASPECChinese() {
-        File zhJaFile = new File(System.getProperty("user.home") + "/ASPEC/ASPEC-JC/train/train.txt");
+        File zhJaFile = new File(pathPrefix + "/ASPEC/ASPEC-JC/train/train.txt");
 
         Map<String, Map<String, String>> idChineseDocumentMap = new HashMap<>();
         Map<String, Map<String, String>> idJapaneseDocumentMap = new HashMap<>();
@@ -491,7 +408,7 @@ class CLOSAEvaluationSetEval {
 
             idChineseDocumentMap.forEach((key, value) -> {
                 try {
-                    File file = new File(System.getProperty("user.home") + "/ASPECxc/zh/" + key + ".txt");
+                    File file = new File(pathPrefix + "/ASPECxc/zh/" + key + ".txt");
                     Files.createParentDirs(file);
                     FileUtils.writeLines(file, value.values());
                 } catch (IOException e) {
@@ -501,7 +418,7 @@ class CLOSAEvaluationSetEval {
 
             idJapaneseDocumentMap.forEach((key, value) -> {
                 try {
-                    File file = new File(System.getProperty("user.home") + "/ASPECxc/ja/" + key + ".txt");
+                    File file = new File(pathPrefix + "/ASPECxc/ja/" + key + ".txt");
                     Files.createParentDirs(file);
                     FileUtils.writeLines(file, value.values());
                 } catch (IOException e) {
