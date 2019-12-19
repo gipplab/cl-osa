@@ -8,5 +8,5 @@ done
 
 for LANG in es en zh ja fr
 do
-  python3 ./WikiExtractor.py -o /data/wikipedia/output_${LANG} /data/wikipedia/dump_${LANG}.xml.bz2
+  python3 wikiextractor/WikiExtractor.py -o /data/wikipedia/output_${LANG} /data/wikipedia/dump_${LANG}.xml.bz2
 done
