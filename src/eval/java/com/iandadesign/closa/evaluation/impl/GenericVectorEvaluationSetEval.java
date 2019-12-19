@@ -6,7 +6,7 @@ import java.io.File;
 
 class GenericVectorEvaluationSetEval {
 
-    String pathPrefix = "/Users/fabian/data/vectors";
+    String pathPrefix = "/data/vectors";
 
     @Test
     /*
