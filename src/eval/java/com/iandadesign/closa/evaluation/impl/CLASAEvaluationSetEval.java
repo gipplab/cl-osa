@@ -105,7 +105,7 @@ class CLASAEvaluationSetEval {
             CLASAEvaluationSet englishSpanishPan11EvaluationSetCLASA = new CLASAEvaluationSet(
                     new File(pathPrefix + "/pan11/en"), "en",
                     new File(pathPrefix + "/pan11/es"), "es",
-                    10
+                    2000
             );
             englishSpanishPan11EvaluationSetCLASA.printEvaluation();
         } catch (Exception e) {
@@ -177,8 +177,9 @@ class CLASAEvaluationSetEval {
             {0.0=44.8, 10.0=44.8, 20.0=6.2, 30.0=2.6, 40.0=0.4, 60.0=0.4, 80.0=0.2, 50.0=0.4, 70.0=0.2}   */
         try {
             CLASAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLASA = new CLASAEvaluationSet(
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr"
+                    new File(pathPrefix + "/jrc/en"), "en",
+                    new File(pathPrefix + "/jrc/fr"), "fr",
+                    2000
             );
             englishFrenchJrcAcquisEvaluationSetCLASA.printEvaluation();
         } catch (Exception e) {
@@ -207,8 +208,9 @@ class CLASAEvaluationSetEval {
          */
         try {
             CLASAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLASA = new CLASAEvaluationSet(
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr"
+                    new File(pathPrefix + "/europarl/en"), "en",
+                    new File(pathPrefix + "/europarl/fr"), "fr",
+                    2000
             );
             englishFrenchJrcAcquisEvaluationSetCLASA.printEvaluation();
         } catch (Exception e) {
