@@ -105,7 +105,7 @@ class CLASAEvaluationSetEval {
             CLASAEvaluationSet englishSpanishPan11EvaluationSetCLASA = new CLASAEvaluationSet(
                     new File(pathPrefix + "/pan11/en"), "en",
                     new File(pathPrefix + "/pan11/es"), "es",
-                    5
+                    10
             );
             englishSpanishPan11EvaluationSetCLASA.printEvaluation();
         } catch (Exception e) {

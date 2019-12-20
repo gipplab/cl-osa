@@ -12,7 +12,8 @@ import java.util.*;
 class CLOSAEvaluationSetEval {
     
     String pathPrefix = "/data/test";
-    
+    private CLOSAEvaluationSet englishJapaneseASPECEvaluationSetCLOSA;
+
     /**
      * Tests CL-OSA with BBC English-Japanese, core documents only.
      * <p>
