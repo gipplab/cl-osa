@@ -41,7 +41,7 @@ public class WikidataDisambiguator {
      */
     public static WikidataEntity disambiguateByAncestorCount(List<WikidataEntity> entities, String text, String languageCode) {
         // retrieve all ancestors per entity and count the occurrences in the text per entity
-        Map<WikidataEntity, Integer> entityOccurrences = entities.stream()
+        Map<WikidataEntity, Integer> entityOccurrences = new HashSet<>(entities).stream()
                 .collect(Collectors.toMap(entity -> entity,
                         entity -> new HashSet<>(getAllAncestors(entity))))
                 .entrySet()

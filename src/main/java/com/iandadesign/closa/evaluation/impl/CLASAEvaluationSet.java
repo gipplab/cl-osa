@@ -111,9 +111,9 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         boolean japanese = languagePair.contains("Ja");
                         boolean fromPiAlign = chinese || japanese;
 
-                        if (englishToForeign) {
-                            translationsCollection.createIndex(new Document("native", 1), new IndexOptions().unique(true));
-                        }
+                        translationsCollection.createIndex(new Document("native", 1), new IndexOptions().unique(true));
+                        translationsCollection.createIndex(new Document("foreign.translation", 1), new IndexOptions().unique(true));
+                        translationsCollection.createIndex(new Document("foreign.probability", 1), new IndexOptions().unique(true));
 
                         Path translationFilePath = japanese
                                 ? Paths.get("/data/corpus/tanaka-corpus/out/align.1.pt")

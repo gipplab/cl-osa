@@ -6,7 +6,7 @@ import java.io.File;
 
 class GenericVectorEvaluationSetEval {
 
-    String pathPrefix = "/data/vectors";
+    String pathPrefix = "/Users/fabian/data/vectors";
 
     @Test
     /*
@@ -88,8 +88,8 @@ class GenericVectorEvaluationSetEval {
     void evalVectorsEuroparlDocuments() {
         try {
             GenericVectorEvaluationSet evaluationSet = new GenericVectorEvaluationSet(
-                    new File(pathPrefix + "/vectors_doc/en/conceptnet/europarl"), "en",
-                    new File(pathPrefix + "/vectors_doc/fr/conceptnet/europarl"), "fr",
+                    new File(pathPrefix + "/vectors_doc/en/fasttextml/europarl"), "en",
+                    new File(pathPrefix + "/vectors_doc/fr/fasttextml/europarl"), "fr",
                     2000
             );
 
