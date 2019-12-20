@@ -42,8 +42,8 @@ class CLASAEvaluationSetEval {
     @Test
     void evalCLASAAspec() {
         CLASAEvaluationSet englishJapaneseASPECEvaluationSetCLASA = new CLASAEvaluationSet(
-                new File(pathPrefix + "/ASPECx/en"), "en",
-                new File(pathPrefix + "/ASPECx/ja"), "ja",
+                new File(pathPrefix + "/ASPECx/en10000"), "en",
+                new File(pathPrefix + "/ASPECx/ja10000"), "ja",
                 2000
         );
 
