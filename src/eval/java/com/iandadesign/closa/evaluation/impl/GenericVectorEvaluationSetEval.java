@@ -8,6 +8,8 @@ class GenericVectorEvaluationSetEval {
 
     String pathPrefix = "/Users/fabian/data/vectors";
 
+    //////////////////////////////////// Documents ////////////////////////////////////
+
     @Test
     /*
         Ranks 1 to 50
@@ -160,6 +162,8 @@ class GenericVectorEvaluationSetEval {
         }
     }
 
+    //////////////////////////////////// Paragraphs ////////////////////////////////////
+
     @Test
     /*
         Values for ranks 1 to 50:
@@ -185,6 +189,47 @@ class GenericVectorEvaluationSetEval {
             GenericVectorEvaluationSet evaluationSet = new GenericVectorEvaluationSet(
                     new File(pathPrefix + "/vectors_par/en/conceptnet/pan"), "en",
                     new File(pathPrefix + "/vectors_par/es/conceptnet/pan"), "es",
+                    2000
+            );
+
+            evaluationSet.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    /*
+        Values for ranks 1 to 50:
+
+        True positives: 1320
+        Relevant elements: 1997
+        Irrelevant elements: 3
+        Collection size: 2000
+        Selected elements: 99950
+        False positives: 679
+        False negatives: 677
+
+        Ranks 1 to 50
+
+        Precision: [20.710356, 13.656828, 10.238452, 7.143572, 4.382191, 2.6788394, 1.3206604]
+        Recall: [20.731096, 27.341011, 30.74612, 35.75363, 43.8658, 53.630447, 66.09915]
+        F-Measure: [20.720718, 18.215178, 15.361522, 11.907939, 7.968346, 5.102794, 2.5895808]
+
+        Mean reciprocal rank: 28.65980025763801
+
+
+        Aligned document similarities
+
+        {60.0=945, 30.0=15, 40.0=25, 80.0=10, 20.0=3, 50.0=209, 70.0=792}
+
+        {60.0=47.273636, 30.0=0.7503752, 40.0=1.2506254, 80.0=0.5002501, 20.0=0.15007503, 50.0=10.455228, 70.0=39.61981}
+     */
+    void evalVectorsJrcParagraphs() {
+        try {
+            GenericVectorEvaluationSet evaluationSet = new GenericVectorEvaluationSet(
+                    new File(pathPrefix + "/vectors_par/en/useml/jrc"), "en",
+                    new File(pathPrefix + "/vectors_par/fr/useml/jrc"), "fr",
                     2000
             );
 

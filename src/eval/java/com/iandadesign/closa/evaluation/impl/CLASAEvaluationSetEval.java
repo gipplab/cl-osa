@@ -44,12 +44,11 @@ class CLASAEvaluationSetEval {
         CLASAEvaluationSet englishJapaneseASPECEvaluationSetCLASA = new CLASAEvaluationSet(
                 new File(pathPrefix + "/ASPECx/en"), "en",
                 new File(pathPrefix + "/ASPECx/ja"), "ja",
-                500
+                2000
         );
 
         englishJapaneseASPECEvaluationSetCLASA.printEvaluation();
     }
-
 
 
     @Test
