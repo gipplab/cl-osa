@@ -43,7 +43,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
     private static final String databaseName = "wikipedia";
-    private static final String pathPrefix = "/data/test";
+    private static final String pathPrefix = "/data";
 
     // text stores documents with format:
     //
