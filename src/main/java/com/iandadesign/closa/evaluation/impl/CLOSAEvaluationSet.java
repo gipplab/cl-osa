@@ -61,7 +61,7 @@ public class CLOSAEvaluationSet extends EvaluationSet<String> {
     @Override
     protected void performAnalysis() {
         if (analysis == null) {
-            new OntologyBasedSimilarityAnalysis(new LanguageDetector(), new TextClassifier());
+            analysis = new OntologyBasedSimilarityAnalysis(new LanguageDetector(), new TextClassifier());
         }
 
         if (graphBasedAnalysis) {
