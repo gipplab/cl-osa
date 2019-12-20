@@ -39,7 +39,7 @@ public abstract class EvaluationSet<T> {
 
     private LanguageDetector languageDetector = new LanguageDetector();
 
-    private final int parallelism = 1;
+    private final int parallelism = 16;
 
     /**
      * Initializes the evaluationSet. The files have to be named identically, only the directories
@@ -126,7 +126,7 @@ public abstract class EvaluationSet<T> {
                         file -> {
                             // suspicious file to candidate file mapping
                             String parentDirectory = file.getParentFile().getName();
-                            parentDirectory = (parentDirectory.length() == 2 || suspiciousFolder.getPath().contains("/vectors/"))
+                            parentDirectory = (parentDirectory.length() == 2 || parentDirectory.contains(suspiciousLanguage) || suspiciousFolder.getPath().contains("/vectors/"))
                                     ? ""
                                     : (parentDirectory + "/");
 
