@@ -88,8 +88,8 @@ class GenericVectorEvaluationSetEval {
     void evalVectorsEuroparlDocuments() {
         try {
             GenericVectorEvaluationSet evaluationSet = new GenericVectorEvaluationSet(
-                    new File(pathPrefix + "/vectors_doc/en/fasttextml/europarl"), "en",
-                    new File(pathPrefix + "/vectors_doc/fr/fasttextml/europarl"), "fr",
+                    new File(pathPrefix + "/vectors_doc/en/conceptnet/europarl"), "en",
+                    new File(pathPrefix + "/vectors_doc/fr/conceptnet/europarl"), "fr",
                     2000
             );
 
@@ -151,6 +151,40 @@ class GenericVectorEvaluationSetEval {
             GenericVectorEvaluationSet evaluationSet = new GenericVectorEvaluationSet(
                     new File(pathPrefix + "/vectors_doc/ja/conceptnet/aspcxc_ja"), "ja",
                     new File(pathPrefix + "/vectors_doc/zh/conceptnet/aspcxc_zh"), "zh",
+                    2000
+            );
+
+            evaluationSet.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    /*
+        Values for ranks 1 to 50:
+
+        True positives: 1969
+        Relevant elements: 1996
+        Irrelevant elements: 0
+        Collection size: 1996
+        Selected elements: 99800
+        False positives: 27
+        False negatives: 27
+
+        Ranks 1 to 50
+
+        Precision: [88.82766, 46.242485, 31.212425, 18.987976, 9.634268, 4.8872747, 1.9729459]
+        Recall: [88.82766, 92.48497, 93.637276, 94.93988, 96.34268, 97.74549, 98.64729]
+        F-Measure: [88.82766, 61.656647, 46.818638, 31.64663, 17.516851, 9.309095, 3.8685215]
+
+        Mean reciprocal rank: 91.68678687919179
+     */
+    void evalVectorsPan11Paragraphs() {
+        try {
+            GenericVectorEvaluationSet evaluationSet = new GenericVectorEvaluationSet(
+                    new File(pathPrefix + "/vectors_par/en/conceptnet/pan"), "en",
+                    new File(pathPrefix + "/vectors_par/es/conceptnet/pan"), "es",
                     2000
             );
 
