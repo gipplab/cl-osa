@@ -10,12 +10,10 @@ class CLESAEvaluationSetEval {
 
     String pathPrefix = "/data/test";
 
-
     @Test
     void buildDatabase() {
         CLESAEvaluationSet.extractWikipediaArticlesAndStore();
     }
-
 
     /////////////////////////////////////////////////// CL-ESA //////////////////////////////////////////////////
 
@@ -127,7 +125,7 @@ class CLESAEvaluationSetEval {
             CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(pathPrefix + "/pan11/en"), "en",
                     new File(pathPrefix + "/pan11/es"), "es",
-                    5
+                    2000
             );
 
             englishSpanishPan11EvaluationSetCLESA.printEvaluation();
@@ -190,9 +188,9 @@ class CLESAEvaluationSetEval {
          */
         try {
             CLESAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLESA = new CLESAEvaluationSet(
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/en"), "en",
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/JRC_acquis/fr"), "fr",
-                    500
+                    new File(pathPrefix + "/jrc/en"), "en",
+                    new File(pathPrefix + "/jrc/fr"), "fr",
+                    2000
             );
             englishFrenchJrcAcquisEvaluationSetCLESA.printEvaluation();
         } catch (Exception e) {
@@ -221,9 +219,9 @@ class CLESAEvaluationSetEval {
          */
         try {
             CLESAEvaluationSet englishFrenchEuroparlEvaluationSetCLESA = new CLESAEvaluationSet(
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Europarl/en"), "en",
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Europarl/fr"), "fr",
-                    500
+                    new File(pathPrefix + "/europarl/en"), "en",
+                    new File(pathPrefix + "/europarl/fr"), "fr",
+                    2000
             );
             englishFrenchEuroparlEvaluationSetCLESA.printEvaluation();
         } catch (Exception e) {
