@@ -167,8 +167,15 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                         : nextParts[0];
 
                                 if (nativeWord.equals(nextWord)) {
-                                    translationsCollection.insertOne(new Document("native", nativeWord)
-                                            .append("foreign", currentTranslationsToInsert));
+                                    if (translationsCollection.find(new Document("native", nativeWord))
+                                            .iterator().hasNext()) {
+                                        translationsCollection.findOneAndUpdate(
+                                                new Document("native", nativeWord),
+                                                new Document("$push", new Document("foreign", currentTranslationsToInsert)));
+                                    } else {
+                                        translationsCollection.insertOne(new Document("native", nativeWord)
+                                                .append("foreign", currentTranslationsToInsert));
+                                    }
 
                                     currentTranslationsToInsert = new ArrayList<>();
                                 }
