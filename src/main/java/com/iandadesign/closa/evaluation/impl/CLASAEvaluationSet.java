@@ -59,10 +59,10 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
     }
 
     private static final Map<String, List<String>> languagePairs = ImmutableMap.of(
-            "es-en", Collections.singletonList("EnEs"),
-            "fr-en", Collections.singletonList("EnFr"),
+            //"es-en", Collections.singletonList("EnEs"),
+            //"fr-en", Collections.singletonList("EnFr"),
             //"zh-en", Collections.singletonList("EnZh"),
-            "ja-en", Collections.singletonList("EnJa"),
+            //"ja-en", Collections.singletonList("EnJa"),
             "ja-zh", Collections.singletonList("JaZh")
     );
 
