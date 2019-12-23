@@ -50,6 +50,18 @@ class CLASAEvaluationSetEval {
         englishJapaneseASPECEvaluationSetCLASA.printEvaluation();
     }
 
+    @Test
+    void evalCLASAAspecChinese() {
+        CLASAEvaluationSet englishJapaneseASPECEvaluationSetCLASA = new CLASAEvaluationSet(
+                new File(pathPrefix + "/ASPECxc/ja10000"), "en",
+                new File(pathPrefix + "/ASPECxc/zh10000"), "ja",
+                10
+        );
+
+        englishJapaneseASPECEvaluationSetCLASA.printEvaluation();
+    }
+
+
 
     @Test
     void evalCLASAEnglishChinese() {

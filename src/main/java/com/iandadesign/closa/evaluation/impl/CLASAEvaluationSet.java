@@ -118,9 +118,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                         Path translationFilePath = japanese
                                 ? Paths.get("/data/corpus/tanaka-corpus/out/align.1.pt")
                                 : chinese
-                                ? Paths.get("/data/corpus/TED_Paracorpus/out/align.utf8.1.pt")
-                                : Paths.get("/data/corpus/eu-bilingual/"
-                                + languageEntry.getKey() + "/lex." + translationDirection);
+                                    ? Paths.get("/data/corpus/Multilingual_Parallel_Corpus/out/align.utf8.1.pt")
+                                    : Paths.get("/data/corpus/eu-bilingual/" + languageEntry.getKey() + "/lex." + translationDirection);
 
 
                         // check translation files
