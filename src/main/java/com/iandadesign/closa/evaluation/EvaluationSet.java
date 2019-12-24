@@ -157,6 +157,8 @@ public abstract class EvaluationSet<T> {
                 .limit(fileCountLimit)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
+        System.out.println("files = " + files);
+
         List<File> keys = new ArrayList<>(files.keySet());
 
         ForkJoinPool customThreadPool = (ForkJoinPool) Executors.newWorkStealingPool(parallelism);
