@@ -388,13 +388,21 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
             int i = 0;
 
             for (Document totalProbabilityDocument : totalProbabilityDocuments) {
+                System.out.println("totalProbDoc = " + totalProbabilityDocument);
                 String candidateId = totalProbabilityDocument.getString("_id");
                 double totalProbability = totalProbabilityDocument.getDouble("totalProbability");
                 translationProbabilitiesByCandidate.put(candidateId, totalProbability);
                 i++;
             }
 
+
+            if (i == 0) {
+                System.out.println("No matches!");
+            }
+        } else {
+            System.out.println("Empty suspicious input!");
         }
+
         int j = 0;
 
         for (String foreignWordsKey : foreignWordsMap.keySet()) {
