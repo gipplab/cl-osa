@@ -171,7 +171,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                             .iterator().hasNext()) {
                                         translationsCollection.findOneAndUpdate(
                                                 new Document("native", nativeWord),
-                                                new Document("$push", new Document("foreign", currentTranslationsToInsert)));
+                                                new Document("$push", new Document("foreign", new Document("$each", currentTranslationsToInsert))));
                                     } else {
                                         translationsCollection.insertOne(new Document("native", nativeWord)
                                                 .append("foreign", currentTranslationsToInsert));
