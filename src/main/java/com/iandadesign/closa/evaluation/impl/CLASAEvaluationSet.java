@@ -271,6 +271,9 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             Map<String, Double> candidateIdProbabilityMap = new HashMap<>();
 
                             int i = 0;
+
+                            System.out.println("candidateIdTokensMap = " + candidateIdTokensMap);
+
                             for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 10)) {
                                 candidateIdProbabilityMap.putAll(getTranslationProbabilitiesByCandidate(
                                         suspiciousEntry.getValue(),
@@ -362,7 +365,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                     + StringUtils.capitalize(foreignLanguage));
 
             // FIXME: doesn't work with JaZh
-            System.out.println(translationsCollectionName + StringUtils.capitalize(nativeLanguage) + StringUtils.capitalize(foreignLanguage));
+            // System.out.println(translationsCollectionName + StringUtils.capitalize(nativeLanguage) + StringUtils.capitalize(foreignLanguage));
 
             AggregateIterable<Document> totalProbabilityDocuments = translationsCollection.aggregate(Arrays.asList(
                     new Document("$match",
