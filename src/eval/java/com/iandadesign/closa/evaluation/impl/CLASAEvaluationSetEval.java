@@ -7,7 +7,7 @@ import java.io.IOException;
 
 class CLASAEvaluationSetEval {
 
-    String pathPrefix = "/Users/fabian/data/test";
+    String pathPrefix = "/data/test";
 
     @Test
     void evalCLASAEnglishJapanese() {
