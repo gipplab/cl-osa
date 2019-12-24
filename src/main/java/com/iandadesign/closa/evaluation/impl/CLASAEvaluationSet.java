@@ -221,9 +221,11 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
         AtomicInteger current = new AtomicInteger(0);
 
+        System.out.println("suspiciousIdTokensMap = " + suspiciousIdTokensMap);
+
         suspiciousIdCandidateScoresMap = suspiciousIdTokensMap.entrySet()
                 .parallelStream()
-                .filter(suspiciousEntry -> suspiciousIdLanguageMap.containsKey(suspiciousEntry.getKey()))
+                //.filter(suspiciousEntry -> suspiciousIdLanguageMap.containsKey(suspiciousEntry.getKey()))
                 .collect(Collectors.toMap(Map.Entry::getKey,
                         suspiciousEntry -> {
                             Path probabilitiesFilePath = Paths.get("/data/preprocessed-clasa/" + suspiciousEntry.getKey());
@@ -272,7 +274,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                             int i = 0;
 
-                            System.out.println("candidateIdTokensMap = " + candidateIdTokensMap);
 
                             for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 10)) {
                                 candidateIdProbabilityMap.putAll(getTranslationProbabilitiesByCandidate(
