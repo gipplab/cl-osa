@@ -7,7 +7,7 @@ import java.io.IOException;
 
 class CLASAEvaluationSetEval {
 
-    String pathPrefix = "/data/test";
+    String pathPrefix = "/Users/fabian/data/test";
 
     @Test
     void evalCLASAEnglishJapanese() {
@@ -55,7 +55,7 @@ class CLASAEvaluationSetEval {
         CLASAEvaluationSet englishJapaneseASPECEvaluationSetCLASA = new CLASAEvaluationSet(
                 new File(pathPrefix + "/ASPECxc/ja10000"), "en",
                 new File(pathPrefix + "/ASPECxc/zh10000"), "ja",
-                10
+                2000
         );
 
         englishJapaneseASPECEvaluationSetCLASA.printEvaluation();

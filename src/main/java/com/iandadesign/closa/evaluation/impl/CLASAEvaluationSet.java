@@ -357,6 +357,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                     + StringUtils.capitalize(nativeLanguage)
                     + StringUtils.capitalize(foreignLanguage));
 
+            // FIXME: doesn't work with JaZh
 
             AggregateIterable<Document> totalProbabilityDocuments = translationsCollection.aggregate(Arrays.asList(
                     new Document("$match",
