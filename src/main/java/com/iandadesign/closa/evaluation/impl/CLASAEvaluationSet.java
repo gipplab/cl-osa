@@ -302,6 +302,8 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             return candidateIdProbabilityMap;
                         }));
 
+        System.out.println("suspiciousIdCandidateScoresMap = " + suspiciousIdCandidateScoresMap);
+
         System.out.println("Have " + zeroProbs + " of " + 250000);
 
         progressBar.stop();
