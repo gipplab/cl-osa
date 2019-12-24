@@ -171,12 +171,12 @@ public abstract class EvaluationSet<T> {
                 customThreadPool.submit(
                         () -> integers.parallelStream()
                                 .forEach(i -> {
-                                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
+                                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + "(" + keys.get(i).getName() + "):");
                                     initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
                                 })).get();
             } else {
                 integers.forEach(i -> {
-                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
+                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + "(" + keys.get(i).getName() + "):");
                     initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
                 });
             }
@@ -227,12 +227,12 @@ public abstract class EvaluationSet<T> {
                 customThreadPool.submit(
                         () -> integers.parallelStream()
                                 .forEach(i -> {
-                                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
+                                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + "(" + keys.get(i).getName() + "):");
                                     initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
                                 })).get();
             } else {
                 integers.forEach(i -> {
-                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + ":");
+                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + "(" + keys.get(i).getName() + "):");
                     initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
                 });
             }
