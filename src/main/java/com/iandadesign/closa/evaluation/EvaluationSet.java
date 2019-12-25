@@ -126,7 +126,10 @@ public abstract class EvaluationSet<T> {
                         file -> {
                             // suspicious file to candidate file mapping
                             String parentDirectory = file.getParentFile().getName();
-                            parentDirectory = (parentDirectory.length() == 2 || parentDirectory.contains(suspiciousLanguage) || suspiciousFolder.getPath().contains("/vectors/"))
+                            parentDirectory = parentDirectory.length() == 2
+                                        || parentDirectory.contains(suspiciousLanguage)
+                                        || parentDirectory.equals(suspiciousLanguage + "10000")
+                                        || suspiciousFolder.getPath().contains("/vectors/")
                                     ? ""
                                     : (parentDirectory + "/");
 
