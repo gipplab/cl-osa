@@ -55,7 +55,7 @@ class CLESAEvaluationSetEval {
         CLESAEvaluationSet englishJapaneseASPECEvaluationSetCLOSA = new CLESAEvaluationSet(
                 new File(pathPrefix + "/ASPECx/ja"), "ja",
                 new File(pathPrefix + "/ASPECx/en"), "en",
-                500
+                2000
         );
 
         englishJapaneseASPECEvaluationSetCLOSA.printEvaluation();
@@ -66,7 +66,7 @@ class CLESAEvaluationSetEval {
         CLESAEvaluationSet chineseJapaneseASPECEvaluationSetCLOSA = new CLESAEvaluationSet(
                 new File(pathPrefix + "/ASPECxc/ja"), "ja",
                 new File(pathPrefix + "/ASPECxc/zh"), "zh",
-                10000
+                2000
         );
 
         chineseJapaneseASPECEvaluationSetCLOSA.printEvaluation();

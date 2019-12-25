@@ -126,14 +126,12 @@ public abstract class EvaluationSet<T> {
                         file -> {
                             // suspicious file to candidate file mapping
                             String parentDirectory = file.getParentFile().getName();
-                            System.out.println("\"" + parentDirectory + "\"");
                             parentDirectory = parentDirectory.length() == 2
                                         || parentDirectory.equals("ja10000")
                                         || parentDirectory.contains(suspiciousLanguage)
                                         || suspiciousFolder.getPath().contains("/vectors/")
                                     ? ""
                                     : ("\"" + parentDirectory + "/" + "\"");
-                            System.out.println(parentDirectory);
 
                             String candidateFileName;
 
@@ -154,17 +152,12 @@ public abstract class EvaluationSet<T> {
                                 candidateFileName = file.getName();
                             }
 
-                            System.out.println(candidateFolder + "/" + parentDirectory + candidateFileName);
-
                             return new File(candidateFolder + "/" + parentDirectory + candidateFileName);
                         }))
                 .entrySet().stream()
                 .filter(entry -> entry.getValue().exists())
                 .limit(fileCountLimit)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-        // FIXME: mo files
-        System.out.println("files = " + files);
 
         List<File> keys = new ArrayList<>(files.keySet());
 
