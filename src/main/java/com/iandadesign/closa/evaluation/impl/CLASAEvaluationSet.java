@@ -197,7 +197,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
     @Override
     protected List<String> preProcess(String documentPath, String documentLanguage) {
-        // FIXME: no preprocessing for JaZh
         try {
             List<Token> tokens = TokenUtil.tokenize(FileUtils.readFileToString(new File(documentPath), StandardCharsets.UTF_8), documentLanguage);
             tokens = TokenUtil.removeStopwords(tokens, documentLanguage);
@@ -269,9 +268,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                             Map<String, Double> candidateIdProbabilityMap = new HashMap<>();
 
-                            int i = 0;
-
-
                             for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 10)) {
                                 candidateIdProbabilityMap.putAll(getTranslationProbabilitiesByCandidate(
                                         suspiciousEntry.getValue(),
@@ -286,7 +282,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                                     double lengthModel = Math.exp(-0.5 * Math.pow((candidateSize / suspiciousSize - mean) / standardDeviation, 2.0));
                                                     return lengthModel * candidateEntry.getValue();
                                                 })));
-                                i++;
                             }
 
                             progressBar.stepTo(current.incrementAndGet());
@@ -359,9 +354,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
             MongoCollection<Document> translationsCollection = database.getCollection(translationsCollectionName
                     + StringUtils.capitalize(nativeLanguage)
                     + StringUtils.capitalize(foreignLanguage));
-
-            // FIXME: doesn't work with JaZh
-            // System.out.println(translationsCollectionName + StringUtils.capitalize(nativeLanguage) + StringUtils.capitalize(foreignLanguage));
 
             AggregateIterable<Document> totalProbabilityDocuments = translationsCollection.aggregate(Arrays.asList(
                     new Document("$match",
