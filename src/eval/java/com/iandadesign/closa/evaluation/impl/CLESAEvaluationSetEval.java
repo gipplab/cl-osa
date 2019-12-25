@@ -53,8 +53,8 @@ class CLESAEvaluationSetEval {
     @Test
     void evalCLESAAspec() {
         CLESAEvaluationSet englishJapaneseASPECEvaluationSetCLOSA = new CLESAEvaluationSet(
-                new File(pathPrefix + "/ASPECx/ja"), "ja10000",
-                new File(pathPrefix + "/ASPECx/en"), "en10000",
+                new File(pathPrefix + "/ASPECx/ja10000"), "ja",
+                new File(pathPrefix + "/ASPECx/en10000"), "en",
                 2000
         );
 
@@ -64,8 +64,8 @@ class CLESAEvaluationSetEval {
     @Test
     void evalCLESAAspecChinese() {
         CLESAEvaluationSet chineseJapaneseASPECEvaluationSetCLOSA = new CLESAEvaluationSet(
-                new File(pathPrefix + "/ASPECxc/ja"), "ja10000",
-                new File(pathPrefix + "/ASPECxc/zh"), "zh10000",
+                new File(pathPrefix + "/ASPECxc/ja10000"), "ja",
+                new File(pathPrefix + "/ASPECxc/zh10000"), "zh",
                 2000
         );
 
