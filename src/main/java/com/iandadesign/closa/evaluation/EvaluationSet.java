@@ -129,7 +129,7 @@ public abstract class EvaluationSet<T> {
                             System.out.println(parentDirectory);
                             parentDirectory = parentDirectory.length() == 2
                                         || parentDirectory.contains(suspiciousLanguage)
-                                        || parentDirectory.equals(suspiciousLanguage + "10000")
+                                        || parentDirectory.matches("\\s*" + suspiciousLanguage + "10000" + "\\s*")
                                         || suspiciousFolder.getPath().contains("/vectors/")
                                     ? ""
                                     : (parentDirectory + "/");
