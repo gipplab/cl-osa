@@ -149,14 +149,16 @@ public abstract class EvaluationSet<T> {
                                 candidateFileName = file.getName();
                             }
 
-                            return new File(candidateFolder
-                                    + "/" + parentDirectory + candidateFileName);
+                            System.out.println(candidateFolder + "/" + parentDirectory + candidateFileName);
+
+                            return new File(candidateFolder + "/" + parentDirectory + candidateFileName);
                         }))
                 .entrySet().stream()
                 .filter(entry -> entry.getValue().exists())
                 .limit(fileCountLimit)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
+        // FIXME: mo files
         System.out.println("files = " + files);
 
         List<File> keys = new ArrayList<>(files.keySet());
