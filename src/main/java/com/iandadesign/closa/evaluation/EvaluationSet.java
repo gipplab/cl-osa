@@ -133,6 +133,7 @@ public abstract class EvaluationSet<T> {
                                         || suspiciousFolder.getPath().contains("/vectors/")
                                     ? ""
                                     : (parentDirectory + "/");
+                            System.out.println(parentDirectory);
 
                             String candidateFileName;
 
