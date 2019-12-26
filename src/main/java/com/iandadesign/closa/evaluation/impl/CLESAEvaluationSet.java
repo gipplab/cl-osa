@@ -180,8 +180,6 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
     @Override
     protected List<Double> preProcess(String documentPath, String documentLanguage) {
-        List<Double> preProcessed = new ArrayList<>();
-
         Path newFullPath =
                 documentPath.contains(pathPrefix)
                         ? Paths.get(documentPath.replace(pathPrefix,
@@ -225,7 +223,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
             progressBar.start();
 
             // parallel stream map the articles to similarities
-            preProcessed = articles.parallelStream()
+            List<Double> preProcessed = articles.parallelStream()
                     .map((Document article) -> {
                         String articleText = article.get("text", Document.class)
                                 .getString(documentLanguage);
