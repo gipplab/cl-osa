@@ -215,19 +215,27 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
                 throw new IllegalStateException("No common articles");
             }
 
+            // collect all articles into list
+            List<Document> articles = new ArrayList<>();
+            for (Document article : queryResult) {
+                articles.add(article);
+            }
+
             ProgressBar progressBar = new ProgressBar("Preprocessing", wikipediaArticleLimit, ProgressBarStyle.ASCII);
             progressBar.start();
 
-            for (Document article : queryResult) {
-                String articleText = article.get("text", Document.class)
-                        .getString(documentLanguage);
+            // parallel stream map the articles to similarities
+            preProcessed = articles.parallelStream()
+                    .map((Document article) -> {
+                        String articleText = article.get("text", Document.class)
+                                .getString(documentLanguage);
 
-                List<Token> articleTokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(articleText, documentLanguage);
-
-                double similarity = Dictionary.cosineSimilarity(documentTokens, articleTokens);
-                preProcessed.add(similarity);
-                progressBar.step();
-            }
+                        List<Token> articleTokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(articleText, documentLanguage);
+                        double similarity = Dictionary.cosineSimilarity(documentTokens, articleTokens);
+                        progressBar.step();
+                        return similarity;
+                    })
+                    .collect(Collectors.toList());
 
             progressBar.stop();
 
