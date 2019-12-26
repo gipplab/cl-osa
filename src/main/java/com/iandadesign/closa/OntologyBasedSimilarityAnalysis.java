@@ -156,7 +156,7 @@ public class OntologyBasedSimilarityAnalysis {
                 documentEntities = preProcess(documentPath, documentText, documentLanguage, documentCategory);
 
                 if (documentEntities.size() == 0 && !Pattern.compile("(\\s)+").matcher(documentText).find()) {
-                    throw new IllegalStateException("Empty preprocessing.");
+                    // throw new IllegalStateException("Empty preprocessing.");
                 }
 
                 FileUtils.writeLines(new File(documentEntitiesPath), documentEntities);
