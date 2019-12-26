@@ -127,9 +127,9 @@ public abstract class EvaluationSet<T> {
                             // suspicious file to candidate file mapping
                             String parentDirectory = file.getParentFile().getName();
                             parentDirectory = parentDirectory.length() == 2
-                                        || parentDirectory.equals("ja10000")
-                                        || parentDirectory.contains(suspiciousLanguage)
-                                        || suspiciousFolder.getPath().contains("/vectors/")
+                                    || parentDirectory.equals("ja10000")
+                                    || parentDirectory.contains(suspiciousLanguage)
+                                    || suspiciousFolder.getPath().contains("/vectors/")
                                     ? ""
                                     : ("\"" + parentDirectory + "/" + "\"");
 
@@ -229,13 +229,15 @@ public abstract class EvaluationSet<T> {
                 customThreadPool.submit(
                         () -> integers.parallelStream()
                                 .forEach(i -> {
-                                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + "(" + keys.get(i).getName() + "):");
-                                    initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
+                                    System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + " (" + keys.get(i).getName() + "):");
+                                    initializeOneFilePair(keys.get(i), suspiciousIdLanguageMap.get(keys.get(i).getName()),
+                                            files.get(keys.get(i)), suspiciousIdLanguageMap.get(keys.get(i).getName()));
                                 })).get();
             } else {
                 integers.forEach(i -> {
                     System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + "(" + keys.get(i).getName() + "):");
-                    initializeOneFilePair(keys.get(i), files.get(keys.get(i)));
+                    initializeOneFilePair(keys.get(i), suspiciousIdLanguageMap.get(keys.get(i).getName()),
+                            files.get(keys.get(i)), suspiciousIdLanguageMap.get(keys.get(i).getName()));
                 });
             }
         } catch (InterruptedException | ExecutionException e) {
