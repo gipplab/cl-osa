@@ -210,7 +210,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
                     .limit(wikipediaArticleLimit);
 
             if (!queryResult.iterator().hasNext()) {
-                throw new IllegalStateException("No common articles");
+                // throw new IllegalStateException("No common articles");
             }
 
             // collect all articles into list
