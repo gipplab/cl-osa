@@ -174,14 +174,14 @@ public abstract class EvaluationSet<T> {
                         () -> integers.parallelStream()
                                 .forEach(i -> {
                                     System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + "(" + keys.get(i).getName() + "):");
-                                    initializeOneFilePair(keys.get(i), suspiciousIdLanguageMap.get(keys.get(i).getName()),
-                                            files.get(keys.get(i)), suspiciousIdLanguageMap.get(keys.get(i).getName()));
+                                    initializeOneFilePair(keys.get(i), suspiciousLanguage,
+                                            files.get(keys.get(i)), candidateLanguage);
                                 })).get();
             } else {
                 integers.forEach(i -> {
                     System.out.println("Initialize alignment " + (i + 1) + " of " + (keys.size() + 1) + "(" + keys.get(i).getName() + "):");
-                    initializeOneFilePair(keys.get(i), suspiciousIdLanguageMap.get(keys.get(i).getName()),
-                            files.get(keys.get(i)), suspiciousIdLanguageMap.get(keys.get(i).getName()));
+                    initializeOneFilePair(keys.get(i), suspiciousLanguage,
+                            files.get(keys.get(i)), candidateLanguage);
                 });
             }
         } catch (InterruptedException | ExecutionException e) {
