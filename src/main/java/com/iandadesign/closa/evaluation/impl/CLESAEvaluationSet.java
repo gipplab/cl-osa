@@ -61,7 +61,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
     // "If high retrieval speed or a high multilinguality is desired, documents should be represented as 1000- dimensional concept vectors.
     // At a lower dimension the retrieval quality deteriorates significantly.
     // A reasonable trade-off between retrieval quality and runtime is achieved for a concept space dimensionality between 1 000 and 10 000."
-    private static final int wikipediaArticleLimit = 20000;
+    private static final int wikipediaArticleLimit = 50000;
 
     static {
         MongoDatabase database = WikidataDumpUtil.getMongoClient().getDatabase(databaseName);
@@ -180,6 +180,9 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
     @Override
     protected List<Double> preProcess(String documentPath, String documentLanguage) {
+        List<Double> preProcessed = new ArrayList<>();
+        int existingWikipediaArticleCount = 0;
+
         Path newFullPath =
                 documentPath.contains(pathPrefix)
                         ? Paths.get(documentPath.replace(pathPrefix,
@@ -192,6 +195,9 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
                 if (lines.size() == wikipediaArticleLimit) {
                     return lines.stream().map(Double::parseDouble).collect(Collectors.toList());
+                } else if (lines.size() < wikipediaArticleLimit) {
+                    preProcessed = lines.stream().map(Double::parseDouble).collect(Collectors.toList());
+                    existingWikipediaArticleCount = lines.size();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -207,7 +213,8 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
             FindIterable<Document> queryResult = articleCollection.find(query)
                     .noCursorTimeout(true)
                     .sort(new Document("title", 1))
-                    .limit(wikipediaArticleLimit);
+                    .limit(wikipediaArticleLimit)
+                    .skip(existingWikipediaArticleCount);
 
             if (!queryResult.iterator().hasNext()) {
                 // throw new IllegalStateException("No common articles");
@@ -223,7 +230,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
             progressBar.start();
 
             // parallel stream map the articles to similarities
-            List<Double> preProcessed = articles.parallelStream()
+            preProcessed.addAll(articles.parallelStream()
                     .map((Document article) -> {
                         String articleText = article.get("text", Document.class)
                                 .getString(documentLanguage);
@@ -233,7 +240,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
                         progressBar.step();
                         return similarity;
                     })
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList()));
 
             progressBar.stop();
 
