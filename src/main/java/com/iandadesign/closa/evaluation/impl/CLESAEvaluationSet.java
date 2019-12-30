@@ -215,8 +215,8 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
             FindIterable<Document> queryResult = articleCollection.find(query)
                     .noCursorTimeout(true)
                     .sort(new Document("title", 1))
-                    .limit(wikipediaArticleLimit)
-                    .skip(existingWikipediaArticleCount);
+                    .skip(existingWikipediaArticleCount)
+                    .limit(wikipediaArticleLimit - existingWikipediaArticleCount);
 
             if (!queryResult.iterator().hasNext()) {
                 // throw new IllegalStateException("No common articles");
