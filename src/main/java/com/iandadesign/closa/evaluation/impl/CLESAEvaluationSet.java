@@ -198,6 +198,8 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
                 } else if (lines.size() < wikipediaArticleLimit) {
                     preProcessed = lines.stream().map(Double::parseDouble).collect(Collectors.toList());
                     existingWikipediaArticleCount = lines.size();
+                } else {
+                    return lines.stream().limit(wikipediaArticleLimit).map(Double::parseDouble).collect(Collectors.toList());
                 }
             } catch (IOException e) {
                 e.printStackTrace();
