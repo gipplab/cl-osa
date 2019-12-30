@@ -228,7 +228,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
                 articles.add(article);
             }
 
-            ProgressBar progressBar = new ProgressBar("Preprocessing", wikipediaArticleLimit, ProgressBarStyle.ASCII);
+            ProgressBar progressBar = new ProgressBar("Preprocessing", wikipediaArticleLimit - existingWikipediaArticleCount, ProgressBarStyle.ASCII);
             progressBar.start();
 
             // parallel stream map the articles to similarities
