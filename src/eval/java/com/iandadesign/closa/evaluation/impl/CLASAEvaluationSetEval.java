@@ -62,7 +62,7 @@ class CLASAEvaluationSetEval {
 
 
     @Test
-    void evalCLASAJrcAcquis() {
+    void evalCLASAJrcAcquisDocuments() {
         try {
             CLASAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLASA = new CLASAEvaluationSet(
                     new File(pathPrefix + "/jrc/en"), "en",
@@ -76,11 +76,39 @@ class CLASAEvaluationSetEval {
     }
 
     @Test
-    void evalCLASAEuroparl() {
+    void evalCLASAJrcAcquisSentences() {
+        try {
+            CLASAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLASA = new CLASAEvaluationSet(
+                    new File(pathPrefix + "/sentences/jrc/en"), "en",
+                    new File(pathPrefix + "/sentences/jrc/fr"), "fr",
+                    2000
+            );
+            englishFrenchJrcAcquisEvaluationSetCLASA.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void evalCLASAEuroparlDocuments() {
         try {
             CLASAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLASA = new CLASAEvaluationSet(
                     new File(pathPrefix + "/europarl/en"), "en",
                     new File(pathPrefix + "/europarl/fr"), "fr",
+                    2000
+            );
+            englishFrenchJrcAcquisEvaluationSetCLASA.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void evalCLASAEuroparlSentences() {
+        try {
+            CLASAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLASA = new CLASAEvaluationSet(
+                    new File(pathPrefix + "/sentences/europarl/en"), "en",
+                    new File(pathPrefix + "/sentences/europarl/fr"), "fr",
                     2000
             );
             englishFrenchJrcAcquisEvaluationSetCLASA.printEvaluation();
