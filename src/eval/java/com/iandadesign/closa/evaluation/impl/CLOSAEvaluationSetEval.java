@@ -57,7 +57,6 @@ class CLOSAEvaluationSetEval {
 
     @Test
     void evalCLOSAPan11Sentences() {
-
         try {
             CLOSAEvaluationSet englishSpanishPan11EvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(pathPrefix + "/sentences/pan11/en"), "en",

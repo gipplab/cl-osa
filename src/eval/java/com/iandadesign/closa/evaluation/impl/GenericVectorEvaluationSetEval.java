@@ -228,8 +228,23 @@ class GenericVectorEvaluationSetEval {
     void evalVectorsJrcParagraphs() {
         try {
             GenericVectorEvaluationSet evaluationSet = new GenericVectorEvaluationSet(
-                    new File(pathPrefix + "/vectors_par/en/useml/jrc"), "en",
-                    new File(pathPrefix + "/vectors_par/fr/useml/jrc"), "fr",
+                    new File(pathPrefix + "/vectors_par/en/conceptnet/jrc"), "en",
+                    new File(pathPrefix + "/vectors_par/fr/conceptnet/jrc"), "fr",
+                    2000
+            );
+
+            evaluationSet.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void evalVectorsEuroparlParagraphs() {
+        try {
+            GenericVectorEvaluationSet evaluationSet = new GenericVectorEvaluationSet(
+                    new File(pathPrefix + "/vectors_par/en/kpark/europarl"), "en",
+                    new File(pathPrefix + "/vectors_par/fr/kpark/europarl"), "fr",
                     2000
             );
 
