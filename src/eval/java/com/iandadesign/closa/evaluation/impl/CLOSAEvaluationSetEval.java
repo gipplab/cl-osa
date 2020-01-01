@@ -13,42 +13,6 @@ class CLOSAEvaluationSetEval {
     
     String pathPrefix = "/data/test";
 
-    /**
-     * Tests CL-OSA with BBC English-Japanese, core documents only.
-     * <p>
-     * Granularity: full documents.
-     */
-    @Test
-    void evalCLOSAEnglishJapaneseCosineSimilarity() {
-        /*
-            Cross-language analysis. With cosine similarity (graph-based analysis true).
-
-            True positives: 90
-            Relevant elements: 94
-            Irrelevant elements: 0
-            Collection size: 94
-            Selected elements: 97
-            False positives: 4
-            False negatives: 4
-
-
-            Precision: 0.92783505
-            Recall: 0.9574468
-            F-Measure: 0.942408388550284
-         */
-        try {
-            CLOSAEvaluationSet englishJapaneseBBCEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File("src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/en"), "en",
-                    new File("src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/ja"), "ja"
-            );
-
-            englishJapaneseBBCEvaluationSetCLOSA.setGraphBasedAnalysis(true);
-            englishJapaneseBBCEvaluationSetCLOSA.printEvaluation();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Test
     void evalCLOSAAspec() {
         CLOSAEvaluationSet englishJapaneseASPECEvaluationSetCLOSA = new CLOSAEvaluationSet(
@@ -73,60 +37,9 @@ class CLOSAEvaluationSetEval {
         englishJapaneseASPECEvaluationSetCLOSA.printEvaluation();
     }
 
-    /**
-     * Tests CL-OSA with ECCE, core documents only.
-     * <p>
-     * Granularity: full documents.
-     */
-    @Test
-    void evalCLOSAEnglishChineseCosineSimilarity() {
-        /*
-            Cross-language analysis. With cosine similarity.
-
-            True positives: 505
-            Relevant elements: 509
-            Irrelevant elements: 0
-            Collection size: 509
-            Selected elements: 512
-            False positives: 4
-            False negatives: 4
-
-            Precision: 0.9863281
-            Recall: 0.9921414
-            F-Measure: 0.9892262309534853
-        */
-
-        CLOSAEvaluationSet englishChineseECCEEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                new File(pathPrefix  + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/en"),
-                "en",
-                new File(pathPrefix + "/closa/src/eval/resources/com/iandadesign/closa/evaluation/ECCE/zh"),
-                "zh",
-                50
-        );
-        englishChineseECCEEvaluationSetCLOSA.setGraphBasedAnalysis(true);
-        englishChineseECCEEvaluationSetCLOSA.printEvaluation();
-
-    }
 
     @Test
     void evalCLOSAPan11Documents() {
-        /*
-            Ranks 1 to 50
-
-            Precision: [95.41096, 48.647263, 32.591324, 19.643835, 9.866438, 4.950342, 1.9869862]
-            Recall: [95.41096, 97.294525, 97.77397, 98.21918, 98.66438, 99.00685, 99.34931]
-            F-Measure: [95.41096, 64.863014, 48.88699, 32.739727, 17.938978, 9.429224, 3.8960516]
-
-            Mean reciprocal rank: 96.71354945366922
-
-
-            Aligned document similarities
-
-            {30.0=1895, 40.0=315, 20.0=568, 10.0=117, 0.0=14, 50.0=11}
-
-            {30.0=64.89726, 40.0=10.787671, 20.0=19.452055, 10.0=4.0068493, 0.0=0.47945204, 50.0=0.37671232}
-         */
-
         try {
             CLOSAEvaluationSet englishSpanishPan11EvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(pathPrefix + "/pan11/en"), "en",
@@ -144,31 +57,14 @@ class CLOSAEvaluationSetEval {
 
     @Test
     void evalCLOSAPan11Sentences() {
-        /*
-            Ranks 1 to 50
-
-            Precision: [93.987976, 47.895794, 32.06413, 19.318638, 9.699399, 4.8597193, 1.9519038]
-            Recall: [93.8, 95.6, 96.0, 96.4, 96.8, 97.0, 97.399994]
-            F-Measure: [93.89389, 63.818424, 48.0721, 32.186977, 17.63206, 9.255725, 3.8271117]
-
-            Mean reciprocal rank: 95.00687178457385
-
-
-            Aligned document similarities
-
-            {30.0=287, 10.0=30, 20.0=111, 40.0=54, 0.0=12, 50.0=4, 70.0=1}
-
-            {30.0=57.4, 10.0=6.0, 20.0=22.2, 40.0=10.8, 0.0=2.4, 50.0=0.8, 70.0=0.2}
-         */
 
         try {
             CLOSAEvaluationSet englishSpanishPan11EvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/en"), "en",
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es",
-                    50
+                    new File(pathPrefix + "/sentences/pan11/en"), "en",
+                    new File(pathPrefix + "/sentences/pan11/es"), "es",
+                    2000
             );
             englishSpanishPan11EvaluationSetCLOSA.setGraphBasedAnalysis(true);
-
             englishSpanishPan11EvaluationSetCLOSA.printEvaluation();
         } catch (Exception e) {
             e.printStackTrace();
@@ -178,25 +74,6 @@ class CLOSAEvaluationSetEval {
 
     @Test
     void evalCLOSAJrcAcquisDocuments() {
-        /*
-            Ranks 1 to 50
-
-            Precision: [98.4, 49.399998, 33.0, 19.92, 10.0, 5.0, 2.0]
-            Recall: [98.4, 98.799995, 99.0, 99.6, 100.0, 100.0, 100.0]
-            F-Measure: [98.4, 65.86666, 49.499996, 33.2, 18.181818, 9.52381, 3.9215689]
-
-            Mean reciprocal rank: 98.86333333333333
-
-
-            Aligned document similarities
-
-            {40.0=191, 30.0=254, 20.0=33, 60.0=1, 50.0=20, 70.0=1}
-
-            {40.0=38.2, 30.0=50.8, 20.0=6.6, 60.0=0.2, 50.0=4.0, 70.0=0.2}
-
-
-
-         */
         try {
             CLOSAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(pathPrefix + "/jrc/en"), "en",
@@ -210,24 +87,24 @@ class CLOSAEvaluationSetEval {
         }
     }
 
+    @Test
+    void evalCLOSAJrcAcquisSentences() {
+        try {
+            CLOSAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLOSA = new CLOSAEvaluationSet(
+                    new File(pathPrefix + "/sentences/jrc/en"), "en",
+                    new File(pathPrefix + "/sentences/jrc/fr"), "fr",
+                    2000
+            );
+            englishFrenchJrcAcquisEvaluationSetCLOSA.setGraphBasedAnalysis(true);
+            englishFrenchJrcAcquisEvaluationSetCLOSA.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Test
     void evalCLOSAEuroparlDocuments() {
-        /*
-            True positives: 4317
-            Relevant elements: 9428
-            Irrelevant elements: 0
-            Collection size: 9428
-            Selected elements: 8937
-            False positives: 4620
-            False negatives: 5111
-
-            Ranks 1 to 1
-
-            Precision: [0.483048]
-            Recall: [0.45789137]
-            F-Measure: [0.4701334]
-         */
         try {
             CLOSAEvaluationSet englishFrenchEuroparlEvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(pathPrefix + "/europarl/en"), "en",
@@ -241,32 +118,16 @@ class CLOSAEvaluationSetEval {
         }
     }
 
-
     @Test
-    public void evalCLOSAConferencePapersDocuments() {
-        /*
-            True positives: 459
-            Relevant elements: 616
-            Irrelevant elements: 0
-            Collection size: 616
-            Selected elements: 616
-            False positives: 157
-            False negatives: 157
-
-            Ranks 1 to 1
-
-            Precision: [0.7451299]
-            Recall: [0.7451299]
-            F-Measure: [0.7451298]
-
-            this result is bad because the document pairs of this corpus are not aligned correctly
-         */
+    void evalCLOSAEuroparlSentences() {
         try {
-            CLOSAEvaluationSet englishFrenchConferencePapersEvaluationSetCLOSA = new CLOSAEvaluationSet(
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Conference_papers/en"), "en",
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/documents/Conference_papers/fr"), "fr"
+            CLOSAEvaluationSet englishFrenchEuroparlEvaluationSetCLOSA = new CLOSAEvaluationSet(
+                    new File(pathPrefix + "/sentences/europarl/en"), "en",
+                    new File(pathPrefix + "/sentences/europarl/fr"), "fr",
+                    2000
             );
-            englishFrenchConferencePapersEvaluationSetCLOSA.printEvaluation();
+            englishFrenchEuroparlEvaluationSetCLOSA.setGraphBasedAnalysis(true);
+            englishFrenchEuroparlEvaluationSetCLOSA.printEvaluation();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -316,6 +177,7 @@ class CLOSAEvaluationSetEval {
             idEnglishDocumentMap.forEach((key, value) -> {
                 try {
                     File file = new File(pathPrefix + "/ASPECx/en/" + key + ".txt");
+                    //noinspection UnstableApiUsage
                     Files.createParentDirs(file);
                     FileUtils.writeLines(file, value.values());
                 } catch (IOException e) {
@@ -326,6 +188,7 @@ class CLOSAEvaluationSetEval {
             idJapaneseDocumentMap.forEach((key, value) -> {
                 try {
                     File file = new File(pathPrefix + "/ASPECx/ja/" + key + ".txt");
+                    //noinspection UnstableApiUsage
                     Files.createParentDirs(file);
                     FileUtils.writeLines(file, value.values());
                 } catch (IOException e) {
@@ -377,6 +240,7 @@ class CLOSAEvaluationSetEval {
             idChineseDocumentMap.forEach((key, value) -> {
                 try {
                     File file = new File(pathPrefix + "/ASPECxc/zh/" + key + ".txt");
+                    //noinspection UnstableApiUsage
                     Files.createParentDirs(file);
                     FileUtils.writeLines(file, value.values());
                 } catch (IOException e) {
@@ -387,6 +251,7 @@ class CLOSAEvaluationSetEval {
             idJapaneseDocumentMap.forEach((key, value) -> {
                 try {
                     File file = new File(pathPrefix + "/ASPECxc/ja/" + key + ".txt");
+                    //noinspection UnstableApiUsage
                     Files.createParentDirs(file);
                     FileUtils.writeLines(file, value.values());
                 } catch (IOException e) {
