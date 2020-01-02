@@ -152,24 +152,6 @@ class CLESAEvaluationSetEval {
 
     @Test
     void evalCLESAJrcAcquisDocuments() {
-        /*
-
-            Ranks 1 to 50
-
-            Precision: [3.539823, 4.8672566, 4.424779, 3.3628318, 2.6548672, 2.1238937, 1.5221239]
-            Recall: [3.539823, 9.734513, 13.274336, 16.81416, 26.548672, 42.477875, 76.10619]
-            F-Measure: [3.539823, 6.4896765, 6.637168, 5.6047196, 4.827031, 4.045512, 2.9845567]
-
-            Mean reciprocal rank: 12.339210435032864
-
-
-            Aligned document similarities
-
-            {60.0=53, 40.0=3, 80.0=5, 50.0=10, 70.0=42}
-
-            {60.0=46.902657, 40.0=2.6548672, 80.0=4.424779, 50.0=8.849558, 70.0=37.16814}
-
-         */
         try {
             CLESAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(pathPrefix + "/jrc/en"), "en",
@@ -182,29 +164,40 @@ class CLESAEvaluationSetEval {
         }
     }
 
+    @Test
+    void evalCLESAJrcAcquisSentences() {
+        try {
+            CLESAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLESA = new CLESAEvaluationSet(
+                    new File(pathPrefix + "/sentences/jrc/en"), "en",
+                    new File(pathPrefix + "/sentences/jrc/fr"), "fr",
+                    2000
+            );
+            englishFrenchJrcAcquisEvaluationSetCLESA.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     void evalCLESAEuroparlDocuments() {
-        /*
-            Ranks 1 to 50
-
-            Precision: [13.432837, 9.701492, 6.9651737, 5.671642, 4.1791043, 2.7611942, 1.7014927]
-            Recall: [13.432837, 19.402985, 20.895523, 28.35821, 41.791046, 55.22388, 85.07463]
-            F-Measure: [13.432837, 12.935324, 10.447762, 9.452736, 7.598371, 5.2594175, 3.33626]
-
-            Mean reciprocal rank: 22.380372176260945
-
-
-            Aligned document similarities
-
-            {40.0=16, 60.0=4, 0.0=3, 20.0=7, 30.0=11, 10.0=2, 80.0=2, 50.0=6, 70.0=16}
-
-            {40.0=23.880596, 60.0=5.970149, 0.0=4.477612, 20.0=10.447762, 30.0=16.41791, 10.0=2.9850745, 80.0=2.9850745, 50.0=8.955224, 70.0=23.880596}
-         */
         try {
             CLESAEvaluationSet englishFrenchEuroparlEvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(pathPrefix + "/europarl/en"), "en",
                     new File(pathPrefix + "/europarl/fr"), "fr",
+                    2000
+            );
+            englishFrenchEuroparlEvaluationSetCLESA.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void evalCLESAEuroparlSentences() {
+        try {
+            CLESAEvaluationSet englishFrenchEuroparlEvaluationSetCLESA = new CLESAEvaluationSet(
+                    new File(pathPrefix + "/sentences/europarl/en"), "en",
+                    new File(pathPrefix + "/sentences/europarl/fr"), "fr",
                     2000
             );
             englishFrenchEuroparlEvaluationSetCLESA.printEvaluation();
