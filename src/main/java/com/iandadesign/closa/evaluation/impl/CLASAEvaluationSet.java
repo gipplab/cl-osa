@@ -225,7 +225,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                 .parallelStream()
                 //.filter(suspiciousEntry -> suspiciousIdLanguageMap.containsKey(suspiciousEntry.getKey()))
                 .collect(Collectors.toMap(Map.Entry::getKey,
-                        suspiciousEntry -> {
+                        (Map.Entry<String, List<String>> suspiciousEntry) -> {
                             Path probabilitiesFilePath = Paths.get("/data/preprocessed-clasa/" + suspiciousEntry.getKey());
                             File probabilitiesFile = new File(probabilitiesFilePath.toUri());
 

@@ -125,7 +125,7 @@ class CLESAEvaluationSetEval {
             CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(pathPrefix + "/pan11/en"), "en",
                     new File(pathPrefix + "/pan11/es"), "es",
-                    2000
+                    1000
             );
 
             englishSpanishPan11EvaluationSetCLESA.printEvaluation();
