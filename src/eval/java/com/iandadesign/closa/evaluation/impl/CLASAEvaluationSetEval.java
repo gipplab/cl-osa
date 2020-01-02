@@ -67,7 +67,7 @@ class CLASAEvaluationSetEval {
             CLASAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLASA = new CLASAEvaluationSet(
                     new File(pathPrefix + "/jrc/en"), "en",
                     new File(pathPrefix + "/jrc/fr"), "fr",
-                    2000
+                    1989
             );
             englishFrenchJrcAcquisEvaluationSetCLASA.printEvaluation();
         } catch (Exception e) {
