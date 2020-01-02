@@ -137,27 +137,11 @@ class CLESAEvaluationSetEval {
 
     @Test
     void evalCLESAPan11Sentences() {
-        /*
-            Ranks 1 to 50
-
-            Precision: [1.0, 0.9, 0.6666667, 0.6, 0.56, 0.49, 0.37199998]
-            Recall: [1.0, 1.8, 2.0, 3.0, 5.6000004, 9.8, 18.6]
-            F-Measure: [1.0, 1.1999999, 1.0, 1.0000001, 1.0181818, 0.9333333, 0.7294117]
-
-            Mean reciprocal rank: 3.062407209149037
-
-
-            Aligned document similarities
-
-            {80.0=208, 40.0=21, 60.0=60, 30.0=11, 20.0=4, 10.0=1, 0.0=1, 90.0=73, 50.0=44, 70.0=77}
-
-            {80.0=41.6, 40.0=4.2, 60.0=12.0, 30.0=2.2, 20.0=0.8, 10.0=0.2, 0.0=0.2, 90.0=14.6, 50.0=8.8, 70.0=15.4}
-
-         */
         try {
             CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/en"), "en",
-                    new File(pathPrefix + "/Cross-Language-Dataset-master/dataset/sentences/PAN11/es"), "es"
+                    new File(pathPrefix + "/sentences/pan11/en"), "en",
+                    new File(pathPrefix + "/sentences/pan11/es"), "es",
+                    2000
             );
 
             englishSpanishPan11EvaluationSetCLESA.printEvaluation();
