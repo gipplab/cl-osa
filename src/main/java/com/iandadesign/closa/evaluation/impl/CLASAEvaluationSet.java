@@ -239,7 +239,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                             try {
                                 if (Files.exists(probabilitiesFilePath) &&
-                                        FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8).size() >= candidateIdTokensMap.size()) {
+                                        FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8).size() == candidateIdTokensMap.size()) {
 
                                     List<String> lines = FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8)
                                             .stream()
