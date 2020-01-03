@@ -17,39 +17,6 @@ class CLESAEvaluationSetEval {
 
     /////////////////////////////////////////////////// CL-ESA //////////////////////////////////////////////////
 
-
-    @Test
-    void evalCLESAEnglishJapanese() {
-        /*
-           
-            Concept space dimensionality 10000.
-            Ranks 1 to 50
-
-            Precision: [20.0, 15.000001, 11.851851, 8.888889, 5.555556, 3.1111112, 1.6222222]
-            Recall: [20.0, 30.000002, 35.555557, 44.444447, 55.555557, 62.222225, 81.11111]
-            F-Measure: [20.000002, 20.0, 17.777779, 14.814815, 10.10101, 5.9259257, 3.1808279]
-
-            Mean reciprocal rank: 31.698998916244182
-
-
-            Aligned document similarities
-
-            {80.0=28, 0.0=1, 60.0=10, 50.0=2, 70.0=49}
-
-            {80.0=31.11111, 0.0=1.1111112, 60.0=11.111111, 50.0=2.2222223, 70.0=54.444443}
-         */
-        try {
-            EvaluationSet englishJapaneseBBCEvaluationSetCLESA = new CLESAEvaluationSet(
-                    new File("src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/en"), "en",
-                    new File("src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/ja"), "ja"
-            );
-
-            englishJapaneseBBCEvaluationSetCLESA.printEvaluation();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Test
     void evalCLESAAspec() {
         CLESAEvaluationSet englishJapaneseASPECEvaluationSetCLOSA = new CLESAEvaluationSet(
@@ -105,22 +72,6 @@ class CLESAEvaluationSetEval {
 
     @Test
     void evalCLESAPan11Documents() {
-        /*
-            Ranks 1 to 50
-
-            Precision: [1.4000001, 0.9, 0.6666667, 0.48000002, 0.52, 0.37, 0.352]
-            Recall: [1.4000001, 1.8, 2.0, 2.4, 5.2000003, 7.4, 17.6]
-            F-Measure: [1.4000001, 1.1999999, 1.0, 0.8, 0.94545454, 0.7047618, 0.69019616]
-
-            Mean reciprocal rank: 3.071126406984371
-
-
-            Aligned document similarities
-
-            {80.0=264, 60.0=54, 30.0=4, 40.0=5, 90.0=76, 50.0=23, 70.0=74}
-
-            {80.0=52.8, 60.0=10.8, 30.0=0.8, 40.0=1.0, 90.0=15.2, 50.0=4.6, 70.0=14.8}
-         */
         try {
             CLESAEvaluationSet englishSpanishPan11EvaluationSetCLESA = new CLESAEvaluationSet(
                     new File(pathPrefix + "/pan11/en"), "en",
