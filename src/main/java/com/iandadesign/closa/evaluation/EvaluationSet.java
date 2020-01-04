@@ -567,10 +567,10 @@ public abstract class EvaluationSet<T> {
                 writer.write(token.toString());
                 writer.write("\n");
             }
+            System.out.println("Written to " + newFullPath.toString());
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            System.out.println("Written to " + newFullPath.toString());
             try {
                 assert writer != null;
                 writer.close();
