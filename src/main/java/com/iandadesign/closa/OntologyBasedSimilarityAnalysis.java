@@ -269,16 +269,6 @@ public class OntologyBasedSimilarityAnalysis {
 
                 double similarity = WikidataSimilarityUtil.cosineSimilarity(suspiciousEntry.getValue(), candidateEntry.getValue());
 
-                if (similarity > 0.35) {
-                    System.out.println();
-                    System.out.println(suspiciousEntry.getKey());
-                    System.out.println(candidateEntry.getKey());
-                    System.out.println(suspiciousEntry.getValue());
-                    System.out.println(candidateEntry.getValue());
-
-                    System.out.println(similarity);
-                }
-
                 candidateSimilarities.put(candidateEntry.getKey(), similarity);
                 progressBar.step();
             }
@@ -293,7 +283,7 @@ public class OntologyBasedSimilarityAnalysis {
 
 
     /**
-     * Ontology-enhanced cosine similarity analysis.
+     * Property-enhanced cosine similarity analysis.
      *
      * @param suspiciousIdTokensMap map: suspicious id to tokens list
      * @param candidateIdTokensMap  map: candidate id to tokens list
