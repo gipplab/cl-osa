@@ -452,19 +452,20 @@ public abstract class EvaluationSet<T> {
                 int candidateCount = suspiciousIdCandidateScoresMap.get(suspiciousId).size();
 
                 if (candidateCount > 0) {
-                    selectedElements += suspiciousIdCandidateScoresMap
+                    selectedElements += (int) suspiciousIdCandidateScoresMap
                             .get(suspiciousId)
                             .entrySet()
                             .stream()
+                            .filter(e -> !e.getValue().isNaN())
                             .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                             .limit(currentRank)
-                            .collect(Collectors.toList())
-                            .size();
+                            .count();
 
                     if (suspiciousIdCandidateScoresMap
                             .get(suspiciousId)
                             .entrySet()
                             .stream()
+                            .filter(e -> !e.getValue().isNaN())
                             .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                             .limit(currentRank)
                             .map(Map.Entry::getKey)
