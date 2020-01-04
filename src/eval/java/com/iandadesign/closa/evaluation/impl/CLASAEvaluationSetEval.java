@@ -93,8 +93,8 @@ class CLASAEvaluationSetEval {
     void evalCLASAEuroparlDocuments() {
         try {
             CLASAEvaluationSet englishFrenchJrcAcquisEvaluationSetCLASA = new CLASAEvaluationSet(
-                    new File(pathPrefix + "/europarl/en"), "en",
-                    new File(pathPrefix + "/europarl/fr"), "fr",
+                    new File(pathPrefix + "/sentences/sentence_split_whole_paragraphs/europarl/en"), "en",
+                    new File(pathPrefix + "/sentences/sentence_split_whole_paragraphs/europarl/fr"), "fr",
                     2000
             );
             englishFrenchJrcAcquisEvaluationSetCLASA.printEvaluation();
