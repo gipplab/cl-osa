@@ -274,7 +274,7 @@ public class OntologyBasedSimilarityAnalysis {
             }
 
             suspiciousIdDetectedCandidateIdsMap.put(suspiciousEntry.getKey(), candidateSimilarities);
-            System.out.println("suspiciousIdDetectedCandidateIdsMap.put");
+            /* System.out.println("suspiciousIdDetectedCandidateIdsMap.put");
             System.out.println(suspiciousEntry.getKey() + "=" + candidateSimilarities
                     .entrySet()
                     .stream()
@@ -282,6 +282,7 @@ public class OntologyBasedSimilarityAnalysis {
                     .limit(1)
                     .collect(Collectors.toList())
                     .get(0));
+             */
         }
 
         progressBar.stop();
