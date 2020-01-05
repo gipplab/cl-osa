@@ -245,6 +245,10 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                                     Map<String, Double> candidateProbabilityMap = lines.stream()
                                             .filter(line -> line.contains(";"))
+                                            .filter(line -> {
+                                                String candidateId = line.split(";")[0];
+                                                return candidateIdTokensMap.containsKey(candidateId);
+                                            })
                                             .collect(Collectors.toMap(line -> line.split(";")[0],
                                                     line -> {
                                                         String candidateId = line.split(";")[0];
