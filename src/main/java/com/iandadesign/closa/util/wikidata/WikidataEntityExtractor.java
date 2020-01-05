@@ -295,6 +295,7 @@ public class WikidataEntityExtractor {
                     return currentTokenEntitiesMap;
                 })
                 .flatMap(m -> m.entrySet().stream())
+                .distinct()
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
         progressBar.stop();
