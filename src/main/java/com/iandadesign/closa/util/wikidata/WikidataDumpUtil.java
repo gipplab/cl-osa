@@ -373,7 +373,7 @@ public class WikidataDumpUtil {
         }
 
         // 2 consider the sendQuery result itself
-        entities = results.stream()
+        entities = results.parallelStream()
                 .map(document -> {
                     String jsonId = document.get("id").toString();
                     String jsonLabel = document.get("labels", Document.class).containsKey(languageCode)
