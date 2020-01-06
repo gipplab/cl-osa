@@ -106,6 +106,23 @@ class CLOSAEvaluationSetEval {
     void evalCLOSAEuroparlDocuments() {
         try {
             CLOSAEvaluationSet englishFrenchEuroparlEvaluationSetCLOSA = new CLOSAEvaluationSet(
+                    new File(pathPrefix + "/europarl/en"), "en",
+                    new File(pathPrefix + "/europarl/fr"), "fr",
+                    2000
+            );
+            englishFrenchEuroparlEvaluationSetCLOSA.setGraphBasedAnalysis(true);
+            englishFrenchEuroparlEvaluationSetCLOSA.printEvaluation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @Test
+    void evalCLOSAEuroparlDocumentsSmaller() {
+        try {
+            CLOSAEvaluationSet englishFrenchEuroparlEvaluationSetCLOSA = new CLOSAEvaluationSet(
                     new File(pathPrefix + "/sentences/sentence_split_whole_paragraphs/europarl/en"), "en",
                     new File(pathPrefix + "/sentences/sentence_split_whole_paragraphs/europarl/fr"), "fr",
                     2000
