@@ -14,6 +14,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -295,12 +298,17 @@ public class WikidataEntityExtractor {
                     return currentTokenEntitiesMap;
                 })
                 .flatMap(m -> m.entrySet().stream())
-                .distinct()
+                .filter(distinctByKey(Map.Entry::getKey))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
         progressBar.stop();
 
         return tokenEntitiesMap;
+    }
+
+    public static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+        Set<Object> seen = ConcurrentHashMap.newKeySet();
+        return t -> seen.add(keyExtractor.apply(t));
     }
 
     /**
