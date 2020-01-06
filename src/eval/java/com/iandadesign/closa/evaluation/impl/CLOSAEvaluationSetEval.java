@@ -33,7 +33,7 @@ class CLOSAEvaluationSetEval {
                 2000
         );
 
-        englishJapaneseASPECEvaluationSetCLOSA.setGraphBasedAnalysis(true);
+        englishJapaneseASPECEvaluationSetCLOSA.setGraphBasedAnalysis(false);
         englishJapaneseASPECEvaluationSetCLOSA.printEvaluation();
     }
 
