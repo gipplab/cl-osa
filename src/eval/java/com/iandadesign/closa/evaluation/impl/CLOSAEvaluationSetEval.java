@@ -110,7 +110,7 @@ class CLOSAEvaluationSetEval {
                     new File(pathPrefix + "/europarl/fr"), "fr",
                     2000
             );
-            englishFrenchEuroparlEvaluationSetCLOSA.setGraphBasedAnalysis(true);
+            englishFrenchEuroparlEvaluationSetCLOSA.setGraphBasedAnalysis(false);
             englishFrenchEuroparlEvaluationSetCLOSA.printEvaluation();
         } catch (Exception e) {
             e.printStackTrace();
