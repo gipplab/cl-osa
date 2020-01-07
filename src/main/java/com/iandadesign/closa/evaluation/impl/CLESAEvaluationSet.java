@@ -61,7 +61,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
     // "If high retrieval speed or a high multilinguality is desired, documents should be represented as 1000- dimensional concept vectors.
     // At a lower dimension the retrieval quality deteriorates significantly.
     // A reasonable trade-off between retrieval quality and runtime is achieved for a concept space dimensionality between 1 000 and 10 000."
-    private static final int wikipediaArticleLimit = 50000;
+    private static final int wikipediaArticleLimit = 20000;
 
     static {
         MongoDatabase database = WikidataDumpUtil.getMongoClient().getDatabase(databaseName);
