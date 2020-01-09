@@ -538,7 +538,7 @@ public abstract class EvaluationSet<T> {
             // Document tokens have to be non-null
         }
 
-        Path newFullPath = Paths.get(originalDocumentPath.replace("/data/", "/data/preprocessed/" + this.getClass().getName() + "/"));
+        Path newFullPath = Paths.get(originalDocumentPath.replace("data/", "data/preprocessed/" + this.getClass().getName() + "/"));
 
         if (newFullPath.toString().equals(originalDocumentPath)) {
             throw new IllegalStateException("Don't overwrite original!");

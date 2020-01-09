@@ -185,8 +185,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
         Path newFullPath =
                 documentPath.contains(pathPrefix)
-                        ? Paths.get(documentPath.replace(pathPrefix,
-                        pathPrefix + "/preprocessed/" + this.getClass().getName() + "/"))
+                        ? Paths.get(documentPath.replace(pathPrefix, pathPrefix + "/preprocessed/" + this.getClass().getName() + "/"))
                         : Paths.get(documentPath.replace("src", "src/preprocessed/" + this.getClass().getName() + "/"));
 
         if (new File(newFullPath.toUri()).exists()) {
