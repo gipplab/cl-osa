@@ -8,7 +8,7 @@ import java.io.IOException;
 
 class CLESAEvaluationSetEval {
 
-    String pathPrefix = "/data/test";
+    String pathPrefix = "/home/marquart/eval_data/test";
 
     @Test
     void buildDatabase() {
