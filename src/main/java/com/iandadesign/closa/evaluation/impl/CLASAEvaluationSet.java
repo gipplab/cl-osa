@@ -226,7 +226,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                 //.filter(suspiciousEntry -> suspiciousIdLanguageMap.containsKey(suspiciousEntry.getKey()))
                 .collect(Collectors.toMap(Map.Entry::getKey,
                         (Map.Entry<String, List<String>> suspiciousEntry) -> {
-                            Path probabilitiesFilePath = Paths.get("/data/preprocessed-clasa/" + suspiciousEntry.getKey());
+                            Path probabilitiesFilePath = Paths.get("/home/marquart/eval_data/preprocessed-clasa/" + suspiciousEntry.getKey());
                             File probabilitiesFile = new File(probabilitiesFilePath.toUri());
 
                             String suspiciousLanguage = suspiciousIdLanguageMap.get(suspiciousEntry.getKey());
