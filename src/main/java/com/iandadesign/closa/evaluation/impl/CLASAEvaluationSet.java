@@ -247,11 +247,13 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                             .filter(line -> line.contains(";"))
                                             .filter(line -> {
                                                 String candidateId = line.split(";")[0];
+                                                candidateId = candidateId.replace("/data/test/", "/home/marquart/eval_data/test/");
                                                 return candidateIdTokensMap.containsKey(candidateId);
                                             })
                                             .collect(Collectors.toMap(line -> line.split(";")[0],
                                                     line -> {
                                                         String candidateId = line.split(";")[0];
+                                                        candidateId = candidateId.replace("/data/test/", "/home/marquart/eval_data/test/");
                                                         double candidateSize = candidateIdTokensMap.get(candidateId).size();
                                                         double lengthModel =
                                                                 Math.exp(-0.5
