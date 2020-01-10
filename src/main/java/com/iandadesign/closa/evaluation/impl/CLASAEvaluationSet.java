@@ -268,7 +268,17 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                                     return candidateProbabilityMap;
                                 } else {
-                                    probabilitiesFile.getParentFile().mkdirs();
+                                    return candidateIdTokensMap.entrySet()
+                                            .stream()
+                                            .collect(Collectors.toMap(Map.Entry::getKey,
+                                                    e -> {
+                                                        double candidateSize = candidateIdTokensMap.get(e.getKey()).size();
+                                                        double lengthModel =
+                                                                Math.exp(-0.5
+                                                                        * Math.pow((candidateSize / suspiciousSize - mean) / standardDeviation, 2.0));
+                                                        return lengthModel * 0.0;
+                                                    }));
+                                    // probabilitiesFile.getParentFile().mkdirs();
                                 }
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -279,18 +289,18 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                             for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 10)) {
                                 candidateIdProbabilityMap.putAll(
                                         getTranslationProbabilitiesByCandidate(
-                                            suspiciousEntry.getValue(),
-                                            subMap,
-                                            suspiciousLanguage,
-                                            candidateLanguage)
-                                        .entrySet()
-                                        .stream()
-                                        .collect(Collectors.toMap(Map.Entry::getKey,
-                                                candidateEntry -> {
-                                                    double candidateSize = candidateIdTokensMap.get(candidateEntry.getKey()).size();
-                                                    double lengthModel = Math.exp(-0.5 * Math.pow((candidateSize / suspiciousSize - mean) / standardDeviation, 2.0));
-                                                    return lengthModel * candidateEntry.getValue();
-                                                }))
+                                                suspiciousEntry.getValue(),
+                                                subMap,
+                                                suspiciousLanguage,
+                                                candidateLanguage)
+                                                .entrySet()
+                                                .stream()
+                                                .collect(Collectors.toMap(Map.Entry::getKey,
+                                                        candidateEntry -> {
+                                                            double candidateSize = candidateIdTokensMap.get(candidateEntry.getKey()).size();
+                                                            double lengthModel = Math.exp(-0.5 * Math.pow((candidateSize / suspiciousSize - mean) / standardDeviation, 2.0));
+                                                            return lengthModel * candidateEntry.getValue();
+                                                        }))
                                 );
                             }
 
