@@ -470,7 +470,7 @@ public abstract class EvaluationSet<T> {
                             .limit(currentRank)
                             .map(Map.Entry::getKey)
                             .collect(Collectors.toList())
-                            .contains(suspiciousIdCandidateIdMap.get(suspiciousId).replace("/data/test/", "/home/marquart/eval_data/test/"))) {
+                            .contains(suspiciousIdCandidateIdMap.get(suspiciousId))) {
                         truePositives += 1;
 
                     } else {
@@ -485,7 +485,7 @@ public abstract class EvaluationSet<T> {
                                     .map(Map.Entry::getKey)
                                     .collect(Collectors.toList())
                                     .get(0));
-                            System.out.println("Actual: " + suspiciousId);
+                            System.out.println("Actual: " + suspiciousIdCandidateIdMap.get(suspiciousId));
                         }
                         falsePositives += 1;
                     }
