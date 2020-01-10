@@ -76,8 +76,8 @@
                 <version>2.22.2</version>
                 <configuration>
                     <useSystemClassLoader>false</useSystemClassLoader>
-                    <argLine>-Xmx196608m</argLine>
-                    <argLine>-Xms196608m</argLine>
+                    <argLine>-Xmx262144m</argLine>
+                    <argLine>-Xms262144m</argLine>
                     <argLine>-Dfile.encoding=UTF-8</argLine>
                 </configuration>
             </plugin>
