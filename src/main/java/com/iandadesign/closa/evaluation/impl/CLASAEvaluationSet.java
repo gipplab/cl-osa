@@ -276,12 +276,14 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                             Map<String, Double> candidateIdProbabilityMap = new HashMap<>();
 
+                            /*
                             for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 10)) {
-                                candidateIdProbabilityMap.putAll(getTranslationProbabilitiesByCandidate(
-                                        suspiciousEntry.getValue(),
-                                        subMap,
-                                        suspiciousLanguage,
-                                        candidateLanguage)
+                                candidateIdProbabilityMap.putAll(
+                                        getTranslationProbabilitiesByCandidate(
+                                            suspiciousEntry.getValue(),
+                                            subMap,
+                                            suspiciousLanguage,
+                                            candidateLanguage)
                                         .entrySet()
                                         .stream()
                                         .collect(Collectors.toMap(Map.Entry::getKey,
@@ -289,8 +291,14 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                                     double candidateSize = candidateIdTokensMap.get(candidateEntry.getKey()).size();
                                                     double lengthModel = Math.exp(-0.5 * Math.pow((candidateSize / suspiciousSize - mean) / standardDeviation, 2.0));
                                                     return lengthModel * candidateEntry.getValue();
-                                                })));
-                            }
+                                                }))
+                                );
+                            }*/
+
+                            // TODO: reomove again
+                            candidateIdProbabilityMap = candidateIdTokensMap.entrySet()
+                                    .stream()
+                                    .collect(Collectors.toMap(Map.Entry::getKey, e -> 0.0));
 
                             progressBar.stepTo(current.incrementAndGet());
 
