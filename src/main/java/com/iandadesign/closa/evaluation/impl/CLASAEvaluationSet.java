@@ -276,7 +276,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                             Map<String, Double> candidateIdProbabilityMap = new HashMap<>();
 
-                            /*
                             for (Map<String, List<String>> subMap : getSubMaps(candidateIdTokensMap, 10)) {
                                 candidateIdProbabilityMap.putAll(
                                         getTranslationProbabilitiesByCandidate(
@@ -293,12 +292,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
                                                     return lengthModel * candidateEntry.getValue();
                                                 }))
                                 );
-                            }*/
-
-                            // TODO: reomove again
-                            candidateIdProbabilityMap = candidateIdTokensMap.entrySet()
-                                    .stream()
-                                    .collect(Collectors.toMap(Map.Entry::getKey, e -> 0.0));
+                            }
 
                             progressBar.stepTo(current.incrementAndGet());
 
