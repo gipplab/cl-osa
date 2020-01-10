@@ -6,7 +6,7 @@ import java.io.File;
 
 class CLASAEvaluationSetEval {
 
-    String pathPrefix = "/home/marquart/eval_data/test";
+    String pathPrefix = "/data/test";
 
     @Test
     void evalCLASAAspec() {
