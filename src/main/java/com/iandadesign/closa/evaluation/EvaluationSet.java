@@ -474,6 +474,16 @@ public abstract class EvaluationSet<T> {
                         truePositives += 1;
 
                     } else {
+                        System.out.println("False positive: " + suspiciousIdCandidateScoresMap
+                                .get(suspiciousId)
+                                .entrySet()
+                                .stream()
+                                .filter(e -> !e.getValue().isNaN())
+                                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                                .limit(currentRank)
+                                .map(Map.Entry::getKey)
+                                .collect(Collectors.toList())
+                                .get(0));
                         falsePositives += 1;
                     }
                 }
