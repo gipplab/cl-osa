@@ -237,9 +237,11 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                             int suspiciousSize = suspiciousEntry.getValue().size();
 
+                            System.out.println("suspiciousEntry = " + suspiciousEntry.getKey());
+
                             try {
                                 if (Files.exists(probabilitiesFilePath) &&
-                                        FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8).size() >= candidateIdTokensMap.size()) {
+                                        FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8).size() == candidateIdTokensMap.size()) {
 
                                     List<String> lines = FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8);
 
@@ -261,11 +263,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                                                         return lengthModel * Double.parseDouble(line.split(";")[1]);
                                                     }));
-
-                                    if (candidateProbabilityMap.size() != candidateIdTokensMap.size()) {
-                                        throw new IllegalStateException("candidateProbabilityMap.size() = " + candidateProbabilityMap.size() + ", "
-                                                + "candidateIdTokensMap.size() = " + candidateIdTokensMap.size());
-                                    }
 
                                     progressBar.stepTo(current.incrementAndGet());
 
