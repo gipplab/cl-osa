@@ -470,7 +470,7 @@ public abstract class EvaluationSet<T> {
                             .limit(currentRank)
                             .map(Map.Entry::getKey)
                             .collect(Collectors.toList())
-                            .contains(suspiciousIdCandidateIdMap.get(suspiciousId))) {
+                            .contains(suspiciousIdCandidateIdMap.get(suspiciousId).replace("/home/marquart/eval_data/test/", "/data/test/"))) {
                         truePositives += 1;
 
                     } else {
