@@ -237,8 +237,6 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                             int suspiciousSize = suspiciousEntry.getValue().size();
 
-                            System.out.println("suspiciousEntry = " + suspiciousEntry.getKey());
-
                             try {
                                 if (Files.exists(probabilitiesFilePath) &&
                                         FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8).size() == candidateIdTokensMap.size()) {

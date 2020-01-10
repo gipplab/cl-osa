@@ -470,23 +470,10 @@ public abstract class EvaluationSet<T> {
                             .limit(currentRank)
                             .map(Map.Entry::getKey)
                             .collect(Collectors.toList())
-                            .contains(suspiciousIdCandidateIdMap.get(suspiciousId).replace("/home/marquart/eval_data/test/", "/data/test/"))) {
+                            .contains(suspiciousIdCandidateIdMap.get(suspiciousId))) {
                         truePositives += 1;
 
                     } else {
-                        if (currentRank == 1) {
-                            System.out.println("False positive: " + suspiciousIdCandidateScoresMap
-                                    .get(suspiciousId)
-                                    .entrySet()
-                                    .stream()
-                                    .filter(e -> !e.getValue().isNaN())
-                                    .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-                                    .limit(currentRank)
-                                    .map(Map.Entry::getKey)
-                                    .collect(Collectors.toList())
-                                    .get(0));
-                            System.out.println("Actual: " + suspiciousIdCandidateIdMap.get(suspiciousId));
-                        }
                         falsePositives += 1;
                     }
                 }
