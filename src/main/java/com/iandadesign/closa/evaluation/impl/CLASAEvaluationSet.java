@@ -239,7 +239,7 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                             try {
                                 if (Files.exists(probabilitiesFilePath) &&
-                                        FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8).size() == candidateIdTokensMap.size()) {
+                                        FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8).size() >= candidateIdTokensMap.size()) {
 
                                     List<String> lines = FileUtils.readLines(probabilitiesFile, StandardCharsets.UTF_8);
 
@@ -261,6 +261,10 @@ public class CLASAEvaluationSet extends EvaluationSet<String> {
 
                                                         return lengthModel * Double.parseDouble(line.split(";")[1]);
                                                     }));
+
+                                    if (candidateProbabilityMap.size() != candidateIdTokensMap.size()) {
+                                        throw new IllegalStateException("Preprocessed size and file size is not equal");
+                                    }
 
                                     progressBar.stepTo(current.incrementAndGet());
 
