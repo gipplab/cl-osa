@@ -316,14 +316,14 @@ public abstract class EvaluationSet<T> {
         List<T> suspiciousTokens = preProcess(suspiciousFile.getPath(), suspiciousLanguage);
         saveDocumentTokensToFile(suspiciousFile.getPath(), suspiciousTokens);
 
-        List<T> candidateTokens = preProcess(candidateFile.getPath(), candidateLanguage);
-        saveDocumentTokensToFile(candidateFile.getPath(), candidateTokens);
+        // List<T> candidateTokens = preProcess(candidateFile.getPath(), candidateLanguage);
+        // saveDocumentTokensToFile(candidateFile.getPath(), candidateTokens);
 
         suspiciousIdLanguageMap.put(suspiciousFile.getPath(), suspiciousLanguage);
         candidateIdLanguageMap.put(candidateFile.getPath(), candidateLanguage);
 
         suspiciousIdTokensMap.put(suspiciousFile.getPath(), suspiciousTokens);
-        candidateIdTokensMap.put(candidateFile.getPath(), candidateTokens);
+        // candidateIdTokensMap.put(candidateFile.getPath(), candidateTokens);
 
         suspiciousIdCandidateIdMap.put(suspiciousFile.getPath(), candidateFile.getPath());
 
