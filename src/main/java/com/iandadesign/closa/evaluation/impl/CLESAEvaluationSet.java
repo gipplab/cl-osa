@@ -180,6 +180,7 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
 
     @Override
     protected List<Double> preProcess(String documentPath, String documentLanguage) {
+        // FIXME: this method consumes too much memory
         List<Double> preProcessed = new ArrayList<>();
         int existingWikipediaArticleCount = 0;
 
@@ -206,8 +207,9 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
         }
 
         try {
-            String documentText = FileUtils.readFileToString(new File(documentPath), UTF_8);
-            List<Token> documentTokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(documentText, documentLanguage);
+            List<Token> documentTokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(
+                    FileUtils.readFileToString(new File(documentPath), UTF_8),
+                    documentLanguage);
 
             Document query = new Document("languages", new Document("$all", documentLanguages));
 
@@ -231,17 +233,19 @@ public class CLESAEvaluationSet extends EvaluationSet<Double> {
             progressBar.start();
 
             // parallel stream map the articles to similarities
-            preProcessed.addAll(articles.parallelStream()
+            preProcessed = articles.parallelStream()
                     .map((Document article) -> {
-                        String articleText = article.get("text", Document.class)
-                                .getString(documentLanguage);
-
-                        List<Token> articleTokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(articleText, documentLanguage);
+                        List<Token> articleTokens = TokenUtil.tokenizeLowercaseStemAndRemoveStopwords(
+                                article.get("text", Document.class).getString(documentLanguage),
+                                documentLanguage);
                         double similarity = Dictionary.cosineSimilarity(documentTokens, articleTokens);
+
+                        articleTokens = null;
+
                         progressBar.step();
                         return similarity;
                     })
-                    .collect(Collectors.toList()));
+                    .collect(Collectors.toList());
 
             progressBar.stop();
 
