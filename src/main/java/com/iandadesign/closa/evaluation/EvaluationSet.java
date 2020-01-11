@@ -39,7 +39,7 @@ public abstract class EvaluationSet<T> {
 
     private LanguageDetector languageDetector = new LanguageDetector();
 
-    private final int parallelism = 2;
+    private final int parallelism = 1;
 
     /**
      * Initializes the evaluationSet. The files have to be named identically, only the directories
@@ -313,8 +313,8 @@ public abstract class EvaluationSet<T> {
         documentLanguages.add(suspiciousLanguage);
         documentLanguages.add(candidateLanguage);
 
-        List<T> suspiciousTokens = preProcess(suspiciousFile.getPath(), suspiciousLanguage);
-        saveDocumentTokensToFile(suspiciousFile.getPath(), suspiciousTokens);
+        // List<T> suspiciousTokens = preProcess(suspiciousFile.getPath(), suspiciousLanguage);
+        // saveDocumentTokensToFile(suspiciousFile.getPath(), suspiciousTokens);
 
         List<T> candidateTokens = preProcess(candidateFile.getPath(), candidateLanguage);
         saveDocumentTokensToFile(candidateFile.getPath(), candidateTokens);
@@ -322,7 +322,7 @@ public abstract class EvaluationSet<T> {
         suspiciousIdLanguageMap.put(suspiciousFile.getPath(), suspiciousLanguage);
         candidateIdLanguageMap.put(candidateFile.getPath(), candidateLanguage);
 
-        suspiciousIdTokensMap.put(suspiciousFile.getPath(), suspiciousTokens);
+        // suspiciousIdTokensMap.put(suspiciousFile.getPath(), suspiciousTokens);
         candidateIdTokensMap.put(candidateFile.getPath(), candidateTokens);
 
         suspiciousIdCandidateIdMap.put(suspiciousFile.getPath(), candidateFile.getPath());
