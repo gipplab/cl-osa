@@ -1,10 +1,8 @@
 package com.iandadesign.closa.evaluation.impl;
 
-import com.iandadesign.closa.evaluation.EvaluationSet;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.io.IOException;
 
 class CLESAEvaluationSetEval {
 
@@ -32,7 +30,7 @@ class CLESAEvaluationSetEval {
     void evalCLESAAspecChinese() {
         CLESAEvaluationSet chineseJapaneseASPECEvaluationSetCLOSA = new CLESAEvaluationSet(
                 new File(pathPrefix + "/ASPECxc/ja10000"), "ja",
-                new File(pathPrefix + "/ASPECxc/zh10000"), "zh",
+                new File(pathPrefix + "/ASPECxc/zh10000-tokenized"), "en",
                 2000
         );
 
