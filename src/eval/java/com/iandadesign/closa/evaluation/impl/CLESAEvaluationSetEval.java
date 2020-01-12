@@ -30,7 +30,7 @@ class CLESAEvaluationSetEval {
     void evalCLESAAspecChinese() {
         CLESAEvaluationSet chineseJapaneseASPECEvaluationSetCLOSA = new CLESAEvaluationSet(
                 new File(pathPrefix + "/ASPECxc/ja10000"), "ja",
-                new File(pathPrefix + "/ASPECxc/zh10000-tokenized"), "en",
+                new File(pathPrefix + "/ASPECxc/zh10000-tokenized-prepr"), "en",
                 2000
         );
 
