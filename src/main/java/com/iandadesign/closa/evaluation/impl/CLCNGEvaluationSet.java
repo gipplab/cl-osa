@@ -94,6 +94,7 @@ public class CLCNGEvaluationSet extends EvaluationSet<String> {
             // read in the file
             String documentText = FileUtils.readFileToString(new File(documentPath), StandardCharsets.UTF_8);
 
+            /*
             if (!documentLanguage.equals("en")) {
                 String translatedDocumentPath = documentPath.replace(String.format("/%s/", documentLanguage), String.format("/%s-t/", documentLanguage));
 
@@ -105,13 +106,12 @@ public class CLCNGEvaluationSet extends EvaluationSet<String> {
                 }
                 System.out.println(documentText);
             }
+            */
 
+            // List<Token> documentTokens = TokenUtil.tokenize(documentText, "en");
+            List<String> documentTokens = TokenUtil.nGramPartition(documentText, n);
 
-            List<Token> documentTokens = TokenUtil.tokenize(documentText, "en");
-            documentTokens = TokenUtil.nGramPartition(documentTokens, n);
-            documentTokens.forEach(Token::toLowerCase);
-
-            return documentTokens.stream().map(Token::getToken).collect(Collectors.toList());
+            return documentTokens.stream().map(String::toLowerCase).collect(Collectors.toList());
         } catch (Exception e) {
             e.printStackTrace();
         }
