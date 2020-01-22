@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class CLCNGEvaluationSetEval {
 
-    String pathPrefix = "/home/marquart/eval_data/test";
+    String pathPrefix = "/data/test";
 
     @Test
     void evalCLCNGAspec() {
