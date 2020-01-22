@@ -74,7 +74,7 @@ public class CLCNGEvaluationSetEval {
             CLCNGEvaluationSet englishFrenchJrcAcquisEvaluationSetCLCNG = new CLCNGEvaluationSet(
                     new File(pathPrefix + "/jrc/en"), "en",
                     new File(pathPrefix + "/jrc/fr"), "fr",
-                    1989
+                    2000
             );
             englishFrenchJrcAcquisEvaluationSetCLCNG.printEvaluation();
         } catch (Exception e) {
