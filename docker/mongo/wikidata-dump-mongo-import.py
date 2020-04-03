@@ -16,10 +16,11 @@ import pymongo
 import sys
 import time
 import urllib
+import psutil
 from bz2 import BZ2File
 from pymongo import MongoClient
 
-local_dump_path = "latest-all.json.bz2"  # json file location
+local_dump_path = "D:\Test\latest-all.json.bz2"  # json file location
 
 
 # reporting
@@ -33,6 +34,9 @@ def reporthook(count, block_size, total_size):
 
     # duration is difference between current time and start time
     duration = time.time() - start_time
+    if duration == 0:
+        sys.stdout("Duration 0 wont report")
+        return
     progress_size = int(count * block_size)
     speed = int(progress_size / (1024 * duration))
     percent = int(count * block_size * 100 / total_size)
@@ -48,16 +52,28 @@ def wikidata_dump_mongo_download():
     # Wikidata json bz2 url
     remote_dump_path = "https://dumps.wikimedia.org/wikidatawiki/entities/latest-all.json.bz2"
 
-    # if file already exists
+    # Workaround: Just remove file at start if it already exists
+    if os.path.isfile(local_dump_path):
+        os.remove(local_dump_path)
+
+    # if file doesn't exist
     if not os.path.isfile(local_dump_path):
         # get remote file size
         site = urllib.urlopen(remote_dump_path)
         meta = site.info()
         remote_dump_size = int(meta.getheaders("Content-Length")[0])
 
-        statvfs = os.statvfs('/')
-        free_space = statvfs.f_frsize * statvfs.f_bfree
+        local_dump_base = os.path.basename(local_dump_path)
+        my_os = os.name
 
+        if my_os is 'nt':
+            # the operating system is windows  use psutil
+            free_space = psutil.disk_usage('D:/').free
+        else:
+            # the operating system is linux, use the linux-specific statvfs call
+            statvfs = os.statvfs('/')
+            free_space = statvfs.f_frsize * statvfs.f_bfree
+        # diff =  free_space - remote_dump_size # remote dump size is
         if remote_dump_size < free_space:
             # download Wikidata dump from url
             print "Downloading from " + remote_dump_path
