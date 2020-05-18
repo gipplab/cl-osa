@@ -195,6 +195,8 @@
                 <includes>
                     <include>**/*.txt</include>
                     <include>**/*.csv</include>
+                    <include>config.properties</include>
+                    <include>config-local.properties</include>
                 </includes>
             </resource>
         </resources>
