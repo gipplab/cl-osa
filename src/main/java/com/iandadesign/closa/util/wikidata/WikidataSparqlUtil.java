@@ -40,6 +40,7 @@ import java.util.stream.Collectors;
 public class WikidataSparqlUtil {
 
     private static String wikidataSparqlEndpoint;
+    private static boolean logSparqlRequests;
 
     private static final String[] wikidataPrefixes = {"PREFIX wd: <http://www.wikidata.org/entity/>",
             "PREFIX wds: <http://www.wikidata.org/entity/statement/>",
@@ -106,6 +107,7 @@ public class WikidataSparqlUtil {
 
             // get the property value and print it out
             wikidataSparqlEndpoint = properties.getProperty("wikidata_sparql_endpoint");
+            logSparqlRequests = Boolean.parseBoolean(properties.getProperty("log_sparql_requests"));
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         } finally {
@@ -115,6 +117,16 @@ public class WikidataSparqlUtil {
         }
     }
 
+    /**
+     * Just a simple logger for logging SPARQL communication.
+     * Can be toggled by corresponding configuration property.
+     * @param message message to be logged.
+     */
+    private static void logSimple(String message){
+        if(logSparqlRequests) {
+            System.out.println(message);
+        }
+    }
 
     /**
      * Retrieves the entity matching the id from the Wikidata SPARQL endpoint.
@@ -741,12 +753,12 @@ public class WikidataSparqlUtil {
 
         // build url string and perform get request
         try {
-            //In case of WikiData changes reformat query according to: https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/de
+            //In case of Wikidata changes, reformat query according to: https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/de
             urlString = wikidataSparqlEndpoint +
                     "?query=" +
                     URLEncoder.encode(String.join("\n", wikidataPrefixes) + "\n" + queryString, "UTF-8");
 
-
+            logSimple("WikidataSparqlUtil: Sending query: "+queryString);
             String jsonString = httpGetJson(urlString);
 
             // parse json
@@ -774,7 +786,7 @@ public class WikidataSparqlUtil {
                     }
                 });
             });
-
+            logSimple("WikidataSparqlUtil: done processing bindings");
             return bindings;
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
