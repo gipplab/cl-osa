@@ -741,8 +741,11 @@ public class WikidataSparqlUtil {
 
         // build url string and perform get request
         try {
+            //In case of WikiData changes reformat query according to: https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/de
             urlString = wikidataSparqlEndpoint +
-                    "?sendQuery=" + URLEncoder.encode(String.join("\n", wikidataPrefixes) + "\n" + queryString, "UTF-8");
+                    "?query=" +
+                    URLEncoder.encode(String.join("\n", wikidataPrefixes) + "\n" + queryString, "UTF-8");
+
 
             String jsonString = httpGetJson(urlString);
 
