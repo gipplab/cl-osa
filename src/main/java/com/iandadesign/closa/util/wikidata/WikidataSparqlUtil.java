@@ -257,8 +257,12 @@ public class WikidataSparqlUtil {
 
             if (results.size() == 0) {
                 // if no results are found for lemma, assume wrong lemmatization and sendQuery token instead
-                queriedEntities = getEntitiesByLabel(token.getToken(), languageCode);
-
+                if(!token.getToken().toLowerCase().equals(token.getLemma().toLowerCase())){
+                    // only do another request if token and lemma differ to prevent redundant requests
+                    queriedEntities = getEntitiesByLabel(token.getToken(), languageCode);
+                }else{
+                    //System.out.println("same lemma and token, continue with no result");
+                }
             }
         }
 
