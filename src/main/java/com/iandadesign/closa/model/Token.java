@@ -17,6 +17,7 @@ public class Token implements HasWord {
     private String token;
     private int startCharacter;
     private int endCharacter;
+    private int sentenceNumber;
 
     private int startCharacterCandidate;
     private int endCharacterCandidate;
@@ -54,6 +55,7 @@ public class Token implements HasWord {
         this.token = token1.getToken() + separator + token2.getToken();
         this.startCharacter = token1.getStartCharacter();
         this.endCharacter = token2.getEndCharacter();
+        this.sentenceNumber = token1.getSentenceNumber(); //TODO JS: think about more accurate sentence number here.
         this.index = token1.getIndex();
 
         this.lemma = token1.getLemma() + separator + token2.getLemma();
@@ -76,6 +78,7 @@ public class Token implements HasWord {
         this.isNamedEntity = tokens.get(0).isNamedEntity;
         this.startCharacter = tokens.get(0).getStartCharacter();
         this.endCharacter = tokens.get(tokens.size() - 1).getEndCharacter();
+        this.sentenceNumber = tokens.get(0).getSentenceNumber(); //TODO JS: think on more accurate way than just using the first tokens assignment
         this.index = tokens.get(0).getIndex();
     }
 
@@ -108,6 +111,7 @@ public class Token implements HasWord {
         this.token = token.getToken();
         this.startCharacter = token.getStartCharacter();
         this.endCharacter = token.getEndCharacter();
+        this.sentenceNumber = token.getSentenceNumber();
         this.startCharacterCandidate = token.getStartCharacterCandidate();
         this.endCharacterCandidate = token.getEndCharacterCandidate();
         this.index = token.getIndex();
@@ -213,6 +217,14 @@ public class Token implements HasWord {
 
     public void setStartCharacter(int startCharacter) {
         this.startCharacter = startCharacter;
+    }
+
+    public int getSentenceNumber() {
+        return sentenceNumber;
+    }
+
+    public void setSentenceNumber(int sentenceNumber) {
+        this.sentenceNumber = sentenceNumber;
     }
 
     public int getEndCharacter() {

@@ -299,7 +299,7 @@ public class TokenUtil {
         // these are all the sentences in this document
         // a CoreMap is essentially a Map that uses class objects as keys and has values with custom types
         List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
-
+        int sentenceCounter = 0;
         for (CoreMap sentence : sentences) {
             List<Token> tokens = new ArrayList<>();
 
@@ -316,6 +316,7 @@ public class TokenUtil {
                 Token currentToken = new Token(tokenString, lemma, partOfSpeech, namedEntityType);
                 currentToken.setStartCharacter(coreLabel.beginPosition());
                 currentToken.setEndCharacter(coreLabel.endPosition());
+                currentToken.setSentenceNumber(sentenceCounter);
 
                 // no punctuation
                 if (partOfSpeech.equals(".") || punctuationSymbols.contains(tokenString)) {
@@ -346,6 +347,7 @@ public class TokenUtil {
                         Token mergeToken = new Token(tokenString, lemma);
                         mergeToken.setStartCharacter(coreLabel.beginPosition());
                         mergeToken.setEndCharacter(coreLabel.endPosition());
+                        mergeToken.setSentenceNumber(sentenceCounter);
 
                         tokens.set(lastTokenIndex, new Token(lastToken, mergeToken, separator));
                     } else {
@@ -356,9 +358,9 @@ public class TokenUtil {
                 }
 
             }
-
             // add the completed sentence
             tokensBySentence.add(tokens);
+            sentenceCounter++;
         }
 
         return tokensBySentence;
