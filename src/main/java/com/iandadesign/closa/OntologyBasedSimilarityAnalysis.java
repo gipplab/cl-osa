@@ -214,13 +214,13 @@ public class OntologyBasedSimilarityAnalysis {
                     .toAbsolutePath().toString();
 
             List<String> documentEntities;
-            Category documentCategory = textClassifier.classifyText(documentText, documentLanguage);
 
             // document entities
             if (Files.exists(Paths.get(documentEntitiesPath)) && !FileUtils.readFileToString(new File(documentEntitiesPath), StandardCharsets.UTF_8).isEmpty()) {
                 // if the file has already been pre-processed
                 documentEntities = new ArrayList<>(FileUtils.readLines(new File(documentEntitiesPath), StandardCharsets.UTF_8));
             } else {
+                Category documentCategory = textClassifier.classifyText(documentText, documentLanguage);
                 // pre-process the file
                 documentEntities = preProcess(documentPath, documentText, documentLanguage, documentCategory);
 
