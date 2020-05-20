@@ -16,7 +16,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -31,6 +33,72 @@ public class OntologyBasedSimilarityAnalysis {
     private final TextClassifier textClassifier;
 
     private final Logger logger = LoggerFactory.getLogger(OntologyBasedSimilarityAnalysis.class);
+    private static String preprocessedCachingDirectory;
+
+    static {
+        try {
+            loadConfig();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Read Config properties.
+     *
+     * @throws IOException When property file could not be loaded.
+     */
+    private static void loadConfig() throws IOException {
+        InputStream inputStream = null;
+
+        try {
+            Properties properties = new Properties();
+            String propFileName = "config.properties";
+            String propFileLocalName = "config-local.properties";
+
+            // switch to config-local if it exists
+            if (WikidataDumpUtil.class.getClassLoader().getResource(propFileLocalName) != null) {
+                inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileLocalName);
+
+                if (inputStream != null) {
+                    properties.load(inputStream);
+                } else {
+                    throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath");
+                }
+            } else {
+                inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileName);
+
+                if (inputStream != null) {
+                    properties.load(inputStream);
+                } else {
+                    throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath");
+                }
+            }
+
+            // get the property value and print it out
+            preprocessedCachingDirectory = properties.getProperty("preprocessed_caching_directory");
+            if(preprocessedCachingDirectory == null){
+                preprocessedCachingDirectory = System.getProperty("user.home");
+                System.out.println("Using the home directory for caching preprocessed files "
+                        .concat(preprocessedCachingDirectory));
+            }else{
+                // Checking if directory exists.
+                File file = new File(preprocessedCachingDirectory);
+                if (!file.isDirectory() && !file.mkdirs()) {
+                   throw new Exception("The preprocessed_caching_directory at path: ".concat(preprocessedCachingDirectory)
+                           .concat(" cant be created, please update your config or create directory"));
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+        } finally {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+        }
+    }
+
 
     /**
      * Simple constructor,
@@ -139,9 +207,10 @@ public class OntologyBasedSimilarityAnalysis {
             String documentText = FileUtils.readFileToString(new File(documentPath), StandardCharsets.UTF_8);
 
             String documentEntitiesPath;
-            String userHome = System.getProperty("user.home");
 
-            documentEntitiesPath = Paths.get(userHome, "preprocessed", documentPath.replace(userHome, ""))
+
+            documentEntitiesPath = Paths.get(preprocessedCachingDirectory, "preprocessed",
+                    documentPath.replace(preprocessedCachingDirectory, ""))
                     .toAbsolutePath().toString();
 
             List<String> documentEntities;
