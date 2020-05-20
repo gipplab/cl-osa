@@ -4,6 +4,8 @@ import com.iandadesign.closa.classification.Category;
 import com.iandadesign.closa.classification.TextClassifier;
 import com.iandadesign.closa.language.LanguageDetector;
 import com.iandadesign.closa.model.Dictionary;
+import com.iandadesign.closa.model.SavedEntitiesObjectOutputStream;
+import com.iandadesign.closa.model.SavedEntity;
 import com.iandadesign.closa.model.WikidataEntity;
 import com.iandadesign.closa.util.wikidata.WikidataDumpUtil;
 import com.iandadesign.closa.util.wikidata.WikidataEntityExtractor;
@@ -15,10 +17,7 @@ import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -134,6 +133,11 @@ public class OntologyBasedSimilarityAnalysis {
                 .collect(Collectors.toList());
     }
 
+
+    private static List<SavedEntity> preProcessExtendedInfo(String documentId, String documentText, String documentLanguage, Category documentCategory){
+        return WikidataEntityExtractor.extractSavedEntitiesFromText(documentText, documentLanguage, documentCategory);
+    }
+
     /**
      * Whole CL-OSA pipeline.
      *
@@ -157,6 +161,32 @@ public class OntologyBasedSimilarityAnalysis {
             }
 
             return performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return new HashMap<>();
+    }
+
+    public Map<String, Double> executeAlgorithmAndComputeScoresExtendedInfo(String suspiciousDocumentPath, List<String> candidateDocumentPaths) {
+        Map<String, List<SavedEntity>> suspiciousIdTokensMap = new HashMap<>();
+        Map<String, List<SavedEntity>> candidateIdTokensMap = new HashMap<>();
+
+        try {
+            String suspiciousDocumentStr = FileUtils.readFileToString(new File(suspiciousDocumentPath), StandardCharsets.UTF_8);
+            String lang = languageDetector.detectLanguage(suspiciousDocumentStr);
+            List<SavedEntity> preprocessed = preProcessExtendedInfo(suspiciousDocumentPath,lang);
+            suspiciousIdTokensMap.put(suspiciousDocumentPath, preprocessed);
+
+            for (String candidateDocumentPath : candidateDocumentPaths) {
+                candidateIdTokensMap.put(candidateDocumentPath,
+                        preProcessExtendedInfo(candidateDocumentPath,
+                                languageDetector.detectLanguage(FileUtils.readFileToString(new File(candidateDocumentPath), StandardCharsets.UTF_8))));
+            }
+
+            System.out.println("reached casting point");
+            // return performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
+            return null;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -239,6 +269,62 @@ public class OntologyBasedSimilarityAnalysis {
         return null;
     }
 
+    /**
+     * Preprocess for returning serializable objects instead of lists of string.
+     * @param documentPath     document path
+     * @param documentLanguage the document's language
+
+     * @return concepts with additional information.
+     */
+    public List<SavedEntity> preProcessExtendedInfo(String documentPath, String documentLanguage) {
+        try {
+            // read in the file
+            String documentText = FileUtils.readFileToString(new File(documentPath), StandardCharsets.UTF_8);
+
+            String documentEntitiesPath;
+
+
+            documentEntitiesPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
+                    documentPath.replace(preprocessedCachingDirectory, "").concat(".ser"))
+                    .toAbsolutePath().toString();
+
+            List<SavedEntity> documentEntities = new ArrayList<>();
+
+            // document entities
+            if (Files.exists(Paths.get(documentEntitiesPath)) && !FileUtils.readFileToString(new File(documentEntitiesPath), StandardCharsets.UTF_8).isEmpty()) {
+                // if the file has already been pre-processed deserialize corresponding info
+                FileInputStream fileIn = new FileInputStream(documentEntitiesPath);
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+                List<?> myIncomingObjects = (List<?>)in.readObject();
+                for(Object desObject:myIncomingObjects){
+                    documentEntities.add((SavedEntity)desObject);
+                }
+                in.close();
+                fileIn.close();
+            } else {
+                Category documentCategory = textClassifier.classifyText(documentText, documentLanguage);
+                // pre-process the file
+                documentEntities = preProcessExtendedInfo(documentPath, documentText, documentLanguage, documentCategory);
+
+                if (documentEntities.size() == 0 && !Pattern.compile("(\\s)+").matcher(documentText).find()) {
+                    // throw new IllegalStateException("Empty preprocessing.");
+                }
+                // Serialize to the list of SavedEntites to defined path.
+                boolean dirsCreated = new File(documentEntitiesPath).getParentFile().mkdirs();
+                FileOutputStream fos = new FileOutputStream(documentEntitiesPath);
+                SavedEntitiesObjectOutputStream oos = new SavedEntitiesObjectOutputStream(fos);
+                oos.writeObject(documentEntities);
+                oos.close();
+                fos.close();
+            }
+
+            return documentEntities;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
     /**
      * Cosine similarity analysis.
      *

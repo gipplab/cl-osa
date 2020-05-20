@@ -2,6 +2,7 @@ package com.iandadesign.closa.util.wikidata;
 
 import com.iandadesign.closa.classification.Category;
 import com.iandadesign.closa.classification.TextClassifier;
+import com.iandadesign.closa.model.SavedEntity;
 import com.iandadesign.closa.model.Token;
 import com.iandadesign.closa.model.WikidataEntity;
 import com.iandadesign.closa.util.TokenUtil;
@@ -19,6 +20,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 
 /**
@@ -72,6 +74,8 @@ public class WikidataEntityExtractor {
 
             // get the property value and print it out
             useSparql = properties.getProperty("use_sparql").equals("true");
+            doParallelRequests = properties.getProperty("do_parallel_requests").equals("true");
+
 
         } catch (Exception e) {
             System.out.println("Exception: " + e);
@@ -131,6 +135,36 @@ public class WikidataEntityExtractor {
         return annotatedText.toString();
     }
 
+
+    public static List<SavedEntity> extractSavedEntitiesFromText(String text, String languageCode, Category category) {
+        // In technical terms this finds one corresponding WikidataEntity when there have been multiple found for a token.
+        List<SavedEntity> savedEntities = new ArrayList<>();
+        Map<Token, List<WikidataEntity>> tokenEntitiesMap = buildTokenEntitiesMap(text, languageCode, category);
+        for(Map.Entry<Token, List<WikidataEntity>> mapEntry:tokenEntitiesMap.entrySet()){
+            Token currentToken = mapEntry.getKey();
+            List<WikidataEntity> correspondingEntities = mapEntry.getValue();
+            SavedEntity savedEntity = new SavedEntity();
+            savedEntity.setToken(currentToken);
+
+            if (correspondingEntities.size() == 1) {
+                // first pass to see which entities are already unambiguous
+                savedEntity.setWikidataEntityId((correspondingEntities.get(0).getId()));
+            }else if(correspondingEntities.size() > 1){
+                // disambiguate
+                WikidataEntity disambiguatedEntity = WikidataDisambiguator
+                        .disambiguateByAncestorCount(correspondingEntities, text, languageCode);
+
+                if (disambiguatedEntity != null) {
+                    savedEntity.setWikidataEntityId(disambiguatedEntity.getId());
+                }
+            }
+            if(savedEntity.getWikidataEntityId()!=null) {
+                // For now only save tokens with an entity.
+                savedEntities.add(savedEntity);
+            }
+        }
+        return savedEntities;
+    }
 
     /**
      * Extract Wikidata entities from given text, language and topic.
