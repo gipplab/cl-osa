@@ -96,13 +96,25 @@ public class WikidataSparqlUtil {
         try {
             Properties properties = new Properties();
             String propFileName = "config.properties";
+            String propFileLocalName = "config-local.properties";
 
-            inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileName);
+            // switch to config-local if it exists
+            if (WikidataDumpUtil.class.getClassLoader().getResource(propFileLocalName) != null) {
+                inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileLocalName);
 
-            if (inputStream != null) {
-                properties.load(inputStream);
+                if (inputStream != null) {
+                    properties.load(inputStream);
+                } else {
+                    throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath");
+                }
             } else {
-                throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath");
+                inputStream = WikidataDumpUtil.class.getClassLoader().getResourceAsStream(propFileName);
+
+                if (inputStream != null) {
+                    properties.load(inputStream);
+                } else {
+                    throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath");
+                }
             }
 
             // get the property value and print it out
