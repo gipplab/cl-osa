@@ -3,14 +3,11 @@ package com.iandadesign.closa;
 import com.iandadesign.closa.classification.Category;
 import com.iandadesign.closa.classification.TextClassifier;
 import com.iandadesign.closa.language.LanguageDetector;
+import com.iandadesign.closa.model.*;
 import com.iandadesign.closa.model.Dictionary;
-import com.iandadesign.closa.model.SavedEntitiesObjectOutputStream;
-import com.iandadesign.closa.model.SavedEntity;
-import com.iandadesign.closa.model.WikidataEntity;
 import com.iandadesign.closa.util.wikidata.WikidataDumpUtil;
 import com.iandadesign.closa.util.wikidata.WikidataEntityExtractor;
 import com.iandadesign.closa.util.wikidata.WikidataSimilarityUtil;
-import com.iandadesign.closa.util.wikidata.WikidataSparqlUtil;
 import me.tongfei.progressbar.ProgressBar;
 import me.tongfei.progressbar.ProgressBarStyle;
 import org.apache.commons.io.FileUtils;
@@ -169,24 +166,46 @@ public class OntologyBasedSimilarityAnalysis {
     }
 
     public Map<String, Double> executeAlgorithmAndComputeScoresExtendedInfo(String suspiciousDocumentPath, List<String> candidateDocumentPaths) {
-        Map<String, List<SavedEntity>> suspiciousIdTokensMap = new HashMap<>();
-        Map<String, List<SavedEntity>> candidateIdTokensMap = new HashMap<>();
-
+        // Maps used for detailed comparison
+        Map<String, List<SavedEntity>> suspiciousIdTokensMapExt = new HashMap<>();
+        Map<String, List<SavedEntity>> candidateIdTokensMapExt = new HashMap<>();
+        // Maps used for candidate retrieval
+        Map<String, List<String>> suspiciousIdTokensMap = new HashMap<>();
+        Map<String, List<String>> candidateIdTokensMap = new HashMap<>();
         try {
             String suspiciousDocumentStr = FileUtils.readFileToString(new File(suspiciousDocumentPath), StandardCharsets.UTF_8);
             String lang = languageDetector.detectLanguage(suspiciousDocumentStr);
-            List<SavedEntity> preprocessed = preProcessExtendedInfo(suspiciousDocumentPath,lang);
+            List<SavedEntity> preprocessedExt = preProcessExtendedInfo(suspiciousDocumentPath,lang);
+            List<String> preprocessed = preprocessedExt.stream().map(SavedEntity::getWikidataEntityId).collect(Collectors.toList());
+
+            suspiciousIdTokensMapExt.put(suspiciousDocumentPath, preprocessedExt);
             suspiciousIdTokensMap.put(suspiciousDocumentPath, preprocessed);
 
             for (String candidateDocumentPath : candidateDocumentPaths) {
-                candidateIdTokensMap.put(candidateDocumentPath,
-                        preProcessExtendedInfo(candidateDocumentPath,
-                                languageDetector.detectLanguage(FileUtils.readFileToString(new File(candidateDocumentPath), StandardCharsets.UTF_8))));
+                List<SavedEntity> preprocessedCandExt = preProcessExtendedInfo(candidateDocumentPath,
+                        languageDetector.detectLanguage(FileUtils.readFileToString(new File(candidateDocumentPath), StandardCharsets.UTF_8)));
+                List<String> preprocessedCand = preprocessedCandExt.stream().map(SavedEntity::getWikidataEntityId).collect(Collectors.toList());
+
+                candidateIdTokensMap.put(candidateDocumentPath, preprocessedCand);
+                candidateIdTokensMapExt.put(candidateDocumentPath, preprocessedCandExt);
             }
 
-            System.out.println("reached casting point");
-            // return performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
-            return null;
+            // Perform similarity analysis for candidate retrieval.
+            Map<String, Double> candidateScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
+            System.out.println("Scores for candidate retrieval:");
+            System.out.println(candidateScoresMap);
+            // Select most similar candidates for detailed analysis.
+            System.out.println("Scores for ordered for candidate retrieval:");
+            final int NUM_CANDIDATES_SELECTED = 1;
+            Map<String, Double> candidatesForDetailedComparison = candidateScoresMap
+                    .entrySet().stream()
+                    .sorted((Collections.reverseOrder(Map.Entry.comparingByValue())))
+                    .limit(NUM_CANDIDATES_SELECTED)
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+            // By Having the most similar candidates a detailed analysis is performed.
+            System.out.println(candidatesForDetailedComparison);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -366,7 +385,47 @@ public class OntologyBasedSimilarityAnalysis {
         return suspiciousIdCandidateScoresMap;
     }
 
+    /**
+     * Cosine similarity analysis.
+     *
+     * @param suspiciousIdTokensMap map: suspicious id to tokens list
+     * @param candidateIdTokensMap  map: candidate id to tokens list
+     * @return retrieved candidates.
+     */
+    public Map<String, Map<String, Double>> performCosineSimilarityAnalysisExtendedInfo(
+            Map<String, List<SavedEntity>> suspiciousIdTokensMap,
+            Map<String, List<SavedEntity>> candidateIdTokensMap
+    ) {
+        // create dictionary
+        logger.info("Create dictionary");
+        DictionaryExt<SavedEntity> dictionary = new DictionaryExt<SavedEntity>(candidateIdTokensMap);
 
+        // perform detailed analysis
+        logger.info("Perform detailed analysis");
+
+        // progress bar
+        ProgressBar progressBar = new ProgressBar("Perform cosine similarity analysis", suspiciousIdTokensMap.entrySet().size(), ProgressBarStyle.ASCII);
+        progressBar.start();
+
+        AtomicInteger progress = new AtomicInteger(0);
+
+        // iterate the suspicious documents
+        Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap = suspiciousIdTokensMap.entrySet()
+                .stream()
+                .collect(Collectors.toMap(entry -> entry.getKey(),
+                        entry -> {
+                            progressBar.stepTo(progress.incrementAndGet());
+                            List<SavedEntity> linkedEntities = entry.getValue();
+                            Map<String, Double> queryResult =  dictionary.query(entry.getValue());
+                            // look in dictionary
+                            return queryResult;
+                        }
+                ));
+
+        progressBar.stop();
+
+        return suspiciousIdCandidateScoresMap;
+    }
     /**
      * Ontology-enhanced cosine similarity analysis.
      *
