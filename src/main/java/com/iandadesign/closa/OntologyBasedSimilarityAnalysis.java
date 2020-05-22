@@ -195,15 +195,57 @@ public class OntologyBasedSimilarityAnalysis {
             System.out.println("Scores for candidate retrieval:");
             System.out.println(candidateScoresMap);
             // Select most similar candidates for detailed analysis.
-            System.out.println("Scores for ordered for candidate retrieval:");
+            System.out.println("Continue with detailed analysis:");
             final int NUM_CANDIDATES_SELECTED = 1;
             Map<String, Double> candidatesForDetailedComparison = candidateScoresMap
                     .entrySet().stream()
-                    .sorted((Collections.reverseOrder(Map.Entry.comparingByValue())))
+                    .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                     .limit(NUM_CANDIDATES_SELECTED)
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-            // By Having the most similar candidates a detailed analysis is performed.
+            // By having the most similar candidates a detailed analysis is performed.
+            Set<String> selectedCandidateKeys = candidatesForDetailedComparison.keySet();
+            // Create a copy of the original candidates map and reduce it to selected candidates.
+            Map<String, List<SavedEntity>> selectedCandidateIdTokensMapExt = new HashMap<> (candidateIdTokensMapExt);
+            selectedCandidateIdTokensMapExt.keySet().retainAll(selectedCandidateKeys);
+
+            final int NUM_SENTENCES_IN_SLIDING_WINDOW = 1;
+            final int NUM_SENTENCE_INCREMENT_SLIDINGW = 1;
+
+            for (Map.Entry<String, List<SavedEntity>> suspiciousIdTokenExt : suspiciousIdTokensMapExt.entrySet()) {
+                Integer numSentencesSusp = getMaxSentenceNumber(suspiciousIdTokenExt)+1;
+                System.out.println("Detailed Analysis selected Suspicious File: "+suspiciousIdTokenExt.getKey());
+                System.out.println("Suspicious file sentences: "+numSentencesSusp);
+
+                for (Map.Entry<String, List<SavedEntity>> candidateIdTokenExt : selectedCandidateIdTokensMapExt.entrySet()) {
+
+                    Integer numSentencesCand = getMaxSentenceNumber(candidateIdTokenExt)+1; //TODO fix redundant Operation
+                    System.out.println("Detailed Analysis selected Candidate File: "+candidateIdTokenExt.getKey());
+                    System.out.println("Candidate file sentences: "+numSentencesCand);
+
+                    // Documents have been specified here->start to slide the window.
+                    for(int currentSuspWindowStartSentence=0;currentSuspWindowStartSentence<numSentencesSusp;currentSuspWindowStartSentence+=NUM_SENTENCE_INCREMENT_SLIDINGW){
+                        Map<String, List<String>> currentSuspiciousIdTokensMap = getWikiEntityStringsForSlidingWindow(
+                                suspiciousIdTokenExt,
+                                currentSuspWindowStartSentence,
+                                NUM_SENTENCES_IN_SLIDING_WINDOW,
+                                suspiciousIdTokenExt.getKey());
+
+                        for(int currentCandWindowStartSentence=0;currentCandWindowStartSentence<numSentencesCand;currentCandWindowStartSentence+=NUM_SENTENCE_INCREMENT_SLIDINGW){
+                            Map<String, List<String>> currentCandidateIdTokensMap = getWikiEntityStringsForSlidingWindow(
+                                    candidateIdTokenExt,
+                                    currentCandWindowStartSentence,
+                                    NUM_SENTENCES_IN_SLIDING_WINDOW,
+                                    candidateIdTokenExt.getKey());
+                            Map<String, Double> fragmentScoresMap = performCosineSimilarityAnalysis(currentSuspiciousIdTokensMap,
+                                    currentCandidateIdTokensMap).get(suspiciousIdTokenExt.getKey());
+                            System.out.println("Fragment Suspstart: "+currentSuspWindowStartSentence+" CandStart: "+currentCandWindowStartSentence);
+                            System.out.println("Fragment Score"+suspiciousIdTokenExt.getKey()+" "+fragmentScoresMap);
+                        }
+                    }
+                }
+            }
+
             System.out.println(candidatesForDetailedComparison);
 
         } catch (IOException e) {
@@ -211,6 +253,35 @@ public class OntologyBasedSimilarityAnalysis {
         }
 
         return new HashMap<>();
+    }
+
+    Map <String, List<String>> getWikiEntityStringsForSlidingWindow(
+            Map.Entry<String, List<SavedEntity>> idTokenExt, int startSentenceIndex, int windowSize, String filename){
+
+        int endSentenceIndex = startSentenceIndex + windowSize;
+        List<SavedEntity> windowEntitysSusp = idTokenExt
+                .getValue().stream()
+                .filter(currentEntity ->
+                        currentEntity.getToken().getSentenceNumber() >= startSentenceIndex
+                                && currentEntity.getToken().getSentenceNumber() < endSentenceIndex)
+                .collect(Collectors.toList());
+
+        // Operations for casting the entities for performing the cosine analysis
+        List<String> entityIdsForWindow = windowEntitysSusp
+                .stream()
+                .map(SavedEntity::getWikidataEntityId)
+                .collect(Collectors.toList());
+        Map <String, List<String>> returnMap = new HashMap<>();
+        returnMap.put(filename, entityIdsForWindow);
+        return returnMap;
+    }
+
+    Integer getMaxSentenceNumber(Map.Entry<String, List<SavedEntity>> inputMap){
+        return Collections.max(inputMap
+                .getValue().stream()
+                .map(SavedEntity::getToken)
+                .map(Token::getSentenceNumber)
+                .collect(Collectors.toList()));
     }
 
     /**
