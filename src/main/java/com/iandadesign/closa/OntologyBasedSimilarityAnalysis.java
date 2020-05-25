@@ -248,17 +248,17 @@ public class OntologyBasedSimilarityAnalysis {
             long fragmentIndex=0; // Just a running index for adressing fragmentss.
             for (Map.Entry<String, List<SavedEntity>> suspiciousIdTokenExt : suspiciousIdTokensMapExt.entrySet()) {
                 Integer numSentencesSusp = getMaxSentenceNumber(suspiciousIdTokenExt)+1;
-                System.out.println("Detailed Analysis selected Suspicious File: "+suspiciousIdTokenExt.getKey());
-                System.out.println("Suspicious file sentences: "+numSentencesSusp);
+                System.out.printf(format, "Detailed Analysis selected Suspicious File:", suspiciousIdTokenExt.getKey());
+                System.out.printf(format, "Suspicious file sentences:", numSentencesSusp);
 
                 for (Map.Entry<String, List<SavedEntity>> candidateIdTokenExt : selectedCandidateIdTokensMapExt.entrySet()) {
 
                     Integer numSentencesCand = getMaxSentenceNumber(candidateIdTokenExt)+1; //TODO fix redundant Operation
-                    System.out.println("Detailed Analysis selected Candidate File: "+candidateIdTokenExt.getKey());
-                    System.out.println("Candidate file sentences: "+numSentencesCand);
+                    System.out.printf(format, "Detailed Analysis selected Candidate File:", candidateIdTokenExt.getKey());
+                    System.out.printf(format, "Candidate file sentences:", numSentencesCand);
                     resultsStream.println("Comparing Files");
-                    resultsStream.printf(format, "Suspicious File: ", suspiciousIdTokenExt.getKey());
-                    resultsStream.printf(format, "Candidate File:  ", candidateIdTokenExt.getKey());
+                    resultsStream.printf(format, "Suspicious File:", suspiciousIdTokenExt.getKey());
+                    resultsStream.printf(format, "Candidate File:", candidateIdTokenExt.getKey());
 
                     // Documents have been specified here->start to slide the window.
                     for(int currentSuspWindowStartSentence=0;currentSuspWindowStartSentence<numSentencesSusp;currentSuspWindowStartSentence+=NUM_SENTENCE_INCREMENT_SLIDINGW){
@@ -281,6 +281,11 @@ public class OntologyBasedSimilarityAnalysis {
                             resultsStream.printf(format, "Suspicious Start Sentence:", currentSuspWindowStartSentence);
                             resultsStream.printf(format, "Candidate Start Sentence:", currentCandWindowStartSentence);
                             resultsStream.printf(format, "Fragment Score: ", fragmentScoresMap.get(candidateIdTokenExt.getKey()));
+                            System.out.println(dashes(50));
+                            System.out.printf(format, "Fragment Number: ", fragmentIndex);
+                            System.out.printf(format, "Suspicious Start Sentence:", currentSuspWindowStartSentence);
+                            System.out.printf(format, "Candidate Start Sentence:", currentCandWindowStartSentence);
+                            System.out.printf(format, "Fragment Score: ", fragmentScoresMap.get(candidateIdTokenExt.getKey()));
                             fragmentIndex++;
                         }
                     }
