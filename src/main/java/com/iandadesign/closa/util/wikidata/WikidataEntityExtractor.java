@@ -19,8 +19,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 
 /**
@@ -75,6 +73,12 @@ public class WikidataEntityExtractor {
             // get the property value and print it out
             useSparql = properties.getProperty("use_sparql").equals("true");
             doParallelRequests = properties.getProperty("do_parallel_requests").equals("true");
+            lengthSublistTokens = Integer.parseInt(properties.getProperty("length_sublist_tokens"));
+            System.out.println("Settings for WikidataEnitityExtractor");
+            System.out.println("Use SparQL:    "+ useSparql);
+            System.out.println("Do ParallelRQ: "+ doParallelRequests);
+            System.out.println("Len Subtoken:  "+ lengthSublistTokens);
+
 
 
         } catch (Exception e) {
@@ -267,77 +271,101 @@ public class WikidataEntityExtractor {
         ProgressBar progressBar = new ProgressBar(String.format("Extract entities from %s %s text.", languageCode, category), subtokensLists.size(), ProgressBarStyle.ASCII);
         progressBar.start();
 
-        Map<Token, List<WikidataEntity>> tokenEntitiesMap = subtokensLists.parallelStream()
-                .map((List<List<Token>> subtokensList) -> {
-                    LinkedHashMap<Token, List<WikidataEntity>> currentTokenEntitiesMap = new LinkedHashMap<>();
-
-                    for (int i = 0; i < subtokensList.size(); i++) {
-                        List<Token> subtokens = subtokensList.get(i);
-
-                        boolean isWhitespaceSeparatedLanguage = !(languageCode.equals("zh") || languageCode.equals("ja") ||
-                                languageCode.equals("ar"));
-
-                        // build token from sub-tokens
-                        Token token = new Token(subtokens, isWhitespaceSeparatedLanguage ? " " : "");
-
-                        // filter
-                        if (Objects.requireNonNull(TokenUtil.getStopwords(languageCode)).contains(token.getLemma())) {
-                            continue;
-                        }
-                        if (forbiddenPartOfSpeechTags.contains(token.getPartOfSpeech())) {
-                            continue;
-                        }
-
-                        // verb to noun mapping
-                        if (token.getPartOfSpeech().contains("V")) {
-                            if (token.getToken().contains("ing") || token.getToken().contains("tion")) {
-                                token.setLemma(token.getToken());
-                            } else {
-                                token = WordNetUtil.mapVerbToNoun(token);
-                            }
-                        }
-
-                        // extract entities
-                        List<WikidataEntity> currentEntities = getEntitiesByToken(token,
-                                // if english text bits are contained in a chinese text
-                                languageCode.equals("zh") && TokenUtil.isLatinAlphabet(token)
-                                        ? "en"
-                                        : languageCode, category)
-                                .stream()
-                                // no CJK character pages
-                                .filter(entity ->
-                                        (!languageCode.equals("zh") && !languageCode.equals("ja"))
-                                                || !entity.getDescriptions().getOrDefault("en", "").contains("CJK character (hanzi/kanji/hanja)"))
-                                // no Wikimedia disambiguation pages
-                                .filter(entity -> !entity.getDescriptions().getOrDefault(languageCode, "").contains("Wikimedia "))
-                                // if text is not about fiction, remove pages about music, movies or tv shows
-                                .filter(entity -> category.equals(Category.fiction) || !isCreativeWork(entity))
-                                // if text is not about biology, remove pages about genes
-                                .filter(entity -> category.equals(Category.biology) || !isGene(entity))
-                                // only keep pages about numbers when the token is numeric
-                                .filter(entity -> !StringUtils.isNumeric(entity.getOriginalLemma())
-                                        || (StringUtils.isNumeric(entity.getOriginalLemma()) && isNaturalNumber(entity)))
-                                .collect(Collectors.toList());
-
-                        currentTokenEntitiesMap.put(token, currentEntities);
-
-                        // if larger group has result, don't consider smaller token groups anymore
-                        if (currentEntities.size() > 0) {
-                            if (i + 1 < subtokensList.size() && subtokens.size() > subtokensList.get(i + 1).size()) {
-                                break;
-                            }
-                        }
-                    }
-                    progressBar.step();
-                    return currentTokenEntitiesMap;
-                })
-                .flatMap(m -> m.entrySet().stream())
-                .filter(distinctByKey(Map.Entry::getKey))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-        progressBar.stop();
+        //construction site
+        Map<Token, List<WikidataEntity>> tokenEntitiesMap;
+        if (doParallelRequests) {
+            // Run with parallelism.
+            tokenEntitiesMap = subtokensLists.parallelStream()
+                    //Map<Token, List<WikidataEntity>> tokenEntitiesMap = subtokensLists.stream()
+                    .map((List<List<Token>> subtokensList) -> {
+                        return processSubtokens(subtokensList, languageCode, forbiddenPartOfSpeechTags, category, progressBar);
+                    })
+                    .flatMap(m -> m.entrySet().stream())
+                    .filter(distinctByKey(Map.Entry::getKey))
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+            progressBar.stop();
+        } else{
+            // Run without parallelism.
+            tokenEntitiesMap = subtokensLists.stream()
+                    .map((List<List<Token>> subtokensList) -> {
+                        return processSubtokens(subtokensList,languageCode,forbiddenPartOfSpeechTags, category, progressBar);
+                    })
+                    .flatMap(m -> m.entrySet().stream())
+                    .filter(distinctByKey(Map.Entry::getKey))
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+            progressBar.stop();
+        }
 
         return tokenEntitiesMap;
+    }
+
+    public static LinkedHashMap<Token, List<WikidataEntity>>  processSubtokens(List<List<Token>> subtokensList,
+                                                                               String languageCode,
+                                                                               List<String> forbiddenPartOfSpeechTags,
+                                                                               Category category,
+                                                                               ProgressBar progressBar){
+
+        LinkedHashMap<Token, List<WikidataEntity>> currentTokenEntitiesMap = new LinkedHashMap<>();
+
+        for (int i = 0; i < subtokensList.size(); i++) {
+            List<Token> subtokens = subtokensList.get(i);
+
+            boolean isWhitespaceSeparatedLanguage = !(languageCode.equals("zh") || languageCode.equals("ja") ||
+                    languageCode.equals("ar"));
+
+            // build token from sub-tokens TODO: JS here make the correct sentence assignment for tokens
+            Token token = new Token(subtokens, isWhitespaceSeparatedLanguage ? " " : "");
+
+            // filter
+            if (Objects.requireNonNull(TokenUtil.getStopwords(languageCode)).contains(token.getLemma())) {
+                continue;
+            }
+            if (forbiddenPartOfSpeechTags.contains(token.getPartOfSpeech())) {
+                continue;
+            }
+
+            // verb to noun mapping
+            if (token.getPartOfSpeech().contains("V")) {
+                if (token.getToken().contains("ing") || token.getToken().contains("tion")) {
+                    token.setLemma(token.getToken());
+                } else {
+                    token = WordNetUtil.mapVerbToNoun(token);
+                }
+            }
+
+            // extract entities
+            List<WikidataEntity> currentEntities = getEntitiesByToken(token,
+                    // if english text bits are contained in a chinese text
+                    languageCode.equals("zh") && TokenUtil.isLatinAlphabet(token)
+                            ? "en"
+                            : languageCode, category)
+                    .stream()
+                    // no CJK character pages
+                    .filter(entity ->
+                            (!languageCode.equals("zh") && !languageCode.equals("ja"))
+                                    || !entity.getDescriptions().getOrDefault("en", "").contains("CJK character (hanzi/kanji/hanja)"))
+                    // no Wikimedia disambiguation pages
+                    .filter(entity -> !entity.getDescriptions().getOrDefault(languageCode, "").contains("Wikimedia "))
+                    // if text is not about fiction, remove pages about music, movies or tv shows
+                    .filter(entity -> category.equals(Category.fiction) || !isCreativeWork(entity))
+                    // if text is not about biology, remove pages about genes
+                    .filter(entity -> category.equals(Category.biology) || !isGene(entity))
+                    // only keep pages about numbers when the token is numeric
+                    .filter(entity -> !StringUtils.isNumeric(entity.getOriginalLemma())
+                            || (StringUtils.isNumeric(entity.getOriginalLemma()) && isNaturalNumber(entity)))
+                    .collect(Collectors.toList());
+
+            currentTokenEntitiesMap.put(token, currentEntities);
+
+            // if larger group has result, don't consider smaller token groups anymore
+            if (currentEntities.size() > 0) {
+                if (i + 1 < subtokensList.size() && subtokens.size() > subtokensList.get(i + 1).size()) {
+                    break;
+                }
+            }
+        }
+        progressBar.step();
+        return currentTokenEntitiesMap;
     }
 
     public static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
@@ -450,7 +478,7 @@ public class WikidataEntityExtractor {
             sublists.add(sublist);
         }
 
-        // move last n-2 lists into preceeding list
+        // move last n-2 lists into preceding list
         int initialSublistsSize = sublists.size();
 
         for (int i = initialSublistsSize - 1; i > 0; i--) {

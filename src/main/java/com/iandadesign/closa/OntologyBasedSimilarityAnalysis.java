@@ -35,6 +35,7 @@ public class OntologyBasedSimilarityAnalysis {
 
     private final Logger logger = LoggerFactory.getLogger(OntologyBasedSimilarityAnalysis.class);
     private static String preprocessedCachingDirectory;
+    private static int lengthSublistTokens;
 
     static {
         try {
@@ -78,6 +79,8 @@ public class OntologyBasedSimilarityAnalysis {
 
             // get the property value and print it out
             preprocessedCachingDirectory = properties.getProperty("preprocessed_caching_directory");
+            lengthSublistTokens = Integer.parseInt(properties.getProperty("length_sublist_tokens"));
+
             if(preprocessedCachingDirectory == null){
                 preprocessedCachingDirectory = System.getProperty("user.home");
                 System.out.println("Using the home directory for caching preprocessed files "
@@ -221,9 +224,10 @@ public class OntologyBasedSimilarityAnalysis {
             PrintStream resultsStream = new PrintStream(resultsDocument);
             resultsStream.println("Extended Algorithm results"+dashes(74));
             resultsStream.printf(format, "TAG:", tag);
-            resultsStream.printf(format, "Time:",dateString);
-            resultsStream.printf(format, "Sliding Window Length:",NUM_SENTENCES_IN_SLIDING_WINDOW);
-            resultsStream.printf(format, "Sliding Window Increment:",NUM_SENTENCE_INCREMENT_SLIDINGW);
+            resultsStream.printf(format, "Time:", dateString);
+            resultsStream.printf(format, "Sliding Window Length:", NUM_SENTENCES_IN_SLIDING_WINDOW);
+            resultsStream.printf(format, "Sliding Window Increment:", NUM_SENTENCE_INCREMENT_SLIDINGW);
+            resultsStream.printf(format, "Sublist Token Length:", lengthSublistTokens);
             resultsStream.println(dashes(100));
 
             // Perform similarity analysis for candidate retrieval.
@@ -280,11 +284,15 @@ public class OntologyBasedSimilarityAnalysis {
                             resultsStream.printf(format, "Fragment Number: ", fragmentIndex);
                             resultsStream.printf(format, "Suspicious Start Sentence:", currentSuspWindowStartSentence);
                             resultsStream.printf(format, "Candidate Start Sentence:", currentCandWindowStartSentence);
+                            resultsStream.printf(format, "Suspicious Tokens:", currentSuspiciousIdTokensMap.get(suspiciousIdTokenExt.getKey()));
+                            resultsStream.printf(format, "Candidate Tokens:", currentCandidateIdTokensMap.get(candidateIdTokenExt.getKey()));
                             resultsStream.printf(format, "Fragment Score: ", fragmentScoresMap.get(candidateIdTokenExt.getKey()));
                             System.out.println(dashes(50));
                             System.out.printf(format, "Fragment Number: ", fragmentIndex);
                             System.out.printf(format, "Suspicious Start Sentence:", currentSuspWindowStartSentence);
                             System.out.printf(format, "Candidate Start Sentence:", currentCandWindowStartSentence);
+                            System.out.printf(format, "Suspicious Tokens:", currentSuspiciousIdTokensMap.get(suspiciousIdTokenExt.getKey()));
+                            System.out.printf(format, "Candidate Tokens:", currentCandidateIdTokensMap.get(candidateIdTokenExt.getKey()));
                             System.out.printf(format, "Fragment Score: ", fragmentScoresMap.get(candidateIdTokenExt.getKey()));
                             fragmentIndex++;
                         }
