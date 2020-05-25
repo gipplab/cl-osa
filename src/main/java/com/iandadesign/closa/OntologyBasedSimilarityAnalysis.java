@@ -15,13 +15,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.nio.CharBuffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static java.lang.Integer.min;
 
 public class OntologyBasedSimilarityAnalysis {
 
@@ -164,8 +169,21 @@ public class OntologyBasedSimilarityAnalysis {
 
         return new HashMap<>();
     }
+    /**
+     * Creates a string of dashes that is n dashes long.
+     *
+     * @param n The number of dashes to add to the string.
+     */
+    public String dashes( int n ) {
+        return CharBuffer.allocate( n ).toString().replace( '\0', '-' );
+    }
 
-    public Map<String, Double> executeAlgorithmAndComputeScoresExtendedInfo(String suspiciousDocumentPath, List<String> candidateDocumentPaths) {
+    public Map<String, Double> executeAlgorithmAndComputeScoresExtendedInfo(String suspiciousDocumentPath,
+                                                                            List<String> candidateDocumentPaths,
+                                                                            String tag) {
+        final int NUM_SENTENCES_IN_SLIDING_WINDOW = 1;
+        final int NUM_SENTENCE_INCREMENT_SLIDINGW = 1;
+
         // Maps used for detailed comparison
         Map<String, List<SavedEntity>> suspiciousIdTokensMapExt = new HashMap<>();
         Map<String, List<SavedEntity>> candidateIdTokensMapExt = new HashMap<>();
@@ -190,6 +208,24 @@ public class OntologyBasedSimilarityAnalysis {
                 candidateIdTokensMapExt.put(candidateDocumentPath, preprocessedCandExt);
             }
 
+            // Creating a results file
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss");
+            LocalDateTime now = LocalDateTime.now();
+            String dateString = dtf.format((now));
+            String documentResultsPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
+                    "results", tag.concat("_").concat(dateString).concat(".txt"))
+                    .toAbsolutePath().toString();
+            String format = "%-40s%s%n";        // Format for key value outputs
+            File resultsDocument = new File(documentResultsPath);
+            boolean dirsCreated = resultsDocument.getParentFile().mkdirs();
+            PrintStream resultsStream = new PrintStream(resultsDocument);
+            resultsStream.println("Extended Algorithm results"+dashes(74));
+            resultsStream.printf(format, "TAG:", tag);
+            resultsStream.printf(format, "Time:",dateString);
+            resultsStream.printf(format, "Sliding Window Length:",NUM_SENTENCES_IN_SLIDING_WINDOW);
+            resultsStream.printf(format, "Sliding Window Increment:",NUM_SENTENCE_INCREMENT_SLIDINGW);
+            resultsStream.println(dashes(100));
+
             // Perform similarity analysis for candidate retrieval.
             Map<String, Double> candidateScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
             System.out.println("Scores for candidate retrieval:");
@@ -209,9 +245,7 @@ public class OntologyBasedSimilarityAnalysis {
             Map<String, List<SavedEntity>> selectedCandidateIdTokensMapExt = new HashMap<> (candidateIdTokensMapExt);
             selectedCandidateIdTokensMapExt.keySet().retainAll(selectedCandidateKeys);
 
-            final int NUM_SENTENCES_IN_SLIDING_WINDOW = 1;
-            final int NUM_SENTENCE_INCREMENT_SLIDINGW = 1;
-
+            long fragmentIndex=0; // Just a running index for adressing fragmentss.
             for (Map.Entry<String, List<SavedEntity>> suspiciousIdTokenExt : suspiciousIdTokensMapExt.entrySet()) {
                 Integer numSentencesSusp = getMaxSentenceNumber(suspiciousIdTokenExt)+1;
                 System.out.println("Detailed Analysis selected Suspicious File: "+suspiciousIdTokenExt.getKey());
@@ -222,6 +256,9 @@ public class OntologyBasedSimilarityAnalysis {
                     Integer numSentencesCand = getMaxSentenceNumber(candidateIdTokenExt)+1; //TODO fix redundant Operation
                     System.out.println("Detailed Analysis selected Candidate File: "+candidateIdTokenExt.getKey());
                     System.out.println("Candidate file sentences: "+numSentencesCand);
+                    resultsStream.println("Comparing Files");
+                    resultsStream.printf(format, "Suspicious File: ", suspiciousIdTokenExt.getKey());
+                    resultsStream.printf(format, "Candidate File:  ", candidateIdTokenExt.getKey());
 
                     // Documents have been specified here->start to slide the window.
                     for(int currentSuspWindowStartSentence=0;currentSuspWindowStartSentence<numSentencesSusp;currentSuspWindowStartSentence+=NUM_SENTENCE_INCREMENT_SLIDINGW){
@@ -239,13 +276,18 @@ public class OntologyBasedSimilarityAnalysis {
                                     candidateIdTokenExt.getKey());
                             Map<String, Double> fragmentScoresMap = performCosineSimilarityAnalysis(currentSuspiciousIdTokensMap,
                                     currentCandidateIdTokensMap).get(suspiciousIdTokenExt.getKey());
-                            System.out.println("Fragment Suspstart: "+currentSuspWindowStartSentence+" CandStart: "+currentCandWindowStartSentence);
-                            System.out.println("Fragment Score"+suspiciousIdTokenExt.getKey()+" "+fragmentScoresMap);
+                            resultsStream.println(dashes(50));
+                            resultsStream.printf(format, "Fragment Number: ", fragmentIndex);
+                            resultsStream.printf(format, "Suspicious Start Sentence:", currentSuspWindowStartSentence);
+                            resultsStream.printf(format, "Candidate Start Sentence:", currentCandWindowStartSentence);
+                            resultsStream.printf(format, "Fragment Score: ", fragmentScoresMap.get(candidateIdTokenExt.getKey()));
+                            fragmentIndex++;
                         }
                     }
                 }
             }
 
+            resultsStream.close();
             System.out.println(candidatesForDetailedComparison);
 
         } catch (IOException e) {
@@ -469,7 +511,7 @@ public class OntologyBasedSimilarityAnalysis {
     ) {
         // create dictionary
         logger.info("Create dictionary");
-        DictionaryExt<SavedEntity> dictionary = new DictionaryExt<SavedEntity>(candidateIdTokensMap);
+        Dictionary<SavedEntity> dictionary = new Dictionary<SavedEntity>(candidateIdTokensMap);
 
         // perform detailed analysis
         logger.info("Perform detailed analysis");
