@@ -27,10 +27,7 @@ import org.tartarus.snowball.ext.*;
 
 import java.io.*;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -111,7 +108,6 @@ public class TokenUtil {
 
         return tokenList;
     }
-
 
     private static List<List<Token>> namedEntityTokenizeSpanish(String text) {
         throw new NotImplementedException("");
@@ -366,6 +362,53 @@ public class TokenUtil {
         return tokensBySentence;
     }
 
+    /**
+     * Get a sentence number which reflects the middle/majority of sentence numbers in tokens.
+     * modes:
+     * simple -> just use the first tokens sentence number
+     * useMaximum -> get the sentenceNumber which the most tokens haven, if equal maxima, smallest sentence number is used
+     * histogramMean -> use the arithmetical mean of a histogram of sentence number/occurences in tokens
+     *
+     * @param tokens list of tokens which contain sentence numbers
+     * @param mode "useMaximum", "histogramMean", "simple", if no specified mode is given, error message is logged
+     *             and simple mode is used
+     * @return adjusted sentence number.
+     */
+    public static int getAdjustedSentenceNumber(List<Token> tokens, String mode){
+        // Gets the sentence number the most tokens are in,
+        // on equal sentence numbers do ....
+        // Map<SentenceNumber, Occurence>
+        //modes:
+        if(mode.equals("simple")){
+            return tokens.get(0).getSentenceNumber();
+        }
+        Map<Integer, Integer> occurencesMap = new HashMap<>();
+        tokens.forEach(currentToken -> {
+            int currentSentenceNumber = currentToken.getSentenceNumber();
+            int currentValue = occurencesMap.getOrDefault(currentSentenceNumber,0);
+            currentValue+=1;
+            occurencesMap.put(currentSentenceNumber, currentValue);
+        });
+        if(mode.equals("useMaximum")){
+            Integer adjustedSentenceNumberMax = Collections
+                    .max(occurencesMap.entrySet(), Comparator.comparingInt(Map.Entry::getValue))
+                    .getKey();
+            return adjustedSentenceNumberMax;
+        }
+        if(mode.equals("histogramMean")) {
+            final long[] counter = {0};
+            int numberOfTokens = tokens.size();
+            // Calculate the histogram arithmetical mean.
+            occurencesMap.entrySet().forEach(entry -> {
+                counter[0] += entry.getKey() * entry.getValue();
+            });
+            float mean = counter[0] / (float) numberOfTokens;
+            int adjustedSentenceNumberHmean = Math.round(mean);
+            return adjustedSentenceNumberHmean;
+        }
+        System.err.println("Error in TokenUtil.getAdjustedSentenceNumber - invalid mode defined");
+        return tokens.get(0).getSentenceNumber();
+    }
 
     public static List<Token> chineseTokenize(String text, String languageCode) {
         List<Token> tokens = new ArrayList<>();

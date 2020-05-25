@@ -2,7 +2,10 @@ package com.iandadesign.closa.model;
 
 import edu.stanford.nlp.ling.HasWord;
 import org.apache.commons.lang.StringUtils;
+import com.iandadesign.closa.util.TokenUtil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,9 +58,10 @@ public class Token implements HasWord {
         this.token = token1.getToken() + separator + token2.getToken();
         this.startCharacter = token1.getStartCharacter();
         this.endCharacter = token2.getEndCharacter();
-        this.sentenceNumber = token1.getSentenceNumber(); //TODO JS: think about more accurate sentence number here.
+        this.sentenceNumber = TokenUtil.getAdjustedSentenceNumber(
+                new ArrayList<>(Arrays.asList(token1, token2)),
+                "histogramMean");
         this.index = token1.getIndex();
-
         this.lemma = token1.getLemma() + separator + token2.getLemma();
         this.partOfSpeech = token1.getPartOfSpeech();
         this.namedEntityType = token1.getNamedEntityType();
@@ -78,9 +82,10 @@ public class Token implements HasWord {
         this.isNamedEntity = tokens.get(0).isNamedEntity;
         this.startCharacter = tokens.get(0).getStartCharacter();
         this.endCharacter = tokens.get(tokens.size() - 1).getEndCharacter();
-        this.sentenceNumber = tokens.get(0).getSentenceNumber(); //TODO JS: think on more accurate way than just using the first tokens assignment
+        this.sentenceNumber = TokenUtil.getAdjustedSentenceNumber(tokens, "histogramMean");
         this.index = tokens.get(0).getIndex();
     }
+
 
     /**
      * Simple initialization with token only.
