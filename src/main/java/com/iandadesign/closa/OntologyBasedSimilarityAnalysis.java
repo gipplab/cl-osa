@@ -196,7 +196,7 @@ public class OntologyBasedSimilarityAnalysis {
         try {
             String suspiciousDocumentStr = FileUtils.readFileToString(new File(suspiciousDocumentPath), StandardCharsets.UTF_8);
             String lang = languageDetector.detectLanguage(suspiciousDocumentStr);
-            List<SavedEntity> preprocessedExt = preProcessExtendedInfo(suspiciousDocumentPath,lang);
+            List<SavedEntity> preprocessedExt = preProcessExtendedInfo(suspiciousDocumentPath, lang);
             List<String> preprocessed = preprocessedExt.stream().map(SavedEntity::getWikidataEntityId).collect(Collectors.toList());
 
             suspiciousIdTokensMapExt.put(suspiciousDocumentPath, preprocessedExt);
@@ -266,34 +266,46 @@ public class OntologyBasedSimilarityAnalysis {
 
                     // Documents have been specified here->start to slide the window.
                     for(int currentSuspWindowStartSentence=0;currentSuspWindowStartSentence<numSentencesSusp;currentSuspWindowStartSentence+=NUM_SENTENCE_INCREMENT_SLIDINGW){
-                        Map<String, List<String>> currentSuspiciousIdTokensMap = getWikiEntityStringsForSlidingWindow(
+                        SlidingWindowInfo swiSuspicious= getWikiEntityStringsForSlidingWindow(
                                 suspiciousIdTokenExt,
                                 currentSuspWindowStartSentence,
                                 NUM_SENTENCES_IN_SLIDING_WINDOW,
                                 suspiciousIdTokenExt.getKey());
+                        Map<String, List<String>> currentSuspiciousIdTokensMap = swiSuspicious.filenameToEntities;
 
                         for(int currentCandWindowStartSentence=0;currentCandWindowStartSentence<numSentencesCand;currentCandWindowStartSentence+=NUM_SENTENCE_INCREMENT_SLIDINGW){
-                            Map<String, List<String>> currentCandidateIdTokensMap = getWikiEntityStringsForSlidingWindow(
+                             SlidingWindowInfo swiCandidate = getWikiEntityStringsForSlidingWindow(
                                     candidateIdTokenExt,
                                     currentCandWindowStartSentence,
                                     NUM_SENTENCES_IN_SLIDING_WINDOW,
                                     candidateIdTokenExt.getKey());
+                            Map<String, List<String>> currentCandidateIdTokensMap = swiCandidate.filenameToEntities;
+
                             Map<String, Double> fragmentScoresMap = performCosineSimilarityAnalysis(currentSuspiciousIdTokensMap,
                                     currentCandidateIdTokensMap).get(suspiciousIdTokenExt.getKey());
+
+                            Double fragmentScore = fragmentScoresMap.get(candidateIdTokenExt.getKey());
+                            if(fragmentScore==null || fragmentScore<=0.0) {
+                                continue;
+                            }
                             resultsStream.println(dashes(50));
-                            resultsStream.printf(format, "Fragment Number: ", fragmentIndex);
+                            resultsStream.printf(format, "Fragment Number:", fragmentIndex);
                             resultsStream.printf(format, "Suspicious Start Sentence:", currentSuspWindowStartSentence);
                             resultsStream.printf(format, "Candidate Start Sentence:", currentCandWindowStartSentence);
+                            resultsStream.printf(format, "Suspicious Start Character Index:", swiSuspicious.getCharacterStartIndex());
+                            resultsStream.printf(format, "Candidate Start Character Index:", swiCandidate.getCharacterStartIndex());
+                            resultsStream.printf(format, "Suspicious End Character Index:", swiSuspicious.getCharacterEndIndex());
+                            resultsStream.printf(format, "Candidate End Character Index:", swiCandidate.getCharacterEndIndex());
                             resultsStream.printf(format, "Suspicious Tokens:", currentSuspiciousIdTokensMap.get(suspiciousIdTokenExt.getKey()));
                             resultsStream.printf(format, "Candidate Tokens:", currentCandidateIdTokensMap.get(candidateIdTokenExt.getKey()));
-                            resultsStream.printf(format, "Fragment Score: ", fragmentScoresMap.get(candidateIdTokenExt.getKey()));
+                            resultsStream.printf(format, "Fragment Score:", fragmentScore);
                             System.out.println(dashes(50));
-                            System.out.printf(format, "Fragment Number: ", fragmentIndex);
+                            System.out.printf(format, "Fragment Number:", fragmentIndex);
                             System.out.printf(format, "Suspicious Start Sentence:", currentSuspWindowStartSentence);
                             System.out.printf(format, "Candidate Start Sentence:", currentCandWindowStartSentence);
                             System.out.printf(format, "Suspicious Tokens:", currentSuspiciousIdTokensMap.get(suspiciousIdTokenExt.getKey()));
                             System.out.printf(format, "Candidate Tokens:", currentCandidateIdTokensMap.get(candidateIdTokenExt.getKey()));
-                            System.out.printf(format, "Fragment Score: ", fragmentScoresMap.get(candidateIdTokenExt.getKey()));
+                            System.out.printf(format, "Fragment Score:", fragmentScore);
                             fragmentIndex++;
                         }
                     }
@@ -310,7 +322,8 @@ public class OntologyBasedSimilarityAnalysis {
         return new HashMap<>();
     }
 
-    Map <String, List<String>> getWikiEntityStringsForSlidingWindow(
+
+    SlidingWindowInfo getWikiEntityStringsForSlidingWindow(
             Map.Entry<String, List<SavedEntity>> idTokenExt, int startSentenceIndex, int windowSize, String filename){
 
         int endSentenceIndex = startSentenceIndex + windowSize;
@@ -321,14 +334,35 @@ public class OntologyBasedSimilarityAnalysis {
                                 && currentEntity.getToken().getSentenceNumber() < endSentenceIndex)
                 .collect(Collectors.toList());
 
+        // Getting relative start index as the character start coordinate of the first entity
+        List<Integer> startChars = windowEntitysSusp.stream()
+                .map(SavedEntity::getToken)
+                .map(Token::getStartCharacter)
+                .collect(Collectors.toList());
+        int firstStartChar = 0;
+        if(startChars.size()>=1) {
+            firstStartChar = Collections.min(startChars);
+        }
+        // Getting relative stop index as the character end coordinate of the last entity
+        List<Integer> endChars = windowEntitysSusp.stream()
+                .map(SavedEntity::getToken)
+                .map(Token::getEndCharacter)
+                .collect(Collectors.toList());
+        int lastEndChar = 0;
+        if(endChars.size()>=1){
+            lastEndChar = Collections.max(endChars);
+        }
+
         // Operations for casting the entities for performing the cosine analysis
         List<String> entityIdsForWindow = windowEntitysSusp
                 .stream()
                 .map(SavedEntity::getWikidataEntityId)
                 .collect(Collectors.toList());
-        Map <String, List<String>> returnMap = new HashMap<>();
-        returnMap.put(filename, entityIdsForWindow);
-        return returnMap;
+        Map <String, List<String>> filenameToEntities = new HashMap<>();
+        filenameToEntities.put(filename, entityIdsForWindow);
+
+        // Return everything in a compound object
+        return new SlidingWindowInfo(filename, filenameToEntities, firstStartChar, lastEndChar);
     }
 
     Integer getMaxSentenceNumber(Map.Entry<String, List<SavedEntity>> inputMap){
