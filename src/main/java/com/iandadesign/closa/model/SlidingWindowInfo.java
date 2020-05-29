@@ -10,36 +10,40 @@ import java.util.Map;
  * @author Johannes Stegmüller on 2020/05/29/
  */
 public class SlidingWindowInfo {
-    public final String fileName;
-    public final Map<String, List<String>> filenameToEntities;
-    public final int characterStartIndex;
-    public final int characterEndIndex;
+    private final String fileName;
+    private final Map<String, List<String>> filenameToEntities;
+    private final int characterStartIndex;
+    private final int characterEndIndex;
+    private final int startSentence;
+    private final int endSentence;
 
     public SlidingWindowInfo(String fileName,
                              Map <String, List<String>> filenameToEntities,
                              int characterStartIndex,
-                             int characterEndIndex) {
+                             int characterEndIndex,
+                             int startSentence,
+                             int endSentence) {
 
         this.fileName = fileName;
         this.filenameToEntities = filenameToEntities;
         this.characterStartIndex = characterStartIndex;
         this.characterEndIndex = characterEndIndex;
+        this.startSentence = startSentence;
+        this.endSentence = endSentence;
     }
 
     public String getFileName() {
         return fileName;
     }
-
     public Map<String, List<String>> getFilenameToEntities() {
         return filenameToEntities;
     }
-
     public int getCharacterStartIndex() {
         return characterStartIndex;
     }
-
     public int getCharacterEndIndex() {
         return characterEndIndex;
     }
-
+    public int getStartSentence(){ return startSentence;}
+    public int getEndSentence() { return endSentence; }
 }
