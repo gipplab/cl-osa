@@ -26,7 +26,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static java.lang.Integer.min;
 
 public class OntologyBasedSimilarityAnalysis {
 
@@ -217,7 +216,7 @@ public class OntologyBasedSimilarityAnalysis {
             LocalDateTime now = LocalDateTime.now();
             String dateString = dtf.format((now));
             String documentResultsPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
-                    "results", tag.concat("_").concat(dateString).concat(".txt"))
+                    "results_preprocessing", tag.concat("_").concat(dateString).concat(".txt"))
                     .toAbsolutePath().toString();
             String format = "%-40s%s%n";        // Format for key value outputs
             File resultsDocument = new File(documentResultsPath);
@@ -269,7 +268,7 @@ public class OntologyBasedSimilarityAnalysis {
                     resultsStream.println("Comparing Files");
                     resultsStream.printf(format, "Suspicious File:", suspiciousIdTokenExt.getKey());
                     resultsStream.printf(format, "Candidate File:", candidateIdTokenExt.getKey());
-
+                    scoringChunksCombined.setCurrentDocuments(suspiciousIdTokenExt.getKey(), candidateIdTokenExt.getKey());
                     // Documents have been specified here->start to slide the window.
                     for(int currentSuspWindowStartSentence=0;currentSuspWindowStartSentence<numSentencesSusp;currentSuspWindowStartSentence+=NUM_SENTENCE_INCREMENT_SLIDINGW){
                         SlidingWindowInfo swiSuspicious= getWikiEntityStringsForSlidingWindow(
@@ -319,7 +318,7 @@ public class OntologyBasedSimilarityAnalysis {
                             );
 
                             // Do combination with previously stored windows.
-                            Boolean scoringAdded = false;
+                            boolean scoringAdded = false;
                             // Checking if an the window can be added in combination with adjacent previous window.
                             if(currentScoringChunk.getComputedCosineSimilarity() >= ADJACENT_TRESH) {
                                 scoringAdded = scoringChunksCombined.storeAndAddToPreviousChunk(currentScoringChunk);
@@ -330,20 +329,36 @@ public class OntologyBasedSimilarityAnalysis {
                             }
                         }
                     }
+                    // After each candidate and suspicious file combination
+                    // ... write down results
+                    writeDownXMLResults(tag, dateString, scoringChunksCombined);
+                    // ... free memory
+                    scoringChunksCombined.flushInternalCombinedChunks();
                 }
             }
-
             resultsStream.close();
             System.out.println(candidatesForDetailedComparison);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // TODO save found combined results to xml 
+
         return new HashMap<>();
     }
 
-
+    void writeDownXMLResults(String tag, String dateString, ScoringChunksCombined scoringChunksCombined){
+        String cosineResultsPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
+                "results_comparison", tag.concat("_").concat(dateString),
+                scoringChunksCombined.getSuspiciousDocumentName().concat(".xml"))
+                .toAbsolutePath().toString();
+        // Writing the results to xml file
+        try {
+            scoringChunksCombined.writeResultAsXML(cosineResultsPath);
+            scoringChunksCombined.prettifyXML(cosineResultsPath);
+        } catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
     SlidingWindowInfo getWikiEntityStringsForSlidingWindow(
             Map.Entry<String, List<SavedEntity>> idTokenExt, int startSentenceIndex, int windowSize, String filename){
         // Obtaining the entities which are within the window
