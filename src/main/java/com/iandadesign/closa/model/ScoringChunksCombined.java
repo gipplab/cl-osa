@@ -238,22 +238,21 @@ public class ScoringChunksCombined {
         // create Start node
         XMLEvent event = eventFactory.createStartElement("", "", "feature");
         eventWriter.add(event);
-
-        event = eventFactory.createAttribute("name", "detected-plagiarism");
+        // For some reason attributes are printed in alphabetical order. Temporarily fixed with prefixes in localName.
+        event = eventFactory.createAttribute("aa_name", "detected-plagiarism");
         eventWriter.add(event);
         // event = eventFactory.createCharacters("\n");
         // eventWriter.add(event);
-        event = eventFactory.createAttribute("this_offset",Integer.toString(candidateOffset));
+        event = eventFactory.createAttribute("ab_this_offset", Integer.toString(sourceOffset));
         eventWriter.add(event);
-        event = eventFactory.createAttribute("this_length", Integer.toString(candidateLength));
+        event = eventFactory.createAttribute("ac_this_length", Integer.toString(sourceLength));
         eventWriter.add(event);
-        event = eventFactory.createAttribute("source_reference",candidateDocumentName);
+        event = eventFactory.createAttribute("ba_source_reference",candidateDocumentName);
         eventWriter.add(event);
-        event = eventFactory.createAttribute("source_offset", Integer.toString(sourceOffset));
+        event = eventFactory.createAttribute("bb_source_offset", Integer.toString(candidateOffset));
         eventWriter.add(event);
-        event = eventFactory.createAttribute("source_length",Integer.toString(sourceLength));
+        event = eventFactory.createAttribute("bc_source_length", Integer.toString(candidateLength));
         eventWriter.add(event);
-
         event = eventFactory.createEndElement("","","feature");
         eventWriter.add(event);
     }
