@@ -184,8 +184,14 @@ public class OntologyBasedSimilarityAnalysis {
     public Map<String, Double> executeAlgorithmAndComputeScoresExtendedInfo(String suspiciousDocumentPath,
                                                                             List<String> candidateDocumentPaths,
                                                                             String tag) {
-        final int NUM_SENTENCES_IN_SLIDING_WINDOW = 1;
+
+        // Sliding window parameters (atm only possible increment == num_sentences)
+        final int NUM_SENTENCES_IN_SLIDING_WINDOW = 2;
         final int NUM_SENTENCE_INCREMENT_SLIDINGW = 1;
+        // Sliding window comparison thresholds
+        final double ADJACENT_THRESH = 0.1;
+        final double SINGLE_THRESH = 0.15;
+
 
         // Maps used for detailed comparison
         Map<String, List<SavedEntity>> suspiciousIdTokensMapExt = new HashMap<>();
@@ -248,12 +254,11 @@ public class OntologyBasedSimilarityAnalysis {
             // Create a copy of the original candidates map and reduce it to selected candidates.
             Map<String, List<SavedEntity>> selectedCandidateIdTokensMapExt = new HashMap<> (candidateIdTokensMapExt);
             selectedCandidateIdTokensMapExt.keySet().retainAll(selectedCandidateKeys);
+            // Number of sentences in documents ?
 
-            // Window Comparsison Tresholds
-            Double ADJACENT_TRESH = 0.1;
-            Double SINGLE_TRESH = 0.4;
+
             // Storage for combined window entities.
-            ScoringChunksCombined scoringChunksCombined = new ScoringChunksCombined(ADJACENT_TRESH, SINGLE_TRESH, NUM_SENTENCES_IN_SLIDING_WINDOW,NUM_SENTENCE_INCREMENT_SLIDINGW);
+            ScoringChunksCombined scoringChunksCombined = new ScoringChunksCombined(ADJACENT_THRESH, SINGLE_THRESH, NUM_SENTENCES_IN_SLIDING_WINDOW,NUM_SENTENCE_INCREMENT_SLIDINGW);
             long fragmentIndex=0; // Just a running index for adressing fragments.
             for (Map.Entry<String, List<SavedEntity>> suspiciousIdTokenExt : suspiciousIdTokensMapExt.entrySet()) {
                 Integer numSentencesSusp = getMaxSentenceNumber(suspiciousIdTokenExt)+1;
@@ -269,6 +274,8 @@ public class OntologyBasedSimilarityAnalysis {
                     resultsStream.printf(format, "Suspicious File:", suspiciousIdTokenExt.getKey());
                     resultsStream.printf(format, "Candidate File:", candidateIdTokenExt.getKey());
                     scoringChunksCombined.setCurrentDocuments(suspiciousIdTokenExt.getKey(), candidateIdTokenExt.getKey());
+                    scoringChunksCombined.createScoreMatrix(numSentencesSusp, numSentencesCand);
+                    int suspiciousSlidingWindowIndex = 0;
                     // Documents have been specified here->start to slide the window.
                     for(int currentSuspWindowStartSentence=0;currentSuspWindowStartSentence<numSentencesSusp;currentSuspWindowStartSentence+=NUM_SENTENCE_INCREMENT_SLIDINGW){
                         SlidingWindowInfo swiSuspicious= getWikiEntityStringsForSlidingWindow(
@@ -277,7 +284,7 @@ public class OntologyBasedSimilarityAnalysis {
                                 NUM_SENTENCES_IN_SLIDING_WINDOW,
                                 suspiciousIdTokenExt.getKey());
                         Map<String, List<String>> currentSuspiciousIdTokensMap = swiSuspicious.getFilenameToEntities();
-
+                        int candidateSlidingWindowIndex = 0;
                         for(int currentCandWindowStartSentence=0;currentCandWindowStartSentence<numSentencesCand;currentCandWindowStartSentence+=NUM_SENTENCE_INCREMENT_SLIDINGW){
                              SlidingWindowInfo swiCandidate = getWikiEntityStringsForSlidingWindow(
                                     candidateIdTokenExt,
@@ -293,6 +300,7 @@ public class OntologyBasedSimilarityAnalysis {
                             // TODO if using a window-bordersize buffering remove this later
                             if(fragmentScore==null || fragmentScore<=0.0) {
                                 fragmentIndex++; // Just increase the fragment index for absolute indexing.
+                                candidateSlidingWindowIndex++;
                                 continue;
                             }
                             ScoringChunk currentScoringChunk = new ScoringChunk(swiSuspicious,
@@ -317,21 +325,25 @@ public class OntologyBasedSimilarityAnalysis {
                                     currentCandidateIdTokensMap.get(candidateIdTokenExt.getKey())
                             );
 
+                            scoringChunksCombined.storeScoringChunkToScoringMatrix(currentScoringChunk, suspiciousSlidingWindowIndex, candidateSlidingWindowIndex);
                             // Do combination with previously stored windows.
                             boolean scoringAdded = false;
                             // Checking if an the window can be added in combination with adjacent previous window.
-                            if(currentScoringChunk.getComputedCosineSimilarity() >= ADJACENT_TRESH) {
+                            if(currentScoringChunk.getComputedCosineSimilarity() >= ADJACENT_THRESH) {
                                 scoringAdded = scoringChunksCombined.storeAndAddToPreviousChunk(currentScoringChunk);
                             }
                             // Checking if a new storage can be done if there was no adjacent window.
-                            if(!scoringAdded && currentScoringChunk.getComputedCosineSimilarity() >= SINGLE_TRESH){
+                            if(!scoringAdded && currentScoringChunk.getComputedCosineSimilarity() >= SINGLE_THRESH){
                                 scoringChunksCombined.storeScoringChunk(currentScoringChunk);
                             }
+                            candidateSlidingWindowIndex++;
                         }
+                        suspiciousSlidingWindowIndex++;
                     }
                     // After each candidate and suspicious file combination
                     // ... write down results
                     writeDownXMLResults(tag, dateString, scoringChunksCombined);
+                    scoringChunksCombined.writeScoresMapAsCSV(tag, dateString, preprocessedCachingDirectory);
                     // ... free memory
                     scoringChunksCombined.flushInternalCombinedChunks();
                 }

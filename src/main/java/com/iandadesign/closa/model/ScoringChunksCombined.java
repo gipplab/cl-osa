@@ -1,5 +1,6 @@
 package com.iandadesign.closa.model;
 
+import com.iandadesign.closa.util.CSVUtil;
 import com.iandadesign.closa.util.XmlFormatter;
 import edu.stanford.nlp.util.ArrayMap;
 
@@ -10,10 +11,12 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.*;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.lang.Integer.max;
 import static java.lang.Integer.min;
@@ -30,6 +33,9 @@ public class ScoringChunksCombined {
     private final int slidingWindowLength;
     private final int slidingWindowIncrement;
     private Map<MapCoords, List<ScoringChunk>> allScoringChunksCombined; // This is flushed on every file combination
+    private ScoringChunk[][] scoreMatrix; // This is flushed on every file combination
+    private int matrixDimensionX;
+    private int matrixDimensionY;
 
     private String suspiciousDocumentName;
     private String candidateDocumentName;
@@ -77,6 +83,12 @@ public class ScoringChunksCombined {
         return this.suspiciousDocumentName;
     }
 
+    public void createScoreMatrix(Integer suspiciousDocumentSentences, Integer candidateDocumentSentences){
+        this.matrixDimensionX = (int) Math.floor(suspiciousDocumentSentences / (float) this.slidingWindowIncrement);
+        this.matrixDimensionY = (int) Math.floor(candidateDocumentSentences / (float) this.slidingWindowIncrement);
+        //List<List<ScoringChunk>> scoreMatrix = new ArrayList<>(dimensionX);
+        this.scoreMatrix = new ScoringChunk[this.matrixDimensionX][this.matrixDimensionY];
+    }
     public boolean storeAndAddToPreviousChunk(ScoringChunk chunkToStore){
         MapCoords chunkStoreCoords = getMapCoordsOfChunk(chunkToStore);
         MapCoords assumedPreviousCoords = chunkStoreCoords.getAssumedPreviousCoords();
@@ -113,6 +125,12 @@ public class ScoringChunksCombined {
         return new MapCoords(newCandStartSentence, newCandEndSentence, newSuspStartSentence, newSuspEndSentence);
     }
 
+    public void storeScoringChunkToScoringMatrix(ScoringChunk chunkToStore,
+                                                 int suspiciousSlidingWindowIndex,
+                                                 int candidateSlidingWindowIndex){
+        // Does this duplicate object or ref ?
+        this.scoreMatrix[suspiciousSlidingWindowIndex][candidateSlidingWindowIndex] = chunkToStore;
+    }
     public void storeScoringChunk(ScoringChunk chunkToStore){
         MapCoords chunkStoreCoords = getMapCoordsOfChunk(chunkToStore);
         List<ScoringChunk> scoringChunks = this.allScoringChunksCombined.get(chunkStoreCoords);
@@ -138,7 +156,60 @@ public class ScoringChunksCombined {
         return coords;
     }
     public void flushInternalCombinedChunks(){
-        allScoringChunksCombined = new ArrayMap<MapCoords,List<ScoringChunk>>();
+        this.allScoringChunksCombined = new ArrayMap<MapCoords,List<ScoringChunk>>();
+        this.scoreMatrix = null;
+    }
+
+    public void writeScoresMapAsCSV(String tag, String dateString, String preprocessedCachingDirectory){
+        String resultPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
+                "scores_maps", tag.concat("_").concat(dateString),
+                this.suspiciousDocumentName.concat(".csv")).toString();
+
+
+        // Creating output directory if it doesn't exist
+        boolean dirCreated = new File(resultPath).getParentFile().mkdirs();
+
+        try {
+            File csvOutputFile = new File(resultPath.toString());
+            try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
+                for (ScoringChunk[] items : this.scoreMatrix) {
+                    try {
+                        if (items == null) {
+                            // If a row doesn't have values, just fill with empty strings
+                            String[] emptyStrings = new String[this.matrixDimensionX];
+                            Arrays.fill(emptyStrings, "");
+                            pw.println(CSVUtil.convertToCSV(emptyStrings));
+                            continue;
+                        }
+                        List<String> values = new ArrayList<>();
+                        for(ScoringChunk item: items){
+                            if(item==null){
+                                values.add("");
+                            }else{
+                                values.add(String.valueOf(item.getComputedCosineSimilarity()));
+                            }
+                        }
+                        /*
+                        Double[] values = (Double[]) Arrays.stream(items).map(ScoringChunk::getComputedCosineSimilarity).toArray();
+                        String[] strings = (String[]) Arrays.stream(values).map(String::valueOf).toArray();
+
+                        String[] strings2 = Arrays.stream(items)
+                                .map(ScoringChunk::getComputedCosineSimilarity)
+                                .map(String::valueOf)
+                                .toArray(String[]::new);
+                        */
+
+                        String returnVal = CSVUtil.convertToCSV(values.toArray(new String[0]));
+                        pw.println(returnVal);
+                    }catch(NullPointerException nex){
+                        System.out.println("Exception during writing data to csv:"+ nex);
+
+                    }
+                }
+            }
+        } catch(Exception ex){
+            System.out.println("Exception during writing data to csv:"+ ex);
+        }
     }
 
     public void writeResultAsXML(String resultFilePath) throws Exception {
@@ -247,7 +318,7 @@ public class ScoringChunksCombined {
         eventWriter.add(event);
         event = eventFactory.createAttribute("ac_this_length", Integer.toString(sourceLength));
         eventWriter.add(event);
-        event = eventFactory.createAttribute("ba_source_reference",candidateDocumentName);
+        event = eventFactory.createAttribute("ba_source_reference", candidateDocumentName);
         eventWriter.add(event);
         event = eventFactory.createAttribute("bb_source_offset", Integer.toString(candidateOffset));
         eventWriter.add(event);
