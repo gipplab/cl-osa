@@ -3,6 +3,7 @@ package com.iandadesign.closa.model;
 import com.iandadesign.closa.util.CSVUtil;
 import com.iandadesign.closa.util.XmlFormatter;
 import edu.stanford.nlp.util.ArrayMap;
+import edu.stanford.nlp.util.Interval;
 
 import javax.xml.stream.XMLEventFactory;
 import javax.xml.stream.XMLEventWriter;
@@ -14,12 +15,12 @@ import java.io.*;
 import java.lang.reflect.Array;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.lang.Integer.max;
-import static java.lang.Integer.min;
+import static java.lang.Integer.*;
 
 /**
  * This is a class for storing and combining
@@ -172,35 +173,55 @@ public class ScoringChunksCombined {
         try {
             File csvOutputFile = new File(resultPath.toString());
             try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
+
+                // Create Headline on X-Axis:
+                String[] firstRow = new String[this.matrixDimensionY+1];
+                int counterX = -1;
+                for(int index=0;index<firstRow.length;index++){
+                    firstRow[index] = "X"+Integer.toString(counterX);
+                    counterX++;
+                }
+                firstRow[0] = "SuspSentenceNumber\\CandSentenceNumber";
+                pw.println(CSVUtil.convertToCSV(firstRow));
+
+
+
+                int counterY = 0;
                 for (ScoringChunk[] items : this.scoreMatrix) {
                     try {
                         if (items == null) {
                             // If a row doesn't have values, just fill with empty strings
-                            String[] emptyStrings = new String[this.matrixDimensionX];
+                            String[] emptyStrings = new String[this.matrixDimensionX + 1];
                             Arrays.fill(emptyStrings, "");
+                            emptyStrings[0] = "Y" + Integer.toString(counterY);
                             pw.println(CSVUtil.convertToCSV(emptyStrings));
+                            counterY++;
                             continue;
                         }
                         List<String> values = new ArrayList<>();
-                        for(ScoringChunk item: items){
-                            if(item==null){
+                        values.add("Y" + Integer.toString(counterY));
+                        for (ScoringChunk item : items) {
+                            if (item == null) {
                                 values.add("");
-                            }else{
-                                values.add(String.valueOf(item.getComputedCosineSimilarity()));
+                            } else {
+                                DecimalFormat df = new DecimalFormat("#.####");
+                                String formatted = df.format(item.getComputedCosineSimilarity());
+                                values.add(formatted);
                             }
                         }
-                        /*
-                        Double[] values = (Double[]) Arrays.stream(items).map(ScoringChunk::getComputedCosineSimilarity).toArray();
-                        String[] strings = (String[]) Arrays.stream(values).map(String::valueOf).toArray();
+                    /*
+                    Double[] values = (Double[]) Arrays.stream(items).map(ScoringChunk::getComputedCosineSimilarity).toArray();
+                    String[] strings = (String[]) Arrays.stream(values).map(String::valueOf).toArray();
 
-                        String[] strings2 = Arrays.stream(items)
-                                .map(ScoringChunk::getComputedCosineSimilarity)
-                                .map(String::valueOf)
-                                .toArray(String[]::new);
-                        */
+                    String[] strings2 = Arrays.stream(items)
+                            .map(ScoringChunk::getComputedCosineSimilarity)
+                            .map(String::valueOf)
+                            .toArray(String[]::new);
+                    */
 
                         String returnVal = CSVUtil.convertToCSV(values.toArray(new String[0]));
                         pw.println(returnVal);
+                        counterY++;
                     }catch(NullPointerException nex){
                         System.out.println("Exception during writing data to csv:"+ nex);
 
