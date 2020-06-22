@@ -3,7 +3,6 @@ package com.iandadesign.closa.model;
 import com.iandadesign.closa.util.CSVUtil;
 import com.iandadesign.closa.util.XmlFormatter;
 import edu.stanford.nlp.util.ArrayMap;
-import edu.stanford.nlp.util.Interval;
 import org.apache.http.annotation.Obsolete;
 
 import javax.xml.stream.XMLEventFactory;
@@ -13,13 +12,10 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.*;
 
 import java.io.*;
-import java.lang.reflect.Array;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 import static java.lang.Integer.*;
 
@@ -49,8 +45,9 @@ public class ScoringChunksCombined {
 
     private String suspiciousDocumentName;
     private String candidateDocumentName;
+    private List<ResultInfo> clusteringResults;
 
-
+    @Obsolete
     class MapCoords implements Cloneable{
         int candStartSentence;
         int candEndSentence;
@@ -106,6 +103,8 @@ public class ScoringChunksCombined {
         //List<List<ScoringChunk>> scoreMatrix = new ArrayList<>(dimensionX);
         this.scoreMatrix = new ScoringChunk[this.matrixDimensionX][this.matrixDimensionY];
     }
+
+    @Obsolete
     public boolean storeAndAddToPreviousChunk(ScoringChunk chunkToStore){
         MapCoords chunkStoreCoords = getMapCoordsOfChunk(chunkToStore);
         MapCoords assumedPreviousCoords = chunkStoreCoords.getAssumedPreviousCoords();
@@ -141,7 +140,7 @@ public class ScoringChunksCombined {
         int newCandEndSentence = max(coordPrev.candEndSentence, coordNew.candEndSentence);
         return new MapCoords(newCandStartSentence, newCandEndSentence, newSuspStartSentence, newSuspEndSentence);
     }
-
+    @Obsolete
     public void storeScoringChunkToScoringMatrix(ScoringChunk chunkToStore,
                                                  int suspiciousSlidingWindowIndex,
                                                  int candidateSlidingWindowIndex){
@@ -152,6 +151,7 @@ public class ScoringChunksCombined {
         this.scoringChunksList.add(chunkToStore);
 
     }
+    @Obsolete
     public void storeScoringChunk(ScoringChunk chunkToStore){
         MapCoords chunkStoreCoords = getMapCoordsOfChunk(chunkToStore);
         List<ScoringChunk> scoringChunks = this.allScoringChunksCombined.get(chunkStoreCoords);
@@ -164,6 +164,7 @@ public class ScoringChunksCombined {
             scoringChunks.add(chunkToStore);
         }
     }
+    @Obsolete
     private MapCoords getMapCoordsOfChunk(ScoringChunk chunk){
         int candStartSentenceIndex = chunk.getCandidateWindow().getStartSentence();
         int suspStartSentenceIndex = chunk.getSuspiciousWindow().getStartSentence();
@@ -178,6 +179,7 @@ public class ScoringChunksCombined {
     }
 
     public void calculateMatrixClusters(){
+        List<ResultInfo> clusteringResults = new ArrayList<>();
         // Sort the list to get the highest score chunks.
         this.scoringChunksList.sort(Comparator.comparing(ScoringChunk::getComputedCosineSimilarity).reversed());
         for(ScoringChunk currentScoringChunk:this.scoringChunksList) {
@@ -187,38 +189,37 @@ public class ScoringChunksCombined {
                 currentScoringChunk.setProcessedByClusteringAlgo(true);
                 clusterChunks.add(currentScoringChunk);
                 clusterChunks = processMatrixHV(currentScoringChunk, clusterChunks);
-
-                // Get the relevant edge indices in one iteration
-                int suspStartChar = MAX_VALUE;
-                int suspEndChar = -1;
-                int candStartChar = MAX_VALUE;
-                int candEndChar = -1;
-                for(ScoringChunk clusterChunk:clusterChunks){
-
-                    int cCandStart = clusterChunk.getCandidateWindow().getCharacterStartIndex();
-                    if(cCandStart<candStartChar){
-                        candStartChar = cCandStart;
-                    }
-                    int cSuspStart = clusterChunk.getSuspiciousWindow().getCharacterStartIndex();
-                    if(cSuspStart<suspStartChar){
-                        suspStartChar = cSuspStart;
-                    }
-                    int cCandEnd = clusterChunk.getCandidateWindow().getCharacterEndIndex();
-                    if(cCandEnd>candEndChar){
-                        candEndChar = cCandEnd;
-                    }
-                    int cSuspEnd = clusterChunk.getSuspiciousWindow().getCharacterEndIndex();
-                    if(cSuspEnd>suspEndChar){
-                        suspEndChar = cSuspEnd;
-                    }
-                }
-
-
-                System.out.println("asdasd");
+                clusteringResults.add(getClusterEdgeCoordinates(clusterChunks));
             }
-            System.out.println("asdasd");
-            // Do processing (probably recursive) -> store in scoring chunksCombined?
         }
+        this.clusteringResults = clusteringResults;
+    }
+    public ResultInfo getClusterEdgeCoordinates(List<ScoringChunk> clusterChunks){
+        // Get the relevant edge indices in one iteration
+        int suspStartChar = MAX_VALUE;
+        int suspEndChar = -1;
+        int candStartChar = MAX_VALUE;
+        int candEndChar = -1;
+        for(ScoringChunk clusterChunk:clusterChunks){
+
+            int cCandStart = clusterChunk.getCandidateWindow().getCharacterStartIndex();
+            if(cCandStart<candStartChar){
+                candStartChar = cCandStart;
+            }
+            int cSuspStart = clusterChunk.getSuspiciousWindow().getCharacterStartIndex();
+            if(cSuspStart<suspStartChar){
+                suspStartChar = cSuspStart;
+            }
+            int cCandEnd = clusterChunk.getCandidateWindow().getCharacterEndIndex();
+            if(cCandEnd>candEndChar){
+                candEndChar = cCandEnd;
+            }
+            int cSuspEnd = clusterChunk.getSuspiciousWindow().getCharacterEndIndex();
+            if(cSuspEnd>suspEndChar){
+                suspEndChar = cSuspEnd;
+            }
+        }
+        return new ResultInfo(candStartChar, candEndChar, suspStartChar, suspEndChar);
     }
     public List<ScoringChunk> processMatrixHV(ScoringChunk currentHVScoringChunk, List<ScoringChunk> clusterChunks){
         // Get the adjacent neighbors
@@ -267,15 +268,30 @@ public class ScoringChunksCombined {
     }
 
     public void flushInternalCombinedChunks(){
-        this.allScoringChunksCombined = new ArrayMap<MapCoords,List<ScoringChunk>>(); //Obsolete
+        this.allScoringChunksCombined = new ArrayMap<>(); //Obsolete
         this.scoringChunksList = new ArrayList<>();
         this.scoreMatrix = null;
+        this.clusteringResults = new ArrayList<>();
+    }
+
+    public void writeDownXMLResults(String tag, String dateString, String preprocessedCachingDirectory){
+        String cosineResultsPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
+                "results_comparison", tag.concat("_").concat(dateString),
+                this.getSuspiciousDocumentName().concat(".xml"))
+                .toAbsolutePath().toString();
+        // Writing the results to xml file
+        try {
+            this.writeResultAsXML(cosineResultsPath);
+            this.prettifyXML(cosineResultsPath);
+        } catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     public void writeScoresMapAsCSV(String tag, String dateString, String preprocessedCachingDirectory){
         String resultPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
                 "scores_maps", tag.concat("_").concat(dateString),
-                this.suspiciousDocumentName.concat(".csv")).toString();
+                this.getSuspiciousDocumentName().concat(".csv")).toString();
 
 
         // Creating output directory if it doesn't exist

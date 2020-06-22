@@ -370,11 +370,12 @@ public class OntologyBasedSimilarityAnalysis {
                         }
                         suspiciousSlidingWindowIndex++;
                     }
+
                     // After each candidate and suspicious file combination
                     // ... calculate the plagiarism sections from windows
                     scoringChunksCombined.calculateMatrixClusters();
                     // ... write down results
-                    writeDownXMLResults(tag, dateString, scoringChunksCombined);
+                    scoringChunksCombined.writeDownXMLResults(tag, dateString, preprocessedCachingDirectory);
                     scoringChunksCombined.writeScoresMapAsCSV(tag, dateString, preprocessedCachingDirectory);
                     // ... free memory
                     scoringChunksCombined.flushInternalCombinedChunks();
@@ -390,19 +391,7 @@ public class OntologyBasedSimilarityAnalysis {
         return new HashMap<>();
     }
 
-    void writeDownXMLResults(String tag, String dateString, ScoringChunksCombined scoringChunksCombined){
-        String cosineResultsPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
-                "results_comparison", tag.concat("_").concat(dateString),
-                scoringChunksCombined.getSuspiciousDocumentName().concat(".xml"))
-                .toAbsolutePath().toString();
-        // Writing the results to xml file
-        try {
-            scoringChunksCombined.writeResultAsXML(cosineResultsPath);
-            scoringChunksCombined.prettifyXML(cosineResultsPath);
-        } catch(Exception ex){
-            ex.printStackTrace();
-        }
-    }
+
     SlidingWindowInfo getWikiEntityStringsForSlidingWindow(
             Map.Entry<String, List<SavedEntity>> idTokenExt, int startSentenceIndex, int windowSize, String filename){
         // Obtaining the entities which are within the window
