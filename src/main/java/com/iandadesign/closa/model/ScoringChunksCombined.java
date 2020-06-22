@@ -403,46 +403,24 @@ public class ScoringChunksCombined {
         XMLEvent end = eventFactory.createDTD("\n");
         XMLEvent tab = eventFactory.createDTD("\t");
         eventWriter.add(end);
-        // create Start node
-        XMLEvent event = eventFactory.createStartElement(
-                "", "", "document");
+        // Creating Start node.
+        XMLEvent event = eventFactory.createStartElement("", "", "document");
         eventWriter.add(event);
 
         event = eventFactory.createAttribute
                 ("reference", suspiciousDocumentName);
         eventWriter.add(event);
-
-        for (Map.Entry<MapCoords, List<ScoringChunk>> entry : this.allScoringChunksCombined.entrySet()) {
-            MapCoords currentCoords = entry.getKey();
-            List<ScoringChunk> currentScoringChunks = entry.getValue();
-            List<Integer> suspiciousStartCharacterCoordinates = new ArrayList<>();
-            List<Integer> suspiciousEndCharacterCoordinates = new ArrayList<>();
-            List<Integer> candidateStartCharacterCoordinates = new ArrayList<>();
-            List<Integer> candidateEndCharacterCoordinates = new ArrayList<>();
-
-            for(ScoringChunk scoringChunk:currentScoringChunks) {
-                candidateStartCharacterCoordinates.add(scoringChunk.getCandidateWindow().getCharacterStartIndex());
-                candidateEndCharacterCoordinates.add(scoringChunk.getCandidateWindow().getCharacterEndIndex());
-                suspiciousStartCharacterCoordinates.add(scoringChunk.getSuspiciousWindow().getCharacterStartIndex());
-                suspiciousEndCharacterCoordinates.add(scoringChunk.getSuspiciousWindow().getCharacterEndIndex());
-            }
-            Integer firstSuspiciousStartCharacter = Collections.min(suspiciousStartCharacterCoordinates);
-            Integer lastSuspiciousEndCharacter = Collections.max(suspiciousEndCharacterCoordinates);
-            Integer firstCandidateStartCharacter = Collections.min(candidateStartCharacterCoordinates);
-            Integer lastCandidateEndCharacter = Collections.max(candidateEndCharacterCoordinates);
-            int suspiciousLength = lastSuspiciousEndCharacter - firstSuspiciousStartCharacter;
-            int candidateLength =  lastCandidateEndCharacter - firstCandidateStartCharacter;
+        // Adding all results to file.
+        for (ResultInfo plagiarismCluster : this.clusteringResults) {
+            int suspiciousLength = plagiarismCluster.getSuspEndCharIndex() - plagiarismCluster.getSuspStartCharIndex();
+            int candidateLength =  plagiarismCluster.getCandEndCharIndex() - plagiarismCluster.getCandStartCharIndex();
             createPlagiarismNode(eventWriter, candidateDocumentName,
-                                 firstCandidateStartCharacter, candidateLength,
-                                 firstSuspiciousStartCharacter, suspiciousLength);
-
+                                plagiarismCluster.getCandStartCharIndex(), candidateLength,
+                                plagiarismCluster.getSuspStartCharIndex(), suspiciousLength);
         }
 
-
         eventWriter.add(end);
-
-        event = eventFactory.createEndElement(
-                "", "", "document");
+        event = eventFactory.createEndElement("", "", "document");
         eventWriter.add(event);
 
     }
