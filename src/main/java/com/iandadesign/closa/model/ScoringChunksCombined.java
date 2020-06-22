@@ -4,6 +4,7 @@ import com.iandadesign.closa.util.CSVUtil;
 import com.iandadesign.closa.util.XmlFormatter;
 import edu.stanford.nlp.util.ArrayMap;
 import edu.stanford.nlp.util.Interval;
+import org.apache.http.annotation.Obsolete;
 
 import javax.xml.stream.XMLEventFactory;
 import javax.xml.stream.XMLEventWriter;
@@ -33,10 +34,18 @@ public class ScoringChunksCombined {
     private final double singleTresh;
     private final int slidingWindowLength;
     private final int slidingWindowIncrement;
+
+    @Obsolete
     private Map<MapCoords, List<ScoringChunk>> allScoringChunksCombined; // This is flushed on every file combination
+
+    private List<ScoringChunk> scoringChunksList = new ArrayList<>();
     private ScoringChunk[][] scoreMatrix; // This is flushed on every file combination
     private int matrixDimensionX;
     private int matrixDimensionY;
+    // Clustering algorithm related properties.
+    private int windowXsearchLength;
+    private int windowYsearchLength;
+    private int windowDiagsearchLength;
 
     private String suspiciousDocumentName;
     private String candidateDocumentName;
@@ -74,6 +83,13 @@ public class ScoringChunksCombined {
         this.slidingWindowLength = slidingWindowLength;
         this.slidingWindowIncrement = slidingWindowIncrement;
         this.allScoringChunksCombined = new ArrayMap<MapCoords,List<ScoringChunk>>();
+        this.calculateSearchLength();
+    }
+    private void calculateSearchLength(){
+        // TODO adapt this for other cases (this is for swl 1 and swi 1)
+        this.windowXsearchLength = 1; //this.slidingWindowLength-this.slidingWindowIncrement;
+        this.windowYsearchLength = 1; //this.slidingWindowLength-this.slidingWindowIncrement;
+        this.windowDiagsearchLength = 1; //this.slidingWindowLength-this.slidingWindowIncrement;
     }
     public void setCurrentDocuments(String suspiciousDocumentPath, String candidateDocumentPath){
         // Internally just use document names instead of paths.
@@ -130,7 +146,11 @@ public class ScoringChunksCombined {
                                                  int suspiciousSlidingWindowIndex,
                                                  int candidateSlidingWindowIndex){
         // Does this duplicate object or ref ?
+        chunkToStore.setCandidateMatrixIndex(candidateSlidingWindowIndex);
+        chunkToStore.setSuspiciousMatrixIndex(suspiciousSlidingWindowIndex);
         this.scoreMatrix[suspiciousSlidingWindowIndex][candidateSlidingWindowIndex] = chunkToStore;
+        this.scoringChunksList.add(chunkToStore);
+
     }
     public void storeScoringChunk(ScoringChunk chunkToStore){
         MapCoords chunkStoreCoords = getMapCoordsOfChunk(chunkToStore);
@@ -156,8 +176,99 @@ public class ScoringChunksCombined {
                 suspEndSentenceIndex);
         return coords;
     }
+
+    public void calculateMatrixClusters(){
+        // Sort the list to get the highest score chunks.
+        this.scoringChunksList.sort(Comparator.comparing(ScoringChunk::getComputedCosineSimilarity).reversed());
+        for(ScoringChunk currentScoringChunk:this.scoringChunksList) {
+            if(!currentScoringChunk.isProcessedByClusteringAlgo()
+               && currentScoringChunk.getComputedCosineSimilarity() >= this.singleTresh){
+                List<ScoringChunk> clusterChunks = new ArrayList<>();
+                currentScoringChunk.setProcessedByClusteringAlgo(true);
+                clusterChunks.add(currentScoringChunk);
+                clusterChunks = processMatrixHV(currentScoringChunk, clusterChunks);
+
+                // Get the relevant edge indices in one iteration
+                int suspStartChar = MAX_VALUE;
+                int suspEndChar = -1;
+                int candStartChar = MAX_VALUE;
+                int candEndChar = -1;
+                for(ScoringChunk clusterChunk:clusterChunks){
+
+                    int cCandStart = clusterChunk.getCandidateWindow().getCharacterStartIndex();
+                    if(cCandStart<candStartChar){
+                        candStartChar = cCandStart;
+                    }
+                    int cSuspStart = clusterChunk.getSuspiciousWindow().getCharacterStartIndex();
+                    if(cSuspStart<suspStartChar){
+                        suspStartChar = cSuspStart;
+                    }
+                    int cCandEnd = clusterChunk.getCandidateWindow().getCharacterEndIndex();
+                    if(cCandEnd>candEndChar){
+                        candEndChar = cCandEnd;
+                    }
+                    int cSuspEnd = clusterChunk.getSuspiciousWindow().getCharacterEndIndex();
+                    if(cSuspEnd>suspEndChar){
+                        suspEndChar = cSuspEnd;
+                    }
+                }
+
+
+                System.out.println("asdasd");
+            }
+            System.out.println("asdasd");
+            // Do processing (probably recursive) -> store in scoring chunksCombined?
+        }
+    }
+    public List<ScoringChunk> processMatrixHV(ScoringChunk currentHVScoringChunk, List<ScoringChunk> clusterChunks){
+        // Get the adjacent neighbors
+        int yIndex = currentHVScoringChunk.getSuspiciousMatrixIndex();
+        int xIndex = currentHVScoringChunk.getCandidateMatrixIndex();
+        // Get Adjacent chunks
+        List<ScoringChunk> adjacentChunks = getAdjacentChunks(yIndex, xIndex);
+        for(ScoringChunk currentAdjacentChunk:adjacentChunks){
+            if(currentAdjacentChunk!= null
+                && currentAdjacentChunk.getComputedCosineSimilarity() >= this.adjacentTresh
+                && !currentAdjacentChunk.isProcessedByClusteringAlgo()){
+
+                currentAdjacentChunk.setProcessedByClusteringAlgo(true);
+                clusterChunks.add(currentAdjacentChunk);
+                clusterChunks = processMatrixHV(currentAdjacentChunk, clusterChunks);
+            }
+        }
+        return clusterChunks;
+    }
+
+    private List<ScoringChunk> getAdjacentChunks(final int yIndex, final int xIndex){
+        List<ScoringChunk> adjacentChunks = new ArrayList<>();
+        // For simplicities sake just use a square matrix with width==windowXlength and height==windowYlength
+        // TODO adapt this if necessary with the windowDiagLength
+        for(int yIndexP=yIndex-this.windowYsearchLength; yIndexP<=(yIndex+this.windowYsearchLength); yIndexP++){
+            // Get all horizontally adjacent chunks
+            for(int xIndexP=xIndex-this.windowXsearchLength; xIndexP<=(xIndex+this.windowXsearchLength); xIndexP++){
+                if(xIndexP==xIndex && yIndexP==yIndex){
+                    continue;
+                }
+                adjacentChunks.add(getChunkOrNull(yIndexP, xIndexP));
+            }
+        }
+
+        return adjacentChunks;
+    }
+    private ScoringChunk getChunkOrNull(int yIndex, int xIndex){
+        if(yIndex < 0 || xIndex < 0){
+            return null;
+        }else if(yIndex > this.scoreMatrix.length){
+            return null;
+        }else if(xIndex > this.scoreMatrix[yIndex].length){
+            return null;
+        }
+        return this.scoreMatrix[yIndex][xIndex];
+    }
+
     public void flushInternalCombinedChunks(){
-        this.allScoringChunksCombined = new ArrayMap<MapCoords,List<ScoringChunk>>();
+        this.allScoringChunksCombined = new ArrayMap<MapCoords,List<ScoringChunk>>(); //Obsolete
+        this.scoringChunksList = new ArrayList<>();
         this.scoreMatrix = null;
     }
 

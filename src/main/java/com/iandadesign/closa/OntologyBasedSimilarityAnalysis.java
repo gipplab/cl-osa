@@ -190,7 +190,7 @@ public class OntologyBasedSimilarityAnalysis {
         final int NUM_SENTENCE_INCREMENT_SLIDINGW = 1;
         // Sliding window comparison thresholds
         final double ADJACENT_THRESH = 0.1;
-        final double SINGLE_THRESH = 0.15;
+        final double SINGLE_THRESH = 0.6;
 
 
         // Maps used for detailed comparison
@@ -212,7 +212,22 @@ public class OntologyBasedSimilarityAnalysis {
                 List<SavedEntity> preprocessedCandExt = preProcessExtendedInfo(candidateDocumentPath,
                         languageDetector.detectLanguage(FileUtils.readFileToString(new File(candidateDocumentPath), StandardCharsets.UTF_8)));
                 List<String> preprocessedCand = preprocessedCandExt.stream().map(SavedEntity::getWikidataEntityId).collect(Collectors.toList());
-
+                // CHeck tokens
+                /*
+                List<SavedEntity> windowEntitysSusp = preprocessedExt
+                        .stream()
+                        .filter(currentEntity ->
+                                currentEntity.getToken().getSentenceNumber() >= 4
+                                        && currentEntity.getToken().getSentenceNumber() < 6)
+                        .collect(Collectors.toList());
+                List<SavedEntity> windowEntitysSusp2 = preprocessedExt
+                        .stream()
+                        .filter(currentEntity ->
+                                currentEntity.getToken().getSentenceNumber() >= 5
+                                        && currentEntity.getToken().getSentenceNumber() < 7)
+                        .collect(Collectors.toList());
+                */
+                // BF end
                 candidateIdTokensMap.put(candidateDocumentPath, preprocessedCand);
                 candidateIdTokensMapExt.put(candidateDocumentPath, preprocessedCandExt);
             }
@@ -293,6 +308,9 @@ public class OntologyBasedSimilarityAnalysis {
                                     candidateIdTokenExt.getKey());
                             Map<String, List<String>> currentCandidateIdTokensMap = swiCandidate.getFilenameToEntities();
 
+                            System.out.println("Susp Sentence: "+suspiciousIdTokenExt.getKey());
+                            System.out.println("Cand Sentence: "+candidateIdTokenExt.getKey());
+
                             Map<String, Double> fragmentScoresMap = performCosineSimilarityAnalysis(currentSuspiciousIdTokensMap,
                                     currentCandidateIdTokensMap).get(suspiciousIdTokenExt.getKey());
 
@@ -302,6 +320,14 @@ public class OntologyBasedSimilarityAnalysis {
                                 fragmentIndex++; // Just increase the fragment index for absolute indexing.
                                 candidateSlidingWindowIndex++;
                                 continue;
+                            }
+                            if(currentSuspWindowStartSentence==4 || currentSuspWindowStartSentence==5){
+                                if(currentCandWindowStartSentence==0){
+                                    System.out.println(fragmentScore);
+                                }
+                            }
+                            if(fragmentScore==125){
+                                System.out.println(fragmentScore);
                             }
                             ScoringChunk currentScoringChunk = new ScoringChunk(swiSuspicious,
                                                                                 swiCandidate,
@@ -324,8 +350,10 @@ public class OntologyBasedSimilarityAnalysis {
                                     currentSuspiciousIdTokensMap.get(suspiciousIdTokenExt.getKey()),
                                     currentCandidateIdTokensMap.get(candidateIdTokenExt.getKey())
                             );
-
+                            // Adding scoring chunk with coordinates to matrix.
                             scoringChunksCombined.storeScoringChunkToScoringMatrix(currentScoringChunk, suspiciousSlidingWindowIndex, candidateSlidingWindowIndex);
+
+                            /*
                             // Do combination with previously stored windows.
                             boolean scoringAdded = false;
                             // Checking if an the window can be added in combination with adjacent previous window.
@@ -336,11 +364,15 @@ public class OntologyBasedSimilarityAnalysis {
                             if(!scoringAdded && currentScoringChunk.getComputedCosineSimilarity() >= SINGLE_THRESH){
                                 scoringChunksCombined.storeScoringChunk(currentScoringChunk);
                             }
+                            */
+
                             candidateSlidingWindowIndex++;
                         }
                         suspiciousSlidingWindowIndex++;
                     }
                     // After each candidate and suspicious file combination
+                    // ... calculate the plagiarism sections from windows
+                    scoringChunksCombined.calculateMatrixClusters();
                     // ... write down results
                     writeDownXMLResults(tag, dateString, scoringChunksCombined);
                     scoringChunksCombined.writeScoresMapAsCSV(tag, dateString, preprocessedCachingDirectory);
