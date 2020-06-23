@@ -257,7 +257,7 @@ public class OntologyBasedSimilarityAnalysis {
             System.out.println(candidateScoresMap);
             // Select most similar candidates for detailed analysis.
             System.out.println("Continue with detailed analysis:");
-            final int NUM_CANDIDATES_SELECTED = 1;
+            final int NUM_CANDIDATES_SELECTED = 2;
             Map<String, Double> candidatesForDetailedComparison = candidateScoresMap
                     .entrySet().stream()
                     .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
@@ -270,6 +270,9 @@ public class OntologyBasedSimilarityAnalysis {
             Map<String, List<SavedEntity>> selectedCandidateIdTokensMapExt = new HashMap<> (candidateIdTokensMapExt);
             selectedCandidateIdTokensMapExt.keySet().retainAll(selectedCandidateKeys);
             // Number of sentences in documents ?
+            //TODO check RAM usage at this point (actually its only necessary to load the entities of the processed candidates not all)
+            // ... probably the unused maps can be flushed here
+            // candidateScoresMap, could be also an option to load everything in second loop
 
 
             // Storage for combined window entities.
@@ -346,6 +349,7 @@ public class OntologyBasedSimilarityAnalysis {
                             resultsStream.printf(format, "Candidate Tokens:", currentCandidateIdTokensMap.get(candidateIdTokenExt.getKey()));
                             resultsStream.printf(format, "Fragment Score:", fragmentScore);
                             System.out.println(dashes(50));
+                            //TODO performance mark fileprints as optional
                             currentScoringChunk.printMe(
                                     currentSuspiciousIdTokensMap.get(suspiciousIdTokenExt.getKey()),
                                     currentCandidateIdTokensMap.get(candidateIdTokenExt.getKey())
@@ -379,6 +383,7 @@ public class OntologyBasedSimilarityAnalysis {
                     scoringChunksCombined.writeScoresMapAsCSV(tag, dateString, preprocessedCachingDirectory);
                     // ... free memory
                     scoringChunksCombined.flushInternalCombinedChunks();
+                    //TODO perfomance: Check if memory is released here properly
                 }
             }
             resultsStream.close();

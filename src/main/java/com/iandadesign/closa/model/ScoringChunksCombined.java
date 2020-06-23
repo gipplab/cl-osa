@@ -24,6 +24,9 @@ import static java.lang.Integer.*;
  * sliding window scores.
  *
  * @author Johannes Stegmüller on 2020/05/29/
+ *
+ * //TODO perfomance: remove obsolete functions and properties
+ * //TODO perfomance: move functionalities to other utility classes
  */
 public class ScoringChunksCombined {
     private final double adjacentTresh;
@@ -95,6 +98,9 @@ public class ScoringChunksCombined {
     }
     public String getSuspiciousDocumentName(){
         return this.suspiciousDocumentName;
+    }
+    public String getCandidateDocumentName(){
+        return this.candidateDocumentName;
     }
 
     public void createScoreMatrix(Integer suspiciousDocumentSentences, Integer candidateDocumentSentences){
@@ -277,7 +283,8 @@ public class ScoringChunksCombined {
     public void writeDownXMLResults(String tag, String dateString, String preprocessedCachingDirectory){
         String cosineResultsPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
                 "results_comparison", tag.concat("_").concat(dateString),
-                this.getSuspiciousDocumentName().concat(".xml"))
+                this.getSuspiciousDocumentName().replace(".txt",""),
+                this.getCandidateDocumentName().concat(".xml"))
                 .toAbsolutePath().toString();
         // Writing the results to xml file
         try {
@@ -291,7 +298,8 @@ public class ScoringChunksCombined {
     public void writeScoresMapAsCSV(String tag, String dateString, String preprocessedCachingDirectory){
         String resultPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
                 "scores_maps", tag.concat("_").concat(dateString),
-                this.getSuspiciousDocumentName().concat(".csv")).toString();
+                this.getSuspiciousDocumentName().replace(".txt",""),
+                this.getCandidateDocumentName().concat(".csv")).toString();
 
 
         // Creating output directory if it doesn't exist
