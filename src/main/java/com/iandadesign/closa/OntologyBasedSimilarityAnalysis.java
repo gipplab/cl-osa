@@ -189,8 +189,8 @@ public class OntologyBasedSimilarityAnalysis {
         final int NUM_SENTENCES_IN_SLIDING_WINDOW = 2;
         final int NUM_SENTENCE_INCREMENT_SLIDINGW = 1;
         // Sliding window comparison thresholds
-        final double ADJACENT_THRESH = 0.1;
-        final double SINGLE_THRESH = 0.6;
+        final double ADJACENT_THRESH = 0.3;   //0,1
+        final double SINGLE_THRESH = 0.7;     //0,6
 
 
         // Maps used for detailed comparison

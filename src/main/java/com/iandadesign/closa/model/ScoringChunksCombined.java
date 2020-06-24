@@ -15,6 +15,7 @@ import java.io.*;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 import static java.lang.Integer.*;
@@ -198,8 +199,61 @@ public class ScoringChunksCombined {
                 clusteringResults.add(getClusterEdgeCoordinates(clusterChunks));
             }
         }
-        this.clusteringResults = clusteringResults;
+
+        // Combine results which cover the same areas (or are within the same areas)
+        this.clusteringResults = combineClusteringResults(clusteringResults);
     }
+
+    public List<ResultInfo> combineClusteringResults(List<ResultInfo> uncombinedClusteringResults){
+        // Sort after area size
+        uncombinedClusteringResults.sort(Comparator.comparing(ResultInfo::getSize).reversed());
+        for(ResultInfo resultInfo:uncombinedClusteringResults){
+            if(!resultInfo.wasDiscardedByCombinationAlgo()){
+                // Search for other chunks which fit in area
+                markOtherResultsInResultArea(resultInfo, uncombinedClusteringResults);
+            }
+        }
+        List<ResultInfo> combinedResultInfo = uncombinedClusteringResults
+                                .stream()
+                                .filter(res -> !res.wasDiscardedByCombinationAlgo())
+                                .collect(Collectors.toList());
+        System.out.println("COMBINE_RESULTS: Number before combination: " + uncombinedClusteringResults.size()+" after: "+combinedResultInfo.size());
+        return combinedResultInfo;
+    }
+
+    public void markOtherResultsInResultArea(ResultInfo currentResultInfo, List<ResultInfo> clusteringResults){
+        for(ResultInfo comparisonResultInfo:clusteringResults){
+            if(!comparisonResultInfo.wasDiscardedByCombinationAlgo()){
+                if(comparisonResultInfo.equals(currentResultInfo)){
+                    continue;   // Do not compare the same object with itself
+                }
+                // Check if result is in area of cluster
+                boolean resultIsInArea = resultIsInAreaOfResult(currentResultInfo, comparisonResultInfo);
+                // If it is in other area mark it, its not relevant for the final result
+                if(resultIsInArea){
+                    comparisonResultInfo.setDiscardedByCombinationAlgo(true);
+                }
+            }
+        }
+
+    }
+    public boolean resultIsInAreaOfResult(ResultInfo bigResultArea, ResultInfo smallResultArea) {
+        if (smallResultArea.getCandStartCharIndex() < bigResultArea.getCandStartCharIndex()) {
+            return false;
+        }
+        if (smallResultArea.getCandEndCharIndex() > bigResultArea.getCandEndCharIndex()) {
+            return false;
+        }
+        if (smallResultArea.getSuspStartCharIndex() < bigResultArea.getSuspStartCharIndex()) {
+            return false;
+        }
+        if (smallResultArea.getSuspEndCharIndex() > bigResultArea.getSuspEndCharIndex()) {
+            return false;
+        }
+
+        return true;
+    }
+
     public ResultInfo getClusterEdgeCoordinates(List<ScoringChunk> clusterChunks){
         // Get the relevant edge indices in one iteration
         int suspStartChar = MAX_VALUE;
@@ -265,9 +319,9 @@ public class ScoringChunksCombined {
     private ScoringChunk getChunkOrNull(int yIndex, int xIndex){
         if(yIndex < 0 || xIndex < 0){
             return null;
-        }else if(yIndex > this.scoreMatrix.length){
+        }else if(yIndex >= this.scoreMatrix.length){
             return null;
-        }else if(xIndex > this.scoreMatrix[yIndex].length){
+        }else if(xIndex >= this.scoreMatrix[yIndex].length){
             return null;
         }
         return this.scoreMatrix[yIndex][xIndex];
@@ -341,6 +395,8 @@ public class ScoringChunksCombined {
                             } else {
                                 DecimalFormat df = new DecimalFormat("#.####");
                                 String formatted = df.format(item.getComputedCosineSimilarity());
+                                formatted+="||cs"+item.candidateWindow.getCharacterStartIndex();
+                                formatted+="||ss"+item.suspiciousWindow.getCharacterStartIndex();
                                 values.add(formatted);
                             }
                         }
