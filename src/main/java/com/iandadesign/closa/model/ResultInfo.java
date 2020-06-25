@@ -1,5 +1,8 @@
 package com.iandadesign.closa.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Container for storing clustering algorithm results in CL-OSA extended.
  *
@@ -13,6 +16,7 @@ public class ResultInfo{
     private final int candLength;
     private final int suspLength;
     private boolean discardedByCombinationAlgo;
+    private List<Integer> combinationMarkers;
 
     public ResultInfo(int candStartCharIndex, int candEndCharIndex, int suspStartCharIndex, int suspEndCharIndex){
         this.candStartCharIndex = candStartCharIndex;
@@ -22,6 +26,28 @@ public class ResultInfo{
         this.candLength = candEndCharIndex - candStartCharIndex;
         this.suspLength = suspEndCharIndex - suspStartCharIndex;
         this.discardedByCombinationAlgo = false;
+        this.combinationMarkers = new ArrayList<>();
+    }
+
+    public void addCombinationMarker(int combinationMarker){
+        this.combinationMarkers.add(combinationMarker);
+    }
+
+    /**
+     * Adds a list of combination markers except value specified,
+     * also doesnt add same value multiple
+     * @param combinationMarkers
+     * @param exceptValue
+     */
+    public void addCombinationMarkers(List<Integer> combinationMarkers, int exceptValue){
+        for(int combomarker:combinationMarkers){
+            if(combomarker!=exceptValue && !this.combinationMarkers.contains(combomarker)){
+                this.combinationMarkers.add(combomarker);
+            }
+        }
+    }
+    public List<Integer> getCombinationMarkers(){
+        return this.combinationMarkers;
     }
 
     public boolean wasDiscardedByCombinationAlgo() {
@@ -63,5 +89,14 @@ public class ResultInfo{
     }
     public int getSize(){
         return this.getCandLength() * this.getSuspLength();
+    }
+
+
+    public boolean indexInCandArea(int candIndex){
+        return candIndex >= getCandStartCharIndex() && candIndex <= getCandEndCharIndex();
+    }
+
+    public boolean indexInSuspArea(int suspIndex){
+        return suspIndex >= getSuspStartCharIndex() && suspIndex <= getSuspEndCharIndex();
     }
 }

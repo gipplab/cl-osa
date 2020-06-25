@@ -147,7 +147,7 @@ public class ScoringChunksCombined {
         int newCandEndSentence = max(coordPrev.candEndSentence, coordNew.candEndSentence);
         return new MapCoords(newCandStartSentence, newCandEndSentence, newSuspStartSentence, newSuspEndSentence);
     }
-    @Obsolete
+
     public void storeScoringChunkToScoringMatrix(ScoringChunk chunkToStore,
                                                  int suspiciousSlidingWindowIndex,
                                                  int candidateSlidingWindowIndex){
@@ -158,6 +158,7 @@ public class ScoringChunksCombined {
         this.scoringChunksList.add(chunkToStore);
 
     }
+
     @Obsolete
     public void storeScoringChunk(ScoringChunk chunkToStore){
         MapCoords chunkStoreCoords = getMapCoordsOfChunk(chunkToStore);
@@ -207,21 +208,70 @@ public class ScoringChunksCombined {
     public List<ResultInfo> combineClusteringResults(List<ResultInfo> uncombinedClusteringResults){
         // Sort after area size
         uncombinedClusteringResults.sort(Comparator.comparing(ResultInfo::getSize).reversed());
+        int markerIndex = 0;
+
         for(ResultInfo resultInfo:uncombinedClusteringResults){
             if(!resultInfo.wasDiscardedByCombinationAlgo()){
                 // Search for other chunks which fit in area
-                markOtherResultsInResultArea(resultInfo, uncombinedClusteringResults);
+                markerIndex = markOtherResultsInResultArea(resultInfo, uncombinedClusteringResults, markerIndex);
             }
         }
+        // TODO not used for testing
         List<ResultInfo> combinedResultInfo = uncombinedClusteringResults
                                 .stream()
                                 .filter(res -> !res.wasDiscardedByCombinationAlgo())
                                 .collect(Collectors.toList());
         System.out.println("COMBINE_RESULTS: Number before combination: " + uncombinedClusteringResults.size()+" after: "+combinedResultInfo.size());
-        return combinedResultInfo;
+
+        // TODO combine clipping results here
+        List<ResultInfo> finalResultInfos = uncombinedClusteringResults;
+
+
+        // Iterate through all combination markers
+        for(int index=0;index<markerIndex;index++){
+            List<ResultInfo> itemsWithTheMarker = getItemsWithSameMarker(index, finalResultInfos);
+            if(itemsWithTheMarker.size()!=2){
+                // System.out.println("Combination error this should not happen");
+                continue;
+            }
+            // Combine (which removes the marker from combined item, but not further ones)
+            ResultInfo mergedResults = combineResultInfo(itemsWithTheMarker.get(0), itemsWithTheMarker.get(1), index);
+            // Add the combined item to finalResultInfos
+            finalResultInfos.add(mergedResults);
+            // Remove the items which are the parts of combined item from finalResultInfos
+            finalResultInfos.remove(itemsWithTheMarker.get(0));
+            finalResultInfos.remove(itemsWithTheMarker.get(1));
+        }
+
+
+        return finalResultInfos;
+    }
+    public ResultInfo combineResultInfo(ResultInfo resultInfo1, ResultInfo resultInfo2, int markerForCombo){
+        int candStartCharIndex = min(resultInfo1.getCandStartCharIndex(), resultInfo2.getCandStartCharIndex());
+        int candEndCharIndex = max(resultInfo1.getCandEndCharIndex(), resultInfo2.getCandEndCharIndex());
+        int suspStartCharIndex = min(resultInfo1.getSuspStartCharIndex(), resultInfo2.getSuspStartCharIndex());
+        int suspEndCharIndex = max(resultInfo1.getSuspEndCharIndex(),resultInfo2.getSuspEndCharIndex());
+
+        // Add combination markers except the processed one, prevent combination marker redundancy in combined item
+        ResultInfo combinedResult = new ResultInfo(candStartCharIndex, candEndCharIndex, suspStartCharIndex, suspEndCharIndex);
+        combinedResult.addCombinationMarkers(resultInfo1.getCombinationMarkers(), markerForCombo);
+        combinedResult.addCombinationMarkers(resultInfo2.getCombinationMarkers(), markerForCombo);
+        return combinedResult;
     }
 
-    public void markOtherResultsInResultArea(ResultInfo currentResultInfo, List<ResultInfo> clusteringResults){
+    public List<ResultInfo> getItemsWithSameMarker(int marker, List<ResultInfo> myResults){
+        List<ResultInfo> itemsWithMarkers = new ArrayList<>();
+        for(ResultInfo resultInfo:myResults){
+            if(resultInfo.getCombinationMarkers().size()>=1){
+                if(resultInfo.getCombinationMarkers().contains(marker)){
+                    itemsWithMarkers.add(resultInfo);
+                }
+            }
+        }
+        return itemsWithMarkers;
+    }
+
+    public int markOtherResultsInResultArea(ResultInfo currentResultInfo, List<ResultInfo> clusteringResults, int combinationMarkerIndex){
         for(ResultInfo comparisonResultInfo:clusteringResults){
             if(!comparisonResultInfo.wasDiscardedByCombinationAlgo()){
                 if(comparisonResultInfo.equals(currentResultInfo)){
@@ -232,11 +282,41 @@ public class ScoringChunksCombined {
                 // If it is in other area mark it, its not relevant for the final result
                 if(resultIsInArea){
                     comparisonResultInfo.setDiscardedByCombinationAlgo(true);
+                    continue;
+                }
+                // Check if result is clipping
+                boolean resultIsClipping = resultIsClipping(currentResultInfo, comparisonResultInfo);
+                if(resultIsClipping){
+                    // Add a combination marker to both results
+                    currentResultInfo.addCombinationMarker(combinationMarkerIndex);
+                    comparisonResultInfo.addCombinationMarker(combinationMarkerIndex);
+                    combinationMarkerIndex++;
                 }
             }
         }
-
+        return combinationMarkerIndex;
     }
+    public boolean resultIsClipping(ResultInfo bigResultArea, ResultInfo smallResultArea){
+        if(bigResultArea.indexInSuspArea(smallResultArea.getSuspStartCharIndex()) ||
+           bigResultArea.indexInSuspArea(smallResultArea.getSuspEndCharIndex())){
+            if(bigResultArea.indexInCandArea(smallResultArea.getCandStartCharIndex())||
+                bigResultArea.indexInCandArea(smallResultArea.getCandEndCharIndex())){
+                return true;
+            }
+        }
+        // This might be redundant
+        if(smallResultArea.indexInSuspArea(bigResultArea.getSuspStartCharIndex()) ||
+                smallResultArea.indexInSuspArea(bigResultArea.getSuspEndCharIndex())){
+            if(smallResultArea.indexInCandArea(bigResultArea.getCandStartCharIndex())||
+                    smallResultArea.indexInCandArea(bigResultArea.getCandEndCharIndex())){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
     public boolean resultIsInAreaOfResult(ResultInfo bigResultArea, ResultInfo smallResultArea) {
         if (smallResultArea.getCandStartCharIndex() < bigResultArea.getCandStartCharIndex()) {
             return false;
