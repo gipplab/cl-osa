@@ -274,6 +274,8 @@ public class OntologyBasedSimilarityAnalysis {
             // ... probably the unused maps can be flushed here
             // candidateScoresMap, could be also an option to load everything in second loop
 
+            // Filter SavedEntities which are not containing any Wikidata Entries (assuming these entities have no sentence)
+            // Or even do this in preprocessing? When sentences are availible?
 
             // Storage for combined window entities.
             ScoringChunksCombined scoringChunksCombined = new ScoringChunksCombined(ADJACENT_THRESH, SINGLE_THRESH, NUM_SENTENCES_IN_SLIDING_WINDOW,NUM_SENTENCE_INCREMENT_SLIDINGW);
@@ -293,7 +295,8 @@ public class OntologyBasedSimilarityAnalysis {
                     resultsStream.printf(format, "Candidate File:", candidateIdTokenExt.getKey());
                     scoringChunksCombined.setCurrentDocuments(suspiciousIdTokenExt.getKey(), candidateIdTokenExt.getKey());
                     scoringChunksCombined.createScoreMatrix(numSentencesSusp, numSentencesCand);
-                    int suspiciousSlidingWindowIndex = 0;
+                    int suspiciousSlidingWindowY = 0; // specific index for 2D Matrix positioning
+
                     // Documents have been specified here->start to slide the window.
                     for(int currentSuspWindowStartSentence=0;currentSuspWindowStartSentence<numSentencesSusp;currentSuspWindowStartSentence+=NUM_SENTENCE_INCREMENT_SLIDINGW){
                         SlidingWindowInfo swiSuspicious= getWikiEntityStringsForSlidingWindow(
@@ -301,18 +304,34 @@ public class OntologyBasedSimilarityAnalysis {
                                 currentSuspWindowStartSentence,
                                 NUM_SENTENCES_IN_SLIDING_WINDOW,
                                 suspiciousIdTokenExt.getKey());
+
                         Map<String, List<String>> currentSuspiciousIdTokensMap = swiSuspicious.getFilenameToEntities();
-                        int candidateSlidingWindowIndex = 0;
+                        int candSlidingWindowX = 0; // specific index for 2D Matrix positioning
                         for(int currentCandWindowStartSentence=0;currentCandWindowStartSentence<numSentencesCand;currentCandWindowStartSentence+=NUM_SENTENCE_INCREMENT_SLIDINGW){
                              SlidingWindowInfo swiCandidate = getWikiEntityStringsForSlidingWindow(
                                     candidateIdTokenExt,
                                     currentCandWindowStartSentence,
                                     NUM_SENTENCES_IN_SLIDING_WINDOW,
                                     candidateIdTokenExt.getKey());
+
                             Map<String, List<String>> currentCandidateIdTokensMap = swiCandidate.getFilenameToEntities();
 
                             System.out.println("Susp Sentence: "+suspiciousIdTokenExt.getKey());
                             System.out.println("Cand Sentence: "+candidateIdTokenExt.getKey());
+
+                            // Create a specific mock entry if there is an empty row or column item in matrix.
+                            if(swiSuspicious.isNoEntitiesInWindow() || swiCandidate.isNoEntitiesInWindow()){
+                                ScoringChunk mockScoringChunk = new ScoringChunk(swiSuspicious,
+                                        swiCandidate,
+                                        -1, // mock entry value
+                                        fragmentIndex);
+                                scoringChunksCombined.storeScoringChunkToScoringMatrix(mockScoringChunk,
+                                                                                        suspiciousSlidingWindowY,
+                                                                                        candSlidingWindowX);
+                                fragmentIndex++; // Just increase the fragment index for absolute indexing.
+                                candSlidingWindowX++;
+                                continue;  // Skip without increasing 2D indices (all window comparisons would be 0 score)
+                            }
 
                             Map<String, Double> fragmentScoresMap = performCosineSimilarityAnalysis(currentSuspiciousIdTokensMap,
                                     currentCandidateIdTokensMap).get(suspiciousIdTokenExt.getKey());
@@ -321,7 +340,7 @@ public class OntologyBasedSimilarityAnalysis {
                             // TODO if using a window-bordersize buffering remove this later
                             if(fragmentScore==null || fragmentScore<=0.0) {
                                 fragmentIndex++; // Just increase the fragment index for absolute indexing.
-                                candidateSlidingWindowIndex++;
+                                candSlidingWindowX++;
                                 continue;
                             }
                             if(currentSuspWindowStartSentence==4 || currentSuspWindowStartSentence==5){
@@ -355,7 +374,7 @@ public class OntologyBasedSimilarityAnalysis {
                                     currentCandidateIdTokensMap.get(candidateIdTokenExt.getKey())
                             );
                             // Adding scoring chunk with coordinates to matrix.
-                            scoringChunksCombined.storeScoringChunkToScoringMatrix(currentScoringChunk, suspiciousSlidingWindowIndex, candidateSlidingWindowIndex);
+                            scoringChunksCombined.storeScoringChunkToScoringMatrix(currentScoringChunk, suspiciousSlidingWindowY, candSlidingWindowX);
 
                             /*
                             // Do combination with previously stored windows.
@@ -370,9 +389,9 @@ public class OntologyBasedSimilarityAnalysis {
                             }
                             */
 
-                            candidateSlidingWindowIndex++;
+                            candSlidingWindowX++;
                         }
-                        suspiciousSlidingWindowIndex++;
+                        suspiciousSlidingWindowY++;
                     }
 
                     // After each candidate and suspicious file combination
@@ -432,11 +451,9 @@ public class OntologyBasedSimilarityAnalysis {
                 .stream()
                 .map(SavedEntity::getWikidataEntityId)
                 .collect(Collectors.toList());
-        Map <String, List<String>> filenameToEntities = new HashMap<>();
-        filenameToEntities.put(filename, entityIdsForWindow);
 
         // Return everything in a compound object
-        return new SlidingWindowInfo(filename, filenameToEntities, firstStartChar, lastEndChar,
+        return new SlidingWindowInfo(filename, entityIdsForWindow, firstStartChar, lastEndChar,
                 startSentenceIndex, endSentenceIndex);
     }
 

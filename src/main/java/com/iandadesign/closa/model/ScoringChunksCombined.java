@@ -380,13 +380,46 @@ public class ScoringChunksCombined {
         return clusterChunks;
     }
 
+    private boolean isADiscardedColumnOrRowItem(final int yIndex, final int xIndex){
+        ScoringChunk relatedChunk = getChunkOrNull(yIndex, xIndex);
+        if(relatedChunk==null){
+            return false;
+        }
+        return relatedChunk.getComputedCosineSimilarity() == -1;
+    }
+    private int getAdjustedIndexVertical(int xIndex, int yIndex, int currentSearchIndex, boolean verticalOrhorizontal){
+        boolean isDiscard1 = false;
+        boolean isDiscard2  = false;
+        if(verticalOrhorizontal){
+             isDiscard1 = isADiscardedColumnOrRowItem(yIndex+currentSearchIndex,xIndex);
+             isDiscard2 = isADiscardedColumnOrRowItem(yIndex-currentSearchIndex, xIndex);
+        }else{
+            isDiscard1 = isADiscardedColumnOrRowItem(yIndex,xIndex+currentSearchIndex);
+            isDiscard2 = isADiscardedColumnOrRowItem(yIndex, xIndex-currentSearchIndex);
+
+        }
+
+        if(isDiscard1 || isDiscard2){
+            currentSearchIndex = getAdjustedIndexVertical(xIndex,yIndex+currentSearchIndex,currentSearchIndex+1, verticalOrhorizontal);
+        }
+        return currentSearchIndex;
+    }
+
     private List<ScoringChunk> getAdjacentChunks(final int yIndex, final int xIndex){
+        int currentWindowYsearchLength = this.windowYsearchLength;
+        int currentWindowXsearchLength = this.windowXsearchLength;
+
+
         List<ScoringChunk> adjacentChunks = new ArrayList<>();
+        // Recursively check if there are columns or rows which are completely unpopulated (-1), create bigger window in this cases
+        currentWindowYsearchLength = getAdjustedIndexVertical(xIndex, yIndex, currentWindowYsearchLength, true);
+        currentWindowXsearchLength = getAdjustedIndexVertical(xIndex, yIndex, currentWindowYsearchLength, false);
+
         // For simplicities sake just use a square matrix with width==windowXlength and height==windowYlength
         // TODO adapt this if necessary with the windowDiagLength
-        for(int yIndexP=yIndex-this.windowYsearchLength; yIndexP<=(yIndex+this.windowYsearchLength); yIndexP++){
+        for(int yIndexP=yIndex-currentWindowYsearchLength; yIndexP<=(yIndex+currentWindowYsearchLength); yIndexP++){
             // Get all horizontally adjacent chunks
-            for(int xIndexP=xIndex-this.windowXsearchLength; xIndexP<=(xIndex+this.windowXsearchLength); xIndexP++){
+            for(int xIndexP=xIndex-currentWindowXsearchLength; xIndexP<=(xIndex+currentWindowXsearchLength); xIndexP++){
                 if(xIndexP==xIndex && yIndexP==yIndex){
                     continue;
                 }
