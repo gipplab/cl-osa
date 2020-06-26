@@ -92,11 +92,18 @@ public class ResultInfo{
     }
 
 
-    public boolean indexInCandArea(int candIndex){
-        return candIndex >= getCandStartCharIndex() && candIndex <= getCandEndCharIndex();
+    public boolean indexInCandArea(int candIndex, boolean useMargin, int marginChars) {
+        if(useMargin){
+            return candIndex >= (getCandStartCharIndex()-marginChars) && candIndex <= (getCandEndCharIndex()+marginChars);
+        }else{
+            return candIndex >= getCandStartCharIndex() && candIndex <= getCandEndCharIndex();
+        }
     }
-
-    public boolean indexInSuspArea(int suspIndex){
-        return suspIndex >= getSuspStartCharIndex() && suspIndex <= getSuspEndCharIndex();
+    public boolean indexInSuspArea(int suspIndex, boolean useMargin, int marginChars){
+        if(useMargin){
+            return suspIndex >= (getSuspStartCharIndex()-marginChars) && suspIndex <= (getSuspEndCharIndex()+marginChars);
+        }else{
+            return suspIndex >= getSuspStartCharIndex() && suspIndex <= getSuspEndCharIndex();
+        }
     }
 }

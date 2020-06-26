@@ -297,18 +297,21 @@ public class ScoringChunksCombined {
         return combinationMarkerIndex;
     }
     public boolean resultIsClipping(ResultInfo bigResultArea, ResultInfo smallResultArea){
-        if(bigResultArea.indexInSuspArea(smallResultArea.getSuspStartCharIndex()) ||
-           bigResultArea.indexInSuspArea(smallResultArea.getSuspEndCharIndex())){
-            if(bigResultArea.indexInCandArea(smallResultArea.getCandStartCharIndex())||
-                bigResultArea.indexInCandArea(smallResultArea.getCandEndCharIndex())){
+        final int CLIPPING_MARGIN = 50;
+        boolean activateMargin = true; // TODO move the margin settings to config
+
+        if(bigResultArea.indexInSuspArea(smallResultArea.getSuspStartCharIndex(), activateMargin, CLIPPING_MARGIN) ||
+           bigResultArea.indexInSuspArea(smallResultArea.getSuspEndCharIndex(), activateMargin, CLIPPING_MARGIN)){
+            if(bigResultArea.indexInCandArea(smallResultArea.getCandStartCharIndex(), activateMargin, CLIPPING_MARGIN)||
+                bigResultArea.indexInCandArea(smallResultArea.getCandEndCharIndex(), activateMargin, CLIPPING_MARGIN)){
                 return true;
             }
         }
         // This might be redundant
-        if(smallResultArea.indexInSuspArea(bigResultArea.getSuspStartCharIndex()) ||
-                smallResultArea.indexInSuspArea(bigResultArea.getSuspEndCharIndex())){
-            if(smallResultArea.indexInCandArea(bigResultArea.getCandStartCharIndex())||
-                    smallResultArea.indexInCandArea(bigResultArea.getCandEndCharIndex())){
+        if(smallResultArea.indexInSuspArea(bigResultArea.getSuspStartCharIndex(), activateMargin, CLIPPING_MARGIN) ||
+                smallResultArea.indexInSuspArea(bigResultArea.getSuspEndCharIndex(), activateMargin, CLIPPING_MARGIN)){
+            if(smallResultArea.indexInCandArea(bigResultArea.getCandStartCharIndex(), activateMargin, CLIPPING_MARGIN)||
+                    smallResultArea.indexInCandArea(bigResultArea.getCandEndCharIndex(), activateMargin, CLIPPING_MARGIN)){
                 return true;
             }
         }
