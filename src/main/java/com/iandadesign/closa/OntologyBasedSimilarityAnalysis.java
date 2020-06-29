@@ -5,6 +5,7 @@ import com.iandadesign.closa.classification.TextClassifier;
 import com.iandadesign.closa.language.LanguageDetector;
 import com.iandadesign.closa.model.*;
 import com.iandadesign.closa.model.Dictionary;
+import com.iandadesign.closa.util.LogUtil;
 import com.iandadesign.closa.util.wikidata.WikidataDumpUtil;
 import com.iandadesign.closa.util.wikidata.WikidataEntityExtractor;
 import com.iandadesign.closa.util.wikidata.WikidataSimilarityUtil;
@@ -31,10 +32,14 @@ public class OntologyBasedSimilarityAnalysis {
 
     private final LanguageDetector languageDetector;
     private final TextClassifier textClassifier;
+    private  LogUtil logUtil;
+    private  String tag;
 
     private final Logger logger = LoggerFactory.getLogger(OntologyBasedSimilarityAnalysis.class);
     private static String preprocessedCachingDirectory;
     private static int lengthSublistTokens;
+    private static String errorlogPath;
+    private static String standardlogPath;
 
     static {
         try {
@@ -42,6 +47,14 @@ public class OntologyBasedSimilarityAnalysis {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public LanguageDetector getLanguageDetector() {
+        return languageDetector;
+    }
+
+    public LogUtil getLogUtil() {
+        return logUtil;
     }
 
     /**
@@ -79,6 +92,9 @@ public class OntologyBasedSimilarityAnalysis {
             // get the property value and print it out
             preprocessedCachingDirectory = properties.getProperty("preprocessed_caching_directory");
             lengthSublistTokens = Integer.parseInt(properties.getProperty("length_sublist_tokens"));
+            errorlogPath = properties.getProperty("errorlog_path");
+            standardlogPath = properties.getProperty("standardlog_path");
+
 
             if(preprocessedCachingDirectory == null){
                 preprocessedCachingDirectory = System.getProperty("user.home");
@@ -120,6 +136,10 @@ public class OntologyBasedSimilarityAnalysis {
     public OntologyBasedSimilarityAnalysis(LanguageDetector languageDetector, TextClassifier textClassifier) {
         this.languageDetector = languageDetector;
         this.textClassifier = textClassifier;
+    }
+    public void initializeLogger(String tag){
+        this.tag = tag;
+        this.logUtil = new LogUtil(errorlogPath, standardlogPath, tag);
     }
 
     /**
@@ -408,7 +428,7 @@ public class OntologyBasedSimilarityAnalysis {
             resultsStream.close();
             System.out.println(candidatesForDetailedComparison);
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -547,54 +567,50 @@ public class OntologyBasedSimilarityAnalysis {
 
      * @return concepts with additional information.
      */
-    public List<SavedEntity> preProcessExtendedInfo(String documentPath, String documentLanguage) {
-        try {
-            // read in the file
-            String documentText = FileUtils.readFileToString(new File(documentPath), StandardCharsets.UTF_8);
+    public List<SavedEntity> preProcessExtendedInfo(String documentPath, String documentLanguage) throws Exception {
 
-            String documentEntitiesPath;
+        // read in the file
+        File documentFile = new File(documentPath);
+        String documentText = FileUtils.readFileToString(documentFile, StandardCharsets.UTF_8);
 
+        String documentEntitiesPath;
 
-            documentEntitiesPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
-                    documentPath.replace(preprocessedCachingDirectory, "").concat(".ser"))
-                    .toAbsolutePath().toString();
+        documentEntitiesPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
+                documentFile.getName().concat(".ser"))
+                .toAbsolutePath().toString();
 
-            List<SavedEntity> documentEntities = new ArrayList<>();
+        List<SavedEntity> documentEntities = new ArrayList<>();
 
-            // document entities
-            if (Files.exists(Paths.get(documentEntitiesPath)) && !FileUtils.readFileToString(new File(documentEntitiesPath), StandardCharsets.UTF_8).isEmpty()) {
-                // if the file has already been pre-processed deserialize corresponding info
-                FileInputStream fileIn = new FileInputStream(documentEntitiesPath);
-                ObjectInputStream in = new ObjectInputStream(fileIn);
-                List<?> myIncomingObjects = (List<?>)in.readObject();
-                for(Object desObject:myIncomingObjects){
-                    documentEntities.add((SavedEntity)desObject);
-                }
-                in.close();
-                fileIn.close();
-            } else {
-                Category documentCategory = textClassifier.classifyText(documentText, documentLanguage);
-                // pre-process the file
-                documentEntities = preProcessExtendedInfo(documentPath, documentText, documentLanguage, documentCategory);
-
-                if (documentEntities.size() == 0 && !Pattern.compile("(\\s)+").matcher(documentText).find()) {
-                    // throw new IllegalStateException("Empty preprocessing.");
-                }
-                // Serialize to the list of SavedEntites to defined path.
-                boolean dirsCreated = new File(documentEntitiesPath).getParentFile().mkdirs();
-                FileOutputStream fos = new FileOutputStream(documentEntitiesPath);
-                SavedEntitiesObjectOutputStream oos = new SavedEntitiesObjectOutputStream(fos);
-                oos.writeObject(documentEntities);
-                oos.close();
-                fos.close();
+        // document entities
+        if (Files.exists(Paths.get(documentEntitiesPath)) && !FileUtils.readFileToString(new File(documentEntitiesPath), StandardCharsets.UTF_8).isEmpty()) {
+            // if the file has already been pre-processed deserialize corresponding info
+            FileInputStream fileIn = new FileInputStream(documentEntitiesPath);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            List<?> myIncomingObjects = (List<?>)in.readObject();
+            for(Object desObject:myIncomingObjects){
+                documentEntities.add((SavedEntity)desObject);
             }
+            in.close();
+            fileIn.close();
+        } else {
+            Category documentCategory = textClassifier.classifyText(documentText, documentLanguage);
+            // pre-process the file
+            documentEntities = preProcessExtendedInfo(documentPath, documentText, documentLanguage, documentCategory);
 
-            return documentEntities;
-        } catch (Exception e) {
-            e.printStackTrace();
+            if (documentEntities.size() == 0 && !Pattern.compile("(\\s)+").matcher(documentText).find()) {
+                // throw new IllegalStateException("Empty preprocessing.");
+            }
+            // Serialize to the list of SavedEntites to defined path.
+            boolean dirsCreated = new File(documentEntitiesPath).getParentFile().mkdirs();
+            FileOutputStream fos = new FileOutputStream(documentEntitiesPath);
+            SavedEntitiesObjectOutputStream oos = new SavedEntitiesObjectOutputStream(fos);
+            oos.writeObject(documentEntities);
+            oos.close();
+            fos.close();
         }
 
-        return null;
+        return documentEntities;
+
     }
     /**
      * Cosine similarity analysis.
