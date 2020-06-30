@@ -6,17 +6,13 @@ import com.google.gson.JsonParser;
 import com.iandadesign.closa.classification.Category;
 import com.iandadesign.closa.model.Token;
 import com.iandadesign.closa.model.WikidataEntity;
-import org.apache.commons.io.FileUtils;
+import com.iandadesign.closa.util.ExtendedLogUtil;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -41,6 +37,7 @@ public class WikidataSparqlUtil {
 
     private static String wikidataSparqlEndpoint;
     private static boolean logSparqlRequests;
+    private static String sparqlErrorLogPath;
 
     private static final String[] wikidataPrefixes = {"PREFIX wd: <http://www.wikidata.org/entity/>",
             "PREFIX wds: <http://www.wikidata.org/entity/statement/>",
@@ -120,6 +117,8 @@ public class WikidataSparqlUtil {
             // get the property value and print it out
             wikidataSparqlEndpoint = properties.getProperty("wikidata_sparql_endpoint");
             logSparqlRequests = Boolean.parseBoolean(properties.getProperty("log_sparql_requests"));
+            sparqlErrorLogPath = properties.getProperty("errorlog_path");
+
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         } finally {
@@ -254,7 +253,7 @@ public class WikidataSparqlUtil {
         // count results
         List<WikidataEntity> results = new ArrayList<>();
 
-        List<WikidataEntity> queriedEntities = getEntitiesByLabel(token.getLemma(), languageCode);
+        List<WikidataEntity> queriedEntities = getEntitiesByLabel(queryLemma, languageCode);
 
         // 1 decide between lemma or token
         for (int i = 0; i < 2; i++) {
@@ -778,9 +777,14 @@ public class WikidataSparqlUtil {
             JsonArray jsonArray = jsonElement.getAsJsonObject()
                     .getAsJsonObject("results")
                     .getAsJsonArray("bindings");
-
+            //System.out.println("WikidataSparqlUtil: Got JSON response" + jsonArray.toString()); // Too long
+            long size = jsonArray.size();
+            logSimple("WikidataSparqlUtil: Got JSON response Arraylength: "+ size);
             // read property bindings
+            final long[] counterBindings = {0};
             jsonArray.forEach(binding -> {
+                //System.out.println("WikidataSparqlUtil: processing binding "+ counterBindings[0] + "/"+size);
+                counterBindings[0] = counterBindings[0] +1;
                 Set<Map.Entry<String, JsonElement>> entrySet = binding.getAsJsonObject().entrySet();
 
                 entrySet.forEach((Map.Entry<String, JsonElement> entry) -> {
@@ -790,9 +794,11 @@ public class WikidataSparqlUtil {
                         // add binding to existing key value pair
                         List<String> values = new ArrayList<>(bindings.get(entry.getKey()));
                         values.add(value);
+                        //System.out.println("WikidataSparqlUtil: Putting key to bindings"+entry.getKey().toString() + ",value: "+value.toString());
                         bindings.put(entry.getKey(), values);
                     } else {
                         // create new key value pair
+                        //System.out.println("WikidataSparqlUtil: Putting key to bindings"+entry.getKey().toString()+ ",value: "+value.toString());
                         bindings.put(entry.getKey(),
                                 Collections.singletonList(value));
                     }
@@ -832,14 +838,14 @@ public class WikidataSparqlUtil {
                     numberOfTries += 1;
 
                     // create file for error report.
-                    String path = "~/closa-error-reports";
+                    String path = sparqlErrorLogPath;
 
                     // Custom message
                     String message = e.getMessage().contains("response code: 500") ? "Internal server error." : e.getMessage();
                     message = e.getMessage().contains("response code: 429") ? "Too many requests." : message;
                     message = message + "\n\n" + urlString + "\n\n" + Arrays.toString(e.getStackTrace());
-
-                    writeErrorReport(path, message);
+                    ExtendedLogUtil extendedLogUtil = new ExtendedLogUtil(path,null,"SparQLHandler",true,false);
+                    extendedLogUtil.writeErrorReport(false, message);
 
                     int sleepTime = 1000 * 20 + 1000 * 10 * numberOfTries;
 
@@ -854,26 +860,7 @@ public class WikidataSparqlUtil {
         }
     }
 
-    /**
-     * Writes a report to file titled with the current date time in the given path.
-     *
-     * @param path    path
-     * @param message message as file content
-     */
-    private static void writeErrorReport(String path, String message) {
-        try {
-            if (Files.notExists(Paths.get(path))) {
-                Files.createDirectories(Paths.get(path));
-            }
-            String fileName = LocalDateTime.now().toString() + ".txt";
 
-            Files.createFile(Paths.get(path, fileName));
-
-            FileUtils.writeStringToFile(new File(path, fileName), message, StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 
 }

@@ -5,23 +5,21 @@ import com.iandadesign.closa.classification.TextClassifier;
 import com.iandadesign.closa.language.LanguageDetector;
 import com.iandadesign.closa.model.*;
 import com.iandadesign.closa.model.Dictionary;
-import com.iandadesign.closa.util.LogUtil;
+import com.iandadesign.closa.util.ExtendedLogUtil;
 import com.iandadesign.closa.util.wikidata.WikidataDumpUtil;
 import com.iandadesign.closa.util.wikidata.WikidataEntityExtractor;
 import com.iandadesign.closa.util.wikidata.WikidataSimilarityUtil;
 import me.tongfei.progressbar.ProgressBar;
 import me.tongfei.progressbar.ProgressBarStyle;
 import org.apache.commons.io.FileUtils;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.nio.CharBuffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -32,14 +30,14 @@ public class OntologyBasedSimilarityAnalysis {
 
     private final LanguageDetector languageDetector;
     private final TextClassifier textClassifier;
-    private  LogUtil logUtil;
     private  String tag;
+    private ExtendedLogUtil logUtil;
 
     private final Logger logger = LoggerFactory.getLogger(OntologyBasedSimilarityAnalysis.class);
     private static String preprocessedCachingDirectory;
-    private static int lengthSublistTokens;
     private static String errorlogPath;
     private static String standardlogPath;
+    private static int lenSublistTokens;
 
     static {
         try {
@@ -53,7 +51,7 @@ public class OntologyBasedSimilarityAnalysis {
         return languageDetector;
     }
 
-    public LogUtil getLogUtil() {
+    public ExtendedLogUtil getExtendedLogUtil() {
         return logUtil;
     }
 
@@ -91,9 +89,9 @@ public class OntologyBasedSimilarityAnalysis {
 
             // get the property value and print it out
             preprocessedCachingDirectory = properties.getProperty("preprocessed_caching_directory");
-            lengthSublistTokens = Integer.parseInt(properties.getProperty("length_sublist_tokens"));
             errorlogPath = properties.getProperty("errorlog_path");
             standardlogPath = properties.getProperty("standardlog_path");
+            lenSublistTokens = Integer.parseInt(properties.getProperty("length_sublist_tokens"));
 
 
             if(preprocessedCachingDirectory == null){
@@ -108,7 +106,6 @@ public class OntologyBasedSimilarityAnalysis {
                            .concat(" cant be created, please update your config or create directory"));
                 }
             }
-
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         } finally {
@@ -137,9 +134,10 @@ public class OntologyBasedSimilarityAnalysis {
         this.languageDetector = languageDetector;
         this.textClassifier = textClassifier;
     }
-    public void initializeLogger(String tag){
+    public void initializeLogger(String tag, ExtendedAnalysisParameters params){
         this.tag = tag;
-        this.logUtil = new LogUtil(errorlogPath, standardlogPath, tag);
+        this.logUtil = new ExtendedLogUtil(errorlogPath, standardlogPath, tag,
+                       params.LOG_ERROR_TO_FILE, params.LOG_STANDARD_TO_FILE);
     }
 
     /**
@@ -192,26 +190,11 @@ public class OntologyBasedSimilarityAnalysis {
 
         return new HashMap<>();
     }
-    /**
-     * Creates a string of dashes that is n dashes long.
-     *
-     * @param n The number of dashes to add to the string.
-     */
-    public String dashes( int n ) {
-        return CharBuffer.allocate( n ).toString().replace( '\0', '-' );
-    }
+
 
     public Map<String, Double> executeAlgorithmAndComputeScoresExtendedInfo(String suspiciousDocumentPath,
                                                                             List<String> candidateDocumentPaths,
-                                                                            String tag) {
-
-        // Sliding window parameters (atm only possible increment == num_sentences)
-        final int NUM_SENTENCES_IN_SLIDING_WINDOW = 2;
-        final int NUM_SENTENCE_INCREMENT_SLIDINGW = 1;
-        // Sliding window comparison thresholds
-        final double ADJACENT_THRESH = 0.3;   //0,1
-        final double SINGLE_THRESH = 0.7;     //0,6
-
+                                                                            String tag, ExtendedAnalysisParameters params) {
 
         // Maps used for detailed comparison
         Map<String, List<SavedEntity>> suspiciousIdTokensMapExt = new HashMap<>();
@@ -232,56 +215,30 @@ public class OntologyBasedSimilarityAnalysis {
                 List<SavedEntity> preprocessedCandExt = preProcessExtendedInfo(candidateDocumentPath,
                         languageDetector.detectLanguage(FileUtils.readFileToString(new File(candidateDocumentPath), StandardCharsets.UTF_8)));
                 List<String> preprocessedCand = preprocessedCandExt.stream().map(SavedEntity::getWikidataEntityId).collect(Collectors.toList());
-                // CHeck tokens
-                /*
-                List<SavedEntity> windowEntitysSusp = preprocessedExt
-                        .stream()
-                        .filter(currentEntity ->
-                                currentEntity.getToken().getSentenceNumber() >= 4
-                                        && currentEntity.getToken().getSentenceNumber() < 6)
-                        .collect(Collectors.toList());
-                List<SavedEntity> windowEntitysSusp2 = preprocessedExt
-                        .stream()
-                        .filter(currentEntity ->
-                                currentEntity.getToken().getSentenceNumber() >= 5
-                                        && currentEntity.getToken().getSentenceNumber() < 7)
-                        .collect(Collectors.toList());
-                */
-                // BF end
                 candidateIdTokensMap.put(candidateDocumentPath, preprocessedCand);
                 candidateIdTokensMapExt.put(candidateDocumentPath, preprocessedCandExt);
             }
 
             // Creating a results file
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss");
-            LocalDateTime now = LocalDateTime.now();
-            String dateString = dtf.format((now));
-            String documentResultsPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
-                    "results_preprocessing", tag.concat("_").concat(dateString).concat(".txt"))
-                    .toAbsolutePath().toString();
-            String format = "%-40s%s%n";        // Format for key value outputs
-            File resultsDocument = new File(documentResultsPath);
-            boolean dirsCreated = resultsDocument.getParentFile().mkdirs();
-            PrintStream resultsStream = new PrintStream(resultsDocument);
-            resultsStream.println("Extended Algorithm results"+dashes(74));
-            resultsStream.printf(format, "TAG:", tag);
-            resultsStream.printf(format, "Time:", dateString);
-            resultsStream.printf(format, "Sliding Window Length:", NUM_SENTENCES_IN_SLIDING_WINDOW);
-            resultsStream.printf(format, "Sliding Window Increment:", NUM_SENTENCE_INCREMENT_SLIDINGW);
-            resultsStream.printf(format, "Sublist Token Length:", lengthSublistTokens);
-            resultsStream.println(dashes(100));
+            logUtil.logAndWriteStandard(false, "Extended Algorithm results"+logUtil.dashes(74));
+            logUtil.logAndWriteStandard(true, "TAG:", tag);
+            logUtil.logAndWriteStandard(true,  "Time:", DateTime.now());
+            logUtil.logAndWriteStandard(true, "Sliding Window Length:", params.NUM_SENTENCES_IN_SLIDING_WINDOW);
+            logUtil.logAndWriteStandard(true, "Sliding Window Increment:", params.NUM_SENTENCE_INCREMENT_SLIDINGW);
+            logUtil.logAndWriteStandard(true, "Sublist Token Length:", lenSublistTokens);
+            logUtil.logAndWriteStandard(true, logUtil.dashes(100));
 
             // Perform similarity analysis for candidate retrieval.
             Map<String, Double> candidateScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
-            System.out.println("Scores for candidate retrieval:");
-            System.out.println(candidateScoresMap);
+            logUtil.logAndWriteStandard(false,"Scores for candidate retrieval:");
+            logUtil.logAndWriteStandard(false, candidateScoresMap);
             // Select most similar candidates for detailed analysis.
-            System.out.println("Continue with detailed analysis:");
-            final int NUM_CANDIDATES_SELECTED = 2;
+            logUtil.logAndWriteStandard(false, "Continue with detailed analysis:");
             Map<String, Double> candidatesForDetailedComparison = candidateScoresMap
                     .entrySet().stream()
                     .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-                    .limit(NUM_CANDIDATES_SELECTED)
+                    .filter(entry-> entry.getValue() >= params.CANDIDATE_SELECTION_TRESH) // TODO does this work?
+                    .limit(params.MAX_NUM_CANDIDATES_SELECTED)
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
             // By having the most similar candidates a detailed analysis is performed.
@@ -295,49 +252,54 @@ public class OntologyBasedSimilarityAnalysis {
             // candidateScoresMap, could be also an option to load everything in second loop
 
             // Filter SavedEntities which are not containing any Wikidata Entries (assuming these entities have no sentence)
-            // Or even do this in preprocessing? When sentences are availible?
+            // Or even do this in preprocessing? When sentences are available?
 
             // Storage for combined window entities.
-            ScoringChunksCombined scoringChunksCombined = new ScoringChunksCombined(ADJACENT_THRESH, SINGLE_THRESH, NUM_SENTENCES_IN_SLIDING_WINDOW,NUM_SENTENCE_INCREMENT_SLIDINGW);
+            ScoringChunksCombined scoringChunksCombined = new ScoringChunksCombined(
+                    params.ADJACENT_THRESH,
+                    params.SINGLE_THRESH,
+                    params.NUM_SENTENCES_IN_SLIDING_WINDOW,
+                    params.NUM_SENTENCE_INCREMENT_SLIDINGW);
+
             long fragmentIndex=0; // Just a running index for adressing fragments.
             for (Map.Entry<String, List<SavedEntity>> suspiciousIdTokenExt : suspiciousIdTokensMapExt.entrySet()) {
                 Integer numSentencesSusp = getMaxSentenceNumber(suspiciousIdTokenExt)+1;
-                System.out.printf(format, "Detailed Analysis selected Suspicious File:", suspiciousIdTokenExt.getKey());
-                System.out.printf(format, "Suspicious file sentences:", numSentencesSusp);
+                logUtil.logAndWriteStandard(true, "Detailed Analysis selected Suspicious File:", suspiciousIdTokenExt.getKey());
+                logUtil.logAndWriteStandard(true,"Suspicious file sentences:", numSentencesSusp);
 
                 for (Map.Entry<String, List<SavedEntity>> candidateIdTokenExt : selectedCandidateIdTokensMapExt.entrySet()) {
 
                     Integer numSentencesCand = getMaxSentenceNumber(candidateIdTokenExt)+1; //TODO fix redundant Operation
-                    System.out.printf(format, "Detailed Analysis selected Candidate File:", candidateIdTokenExt.getKey());
-                    System.out.printf(format, "Candidate file sentences:", numSentencesCand);
-                    resultsStream.println("Comparing Files");
-                    resultsStream.printf(format, "Suspicious File:", suspiciousIdTokenExt.getKey());
-                    resultsStream.printf(format, "Candidate File:", candidateIdTokenExt.getKey());
+                    logUtil.logAndWriteStandard(true,"Detailed Analysis selected Candidate File:", candidateIdTokenExt.getKey());
+                    logUtil.logAndWriteStandard(true, "Candidate file sentences:", numSentencesCand);
+                    logUtil.logAndWriteStandard(false,"Comparing Files");
+                    logUtil.logAndWriteStandard(true, "Suspicious File:", suspiciousIdTokenExt.getKey());
+                    logUtil.logAndWriteStandard(true, "Candidate File:", candidateIdTokenExt.getKey());
                     scoringChunksCombined.setCurrentDocuments(suspiciousIdTokenExt.getKey(), candidateIdTokenExt.getKey());
                     scoringChunksCombined.createScoreMatrix(numSentencesSusp, numSentencesCand);
                     int suspiciousSlidingWindowY = 0; // specific index for 2D Matrix positioning
 
                     // Documents have been specified here->start to slide the window.
-                    for(int currentSuspWindowStartSentence=0;currentSuspWindowStartSentence<numSentencesSusp;currentSuspWindowStartSentence+=NUM_SENTENCE_INCREMENT_SLIDINGW){
+                    for(int currentSuspWindowStartSentence=0;currentSuspWindowStartSentence<numSentencesSusp;currentSuspWindowStartSentence+=params.NUM_SENTENCE_INCREMENT_SLIDINGW){
                         SlidingWindowInfo swiSuspicious= getWikiEntityStringsForSlidingWindow(
                                 suspiciousIdTokenExt,
                                 currentSuspWindowStartSentence,
-                                NUM_SENTENCES_IN_SLIDING_WINDOW,
+                                params.NUM_SENTENCES_IN_SLIDING_WINDOW,
                                 suspiciousIdTokenExt.getKey());
 
                         Map<String, List<String>> currentSuspiciousIdTokensMap = swiSuspicious.getFilenameToEntities();
                         int candSlidingWindowX = 0; // specific index for 2D Matrix positioning
-                        for(int currentCandWindowStartSentence=0;currentCandWindowStartSentence<numSentencesCand;currentCandWindowStartSentence+=NUM_SENTENCE_INCREMENT_SLIDINGW){
+                        for(int currentCandWindowStartSentence=0;currentCandWindowStartSentence<numSentencesCand;currentCandWindowStartSentence+=params.NUM_SENTENCE_INCREMENT_SLIDINGW){
                              SlidingWindowInfo swiCandidate = getWikiEntityStringsForSlidingWindow(
                                     candidateIdTokenExt,
                                     currentCandWindowStartSentence,
-                                    NUM_SENTENCES_IN_SLIDING_WINDOW,
+                                    params.NUM_SENTENCES_IN_SLIDING_WINDOW,
                                     candidateIdTokenExt.getKey());
 
                             Map<String, List<String>> currentCandidateIdTokensMap = swiCandidate.getFilenameToEntities();
 
-                            System.out.println("Susp Sentence: "+suspiciousIdTokenExt.getKey());
-                            System.out.println("Cand Sentence: "+candidateIdTokenExt.getKey());
+                            logUtil.logAndWriteStandard(false,"Susp Sentence: "+suspiciousIdTokenExt.getKey());
+                            logUtil.logAndWriteStandard(false,"Cand Sentence: "+candidateIdTokenExt.getKey());
 
                             // Create a specific mock entry if there is an empty row or column item in matrix.
                             if(swiSuspicious.isNoEntitiesInWindow() || swiCandidate.isNoEntitiesInWindow()){
@@ -363,31 +325,25 @@ public class OntologyBasedSimilarityAnalysis {
                                 candSlidingWindowX++;
                                 continue;
                             }
-                            if(currentSuspWindowStartSentence==4 || currentSuspWindowStartSentence==5){
-                                if(currentCandWindowStartSentence==0){
-                                    System.out.println(fragmentScore);
-                                }
-                            }
-                            if(fragmentScore==125){
-                                System.out.println(fragmentScore);
-                            }
+
+
                             ScoringChunk currentScoringChunk = new ScoringChunk(swiSuspicious,
                                                                                 swiCandidate,
                                                                                 fragmentScore,
                                                                                 fragmentIndex);
 
-                            resultsStream.println(dashes(50));
-                            resultsStream.printf(format, "Fragment Number:", fragmentIndex);
-                            resultsStream.printf(format, "Suspicious Start Sentence:", currentSuspWindowStartSentence);
-                            resultsStream.printf(format, "Candidate Start Sentence:", currentCandWindowStartSentence);
-                            resultsStream.printf(format, "Suspicious Start Character Index:", swiSuspicious.getCharacterStartIndex());
-                            resultsStream.printf(format, "Candidate Start Character Index:", swiCandidate.getCharacterStartIndex());
-                            resultsStream.printf(format, "Suspicious End Character Index:", swiSuspicious.getCharacterEndIndex());
-                            resultsStream.printf(format, "Candidate End Character Index:", swiCandidate.getCharacterEndIndex());
-                            resultsStream.printf(format, "Suspicious Tokens:", currentSuspiciousIdTokensMap.get(suspiciousIdTokenExt.getKey()));
-                            resultsStream.printf(format, "Candidate Tokens:", currentCandidateIdTokensMap.get(candidateIdTokenExt.getKey()));
-                            resultsStream.printf(format, "Fragment Score:", fragmentScore);
-                            System.out.println(dashes(50));
+                            logUtil.logAndWriteStandard(false,logUtil.dashes(50));
+                            logUtil.logAndWriteStandard(true,"Fragment Number:", fragmentIndex);
+                            logUtil.logAndWriteStandard(true, "Suspicious Start Sentence:", currentSuspWindowStartSentence);
+                            logUtil.logAndWriteStandard(true, "Candidate Start Sentence:", currentCandWindowStartSentence);
+                            logUtil.logAndWriteStandard(true, "Suspicious Start Character Index:", swiSuspicious.getCharacterStartIndex());
+                            logUtil.logAndWriteStandard(true, "Candidate Start Character Index:", swiCandidate.getCharacterStartIndex());
+                            logUtil.logAndWriteStandard(true, "Suspicious End Character Index:", swiSuspicious.getCharacterEndIndex());
+                            logUtil.logAndWriteStandard(true, "Candidate End Character Index:", swiCandidate.getCharacterEndIndex());
+                            logUtil.logAndWriteStandard(true, "Suspicious Tokens:", currentSuspiciousIdTokensMap.get(suspiciousIdTokenExt.getKey()));
+                            logUtil.logAndWriteStandard(true, "Candidate Tokens:", currentCandidateIdTokensMap.get(candidateIdTokenExt.getKey()));
+                            logUtil.logAndWriteStandard(true, "Fragment Score:", fragmentScore);
+                            logUtil.logAndWriteStandard(false,logUtil.dashes(50));
                             //TODO performance mark fileprints as optional
                             currentScoringChunk.printMe(
                                     currentSuspiciousIdTokensMap.get(suspiciousIdTokenExt.getKey()),
@@ -418,20 +374,22 @@ public class OntologyBasedSimilarityAnalysis {
                     // ... calculate the plagiarism sections from windows
                     scoringChunksCombined.calculateMatrixClusters();
                     // ... write down results
-                    scoringChunksCombined.writeDownXMLResults(tag, dateString, preprocessedCachingDirectory);
-                    scoringChunksCombined.writeScoresMapAsCSV(tag, dateString, preprocessedCachingDirectory);
+
+                    scoringChunksCombined.writeDownXMLResults(tag, logUtil.getDateString(), preprocessedCachingDirectory);
+                    if(params.LOG_TO_CSV) {
+                        scoringChunksCombined.writeScoresMapAsCSV(tag, logUtil.getDateString(), preprocessedCachingDirectory);
+                    }
                     // ... free memory
                     scoringChunksCombined.flushInternalCombinedChunks();
                     //TODO perfomance: Check if memory is released here properly
                 }
             }
-            resultsStream.close();
-            System.out.println(candidatesForDetailedComparison);
+            logUtil.logAndWriteStandard(false, candidatesForDetailedComparison);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        logUtil.closeStreams();
         return new HashMap<>();
     }
 
