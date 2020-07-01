@@ -32,9 +32,13 @@ public class ExtendedLogUtil {
             this.LOG_STANDARD_TO_FILE = logStandardToFile;
             // Create a date string which is associated with the files in from this logger
             createCurrentDateString();
-            // Create Log Files if they dont exist already
-            this.errorLogStream = createLogFile(errorlogPath);
-            this.standardLogStream = createLogFile(logPath);
+            // Create Log Files if they do not exist already
+            if(logErrorToFile){
+                this.errorLogStream = createLogFile(errorlogPath, false);
+            }
+            if(logStandardToFile){
+                this.standardLogStream = createLogFile(logPath, true);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,7 +53,7 @@ public class ExtendedLogUtil {
         LocalDateTime now = LocalDateTime.now();
         dateString = dtf.format((now));
     }
-    private PrintStream createLogFile(String path) throws IOException{
+    private PrintStream createLogFile(String path, boolean standardLogOrErrorLog) throws IOException{
         if(path==null){
             return null;
         }
@@ -57,7 +61,12 @@ public class ExtendedLogUtil {
             Files.createDirectories(Paths.get(path));
         }
 
-        String fileName = tag.concat(dateString).concat(".txt");
+        String fileName;
+        if(standardLogOrErrorLog){
+            fileName = tag.concat(dateString).concat("standard_log").concat(".txt");
+        }else{
+            fileName = tag.concat(dateString).concat("error_log").concat(".txt");
+        }
         Path filePath = Paths.get(path, fileName);
 
         Path createdPath;
@@ -73,7 +82,6 @@ public class ExtendedLogUtil {
     /**
      * Writes a report to file titled with the current date time in the given path.
      *
-     * @param message message as file content
      */
     public void writeErrorReport(boolean useFormat, Object ... args) {
         if(!this.LOG_ERROR_TO_FILE);
