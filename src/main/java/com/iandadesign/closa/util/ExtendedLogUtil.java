@@ -10,8 +10,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 public class ExtendedLogUtil {
 
@@ -84,43 +88,73 @@ public class ExtendedLogUtil {
      *
      */
     public void writeErrorReport(boolean useFormat, Object ... args) {
-        if(!this.LOG_ERROR_TO_FILE);
-        if(useFormat){
-            errorLogStream.printf(format, args);
-        }else{
-            errorLogStream.print(args.toString());
+        if(!this.LOG_ERROR_TO_FILE) return;
+        if(args == null){
+            return;
         }
+        varargsToOutput(useFormat, System.err, args);
+
     }
 
     public void writeStandardReport(boolean useFormat, Object ... args) {
         if(!this.LOG_STANDARD_TO_FILE) return;
-        if(useFormat){
-            standardLogStream.printf(format, args);
-        }else{
-            standardLogStream.println(args.toString());
+        if(args == null){
+            return;
         }
+        varargsToOutput(useFormat, System.out, args);
+
     }
 
     public void logAndWriteStandard(boolean useFormat, Object ... message){
-        if(useFormat){
-            System.out.printf(format, message);
-            writeStandardReport(true, message);
-        }else{
-            System.out.println(message);
-            writeStandardReport(false, message);
+        if(message == null){
+            return;
         }
+        // Log message to system out
+        varargsToOutput(useFormat, System.out, message);
+        // Log message to filesystem
+        varargsToOutput(useFormat, standardLogStream, message);
     }
 
     public void logAndWriteError(boolean useFormat, Object ... message){
-        if(useFormat){
-            System.err.printf(format, message);
-            writeErrorReport(true, message);
-        }else{
-            System.err.println(message);
-            writeErrorReport(false, message);
+        if(message == null){
+            return;
         }
-    }
+        // Log message to system out
+        varargsToOutput(useFormat, System.err, message);
+        // Log message to filesystem
+        varargsToOutput(useFormat, errorLogStream, message);
 
+    }
+    private void varargsToOutput(boolean useFormat, PrintStream stream, Object ... message){
+        if(useFormat){
+            switch(message.length){
+                case 1:
+                    stream.println(message[0].toString());
+                    break;
+                case 2:
+                    stream.printf(format, message[0].toString(), message[1].toString());
+                    break;
+                default:
+                    StringBuilder concatString= new StringBuilder();
+                    boolean first = true;
+                    for(Object obj:message){
+                        if(first){
+                            first= false;
+                            continue;
+                        }
+                        concatString.append(obj.toString()).append(" ");
+                    }
+                    stream.printf(format, message[0].toString(), concatString.toString());
+                    break;
+            }
+        }else{
+            for (Object i: message) {
+                stream.print(i + " ");
+            }
+            stream.println();
+        }
+
+    }
     /**
      * Creates a string of dashes that is n dashes long.
      *
@@ -128,6 +162,9 @@ public class ExtendedLogUtil {
      */
     public String dashes( int n ) {
         return CharBuffer.allocate( n ).toString().replace( '\0', '-' );
+    }
+    public String getCurrentTime(){
+        return new SimpleDateFormat().format( new Date() );
     }
 
     public void closeStreams(){
