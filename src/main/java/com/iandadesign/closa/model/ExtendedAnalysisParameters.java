@@ -10,7 +10,8 @@ public class ExtendedAnalysisParameters {
     public final double ADJACENT_THRESH;
     public final double SINGLE_THRESH;
     public final int MAX_NUM_CANDIDATES_SELECTED;   // The number of candidates per suspicious file which get selected for detailed comparison
-    public final int CANDIDATE_SELECTION_TRESH;     // Only if scoring above thresh a similar candidate gets selected (0 for off)
+    public final int CR_PRINT_LIMIT;                // Candidate number which is results are printed to files and log.
+    public final double CANDIDATE_SELECTION_TRESH;     // Only if scoring above thresh a similar candidate gets selected (0 for off)
     public final boolean LOG_TO_CSV;                // Log scoring map to csv
     public final boolean LOG_PREPROCESSING_RESULTS; // Log the sliding window comparisons to a .txt file
     public final boolean LOG_STANDARD_TO_FILE;      // Log relevant standard output to .txt file
@@ -31,7 +32,8 @@ public class ExtendedAnalysisParameters {
         SINGLE_THRESH = 0.7;     //0,6
         // Candidate retrieval settings
         MAX_NUM_CANDIDATES_SELECTED = 2;
-        CANDIDATE_SELECTION_TRESH = 0;
+        CR_PRINT_LIMIT = 10;
+        CANDIDATE_SELECTION_TRESH = 0.2;
         //Settings for Logging etc
         LOG_TO_CSV= true;
         LOG_PREPROCESSING_RESULTS= true;
