@@ -78,7 +78,7 @@ class PAN11EvaluationSetEval {
         int suspiciousPreprocessedFiles = doAllPreprocessing(toplevelPathSuspicious, osa, "en", params, false); // all suspicious docs are english
 
         int numfiles = suspiciousPreprocessedFiles+candidatePreprocessedFiles;
-        logUtil.logAndWriteStandard(false, "Number of preprocessed files is:"+numfiles);
+        logUtil.logAndWriteStandard(false, "Number of preprocessed files is: "+numfiles);
         if(!params.USE_FILE_FILTER && numfiles!=(11093*2)){
             logUtil.logAndWriteError(false, "Aborting: Processed files not 2*11093=22186 but "+numfiles);
             return;

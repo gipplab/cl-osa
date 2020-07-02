@@ -9,6 +9,7 @@ public class ExtendedAnalysisParameters {
     public final int NUM_SENTENCE_INCREMENT_SLIDINGW;
     public final double ADJACENT_THRESH;
     public final double SINGLE_THRESH;
+    public final int CLIPPING_MARGING;              // Number of characters in squashing clusters when a cluster still is considered clipping
     public final int MAX_NUM_CANDIDATES_SELECTED;   // The number of candidates per suspicious file which get selected for detailed comparison
     public final int CR_PRINT_LIMIT;                // Candidate number which is results are printed to files and log.
     public final double CANDIDATE_SELECTION_TRESH;     // Only if scoring above thresh a similar candidate gets selected (0 for off)
@@ -29,7 +30,8 @@ public class ExtendedAnalysisParameters {
         NUM_SENTENCE_INCREMENT_SLIDINGW = 1;
         // Sliding window comparison thresholds
         ADJACENT_THRESH = 0.3;   //0,1
-        SINGLE_THRESH = 0.7;     //0,6
+        SINGLE_THRESH = 0.5; //0.7;     //0,6
+        CLIPPING_MARGING = 100;
         // Candidate retrieval settings
         MAX_NUM_CANDIDATES_SELECTED = 2;
         CR_PRINT_LIMIT = 10;
@@ -46,8 +48,11 @@ public class ExtendedAnalysisParameters {
         // Add a file filter (only used if USE_FILE_FILTER is true)
         panFileFilter = new PANFileFilter(11093);
         // Add Candidate Whitelisting
-        panFileFilter.addToWhiteListMultiple(true, 1, 14, 3164, 4001, 71, 76, 3317);
+        //panFileFilter.addToWhiteListMultiple(true, 1, 14, 3164, 4001, 71, 76, 3317);
         // Add Suspicious Whitelisting
-        panFileFilter.addToWhiteListMultiple(false, 2, 45, 20, 34);
+        //panFileFilter.addToWhiteListMultiple(false, 2, 45, 20, 34);
+        panFileFilter.addToWhiteListMultiple(true, 3164);
+        panFileFilter.addToWhiteListMultiple(false, 20);
+
     }
 }

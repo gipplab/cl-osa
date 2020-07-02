@@ -34,6 +34,7 @@ public class ScoringChunksCombined {
     private final double singleTresh;
     private final int slidingWindowLength;
     private final int slidingWindowIncrement;
+    private final int clippingMarging;
 
     @Obsolete
     private Map<MapCoords, List<ScoringChunk>> allScoringChunksCombined; // This is flushed on every file combination
@@ -78,12 +79,13 @@ public class ScoringChunksCombined {
             return assumedPrevious;
         }
     }
-    public ScoringChunksCombined(double adjacentTresh, double singleTresh, int slidingWindowLength, int slidingWindowIncrement){
+    public ScoringChunksCombined(double adjacentTresh, double singleTresh, int slidingWindowLength, int slidingWindowIncrement, int clippingMargin){
         this.adjacentTresh = adjacentTresh;
         this.singleTresh = singleTresh;
         this.slidingWindowLength = slidingWindowLength;
         this.slidingWindowIncrement = slidingWindowIncrement;
         this.allScoringChunksCombined = new ArrayMap<MapCoords,List<ScoringChunk>>();
+        this.clippingMarging = clippingMargin;
         this.calculateSearchLength();
     }
     private void calculateSearchLength(){
@@ -300,8 +302,8 @@ public class ScoringChunksCombined {
         return combinationMarkerIndex;
     }
     public boolean resultIsClipping(ResultInfo bigResultArea, ResultInfo smallResultArea){
-        final int CLIPPING_MARGIN = 50;
-        boolean activateMargin = true; // TODO move the margin settings to config
+        final int CLIPPING_MARGIN = this.clippingMarging;   // was 50 before as default
+        boolean activateMargin = true;
 
         if(bigResultArea.indexInSuspArea(smallResultArea.getSuspStartCharIndex(), activateMargin, CLIPPING_MARGIN) ||
            bigResultArea.indexInSuspArea(smallResultArea.getSuspEndCharIndex(), activateMargin, CLIPPING_MARGIN)){

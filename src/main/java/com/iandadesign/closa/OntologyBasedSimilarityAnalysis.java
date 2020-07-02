@@ -293,7 +293,8 @@ public class OntologyBasedSimilarityAnalysis {
                 params.ADJACENT_THRESH,
                 params.SINGLE_THRESH,
                 params.NUM_SENTENCES_IN_SLIDING_WINDOW,
-                params.NUM_SENTENCE_INCREMENT_SLIDINGW);
+                params.NUM_SENTENCE_INCREMENT_SLIDINGW,
+                params.CLIPPING_MARGING);
 
         long fragmentIndex=0; // Just a running index for adressing fragments.
         for (Map.Entry<String, List<SavedEntity>> suspiciousIdTokenExt : suspiciousIdTokensMapExt.entrySet()) {
