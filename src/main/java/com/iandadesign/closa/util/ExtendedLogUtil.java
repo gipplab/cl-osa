@@ -83,28 +83,26 @@ public class ExtendedLogUtil {
     }
 
 
-    /**
-     * Writes a report to file titled with the current date time in the given path.
-     *
-     */
-    public void writeErrorReport(boolean useFormat, Object ... args) {
-        if(!this.LOG_ERROR_TO_FILE) return;
-        if(args == null){
-            return;
-        }
-        varargsToOutput(useFormat, System.err, args);
 
-    }
 
     public void writeStandardReport(boolean useFormat, Object ... args) {
         if(!this.LOG_STANDARD_TO_FILE) return;
         if(args == null){
             return;
         }
-        varargsToOutput(useFormat, System.out, args);
+        varargsToOutput(useFormat, standardLogStream, args);
 
     }
-
+    /**
+     * Writes a report to file titled with the current date time in the given path.
+     */
+    public void writeErrorReport(boolean useFormat, Object ... args) {
+        if(!this.LOG_ERROR_TO_FILE) return;
+        if(args == null){
+            return;
+        }
+        varargsToOutput(useFormat, errorLogStream, args);
+    }
     public void logAndWriteStandard(boolean useFormat, Object ... message){
         if(message == null){
             return;
@@ -112,7 +110,7 @@ public class ExtendedLogUtil {
         // Log message to system out
         varargsToOutput(useFormat, System.out, message);
         // Log message to filesystem
-        varargsToOutput(useFormat, standardLogStream, message);
+        writeStandardReport(useFormat, message);
     }
 
     public void logAndWriteError(boolean useFormat, Object ... message){
@@ -122,9 +120,9 @@ public class ExtendedLogUtil {
         // Log message to system out
         varargsToOutput(useFormat, System.err, message);
         // Log message to filesystem
-        varargsToOutput(useFormat, errorLogStream, message);
-
+        writeErrorReport(useFormat, message);
     }
+
     private void varargsToOutput(boolean useFormat, PrintStream stream, Object ... message){
         if(useFormat){
             switch(message.length){
