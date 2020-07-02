@@ -5,6 +5,7 @@ import com.iandadesign.closa.classification.TextClassifier;
 import com.iandadesign.closa.language.LanguageDetector;
 import com.iandadesign.closa.model.*;
 import com.iandadesign.closa.model.Dictionary;
+import com.iandadesign.closa.util.ExtendedAnalytics;
 import com.iandadesign.closa.util.ExtendedLogUtil;
 import com.iandadesign.closa.util.wikidata.WikidataDumpUtil;
 import com.iandadesign.closa.util.wikidata.WikidataEntityExtractor;
@@ -392,7 +393,7 @@ public class OntologyBasedSimilarityAnalysis {
                         }
                         suspiciousSlidingWindowY++;
                     }
-
+                    ExtendedAnalytics.calculateMedian(scoringChunksCombined.getScoreMatrix(), logUtil, suspFilename+ " with " +candFilename );
                     // After each candidate and suspicious file combination
                     // ... calculate the plagiarism sections from windows
                     scoringChunksCombined.calculateMatrixClusters();

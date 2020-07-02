@@ -106,6 +106,10 @@ public class ScoringChunksCombined {
         return this.candidateDocumentName;
     }
 
+    public ScoringChunk[][] getScoreMatrix() {
+        return scoreMatrix;
+    }
+
     public void createScoreMatrix(Integer suspiciousDocumentSentences, Integer candidateDocumentSentences){
         this.matrixDimensionX = (int) Math.floor(suspiciousDocumentSentences / (float) this.slidingWindowIncrement);
         this.matrixDimensionY = (int) Math.floor(candidateDocumentSentences / (float) this.slidingWindowIncrement);
