@@ -217,11 +217,14 @@ public class ScoringChunksCombined {
             }
         }
         // TODO not used for testing
+        /*
         List<ResultInfo> combinedResultInfo = uncombinedClusteringResults
                                 .stream()
                                 .filter(res -> !res.wasDiscardedByCombinationAlgo())
                                 .collect(Collectors.toList());
-        System.out.println("COMBINE_RESULTS: Number before combination: " + uncombinedClusteringResults.size()+" after: "+combinedResultInfo.size());
+        */
+        //System.out.println("COMBINE_RESULTS: Number before combination: " + uncombinedClusteringResults.size()+" after: "+combinedResultInfo.size());
+
 
         // TODO combine clipping results here
         List<ResultInfo> finalResultInfos = uncombinedClusteringResults;
