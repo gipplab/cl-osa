@@ -66,6 +66,7 @@ class PAN11EvaluationSetEval {
         logUtil.logAndWriteStandard(true,"Sliding Window Increment:", params.NUM_SENTENCE_INCREMENT_SLIDINGW);
         logUtil.logAndWriteStandard(true,"Clustering Adjacent Threshold:", params.ADJACENT_THRESH);
         logUtil.logAndWriteStandard(true,"Clustering Single Threshold:", params.SINGLE_THRESH);
+        logUtil.logAndWriteStandard(true,"Clipping Margin Characters:", params.CLIPPING_MARGING);
         logUtil.logAndWriteStandard(true,"Maximum selected candidates:", params.MAX_NUM_CANDIDATES_SELECTED);
         logUtil.logAndWriteStandard(true,"Candidate Selection Threshold:", params.CANDIDATE_SELECTION_TRESH);
         logUtil.logAndWriteStandard(true,"Sublist Token Length:", osa.getLenSublistTokens());
@@ -106,7 +107,7 @@ class PAN11EvaluationSetEval {
         }
 
         logUtil.logAndWriteStandard(true,logUtil.getDateString(), "completely done PAN11 parsed files:", parsedFiles, "errors:", parsedErrors);
-
+        logUtil.closeStreams();
     }
     private static List<File> getTextFilesFromTopLevelDir(String topFolderPath, ExtendedAnalysisParameters params, boolean candOrSusp){
         File myFiles = new File(topFolderPath);

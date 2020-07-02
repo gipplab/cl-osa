@@ -280,8 +280,6 @@ public class OntologyBasedSimilarityAnalysis {
 
         // Do the detailed comparison
         detailComparisonOfSelectedCandidatesExt(suspiciousIdTokensMapExt, selectedCandidateIdTokensMapExt, params);
-
-        logUtil.closeStreams();
     }
     private void detailComparisonOfSelectedCandidatesExt(Map<String, List<SavedEntity>> suspiciousIdTokensMapExt,
                                                          Map<String, List<SavedEntity>> selectedCandidateIdTokensMapExt,
