@@ -1,10 +1,8 @@
 package com.iandadesign.closa;
 
 import com.iandadesign.closa.classification.Category;
-import com.iandadesign.closa.model.ScoringChunk;
-import com.iandadesign.closa.model.ScoringChunksCombined;
-import com.iandadesign.closa.model.Token;
-import com.iandadesign.closa.model.WikidataEntity;
+import com.iandadesign.closa.model.*;
+import com.iandadesign.closa.util.ExtendedLogUtil;
 import com.iandadesign.closa.util.TokenUtil;
 import com.iandadesign.closa.util.wikidata.WikidataEntityExtractor;
 import net.sf.extjwnl.data.Exc;
@@ -59,6 +57,28 @@ public class SuperMain {
        //System.out.(candidateScoresMap);
    }
 
+   public static void testExtendedLogs(){
+       // TODO refactor and move to test
+       String tag = "logsTest";
+       ExtendedAnalysisParameters params = new ExtendedAnalysisParameters();
+       // Do all preprocessing and cache it first (if already cached this will validate preprocessed number)
+       OntologyBasedSimilarityAnalysis osa = new OntologyBasedSimilarityAnalysis();
+       osa.initializeLogger(tag, params); // this has to be done immediately after constructor
+       ExtendedLogUtil logUtil = osa.getExtendedLogUtil();
+
+       logUtil.logAndWriteStandard(false,"test1");
+       logUtil.logAndWriteStandard(false,"test2","test2");
+       logUtil.logAndWriteStandard(false,"test2","test2","test3");
+
+       logUtil.logAndWriteStandard(true,"test");
+       logUtil.logAndWriteStandard(true,"test","test");
+       logUtil.logAndWriteStandard(true,"test","test","test","test","test");
+
+
+       logUtil.logAndWriteStandard(true,"test", params);
+       logUtil.logAndWriteStandard(true,"test", params, params);
+   }
+
     public static void firstSimpleTest() {
         String text = "Joe Smith was born in California. " +
                 "In 2017, he went to Paris, France in the summer. " +
@@ -93,15 +113,15 @@ public class SuperMain {
         String candidateFolderPath = "src/main/resources/TinyTest/candidates/";
         File candidateFile = new File(candidateFolderPath);
 
-        List<String> candidatePaths = FileUtils.listFiles(candidateFile, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
-                .stream()
-                .map(File::getPath)
-                .collect(Collectors.toList());
-
+        List<File> candidateFiles = new ArrayList<>(FileUtils.listFiles(candidateFile, TrueFileFilter.TRUE, TrueFileFilter.TRUE));
+        ExtendedAnalysisParameters params = new ExtendedAnalysisParameters();
         OntologyBasedSimilarityAnalysis osa = new OntologyBasedSimilarityAnalysis();
-        Map<String, Double> candidateScoresMap = osa.executeAlgorithmAndComputeScoresExtendedInfo(suspiciousPath, candidatePaths, tag);
+        try {
+            osa.executeAlgorithmAndComputeScoresExtendedInfo(suspiciousPath, candidateFiles, tag, params);
+        }catch(Exception ex){
+            System.err.println(ex.toString());
+        }
 
-        System.out.println(candidateScoresMap);
     }
 
     public static void pan2011Test(){
@@ -112,16 +132,16 @@ public class SuperMain {
         String candidateFolderPath = "src/main/resources/PAN2011Test2/candidates/";
         File candidateFile = new File(candidateFolderPath);
 
-        List<String> candidatePaths = FileUtils.listFiles(candidateFile, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
-                .stream()
-                .map(File::getPath)
-                .collect(Collectors.toList());
-
+        List<File> candidateFiles = new ArrayList<>(FileUtils.listFiles(candidateFile, TrueFileFilter.TRUE, TrueFileFilter.TRUE));
+        ExtendedAnalysisParameters params = new ExtendedAnalysisParameters();
         OntologyBasedSimilarityAnalysis osa = new OntologyBasedSimilarityAnalysis();
-        Map<String, Double> candidateScoresMap = osa.executeAlgorithmAndComputeScoresExtendedInfo(suspiciousPath, candidatePaths, tag);
-
-        System.out.println(candidateScoresMap);
+        try {
+            osa.executeAlgorithmAndComputeScoresExtendedInfo(suspiciousPath, candidateFiles, tag, params);
+        }catch(Exception ex){
+            System.err.println(ex.toString());
+        }
     }
+
 
 
     public static void testSubtokenAssignment() {
