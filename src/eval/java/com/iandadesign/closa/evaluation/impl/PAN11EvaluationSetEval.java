@@ -9,7 +9,7 @@ import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.joda.time.DateTime;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -93,12 +93,14 @@ class PAN11EvaluationSetEval {
         // Do the file comparisons
         int parsedFiles=0;
         int parsedErrors=0;
+        String baseResultsPath="";
         for(int index=0; index<suspiciousFiles.size();index++){
             String suspPath = suspiciousFiles.get(index).getPath();
             String suspFileName = suspiciousFiles.get(index).getName();
             try {
                 logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", index+1, "/", suspiciousFiles.size(),"Filename:", suspFileName," and its",candidateFiles.size() ,"candidates");
-                osa.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, tag, params);
+                osa.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                baseResultsPath = osa.getExtendedXmlResultsPath();
                 parsedFiles++;
             }catch(Exception ex){
                 parsedErrors++;
@@ -108,6 +110,7 @@ class PAN11EvaluationSetEval {
 
         logUtil.logAndWriteStandard(true,logUtil.getDateString(), "completely done PAN11 parsed files:", parsedFiles, "errors:", parsedErrors);
         logUtil.closeStreams();
+        triggerPAN11PythonEvaluation(logUtil, baseResultsPath, toplevelPathSuspicious);
     }
     private static List<File> getTextFilesFromTopLevelDir(String topFolderPath, ExtendedAnalysisParameters params, boolean candOrSusp){
         File myFiles = new File(topFolderPath);
@@ -169,6 +172,37 @@ class PAN11EvaluationSetEval {
         logUtil.logAndWriteStandard(false, logUtil.dashes(100));
         return processedCounter;
     }
+
+    private static void triggerPAN11PythonEvaluation(ExtendedLogUtil logUtil, String baseResultsPath, String baseplagPath) {
+        logUtil.logAndWriteStandard(true,logUtil.getDateString(),"Running evaluation tool for PAN11");
+
+        String pathToScript = "D:\\AA_ScienceProject\\Wikidata_vs_CharacterNGram\\PAN2011Evaluator\\pan09-plagiarism-detection-perfomance-measures.py";
+        //String plagPath ="D:\\AA_ScienceProject\\Data\\pan-plagiarism-corpus-2011\\pan-plagiarism-corpus-2011\\external-detection-corpus\\suspicious-document";
+        String plagPath = baseplagPath; // Path with the susp
+        //String detectedPlagiarismPath="D:\\CL_OSA_caching\\preprocessed_extended\\results_comparison\\evalPAN2011All_2020_07_03_14_11_26";
+        String detectedPlagiarismPath = baseResultsPath;
+        try{
+            ProcessBuilder builder = new ProcessBuilder();
+            // builder.environment()
+            builder.command(        "python", pathToScript,"--plag-path",plagPath,"--det-path",detectedPlagiarismPath);
+            //builder.directory(new File(homeDir));
+            //builder.command("dir");
+            builder.redirectErrorStream(true);
+            Process process = builder.start();
+            InputStream is = process.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                logUtil.logAndWriteStandard(false, line);
+            }
+        }catch(Exception ex){
+            logUtil.logAndWriteError(false,"Exception during");
+        }
+
+    }
+
+
     @Test
     void evalCLASAAspecChinese() {
         // Left in as example

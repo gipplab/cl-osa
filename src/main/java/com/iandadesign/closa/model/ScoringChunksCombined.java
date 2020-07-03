@@ -475,9 +475,11 @@ public class ScoringChunksCombined {
         this.clusteringResults = new ArrayList<>();
     }
 
-    public void writeDownXMLResults(String tag, String dateString, String preprocessedCachingDirectory){
-        String cosineResultsPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
-                "results_comparison", tag.concat("_").concat(dateString),
+    public String writeDownXMLResults(String tag, String dateString, String preprocessedCachingDirectory){
+        String xmlResultsFolderPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
+                "results_comparison", tag.concat("_").concat(dateString)).toAbsolutePath().toString();
+
+        String cosineResultsPath = Paths.get(xmlResultsFolderPath,
                 this.getSuspiciousDocumentName().replace(".txt",""),
                 this.getCandidateDocumentName().concat(".xml"))
                 .toAbsolutePath().toString();
@@ -488,6 +490,7 @@ public class ScoringChunksCombined {
         } catch(Exception ex){
             ex.printStackTrace();
         }
+        return xmlResultsFolderPath;
     }
 
     public void writeScoresMapAsCSV(String tag, String dateString, String preprocessedCachingDirectory){
@@ -641,6 +644,7 @@ public class ScoringChunksCombined {
         XMLEvent event = eventFactory.createStartElement("", "", "feature");
         eventWriter.add(event);
         // For some reason attributes are printed in alphabetical order. Temporarily fixed with prefixes in localName.
+        /* workaround for ordering stuffs
         event = eventFactory.createAttribute("aa_name", "detected-plagiarism");
         eventWriter.add(event);
         // event = eventFactory.createCharacters("\n");
@@ -657,6 +661,24 @@ public class ScoringChunksCombined {
         eventWriter.add(event);
         event = eventFactory.createEndElement("","","feature");
         eventWriter.add(event);
+        */
+        event = eventFactory.createAttribute("name", "detected-plagiarism");
+        eventWriter.add(event);
+        // event = eventFactory.createCharacters("\n");
+        // eventWriter.add(event);
+        event = eventFactory.createAttribute("this_offset", Integer.toString(sourceOffset));
+        eventWriter.add(event);
+        event = eventFactory.createAttribute("this_length", Integer.toString(sourceLength));
+        eventWriter.add(event);
+        event = eventFactory.createAttribute("source_reference", candidateDocumentName);
+        eventWriter.add(event);
+        event = eventFactory.createAttribute("source_offset", Integer.toString(candidateOffset));
+        eventWriter.add(event);
+        event = eventFactory.createAttribute("source_length", Integer.toString(candidateLength));
+        eventWriter.add(event);
+        event = eventFactory.createEndElement("","","feature");
+        eventWriter.add(event);
+
     }
 
 

@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintStream;
 import java.nio.CharBuffer;
 import java.nio.charset.StandardCharsets;
@@ -121,6 +122,10 @@ public class ExtendedLogUtil {
         varargsToOutput(useFormat, System.err, message);
         // Log message to filesystem
         writeErrorReport(useFormat, message);
+    }
+
+    public void addExternalStreamToStandardStream(OutputStream someStream){
+        //TODO
     }
 
     private void varargsToOutput(boolean useFormat, PrintStream stream, Object ... message){

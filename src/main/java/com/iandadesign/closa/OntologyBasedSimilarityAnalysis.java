@@ -33,6 +33,7 @@ public class OntologyBasedSimilarityAnalysis {
     private final TextClassifier textClassifier;
     private  String tag;
     private ExtendedLogUtil logUtil;
+    private String extendedXmlResultsPath;
 
     private final Logger logger = LoggerFactory.getLogger(OntologyBasedSimilarityAnalysis.class);
     private static String preprocessedCachingDirectory;
@@ -62,6 +63,7 @@ public class OntologyBasedSimilarityAnalysis {
     public String getStandardlogPath(){ return standardlogPath;}
     public String getPreprocessedCachingDirectory(){return preprocessedCachingDirectory;}
     public Boolean getDoParallelRequests(){return doParallelRequests;}
+    public String getExtendedXmlResultsPath(){return extendedXmlResultsPath;}
 
     /**
      * Read Config properties.
@@ -215,7 +217,8 @@ public class OntologyBasedSimilarityAnalysis {
     }
     public void executeAlgorithmAndComputeScoresExtendedInfo(String suspiciousDocumentPath,
                                                                             List<File> candidateDocumentFiles,
-                                                                            String tag, ExtendedAnalysisParameters params)
+                                                                            ExtendedAnalysisParameters params,
+                                                                            String initialDateString)
                                                                             throws Exception{
 
         // Maps used for detailed comparison
@@ -279,11 +282,12 @@ public class OntologyBasedSimilarityAnalysis {
         // Or even do this in preprocessing? When sentences are available?
 
         // Do the detailed comparison
-        detailComparisonOfSelectedCandidatesExt(suspiciousIdTokensMapExt, selectedCandidateIdTokensMapExt, params);
+        detailComparisonOfSelectedCandidatesExt(suspiciousIdTokensMapExt, selectedCandidateIdTokensMapExt, params, initialDateString);
     }
     private void detailComparisonOfSelectedCandidatesExt(Map<String, List<SavedEntity>> suspiciousIdTokensMapExt,
                                                          Map<String, List<SavedEntity>> selectedCandidateIdTokensMapExt,
-                                                         ExtendedAnalysisParameters params){
+                                                         ExtendedAnalysisParameters params,
+                                                         String initialDateString){
         logUtil.logAndWriteStandard(false, logUtil.dashes(100));
         logUtil.logAndWriteStandard(false, "Starting with detailed analysis ...");
         logUtil.logAndWriteStandard(false, logUtil.dashes(100));
@@ -396,9 +400,9 @@ public class OntologyBasedSimilarityAnalysis {
                     scoringChunksCombined.calculateMatrixClusters(params.USE_ADAPTIVE_CLUSTERING_TRESH, params.ADAPTIVE_FORM_FACTOR);
                     // ... write down results
 
-                    scoringChunksCombined.writeDownXMLResults(tag, logUtil.getDateString(), preprocessedCachingDirectory);
+                    this.extendedXmlResultsPath = scoringChunksCombined.writeDownXMLResults(tag, initialDateString, preprocessedCachingDirectory);
                     if (params.LOG_TO_CSV) {
-                        scoringChunksCombined.writeScoresMapAsCSV(tag, logUtil.getDateString(), preprocessedCachingDirectory);
+                        scoringChunksCombined.writeScoresMapAsCSV(tag, initialDateString, preprocessedCachingDirectory);
                     }
                     logUtil.logAndWriteStandard(true, "done processing file combination", suspFilename, "with", candFilename);
                     logUtil.logAndWriteStandard(false, logUtil.dashes(100));
