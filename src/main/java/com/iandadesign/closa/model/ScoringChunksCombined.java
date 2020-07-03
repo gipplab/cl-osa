@@ -1,6 +1,7 @@
 package com.iandadesign.closa.model;
 
 import com.iandadesign.closa.util.CSVUtil;
+import com.iandadesign.closa.util.ExtendedAnalytics;
 import com.iandadesign.closa.util.XmlFormatter;
 import edu.stanford.nlp.util.ArrayMap;
 import org.apache.http.annotation.Obsolete;
@@ -192,13 +193,28 @@ public class ScoringChunksCombined {
         return coords;
     }
 
-    public void calculateMatrixClusters(){
+    public void calculateMatrixClusters(boolean useAdaptiveThresh, double adaptiveFormFactor){
+
+        double usedSingleThresh;
+        if(!useAdaptiveThresh){
+            // default mode, just use the single Thresh set
+            usedSingleThresh = this.singleTresh;
+        }else{
+            double medianValue = ExtendedAnalytics.calculateMedian(scoreMatrix, null, null );
+            usedSingleThresh = adaptiveFormFactor * medianValue;
+            if(usedSingleThresh<=this.singleTresh){
+                // In this mode single thresh is the absolute minimum thresh
+                usedSingleThresh = this.singleTresh;
+            }
+            System.out.println("Used Single Thresh is: " + usedSingleThresh);
+        }
+
         List<ResultInfo> clusteringResults = new ArrayList<>();
         // Sort the list to get the highest score chunks.
         this.scoringChunksList.sort(Comparator.comparing(ScoringChunk::getComputedCosineSimilarity).reversed());
         for(ScoringChunk currentScoringChunk:this.scoringChunksList) {
             if(!currentScoringChunk.isProcessedByClusteringAlgo()
-               && currentScoringChunk.getComputedCosineSimilarity() >= this.singleTresh){
+               && currentScoringChunk.getComputedCosineSimilarity() >= usedSingleThresh){
                 List<ScoringChunk> clusterChunks = new ArrayList<>();
                 currentScoringChunk.setProcessedByClusteringAlgo(true);
                 clusterChunks.add(currentScoringChunk);

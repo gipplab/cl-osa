@@ -16,8 +16,8 @@ import java.util.List;
  * @author Johannes Stegmüller (02.07.2020)
  */
 public  class ExtendedAnalytics {
-    public static void calculateMedian(ScoringChunk[][] scoreMatrix, ExtendedLogUtil logUtil, String extraInfo){
-        System.out.println("Calculating median");
+    public static double calculateMedian(ScoringChunk[][] scoreMatrix, ExtendedLogUtil logUtil, String extraInfo){
+        //System.out.println("Calculating median");
         List<Double> myValues = new ArrayList<>();
         for(ScoringChunk[] scoreRow: scoreMatrix){
             for(ScoringChunk scoreItem:scoreRow){
@@ -46,6 +46,9 @@ public  class ExtendedAnalytics {
             medianValue = myValues.get(index);
 
         }
-        logUtil.logAndWriteError(false, extraInfo, "Median of populated chunks is:", medianValue);
+        if(logUtil!=null){
+            logUtil.logAndWriteError(false, extraInfo, "Median of populated chunks is:", medianValue);
+        }
+        return medianValue;
     }
 }

@@ -391,10 +391,9 @@ public class OntologyBasedSimilarityAnalysis {
                         }
                         suspiciousSlidingWindowY++;
                     }
-                    ExtendedAnalytics.calculateMedian(scoringChunksCombined.getScoreMatrix(), logUtil, suspFilename+ " with " +candFilename );
                     // After each candidate and suspicious file combination
                     // ... calculate the plagiarism sections from windows
-                    scoringChunksCombined.calculateMatrixClusters();
+                    scoringChunksCombined.calculateMatrixClusters(params.USE_ADAPTIVE_CLUSTERING_TRESH, params.ADAPTIVE_FORM_FACTOR);
                     // ... write down results
 
                     scoringChunksCombined.writeDownXMLResults(tag, logUtil.getDateString(), preprocessedCachingDirectory);

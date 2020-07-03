@@ -9,6 +9,8 @@ public class ExtendedAnalysisParameters {
     public final int NUM_SENTENCE_INCREMENT_SLIDINGW;
     public final double ADJACENT_THRESH;
     public final double SINGLE_THRESH;
+    public final boolean USE_ADAPTIVE_CLUSTERING_TRESH; // Creates a clustering thresh based on the median of 2D-Matrix scores (!Takes longer because median calculation!)
+    public final double ADAPTIVE_FORM_FACTOR;           // Form factor for adaptive clustering (Thresh = Median * FormFactor)
     public final int CLIPPING_MARGING;              // Number of characters in squashing clusters when a cluster still is considered clipping
     public final int MAX_NUM_CANDIDATES_SELECTED;   // The number of candidates per suspicious file which get selected for detailed comparison
     public final int CR_PRINT_LIMIT;                // Candidate number which is results are printed to files and log.
@@ -30,8 +32,10 @@ public class ExtendedAnalysisParameters {
         NUM_SENTENCE_INCREMENT_SLIDINGW = 1;
         // Sliding window comparison thresholds
         ADJACENT_THRESH = 0.3;   //0,1
-        SINGLE_THRESH = 0.5; //0.7;     //0,6
-        CLIPPING_MARGING = 100;
+        SINGLE_THRESH = 0.45; //0.7;     //0,6
+        USE_ADAPTIVE_CLUSTERING_TRESH = true;
+        ADAPTIVE_FORM_FACTOR = 7; // 6 still false positive, rec ok
+        CLIPPING_MARGING = 300;
         // Candidate retrieval settings
         MAX_NUM_CANDIDATES_SELECTED = 2;
         CR_PRINT_LIMIT = 10;
@@ -48,11 +52,11 @@ public class ExtendedAnalysisParameters {
         // Add a file filter (only used if USE_FILE_FILTER is true)
         panFileFilter = new PANFileFilter(11093);
         // Add Candidate Whitelisting
-        //panFileFilter.addToWhiteListMultiple(true, 1, 14, 3164, 4001, 71, 76, 3317);
+        panFileFilter.addToWhiteListMultiple(true, 1, 14, 3164, 4001, 71, 76, 3317);
         // Add Suspicious Whitelisting
-        //panFileFilter.addToWhiteListMultiple(false, 2, 45, 20, 34);
-        panFileFilter.addToWhiteListMultiple(true, 3164);
-        panFileFilter.addToWhiteListMultiple(false, 20);
+        panFileFilter.addToWhiteListMultiple(false, 2, 45, 20, 34);
+        //panFileFilter.addToWhiteListMultiple(true, 3164);
+        //panFileFilter.addToWhiteListMultiple(false, 20);
 
     }
 }
