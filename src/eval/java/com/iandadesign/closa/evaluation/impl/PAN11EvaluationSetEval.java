@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -66,10 +68,13 @@ class PAN11EvaluationSetEval {
         logUtil.logAndWriteStandard(true,"Sliding Window Increment:", params.NUM_SENTENCE_INCREMENT_SLIDINGW);
         logUtil.logAndWriteStandard(true,"Clustering Adjacent Threshold:", params.ADJACENT_THRESH);
         logUtil.logAndWriteStandard(true,"Clustering Single Threshold:", params.SINGLE_THRESH);
+        logUtil.logAndWriteStandard(true,"Clustering Use adaptive Threshold (by median):", params.USE_ADAPTIVE_CLUSTERING_TRESH);
+        logUtil.logAndWriteStandard(true,"Adaptive Threshold form factor:", params.ADAPTIVE_FORM_FACTOR);
         logUtil.logAndWriteStandard(true,"Clipping Margin Characters:", params.CLIPPING_MARGING);
         logUtil.logAndWriteStandard(true,"Maximum selected candidates:", params.MAX_NUM_CANDIDATES_SELECTED);
         logUtil.logAndWriteStandard(true,"Candidate Selection Threshold:", params.CANDIDATE_SELECTION_TRESH);
         logUtil.logAndWriteStandard(true,"Sublist Token Length:", osa.getLenSublistTokens());
+        logUtil.logAndWriteStandard(true,"Run evaluation after processing:", params.RUN_EVALUATION_AFTER_PROCESSING);
         logUtil.logAndWriteStandard(false, logUtil.dashes(100));
 
 
@@ -87,14 +92,14 @@ class PAN11EvaluationSetEval {
         logUtil.logAndWriteStandard(false, logUtil.dashes(100));
 
         logUtil.logAndWriteStandard(false, "Starting file comparisons...");
-        List<File> candidateFiles = getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true);
-        List<File> suspiciousFiles  = getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false);
+        List<File> candidateFiles = getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true, ".txt");
+        List<File> suspiciousFiles  = getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".txt");
 
         // Do the file comparisons
         int parsedFiles=0;
         int parsedErrors=0;
         String baseResultsPath="";
-        for(int index=0; index<suspiciousFiles.size();index++){
+        for(int index=0; index<suspiciousFiles.size(); index++) {
             String suspPath = suspiciousFiles.get(index).getPath();
             String suspFileName = suspiciousFiles.get(index).getName();
             try {
@@ -107,18 +112,64 @@ class PAN11EvaluationSetEval {
                 logUtil.logAndWriteError(false, "Exception during parse of suspicious file with Filename", suspFileName, "Exception:", ex);
             }
         }
-
-        logUtil.logAndWriteStandard(true,logUtil.getDateString(), "completely done PAN11 parsed files:", parsedFiles, "errors:", parsedErrors);
-        triggerPAN11PythonEvaluation(logUtil, baseResultsPath, toplevelPathSuspicious);
+        logUtil.logAndWriteStandard(true,logUtil.getDateString(), "done processing PAN11,- parsed files:", parsedFiles, "errors:", parsedErrors);
+        if(parsedErrors>=1 || parsedFiles==0){
+            return;
+        }
+        // Evaluation related stuff ...
+        if(params.RUN_EVALUATION_AFTER_PROCESSING){
+            if(!params.USE_FILE_FILTER){
+                // No filter-> just do the regular evaluation with all files
+                triggerPAN11PythonEvaluation(logUtil, baseResultsPath, toplevelPathSuspicious);
+            }else{
+                // Filter used, only compare with relevant files
+                File cachingDir= new File(baseResultsPath +"\\file_selection_cache");
+                removeDirectory(cachingDir);
+                List<File> suspiciousXML  = getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".xml");
+                writeFileListToDirectory(suspiciousXML, cachingDir.getPath(), logUtil);
+                triggerPAN11PythonEvaluation(logUtil, baseResultsPath, cachingDir.getPath());
+                removeDirectory(cachingDir);
+            }
+            logUtil.logAndWriteStandard(true,logUtil.getDateString(), "done doing evaluation for PAN11");
+        }
         logUtil.closeStreams();
     }
-    private static List<File> getTextFilesFromTopLevelDir(String topFolderPath, ExtendedAnalysisParameters params, boolean candOrSusp){
+
+    private static boolean removeDirectory(File directoryToBeDeleted){
+        File[] allContents = directoryToBeDeleted.listFiles();
+        if (allContents != null) {
+            for (File file : allContents) {
+                removeDirectory(file);
+            }
+        }
+        return directoryToBeDeleted.delete();
+    }
+
+    private static void writeFileListToDirectory(List<File> filesToWrite, String directoryPath, ExtendedLogUtil logUtil){
+        try {
+            File dir = new File(directoryPath);
+            if (!dir.exists() || !dir.isDirectory()) {
+                //if the file is present then it will show the msg
+                dir.mkdirs();
+            }
+
+            for (File file : filesToWrite) {
+                File destinationFile = new File(directoryPath + "\\"+ file.getName());
+                FileUtils.copyFile(file, destinationFile);
+            }
+        }catch(Exception e){
+            logUtil.logAndWriteError(false, "exception copying files", e.toString());
+
+        }
+    }
+
+    private static List<File> getTextFilesFromTopLevelDir(String topFolderPath, ExtendedAnalysisParameters params, boolean candOrSusp, String filetype){
         File myFiles = new File(topFolderPath);
         if(!params.USE_FILE_FILTER){
             // Get all files to preprocess
             List<File> myFilesFiltered = FileUtils.listFiles(myFiles, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                     .stream()
-                    .filter(file -> file.getName().endsWith(".txt")) // Filter .xml files and others only take txt.
+                    .filter(file -> file.getName().endsWith(filetype)) // Filter .xml files and others only take txt.
                     //.map(File::getPath)
                     .collect(Collectors.toList());
             return myFilesFiltered;
@@ -126,7 +177,7 @@ class PAN11EvaluationSetEval {
             // Apply the local filter in preprocessing
             List<File> myFilesFiltered = FileUtils.listFiles(myFiles, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                     .stream()
-                    .filter(file -> file.getName().endsWith(".txt")) // Filter .xml files and others only take txt.
+                    .filter(file -> file.getName().endsWith(filetype)) // Filter .xml files and others only take txt.
                     .filter(file -> params.panFileFilter.checkIfFilenameWhitelisted(file.getName(), candOrSusp))
                     //.map(File::getPath)
                     .collect(Collectors.toList());
@@ -135,7 +186,7 @@ class PAN11EvaluationSetEval {
 
     }
     private static int doAllPreprocessing(String topFolderPath, OntologyBasedSimilarityAnalysis osa, String language, ExtendedAnalysisParameters params, boolean candOrSusp) {
-        List<File> myFiles = getTextFilesFromTopLevelDir(topFolderPath, params, candOrSusp);
+        List<File> myFiles = getTextFilesFromTopLevelDir(topFolderPath, params, candOrSusp, ".txt");
         ExtendedLogUtil logUtil = osa.getExtendedLogUtil();
         logUtil.logAndWriteStandard(true,"doAllPreprocessing", topFolderPath + ". with length: " + myFiles.size());
 
