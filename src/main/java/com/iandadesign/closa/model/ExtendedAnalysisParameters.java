@@ -32,8 +32,8 @@ public class ExtendedAnalysisParameters {
         NUM_SENTENCE_INCREMENT_SLIDINGW = 1;
         // Sliding window comparison thresholds
         ADJACENT_THRESH = 0.3;   //0,1
-        SINGLE_THRESH = 0.45; //0.7;     //0,6
-        USE_ADAPTIVE_CLUSTERING_TRESH = true;
+        SINGLE_THRESH = 0.8; //0.45; //0.7;     //0,6
+        USE_ADAPTIVE_CLUSTERING_TRESH = false;
         ADAPTIVE_FORM_FACTOR = 7; // 6 still false positive, rec ok
         CLIPPING_MARGING = 300;
         // Candidate retrieval settings
