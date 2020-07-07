@@ -2,6 +2,7 @@ package com.iandadesign.closa.util;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -10,18 +11,45 @@ import java.util.List;
  * @author Johannes Stegmüller (30.06.2020)
  */
 public class PANFileFilter {
+
+    public static class Languages{
+        public static String English = "en";
+        public static String Spanish = "es";
+        public static String German = "de";
+        public static List<String> allLanguages = new ArrayList<>(Arrays.asList(English, Spanish, German));
+    }
+
     List<String> whiteListCandidates;
     List<String> whiteListSuspicious;
+    List<String> whitelistLanguages;
     private final int maximumValue;
+
 
     public PANFileFilter(int maximumValue){
         this.maximumValue = maximumValue;
         this.whiteListCandidates = new ArrayList<>();
         this.whiteListSuspicious = new ArrayList<>();
+        this.whitelistLanguages = new ArrayList<>();
     }
     public void addToWhiteListMultiple(boolean candOrSusp, int ... number){
         for (int i: number){
             addToWhiteList(i, candOrSusp);
+        }
+    }
+    public void addLanguageToWhitelist(String ... languages) throws Exception {
+        for(String language:languages){
+            boolean languageIsOk = false;
+            for(String comparisonLanguage:Languages.allLanguages){
+                if(language.equals(comparisonLanguage)){
+                    languageIsOk = true;
+                    break;
+                }
+            }
+            if(languageIsOk) {
+                whitelistLanguages.add(language);
+            }else{
+                throw new Exception("Invalid language provided in language whitelist: "+ language);
+            }
         }
     }
     public void addRangeToWhiteList(int firstNumber, int lastNumber, boolean candOrSusp){
@@ -53,5 +81,10 @@ public class PANFileFilter {
     }
     private String getNumberFromFileName(String fileName){
         return fileName.replaceAll("\\D+","");
+    }
+
+
+    public boolean checkIfLanguageWhitelisted(String language){
+        return whitelistLanguages.contains(language);
     }
 }

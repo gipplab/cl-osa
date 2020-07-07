@@ -21,11 +21,12 @@ public class ExtendedAnalysisParameters {
     public final boolean LOG_ERROR_TO_FILE;                 // Log error output to .txt file
     public final boolean LOG_VERBOSE;                       // Log more file outputs
     public final boolean USE_FILE_FILTER;                   // Pre-Filter the used files like defined in panFileFilter
+    public final boolean USE_LANGUAGE_WHITELISTING;         // Only finds plagiarism in whitelisted languages.
     public final boolean RUN_EVALUATION_AFTER_PROCESSING;   // Run evaluation python script after processing the plagiarism files
     public final PANFileFilter panFileFilter;
 
 
-    public ExtendedAnalysisParameters(){
+    public ExtendedAnalysisParameters() throws Exception{
         // Token forming before making Wikidata query
         //LENGTH_SUBLIST_TOKENS = 3; // This is not used atm, but the parameter in config.properties dung refactoring reasons
         // Sliding window parameters (atm only possible increment == num_sentences)
@@ -33,9 +34,9 @@ public class ExtendedAnalysisParameters {
         NUM_SENTENCE_INCREMENT_SLIDINGW = 1;
         // Sliding window comparison thresholds
         ADJACENT_THRESH = 0.3;   //0,1
-        SINGLE_THRESH = 0.45; //0.8; //0.45; //0.7;     //0,6
-        USE_ADAPTIVE_CLUSTERING_TRESH = true;
-        ADAPTIVE_FORM_FACTOR = 7; // 6 still false positive, rec ok
+        SINGLE_THRESH = 0.7 ; //0.8; //0.45act; //0.7;     //0,6
+        USE_ADAPTIVE_CLUSTERING_TRESH = false;
+        ADAPTIVE_FORM_FACTOR = 5.7; // 6 still false positive, rec ok
         CLIPPING_MARGING = 300;
         // Candidate retrieval settings
         MAX_NUM_CANDIDATES_SELECTED = 2;
@@ -52,7 +53,8 @@ public class ExtendedAnalysisParameters {
 
 
         // File Filter Options
-        USE_FILE_FILTER=true;
+        USE_FILE_FILTER=false;
+        USE_LANGUAGE_WHITELISTING=true;
         // Add a file filter (only used if USE_FILE_FILTER is true)
         panFileFilter = new PANFileFilter(11093);
         // Add Candidate Whitelisting
@@ -61,6 +63,16 @@ public class ExtendedAnalysisParameters {
         panFileFilter.addToWhiteListMultiple(false, 2, 45, 20, 34);
         //panFileFilter.addToWhiteListMultiple(true, 3164);
         //panFileFilter.addToWhiteListMultiple(false, 20);
+        // cand has only: "en", "de", "es"
+        // susp has only: "en"
+        panFileFilter.addLanguageToWhitelist("de", "es");
 
+    }
+
+    public boolean checkIfInLanguageWhitelist(String language){
+        if(!this.USE_LANGUAGE_WHITELISTING){
+            return true;
+        }
+        return panFileFilter.checkIfLanguageWhitelisted(language);
     }
 }

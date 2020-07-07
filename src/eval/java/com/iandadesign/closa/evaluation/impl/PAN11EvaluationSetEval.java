@@ -1,13 +1,16 @@
 package com.iandadesign.closa.evaluation.impl;
 
 import com.iandadesign.closa.OntologyBasedSimilarityAnalysis;
+import com.iandadesign.closa.language.LanguageDetector;
 import com.iandadesign.closa.model.ExtendedAnalysisParameters;
 import com.iandadesign.closa.model.SavedEntity;
-import com.iandadesign.closa.util.ExtendedLogUtil;
+import com.iandadesign.closa.util.*;
+import net.sf.extjwnl.data.Exc;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.joda.time.DateTime;
 import org.junit.jupiter.api.Test;
+import org.w3c.dom.Document;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -17,6 +20,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.XMLFormatter;
 import java.util.stream.Collectors;
 
 /**
@@ -43,12 +47,46 @@ class PAN11EvaluationSetEval {
 
 
         //  (26939 - (9506/2)) / 2 = 11093 is the number of files in each directory
-        ExtendedAnalysisParameters params = new ExtendedAnalysisParameters();
+        ExtendedAnalysisParameters params;
+        try{
+            params = new ExtendedAnalysisParameters();
+        }catch(Exception ex){
+            System.err.println("Problem initializing params: "+ex);
+            return;
+        }
 
         // Do all preprocessing and cache it first (if already cached this will validate preprocessed number)
         OntologyBasedSimilarityAnalysis osa = new OntologyBasedSimilarityAnalysis();
         osa.initializeLogger(tag, params); // this has to be done immediately after constructor
         ExtendedLogUtil logUtil = osa.getExtendedLogUtil();
+
+        // ..
+        List<File> candidateFilesLangCount = getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true, ".xml");
+        PAN11XMLParser pan11XMLParser = new PAN11XMLParser();
+        List<String> usedLanguages = new ArrayList<>();
+        int espanolDocs = 0;
+        int germanDocs = 0;
+        for(File suspFileXML: candidateFilesLangCount){
+            // Read XML File
+            PAN11XMLInfo xmlInfo = pan11XMLParser.parseXMLfile(suspFileXML);
+            if(xmlInfo.language.equals("es")){
+                espanolDocs++;
+            }
+            if(xmlInfo.language.equals("de")){
+                germanDocs++;
+            }
+            System.out.println("read");
+            if(xmlInfo!=null && !usedLanguages.contains(xmlInfo.language)){
+                usedLanguages.add(xmlInfo.language);
+            }
+        }
+        // From xml its:
+        // its 202 espanol docs
+        // its 471 german docs
+        // By langdet its:
+        // its 471 german docs
+        // its 202 spanish docs
+        // ..
 
         // Starting log
         logUtil.logAndWriteStandard(false,logUtil.dashes(100));
@@ -82,10 +120,9 @@ class PAN11EvaluationSetEval {
         int candidatePreprocessedFiles = doAllPreprocessing(toplevelPathCandidates, osa, null, params, true);  // candidate docs can be en,de,es
         logUtil.logAndWriteStandard(false, "Preprocessing all suspicious files...");
         int suspiciousPreprocessedFiles = doAllPreprocessing(toplevelPathSuspicious, osa, "en", params, false); // all suspicious docs are english
-
         int numfiles = suspiciousPreprocessedFiles+candidatePreprocessedFiles;
         logUtil.logAndWriteStandard(false, "Number of preprocessed files is: "+numfiles);
-        if(!params.USE_FILE_FILTER && numfiles!=(11093*2)){
+        if(!params.USE_FILE_FILTER && !params.USE_LANGUAGE_WHITELISTING && numfiles!=(11093*2)){
             logUtil.logAndWriteError(false, "Aborting: Processed files not 2*11093=22186 but "+numfiles);
             return;
         }
@@ -165,32 +202,66 @@ class PAN11EvaluationSetEval {
 
     private static List<File> getTextFilesFromTopLevelDir(String topFolderPath, ExtendedAnalysisParameters params, boolean candOrSusp, String filetype){
         File myFiles = new File(topFolderPath);
+        final LanguageDetector langdet;
+        if(params.USE_LANGUAGE_WHITELISTING){
+            langdet = new LanguageDetector();
+        }else{
+            langdet = null;
+        }
+
         if(!params.USE_FILE_FILTER){
+
             // Get all files to preprocess
             List<File> myFilesFiltered = FileUtils.listFiles(myFiles, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                     .stream()
                     .filter(file -> file.getName().endsWith(filetype)) // Filter .xml files and others only take txt.
                     //.map(File::getPath)
+                    .filter(file -> getDocumentLanguageAndCheckIfWhitelisted(langdet, file,params, candOrSusp))
                     .collect(Collectors.toList());
             return myFilesFiltered;
         }else{
+
+
             // Apply the local filter in preprocessing
             List<File> myFilesFiltered = FileUtils.listFiles(myFiles, TrueFileFilter.TRUE, TrueFileFilter.TRUE)
                     .stream()
                     .filter(file -> file.getName().endsWith(filetype)) // Filter .xml files and others only take txt.
                     .filter(file -> params.panFileFilter.checkIfFilenameWhitelisted(file.getName(), candOrSusp))
                     //.map(File::getPath)
+                    .filter(file -> getDocumentLanguageAndCheckIfWhitelisted(langdet, file,params, candOrSusp))
                     .collect(Collectors.toList());
             return myFilesFiltered;
         }
+
+    }
+    public static boolean getDocumentLanguageAndCheckIfWhitelisted(LanguageDetector langdet, File fileToCheck, ExtendedAnalysisParameters params, boolean candOrSusp){
+        if(!params.USE_LANGUAGE_WHITELISTING){
+            return true;
+        }
+        if(!candOrSusp){
+            return true; // dont filter suispicious files
+        }
+        // TODO eventually make this less redundant and log to fileoutput
+        try{
+            String language = langdet.detectLanguage(FileUtils.readFileToString(fileToCheck, StandardCharsets.UTF_8));
+            return params.panFileFilter.checkIfLanguageWhitelisted(language);
+        }catch(Exception ex){
+            System.err.println("Exception during processing file "+ fileToCheck+ " " + ex.toString());
+            return false;
+        }
+
 
     }
     private static int doAllPreprocessing(String topFolderPath, OntologyBasedSimilarityAnalysis osa, String language, ExtendedAnalysisParameters params, boolean candOrSusp) {
         List<File> myFiles = getTextFilesFromTopLevelDir(topFolderPath, params, candOrSusp, ".txt");
         ExtendedLogUtil logUtil = osa.getExtendedLogUtil();
         logUtil.logAndWriteStandard(true,"doAllPreprocessing", topFolderPath + ". with length: " + myFiles.size());
+        List<String> panLanguages = new ArrayList<>(); //J4T
+        panLanguages.add("en");
 
         int processedCounter=0;
+        int germanLanguageDocs=0;
+        int spanishLanguageDocs=0;
         // Preprocess one file after other (TODO eventually add parallelism: mind that requests to dbs can already be parallelised)
         for (File documentFile : myFiles) {
             String documentPath = documentFile.getPath();
@@ -206,11 +277,22 @@ class PAN11EvaluationSetEval {
                 }else{
                      detectedLanguage = language;
                 }
+
                 /*
                 if(!detectedLanguage.equals("en")){ // susp part 21 10262
-                    System.out.println("does this happen? If not just set en without classifier"); //susp part21/10420 de,  before 01500 (1 german), source 00008 german 00011 es, 13 es  .....
+                    // System.out.println("does this happen? If not just set en without classifier"); //susp part21/10420 de,  before 01500 (1 german), source 00008 german 00011 es, 13 es  .....
+                    if(!panLanguages.contains(detectedLanguage)){
+                        panLanguages.add(detectedLanguage);
+                    }
+                    if(detectedLanguage.equals("de")){
+                        germanLanguageDocs++;
+                    }
+                    if(detectedLanguage.equals("es")){
+                        spanishLanguageDocs++;
+                    }
                 }
                 */
+
                 List<SavedEntity> preprocessedCandExt = osa.preProcessExtendedInfo(documentPath, detectedLanguage);
                 logUtil.logAndWriteStandard(true,"doAllPreprocessing -> done", "Processed filename: "+documentFile.getName()+ " with entities: "+preprocessedCandExt.size());
                 processedCounter++;
@@ -266,5 +348,56 @@ class PAN11EvaluationSetEval {
 
         englishJapaneseASPECEvaluationSetCLASA.printEvaluation();
     }
+
+
+    public static void verifyNumberNonEnglishDocs(){
+        String tag = "evalPAN2011All"; // Identifier for logs ...
+        String toplevelPathSuspicious = pathPrefix.concat("/suspicious-document/");
+        String toplevelPathCandidates = pathPrefix.concat("/source-document/");
+
+
+        //  (26939 - (9506/2)) / 2 = 11093 is the number of files in each directory
+        ExtendedAnalysisParameters params;
+        try{
+            params = new ExtendedAnalysisParameters();
+        }catch(Exception ex){
+            System.err.println("Problem initializing params: "+ex);
+            return;
+        }
+
+        // Do all preprocessing and cache it first (if already cached this will validate preprocessed number)
+        OntologyBasedSimilarityAnalysis osa = new OntologyBasedSimilarityAnalysis();
+        osa.initializeLogger(tag, params); // this has to be done immediately after constructor
+        ExtendedLogUtil logUtil = osa.getExtendedLogUtil();
+
+        // ..
+        List<File> candidateFilesLangCount = getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true, ".xml");
+        PAN11XMLParser pan11XMLParser = new PAN11XMLParser();
+        List<String> usedLanguages = new ArrayList<>();
+        int espanolDocs = 0;
+        int germanDocs = 0;
+        for(File suspFileXML: candidateFilesLangCount){
+            // Read XML File
+            PAN11XMLInfo xmlInfo = pan11XMLParser.parseXMLfile(suspFileXML);
+            if(xmlInfo.language.equals("es")){
+                espanolDocs++;
+            }
+            if(xmlInfo.language.equals("de")){
+                germanDocs++;
+            }
+            System.out.println("read");
+            if(xmlInfo!=null && !usedLanguages.contains(xmlInfo.language)){
+                usedLanguages.add(xmlInfo.language);
+            }
+        }
+        // From xml its:
+        // its 202 espanol docs
+        // its 471 german docs
+        // By langdet its:
+        // its 471 german docs
+        // its 202 spanish docs
+        // ..
+    }
+
 
 }

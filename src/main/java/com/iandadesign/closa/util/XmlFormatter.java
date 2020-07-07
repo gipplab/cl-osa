@@ -68,7 +68,7 @@ public class XmlFormatter {
      * @param in - XML File
      * @return Document object
      */
-    private Document parseXmlFile(File in) {
+    public Document parseXmlFile(File in) {
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
