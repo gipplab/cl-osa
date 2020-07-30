@@ -46,27 +46,42 @@ public class PAN11XMLParser {
             for(int i=0; i < allNodes.getLength(); i++){
                 Node currentNode = allNodes.item(i);
                 NamedNodeMap attributes = currentNode.getAttributes();
-                if(attributes==null) continue;
+                if(attributes==null){
+                    continue;
+                }
                 String name = attributes.getNamedItem("name").getNodeValue();
-                switch(name){
-                    case "about":
-                        pan11XMLInfo.setLanguage(attributes.getNamedItem("lang").getNodeValue());
-                        continue;
-                    case "md5Hash":
-                        continue;
-                    case "plagiarism":
-                        PAN11PlagiarismInfo plagInfo = new PAN11PlagiarismInfo();
-                        plagInfo.type = attributes.getNamedItem("type").getNodeValue();
+                if(name.equals("about")) {
+                    pan11XMLInfo.setLanguage(attributes.getNamedItem("lang").getNodeValue());
+                }else if(name.equals("md5Hash")) {
+                    continue;
+                }else if(name.equals("plagiarism")) {
+                    PAN11PlagiarismInfo plagInfo = new PAN11PlagiarismInfo();
+                    plagInfo.type = attributes.getNamedItem("type").getNodeValue();
+                    if(!plagInfo.type.equals("translation") && !plagInfo.type.equals("artificial")
+                            && !plagInfo.type.equals("simulated")){
+                        System.out.println("asd");
+                    }
+                    Node obfItem = attributes.getNamedItem("obfuscation");
+                    if(obfItem!=null){
+                        // Obfuscation doesn't always exist (in type='simulated' it apparently doesn't)
                         plagInfo.obfuscation = attributes.getNamedItem("obfuscation").getNodeValue();
-                        plagInfo.thisLanguage = attributes.getNamedItem("this_language").getNodeValue();
-                        plagInfo.thisLength = Integer.parseInt(attributes.getNamedItem("this_length").getNodeValue());
-                        plagInfo.thisOffset = Integer.parseInt(attributes.getNamedItem("this_offset").getNodeValue());
+                    }
+                    plagInfo.thisLanguage = attributes.getNamedItem("this_language").getNodeValue();
+                    plagInfo.thisLength = Integer.parseInt(attributes.getNamedItem("this_length").getNodeValue());
+                    plagInfo.thisOffset = Integer.parseInt(attributes.getNamedItem("this_offset").getNodeValue());
+
+                    Node sourceLanguage = attributes.getNamedItem("source_language");
+                    if(sourceLanguage!=null) {
                         plagInfo.sourceLanguage = attributes.getNamedItem("source_language").getNodeValue();
                         plagInfo.sourceLength = Integer.parseInt((attributes.getNamedItem("source_length").getNodeValue()));
                         plagInfo.sourceOffset = Integer.parseInt(((attributes.getNamedItem("source_offset").getNodeValue())));
                         plagInfo.sourceReference = attributes.getNamedItem("source_reference").getNodeValue();
-                        pan11XMLInfo.addPlagiarismInfo(plagInfo);
-                        continue;
+                    }
+                    plagInfo.calculateCaseLength();
+                    pan11XMLInfo.addPlagiarismInfo(plagInfo);
+                    continue;
+                }else {
+                    System.out.println("strange case");
                 }
             }
             return pan11XMLInfo;

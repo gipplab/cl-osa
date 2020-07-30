@@ -25,8 +25,8 @@ public class PANFileFilter {
     private final int maximumValue;
 
 
-    public PANFileFilter(int maximumValue){
-        this.maximumValue = maximumValue;
+    public PANFileFilter(){
+        this.maximumValue = 0; // not used
         this.whiteListCandidates = new ArrayList<>();
         this.whiteListSuspicious = new ArrayList<>();
         this.whitelistLanguages = new ArrayList<>();
@@ -36,6 +36,12 @@ public class PANFileFilter {
             addToWhiteList(i, candOrSusp);
         }
     }
+    public void addToWhiteListMultiple(boolean candOrSusp, List<Integer> numbers){
+        for (int i: numbers){
+            addToWhiteList(i, candOrSusp);
+        }
+    }
+
     public void addLanguageToWhitelist(String ... languages) throws Exception {
         for(String language:languages){
             boolean languageIsOk = false;

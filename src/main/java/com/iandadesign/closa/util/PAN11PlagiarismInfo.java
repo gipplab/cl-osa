@@ -18,6 +18,51 @@ public class PAN11PlagiarismInfo {
     String sourceLanguage;
     int sourceOffset;
     int sourceLength;
+    String caseLengthThis;
+    String caseLengthSource;
+
+    public String getType(){
+        return type;
+    }
+    public String getSourceLanguage(){
+        return sourceLanguage;
+    }
+    public String getSourceReference(){
+        return sourceReference;
+    }
+    public void calculateCaseLength(){
+        if(thisLength < 700) {
+            caseLengthThis = CaseLength.SHORT;
+        } else if(thisLength < 5000) {
+            caseLengthThis = CaseLength.MEDIUM;
+        } else {
+            caseLengthThis = CaseLength.LONG;
+        }
+
+        if(sourceLength < 700) {
+            caseLengthSource = CaseLength.SHORT;
+        } else if(sourceLength < 5000){
+            caseLengthSource = CaseLength.MEDIUM;
+        } else {
+            caseLengthSource = CaseLength.LONG;
+        }
+    }
+    public String getCaseLengthThis(){
+        return caseLengthThis;
+    }
+    public String getCaseLengthSource(){
+        return caseLengthSource;
+    }
+
+    public static class CaseLength{
+        // F. Salvador 2016-2 p7. footnote:
+        // We followed the PAN-PC-11 setup and considered as short cases those with less than 700 characters.
+        // Long cases are those larger than 5000 characters (not clear if source or candidate was taken for length
+        // classification, assumed source)
+        public static String LONG = "LONG";
+        public static String MEDIUM = "MEDIUM";
+        public static String SHORT = "SHORT";
+    }
 }
 
 /**

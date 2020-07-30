@@ -32,21 +32,20 @@ class PAN11EvaluationSetEval {
 
     public static void main(String[] args) {
         //JS: since tests not work cause of local dependency missing, heres a workaround to make evaluations executable
-        evalPAN2011All();
+        //evalPAN2011All();
+        //verifyNumberNonEnglishSusp();
+        evalPAN2011EnEs();
     }
 
     static String pathPrefix = "D:\\AA_ScienceProject\\Data\\pan-plagiarism-corpus-2011\\pan-plagiarism-corpus-2011\\external-detection-corpus";
 
-    //@Test
-    static void evalPAN2011All()  {
-        // TODO load a centralized config or class with all params
-        // Route the complete output to a logfile here.
-        String tag = "evalPAN2011All"; // Identifier for logs ...
+
+    static void evalPAN2011EnEs(){
+        // This evaluates the specific English/Espanol-Partition from Franco Salvador
+        String tag = "evalPAN2011En-DeEs"; // Identifier for logs ...
+        String language = "es"; //state "es" or "de" here
         String toplevelPathSuspicious = pathPrefix.concat("/suspicious-document/");
         String toplevelPathCandidates = pathPrefix.concat("/source-document/");
-
-
-        //  (26939 - (9506/2)) / 2 = 11093 is the number of files in each directory
         ExtendedAnalysisParameters params;
         try{
             params = new ExtendedAnalysisParameters();
@@ -54,39 +53,78 @@ class PAN11EvaluationSetEval {
             System.err.println("Problem initializing params: "+ex);
             return;
         }
+        // Get the filenumbers for susp and candidate files ...
+        List<File> suspiciousFilesLangXML = getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".xml");
+        //List<File> candidateFilesLangXML = getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true, ".xml");
+        PAN11XMLParser pan11XMLParser = new PAN11XMLParser();
+
+        List<Integer> espEnCandidates = new ArrayList<>();
+        List<Integer> espEnSuspicious = new ArrayList<>();
+
+        for(File suspFileXML: suspiciousFilesLangXML){
+            boolean hasValidLanguagePair = false;
+            // Read XML File
+            PAN11XMLInfo xmlInfo = pan11XMLParser.parseXMLfile(suspFileXML);
+
+            for(PAN11PlagiarismInfo plaginfo:xmlInfo.plagiarismInfos) {
+
+                if (plaginfo.getSourceLanguage().equals(language)) {//|| plaginfo.getSourceLanguage().equals("de")){ //"es" //"de""
+                    //if(!plaginfo.getCaseLengthSource().equals(PAN11PlagiarismInfo.CaseLength.SHORT)) continue; //
+                    if (!hasValidLanguagePair) {
+                        hasValidLanguagePair = true;
+                    }
+                    Integer sourceId = Integer.parseInt(plaginfo.getSourceReference().replaceAll("\\D+",""));
+                    if(!espEnCandidates.contains(sourceId)) {
+                        espEnCandidates.add(sourceId);
+                    }
+                }
+            }
+            if(hasValidLanguagePair){
+                Integer suspId = Integer.parseInt(suspFileXML.getName().replaceAll("\\D+",""));
+                espEnSuspicious.add(suspId);
+            }
+        }
+        //TODO en-es 199 cand/304 susp atm fix numbers
+
+
+        // Overwrite the file filter
+
+        try{
+            params = new ExtendedAnalysisParameters();
+        }catch(Exception ex){
+            System.err.println("Problem initializing params: "+ex);
+            return;
+        }
+
+        params.USE_FILE_FILTER = true;
+        params.USE_LANGUAGE_WHITELISTING = false; // This is done in the step above
+        PANFileFilter panFileFilter = new PANFileFilter();
+        panFileFilter.addToWhiteListMultiple(true, espEnCandidates);
+        panFileFilter.addToWhiteListMultiple(false, espEnSuspicious);
+        // Overwrite the filter with new filtering
+        params.panFileFilter = panFileFilter;
+
+        // Just process as usual
+        evalPAN2011All(params, tag, "Parsing En-"+language);
+
+    }
+
+    //@Test
+    static void evalPAN2011All(ExtendedAnalysisParameters params, String tag, String comment)  {
+        // Route the complete output to a logfile here.
+        String toplevelPathSuspicious = pathPrefix.concat("/suspicious-document/");
+        String toplevelPathCandidates = pathPrefix.concat("/source-document/");
+
+
+        //  (26939 - (9506/2)) / 2 = 11093 is the number of files in each directory;
 
         // Do all preprocessing and cache it first (if already cached this will validate preprocessed number)
         OntologyBasedSimilarityAnalysis osa = new OntologyBasedSimilarityAnalysis();
         osa.initializeLogger(tag, params); // this has to be done immediately after constructor
         ExtendedLogUtil logUtil = osa.getExtendedLogUtil();
+        logUtil.logAndWriteStandard(false, comment);
+        // ..
 
-        // ..
-        List<File> candidateFilesLangCount = getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true, ".xml");
-        PAN11XMLParser pan11XMLParser = new PAN11XMLParser();
-        List<String> usedLanguages = new ArrayList<>();
-        int espanolDocs = 0;
-        int germanDocs = 0;
-        for(File suspFileXML: candidateFilesLangCount){
-            // Read XML File
-            PAN11XMLInfo xmlInfo = pan11XMLParser.parseXMLfile(suspFileXML);
-            if(xmlInfo.language.equals("es")){
-                espanolDocs++;
-            }
-            if(xmlInfo.language.equals("de")){
-                germanDocs++;
-            }
-            System.out.println("read");
-            if(xmlInfo!=null && !usedLanguages.contains(xmlInfo.language)){
-                usedLanguages.add(xmlInfo.language);
-            }
-        }
-        // From xml its:
-        // its 202 espanol docs
-        // its 471 german docs
-        // By langdet its:
-        // its 471 german docs
-        // its 202 spanish docs
-        // ..
 
         // Starting log
         logUtil.logAndWriteStandard(false,logUtil.dashes(100));
@@ -318,7 +356,7 @@ class PAN11EvaluationSetEval {
         try{
             ProcessBuilder builder = new ProcessBuilder();
             // builder.environment()
-            builder.command(        "python", pathToScript,"--plag-path",plagPath,"--det-path",detectedPlagiarismPath);
+            builder.command("python", pathToScript, "--plag-path",plagPath, "--det-path",detectedPlagiarismPath);
             //builder.directory(new File(homeDir));
             //builder.command("dir");
             builder.redirectErrorStream(true);
@@ -400,4 +438,138 @@ class PAN11EvaluationSetEval {
     }
 
 
+    public static void verifyNumberNonEnglishSusp(){
+        String tag = "PAN11verifySalvadorPartitions"; // Identifier for logs ...
+
+        String lpathPrefix = "D:\\AA_ScienceProject\\Data\\pan-plagiarism-corpus-2011\\pan-plagiarism-corpus-2011\\";
+
+        String toplevelPathSuspicious = lpathPrefix.concat("external-detection-corpus\\").concat("/suspicious-document/");
+        String toplevelPathCandidates = lpathPrefix.concat("external-detection-corpus\\").concat("/source-document/");
+
+
+        //  (26939 - (9506/2)) / 2 = 11093 is the number of files in each directory
+        ExtendedAnalysisParameters params;
+        try{
+            params = new ExtendedAnalysisParameters();
+        }catch(Exception ex){
+            System.err.println("Problem initializing params: "+ex);
+            return;
+        }
+
+        // Do all preprocessing and cache it first (if already cached this will validate preprocessed number)
+        OntologyBasedSimilarityAnalysis osa = new OntologyBasedSimilarityAnalysis();
+        osa.initializeLogger(tag, params); // this has to be done immediately after constructor
+        ExtendedLogUtil logUtil = osa.getExtendedLogUtil();
+
+        // ..
+        List<File> suspiciousFilesLangCount = getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".xml");
+        List<File> candidateFilesLangCount = getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true, ".xml");
+
+        PAN11XMLParser pan11XMLParser = new PAN11XMLParser();
+        List<String> usedLanguages = new ArrayList<>();
+        int englishDocsCorresponding = 0;
+        int shortCases= 0;
+        int mediumCases = 0;
+        int longCases = 0;
+        int overallCases = 0 ;
+        int overallXMLOk=0;
+
+        List<String> espEnCandidates = new ArrayList<>();
+        int translationTypeCount=0;
+        int othercount = 0;
+        long allCasesOfPlagiarism=0;
+        for(File suspFileXML: suspiciousFilesLangCount){
+            PAN11XMLInfo xmlInfo = pan11XMLParser.parseXMLfile(suspFileXML);
+            if(xmlInfo.language!=null){
+                overallXMLOk++;
+            }
+            for(PAN11PlagiarismInfo plaginfo:xmlInfo.plagiarismInfos) {
+                /*
+                if(plaginfo.getSourceLanguage().equals("es") || plaginfo.getSourceLanguage().equals("de")) { //"es" //"de""
+
+                    if (plaginfo.getType().equals("simulated")) {
+                        translationTypeCount++;
+                    } else {
+                        othercount++;
+                    }
+                }
+
+                 */
+                allCasesOfPlagiarism++;
+            }
+        }
+
+        //61 064 all cases of plagiarism -> it is only 49261 (+11443 for intrinsic) = 60704 (difference of 360 cases)
+        // 26 939 documents supposed -> 50/50 -> 11093 are there (its less because of intrinsic corpus missing)
+        // seems like Salvador is also using the intrinsic corpus files
+
+        //Checklist:
+        // Filecount (xml): 26939 supposed, actual: 11093  * 2 + 4753 (int,susp)  = 26939 -> files are ok
+        // Plagiarism (based on suspicious) 61 064 supposed, actual: 11443 intrinsic + 49261 external = 60704 (==> 360 cases missing)
+
+        for(File suspFileXML: suspiciousFilesLangCount){
+            boolean hasValidLanguagePair = false;
+            // Read XML File
+            PAN11XMLInfo xmlInfo = pan11XMLParser.parseXMLfile(suspFileXML);
+            if(xmlInfo.language.equals("en")){
+
+                for(PAN11PlagiarismInfo plaginfo:xmlInfo.plagiarismInfos){
+
+                    if(plaginfo.getSourceLanguage().equals("es")) {//|| plaginfo.getSourceLanguage().equals("de")){ //"es" //"de""
+                        if(!espEnCandidates.contains(plaginfo.getSourceReference())) {
+                            // This seems correct by logic
+                            //espEnCandidates.add(plaginfo.getSourceReference());
+                        }
+                        if(!hasValidLanguagePair){
+                            // This gives the correct number for salvador
+                            espEnCandidates.add(plaginfo.getSourceReference());
+
+                            englishDocsCorresponding++;
+                            hasValidLanguagePair=true;
+                        }
+
+                        overallCases ++;
+                        String caseLength = plaginfo.getCaseLengthSource();
+                        if(caseLength.equals(PAN11PlagiarismInfo.CaseLength.LONG)){
+                            longCases++;
+                        }
+                        if(caseLength.equals(PAN11PlagiarismInfo.CaseLength.MEDIUM)){
+                            mediumCases++;
+                        }
+                        if(caseLength.equals(PAN11PlagiarismInfo.CaseLength.SHORT)){
+                            shortCases++;
+                        }
+                    }
+                }
+            }else {
+                System.out.println("asd");
+            }
+        }
+        // The selected (de, en) file counts are ok here, so the basic filter is working.
+        // Case lengths Salvador:     s1506    m2118     l1951 = SUM -> 5575
+        // Case lengths with source:  s1136    m2105     l1870 = SUM -> 5142
+        // Case lengths with this:    s1377    m1936     l1829 = SUM -> 5142
+        // 433 cases missing
+        // This is the number of Translated manual obfuscation 433
+
+
+        int germanDocsCand = 0;
+        int spanishDocsCand = 0;
+        for(File candFileXML: candidateFilesLangCount){
+            PAN11XMLInfo xmlInfo = pan11XMLParser.parseXMLfile(candFileXML);
+
+            if(xmlInfo.language.equals("es")){
+                spanishDocsCand++;
+            }
+            if(xmlInfo.language.equals("de")){
+                germanDocsCand++;
+            }
+
+        }
+        System.out.println("done");
+        //partition en-de: en: 251/251 de: 348/348 -> ok
+        //partition en-es: en:  /304  es: /202
+        //partition en-es: en:  304/304  es: 199/202 --> 2 candidates are not mapped
+
+    }
 }
