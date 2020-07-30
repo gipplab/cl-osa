@@ -40,10 +40,36 @@ public class PAN11XMLParser {
             // validator.validate(new DOMSource(document));
 
 
-            // Parse TODO probably can be made more elegant
-            NamedNodeMap overallDescription  = document.getFirstChild().getFirstChild().getNextSibling().getAttributes();
-            String langValue = overallDescription.getNamedItem("lang").getNodeValue();
-            return new PAN11XMLInfo(langValue);
+            PAN11XMLInfo pan11XMLInfo =  new PAN11XMLInfo();
+            NodeList mainNode = document.getChildNodes();
+            NodeList allNodes = mainNode.item(0).getChildNodes();
+            for(int i=0; i < allNodes.getLength(); i++){
+                Node currentNode = allNodes.item(i);
+                NamedNodeMap attributes = currentNode.getAttributes();
+                if(attributes==null) continue;
+                String name = attributes.getNamedItem("name").getNodeValue();
+                switch(name){
+                    case "about":
+                        pan11XMLInfo.setLanguage(attributes.getNamedItem("lang").getNodeValue());
+                        continue;
+                    case "md5Hash":
+                        continue;
+                    case "plagiarism":
+                        PAN11PlagiarismInfo plagInfo = new PAN11PlagiarismInfo();
+                        plagInfo.type = attributes.getNamedItem("type").getNodeValue();
+                        plagInfo.obfuscation = attributes.getNamedItem("obfuscation").getNodeValue();
+                        plagInfo.thisLanguage = attributes.getNamedItem("this_language").getNodeValue();
+                        plagInfo.thisLength = Integer.parseInt(attributes.getNamedItem("this_length").getNodeValue());
+                        plagInfo.thisOffset = Integer.parseInt(attributes.getNamedItem("this_offset").getNodeValue());
+                        plagInfo.sourceLanguage = attributes.getNamedItem("source_language").getNodeValue();
+                        plagInfo.sourceLength = Integer.parseInt((attributes.getNamedItem("source_length").getNodeValue()));
+                        plagInfo.sourceOffset = Integer.parseInt(((attributes.getNamedItem("source_offset").getNodeValue())));
+                        plagInfo.sourceReference = attributes.getNamedItem("source_reference").getNodeValue();
+                        pan11XMLInfo.addPlagiarismInfo(plagInfo);
+                        continue;
+                }
+            }
+            return pan11XMLInfo;
 
         } catch (Exception ex) {
             System.err.println(ex.toString());
