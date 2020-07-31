@@ -43,6 +43,9 @@ public class PAN11XMLParser {
             PAN11XMLInfo pan11XMLInfo =  new PAN11XMLInfo();
             NodeList mainNode = document.getChildNodes();
             NodeList allNodes = mainNode.item(0).getChildNodes();
+            if(mainNode.getLength()>1){
+                System.out.println("check whats going on here");
+            }
             for(int i=0; i < allNodes.getLength(); i++){
                 Node currentNode = allNodes.item(i);
                 NamedNodeMap attributes = currentNode.getAttributes();
@@ -57,15 +60,24 @@ public class PAN11XMLParser {
                 }else if(name.equals("plagiarism")) {
                     PAN11PlagiarismInfo plagInfo = new PAN11PlagiarismInfo();
                     plagInfo.type = attributes.getNamedItem("type").getNodeValue();
+                    /*
                     if(!plagInfo.type.equals("translation") && !plagInfo.type.equals("artificial")
                             && !plagInfo.type.equals("simulated")){
                         System.out.println("asd");
                     }
+                    */
                     Node obfItem = attributes.getNamedItem("obfuscation");
                     if(obfItem!=null){
                         // Obfuscation doesn't always exist (in type='simulated' it apparently doesn't)
                         plagInfo.obfuscation = attributes.getNamedItem("obfuscation").getNodeValue();
                     }
+                    Node manObfItem = attributes.getNamedItem("manual_obfuscation");
+                    if(manObfItem!=null){
+                        // Usually for 'translation' type plagiarism
+                        plagInfo.manualObfuscation = Boolean.valueOf(manObfItem.getNodeValue());  // Boolean.valueOf
+                    }
+
+
                     plagInfo.thisLanguage = attributes.getNamedItem("this_language").getNodeValue();
                     plagInfo.thisLength = Integer.parseInt(attributes.getNamedItem("this_length").getNodeValue());
                     plagInfo.thisOffset = Integer.parseInt(attributes.getNamedItem("this_offset").getNodeValue());

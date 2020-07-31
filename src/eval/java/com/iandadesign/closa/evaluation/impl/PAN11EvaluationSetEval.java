@@ -37,8 +37,8 @@ class PAN11EvaluationSetEval {
         evalPAN2011EnEs();
     }
 
-    static String pathPrefix = "D:\\AA_ScienceProject\\Data\\pan-plagiarism-corpus-2011\\pan-plagiarism-corpus-2011\\external-detection-corpus";
-
+    //static String pathPrefix = "D:\\AA_ScienceProject\\Data\\pan-plagiarism-corpus-2011\\pan-plagiarism-corpus-2011\\external-detection-corpus";
+    static String pathPrefix = "D:\\AA_ScienceProject\\Data\\pan-plagiarism-corpus-2011-onefile\\pan-plagiarism-corpus-2011\\external-detection-corpus";
 
     static void evalPAN2011EnEs(){
         // This evaluates the specific English/Espanol-Partition from Franco Salvador
@@ -55,7 +55,7 @@ class PAN11EvaluationSetEval {
         }
         // Get the filenumbers for susp and candidate files ...
         List<File> suspiciousFilesLangXML = getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".xml");
-        //List<File> candidateFilesLangXML = getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true, ".xml");
+        List<File> candidateFilesLangXML = getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true, ".xml");
         PAN11XMLParser pan11XMLParser = new PAN11XMLParser();
 
         List<Integer> espEnCandidates = new ArrayList<>();
@@ -73,9 +73,11 @@ class PAN11EvaluationSetEval {
                     if (!hasValidLanguagePair) {
                         hasValidLanguagePair = true;
                     }
-                    Integer sourceId = Integer.parseInt(plaginfo.getSourceReference().replaceAll("\\D+",""));
-                    if(!espEnCandidates.contains(sourceId)) {
-                        espEnCandidates.add(sourceId);
+                    if(language.equals("de")) {
+                        Integer sourceId = Integer.parseInt(plaginfo.getSourceReference().replaceAll("\\D+", ""));
+                        if (!espEnCandidates.contains(sourceId)) {
+                            espEnCandidates.add(sourceId);
+                        }
                     }
                 }
             }
@@ -84,11 +86,25 @@ class PAN11EvaluationSetEval {
                 espEnSuspicious.add(suspId);
             }
         }
-        //TODO en-es 199 cand/304 susp atm fix numbers
 
+        // Salvador differentiates in mechanism of selection on de/es
+        // In words: in spanish all source documents are used, in german only the source documents which are related to plagiarism
+        if(language.equals("es")) {
+            // Getting the corresponding candidates
+            for (File candFileXML : candidateFilesLangXML) {
+                PAN11XMLInfo xmlInfo = pan11XMLParser.parseXMLfile(candFileXML);
+                if (xmlInfo.language.equals(language)) {
+                    Integer sourceId = Integer.parseInt(candFileXML.getName().replaceAll("\\D+", ""));
+                    if (!espEnCandidates.contains(sourceId)) {
+                        espEnCandidates.add(sourceId);
+                    }
+                }
+            }
+        }
+
+        // TODO filter case length here?
 
         // Overwrite the file filter
-
         try{
             params = new ExtendedAnalysisParameters();
         }catch(Exception ex){
@@ -101,6 +117,7 @@ class PAN11EvaluationSetEval {
         PANFileFilter panFileFilter = new PANFileFilter();
         panFileFilter.addToWhiteListMultiple(true, espEnCandidates);
         panFileFilter.addToWhiteListMultiple(false, espEnSuspicious);
+
         // Overwrite the filter with new filtering
         params.panFileFilter = panFileFilter;
 
@@ -474,27 +491,33 @@ class PAN11EvaluationSetEval {
         int overallCases = 0 ;
         int overallXMLOk=0;
 
-        List<String> espEnCandidates = new ArrayList<>();
         int translationTypeCount=0;
+        int manualObfuscation=0;
+        int automaticObfuscation=0;
         int othercount = 0;
         long allCasesOfPlagiarism=0;
+
         for(File suspFileXML: suspiciousFilesLangCount){
             PAN11XMLInfo xmlInfo = pan11XMLParser.parseXMLfile(suspFileXML);
             if(xmlInfo.language!=null){
                 overallXMLOk++;
             }
             for(PAN11PlagiarismInfo plaginfo:xmlInfo.plagiarismInfos) {
-                /*
                 if(plaginfo.getSourceLanguage().equals("es") || plaginfo.getSourceLanguage().equals("de")) { //"es" //"de""
 
-                    if (plaginfo.getType().equals("simulated")) {
+                    if (plaginfo.getType().equals("translation")) {
                         translationTypeCount++;
                     } else {
                         othercount++;
                     }
-                }
 
-                 */
+                }
+                if(plaginfo.getManualObfuscation()!=null && plaginfo.getManualObfuscation()){
+                    manualObfuscation++;
+                }
+                if(plaginfo.getManualObfuscation()!=null && !plaginfo.getManualObfuscation()){
+                    automaticObfuscation++;
+                }
                 allCasesOfPlagiarism++;
             }
         }
@@ -506,6 +529,8 @@ class PAN11EvaluationSetEval {
         //Checklist:
         // Filecount (xml): 26939 supposed, actual: 11093  * 2 + 4753 (int,susp)  = 26939 -> files are ok
         // Plagiarism (based on suspicious) 61 064 supposed, actual: 11443 intrinsic + 49261 external = 60704 (==> 360 cases missing)
+        List<String> espEnSusp = new ArrayList<>();
+        List<String> espEnSource = new ArrayList<>();
 
         for(File suspFileXML: suspiciousFilesLangCount){
             boolean hasValidLanguagePair = false;
@@ -516,13 +541,13 @@ class PAN11EvaluationSetEval {
                 for(PAN11PlagiarismInfo plaginfo:xmlInfo.plagiarismInfos){
 
                     if(plaginfo.getSourceLanguage().equals("es")) {//|| plaginfo.getSourceLanguage().equals("de")){ //"es" //"de""
-                        if(!espEnCandidates.contains(plaginfo.getSourceReference())) {
+                        if(!espEnSource.contains(plaginfo.getSourceReference())) {
                             // This seems correct by logic
-                            //espEnCandidates.add(plaginfo.getSourceReference());
+                            espEnSource.add(plaginfo.getSourceReference());
                         }
                         if(!hasValidLanguagePair){
                             // This gives the correct number for salvador
-                            espEnCandidates.add(plaginfo.getSourceReference());
+                            espEnSusp.add(suspFileXML.getName());
 
                             englishDocsCorresponding++;
                             hasValidLanguagePair=true;
@@ -532,12 +557,12 @@ class PAN11EvaluationSetEval {
                         String caseLength = plaginfo.getCaseLengthSource();
                         if(caseLength.equals(PAN11PlagiarismInfo.CaseLength.LONG)){
                             longCases++;
-                        }
-                        if(caseLength.equals(PAN11PlagiarismInfo.CaseLength.MEDIUM)){
+                        }else if(caseLength.equals(PAN11PlagiarismInfo.CaseLength.MEDIUM)){
                             mediumCases++;
-                        }
-                        if(caseLength.equals(PAN11PlagiarismInfo.CaseLength.SHORT)){
+                        }else if(caseLength.equals(PAN11PlagiarismInfo.CaseLength.SHORT)){
                             shortCases++;
+                        }else{
+                            System.out.println("error case length!");
                         }
                     }
                 }
