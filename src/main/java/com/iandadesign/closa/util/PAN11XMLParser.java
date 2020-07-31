@@ -10,6 +10,8 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Class for parsing the *xml info files in PAN-PC 11 dataset.
@@ -96,12 +98,31 @@ public class PAN11XMLParser {
                     System.out.println("strange case");
                 }
             }
+
+
+            //String myFileString = file.toString();
+            /* Comment in for verifying numbers
+            String myFileString =  new String ( Files.readAllBytes(Paths.get(file.getPath())));
+            int occurences = countOccurences(myFileString,"plagiarism");
+            if(pan11XMLInfo.plagiarismInfos.size()!=occurences){
+                System.out.println("asd");
+            }
+            */
             return pan11XMLInfo;
 
         } catch (Exception ex) {
             System.err.println(ex.toString());
             return null;
         }
+    }
+
+    int countOccurences(String data, String searchWord){
+        int count = 0;
+        while (data.indexOf(searchWord)>-1){
+            data = data.replaceFirst(searchWord, "");
+            count++;
+        }
+        return count ;
     }
 }
 

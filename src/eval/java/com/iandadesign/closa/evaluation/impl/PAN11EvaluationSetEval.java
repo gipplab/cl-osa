@@ -44,6 +44,11 @@ class PAN11EvaluationSetEval {
         // This evaluates the specific English/Espanol-Partition from Franco Salvador
         String tag = "evalPAN2011En-DeEs"; // Identifier for logs ...
         String language = "es"; //state "es" or "de" here
+        List<String> allowedCaseLengths = new ArrayList<>();
+        allowedCaseLengths.add(PAN11PlagiarismInfo.CaseLength.LONG);
+        allowedCaseLengths.add(PAN11PlagiarismInfo.CaseLength.MEDIUM);
+        allowedCaseLengths.add(PAN11PlagiarismInfo.CaseLength.SHORT);
+
         String toplevelPathSuspicious = pathPrefix.concat("/suspicious-document/");
         String toplevelPathCandidates = pathPrefix.concat("/source-document/");
         ExtendedAnalysisParameters params;
@@ -58,8 +63,8 @@ class PAN11EvaluationSetEval {
         List<File> candidateFilesLangXML = getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true, ".xml");
         PAN11XMLParser pan11XMLParser = new PAN11XMLParser();
 
-        List<Integer> espEnCandidates = new ArrayList<>();
-        List<Integer> espEnSuspicious = new ArrayList<>();
+        List<Integer> usedCandidates = new ArrayList<>();
+        List<Integer> usedSuspicious = new ArrayList<>();
 
         for(File suspFileXML: suspiciousFilesLangXML){
             boolean hasValidLanguagePair = false;
@@ -69,21 +74,23 @@ class PAN11EvaluationSetEval {
             for(PAN11PlagiarismInfo plaginfo:xmlInfo.plagiarismInfos) {
 
                 if (plaginfo.getSourceLanguage().equals(language)) {//|| plaginfo.getSourceLanguage().equals("de")){ //"es" //"de""
-                    //if(!plaginfo.getCaseLengthSource().equals(PAN11PlagiarismInfo.CaseLength.SHORT)) continue; //
+                    if(!allowedCaseLengths.contains(plaginfo.getCaseLengthThis())) {
+                        continue; // Filter non-matching case-lengths
+                    }
                     if (!hasValidLanguagePair) {
                         hasValidLanguagePair = true;
                     }
                     if(language.equals("de")) {
                         Integer sourceId = Integer.parseInt(plaginfo.getSourceReference().replaceAll("\\D+", ""));
-                        if (!espEnCandidates.contains(sourceId)) {
-                            espEnCandidates.add(sourceId);
+                        if (!usedCandidates.contains(sourceId)) {
+                            usedCandidates.add(sourceId);
                         }
                     }
                 }
             }
             if(hasValidLanguagePair){
                 Integer suspId = Integer.parseInt(suspFileXML.getName().replaceAll("\\D+",""));
-                espEnSuspicious.add(suspId);
+                usedSuspicious.add(suspId);
             }
         }
 
@@ -95,14 +102,26 @@ class PAN11EvaluationSetEval {
                 PAN11XMLInfo xmlInfo = pan11XMLParser.parseXMLfile(candFileXML);
                 if (xmlInfo.language.equals(language)) {
                     Integer sourceId = Integer.parseInt(candFileXML.getName().replaceAll("\\D+", ""));
-                    if (!espEnCandidates.contains(sourceId)) {
-                        espEnCandidates.add(sourceId);
+                    if (!usedCandidates.contains(sourceId)) {
+                        usedCandidates.add(sourceId);
                     }
                 }
             }
         }
+        // Checking if selection is ok (these are the numbers stated in Salador2016, only if no caselength filtering)
+        if(allowedCaseLengths.size()==3 && language.equals("es")){
+            if(usedCandidates.size()!=202 || usedSuspicious.size()!=304){
+                System.err.println("Wrong file numbers");
+                return;
+            }
+        }else if(allowedCaseLengths.size()==3 && language.equals("de")){
+            if(usedCandidates.size()!=348 || usedSuspicious.size()!=251){
+                System.err.println("Wrong file numbers");
+                return;
+            }
+        }
 
-        // TODO filter case length here?
+
 
         // Overwrite the file filter
         try{
@@ -115,8 +134,8 @@ class PAN11EvaluationSetEval {
         params.USE_FILE_FILTER = true;
         params.USE_LANGUAGE_WHITELISTING = false; // This is done in the step above
         PANFileFilter panFileFilter = new PANFileFilter();
-        panFileFilter.addToWhiteListMultiple(true, espEnCandidates);
-        panFileFilter.addToWhiteListMultiple(false, espEnSuspicious);
+        panFileFilter.addToWhiteListMultiple(true, usedCandidates);
+        panFileFilter.addToWhiteListMultiple(false, usedSuspicious);
 
         // Overwrite the filter with new filtering
         params.panFileFilter = panFileFilter;
@@ -523,8 +542,9 @@ class PAN11EvaluationSetEval {
         }
 
         //61 064 all cases of plagiarism -> it is only 49261 (+11443 for intrinsic) = 60704 (difference of 360 cases)
+        // The dataset has 49261 cases by searching 'plagiarism' in xml files in notepad++
         // 26 939 documents supposed -> 50/50 -> 11093 are there (its less because of intrinsic corpus missing)
-        // seems like Salvador is also using the intrinsic corpus files
+        // Salvador says its 5164 +
 
         //Checklist:
         // Filecount (xml): 26939 supposed, actual: 11093  * 2 + 4753 (int,susp)  = 26939 -> files are ok
@@ -540,7 +560,7 @@ class PAN11EvaluationSetEval {
 
                 for(PAN11PlagiarismInfo plaginfo:xmlInfo.plagiarismInfos){
 
-                    if(plaginfo.getSourceLanguage().equals("es")) {//|| plaginfo.getSourceLanguage().equals("de")){ //"es" //"de""
+                    if(plaginfo.getSourceLanguage().equals("es") || plaginfo.getSourceLanguage().equals("de")){ //"es" //"de""
                         if(!espEnSource.contains(plaginfo.getSourceReference())) {
                             // This seems correct by logic
                             espEnSource.add(plaginfo.getSourceReference());
@@ -572,10 +592,14 @@ class PAN11EvaluationSetEval {
         }
         // The selected (de, en) file counts are ok here, so the basic filter is working.
         // Case lengths Salvador:     s1506    m2118     l1951 = SUM -> 5575
+        //                             0,27    0,379     0,3499         (1506/5575etc)
         // Case lengths with source:  s1136    m2105     l1870 = SUM -> 5142
+        //                              0,22   0,409      0,36
         // Case lengths with this:    s1377    m1936     l1829 = SUM -> 5142
+        //                              0,2677  0,376      0,355
         // 433 cases missing
         // This is the number of Translated manual obfuscation 433
+        // Most likely its with 'this'cases
 
 
         int germanDocsCand = 0;
