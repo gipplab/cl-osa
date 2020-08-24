@@ -3,6 +3,8 @@ package com.iandadesign.closa;
 import com.iandadesign.closa.classification.Category;
 import com.iandadesign.closa.model.*;
 import com.iandadesign.closa.util.ExtendedLogUtil;
+import com.iandadesign.closa.util.PAN11XMLInfo;
+import com.iandadesign.closa.util.PAN11XMLParser;
 import com.iandadesign.closa.util.TokenUtil;
 import com.iandadesign.closa.util.wikidata.WikidataEntityExtractor;
 import net.sf.extjwnl.data.Exc;
@@ -24,7 +26,7 @@ import java.util.stream.Collectors;
 
 public class SuperMain {
 
-   public static void main(String[] args) {
+   public static void main(String[] args) throws Exception {
        //String suspiciousPath = "~/documents/en/35157967/0.txt";
        //String candidateFolderPath = "~/documents/ja/";
        //D:\AA_ScienceProject\Wikidata_vs_CharacterNGram\closa\src\eval\resources\com\iandadesign\closa\evaluation\test-bbc\ja-t
@@ -57,7 +59,9 @@ public class SuperMain {
        //System.out.(candidateScoresMap);
    }
 
-   public static void testExtendedLogs(){
+
+
+   public static void testExtendedLogs() throws Exception {
        // TODO refactor and move to test
        String tag = "logsTest";
        ExtendedAnalysisParameters params = new ExtendedAnalysisParameters();
@@ -107,7 +111,7 @@ public class SuperMain {
 
     }
 
-    public static void tinyTest(){
+    public static void tinyTest() throws Exception {
         String tag = "tinyTest"; // Tag to identify results file
         String suspiciousPath = "src/main/resources/TinyTest/suspicious_smallfile.txt";
         String candidateFolderPath = "src/main/resources/TinyTest/candidates/";
@@ -117,14 +121,14 @@ public class SuperMain {
         ExtendedAnalysisParameters params = new ExtendedAnalysisParameters();
         OntologyBasedSimilarityAnalysis osa = new OntologyBasedSimilarityAnalysis();
         try {
-            osa.executeAlgorithmAndComputeScoresExtendedInfo(suspiciousPath, candidateFiles, tag, params);
+            osa.executeAlgorithmAndComputeScoresExtendedInfo(suspiciousPath, candidateFiles, params, osa.getExtendedLogUtil().getDateString());
         }catch(Exception ex){
             System.err.println(ex.toString());
         }
 
     }
 
-    public static void pan2011Test(){
+    public static void pan2011Test() throws Exception {
         String tag = "PAN2011Test2"; // Tag to identify results file
         // String suspiciousPath = "src/main/resources/PAN2011Test2/suspicious-document00020.txt";
         // String candidateFolderPath = "src/main/resources/PAN2011Test2/candidates/";
@@ -136,7 +140,7 @@ public class SuperMain {
         ExtendedAnalysisParameters params = new ExtendedAnalysisParameters();
         OntologyBasedSimilarityAnalysis osa = new OntologyBasedSimilarityAnalysis();
         try {
-            osa.executeAlgorithmAndComputeScoresExtendedInfo(suspiciousPath, candidateFiles, tag, params);
+            osa.executeAlgorithmAndComputeScoresExtendedInfo(suspiciousPath, candidateFiles, params, osa.getExtendedLogUtil().getDateString());
         }catch(Exception ex){
             System.err.println(ex.toString());
         }
@@ -168,7 +172,7 @@ public class SuperMain {
 
     }
     public static void testSlidingWindowCombination(){
-        ScoringChunksCombined scoringChunksCombined = new ScoringChunksCombined(0.2,0.5,1,1);
+        ScoringChunksCombined scoringChunksCombined = new ScoringChunksCombined(0.2,0.5,1,1, 50);
         scoringChunksCombined.storeScoringChunk(null);
         //scoringChunksCombined.getPreviousScoringChunksOrNull(null);
         System.out.println("doneTest");
@@ -181,7 +185,7 @@ public class SuperMain {
            String cosineResultsPath = Paths.get("D:\\CL_OSA_caching", "preprocessed_extended",
                    "results_comparison", "PAN2011Test".concat("_").concat(dateString).concat(".xml"))
                    .toAbsolutePath().toString();
-           ScoringChunksCombined scoringChunksCombined = new ScoringChunksCombined(0.2, 0.5, 2, 2);
+           ScoringChunksCombined scoringChunksCombined = new ScoringChunksCombined(0.2, 0.5, 2, 2, 50);
            scoringChunksCombined.setCurrentDocuments("mySuspiciousDocument.txt","myCandidateDocument.txt");
            scoringChunksCombined.writeResultAsXML(cosineResultsPath);
            scoringChunksCombined.prettifyXML(cosineResultsPath);
