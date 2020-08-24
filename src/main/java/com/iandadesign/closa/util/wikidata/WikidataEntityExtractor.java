@@ -7,6 +7,7 @@ import com.iandadesign.closa.model.Token;
 import com.iandadesign.closa.model.WikidataEntity;
 import com.iandadesign.closa.util.TokenUtil;
 import com.iandadesign.closa.util.WordNetUtil;
+import com.iandadesign.closa.util.wikidata.WikidataDumpUtil;
 import me.tongfei.progressbar.ProgressBar;
 import me.tongfei.progressbar.ProgressBarStyle;
 import org.apache.commons.lang3.StringUtils;
@@ -28,7 +29,9 @@ import java.util.stream.Collectors;
  */
 public class WikidataEntityExtractor {
 
-    private static boolean useSparql = false;
+    private static boolean useSparql = true;
+    private static boolean doParallelRequests = true;
+    private static int lengthSublistTokens = 3;
 
     static {
         try {
@@ -239,6 +242,7 @@ public class WikidataEntityExtractor {
         return new ArrayList<>(buildTokenEntitiesMap(text, languageCode, category).values());
     }
 
+
     /**
      * Extract Wikidata entities from given text, language and topic.
      * <p>
@@ -262,9 +266,10 @@ public class WikidataEntityExtractor {
         if (languageCode.equals("ja")) {
             tokenList = TokenUtil.removeStopwords(tokenList, languageCode);
         }
-
-        List<List<List<Token>>> subtokensLists = getSublistsOfSize(tokenList, 3);
-
+        //JS: why is this done?, combined labels don't give answers
+        //https://query.wikidata.org/#SELECT%20DISTINCT%20%3Fitem%20%3FitemDescription%20WHERE%20%7B%0A%20%20%3Fitem%20%3Flabel%20%22media%20is%20an%22%40en.%0A%20%20%3Farticle%20schema%3Aabout%20%3Fitem.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22.%20%7D%0A%7D
+        List<List<List<Token>>> subtokensLists = getSublistsOfSize(tokenList, lengthSublistTokens);
+        //List<List<List<Token>>> subtokensLists = getSublistsOfSize(tokenList, 1);
         // filter
         List<String> forbiddenPartOfSpeechTags = Arrays.asList(",", ":", ".", "SYM", "TO", "IN", "PP", "PP$", "SENT");
 
@@ -386,9 +391,15 @@ public class WikidataEntityExtractor {
      * @return the results as Wikidata entities.
      */
     private static List<WikidataEntity> getEntitiesByToken(Token token, String languageCode, Category category) {
-        return useSparql
-                ? WikidataSparqlUtil.getEntitiesByToken(token, languageCode, category)
-                : WikidataDumpUtil.getEntitiesByToken(token, languageCode, category);
+        // System.out.println("TOKENLOG: "+token.getToken());
+        if(useSparql){
+            return WikidataSparqlUtil.getEntitiesByToken(token, languageCode, category);
+        }else{
+            return WikidataDumpUtil.getEntitiesByToken(token, languageCode, category);
+        }
+
+
+
     }
 
     /**
