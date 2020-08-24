@@ -845,7 +845,7 @@ public class WikidataSparqlUtil {
                     message = e.getMessage().contains("response code: 429") ? "Too many requests." : message;
                     message = message + "\n\n" + urlString + "\n\n" + Arrays.toString(e.getStackTrace());
                     ExtendedLogUtil extendedLogUtil = new ExtendedLogUtil(path,null,"SparQLHandler",true,false);
-                    extendedLogUtil.writeErrorReport(false, message);
+                    extendedLogUtil.logAndWriteError(false, message);
 
                     int sleepTime = 1000 * 20 + 1000 * 10 * numberOfTries;
 

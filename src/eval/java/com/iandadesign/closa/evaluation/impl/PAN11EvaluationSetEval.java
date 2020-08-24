@@ -141,7 +141,10 @@ class PAN11EvaluationSetEval {
         params.panFileFilter = panFileFilter;
 
         // Just process as usual
-        evalPAN2011All(params, tag, "Parsing En-"+language);
+        evalPAN2011All(params, tag, "Parsing En-" + language + "\n"+
+                "used Candidates Files: " +usedCandidates.size() +
+                "\nUsed Suspicious Files: " +usedSuspicious.size()
+        );
 
     }
 
@@ -560,7 +563,7 @@ class PAN11EvaluationSetEval {
 
                 for(PAN11PlagiarismInfo plaginfo:xmlInfo.plagiarismInfos){
 
-                    if(plaginfo.getSourceLanguage().equals("es") || plaginfo.getSourceLanguage().equals("de")){ //"es" //"de""
+                    if(plaginfo.getSourceLanguage().equals("es")){ //|| plaginfo.getSourceLanguage().equals("de")){ //"es" //"de""
                         if(!espEnSource.contains(plaginfo.getSourceReference())) {
                             // This seems correct by logic
                             espEnSource.add(plaginfo.getSourceReference());
@@ -590,7 +593,7 @@ class PAN11EvaluationSetEval {
                 System.out.println("asd");
             }
         }
-        // The selected (de, en) file counts are ok here, so the basic filter is working.
+        // The selected (de+es) file counts are ok here, so the basic filter is working.
         // Case lengths Salvador:     s1506    m2118     l1951 = SUM -> 5575
         //                             0,27    0,379     0,3499         (1506/5575etc)
         // Case lengths with source:  s1136    m2105     l1870 = SUM -> 5142

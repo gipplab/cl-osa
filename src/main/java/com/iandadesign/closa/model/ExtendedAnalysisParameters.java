@@ -20,10 +20,10 @@ public class ExtendedAnalysisParameters {
     public final boolean LOG_STANDARD_TO_FILE;              // Log relevant standard output to .txt file
     public final boolean LOG_ERROR_TO_FILE;                 // Log error output to .txt file
     public final boolean LOG_VERBOSE;                       // Log more file outputs
-    public final boolean USE_FILE_FILTER;                   // Pre-Filter the used files like defined in panFileFilter
-    public final boolean USE_LANGUAGE_WHITELISTING;         // Only finds plagiarism in whitelisted languages.
-    public final boolean RUN_EVALUATION_AFTER_PROCESSING;   // Run evaluation python script after processing the plagiarism files
-    public final PANFileFilter panFileFilter;
+    public boolean USE_FILE_FILTER;                         // Pre-Filter the used files like defined in panFileFilter
+    public boolean USE_LANGUAGE_WHITELISTING;               // Only finds plagiarism in whitelisted languages.
+    public boolean RUN_EVALUATION_AFTER_PROCESSING;   // Run evaluation python script after processing the plagiarism files
+    public PANFileFilter panFileFilter;
 
 
     public ExtendedAnalysisParameters() throws Exception{
@@ -54,9 +54,9 @@ public class ExtendedAnalysisParameters {
 
         // File Filter Options
         USE_FILE_FILTER=false;
-        USE_LANGUAGE_WHITELISTING=true;
+        USE_LANGUAGE_WHITELISTING=false;
         // Add a file filter (only used if USE_FILE_FILTER is true)
-        panFileFilter = new PANFileFilter(11093);
+        panFileFilter = new PANFileFilter();
         // Add Candidate Whitelisting
         panFileFilter.addToWhiteListMultiple(true, 1, 14, 3164, 4001, 71, 76, 3317);
         // Add Suspicious Whitelisting
