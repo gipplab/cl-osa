@@ -96,6 +96,8 @@ public class ExtendedLogUtil {
     }
     /**
      * Writes a report to file titled with the current date time in the given path.
+     * @param useFormat indicate if formatting is used for args
+     * @param args mutliple Strings which will be printed
      */
     public void writeErrorReport(boolean useFormat, Object ... args) {
         if(!this.LOG_ERROR_TO_FILE) return;
@@ -162,6 +164,7 @@ public class ExtendedLogUtil {
      * Creates a string of dashes that is n dashes long.
      *
      * @param n The number of dashes to add to the string.
+     * @return String of dashes
      */
     public String dashes( int n ) {
         return CharBuffer.allocate( n ).toString().replace( '\0', '-' );

@@ -365,9 +365,9 @@ public class TokenUtil {
     /**
      * Get a sentence number which reflects the middle/majority of sentence numbers in tokens.
      * modes:
-     * simple -> just use the first tokens sentence number
-     * useMaximum -> get the sentenceNumber which the most tokens haven, if equal maxima, smallest sentence number is used
-     * histogramMean -> use the arithmetical mean of a histogram of sentence number/occurences in tokens
+     * simple: just use the first tokens sentence number
+     * useMaximum: get the sentenceNumber which the most tokens haven, if equal maxima, smallest sentence number is used
+     * histogramMean: use the arithmetical mean of a histogram of sentence number/occurences in tokens
      *
      * @param tokens list of tokens which contain sentence numbers
      * @param mode "useMaximum", "histogramMean", "simple", if no specified mode is given, error message is logged

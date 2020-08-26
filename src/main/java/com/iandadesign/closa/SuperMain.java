@@ -206,10 +206,10 @@ public class SuperMain {
     /**
      * This is a utility method for getting the plagiarized sections in the PAN2011 testset.
      * TODO move to utility maybe add features.
-     * @param filepath
-     * @param sectionOffset
-     * @param sectionLength
-     * @return
+     * @param filepath path to file to look at
+     * @param sectionOffset offset of section to check
+     * @param sectionLength length of section to check
+     * @return String of the plagiarised section
      */
     public static String getPlagiarisedSentences(String filepath, long sectionOffset, long sectionLength){
        StringBuilder stringBuilder = new StringBuilder();

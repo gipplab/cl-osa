@@ -549,6 +549,7 @@ public class OntologyBasedSimilarityAnalysis {
      * @param documentLanguage the document's language
 
      * @return concepts with additional information.
+     * @throws Exception on error in preprocessing
      */
     public List<SavedEntity> preProcessExtendedInfo(String documentPath, String documentLanguage) throws Exception {
 

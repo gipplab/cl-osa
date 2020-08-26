@@ -36,8 +36,8 @@ public class ResultInfo{
     /**
      * Adds a list of combination markers except value specified,
      * also doesnt add same value multiple
-     * @param combinationMarkers
-     * @param exceptValue
+     * @param combinationMarkers combines stuff.
+     * @param exceptValue value which will not be combined
      */
     public void addCombinationMarkers(List<Integer> combinationMarkers, int exceptValue){
         for(int combomarker:combinationMarkers){
