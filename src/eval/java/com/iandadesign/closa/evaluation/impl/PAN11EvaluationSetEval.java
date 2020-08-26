@@ -34,16 +34,24 @@ class PAN11EvaluationSetEval {
         //JS: since tests not work cause of local dependency missing, heres a workaround to make evaluations executable
         //evalPAN2011All();
         //verifyNumberNonEnglishSusp();
-        evalPAN2011EnEs();
+        if(args!=null && args.length>=1){
+            evalPAN2011EnEs(args[0]);
+        }else{
+            evalPAN2011EnEs(null);
+        }
     }
 
     //static String pathPrefix = "D:\\AA_ScienceProject\\Data\\pan-plagiarism-corpus-2011\\pan-plagiarism-corpus-2011\\external-detection-corpus";
-    static String pathPrefix = "D:\\AA_ScienceProject\\Data\\pan-plagiarism-corpus-2011-onefile\\pan-plagiarism-corpus-2011\\external-detection-corpus";
+    //static String pathPrefix = "/media/johannes/Elements SE/CLOSA/pan-plagiarism-corpus-2011/external-detection-corpus";
+    static String pathPrefix = "/data/pan-plagiarism-corpus-2011/external-detection-corpus";
 
-    static void evalPAN2011EnEs(){
+    static void evalPAN2011EnEs(String languageIn){
         // This evaluates the specific English/Espanol-Partition from Franco Salvador
         String tag = "evalPAN2011En-DeEs"; // Identifier for logs ...
         String language = "es"; //state "es" or "de" here
+        if(languageIn!=null){
+            language=languageIn;
+        }
         List<String> allowedCaseLengths = new ArrayList<>();
         allowedCaseLengths.add(PAN11PlagiarismInfo.CaseLength.LONG);
         allowedCaseLengths.add(PAN11PlagiarismInfo.CaseLength.MEDIUM);
