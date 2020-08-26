@@ -36,9 +36,10 @@ public class SuperMain {
        // tinyTest();
        //testSubtokenAssignment();
        //testSlidingWindowCombination();
-       pan2011Test();
+       //pan2011Test();
        //getPlagiarismSection();
        //testXMLResultWriter();
+       new PAN11EvaluationSetEval();
    }
    public static void mainContent(){
        String suspiciousPath = "src/eval/resources/com/iandadesign/closa/evaluation/test-bbc/en/35157967/0.txt";    //changed to src/eval

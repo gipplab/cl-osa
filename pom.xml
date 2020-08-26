@@ -106,7 +106,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.iandadesign.closa.evaluation.impl.PAN11EvaluationSetEval</mainClass>
+                            <mainClass>com.iandadesign.closa.PAN11EvaluationSetEval</mainClass>
                             <classpathPrefix>dependency-jars/</classpathPrefix>
                         </manifest>
                     </archive>
