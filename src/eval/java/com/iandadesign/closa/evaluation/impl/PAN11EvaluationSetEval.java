@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  *
  * @author Johannes Stegmüller (26.06.2020)
  */
-class PAN11EvaluationSetEval {
+public class PAN11EvaluationSetEval {
 
     public static void main(String[] args) {
         //JS: since tests not work cause of local dependency missing, heres a workaround to make evaluations executable
