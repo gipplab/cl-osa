@@ -27,13 +27,14 @@ import java.util.stream.Collectors;
 public class PAN11EvaluationSetEval {
 
     public static void main(String[] args) {
+        Boolean smallTest = true;
         //JS: since tests not work cause of local dependency missing, heres a workaround to make evaluations executable
         //evalPAN2011All();
         //verifyNumberNonEnglishSusp();
         if(args!=null && args.length>=1){
-            evalPAN2011EnEs(args[0]);
+            evalPAN2011EnEs(args[0], smallTest);
         }else{
-            evalPAN2011EnEs(null);
+            evalPAN2011EnEs(null, smallTest);
         }
     }
 
@@ -41,7 +42,7 @@ public class PAN11EvaluationSetEval {
     //static String pathPrefix = "/media/johannes/Elements SE/CLOSA/pan-plagiarism-corpus-2011/external-detection-corpus";
     static String pathPrefix = "/data/pan-plagiarism-corpus-2011/external-detection-corpus";
 
-    static void evalPAN2011EnEs(String languageIn){
+    static void evalPAN2011EnEs(String languageIn, Boolean smallTest){
         // This evaluates the specific English/Espanol-Partition from Franco Salvador
         String tag = "evalPAN2011En-DeEs"; // Identifier for logs ...
         String language = "es"; //state "es" or "de" here
@@ -133,6 +134,10 @@ public class PAN11EvaluationSetEval {
         }catch(Exception ex){
             System.err.println("Problem initializing params: "+ex);
             return;
+        }
+        if(smallTest){
+            usedCandidates = usedCandidates.subList(0,10);
+            usedSuspicious = usedSuspicious.subList(0,10);
         }
 
         params.USE_FILE_FILTER = true;
@@ -241,7 +246,7 @@ public class PAN11EvaluationSetEval {
                 triggerPAN11PythonEvaluation(logUtil, baseResultsPath, toplevelPathSuspicious);
             }else{
                 // Filter used, only compare with relevant files
-                File cachingDir= new File(baseResultsPath +"\\file_selection_cache");
+                File cachingDir= new File(baseResultsPath +"/file_selection_cache");
                 removeDirectory(cachingDir);
                 List<File> suspiciousXML  = getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".xml");
                 writeFileListToDirectory(suspiciousXML, cachingDir.getPath(), logUtil);
@@ -272,7 +277,7 @@ public class PAN11EvaluationSetEval {
             }
 
             for (File file : filesToWrite) {
-                File destinationFile = new File(directoryPath + "\\"+ file.getName());
+                File destinationFile = new File(directoryPath + "/"+ file.getName());
                 FileUtils.copyFile(file, destinationFile);
             }
         }catch(Exception e){
@@ -400,6 +405,7 @@ public class PAN11EvaluationSetEval {
         try{
             ProcessBuilder builder = new ProcessBuilder();
             // builder.environment()
+            logUtil.logAndWriteStandard(false,"plag-path",plagPath,"det-path",detectedPlagiarismPath);
             builder.command("python", pathToScript, "--plag-path",plagPath, "--det-path",detectedPlagiarismPath);
             //builder.directory(new File(homeDir));
             //builder.command("dir");

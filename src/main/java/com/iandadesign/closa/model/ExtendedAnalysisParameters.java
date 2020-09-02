@@ -47,7 +47,7 @@ public class ExtendedAnalysisParameters {
         LOG_PREPROCESSING_RESULTS= true;
         LOG_STANDARD_TO_FILE= true;
         LOG_ERROR_TO_FILE=true;
-        LOG_VERBOSE=false;
+        LOG_VERBOSE=true;
         // Evaluation settings
         RUN_EVALUATION_AFTER_PROCESSING = true;
 
