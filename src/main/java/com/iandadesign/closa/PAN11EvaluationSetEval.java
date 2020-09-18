@@ -149,6 +149,10 @@ public class PAN11EvaluationSetEval {
         // Overwrite the filter with new filtering
         params.panFileFilter = panFileFilter;
 
+        // Free memory TODO MEMORY MARK1: is clear effective?
+         //suspiciousFilesLangXML.clear();
+         //candidateFilesLangXML.clear();
+
         // Just process as usual
         evalPAN2011All(params, tag, "Parsing En-" + language + "\n"+
                 "used Candidates Files: " +usedCandidates.size() +
@@ -218,6 +222,11 @@ public class PAN11EvaluationSetEval {
         List<File> candidateFiles = getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true, ".txt");
         List<File> suspiciousFiles  = getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".txt");
 
+
+        // TODO MEMORY MARK 2: free memory here?
+
+
+
         // Do the file comparisons
         int parsedFiles=0;
         int parsedErrors=0;
@@ -239,6 +248,11 @@ public class PAN11EvaluationSetEval {
         if(parsedErrors>=1 || parsedFiles==0){
             return;
         }
+
+
+        //TODO MEMORY FREE MEMORY HERE ?
+
+
         // Evaluation related stuff ...
         if(params.RUN_EVALUATION_AFTER_PROCESSING){
             if(!params.USE_FILE_FILTER){
