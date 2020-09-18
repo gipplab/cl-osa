@@ -136,8 +136,8 @@ public class PAN11EvaluationSetEval {
             return;
         }
         if(smallTest){
-            usedCandidates = usedCandidates.subList(0,10);
-            usedSuspicious = usedSuspicious.subList(0,10);
+            //usedCandidates = usedCandidates.subList(0,1);
+            usedSuspicious = usedSuspicious.subList(0,2);
         }
 
         params.USE_FILE_FILTER = true;
