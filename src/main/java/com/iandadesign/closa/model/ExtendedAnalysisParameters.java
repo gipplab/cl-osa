@@ -23,6 +23,7 @@ public class ExtendedAnalysisParameters {
     public boolean USE_FILE_FILTER;                         // Pre-Filter the used files like defined in panFileFilter
     public boolean USE_LANGUAGE_WHITELISTING;               // Only finds plagiarism in whitelisted languages.
     public boolean RUN_EVALUATION_AFTER_PROCESSING;   // Run evaluation python script after processing the plagiarism files
+    public int PARALLELISM_THREAD_NUM;
     public PANFileFilter panFileFilter;
 
 
@@ -50,7 +51,8 @@ public class ExtendedAnalysisParameters {
         LOG_VERBOSE=false;
         // Evaluation settings
         RUN_EVALUATION_AFTER_PROCESSING = true;
-
+        // Parallelism Settings
+        PARALLELISM_THREAD_NUM = 30;
 
         // File Filter Options
         USE_FILE_FILTER=false;

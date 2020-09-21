@@ -17,6 +17,9 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -250,25 +253,41 @@ public class PAN11EvaluationSetEval {
             logUtil.logAndWriteStandard(true, logUtil.getDateString(), "done processing PAN11,- parsed files:", parsedFiles, "errors:", parsedErrors);
         } else {
             // Multi Thread Execution
+
+            // Limit: https://www.codementor.io/@nitinpuri/controlling-parallelism-of-java-8-collection-streams-umex0qbt1
             AtomicInteger indexP = new AtomicInteger(0);
             AtomicInteger parsedFilesP = new AtomicInteger(0);
             AtomicInteger parsedErrorsP = new AtomicInteger(0);
             logUtil.logAndWriteStandard(true, logUtil.getDateString(), " Using parallelism, counter (x/y) is only a vague indicator");
 
-            suspiciousFiles.parallelStream().forEach((suspiciousFile) -> {
-                String suspPath = suspiciousFile.getPath();
-                String suspFileName = suspiciousFile.getName();
-                try {
-                    logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", indexP.get() + 1, "/", suspiciousFiles.size(), "Filename:", suspFileName, " and its", candidateFiles.size(), "candidates");
-                    parsedFilesP.getAndIncrement();
-                    indexP.getAndIncrement();
-                    osa.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
-                } catch (Exception ex) {
-                    parsedErrorsP.getAndIncrement();
-                    indexP.getAndIncrement();
-                    logUtil.logAndWriteError(false, "Exception during parse of suspicious file with Filename", suspFileName, "Exception:", ex);
+            final int parallelism = params.PARALLELISM_THREAD_NUM;
+
+            ForkJoinPool forkJoinPool = null;
+
+            try {
+                forkJoinPool = new ForkJoinPool(parallelism);
+                forkJoinPool.submit(() -> suspiciousFiles.parallelStream().forEach((suspiciousFile) -> {
+                    String suspPath = suspiciousFile.getPath();
+                    String suspFileName = suspiciousFile.getName();
+                    try {
+                        logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", indexP.get() + 1, "/", suspiciousFiles.size(), "Filename:", suspFileName, " and its", candidateFiles.size(), "candidates");
+                        parsedFilesP.getAndIncrement();
+                        indexP.getAndIncrement();
+                        osa.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                    } catch (Exception ex) {
+                        parsedErrorsP.getAndIncrement();
+                        indexP.getAndIncrement();
+                        logUtil.logAndWriteError(false, "Exception during parse of suspicious file with Filename", suspFileName, "Exception:", ex);
+                    }
+                })).get();
+            }catch(Exception e) {//SecurityException | RejectedExecutionException e){
+                logUtil.logAndWriteError(false, "Exception with with thread execution:", e);
+            } finally {
+                if (forkJoinPool != null) {
+                    forkJoinPool.shutdown(); //always remember to shutdown the pool
                 }
-            });
+            }
+
             // This works if the last iteration is ok
             baseResultsPath = osa.getExtendedXmlResultsPath();
             parsedFiles = parsedFilesP.get();
