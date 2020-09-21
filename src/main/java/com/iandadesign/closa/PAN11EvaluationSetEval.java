@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class PAN11EvaluationSetEval {
 
     public static void main(String[] args) {
-        Boolean smallTest = true;
+        Boolean smallTest = false;
         //JS: since tests not work cause of local dependency missing, heres a workaround to make evaluations executable
         //evalPAN2011All();
         //verifyNumberNonEnglishSusp();
@@ -150,8 +150,8 @@ public class PAN11EvaluationSetEval {
         params.panFileFilter = panFileFilter;
 
         // Free memory TODO MEMORY MARK1: is clear effective?
-         //suspiciousFilesLangXML.clear();
-         //candidateFilesLangXML.clear();
+         suspiciousFilesLangXML.clear();
+         candidateFilesLangXML.clear();
 
         // Just process as usual
         evalPAN2011All(params, tag, "Parsing En-" + language + "\n"+
@@ -223,8 +223,8 @@ public class PAN11EvaluationSetEval {
         List<File> suspiciousFiles  = getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".txt");
 
 
-        // TODO MEMORY MARK 2: free memory here?
-
+        // MEMORY MARK 2: free memory here
+        // memory usage OK until here
 
 
         // Do the file comparisons
@@ -250,7 +250,7 @@ public class PAN11EvaluationSetEval {
         }
 
 
-        //TODO MEMORY FREE MEMORY HERE ?
+        //TODO MEMORY FREE MEMORY HERE ? nO
 
 
         // Evaluation related stuff ...
