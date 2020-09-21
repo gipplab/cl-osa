@@ -41,13 +41,13 @@ public class ExtendedAnalysisParameters {
         // Candidate retrieval settings
         MAX_NUM_CANDIDATES_SELECTED = 2;
         CR_PRINT_LIMIT = 10;
-        CANDIDATE_SELECTION_TRESH = 0.2;
+        CANDIDATE_SELECTION_TRESH = 0; //0.2;
         //Settings for Logging etc
         LOG_TO_CSV= true;
         LOG_PREPROCESSING_RESULTS= true;
         LOG_STANDARD_TO_FILE= true;
         LOG_ERROR_TO_FILE=true;
-        LOG_VERBOSE=true;
+        LOG_VERBOSE=false;
         // Evaluation settings
         RUN_EVALUATION_AFTER_PROCESSING = true;
 

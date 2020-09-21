@@ -473,6 +473,7 @@ public class ScoringChunksCombined {
         this.scoringChunksList = new ArrayList<>();
         this.scoreMatrix = null;
         this.clusteringResults = new ArrayList<>();
+        int a = 1;
     }
 
     public String writeDownXMLResults(String tag, String dateString, String preprocessedCachingDirectory){

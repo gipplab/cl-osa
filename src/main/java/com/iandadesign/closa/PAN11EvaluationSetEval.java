@@ -17,6 +17,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 /**
@@ -149,7 +150,7 @@ public class PAN11EvaluationSetEval {
         // Overwrite the filter with new filtering
         params.panFileFilter = panFileFilter;
 
-        // Free memory TODO MEMORY MARK1: is clear effective?
+        // Free memory TODO MEMORY MARK1: is clear effective: it is but it can delete the fundamental data if there are multirefs
          suspiciousFilesLangXML.clear();
          candidateFilesLangXML.clear();
 
@@ -226,25 +227,55 @@ public class PAN11EvaluationSetEval {
         // MEMORY MARK 2: free memory here
         // memory usage OK until here
 
+        int parsedFiles = 0;
+        int parsedErrors = 0;
+        String baseResultsPath = "";
 
         // Do the file comparisons
-        int parsedFiles=0;
-        int parsedErrors=0;
-        String baseResultsPath="";
-        for(int index=0; index<suspiciousFiles.size(); index++) {
-            String suspPath = suspiciousFiles.get(index).getPath();
-            String suspFileName = suspiciousFiles.get(index).getName();
-            try {
-                logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", index+1, "/", suspiciousFiles.size(),"Filename:", suspFileName," and its",candidateFiles.size() ,"candidates");
-                osa.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
-                baseResultsPath = osa.getExtendedXmlResultsPath();
-                parsedFiles++;
-            }catch(Exception ex){
-                parsedErrors++;
-                logUtil.logAndWriteError(false, "Exception during parse of suspicious file with Filename", suspFileName, "Exception:", ex);
+        if(!osa.getDoParallelRequests()) {
+            // Single Thread Execution
+            for (int index = 0; index < suspiciousFiles.size(); index++) {
+                String suspPath = suspiciousFiles.get(index).getPath();
+                String suspFileName = suspiciousFiles.get(index).getName();
+                try {
+                    logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", index + 1, "/", suspiciousFiles.size(), "Filename:", suspFileName, " and its", candidateFiles.size(), "candidates");
+                    osa.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                    baseResultsPath = osa.getExtendedXmlResultsPath();
+                    parsedFiles++;
+                } catch (Exception ex) {
+                    parsedErrors++;
+                    logUtil.logAndWriteError(false, "Exception during parse of suspicious file with Filename", suspFileName, "Exception:", ex);
+                }
             }
+            logUtil.logAndWriteStandard(true, logUtil.getDateString(), "done processing PAN11,- parsed files:", parsedFiles, "errors:", parsedErrors);
+        } else {
+            // Multi Thread Execution
+            AtomicInteger indexP = new AtomicInteger(0);
+            AtomicInteger parsedFilesP = new AtomicInteger(0);
+            AtomicInteger parsedErrorsP = new AtomicInteger(0);
+            logUtil.logAndWriteStandard(true, logUtil.getDateString(), " Using parallelism, counter (x/y) is only a vague indicator");
+
+            suspiciousFiles.parallelStream().forEach((suspiciousFile) -> {
+                String suspPath = suspiciousFile.getPath();
+                String suspFileName = suspiciousFile.getName();
+                try {
+                    logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", indexP.get() + 1, "/", suspiciousFiles.size(), "Filename:", suspFileName, " and its", candidateFiles.size(), "candidates");
+                    parsedFilesP.getAndIncrement();
+                    indexP.getAndIncrement();
+                    osa.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                } catch (Exception ex) {
+                    parsedErrorsP.getAndIncrement();
+                    indexP.getAndIncrement();
+                    logUtil.logAndWriteError(false, "Exception during parse of suspicious file with Filename", suspFileName, "Exception:", ex);
+                }
+            });
+            // This works if the last iteration is ok
+            baseResultsPath = osa.getExtendedXmlResultsPath();
+            parsedFiles = parsedFilesP.get();
+            parsedErrors = parsedErrorsP.get();
         }
-        logUtil.logAndWriteStandard(true,logUtil.getDateString(), "done processing PAN11,- parsed files:", parsedFiles, "errors:", parsedErrors);
+
+
         if(parsedErrors>=1 || parsedFiles==0){
             return;
         }

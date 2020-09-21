@@ -215,14 +215,25 @@ public class OntologyBasedSimilarityAnalysis {
             counter++;
         }
     }
-    public void executeAlgorithmAndComputeScoresExtendedInfo(String suspiciousDocumentPath,
-                                                                            List<File> candidateDocumentFiles,
-                                                                            ExtendedAnalysisParameters params,
-                                                                            String initialDateString)
-                                                                            throws Exception{
+
+    /**
+     *
+     * @param suspiciousDocumentPath
+     * @param candidateDocumentFiles
+     * @param params
+     * @param initialDateString
+     * @param suspiciousIdTokensMapExt this is filled by reference
+     * @throws Exception
+     */
+    public Set<String> doCandidateRetrievalExtendedInfo(String suspiciousDocumentPath,
+                                                 List<File> candidateDocumentFiles,
+                                                 ExtendedAnalysisParameters params,
+                                                 String initialDateString,
+                                                 Map<String, List<SavedEntity>>  suspiciousIdTokensMapExt) throws Exception{
+        // Comparing one suspicious document to  a list of candidate documents
+
 
         // Maps used for detailed comparison
-        Map<String, List<SavedEntity>> suspiciousIdTokensMapExt = new HashMap<>();
         Map<String, List<SavedEntity>> candidateIdTokensMapExt = new HashMap<>();
         // Maps used for candidate retrieval
         Map<String, List<String>> suspiciousIdTokensMap = new HashMap<>();
@@ -263,10 +274,10 @@ public class OntologyBasedSimilarityAnalysis {
         printCandidateRetrievalResults(logUtil, candidatesForDetailedComparison, params);
 
         //TODO MEMORY MARK 3
-        candidateIdTokensMap.clear();
-        suspiciousIdTokensMap.clear();
-        preprocessedExt.clear();
-        preprocessed.clear();
+        //candidateIdTokensMap.clear();
+        //suspiciousIdTokensMap.clear(); // this deletes suspicious id tokens ext
+        // preprocessedExt.clear(); // this deletes suspciious id tokens ext saved entities
+        //preprocessed.clear();
 
 
         // By having the most similar candidates a detailed analysis is performed.
@@ -274,32 +285,34 @@ public class OntologyBasedSimilarityAnalysis {
         // Create a copy of the original candidates map and reduce it to selected candidates.
         Map<String, List<SavedEntity>> selectedCandidateIdTokensMapExt = new HashMap<> (candidateIdTokensMapExt);
         selectedCandidateIdTokensMapExt.keySet().retainAll(selectedCandidateKeys);
+
         logUtil.logAndWriteStandard(false, selectedCandidateKeys.size()+" of "+candidateScoresMap.size() + " candidates have been selected");
 
         if(selectedCandidateKeys.size()<=0){
             logUtil.logAndWriteStandard(false, "no candidates have been selected, returning");
+            return null;
+        }
+
+        return selectedCandidateKeys;
+
+    }
+    public void executeAlgorithmAndComputeScoresExtendedInfo(String suspiciousDocumentPath,
+                                                                            List<File> candidateDocumentFiles,
+                                                                            ExtendedAnalysisParameters params,
+                                                                            String initialDateString)
+                                                                            throws Exception{
+
+        // This hashmap is populated by candidateRetrieval.
+        Map<String, List<SavedEntity>> suspiciousIdTokensMapExt = new HashMap<>();
+        Set<String> selectedCandidateKeys = doCandidateRetrievalExtendedInfo(suspiciousDocumentPath,
+                candidateDocumentFiles, params, initialDateString, suspiciousIdTokensMapExt);
+        if(selectedCandidateKeys==null){
             return;
         }
 
-
-        // TODO MEMORY MARK 4 ( not much benefit)
-        selectedCandidateKeys.clear();
-        candidatesForDetailedComparison.clear();
+        // Memory in single thread run here: ~280-330 mb
 
 
-        //TODO check RAM usage at this point (actually its only necessary to load the entities of the processed candidates not all)
-        // ... probably the unused maps can be flushed here
-        // candidateScoresMap, could be also an option to load everything in second loop
-        // Filter SavedEntities which are not containing any Wikidata Entries (assuming these entities have no sentence)
-        // Or even do this in preprocessing? When sentences are available?
-
-        // Do the detailed comparison
-        detailComparisonOfSelectedCandidatesExt(suspiciousIdTokensMapExt, selectedCandidateIdTokensMapExt, params, initialDateString);
-    }
-    private void detailComparisonOfSelectedCandidatesExt(Map<String, List<SavedEntity>> suspiciousIdTokensMapExt,
-                                                         Map<String, List<SavedEntity>> selectedCandidateIdTokensMapExt,
-                                                         ExtendedAnalysisParameters params,
-                                                         String initialDateString){
         logUtil.logAndWriteStandard(false, logUtil.dashes(100));
         logUtil.logAndWriteStandard(false, "Starting with detailed analysis ...");
         logUtil.logAndWriteStandard(false, logUtil.dashes(100));
@@ -313,40 +326,42 @@ public class OntologyBasedSimilarityAnalysis {
 
         long fragmentIndex=0; // Just a running index for adressing fragments.
         for (Map.Entry<String, List<SavedEntity>> suspiciousIdTokenExt : suspiciousIdTokensMapExt.entrySet()) {
+            // MEMORY: This usually is just one suspicious candidate, therefore the complete SavedEntities are imported
             int numSentencesSusp = getMaxSentenceNumber(suspiciousIdTokenExt)+1;
             String suspFilename = new File(suspiciousIdTokenExt.getKey()).getName();
             logUtil.logAndWriteStandard(true, "DA selected Susp-File:",suspFilename);
             logUtil.logAndWriteStandard(true,"Suspicious file sentences:", numSentencesSusp);
 
-            for (Map.Entry<String, List<SavedEntity>> candidateIdTokenExt : selectedCandidateIdTokensMapExt.entrySet()) {
+            for(String selectedCandidatePath: selectedCandidateKeys) {
                 try {
-                    int numSentencesCand = getMaxSentenceNumber(candidateIdTokenExt) + 1; //TODO fix redundant Operation
-                    String candFilename = new File(candidateIdTokenExt.getKey()).getName();
+                    // MEMORY: Getting the Saved entities for the current candidate.
+                    List<SavedEntity> candidateEntities = preProcessExtendedInfo(selectedCandidatePath,null);
+
+                    int numSentencesCand = getMaxSentenceNumber(candidateEntities) + 1; //TODO fix redundant Operation
+                    String candFilename = new File(selectedCandidatePath).getName();
                     logUtil.logAndWriteStandard(true, "DA selected Cand-File:", candFilename);
                     logUtil.logAndWriteStandard(true, "Candidate file sentences:", numSentencesCand);
-                    scoringChunksCombined.setCurrentDocuments(suspiciousIdTokenExt.getKey(), candidateIdTokenExt.getKey());
+                    scoringChunksCombined.setCurrentDocuments(suspiciousIdTokenExt.getKey(), selectedCandidatePath);
                     scoringChunksCombined.createScoreMatrix(numSentencesSusp, numSentencesCand);
                     int suspiciousSlidingWindowY = 0; // specific index for 2D Matrix positioning
 
                     // Documents have been specified here->start to slide the window.
                     for (int currentSuspWindowStartSentence = 0; currentSuspWindowStartSentence < numSentencesSusp; currentSuspWindowStartSentence += params.NUM_SENTENCE_INCREMENT_SLIDINGW) {
                         SlidingWindowInfo swiSuspicious = getWikiEntityStringsForSlidingWindow(
-                                suspiciousIdTokenExt,
+                                suspiciousIdTokenExt.getValue(),
                                 currentSuspWindowStartSentence,
                                 params.NUM_SENTENCES_IN_SLIDING_WINDOW,
                                 suspiciousIdTokenExt.getKey());
 
-                        // TODO MEMORY - get the suspicious entities here (overwrite the previous ones)
                         Map<String, List<String>> currentSuspiciousIdTokensMap = swiSuspicious.getFilenameToEntities();
                         int candSlidingWindowX = 0; // specific index for 2D Matrix positioning
                         for (int currentCandWindowStartSentence = 0; currentCandWindowStartSentence < numSentencesCand; currentCandWindowStartSentence += params.NUM_SENTENCE_INCREMENT_SLIDINGW) {
                             SlidingWindowInfo swiCandidate = getWikiEntityStringsForSlidingWindow(
-                                    candidateIdTokenExt,
+                                    candidateEntities,
                                     currentCandWindowStartSentence,
                                     params.NUM_SENTENCES_IN_SLIDING_WINDOW,
-                                    candidateIdTokenExt.getKey());
+                                    selectedCandidatePath);
 
-                            // TODO MEMORY - get the candidate entities here (overwrite the previous ones)
                             Map<String, List<String>> currentCandidateIdTokensMap = swiCandidate.getFilenameToEntities();
 
                             // logUtil.logAndWriteStandard(false,"Susp Sentence: "+suspiciousIdTokenExt.getKey());
@@ -369,7 +384,7 @@ public class OntologyBasedSimilarityAnalysis {
                             Map<String, Double> fragmentScoresMap = performCosineSimilarityAnalysis(currentSuspiciousIdTokensMap,
                                     currentCandidateIdTokensMap).get(suspiciousIdTokenExt.getKey());
 
-                            Double fragmentScore = fragmentScoresMap.get(candidateIdTokenExt.getKey());
+                            Double fragmentScore = fragmentScoresMap.get(selectedCandidatePath);
                             // TODO if using a window-bordersize buffering remove this later
                             if (fragmentScore == null || fragmentScore <= 0.0) {
                                 fragmentIndex++; // Just increase the fragment index for absolute indexing.
@@ -392,12 +407,12 @@ public class OntologyBasedSimilarityAnalysis {
                                 logUtil.logAndWriteStandard(true, "Suspicious End Character Index:", swiSuspicious.getCharacterEndIndex());
                                 logUtil.logAndWriteStandard(true, "Candidate End Character Index:", swiCandidate.getCharacterEndIndex());
                                 logUtil.logAndWriteStandard(true, "Suspicious Tokens:", currentSuspiciousIdTokensMap.get(suspiciousIdTokenExt.getKey()));
-                                logUtil.logAndWriteStandard(true, "Candidate Tokens:", currentCandidateIdTokensMap.get(candidateIdTokenExt.getKey()));
+                                logUtil.logAndWriteStandard(true, "Candidate Tokens:", currentCandidateIdTokensMap.get(selectedCandidatePath));
                                 logUtil.logAndWriteStandard(true, "Fragment Score:", fragmentScore);
                                 logUtil.logAndWriteStandard(false, logUtil.dashes(50));
                                 currentScoringChunk.printMe(
                                         currentSuspiciousIdTokensMap.get(suspiciousIdTokenExt.getKey()),
-                                        currentCandidateIdTokensMap.get(candidateIdTokenExt.getKey())
+                                        currentCandidateIdTokensMap.get(selectedCandidatePath)
                                 );
 
                             }
@@ -420,13 +435,17 @@ public class OntologyBasedSimilarityAnalysis {
                     }
                     logUtil.logAndWriteStandard(true, "done processing file combination", suspFilename, "with", candFilename);
                     logUtil.logAndWriteStandard(false, logUtil.dashes(100));
+
+                    // MEMORY: Clear candidate entities from memory.
+                    candidateEntities.clear();
                 } catch (Exception ex) {
                     logUtil.logAndWriteError(true, "Exception processing file combination",
-                            suspiciousIdTokenExt.getKey(), candidateIdTokenExt.getKey());
+                            suspiciousIdTokenExt.getKey(), selectedCandidatePath);
                 } finally {
                     // ... free memory
                     //TODO perfomance: Check if memory is released here properly
                     scoringChunksCombined.flushInternalCombinedChunks();
+
                 }
             }
 
@@ -434,11 +453,10 @@ public class OntologyBasedSimilarityAnalysis {
     }
 
     SlidingWindowInfo getWikiEntityStringsForSlidingWindow(
-            Map.Entry<String, List<SavedEntity>> idTokenExt, int startSentenceIndex, int windowSize, String filename){
+            List<SavedEntity> savedEntities, int startSentenceIndex, int windowSize, String filename){
         // Obtaining the entities which are within the window
         int endSentenceIndex = startSentenceIndex + windowSize;
-        List<SavedEntity> windowEntitysSusp = idTokenExt
-                .getValue().stream()
+        List<SavedEntity> windowEntitysSusp = savedEntities.stream()
                 .filter(currentEntity ->
                         currentEntity.getToken().getSentenceNumber() >= startSentenceIndex
                                 && currentEntity.getToken().getSentenceNumber() < endSentenceIndex)
@@ -480,6 +498,14 @@ public class OntologyBasedSimilarityAnalysis {
                 .map(SavedEntity::getToken)
                 .map(Token::getSentenceNumber)
                 .collect(Collectors.toList()));
+    }
+
+    Integer getMaxSentenceNumber(List<SavedEntity> inputEntities){
+        return Collections.max(
+                inputEntities.stream()
+                        .map(SavedEntity::getToken)
+                        .map(Token::getSentenceNumber)
+                        .collect(Collectors.toList()));
     }
 
     /**
