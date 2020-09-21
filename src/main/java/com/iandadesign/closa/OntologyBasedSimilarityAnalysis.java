@@ -262,6 +262,12 @@ public class OntologyBasedSimilarityAnalysis {
         // Print a representative selection of the scores
         printCandidateRetrievalResults(logUtil, candidatesForDetailedComparison, params);
 
+        //TODO MEMORY MARK 3
+        candidateIdTokensMap.clear();
+        suspiciousIdTokensMap.clear();
+        preprocessedExt.clear();
+        preprocessed.clear();
+
 
         // By having the most similar candidates a detailed analysis is performed.
         Set<String> selectedCandidateKeys = candidatesForDetailedComparison.keySet();
@@ -274,6 +280,12 @@ public class OntologyBasedSimilarityAnalysis {
             logUtil.logAndWriteStandard(false, "no candidates have been selected, returning");
             return;
         }
+
+
+        // TODO MEMORY MARK 4 ( not much benefit)
+        selectedCandidateKeys.clear();
+        candidatesForDetailedComparison.clear();
+
 
         //TODO check RAM usage at this point (actually its only necessary to load the entities of the processed candidates not all)
         // ... probably the unused maps can be flushed here
@@ -324,6 +336,7 @@ public class OntologyBasedSimilarityAnalysis {
                                 params.NUM_SENTENCES_IN_SLIDING_WINDOW,
                                 suspiciousIdTokenExt.getKey());
 
+                        // TODO MEMORY - get the suspicious entities here (overwrite the previous ones)
                         Map<String, List<String>> currentSuspiciousIdTokensMap = swiSuspicious.getFilenameToEntities();
                         int candSlidingWindowX = 0; // specific index for 2D Matrix positioning
                         for (int currentCandWindowStartSentence = 0; currentCandWindowStartSentence < numSentencesCand; currentCandWindowStartSentence += params.NUM_SENTENCE_INCREMENT_SLIDINGW) {
@@ -333,6 +346,7 @@ public class OntologyBasedSimilarityAnalysis {
                                     params.NUM_SENTENCES_IN_SLIDING_WINDOW,
                                     candidateIdTokenExt.getKey());
 
+                            // TODO MEMORY - get the candidate entities here (overwrite the previous ones)
                             Map<String, List<String>> currentCandidateIdTokensMap = swiCandidate.getFilenameToEntities();
 
                             // logUtil.logAndWriteStandard(false,"Susp Sentence: "+suspiciousIdTokenExt.getKey());
