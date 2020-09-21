@@ -242,8 +242,10 @@ public class PAN11EvaluationSetEval {
                 String suspFileName = suspiciousFiles.get(index).getName();
                 try {
                     logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", index + 1, "/", suspiciousFiles.size(), "Filename:", suspFileName, " and its", candidateFiles.size(), "candidates");
-                    osa.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
-                    baseResultsPath = osa.getExtendedXmlResultsPath();
+                    OntologyBasedSimilarityAnalysis osaT = new OntologyBasedSimilarityAnalysis();
+                    osaT.initializeLogger(tag, params); // this has to be done immediately after constructor
+                    osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                    baseResultsPath = osaT.getExtendedXmlResultsPath();
                     parsedFiles++;
                 } catch (Exception ex) {
                     parsedErrors++;
