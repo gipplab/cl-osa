@@ -428,7 +428,7 @@ public class OntologyBasedSimilarityAnalysis {
                     // ... calculate the plagiarism sections from windows
                     scoringChunksCombined.calculateMatrixClusters(params.USE_ADAPTIVE_CLUSTERING_TRESH, params.ADAPTIVE_FORM_FACTOR);
                     // ... write down results
-
+                    // TODO solve this in multithreading context
                     this.extendedXmlResultsPath = scoringChunksCombined.writeDownXMLResults(tag, initialDateString, preprocessedCachingDirectory);
                     if (params.LOG_TO_CSV) {
                         scoringChunksCombined.writeScoresMapAsCSV(tag, initialDateString, preprocessedCachingDirectory);
@@ -450,6 +450,7 @@ public class OntologyBasedSimilarityAnalysis {
             }
 
         }
+        logUtil.writeStandardReport(false, "Whats going on here?");
     }
 
     SlidingWindowInfo getWikiEntityStringsForSlidingWindow(
