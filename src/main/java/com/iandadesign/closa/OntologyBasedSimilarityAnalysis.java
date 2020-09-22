@@ -464,7 +464,6 @@ public class OntologyBasedSimilarityAnalysis {
 
         }
 
-
         suspiciousIdTokensMapExt.clear();
         logUtil.writeStandardReport(false, "Whats going on here?");
     }
