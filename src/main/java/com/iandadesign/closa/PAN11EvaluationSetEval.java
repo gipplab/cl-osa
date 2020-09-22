@@ -275,7 +275,9 @@ public class PAN11EvaluationSetEval {
                         logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", indexP.get() + 1, "/", suspiciousFiles.size(), "Filename:", suspFileName, " and its", candidateFiles.size(), "candidates");
                         parsedFilesP.getAndIncrement();
                         indexP.getAndIncrement();
-                        osa.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                        OntologyBasedSimilarityAnalysis osaT = new OntologyBasedSimilarityAnalysis();
+                        osaT.initializeLogger(tag, params); // this has to be done immediately after constructor
+                        osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
                     } catch (Exception ex) {
                         parsedErrorsP.getAndIncrement();
                         indexP.getAndIncrement();
