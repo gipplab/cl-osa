@@ -134,6 +134,7 @@ public class OntologyBasedSimilarityAnalysis {
         this.textClassifier = new TextClassifier();
     }
 
+
     /**
      * Constructor.
      *
@@ -158,6 +159,12 @@ public class OntologyBasedSimilarityAnalysis {
     public String getTag(){
         return this.tag;
     }
+
+    public TextClassifier getTextClassifier() {
+        return textClassifier;
+    }
+
+
     /**
      * CL-OSA pre-processing: translation and entity extraction
      *
