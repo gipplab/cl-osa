@@ -150,6 +150,14 @@ public class OntologyBasedSimilarityAnalysis {
                        params.LOG_ERROR_TO_FILE, params.LOG_STANDARD_TO_FILE);
     }
 
+    public void setLogger(ExtendedLogUtil extendedLogUtil, String tag){
+        this.logUtil = extendedLogUtil;
+        this.tag = tag;
+    }
+
+    public String getTag(){
+        return this.tag;
+    }
     /**
      * CL-OSA pre-processing: translation and entity extraction
      *
