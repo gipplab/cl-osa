@@ -469,11 +469,22 @@ public class ScoringChunksCombined {
     }
 
     public void flushInternalCombinedChunks(){
-        this.allScoringChunksCombined = new ArrayMap<>(); //Obsolete
-        this.scoringChunksList = new ArrayList<>();
-        this.scoreMatrix = null;
-        this.clusteringResults = new ArrayList<>();
-        int a = 1;
+        //this.allScoringChunksCombined = new ArrayMap<>(); //Obsolete
+        this.allScoringChunksCombined.clear();
+        //this.scoringChunksList = new ArrayList<>();
+        this.scoringChunksList.clear();
+        //this.scoreMatrix = null;
+
+        for (int row=0; row < this.scoreMatrix.length; row++)
+        {
+            for (int col=0; col < this.scoreMatrix.length; col++)
+            {
+                 this.scoreMatrix[row][col] = null;
+            }
+        }
+
+        //this.clusteringResults = new ArrayList<>();
+        this.clusteringResults.clear();
     }
 
     public String writeDownXMLResults(String tag, String dateString, String preprocessedCachingDirectory){

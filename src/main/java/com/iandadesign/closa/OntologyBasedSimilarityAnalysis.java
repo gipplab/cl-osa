@@ -255,16 +255,14 @@ public class OntologyBasedSimilarityAnalysis {
         Map<String, List<String>> candidateIdTokensMap = new HashMap<>();
 
         String suspiciousDocumentStr = FileUtils.readFileToString(new File(suspiciousDocumentPath), StandardCharsets.UTF_8);
-        String lang = languageDetector.detectLanguage(suspiciousDocumentStr);
-        List<SavedEntity> preprocessedExt = preProcessExtendedInfo(suspiciousDocumentPath, lang);
+        List<SavedEntity> preprocessedExt = preProcessExtendedInfo(suspiciousDocumentPath, null);
         List<String> preprocessed = preprocessedExt.stream().map(SavedEntity::getWikidataEntityId).collect(Collectors.toList());
 
         suspiciousIdTokensMapExt.put(suspiciousDocumentPath, preprocessedExt);
         suspiciousIdTokensMap.put(suspiciousDocumentPath, preprocessed);
 
         for (File candidateDocumentFile : candidateDocumentFiles) {
-            List<SavedEntity> preprocessedCandExt = preProcessExtendedInfo(candidateDocumentFile.getPath(),
-                    languageDetector.detectLanguage(FileUtils.readFileToString(candidateDocumentFile, StandardCharsets.UTF_8)));
+            List<SavedEntity> preprocessedCandExt = preProcessExtendedInfo(candidateDocumentFile.getPath(),null );
             List<String> preprocessedCand = preprocessedCandExt.stream().map(SavedEntity::getWikidataEntityId).collect(Collectors.toList());
             candidateIdTokensMap.put(candidateDocumentFile.getPath(), preprocessedCand);
             candidateIdTokensMapExt.put(candidateDocumentFile.getPath(), preprocessedCandExt);
