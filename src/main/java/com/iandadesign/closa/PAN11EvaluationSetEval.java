@@ -278,6 +278,7 @@ public class PAN11EvaluationSetEval {
                         OntologyBasedSimilarityAnalysis osaT = new OntologyBasedSimilarityAnalysis(null, null);
                         osaT.setLogger(osa.getExtendedLogUtil(), osa.getTag()); // this has to be done immediately after constructor
                         osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                        osaT = null;
                         System.gc(); // Excplicit call to garbage collector.
                     } catch (Exception ex) {
                         parsedErrorsP.getAndIncrement();

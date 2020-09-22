@@ -306,6 +306,15 @@ public class OntologyBasedSimilarityAnalysis {
             return null;
         }
 
+
+        candidateIdTokensMapExt.clear();
+        candidateIdTokensMap.clear();
+        candidateScoresMap.clear();
+        preprocessed.clear();
+        suspiciousIdTokensMap.clear();
+        candidatesForDetailedComparison.clear();
+        selectedCandidateIdTokensMapExt.clear();
+        preprocessedExt = new ArrayList<>(); // Just new ref here, because entries still used.
         return selectedCandidateKeys;
 
     }
