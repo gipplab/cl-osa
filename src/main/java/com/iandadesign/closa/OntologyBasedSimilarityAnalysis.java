@@ -339,13 +339,7 @@ public class OntologyBasedSimilarityAnalysis {
         logUtil.logAndWriteStandard(false, logUtil.dashes(100));
         logUtil.logAndWriteStandard(false, "Starting with detailed analysis ...");
         logUtil.logAndWriteStandard(false, logUtil.dashes(100));
-        // Storage for combined window entities.
-        ScoringChunksCombined scoringChunksCombined = new ScoringChunksCombined(
-                params.ADJACENT_THRESH,
-                params.SINGLE_THRESH,
-                params.NUM_SENTENCES_IN_SLIDING_WINDOW,
-                params.NUM_SENTENCE_INCREMENT_SLIDINGW,
-                params.CLIPPING_MARGING);
+
 
         long fragmentIndex=0; // Just a running index for adressing fragments.
         for (Map.Entry<String, List<SavedEntity>> suspiciousIdTokenExt : suspiciousIdTokensMapExt.entrySet()) {
@@ -355,8 +349,19 @@ public class OntologyBasedSimilarityAnalysis {
             logUtil.logAndWriteStandard(true, "DA selected Susp-File:",suspFilename);
             logUtil.logAndWriteStandard(true,"Suspicious file sentences:", numSentencesSusp);
 
+
+
             for(String selectedCandidatePath: selectedCandidateKeys) {
+
+                // Storage for combined window entities.
+                ScoringChunksCombined scoringChunksCombined = new ScoringChunksCombined(
+                        params.ADJACENT_THRESH,
+                        params.SINGLE_THRESH,
+                        params.NUM_SENTENCES_IN_SLIDING_WINDOW,
+                        params.NUM_SENTENCE_INCREMENT_SLIDINGW,
+                        params.CLIPPING_MARGING);
                 try {
+
                     // MEMORY: Getting the Saved entities for the current candidate.
                     List<SavedEntity> candidateEntities = preProcessExtendedInfo(selectedCandidatePath,null);
 
@@ -479,7 +484,7 @@ public class OntologyBasedSimilarityAnalysis {
                     // ... free memory
                     //TODO perfomance: Check if memory is released here properly
                     scoringChunksCombined.flushInternalCombinedChunks();
-
+                    System.gc();
                 }
             }
 
