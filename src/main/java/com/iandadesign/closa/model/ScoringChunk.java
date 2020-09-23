@@ -22,8 +22,6 @@ public class ScoringChunk {
 
 
     public final double computedCosineSimilarity;
-    public final long fragmentIndex;
-    private final String printFormat;
     // Clustering algorithm related properties.
     private int suspiciousMatrixIndex;
     private int candidateMatrixIndex;
@@ -46,13 +44,12 @@ public class ScoringChunk {
 
 
         this.computedCosineSimilarity = computedCosineSimilarity;
-        this.fragmentIndex = fragmentIndex;
-        this.printFormat = "%-40s%s%n";
+        //this.fragmentIndex = fragmentIndex;
         this.processedByClusteringAlgo = false;
     }
 
-    public void printMe(List<String> suspiciousTokens, List<String> candidateTokens){
-        System.out.printf(printFormat, "Fragment Number:", fragmentIndex);
+    public void printMe(String printFormat, List<String> suspiciousTokens, List<String> candidateTokens){
+        //System.out.printf(printFormat, "Fragment Number:", fragmentIndex);
         System.out.printf(printFormat, "Suspicious Start Sentence:", this.suspiciousStartSentence);
         System.out.printf(printFormat, "Candidate Start Sentence:", this.candidateStartSentence);
         System.out.printf(printFormat, "Suspicious Tokens:", suspiciousTokens);
@@ -63,9 +60,7 @@ public class ScoringChunk {
     public double getComputedCosineSimilarity() {
         return computedCosineSimilarity;
     }
-    public long getFragmentIndex() {
-        return fragmentIndex;
-    }
+
     public int getSuspiciousMatrixIndex(){
         return suspiciousMatrixIndex;
     }

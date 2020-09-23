@@ -437,6 +437,7 @@ public class OntologyBasedSimilarityAnalysis {
                                 logUtil.logAndWriteStandard(true, "Fragment Score:", fragmentScore);
                                 logUtil.logAndWriteStandard(false, logUtil.dashes(50));
                                 currentScoringChunk.printMe(
+                                        "%-40s%s%n",
                                         currentSuspiciousIdTokensMap.get(suspiciousIdTokenExt.getKey()),
                                         currentCandidateIdTokensMap.get(selectedCandidatePath)
                                 );

@@ -379,6 +379,8 @@ public class ScoringChunksCombined {
         //this.allScoringChunksCombined = new ArrayMap<>(); //Obsolete
         //this.scoringChunksList = new ArrayList<>();
         this.scoringChunksList.clear();
+
+        //this.scoringChunksList.removeAll(this.scoringChunksList);
         //this.scoreMatrix = null;
 
         for (int row=0; row < this.scoreMatrix.length; row++)
