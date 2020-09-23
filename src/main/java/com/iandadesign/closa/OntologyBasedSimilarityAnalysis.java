@@ -397,11 +397,12 @@ public class OntologyBasedSimilarityAnalysis {
                                         swiCandidate,
                                         -1, // mock entry value
                                         fragmentIndex);
-                               // scoringChunksCombined.storeScoringChunkToScoringMatrix(mockScoringChunk,
-                                //        suspiciousSlidingWindowY,
-                                 //       candSlidingWindowX);
+                                scoringChunksCombined.storeScoringChunkToScoringMatrix(mockScoringChunk,
+                                        suspiciousSlidingWindowY,
+                                        candSlidingWindowX);
                                 fragmentIndex++; // Just increase the fragment index for absolute indexing.
                                 candSlidingWindowX++;
+                                swiCandidate.deinitialize();
                                 continue;  // Skip without increasing 2D indices (all window comparisons would be 0 score)
                             }
 
@@ -420,6 +421,8 @@ public class OntologyBasedSimilarityAnalysis {
                                     swiCandidate,
                                     fragmentScore,
                                     fragmentIndex);
+                            swiCandidate.deinitialize();
+
                             if (params.LOG_VERBOSE) {
                                 logUtil.logAndWriteStandard(false, logUtil.dashes(50));
                                 logUtil.logAndWriteStandard(true, "Fragment Number:", fragmentIndex);
@@ -441,20 +444,22 @@ public class OntologyBasedSimilarityAnalysis {
                             }
                             //TODO performance mark fileprints as optional
                             // Adding scoring chunk with coordinates to matrix.
-                            //scoringChunksCombined.storeScoringChunkToScoringMatrix(currentScoringChunk, suspiciousSlidingWindowY, candSlidingWindowX);
+                            scoringChunksCombined.storeScoringChunkToScoringMatrix(currentScoringChunk, suspiciousSlidingWindowY, candSlidingWindowX);
+
                             candSlidingWindowX++;
 
                             // Clear memory (ok?)
                             currentCandidateIdTokensMap.clear();
                             fragmentScoresMap.clear();
                         }
+                        swiSuspicious.deinitialize();
                         suspiciousSlidingWindowY++;
                         currentSuspiciousIdTokensMap.clear();
 
                     }
                     // After each candidate and suspicious file combination
                     // ... calculate the plagiarism sections from windows
-                    scoringChunksCombined.calculateMatrixClusters(params.USE_ADAPTIVE_CLUSTERING_TRESH, params.ADAPTIVE_FORM_FACTOR);
+                    //scoringChunksCombined.calculateMatrixClusters(params.USE_ADAPTIVE_CLUSTERING_TRESH, params.ADAPTIVE_FORM_FACTOR);
                     // ... write down results
                     // TODO solve this in multithreading context
                     this.extendedXmlResultsPath = scoringChunksCombined.writeDownXMLResults(tag, initialDateString, preprocessedCachingDirectory);

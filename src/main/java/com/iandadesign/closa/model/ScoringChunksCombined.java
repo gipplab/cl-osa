@@ -181,10 +181,10 @@ public class ScoringChunksCombined {
     }
     @Obsolete
     private MapCoords getMapCoordsOfChunk(ScoringChunk chunk){
-        int candStartSentenceIndex = chunk.getCandidateWindow().getStartSentence();
-        int suspStartSentenceIndex = chunk.getSuspiciousWindow().getStartSentence();
-        int candEndSentenceIndex = chunk.getCandidateWindow().getEndSentence();
-        int suspEndSentenceIndex = chunk.getSuspiciousWindow().getEndSentence();
+        int candStartSentenceIndex = chunk.getCandidateStartSentence();
+        int suspStartSentenceIndex = chunk.getSuspiciousStartSentence();
+        int candEndSentenceIndex = chunk.getCandidateEndSentence();
+        int suspEndSentenceIndex = chunk.getSuspiciousEndSentence();
 
         MapCoords coords = new MapCoords(candStartSentenceIndex,
                 candEndSentenceIndex,
@@ -370,19 +370,19 @@ public class ScoringChunksCombined {
         int candEndChar = -1;
         for(ScoringChunk clusterChunk:clusterChunks){
 
-            int cCandStart = clusterChunk.getCandidateWindow().getCharacterStartIndex();
+            int cCandStart = clusterChunk.getCandidateCharacterStartIndex();
             if(cCandStart<candStartChar){
                 candStartChar = cCandStart;
             }
-            int cSuspStart = clusterChunk.getSuspiciousWindow().getCharacterStartIndex();
+            int cSuspStart = clusterChunk.getSuspiciousCharacterStartIndex();
             if(cSuspStart<suspStartChar){
                 suspStartChar = cSuspStart;
             }
-            int cCandEnd = clusterChunk.getCandidateWindow().getCharacterEndIndex();
+            int cCandEnd = clusterChunk.getCandidateCharacterEndIndex();
             if(cCandEnd>candEndChar){
                 candEndChar = cCandEnd;
             }
-            int cSuspEnd = clusterChunk.getSuspiciousWindow().getCharacterEndIndex();
+            int cSuspEnd = clusterChunk.getSuspiciousCharacterEndIndex();
             if(cSuspEnd>suspEndChar){
                 suspEndChar = cSuspEnd;
             }
@@ -485,7 +485,6 @@ public class ScoringChunksCombined {
                 if(this.scoreMatrix[row][col]==null){
                     continue;
                 }
-                this.scoreMatrix[row][col].deinitialize();
                 this.scoreMatrix[row][col] = null;
             }
         }
@@ -560,8 +559,8 @@ public class ScoringChunksCombined {
                             } else {
                                 DecimalFormat df = new DecimalFormat("#.####");
                                 String formatted = df.format(item.getComputedCosineSimilarity());
-                                formatted+="||cs"+item.candidateWindow.getCharacterStartIndex();
-                                formatted+="||ss"+item.suspiciousWindow.getCharacterStartIndex();
+                                formatted+="||cs"+item.getCandidateCharacterStartIndex();
+                                formatted+="||ss"+item.getSuspiciousCharacterStartIndex();
                                 values.add(formatted);
                             }
                         }
@@ -608,7 +607,7 @@ public class ScoringChunksCombined {
 
         // Writing the xml input to file.
         createDocumentNode(eventWriter, this.suspiciousDocumentName);
-        
+
         eventWriter.close();
     }
 

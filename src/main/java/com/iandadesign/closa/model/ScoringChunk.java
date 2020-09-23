@@ -10,8 +10,17 @@ import java.util.List;
  * @author Johannes Stegmüller on 2020/05/29/
  */
 public class ScoringChunk {
-    public final SlidingWindowInfo suspiciousWindow;
-    public final SlidingWindowInfo candidateWindow;
+    private final int candidateStartSentence;
+    private final int candidateEndSentence;
+    private final int candidateCharacterStartIndex;
+    private final int candidateCharacterEndIndex;
+
+    private final int suspiciousStartSentence;
+    private final int suspiciousEndSentence;
+    private final int suspiciousCharacterStartIndex;
+    private final int suspiciousCharacterEndIndex;
+
+
     public final double computedCosineSimilarity;
     public final long fragmentIndex;
     private final String printFormat;
@@ -25,8 +34,17 @@ public class ScoringChunk {
                         double computedCosineSimilarity,
                         long fragmentIndex) {
 
-        this.suspiciousWindow = suspiciousWindow;
-        this.candidateWindow = candidateWindow;
+        this.suspiciousStartSentence = suspiciousWindow.getStartSentence();
+        this.suspiciousEndSentence = suspiciousWindow.getEndSentence();
+        this.suspiciousCharacterStartIndex = suspiciousWindow.getCharacterStartIndex();
+        this.suspiciousCharacterEndIndex = suspiciousWindow.getCharacterEndIndex();
+
+        this.candidateStartSentence = candidateWindow.getStartSentence();
+        this.candidateEndSentence = candidateWindow.getEndSentence();
+        this.candidateCharacterStartIndex = candidateWindow.getCharacterStartIndex();
+        this.candidateCharacterEndIndex = candidateWindow.getCharacterEndIndex();
+
+
         this.computedCosineSimilarity = computedCosineSimilarity;
         this.fragmentIndex = fragmentIndex;
         this.printFormat = "%-40s%s%n";
@@ -35,8 +53,8 @@ public class ScoringChunk {
 
     public void printMe(List<String> suspiciousTokens, List<String> candidateTokens){
         System.out.printf(printFormat, "Fragment Number:", fragmentIndex);
-        System.out.printf(printFormat, "Suspicious Start Sentence:", suspiciousWindow.getStartSentence());
-        System.out.printf(printFormat, "Candidate Start Sentence:", candidateWindow.getStartSentence());
+        System.out.printf(printFormat, "Suspicious Start Sentence:", this.suspiciousStartSentence);
+        System.out.printf(printFormat, "Candidate Start Sentence:", this.candidateStartSentence);
         System.out.printf(printFormat, "Suspicious Tokens:", suspiciousTokens);
         System.out.printf(printFormat, "Candidate Tokens:", candidateTokens);
         System.out.printf(printFormat, "Fragment Score:", computedCosineSimilarity);
@@ -67,19 +85,36 @@ public class ScoringChunk {
         this.processedByClusteringAlgo = processedByClusteringAlgo;
     }
 
-    public SlidingWindowInfo getCandidateWindow() {
-        return candidateWindow;
-    }
-    public SlidingWindowInfo getSuspiciousWindow(){
-        return suspiciousWindow;
+    public int getCandidateCharacterStartIndex() {
+        return candidateCharacterStartIndex;
     }
 
-    public void deinitialize(){
-        if(suspiciousWindow!=null) {
-            suspiciousWindow.deinitialize();
-        }
-        if(candidateWindow!=null) {
-            candidateWindow.deinitialize();
-        }
+    public int getCandidateCharacterEndIndex() {
+        return candidateCharacterEndIndex;
     }
+
+    public int getCandidateEndSentence() {
+        return candidateEndSentence;
+    }
+
+    public int getCandidateStartSentence() {
+        return candidateStartSentence;
+    }
+
+    public int getSuspiciousCharacterEndIndex() {
+        return suspiciousCharacterEndIndex;
+    }
+
+    public int getSuspiciousCharacterStartIndex() {
+        return suspiciousCharacterStartIndex;
+    }
+
+    public int getSuspiciousEndSentence() {
+        return suspiciousEndSentence;
+    }
+
+    public int getSuspiciousStartSentence() {
+        return suspiciousStartSentence;
+    }
+
 }
