@@ -490,7 +490,9 @@ public class ScoringChunksCombined {
         }
 
         //this.clusteringResults = new ArrayList<>();
-        this.clusteringResults.clear();
+        if(this.clusteringResults !=null) {
+            this.clusteringResults.clear();
+        }
     }
 
     public String writeDownXMLResults(String tag, String dateString, String preprocessedCachingDirectory){

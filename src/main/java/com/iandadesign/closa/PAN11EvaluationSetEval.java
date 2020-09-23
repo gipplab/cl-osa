@@ -284,7 +284,8 @@ public class PAN11EvaluationSetEval {
                     } catch (Exception ex) {
                         parsedErrorsP.getAndIncrement();
                         indexP.getAndIncrement();
-                        logUtil.logAndWriteError(false, "Exception during parse of suspicious file with Filename", suspFileName, "Exception:", ex);
+                        logUtil.logAndWriteError(false, "Exception during parse of suspicious file with Filename", suspFileName, "Exception:");
+                        ex.printStackTrace();
                     }
                 })).get();
             }catch(Exception e) {//SecurityException | RejectedExecutionException e){
