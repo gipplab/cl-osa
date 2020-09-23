@@ -406,7 +406,7 @@ public class OntologyBasedSimilarityAnalysis {
 
                             Map<String, Double> fragmentScoresMap = performCosineSimilarityAnalysis(currentSuspiciousIdTokensMap,
                                     currentCandidateIdTokensMap).get(suspiciousIdTokenExt.getKey());
-
+                        /*
                             Double fragmentScore = fragmentScoresMap.get(selectedCandidatePath);
                             // TODO if using a window-bordersize buffering remove this later
                             if (fragmentScore == null || fragmentScore <= 0.0) {
@@ -414,8 +414,8 @@ public class OntologyBasedSimilarityAnalysis {
                                 candSlidingWindowX++;
                                 continue;
                             }
-
-
+                        */
+                            Double fragmentScore = 0.0;
                             ScoringChunk currentScoringChunk = new ScoringChunk(swiSuspicious,
                                     swiCandidate,
                                     fragmentScore,
@@ -687,7 +687,7 @@ public class OntologyBasedSimilarityAnalysis {
         //ProgressBar progressBar = new ProgressBar("Perform cosine similarity analysis", suspiciousIdTokensMap.entrySet().size(), ProgressBarStyle.ASCII);
         //progressBar.start();
 
-        AtomicInteger progress = new AtomicInteger(0);
+        //AtomicInteger progress = new AtomicInteger(0);
 
         // iterate the suspicious documents
         Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap = suspiciousIdTokensMap.entrySet()

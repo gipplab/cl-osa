@@ -52,7 +52,7 @@ public class ExtendedAnalysisParameters {
         // Evaluation settings
         RUN_EVALUATION_AFTER_PROCESSING = true;
         // Parallelism Settings
-        PARALLELISM_THREAD_NUM = 15;
+        PARALLELISM_THREAD_NUM = 30;
 
         // File Filter Options
         USE_FILE_FILTER=false;
