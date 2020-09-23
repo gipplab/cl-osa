@@ -497,9 +497,11 @@ public class ScoringChunksCombined {
                 .toAbsolutePath().toString();
         // Writing the results to xml file
         try {
+            System.out.println("RESULTS writing result to: "+cosineResultsPath+ "Results length: "+this.clusteringResults.size());
             this.writeResultAsXML(cosineResultsPath);
             this.prettifyXML(cosineResultsPath);
         } catch(Exception ex){
+            System.out.println("Exception during printiing results: "+ex.toString());
             ex.printStackTrace();
         }
         return xmlResultsFolderPath;
