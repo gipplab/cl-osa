@@ -370,6 +370,7 @@ public class OntologyBasedSimilarityAnalysis {
 
                     // Documents have been specified here->start to slide the window.
                     for (int currentSuspWindowStartSentence = 0; currentSuspWindowStartSentence < numSentencesSusp; currentSuspWindowStartSentence += params.NUM_SENTENCE_INCREMENT_SLIDINGW) {
+                        /*
                         SlidingWindowInfo swiSuspicious = getWikiEntityStringsForSlidingWindow(
                                 suspiciousIdTokenExt.getValue(),
                                 currentSuspWindowStartSentence,
@@ -449,6 +450,7 @@ public class OntologyBasedSimilarityAnalysis {
                         }
                         suspiciousSlidingWindowY++;
                         currentSuspiciousIdTokensMap.clear();
+                        */
                     }
                     // After each candidate and suspicious file combination
                     // ... calculate the plagiarism sections from windows
