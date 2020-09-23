@@ -459,10 +459,10 @@ public class OntologyBasedSimilarityAnalysis {
                     }
                     // After each candidate and suspicious file combination
                     // ... calculate the plagiarism sections from windows
-                    //scoringChunksCombined.calculateMatrixClusters(params.USE_ADAPTIVE_CLUSTERING_TRESH, params.ADAPTIVE_FORM_FACTOR);
+                    scoringChunksCombined.calculateMatrixClusters(params.USE_ADAPTIVE_CLUSTERING_TRESH, params.ADAPTIVE_FORM_FACTOR);
                     // ... write down results
                     // TODO solve this in multithreading context
-                    //this.extendedXmlResultsPath = scoringChunksCombined.writeDownXMLResults(tag, initialDateString, preprocessedCachingDirectory);
+                    this.extendedXmlResultsPath = scoringChunksCombined.writeDownXMLResults(tag, initialDateString, preprocessedCachingDirectory);
                     if (params.LOG_TO_CSV) {
                         scoringChunksCombined.writeScoresMapAsCSV(tag, initialDateString, preprocessedCachingDirectory);
                     }

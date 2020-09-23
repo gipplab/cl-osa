@@ -488,7 +488,7 @@ public class ScoringChunksCombined {
                 this.scoreMatrix[row][col] = null;
             }
         }
-
+        this.scoreMatrix = null;
         //this.clusteringResults = new ArrayList<>();
         if(this.clusteringResults !=null) {
             this.clusteringResults.clear();
