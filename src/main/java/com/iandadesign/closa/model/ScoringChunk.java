@@ -73,4 +73,9 @@ public class ScoringChunk {
     public SlidingWindowInfo getSuspiciousWindow(){
         return suspiciousWindow;
     }
+
+    public void deinitialize(){
+        suspiciousWindow.deinitialize();
+        candidateWindow.deinitialize();
+    }
 }

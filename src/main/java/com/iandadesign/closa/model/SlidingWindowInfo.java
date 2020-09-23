@@ -57,4 +57,9 @@ public class SlidingWindowInfo {
     public boolean isNoEntitiesInWindow() {
         return noEntitiesInWindow;
     }
+
+
+    public void deinitialize(){
+        filenameToEntities.clear();
+     }
 }
