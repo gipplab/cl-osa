@@ -406,7 +406,7 @@ public class OntologyBasedSimilarityAnalysis {
 
                             Map<String, Double> fragmentScoresMap = performCosineSimilarityAnalysis(currentSuspiciousIdTokensMap,
                                     currentCandidateIdTokensMap).get(suspiciousIdTokenExt.getKey());
-                        /*
+
                             Double fragmentScore = fragmentScoresMap.get(selectedCandidatePath);
                             // TODO if using a window-bordersize buffering remove this later
                             if (fragmentScore == null || fragmentScore <= 0.0) {
@@ -414,8 +414,7 @@ public class OntologyBasedSimilarityAnalysis {
                                 candSlidingWindowX++;
                                 continue;
                             }
-                        */
-                            Double fragmentScore = 0.0;
+
                             ScoringChunk currentScoringChunk = new ScoringChunk(swiSuspicious,
                                     swiCandidate,
                                     fragmentScore,
@@ -449,6 +448,7 @@ public class OntologyBasedSimilarityAnalysis {
                             fragmentScoresMap.clear();
                         }
                         suspiciousSlidingWindowY++;
+                        currentSuspiciousIdTokensMap.clear();
                     }
                     // After each candidate and suspicious file combination
                     // ... calculate the plagiarism sections from windows
