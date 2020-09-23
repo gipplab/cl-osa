@@ -75,7 +75,11 @@ public class ScoringChunk {
     }
 
     public void deinitialize(){
-        suspiciousWindow.deinitialize();
-        candidateWindow.deinitialize();
+        if(suspiciousWindow!=null) {
+            suspiciousWindow.deinitialize();
+        }
+        if(candidateWindow!=null) {
+            candidateWindow.deinitialize();
+        }
     }
 }

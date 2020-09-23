@@ -477,8 +477,14 @@ public class ScoringChunksCombined {
 
         for (int row=0; row < this.scoreMatrix.length; row++)
         {
+            if(this.scoreMatrix[row]==null){
+                continue;
+            }
             for (int col=0; col < this.scoreMatrix[row].length; col++)
             {
+                if(this.scoreMatrix[row][col]==null){
+                    continue;
+                }
                 this.scoreMatrix[row][col].deinitialize();
                 this.scoreMatrix[row][col] = null;
             }

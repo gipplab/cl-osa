@@ -60,6 +60,8 @@ public class SlidingWindowInfo {
 
 
     public void deinitialize(){
-        filenameToEntities.clear();
+        if(filenameToEntities!=null) {
+            filenameToEntities.clear();
+        }
      }
 }
