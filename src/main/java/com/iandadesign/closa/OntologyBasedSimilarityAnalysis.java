@@ -440,10 +440,13 @@ public class OntologyBasedSimilarityAnalysis {
 
                             }
                             //TODO performance mark fileprints as optional
-
                             // Adding scoring chunk with coordinates to matrix.
                             scoringChunksCombined.storeScoringChunkToScoringMatrix(currentScoringChunk, suspiciousSlidingWindowY, candSlidingWindowX);
                             candSlidingWindowX++;
+
+                            // Clear memory (ok?)
+                            currentCandidateIdTokensMap.clear();
+                            fragmentScoresMap.clear();
                         }
                         suspiciousSlidingWindowY++;
                     }

@@ -608,7 +608,7 @@ public class ScoringChunksCombined {
 
         // Writing the xml input to file.
         createDocumentNode(eventWriter, this.suspiciousDocumentName);
-
+        
         eventWriter.close();
     }
 

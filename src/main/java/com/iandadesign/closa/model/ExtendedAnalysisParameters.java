@@ -44,7 +44,7 @@ public class ExtendedAnalysisParameters {
         CR_PRINT_LIMIT = 10;
         CANDIDATE_SELECTION_TRESH = 0; //0.2;
         //Settings for Logging etc
-        LOG_TO_CSV= true;
+        LOG_TO_CSV= false;
         LOG_PREPROCESSING_RESULTS= true;
         LOG_STANDARD_TO_FILE= true;
         LOG_ERROR_TO_FILE=true;
@@ -52,7 +52,7 @@ public class ExtendedAnalysisParameters {
         // Evaluation settings
         RUN_EVALUATION_AFTER_PROCESSING = true;
         // Parallelism Settings
-        PARALLELISM_THREAD_NUM = 30;
+        PARALLELISM_THREAD_NUM = 15;
 
         // File Filter Options
         USE_FILE_FILTER=false;
