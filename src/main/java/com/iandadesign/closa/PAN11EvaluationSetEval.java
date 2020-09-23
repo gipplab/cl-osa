@@ -268,6 +268,7 @@ public class PAN11EvaluationSetEval {
             ForkJoinPool forkJoinPool = null;
 
             try {
+                /*
                 forkJoinPool = new ForkJoinPool(parallelism);
                 forkJoinPool.submit(() -> suspiciousFiles.parallelStream().forEach((suspiciousFile) -> {
                     String suspPath = suspiciousFile.getPath();
@@ -288,6 +289,28 @@ public class PAN11EvaluationSetEval {
                         ex.printStackTrace();
                     }
                 })).get();
+                */
+            suspiciousFiles.parallelStream().forEach((suspiciousFile) -> {
+                    String suspPath = suspiciousFile.getPath();
+                    String suspFileName = suspiciousFile.getName();
+                    try {
+                        logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", indexP.get() + 1, "/", suspiciousFiles.size(), "Filename:", suspFileName, " and its", candidateFiles.size(), "candidates");
+                        parsedFilesP.getAndIncrement();
+                        indexP.getAndIncrement();
+                        OntologyBasedSimilarityAnalysis osaT = new OntologyBasedSimilarityAnalysis(null, null);
+                        osaT.setLogger(osa.getExtendedLogUtil(), osa.getTag()); // this has to be done immediately after constructor
+                        osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                        osaT = null;
+                        System.gc(); // Excplicit call to garbage collector.
+                    } catch (Exception ex) {
+                        parsedErrorsP.getAndIncrement();
+                        indexP.getAndIncrement();
+                        logUtil.logAndWriteError(false, "Exception during parse of suspicious file with Filename", suspFileName, "Exception:");
+                        ex.printStackTrace();
+                    }
+                });
+
+
             }catch(Exception e) {//SecurityException | RejectedExecutionException e){
                 logUtil.logAndWriteError(false, "Exception with with thread execution:", e);
             } finally {
