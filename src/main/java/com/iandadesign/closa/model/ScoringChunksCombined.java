@@ -477,7 +477,7 @@ public class ScoringChunksCombined {
 
         for (int row=0; row < this.scoreMatrix.length; row++)
         {
-            for (int col=0; col < this.scoreMatrix.length; col++)
+            for (int col=0; col < this.scoreMatrix[row].length; col++)
             {
                  this.scoreMatrix[row][col] = null;
             }
