@@ -46,13 +46,13 @@ public class ExtendedAnalysisParameters {
         //Settings for Logging etc
         LOG_TO_CSV= false;
         LOG_PREPROCESSING_RESULTS= true;
-        LOG_STANDARD_TO_FILE= true;
-        LOG_ERROR_TO_FILE=true;
+        LOG_STANDARD_TO_FILE= false;
+        LOG_ERROR_TO_FILE=false;
         LOG_VERBOSE=false;
         // Evaluation settings
         RUN_EVALUATION_AFTER_PROCESSING = true;
         // Parallelism Settings
-        PARALLELISM_THREAD_NUM = 30;
+        PARALLELISM_THREAD_NUM = 1;
 
         // File Filter Options
         USE_FILE_FILTER=false;
