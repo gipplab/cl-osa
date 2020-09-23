@@ -172,12 +172,7 @@ public class SuperMain {
        System.out.println(adjustedSentenceNumber);
 
     }
-    public static void testSlidingWindowCombination(){
-        ScoringChunksCombined scoringChunksCombined = new ScoringChunksCombined(0.2,0.5,1,1, 50);
-        scoringChunksCombined.storeScoringChunk(null);
-        //scoringChunksCombined.getPreviousScoringChunksOrNull(null);
-        System.out.println("doneTest");
-   }
+
    public static void testXMLResultWriter() {
        try {
            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss");

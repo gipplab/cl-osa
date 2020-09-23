@@ -488,6 +488,8 @@ public class ScoringChunksCombined {
                     }catch(NullPointerException nex){
                         System.out.println("Exception during writing data to csv:"+ nex);
 
+                    } finally {
+                        pw.close();
                     }
                 }
             }
@@ -504,8 +506,9 @@ public class ScoringChunksCombined {
         // Creating an XMLOutputFactory.
         XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
         // Creating XMLEventWriter.
+        FileOutputStream fos = new FileOutputStream(resultFilePath);
         XMLEventWriter eventWriter = outputFactory
-                .createXMLEventWriter(new FileOutputStream(resultFilePath));
+                .createXMLEventWriter(fos);
         // Creating an EventFactory.
         XMLEventFactory eventFactory = XMLEventFactory.newInstance();
         XMLEvent end = eventFactory.createDTD("\n");
@@ -517,6 +520,7 @@ public class ScoringChunksCombined {
         createDocumentNode(eventWriter, this.suspiciousDocumentName);
 
         eventWriter.close();
+        fos.close();
     }
 
     public void prettifyXML(String path){
