@@ -370,7 +370,7 @@ public class OntologyBasedSimilarityAnalysis {
 
                     // Documents have been specified here->start to slide the window.
                     for (int currentSuspWindowStartSentence = 0; currentSuspWindowStartSentence < numSentencesSusp; currentSuspWindowStartSentence += params.NUM_SENTENCE_INCREMENT_SLIDINGW) {
-                        /*
+                        // Content in this loop is causing the memory problem ....
                         SlidingWindowInfo swiSuspicious = getWikiEntityStringsForSlidingWindow(
                                 suspiciousIdTokenExt.getValue(),
                                 currentSuspWindowStartSentence,
@@ -397,9 +397,9 @@ public class OntologyBasedSimilarityAnalysis {
                                         swiCandidate,
                                         -1, // mock entry value
                                         fragmentIndex);
-                                scoringChunksCombined.storeScoringChunkToScoringMatrix(mockScoringChunk,
-                                        suspiciousSlidingWindowY,
-                                        candSlidingWindowX);
+                               // scoringChunksCombined.storeScoringChunkToScoringMatrix(mockScoringChunk,
+                                //        suspiciousSlidingWindowY,
+                                 //       candSlidingWindowX);
                                 fragmentIndex++; // Just increase the fragment index for absolute indexing.
                                 candSlidingWindowX++;
                                 continue;  // Skip without increasing 2D indices (all window comparisons would be 0 score)
@@ -441,7 +441,7 @@ public class OntologyBasedSimilarityAnalysis {
                             }
                             //TODO performance mark fileprints as optional
                             // Adding scoring chunk with coordinates to matrix.
-                            scoringChunksCombined.storeScoringChunkToScoringMatrix(currentScoringChunk, suspiciousSlidingWindowY, candSlidingWindowX);
+                            //scoringChunksCombined.storeScoringChunkToScoringMatrix(currentScoringChunk, suspiciousSlidingWindowY, candSlidingWindowX);
                             candSlidingWindowX++;
 
                             // Clear memory (ok?)
@@ -450,7 +450,7 @@ public class OntologyBasedSimilarityAnalysis {
                         }
                         suspiciousSlidingWindowY++;
                         currentSuspiciousIdTokensMap.clear();
-                        */
+
                     }
                     // After each candidate and suspicious file combination
                     // ... calculate the plagiarism sections from windows
