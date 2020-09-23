@@ -312,7 +312,7 @@ public class OntologyBasedSimilarityAnalysis {
         candidateScoresMap.clear();
         preprocessed.clear();
         suspiciousIdTokensMap.clear();
-        candidatesForDetailedComparison.clear();
+        candidatesForDetailedComparison = null;
         selectedCandidateIdTokensMapExt.clear();
         preprocessedExt = new ArrayList<>(); // Just new ref here, because entries still used.
         return selectedCandidateKeys;
@@ -329,6 +329,7 @@ public class OntologyBasedSimilarityAnalysis {
         Set<String> selectedCandidateKeys = doCandidateRetrievalExtendedInfo(suspiciousDocumentPath,
                 candidateDocumentFiles, params, initialDateString, suspiciousIdTokensMapExt);
         if(selectedCandidateKeys==null){
+            logUtil.writeStandardReport(false, "No candidates selected, continuing");
             return;
         }
 
