@@ -37,8 +37,6 @@ public class ScoringChunksCombined {
     private final int slidingWindowIncrement;
     private final int clippingMarging;
 
-    @Obsolete
-    private Map<MapCoords, List<ScoringChunk>> allScoringChunksCombined; // This is flushed on every file combination
 
     private List<ScoringChunk> scoringChunksList = new ArrayList<>();
     private ScoringChunk[][] scoreMatrix; // This is flushed on every file combination
@@ -53,39 +51,11 @@ public class ScoringChunksCombined {
     private String candidateDocumentName;
     private List<ResultInfo> clusteringResults;
 
-    @Obsolete
-    class MapCoords implements Cloneable{
-        int candStartSentence;
-        int candEndSentence;
-        int suspStartSentence;
-        int suspEndSentence;
-
-        public MapCoords(int candStartSentence, int candEndSentence, int suspStartSentence, int suspEndSentence){
-            this.candStartSentence = candStartSentence;
-            this.candEndSentence = candEndSentence;
-            this.suspStartSentence = suspStartSentence;
-            this.suspEndSentence = suspEndSentence;
-        }
-        public boolean equals(Object o) {
-            // An object is equal if it has the same end-sentence coordinates.
-            MapCoords cordsIn = (MapCoords) o;
-            return cordsIn.candEndSentence == candEndSentence && cordsIn.suspEndSentence == suspEndSentence;
-        }
-        public MapCoords getAssumedPreviousCoords() {
-            MapCoords assumedPrevious = new MapCoords(candStartSentence, candEndSentence, suspStartSentence, suspEndSentence);
-            //TODO adapt this for the case of an overlapping sliding window.
-            // just decrement the found coordinates to get a possible previous object
-            assumedPrevious.suspEndSentence--;
-            assumedPrevious.candEndSentence--;
-            return assumedPrevious;
-        }
-    }
     public ScoringChunksCombined(double adjacentTresh, double singleTresh, int slidingWindowLength, int slidingWindowIncrement, int clippingMargin){
         this.adjacentTresh = adjacentTresh;
         this.singleTresh = singleTresh;
         this.slidingWindowLength = slidingWindowLength;
         this.slidingWindowIncrement = slidingWindowIncrement;
-        this.allScoringChunksCombined = new ArrayMap<MapCoords,List<ScoringChunk>>();
         this.clippingMarging = clippingMargin;
         this.calculateSearchLength();
     }
@@ -118,43 +88,6 @@ public class ScoringChunksCombined {
         this.scoreMatrix = new ScoringChunk[this.matrixDimensionX][this.matrixDimensionY];
     }
 
-    @Obsolete
-    public boolean storeAndAddToPreviousChunk(ScoringChunk chunkToStore){
-        MapCoords chunkStoreCoords = getMapCoordsOfChunk(chunkToStore);
-        MapCoords assumedPreviousCoords = chunkStoreCoords.getAssumedPreviousCoords();
-
-        List<ScoringChunk> previousScoringChunks = this.allScoringChunksCombined.get(chunkStoreCoords);
-
-        // Searching the previous coordinate and create a merged new coordinate
-        MapCoords mergedMapCoord = null;
-        // TODO make more efficient iteration here
-        for(MapCoords keyCurrent: this.allScoringChunksCombined.keySet()){
-            if(keyCurrent.equals(assumedPreviousCoords)){
-                mergedMapCoord = mergeMapCoords(keyCurrent, chunkStoreCoords);
-                break;
-            }
-        }
-        if(mergedMapCoord == null){
-            return false;
-        }
-        // Getting the Array list of scoring chunks and add the entry
-        List<ScoringChunk> scoringChunks = this.allScoringChunksCombined.get(assumedPreviousCoords);
-        scoringChunks.add(chunkToStore);
-        // Deleting the old entry TODO maybe there is a more efficient method like update here
-        this.allScoringChunksCombined.remove(assumedPreviousCoords);
-        // Put the updated array with new coordinates
-        this.allScoringChunksCombined.put(mergedMapCoord, scoringChunks);
-        return true;
-    }
-
-    public MapCoords mergeMapCoords(MapCoords coordPrev, MapCoords coordNew) {
-        int newSuspStartSentence = min(coordPrev.suspStartSentence, coordNew.suspStartSentence);
-        int newSuspEndSentence = max(coordPrev.suspEndSentence, coordNew.suspEndSentence);
-        int newCandStartSentence = min(coordPrev.candStartSentence, coordNew.candStartSentence);
-        int newCandEndSentence = max(coordPrev.candEndSentence, coordNew.candEndSentence);
-        return new MapCoords(newCandStartSentence, newCandEndSentence, newSuspStartSentence, newSuspEndSentence);
-    }
-
     public void storeScoringChunkToScoringMatrix(ScoringChunk chunkToStore,
                                                  int suspiciousSlidingWindowIndex,
                                                  int candidateSlidingWindowIndex){
@@ -166,32 +99,6 @@ public class ScoringChunksCombined {
 
     }
 
-    @Obsolete
-    public void storeScoringChunk(ScoringChunk chunkToStore){
-        MapCoords chunkStoreCoords = getMapCoordsOfChunk(chunkToStore);
-        List<ScoringChunk> scoringChunks = this.allScoringChunksCombined.get(chunkStoreCoords);
-        if(scoringChunks == null){
-            List<ScoringChunk>  scoringChunksToPut = new ArrayList<>();
-            scoringChunksToPut.add(chunkToStore);
-            this.allScoringChunksCombined.put(chunkStoreCoords, scoringChunksToPut);
-        }else{
-            // TODO does this work?
-            scoringChunks.add(chunkToStore);
-        }
-    }
-    @Obsolete
-    private MapCoords getMapCoordsOfChunk(ScoringChunk chunk){
-        int candStartSentenceIndex = chunk.getCandidateStartSentence();
-        int suspStartSentenceIndex = chunk.getSuspiciousStartSentence();
-        int candEndSentenceIndex = chunk.getCandidateEndSentence();
-        int suspEndSentenceIndex = chunk.getSuspiciousEndSentence();
-
-        MapCoords coords = new MapCoords(candStartSentenceIndex,
-                candEndSentenceIndex,
-                suspStartSentenceIndex,
-                suspEndSentenceIndex);
-        return coords;
-    }
 
     public void calculateMatrixClusters(boolean useAdaptiveThresh, double adaptiveFormFactor){
 
@@ -470,7 +377,6 @@ public class ScoringChunksCombined {
 
     public void flushInternalCombinedChunks(){
         //this.allScoringChunksCombined = new ArrayMap<>(); //Obsolete
-        this.allScoringChunksCombined.clear();
         //this.scoringChunksList = new ArrayList<>();
         this.scoringChunksList.clear();
         //this.scoreMatrix = null;

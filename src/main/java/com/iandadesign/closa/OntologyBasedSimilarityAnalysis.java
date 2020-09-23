@@ -507,6 +507,7 @@ public class OntologyBasedSimilarityAnalysis {
         if(startChars.size()>=1) {
             firstStartChar = Collections.min(startChars);
         }
+        startChars.clear();
         // Getting relative stop index as the character end coordinate of the last entity
         List<Integer> endChars = windowEntitysSusp.stream()
                 .map(SavedEntity::getToken)
@@ -516,13 +517,14 @@ public class OntologyBasedSimilarityAnalysis {
         if(endChars.size()>=1){
             lastEndChar = Collections.max(endChars);
         }
+        endChars.clear();
 
         // Casting the entities for performing the cosine analysis
         List<String> entityIdsForWindow = windowEntitysSusp
                 .stream()
                 .map(SavedEntity::getWikidataEntityId)
                 .collect(Collectors.toList());
-
+        windowEntitysSusp.clear();
         // Return everything in a compound object
         return new SlidingWindowInfo(filename, entityIdsForWindow, firstStartChar, lastEndChar,
                 startSentenceIndex, endSentenceIndex);
