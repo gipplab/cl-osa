@@ -1,6 +1,5 @@
 package com.iandadesign.closa;
 
-import com.iandadesign.closa.evaluation.impl.CLASAEvaluationSet;
 import com.iandadesign.closa.language.LanguageDetector;
 import com.iandadesign.closa.model.ExtendedAnalysisParameters;
 import com.iandadesign.closa.model.SavedEntity;
@@ -16,11 +15,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
+import java.util.*;
 import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -33,13 +29,14 @@ public class PAN11EvaluationSetEval {
 
     public static void main(String[] args) {
         Boolean smallTest = false;
+        Boolean testCandidateRetrieval = true;
         //JS: since tests not work cause of local dependency missing, heres a workaround to make evaluations executable
         //evalPAN2011All();
         //verifyNumberNonEnglishSusp();
         if(args!=null && args.length>=1){
-            evalPAN2011EnEs(args[0], smallTest);
+            evalPAN2011EnEs(args[0], smallTest, testCandidateRetrieval);
         }else{
-            evalPAN2011EnEs(null, smallTest);
+            evalPAN2011EnEs(null, smallTest, testCandidateRetrieval);
         }
     }
 
@@ -47,7 +44,88 @@ public class PAN11EvaluationSetEval {
     //static String pathPrefix = "/media/johannes/Elements SE/CLOSA/pan-plagiarism-corpus-2011/external-detection-corpus";
     static String pathPrefix = "/data/pan-plagiarism-corpus-2011/external-detection-corpus";
 
-    static void evalPAN2011EnEs(String languageIn, Boolean smallTest){
+
+    static void doCREvaluation(ExtendedAnalysisParameters params, String tag, String comment, HashMap<String, List<String>> resultSelectedCandidates){
+        // Route the complete output to a logfile here.
+        String toplevelPathSuspicious = pathPrefix.concat("/suspicious-document/");
+        String toplevelPathCandidates = pathPrefix.concat("/source-document/");
+
+
+        //  (26939 - (9506/2)) / 2 = 11093 is the number of files in each directory;
+
+        // Do all preprocessing and cache it first (if already cached this will validate preprocessed number)
+        OntologyBasedSimilarityAnalysis osa = new OntologyBasedSimilarityAnalysis();
+        osa.initializeLogger(tag, params); // this has to be done immediately after constructor
+        ExtendedLogUtil logUtil = osa.getExtendedLogUtil();
+        logUtil.logAndWriteStandard(false, comment);
+
+        logUtil.writeStandardReport(false, "Assuming the preprpocessing has been done here. ");
+        params.MAX_NUM_CANDIDATES_SELECTED = 20;
+        params.CANDIDATE_SELECTION_TRESH = 0;
+
+        logParams(logUtil, tag, params, osa);
+
+
+        logUtil.logAndWriteStandard(false, "Starting file comparisons...");
+        List<File> candidateFiles = getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true, ".txt");
+        List<File> suspiciousFiles  = getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".txt");
+
+
+        AtomicInteger overallPlagiariasmFiles = new AtomicInteger();
+        AtomicInteger overallMatches = new AtomicInteger();
+        AtomicInteger maxPos = new AtomicInteger();
+        AtomicInteger averagePos = new AtomicInteger();
+
+        suspiciousFiles.forEach((suspiciousFile) -> {
+            String suspPath = suspiciousFile.getPath();
+            String suspFileName = suspiciousFile.getName();
+            try {
+                logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file Size:" , suspiciousFiles.size(), "Filename:", suspFileName, " and its", candidateFiles.size(), "candidates");
+                 //OntologyBasedSimilarityAnalysis osaT = new OntologyBasedSimilarityAnalysis(null, null);
+                //osaT.setLogger(osa.getExtendedLogUtil(), osa.getTag()); // this has to be done immediately after constructor
+                //osaT.initializeLogger(tag, params);
+                WeakHashMap<String, List<SavedEntity>> suspiciousIdTokensMapExt = new WeakHashMap<>();
+                Map<String, Double> selectedCandidates = osa.doCandidateRetrievalExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString(), suspiciousIdTokensMapExt);
+                List<String> selectedCandidatesF = new ArrayList<>();
+                for(String candPath:selectedCandidates.keySet()){
+                    File filename = new File(candPath);
+                    selectedCandidatesF.add(filename.getName());
+                }
+
+                suspiciousIdTokensMapExt.clear();
+                // Get the corresponding result candidates
+                List<String> actualCandidates = resultSelectedCandidates.get(suspFileName.replace(".txt",".xml"));
+                overallPlagiariasmFiles.addAndGet(actualCandidates.size());
+                // Do a comparison here quickly
+
+                int posCounter = 0;
+                int matchCandidates = 0;
+                for(String selectedCandidate:selectedCandidatesF) {
+                    if(actualCandidates.contains(selectedCandidate)){
+                        logUtil.logAndWriteStandard(false, "found at pos: "+posCounter);
+                        matchCandidates++;
+                    }
+                    posCounter++;
+                    if(posCounter > maxPos.get()){
+                        maxPos.set(posCounter);
+                    }
+                }
+                logUtil.logAndWriteStandard(false, "Matched candidates: " + matchCandidates+ "/"+actualCandidates.size());
+                overallMatches.addAndGet(matchCandidates);
+                // Save score for complete comparison.
+                logUtil.logAndWriteStandard(false, "Overall Matched candidates: " + overallMatches.get()+ "/"+ overallPlagiariasmFiles.get() + " max pos: " + maxPos.get());
+
+                System.gc(); // Explicit call to garbage collector.
+            } catch (Exception ex) {
+                logUtil.logAndWriteError(false, "Exception during parse of suspicious file with Filename", suspFileName, "Exception:");
+                ex.printStackTrace();
+            }
+        });
+        logUtil.logAndWriteStandard(false, "Overall Matched candidates: " + overallMatches.get()+ "/"+ overallPlagiariasmFiles.get()+ " max pos: " + maxPos.get());
+
+    }
+
+    static void evalPAN2011EnEs(String languageIn, Boolean smallTest, Boolean testCandidateRetrieval){
         // This evaluates the specific English/Espanol-Partition from Franco Salvador
         String tag = "evalPAN2011En-DeEs"; // Identifier for logs ...
         String language = "es"; //state "es" or "de" here
@@ -76,11 +154,13 @@ public class PAN11EvaluationSetEval {
         List<Integer> usedCandidates = new ArrayList<>();
         List<Integer> usedSuspicious = new ArrayList<>();
 
+        HashMap<String, List<String>> resultSelectedCandidates = new HashMap<>();
+
         for(File suspFileXML: suspiciousFilesLangXML){
             boolean hasValidLanguagePair = false;
             // Read XML File
             PAN11XMLInfo xmlInfo = pan11XMLParser.parseXMLfile(suspFileXML);
-
+            List <String> selectedCandidateForFile = new ArrayList<>();
             for(PAN11PlagiarismInfo plaginfo:xmlInfo.plagiarismInfos) {
 
                 if (plaginfo.getSourceLanguage().equals(language)) {//|| plaginfo.getSourceLanguage().equals("de")){ //"es" //"de""
@@ -90,6 +170,12 @@ public class PAN11EvaluationSetEval {
                     if (!hasValidLanguagePair) {
                         hasValidLanguagePair = true;
                     }
+                    // Fill hashmap with for testcandidate evaluation
+                    if(testCandidateRetrieval){
+                        if(!selectedCandidateForFile.contains(plaginfo.getSourceReference())){
+                            selectedCandidateForFile.add(plaginfo.getSourceReference());
+                        }
+                    }
                     if(language.equals("de")) {
                         Integer sourceId = Integer.parseInt(plaginfo.getSourceReference().replaceAll("\\D+", ""));
                         if (!usedCandidates.contains(sourceId)) {
@@ -97,10 +183,17 @@ public class PAN11EvaluationSetEval {
                         }
                     }
                 }
+
             }
+
+
             if(hasValidLanguagePair){
                 Integer suspId = Integer.parseInt(suspFileXML.getName().replaceAll("\\D+",""));
                 usedSuspicious.add(suspId);
+                if(testCandidateRetrieval) {
+                    resultSelectedCandidates.put(suspFileXML.getName(), selectedCandidateForFile);
+                }
+                int a = 1 ;
             }
         }
 
@@ -158,31 +251,27 @@ public class PAN11EvaluationSetEval {
          suspiciousFilesLangXML.clear();
          candidateFilesLangXML.clear();
 
-        // Just process as usual
-        evalPAN2011All(params, tag, "Parsing En-" + language + "\n"+
-                "used Candidates Files: " +usedCandidates.size() +
-                "\nUsed Suspicious Files: " +usedSuspicious.size()
-        );
 
+        if(!testCandidateRetrieval) {
+            // Just process as usual
+            evalPAN2011All(params, tag, "Parsing En-" + language + "\n" +
+                    "used Candidates Files: " + usedCandidates.size() +
+                    "\nUsed Suspicious Files: " + usedSuspicious.size()
+            );
+        }else {
+            doCREvaluation(params, tag, "CREval", resultSelectedCandidates);
+        }
     }
 
-    //@Test
-    static void evalPAN2011All(ExtendedAnalysisParameters params, String tag, String comment)  {
-        // Route the complete output to a logfile here.
-        String toplevelPathSuspicious = pathPrefix.concat("/suspicious-document/");
-        String toplevelPathCandidates = pathPrefix.concat("/source-document/");
 
-
-        //  (26939 - (9506/2)) / 2 = 11093 is the number of files in each directory;
-
-        // Do all preprocessing and cache it first (if already cached this will validate preprocessed number)
-        OntologyBasedSimilarityAnalysis osa = new OntologyBasedSimilarityAnalysis();
-        osa.initializeLogger(tag, params); // this has to be done immediately after constructor
-        ExtendedLogUtil logUtil = osa.getExtendedLogUtil();
-        logUtil.logAndWriteStandard(false, comment);
-        // ..
-
-
+    /**
+     * Logging the settings
+     * @param logUtil
+     * @param tag
+     * @param params
+     * @param osa
+     */
+    static void logParams(ExtendedLogUtil logUtil, String tag, ExtendedAnalysisParameters params, OntologyBasedSimilarityAnalysis osa){
         // Starting log
         logUtil.logAndWriteStandard(false,logUtil.dashes(100));
         logUtil.logAndWriteStandard(true,"Starting PAN2011 evaluation");
@@ -208,7 +297,29 @@ public class PAN11EvaluationSetEval {
         logUtil.logAndWriteStandard(true,"Candidate Selection Threshold:", params.CANDIDATE_SELECTION_TRESH);
         logUtil.logAndWriteStandard(true,"Sublist Token Length:", osa.getLenSublistTokens());
         logUtil.logAndWriteStandard(true,"Run evaluation after processing:", params.RUN_EVALUATION_AFTER_PROCESSING);
+        logUtil.logAndWriteStandard(true,"Parallelism Thread Difference:", params.PARALLELISM_THREAD_DIF);
+
         logUtil.logAndWriteStandard(false, logUtil.dashes(100));
+
+
+    }
+    //@Test
+    static void evalPAN2011All(ExtendedAnalysisParameters params, String tag, String comment)  {
+        // Route the complete output to a logfile here.
+        String toplevelPathSuspicious = pathPrefix.concat("/suspicious-document/");
+        String toplevelPathCandidates = pathPrefix.concat("/source-document/");
+
+
+        //  (26939 - (9506/2)) / 2 = 11093 is the number of files in each directory;
+
+        // Do all preprocessing and cache it first (if already cached this will validate preprocessed number)
+        OntologyBasedSimilarityAnalysis osa = new OntologyBasedSimilarityAnalysis();
+        osa.initializeLogger(tag, params); // this has to be done immediately after constructor
+        ExtendedLogUtil logUtil = osa.getExtendedLogUtil();
+        logUtil.logAndWriteStandard(false, comment);
+        // ..
+
+        logParams(logUtil, tag, params, osa);
 
 
         logUtil.logAndWriteStandard(false, "Preprocessing all candidate files...");

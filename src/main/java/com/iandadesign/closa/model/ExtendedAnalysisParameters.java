@@ -12,9 +12,9 @@ public class ExtendedAnalysisParameters {
     public final boolean USE_ADAPTIVE_CLUSTERING_TRESH;     // Creates a clustering thresh based on the median of 2D-Matrix scores (!Takes longer because median calculation!)
     public final double ADAPTIVE_FORM_FACTOR;               // Form factor for adaptive clustering (Thresh = Median * FormFactor)
     public final int CLIPPING_MARGING;                      // Number of characters in squashing clusters when a cluster still is considered clipping
-    public final int MAX_NUM_CANDIDATES_SELECTED;           // The number of candidates per suspicious file which get selected for detailed comparison
+    public int MAX_NUM_CANDIDATES_SELECTED;           // The number of candidates per suspicious file which get selected for detailed comparison
     public final int CR_PRINT_LIMIT;                        // Candidate number which is results are printed to files and log.
-    public final double CANDIDATE_SELECTION_TRESH;          // Only if scoring above thresh a similar candidate gets selected (0 for off)
+    public double CANDIDATE_SELECTION_TRESH;          // Only if scoring above thresh a similar candidate gets selected (0 for off)
     public final boolean LOG_TO_CSV;                        // Log scoring map to csv
     public final boolean LOG_PREPROCESSING_RESULTS;         // Log the sliding window comparisons to a .txt file
     public final boolean LOG_STANDARD_TO_FILE;              // Log relevant standard output to .txt file

@@ -240,7 +240,7 @@ public class OntologyBasedSimilarityAnalysis {
      * @param suspiciousIdTokensMapExt this is filled by reference
      * @throws Exception
      */
-    public Set<String> doCandidateRetrievalExtendedInfo(String suspiciousDocumentPath,
+    public Map<String, Double> doCandidateRetrievalExtendedInfo(String suspiciousDocumentPath,
                                                  List<File> candidateDocumentFiles,
                                                  ExtendedAnalysisParameters params,
                                                  String initialDateString,
@@ -270,13 +270,19 @@ public class OntologyBasedSimilarityAnalysis {
 
         // Perform similarity analysis for candidate retrieval.
         Map<String, Double> candidateScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
+
+        Map<String, Double> candidateScoresMapS = candidateScoresMap.entrySet().stream()
+                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
         logUtil.logAndWriteStandard(false,"Scores for candidate retrieval:");
         // Print a representative selection of the scores
-        printCandidateRetrievalResults(logUtil, candidateScoresMap, params);
+        printCandidateRetrievalResults(logUtil, candidateScoresMapS, params);
         logUtil.logAndWriteStandard(false, logUtil.dashes(100));
 
 
-        // CAMDINDATE SELECTION: Select most similar candidates for detailed analysis.
+
+        // CANDIDATE SELECTION: Select most similar candidates for detailed analysis.
         logUtil.logAndWriteStandard(false, "Selecting most similar candidates...");
         Map<String, Double> candidatesForDetailedComparison = candidateScoresMap
                 .entrySet().stream()
@@ -284,9 +290,16 @@ public class OntologyBasedSimilarityAnalysis {
                 .filter(entry-> entry.getValue() >= params.CANDIDATE_SELECTION_TRESH)
                 .limit(params.MAX_NUM_CANDIDATES_SELECTED)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+
         logUtil.logAndWriteStandard(false,"Scores of selected candidates:");
+
+        Map<String, Double> candidatesForDetailedComparisonS = candidatesForDetailedComparison.entrySet().stream()
+                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
         // Print a representative selection of the scores
-        printCandidateRetrievalResults(logUtil, candidatesForDetailedComparison, params);
+        printCandidateRetrievalResults(logUtil, candidatesForDetailedComparisonS, params);
 
         //TODO MEMORY MARK 3
         //candidateIdTokensMap.clear();
@@ -296,7 +309,7 @@ public class OntologyBasedSimilarityAnalysis {
 
 
         // By having the most similar candidates a detailed analysis is performed.
-        Set<String> selectedCandidateKeys = candidatesForDetailedComparison.keySet();
+        Set<String> selectedCandidateKeys = candidatesForDetailedComparisonS.keySet();
         // Create a copy of the original candidates map and reduce it to selected candidates.
         WeakHashMap<String, List<SavedEntity>> selectedCandidateIdTokensMapExt = new WeakHashMap<> (candidateIdTokensMapExt);
         selectedCandidateIdTokensMapExt.keySet().retainAll(selectedCandidateKeys);
@@ -307,8 +320,8 @@ public class OntologyBasedSimilarityAnalysis {
             logUtil.logAndWriteStandard(false, "no candidates have been selected, returning");
             return null;
         }
-
-
+        //selectedCandidateKeys.clear();
+        //candidateScoresMapS.clear();
         candidateIdTokensMapExt.clear();
         candidateIdTokensMap.clear();
         candidateScoresMap.clear();
@@ -317,7 +330,7 @@ public class OntologyBasedSimilarityAnalysis {
         candidatesForDetailedComparison = null;
         selectedCandidateIdTokensMapExt.clear();
         preprocessedExt = new ArrayList<>(); // Just new ref here, because entries still used.
-        return selectedCandidateKeys;
+        return candidatesForDetailedComparisonS;
 
     }
     public void executeAlgorithmAndComputeScoresExtendedInfo(String suspiciousDocumentPath,
@@ -329,7 +342,7 @@ public class OntologyBasedSimilarityAnalysis {
         // This hashmap is populated by candidateRetrieval.
         WeakHashMap<String, List<SavedEntity>> suspiciousIdTokensMapExt = new WeakHashMap<>();
         Set<String> selectedCandidateKeys = doCandidateRetrievalExtendedInfo(suspiciousDocumentPath,
-                candidateDocumentFiles, params, initialDateString, suspiciousIdTokensMapExt);
+                candidateDocumentFiles, params, initialDateString, suspiciousIdTokensMapExt).keySet();
         if(selectedCandidateKeys==null){
             logUtil.writeStandardReport(false, "No candidates selected, continuing");
             return;

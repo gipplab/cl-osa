@@ -93,8 +93,7 @@ public class PAN11XMLParser {
                     }
                     plagInfo.calculateCaseLength();
                     pan11XMLInfo.addPlagiarismInfo(plagInfo);
-                    continue;
-                }else {
+                } else {
                     System.out.println("strange case");
                 }
             }
