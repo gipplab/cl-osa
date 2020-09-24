@@ -38,7 +38,7 @@ public class ScoringChunksCombined {
     private final int clippingMarging;
 
 
-    private List<ScoringChunk> scoringChunksList = new ArrayList<>();
+    private List<ScoringChunk> scoringChunksList;
     private ScoringChunk[][] scoreMatrix; // This is flushed on every file combination
     private int matrixDimensionX;
     private int matrixDimensionY;
@@ -58,6 +58,7 @@ public class ScoringChunksCombined {
         this.slidingWindowIncrement = slidingWindowIncrement;
         this.clippingMarging = clippingMargin;
         this.calculateSearchLength();
+        this.scoringChunksList  = new ArrayList<>();
     }
     private void calculateSearchLength(){
         // TODO adapt this for other cases (this is for swl 1 and swi 1)

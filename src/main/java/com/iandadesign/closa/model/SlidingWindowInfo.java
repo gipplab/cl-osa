@@ -3,6 +3,7 @@ package com.iandadesign.closa.model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.WeakHashMap;
 
 /**
  * This is a helper class for packing return values of
@@ -12,7 +13,7 @@ import java.util.Map;
  */
 public class SlidingWindowInfo {
     private final String fileName;
-    private final Map<String, List<String>> filenameToEntities;
+    private final WeakHashMap<String, List<String>> filenameToEntities;
     private final int characterStartIndex;
     private final int characterEndIndex;
     private final int startSentence;
@@ -26,7 +27,7 @@ public class SlidingWindowInfo {
                              int startSentence,
                              int endSentence) {
         // Create a reusable map for comparison
-        Map <String, List<String>> filenameToEntities = new HashMap<>();
+        WeakHashMap <String, List<String>> filenameToEntities = new WeakHashMap<>();
         filenameToEntities.put(fileName, entityIdsForWindow);
 
         this.fileName = fileName;
@@ -42,7 +43,7 @@ public class SlidingWindowInfo {
     public String getFileName() {
         return fileName;
     }
-    public Map<String, List<String>> getFilenameToEntities() {
+    public WeakHashMap<String, List<String>> getFilenameToEntities() {
         return filenameToEntities;
     }
     public int getCharacterStartIndex() {

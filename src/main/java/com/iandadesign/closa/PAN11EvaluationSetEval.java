@@ -263,12 +263,16 @@ public class PAN11EvaluationSetEval {
             AtomicInteger parsedErrorsP = new AtomicInteger(0);
             logUtil.logAndWriteStandard(true, logUtil.getDateString(), " Using parallelism, counter (x/y) is only a vague indicator");
 
-            final int parallelism = params.PARALLELISM_THREAD_NUM;
-
+            int parallelism = Runtime.getRuntime().availableProcessors() - params.PARALLELISM_THREAD_DIF;
+            if(parallelism < 1){
+                logUtil.writeStandardReport(false, "Starting Parallel Processing Dif in settings too big");
+                parallelism = 1;
+            }
+            logUtil.writeStandardReport(false, "Starting Parallel Processing with Num CPUs: "+ parallelism);
             ForkJoinPool forkJoinPool = null;
 
             try {
-                /*
+
                 forkJoinPool = new ForkJoinPool(parallelism);
                 forkJoinPool.submit(() -> suspiciousFiles.parallelStream().forEach((suspiciousFile) -> {
                     String suspPath = suspiciousFile.getPath();
@@ -289,7 +293,9 @@ public class PAN11EvaluationSetEval {
                         ex.printStackTrace();
                     }
                 })).get();
-                */
+
+
+                /*
             suspiciousFiles.parallelStream().forEach((suspiciousFile) -> {
                     String suspPath = suspiciousFile.getPath();
                     String suspFileName = suspiciousFile.getName();
@@ -297,10 +303,12 @@ public class PAN11EvaluationSetEval {
                         logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", indexP.get() + 1, "/", suspiciousFiles.size(), "Filename:", suspFileName, " and its", candidateFiles.size(), "candidates");
                         parsedFilesP.getAndIncrement();
                         indexP.getAndIncrement();
-                        OntologyBasedSimilarityAnalysis osaT = new OntologyBasedSimilarityAnalysis(null, null);
-                        osaT.setLogger(osa.getExtendedLogUtil(), osa.getTag()); // this has to be done immediately after constructor
-                        osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
-                        osaT = null;
+                        //OntologyBasedSimilarityAnalysis osaT = new OntologyBasedSimilarityAnalysis(null, null);
+                        //osaT.setLogger(osa.getExtendedLogUtil(), osa.getTag()); // this has to be done immediately after constructor
+                        //osaT.initializeLogger(tag, params);
+
+                        osa.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                        //osaT = null;
                         System.gc(); // Excplicit call to garbage collector.
                     } catch (Exception ex) {
                         parsedErrorsP.getAndIncrement();
@@ -309,7 +317,7 @@ public class PAN11EvaluationSetEval {
                         ex.printStackTrace();
                     }
                 });
-
+                */
 
             }catch(Exception e) {//SecurityException | RejectedExecutionException e){
                 logUtil.logAndWriteError(false, "Exception with with thread execution:", e);

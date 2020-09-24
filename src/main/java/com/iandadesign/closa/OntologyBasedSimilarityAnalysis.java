@@ -193,8 +193,8 @@ public class OntologyBasedSimilarityAnalysis {
      * @return list of candidate paths matching the suspicious
      */
     public Map<String, Double> executeAlgorithmAndComputeScores(String suspiciousDocumentPath, List<String> candidateDocumentPaths) {
-        Map<String, List<String>> suspiciousIdTokensMap = new HashMap<>();
-        Map<String, List<String>> candidateIdTokensMap = new HashMap<>();
+        WeakHashMap<String, List<String>> suspiciousIdTokensMap = new WeakHashMap<>();
+        WeakHashMap<String, List<String>> candidateIdTokensMap = new WeakHashMap<>();
 
         try {
             String suspiciousDocumentStr = FileUtils.readFileToString(new File(suspiciousDocumentPath), StandardCharsets.UTF_8);
@@ -249,10 +249,10 @@ public class OntologyBasedSimilarityAnalysis {
 
 
         // Maps used for detailed comparison
-        Map<String, List<SavedEntity>> candidateIdTokensMapExt = new HashMap<>();
+        WeakHashMap<String, List<SavedEntity>> candidateIdTokensMapExt = new WeakHashMap<>();
         // Maps used for candidate retrieval
-        Map<String, List<String>> suspiciousIdTokensMap = new HashMap<>();
-        Map<String, List<String>> candidateIdTokensMap = new HashMap<>();
+        WeakHashMap<String, List<String>> suspiciousIdTokensMap = new WeakHashMap<>();
+        WeakHashMap<String, List<String>> candidateIdTokensMap = new WeakHashMap<>();
 
         String suspiciousDocumentStr = FileUtils.readFileToString(new File(suspiciousDocumentPath), StandardCharsets.UTF_8);
         List<SavedEntity> preprocessedExt = preProcessExtendedInfo(suspiciousDocumentPath, null);
@@ -274,7 +274,9 @@ public class OntologyBasedSimilarityAnalysis {
         // Print a representative selection of the scores
         printCandidateRetrievalResults(logUtil, candidateScoresMap, params);
         logUtil.logAndWriteStandard(false, logUtil.dashes(100));
-        // Select most similar candidates for detailed analysis.
+
+
+        // CAMDINDATE SELECTION: Select most similar candidates for detailed analysis.
         logUtil.logAndWriteStandard(false, "Selecting most similar candidates...");
         Map<String, Double> candidatesForDetailedComparison = candidateScoresMap
                 .entrySet().stream()
@@ -296,7 +298,7 @@ public class OntologyBasedSimilarityAnalysis {
         // By having the most similar candidates a detailed analysis is performed.
         Set<String> selectedCandidateKeys = candidatesForDetailedComparison.keySet();
         // Create a copy of the original candidates map and reduce it to selected candidates.
-        Map<String, List<SavedEntity>> selectedCandidateIdTokensMapExt = new HashMap<> (candidateIdTokensMapExt);
+        WeakHashMap<String, List<SavedEntity>> selectedCandidateIdTokensMapExt = new WeakHashMap<> (candidateIdTokensMapExt);
         selectedCandidateIdTokensMapExt.keySet().retainAll(selectedCandidateKeys);
 
         logUtil.logAndWriteStandard(false, selectedCandidateKeys.size()+" of "+candidateScoresMap.size() + " candidates have been selected");
@@ -325,16 +327,13 @@ public class OntologyBasedSimilarityAnalysis {
                                                                             throws Exception{
 
         // This hashmap is populated by candidateRetrieval.
-        Map<String, List<SavedEntity>> suspiciousIdTokensMapExt = new HashMap<>();
+        WeakHashMap<String, List<SavedEntity>> suspiciousIdTokensMapExt = new WeakHashMap<>();
         Set<String> selectedCandidateKeys = doCandidateRetrievalExtendedInfo(suspiciousDocumentPath,
                 candidateDocumentFiles, params, initialDateString, suspiciousIdTokensMapExt);
         if(selectedCandidateKeys==null){
             logUtil.writeStandardReport(false, "No candidates selected, continuing");
             return;
         }
-
-        // Memory in single thread run here: ~280-330 mb
-
 
         logUtil.logAndWriteStandard(false, logUtil.dashes(100));
         logUtil.logAndWriteStandard(false, "Starting with detailed analysis ...");
@@ -382,7 +381,7 @@ public class OntologyBasedSimilarityAnalysis {
                                 params.NUM_SENTENCES_IN_SLIDING_WINDOW,
                                 suspiciousIdTokenExt.getKey());
 
-                        Map<String, List<String>> currentSuspiciousIdTokensMap = swiSuspicious.getFilenameToEntities();
+                        WeakHashMap<String, List<String>> currentSuspiciousIdTokensMap = swiSuspicious.getFilenameToEntities();
                         int candSlidingWindowX = 0; // specific index for 2D Matrix positioning
                         for (int currentCandWindowStartSentence = 0; currentCandWindowStartSentence < numSentencesCand; currentCandWindowStartSentence += params.NUM_SENTENCE_INCREMENT_SLIDINGW) {
                             SlidingWindowInfo swiCandidate = getWikiEntityStringsForSlidingWindow(
@@ -391,7 +390,7 @@ public class OntologyBasedSimilarityAnalysis {
                                     params.NUM_SENTENCES_IN_SLIDING_WINDOW,
                                     selectedCandidatePath);
 
-                            Map<String, List<String>> currentCandidateIdTokensMap = swiCandidate.getFilenameToEntities();
+                            WeakHashMap<String, List<String>> currentCandidateIdTokensMap = swiCandidate.getFilenameToEntities();
 
                             // logUtil.logAndWriteStandard(false,"Susp Sentence: "+suspiciousIdTokenExt.getKey());
                             // logUtil.logAndWriteStandard(false,"Cand Sentence: "+candidateIdTokenExt.getKey());
@@ -489,7 +488,7 @@ public class OntologyBasedSimilarityAnalysis {
             }
 
         }
-
+        selectedCandidateKeys.clear();
         suspiciousIdTokensMapExt.clear();
         logUtil.writeStandardReport(false, "Whats going on here?");
     }
@@ -707,7 +706,7 @@ public class OntologyBasedSimilarityAnalysis {
         // iterate the suspicious documents
         Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap = suspiciousIdTokensMap.entrySet()
                 .stream()
-                .collect(Collectors.toMap(entry -> entry.getKey(),
+                .collect(Collectors.toMap(Map.Entry::getKey,
                         entry -> {
                             //progressBar.stepTo(progress.incrementAndGet());
 
@@ -718,7 +717,7 @@ public class OntologyBasedSimilarityAnalysis {
 
         //progressBar.stop();
 
-        return suspiciousIdCandidateScoresMap;
+        return  suspiciousIdCandidateScoresMap;
     }
 
     /**
