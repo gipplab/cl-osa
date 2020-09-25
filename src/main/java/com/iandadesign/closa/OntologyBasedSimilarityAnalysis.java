@@ -337,7 +337,7 @@ public class OntologyBasedSimilarityAnalysis {
     }
 
 
-    public Map<String, Double> doCandidateRetrievalExtendedInfo2(List<File>  suspiciousDocumentFiles,
+    public Map<String,Map <String, Double>>  doCandidateRetrievalExtendedInfo2(List<File>  suspiciousDocumentFiles,
                                                                 List<File> candidateDocumentFiles,
                                                                 ExtendedAnalysisParameters params,
                                                                 String initialDateString,
@@ -368,12 +368,12 @@ public class OntologyBasedSimilarityAnalysis {
         }
 
         // Perform similarity analysis for candidate retrieval.
-        Map<String,Map <String, Double>> candidateScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
+        Map<String,Map <String, Double>> suspiciousIdCandidateScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
         //Map<String, Double> candidateScoresMap = performEnhancedCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
 
 
         //todo finish
-        return null;
+        return suspiciousIdCandidateScoresMap;
 
     }
 
