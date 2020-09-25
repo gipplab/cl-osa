@@ -76,7 +76,42 @@ public class PAN11EvaluationSetEval {
         AtomicInteger averagePos = new AtomicInteger();
         WeakHashMap<String, List<SavedEntity>> suspiciousIdTokensMapExt = new WeakHashMap<>();
         try {
-            osa.doCandidateRetrievalExtendedInfo2(suspiciousFiles, candidateFiles, params, logUtil.getDateString(), suspiciousIdTokensMapExt);
+            Map<String, Map <String, Double>> suspiciousIdCandidateScoresMap =  osa.doCandidateRetrievalExtendedInfo2(suspiciousFiles, candidateFiles, params, logUtil.getDateString(), suspiciousIdTokensMapExt);
+            // Evaluate results
+            suspiciousIdCandidateScoresMap.keySet().forEach((suspiciousFilePath) -> {
+
+                String suspPath = new File(suspiciousFilePath).getPath();
+                String suspFileName =new File(suspiciousFilePath).getName();
+
+                Map<String, Double> selectedCandidates = suspiciousIdCandidateScoresMap.get(suspiciousFilePath);
+
+                suspiciousIdTokensMapExt.clear();
+                // Get the corresponding result candidates
+                List<String> actualCandidates = resultSelectedCandidates.get(suspFileName.replace(".txt",".xml"));
+                overallPlagiariasmFiles.addAndGet(actualCandidates.size());
+                // Do a comparison here quickly
+
+                int posCounter = 0;
+                int matchCandidates = 0;
+                for(String selectedCandidate:selectedCandidates.keySet()) {
+                    File filename = new File(selectedCandidate);
+
+                    if(actualCandidates.contains(filename.getName())){
+                        logUtil.logAndWriteStandard(false, "Found Candidate at pos: "+posCounter+"\t score: "+selectedCandidates.get(selectedCandidate));
+                        if(posCounter > maxPos.get()){
+                            maxPos.set(posCounter);
+                        }
+                        matchCandidates++;
+                    }
+                    posCounter++;
+
+                }
+                logUtil.logAndWriteStandard(false, "Matched candidates: " + matchCandidates+ "/"+actualCandidates.size());
+                overallMatches.addAndGet(matchCandidates);
+                // Save score for complete comparison.
+                logUtil.logAndWriteStandard(false, "Overall Matched candidates: " + overallMatches.get()+ "/"+ overallPlagiariasmFiles.get() + " max pos: " + maxPos.get());
+
+            });
         } catch (Exception ex){
             logUtil.logAndWriteError(false, "Exception during parse of suspicious files ");
             ex.printStackTrace();
@@ -127,10 +162,7 @@ public class PAN11EvaluationSetEval {
                 //osaT.initializeLogger(tag, params);
                 WeakHashMap<String, List<SavedEntity>> suspiciousIdTokensMapExt = new WeakHashMap<>();
                 Map<String, Double> selectedCandidates = osa.doCandidateRetrievalExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString(), suspiciousIdTokensMapExt);
-                List<String> selectedCandidatesF = new ArrayList<>();
-                for(String candPath:selectedCandidates.keySet()){
-                    selectedCandidatesF.add(candPath);
-                }
+
 
                 suspiciousIdTokensMapExt.clear();
                 // Get the corresponding result candidates
