@@ -85,6 +85,9 @@ public class PAN11EvaluationSetEval {
                 String suspFileName =new File(suspiciousFilePath).getName();
 
                 Map<String, Double> selectedCandidates = suspiciousIdCandidateScoresMap.get(suspiciousFilePath);
+                Map<String, Double> candidateScoresMapS = selectedCandidates.entrySet().stream()
+                        .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
                 suspiciousIdTokensMapExt.clear();
                 // Get the corresponding result candidates
@@ -94,11 +97,15 @@ public class PAN11EvaluationSetEval {
                 long accPositions = 0;
                 int posCounter = 0;
                 int matchCandidates = 0;
-                for(String selectedCandidate:selectedCandidates.keySet()) {
+
+
+
+
+                for(String selectedCandidate:candidateScoresMapS.keySet()) {
                     File filename = new File(selectedCandidate);
 
                     if(actualCandidates.contains(filename.getName())){
-                        logUtil.logAndWriteStandard(false, "Found Candidate at pos: "+posCounter+"\t score: "+selectedCandidates.get(selectedCandidate));
+                        logUtil.logAndWriteStandard(false, "Found Candidate at pos: "+posCounter+"\t score: "+candidateScoresMapS.get(selectedCandidate));
                         if(posCounter > maxPos.get()){
                             maxPos.set(posCounter);
                          }
