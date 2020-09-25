@@ -72,6 +72,7 @@ public class PAN11EvaluationSetEval {
 
         AtomicInteger overallPlagiariasmFiles = new AtomicInteger();
         AtomicInteger overallMatches = new AtomicInteger();
+        AtomicInteger accPos = new AtomicInteger();
         AtomicInteger maxPos = new AtomicInteger();
         AtomicInteger averagePos = new AtomicInteger();
         WeakHashMap<String, List<SavedEntity>> suspiciousIdTokensMapExt = new WeakHashMap<>();
@@ -101,21 +102,22 @@ public class PAN11EvaluationSetEval {
                         if(posCounter > maxPos.get()){
                             maxPos.set(posCounter);
                          }
-                        accPositions += posCounter;
+                        accPos.addAndGet( posCounter);
                         matchCandidates++;
                     }
                     posCounter++;
 
                 }
-                float meanPos = (float) accPositions / matchCandidates;
-
-                logUtil.logAndWriteStandard(false, "Matched candidates: " + matchCandidates+ "/"+actualCandidates.size());
                 overallMatches.addAndGet(matchCandidates);
                 // Save score for complete comparison.
+                logUtil.logAndWriteStandard(false, "Matched candidates: " + matchCandidates+ "/"+actualCandidates.size());
                 logUtil.logAndWriteStandard(false, "Overall Matched candidates: " + overallMatches.get()+ "/"+ overallPlagiariasmFiles.get() + " max pos: " + maxPos.get());
-                logUtil.logAndWriteStandard(false, "Mean Position: " + meanPos);
 
             });
+
+            float meanPos = (float) accPos.get() / overallMatches.get();
+            logUtil.logAndWriteStandard(false, "Mean Position: " + meanPos);
+
         } catch (Exception ex){
             logUtil.logAndWriteError(false, "Exception during parse of suspicious files ");
             ex.printStackTrace();
