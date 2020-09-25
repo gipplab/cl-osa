@@ -765,7 +765,7 @@ public class OntologyBasedSimilarityAnalysis {
 
         // iterate the suspicious documents
         Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap = suspiciousIdTokensMap.entrySet()
-                .stream()
+                .parallelStream()
                 .collect(Collectors.toMap(Map.Entry::getKey,
                         entry -> {
                             progressBar.stepTo(progress.incrementAndGet());

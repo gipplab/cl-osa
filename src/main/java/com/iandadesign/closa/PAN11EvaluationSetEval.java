@@ -90,7 +90,7 @@ public class PAN11EvaluationSetEval {
                 List<String> actualCandidates = resultSelectedCandidates.get(suspFileName.replace(".txt",".xml"));
                 overallPlagiariasmFiles.addAndGet(actualCandidates.size());
                 // Do a comparison here quickly
-
+                long accPositions = 0;
                 int posCounter = 0;
                 int matchCandidates = 0;
                 for(String selectedCandidate:selectedCandidates.keySet()) {
@@ -100,16 +100,20 @@ public class PAN11EvaluationSetEval {
                         logUtil.logAndWriteStandard(false, "Found Candidate at pos: "+posCounter+"\t score: "+selectedCandidates.get(selectedCandidate));
                         if(posCounter > maxPos.get()){
                             maxPos.set(posCounter);
-                        }
+                         }
+                        accPositions += posCounter;
                         matchCandidates++;
                     }
                     posCounter++;
 
                 }
+                float meanPos = (float) accPositions / matchCandidates;
+
                 logUtil.logAndWriteStandard(false, "Matched candidates: " + matchCandidates+ "/"+actualCandidates.size());
                 overallMatches.addAndGet(matchCandidates);
                 // Save score for complete comparison.
                 logUtil.logAndWriteStandard(false, "Overall Matched candidates: " + overallMatches.get()+ "/"+ overallPlagiariasmFiles.get() + " max pos: " + maxPos.get());
+                logUtil.logAndWriteStandard(false, "Mean Position: " + meanPos);
 
             });
         } catch (Exception ex){
