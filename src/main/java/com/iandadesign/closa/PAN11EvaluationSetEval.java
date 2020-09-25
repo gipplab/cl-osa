@@ -44,6 +44,47 @@ public class PAN11EvaluationSetEval {
     //static String pathPrefix = "/media/johannes/Elements SE/CLOSA/pan-plagiarism-corpus-2011/external-detection-corpus";
     static String pathPrefix = "/data/pan-plagiarism-corpus-2011/external-detection-corpus";
 
+    static void doCREvaluationNew(ExtendedAnalysisParameters params, String tag, String comment, HashMap<String, List<String>> resultSelectedCandidates){
+        // Route the complete output to a logfile here.
+        String toplevelPathSuspicious = pathPrefix.concat("/suspicious-document/");
+        String toplevelPathCandidates = pathPrefix.concat("/source-document/");
+
+
+        //  (26939 - (9506/2)) / 2 = 11093 is the number of files in each directory;
+
+        // Do all preprocessing and cache it first (if already cached this will validate preprocessed number)
+        OntologyBasedSimilarityAnalysis osa = new OntologyBasedSimilarityAnalysis();
+        osa.initializeLogger(tag, params); // this has to be done immediately after constructor
+        ExtendedLogUtil logUtil = osa.getExtendedLogUtil();
+        logUtil.logAndWriteStandard(false, comment);
+
+        logUtil.writeStandardReport(false, "Assuming the preprpocessing has been done here. ");
+        params.MAX_NUM_CANDIDATES_SELECTED = 202;
+        params.CANDIDATE_SELECTION_TRESH = 0;
+
+        logParams(logUtil, tag, params, osa);
+
+
+        logUtil.logAndWriteStandard(false, "Starting file comparisons...");
+        List<File> candidateFiles = getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true, ".txt");
+        List<File> suspiciousFiles  = getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".txt");
+
+
+        AtomicInteger overallPlagiariasmFiles = new AtomicInteger();
+        AtomicInteger overallMatches = new AtomicInteger();
+        AtomicInteger maxPos = new AtomicInteger();
+        AtomicInteger averagePos = new AtomicInteger();
+        WeakHashMap<String, List<SavedEntity>> suspiciousIdTokensMapExt = new WeakHashMap<>();
+        try {
+            osa.doCandidateRetrievalExtendedInfo2(suspiciousFiles, candidateFiles, params, logUtil.getDateString(), suspiciousIdTokensMapExt);
+        } catch (Exception ex){
+            logUtil.logAndWriteError(false, "Exception during parse of suspicious files ");
+            ex.printStackTrace();
+
+        }
+        logUtil.logAndWriteStandard(false, "Overall Matched candidates: " + overallMatches.get()+ "/"+ overallPlagiariasmFiles.get()+ " max pos: " + maxPos.get());
+
+    }
 
     static void doCREvaluation(ExtendedAnalysisParameters params, String tag, String comment, HashMap<String, List<String>> resultSelectedCandidates){
         // Route the complete output to a logfile here.
@@ -60,7 +101,7 @@ public class PAN11EvaluationSetEval {
         logUtil.logAndWriteStandard(false, comment);
 
         logUtil.writeStandardReport(false, "Assuming the preprpocessing has been done here. ");
-        params.MAX_NUM_CANDIDATES_SELECTED = 20;
+        params.MAX_NUM_CANDIDATES_SELECTED = 202;
         params.CANDIDATE_SELECTION_TRESH = 0;
 
         logParams(logUtil, tag, params, osa);
@@ -88,8 +129,7 @@ public class PAN11EvaluationSetEval {
                 Map<String, Double> selectedCandidates = osa.doCandidateRetrievalExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString(), suspiciousIdTokensMapExt);
                 List<String> selectedCandidatesF = new ArrayList<>();
                 for(String candPath:selectedCandidates.keySet()){
-                    File filename = new File(candPath);
-                    selectedCandidatesF.add(filename.getName());
+                    selectedCandidatesF.add(candPath);
                 }
 
                 suspiciousIdTokensMapExt.clear();
@@ -100,15 +140,18 @@ public class PAN11EvaluationSetEval {
 
                 int posCounter = 0;
                 int matchCandidates = 0;
-                for(String selectedCandidate:selectedCandidatesF) {
-                    if(actualCandidates.contains(selectedCandidate)){
-                        logUtil.logAndWriteStandard(false, "found at pos: "+posCounter);
+                for(String selectedCandidate:selectedCandidates.keySet()) {
+                    File filename = new File(selectedCandidate);
+
+                    if(actualCandidates.contains(filename.getName())){
+                        logUtil.logAndWriteStandard(false, "Found Candidate at pos: "+posCounter+"\t score: "+selectedCandidates.get(selectedCandidate));
+                        if(posCounter > maxPos.get()){
+                            maxPos.set(posCounter);
+                        }
                         matchCandidates++;
                     }
                     posCounter++;
-                    if(posCounter > maxPos.get()){
-                        maxPos.set(posCounter);
-                    }
+
                 }
                 logUtil.logAndWriteStandard(false, "Matched candidates: " + matchCandidates+ "/"+actualCandidates.size());
                 overallMatches.addAndGet(matchCandidates);
@@ -259,7 +302,7 @@ public class PAN11EvaluationSetEval {
                     "\nUsed Suspicious Files: " + usedSuspicious.size()
             );
         }else {
-            doCREvaluation(params, tag, "CREval", resultSelectedCandidates);
+            doCREvaluationNew(params, tag, "CREval", resultSelectedCandidates);
         }
     }
 
