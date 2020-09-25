@@ -368,8 +368,9 @@ public class OntologyBasedSimilarityAnalysis {
         }
 
         // Perform similarity analysis for candidate retrieval.
-        Map<String,Map <String, Double>> suspiciousIdCandidateScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
-        //Map<String,Map <String, Double>> suspiciousIdCandidateScoresMap = performEnhancedCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
+
+        //Map<String,Map <String, Double>> suspiciousIdCandidateScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
+        Map<String,Map <String, Double>> suspiciousIdCandidateScoresMap = performEnhancedCosineSimilarityAnalysisP(suspiciousIdTokensMap, candidateIdTokensMap);
 
         //Map<String, Double> candidateScoresMap = performEnhancedCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
 
@@ -904,7 +905,84 @@ public class OntologyBasedSimilarityAnalysis {
         return suspiciousIdDetectedCandidateIdsMap;
     }
 
+    public Map<String, Map<String, Double>> performEnhancedCosineSimilarityAnalysisP(
+            Map<String, List<String>> suspiciousIdTokensMap,
+            Map<String, List<String>> candidateIdTokensMap) {
+        Map<String, Map<String, Double>> suspiciousIdDetectedCandidateIdsMap = new HashMap<>();
 
+        ProgressBar ontologyProgressBar = new ProgressBar("Enhancing vectors with ontology data",
+                suspiciousIdTokensMap.size() + candidateIdTokensMap.size(),
+                ProgressBarStyle.ASCII);
+        ontologyProgressBar.start();
+
+        Map<String, Map<String, Double>> suspiciousIdTokenCountMap = new HashMap<>();
+        Map<String, Map<String, Double>> candidateIdTokenCountMap = new HashMap<>();
+
+
+        suspiciousIdTokensMap.entrySet().parallelStream().forEach((suspiciousIdTokensMapEntry) -> {
+            String id = suspiciousIdTokensMapEntry.getKey();
+            List<String> tokens = suspiciousIdTokensMapEntry.getValue();
+            Map<String, Double> countMap = getHierarchicalCountMap(tokens);
+            suspiciousIdTokenCountMap.put(id, countMap);
+            ontologyProgressBar.step();
+        });
+
+
+
+
+        candidateIdTokensMap.entrySet().parallelStream().forEach((candidateIdTokensMapEntry) -> {
+            String id = candidateIdTokensMapEntry.getKey();
+            List<String> tokens = candidateIdTokensMapEntry.getValue();
+            Map<String, Double> countMap = getHierarchicalCountMap(tokens);
+            candidateIdTokenCountMap.put(id, countMap);
+            ontologyProgressBar.step();
+        });
+
+
+        ontologyProgressBar.stop();
+
+
+        // perform detailed analysis
+        logger.info("Perform detailed analysis");
+
+        // progress bar
+        ProgressBar progressBar = new ProgressBar("Perform cosine similarity analysis",
+                suspiciousIdTokenCountMap.size() * candidateIdTokenCountMap.size(),
+                ProgressBarStyle.ASCII);
+        progressBar.start();
+
+        // iterate the suspicious documents
+
+        suspiciousIdTokenCountMap.entrySet().parallelStream().forEach(((suspiciousEntry)-> {
+            Map<String, Double> candidateSimilarities = new HashMap<>();
+
+            for (Map.Entry<String, Map<String, Double>> candidateEntry : candidateIdTokenCountMap.entrySet()) {
+
+                double similarity = WikidataSimilarityUtil.cosineSimilarity(suspiciousEntry.getValue(), candidateEntry.getValue());
+
+                candidateSimilarities.put(candidateEntry.getKey(), similarity);
+                progressBar.step();
+            }
+
+            suspiciousIdDetectedCandidateIdsMap.put(suspiciousEntry.getKey(), candidateSimilarities);
+            /* System.out.println("suspiciousIdDetectedCandidateIdsMap.put");
+            System.out.println(suspiciousEntry.getKey() + "=" + candidateSimilarities
+                    .entrySet()
+                    .stream()
+                    .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                    .limit(1)
+                    .collect(Collectors.toList())
+                    .get(0));
+             */
+        }));
+
+
+
+
+        progressBar.stop();
+
+        return suspiciousIdDetectedCandidateIdsMap;
+    }
     /**
      * Property-enhanced cosine similarity analysis.
      *

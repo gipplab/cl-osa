@@ -99,13 +99,14 @@ public class PAN11EvaluationSetEval {
                 int matchCandidates = 0;
 
 
+                logUtil.logAndWriteStandard(false, "Evaluating Suspicious " + suspFileName+ " --------------------");
 
 
                 for(String selectedCandidate:candidateScoresMapS.keySet()) {
                     File filename = new File(selectedCandidate);
 
                     if(actualCandidates.contains(filename.getName())){
-                        logUtil.logAndWriteStandard(false, "Found Candidate at pos: "+posCounter+"\t score: "+candidateScoresMapS.get(selectedCandidate));
+                        logUtil.logAndWriteStandard(false, "Found Candidate " + filename.getName()+ " at pos: " + posCounter + "\t score: " + candidateScoresMapS.get(selectedCandidate));
                         if(posCounter > maxPos.get()){
                             maxPos.set(posCounter);
                          }
