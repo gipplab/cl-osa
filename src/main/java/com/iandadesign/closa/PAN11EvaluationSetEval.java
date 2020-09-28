@@ -129,7 +129,8 @@ public class PAN11EvaluationSetEval {
                 List<String> usedMockCandidates = new ArrayList<>();
                 usedMockCandidates.addAll(mockMatchesForThisFile);
                 // The first candidates are always the real ones, the other ones are realistic false positives
-                usedMockCandidates.addAll(mockFalsePositivesForThisFile.subList(mockMatchesForThisFile.size(),MOCK_CANDIDATES_PER_FILE));
+                // TODO turn on False positives gain
+                //usedMockCandidates.addAll(mockFalsePositivesForThisFile.subList(mockMatchesForThisFile.size(),MOCK_CANDIDATES_PER_FILE));
 
                 mockCandidates.put(suspiciousFilePath, usedMockCandidates);
 
