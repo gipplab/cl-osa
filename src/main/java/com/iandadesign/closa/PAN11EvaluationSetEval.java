@@ -29,7 +29,7 @@ public class PAN11EvaluationSetEval {
 
     public static void main(String[] args) {
         Boolean smallTest = false;
-        Boolean testCandidateRetrieval = true;
+        Boolean testCandidateRetrieval = false;
         //JS: since tests not work cause of local dependency missing, heres a workaround to make evaluations executable
         //evalPAN2011All();
         //verifyNumberNonEnglishSusp();
@@ -343,7 +343,7 @@ public class PAN11EvaluationSetEval {
 
         if(!testCandidateRetrieval) {
             // Just process as usual
-            evalPAN2011All(params, tag, "Parsing En-" + language + "\n" +
+            evalPAN2011AllNew(params, tag, "Parsing En-" + language + "\n" +
                     "used Candidates Files: " + usedCandidates.size() +
                     "\nUsed Suspicious Files: " + usedSuspicious.size()
             );
@@ -392,6 +392,186 @@ public class PAN11EvaluationSetEval {
 
 
     }
+    static void evalPAN2011AllNew(ExtendedAnalysisParameters params, String tag, String comment)  {
+        // Route the complete output to a logfile here.
+        String toplevelPathSuspicious = pathPrefix.concat("/suspicious-document/");
+        String toplevelPathCandidates = pathPrefix.concat("/source-document/");
+
+
+        //  (26939 - (9506/2)) / 2 = 11093 is the number of files in each directory;
+
+        // Do all preprocessing and cache it first (if already cached this will validate preprocessed number)
+        OntologyBasedSimilarityAnalysis osa = new OntologyBasedSimilarityAnalysis();
+        osa.initializeLogger(tag, params); // this has to be done immediately after constructor
+        ExtendedLogUtil logUtil = osa.getExtendedLogUtil();
+        logUtil.logAndWriteStandard(false, comment);
+        // ..
+
+        logParams(logUtil, tag, params, osa);
+
+        if(false) {
+            logUtil.logAndWriteStandard(false, "Preprocessing all candidate files...");
+            int candidatePreprocessedFiles = doAllPreprocessing(toplevelPathCandidates, osa, null, params, true);  // candidate docs can be en,de,es
+            logUtil.logAndWriteStandard(false, "Preprocessing all suspicious files...");
+            int suspiciousPreprocessedFiles = doAllPreprocessing(toplevelPathSuspicious, osa, "en", params, false); // all suspicious docs are english
+            int numfiles = suspiciousPreprocessedFiles + candidatePreprocessedFiles;
+            logUtil.logAndWriteStandard(false, "Number of preprocessed files is: " + numfiles);
+            if (!params.USE_FILE_FILTER && !params.USE_LANGUAGE_WHITELISTING && numfiles != (11093 * 2)) {
+                logUtil.logAndWriteError(false, "Aborting: Processed files not 2*11093=22186 but " + numfiles);
+                return;
+            }
+        }
+        logUtil.logAndWriteStandard(false, logUtil.dashes(100));
+
+        logUtil.logAndWriteStandard(false, "Starting file comparisons...");
+        List<File> candidateFiles = getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true, ".txt");
+        List<File> suspiciousFiles  = getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".txt");
+
+        try {
+            osa.executeAlgorithmForAllfiles(suspiciousFiles, candidateFiles, params, logUtil.getDateString());
+        } catch (Exception ex) {
+
+            logUtil.logAndWriteError(false, "Exception during parse of all files Exception:", ex);
+            ex.printStackTrace();
+        }
+
+        if(true) {
+            return;
+        }
+        int parsedFiles = 0;
+        int parsedErrors = 0;
+        String baseResultsPath = "";
+
+        // Do the file comparisons
+        if(!osa.getDoParallelRequests()) {
+            // Single Thread Execution
+            for (int index = 0; index < suspiciousFiles.size(); index++) {
+                String suspPath = suspiciousFiles.get(index).getPath();
+                String suspFileName = suspiciousFiles.get(index).getName();
+                try {
+                    logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", index + 1, "/", suspiciousFiles.size(), "Filename:", suspFileName, " and its", candidateFiles.size(), "candidates");
+                    OntologyBasedSimilarityAnalysis osaT = new OntologyBasedSimilarityAnalysis();
+                    osaT.initializeLogger(tag, params); // this has to be done immediately after constructor
+                    osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                    baseResultsPath = osaT.getExtendedXmlResultsPath();
+                    parsedFiles++;
+                } catch (Exception ex) {
+                    parsedErrors++;
+                    logUtil.logAndWriteError(false, "Exception during parse of suspicious file with Filename", suspFileName, "Exception:", ex);
+                }
+            }
+            logUtil.logAndWriteStandard(true, logUtil.getDateString(), "done processing PAN11,- parsed files:", parsedFiles, "errors:", parsedErrors);
+        } else {
+            // Multi Thread Execution
+
+            // Limit: https://www.codementor.io/@nitinpuri/controlling-parallelism-of-java-8-collection-streams-umex0qbt1
+            AtomicInteger indexP = new AtomicInteger(0);
+            AtomicInteger parsedFilesP = new AtomicInteger(0);
+            AtomicInteger parsedErrorsP = new AtomicInteger(0);
+            logUtil.logAndWriteStandard(true, logUtil.getDateString(), " Using parallelism, counter (x/y) is only a vague indicator");
+
+            int parallelism = Runtime.getRuntime().availableProcessors() - params.PARALLELISM_THREAD_DIF;
+            if(parallelism < 1){
+                logUtil.writeStandardReport(false, "Starting Parallel Processing Dif in settings too big");
+                parallelism = 1;
+            }
+            logUtil.writeStandardReport(false, "Starting Parallel Processing with Num CPUs: "+ parallelism);
+            ForkJoinPool forkJoinPool = null;
+
+            try {
+
+                forkJoinPool = new ForkJoinPool(parallelism);
+                forkJoinPool.submit(() -> suspiciousFiles.parallelStream().forEach((suspiciousFile) -> {
+                    String suspPath = suspiciousFile.getPath();
+                    String suspFileName = suspiciousFile.getName();
+                    try {
+                        logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", indexP.get() + 1, "/", suspiciousFiles.size(), "Filename:", suspFileName, " and its", candidateFiles.size(), "candidates");
+                        parsedFilesP.getAndIncrement();
+                        indexP.getAndIncrement();
+                        OntologyBasedSimilarityAnalysis osaT = new OntologyBasedSimilarityAnalysis(null, null);
+                        osaT.setLogger(osa.getExtendedLogUtil(), osa.getTag()); // this has to be done immediately after constructor
+                        osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                        osaT = null;
+                        System.gc(); // Excplicit call to garbage collector.
+                    } catch (Exception ex) {
+                        parsedErrorsP.getAndIncrement();
+                        indexP.getAndIncrement();
+                        logUtil.logAndWriteError(false, "Exception during parse of suspicious file with Filename", suspFileName, "Exception:");
+                        ex.printStackTrace();
+                    }
+                })).get();
+
+
+                /*
+            suspiciousFiles.parallelStream().forEach((suspiciousFile) -> {
+                    String suspPath = suspiciousFile.getPath();
+                    String suspFileName = suspiciousFile.getName();
+                    try {
+                        logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", indexP.get() + 1, "/", suspiciousFiles.size(), "Filename:", suspFileName, " and its", candidateFiles.size(), "candidates");
+                        parsedFilesP.getAndIncrement();
+                        indexP.getAndIncrement();
+                        //OntologyBasedSimilarityAnalysis osaT = new OntologyBasedSimilarityAnalysis(null, null);
+                        //osaT.setLogger(osa.getExtendedLogUtil(), osa.getTag()); // this has to be done immediately after constructor
+                        //osaT.initializeLogger(tag, params);
+
+                        osa.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                        //osaT = null;
+                        System.gc(); // Excplicit call to garbage collector.
+                    } catch (Exception ex) {
+                        parsedErrorsP.getAndIncrement();
+                        indexP.getAndIncrement();
+                        logUtil.logAndWriteError(false, "Exception during parse of suspicious file with Filename", suspFileName, "Exception:");
+                        ex.printStackTrace();
+                    }
+                });
+                */
+
+            }catch(Exception e) {//SecurityException | RejectedExecutionException e){
+                logUtil.logAndWriteError(false, "Exception with with thread execution:", e);
+            } finally {
+                if (forkJoinPool != null) {
+                    forkJoinPool.shutdown(); //always remember to shutdown the pool
+                }
+            }
+
+            // Generating xmlResultsfolderPath as it is done in each thread atm.
+            String xmlResultsFolderPath = Paths.get(osa.getPreprocessedCachingDirectory(), "preprocessed_extended",
+                    "results_comparison", tag.concat("_").concat(logUtil.getDateString())).toAbsolutePath().toString();
+            baseResultsPath = xmlResultsFolderPath;
+            parsedFiles = parsedFilesP.get();
+            parsedErrors = parsedErrorsP.get();
+        }
+
+
+        if(parsedErrors>=1 || parsedFiles==0){
+            return;
+        }
+
+
+        //TODO MEMORY FREE MEMORY HERE ? nO
+
+
+        // Evaluation related stuff ...
+        if(params.RUN_EVALUATION_AFTER_PROCESSING){
+            if(!params.USE_FILE_FILTER){
+                // No filter-> just do the regular evaluation with all files
+                triggerPAN11PythonEvaluation(logUtil, baseResultsPath, toplevelPathSuspicious);
+            }else{
+                // Filter used, only compare with relevant files
+                File cachingDir= new File(baseResultsPath +"/file_selection_cache");
+                removeDirectory(cachingDir);
+                List<File> suspiciousXML  = getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".xml");
+                writeFileListToDirectory(suspiciousXML, cachingDir.getPath(), logUtil);
+                triggerPAN11PythonEvaluation(logUtil, baseResultsPath, cachingDir.getPath());
+                removeDirectory(cachingDir);
+            }
+            logUtil.logAndWriteStandard(true,logUtil.getDateString(), "done doing evaluation for PAN11");
+        }
+        logUtil.closeStreams();
+    }
+
+
+
     //@Test
     static void evalPAN2011All(ExtendedAnalysisParameters params, String tag, String comment)  {
         // Route the complete output to a logfile here.
