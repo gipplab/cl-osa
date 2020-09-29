@@ -981,7 +981,7 @@ public class OntologyBasedSimilarityAnalysis {
             Map<String, List<String>> suspiciousIdTokensMap,
             Map<String, List<String>> candidateIdTokensMap
     ) {
-        boolean showProgress = true;
+        final boolean showProgress = false;
         // create dictionary
         //logger.info("Create dictionary");
         Dictionary<String> dictionary = new Dictionary<>(candidateIdTokensMap);
@@ -990,27 +990,31 @@ public class OntologyBasedSimilarityAnalysis {
         //logger.info("Perform detailed analysis");
 
         // progress bar
-        ProgressBar progressBar = new ProgressBar("Perform cosine similarity analysis", suspiciousIdTokensMap.entrySet().size(), ProgressBarStyle.ASCII);
-        AtomicInteger progress;
+        AtomicInteger progress = new AtomicInteger(0);
 
-        progressBar.start();
-        progress = new AtomicInteger(0);
+        ProgressBar progressBar = null;
+        if(showProgress) {
+            progressBar = new ProgressBar("Perform cosine similarity analysis", suspiciousIdTokensMap.entrySet().size(), ProgressBarStyle.ASCII);
 
+            progressBar.start();
+         }
 
         // iterate the suspicious documents
+        ProgressBar finalProgressBar = progressBar;
         Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap = suspiciousIdTokensMap.entrySet()
                 .parallelStream()
                 .collect(Collectors.toMap(Map.Entry::getKey,
                         entry -> {
-                            progressBar.stepTo(progress.incrementAndGet());
-
+                            if (showProgress){
+                                finalProgressBar.stepTo(progress.incrementAndGet());
+                            }
                             // look in dictionary
                             return dictionary.query(entry.getValue());
                         }
                 ));
-
-        progressBar.stop();
-
+        if(showProgress) {
+            progressBar.stop();
+        }
         return  suspiciousIdCandidateScoresMap;
     }
 
