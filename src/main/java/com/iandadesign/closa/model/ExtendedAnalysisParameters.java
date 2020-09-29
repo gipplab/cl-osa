@@ -40,7 +40,7 @@ public class ExtendedAnalysisParameters {
         ADAPTIVE_FORM_FACTOR = 5.7; // 6 still false positive, rec ok
         CLIPPING_MARGING = 300;
         // Candidate retrieval settings
-        MAX_NUM_CANDIDATES_SELECTED = 2;
+        MAX_NUM_CANDIDATES_SELECTED = 20;
         CR_PRINT_LIMIT = 10;
         CANDIDATE_SELECTION_TRESH = 0; //0.2;
         //Settings for Logging etc
