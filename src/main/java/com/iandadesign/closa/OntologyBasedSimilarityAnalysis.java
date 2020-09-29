@@ -595,6 +595,7 @@ public class OntologyBasedSimilarityAnalysis {
                 } catch (Exception ex) {
                     logUtil.logAndWriteError(true, "Exception processing file combination",
                             suspiciousIdTokenExt.getKey(), selectedCandidatePath);
+                    ex.printStackTrace();
                 } finally {
                     // ... free memory
                     //TODO perfomance: Check if memory is released here properly
@@ -770,6 +771,7 @@ public class OntologyBasedSimilarityAnalysis {
                 } catch (Exception ex) {
                     logUtil.logAndWriteError(true, "Exception processing file combination",
                             suspiciousIdTokenExt.getKey(), selectedCandidatePath);
+                    ex.printStackTrace();
                 } finally {
                     // ... free memory
                     //TODO perfomance: Check if memory is released here properly

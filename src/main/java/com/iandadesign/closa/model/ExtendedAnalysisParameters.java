@@ -31,8 +31,8 @@ public class ExtendedAnalysisParameters {
         // Token forming before making Wikidata query
         //LENGTH_SUBLIST_TOKENS = 3; // This is not used atm, but the parameter in config.properties dung refactoring reasons
         // Sliding window parameters (atm only possible increment == num_sentences)
-        NUM_SENTENCES_IN_SLIDING_WINDOW = 10; //2
-        NUM_SENTENCE_INCREMENT_SLIDINGW = 5; //1
+        NUM_SENTENCES_IN_SLIDING_WINDOW = 2; //2
+        NUM_SENTENCE_INCREMENT_SLIDINGW = 1; //1
         // Sliding window comparison thresholds
         ADJACENT_THRESH = 0.3;   //0,1
         SINGLE_THRESH = 0.7 ; //0.8; //0.45act; //0.7;     //0,6
