@@ -452,29 +452,29 @@ public class ScoringChunksCombined {
 
                 int counterY = 0;
                 for (ScoringChunk[] items : this.scoreMatrix) {
-                    try {
-                        if (items == null) {
-                            // If a row doesn't have values, just fill with empty strings
-                            String[] emptyStrings = new String[this.matrixDimensionX + 1];
-                            Arrays.fill(emptyStrings, "");
-                            emptyStrings[0] = "Y" + Integer.toString(counterY);
-                            pw.println(CSVUtil.convertToCSV(emptyStrings));
-                            counterY++;
-                            continue;
+
+                    if (items == null) {
+                        // If a row doesn't have values, just fill with empty strings
+                        String[] emptyStrings = new String[this.matrixDimensionX + 1];
+                        Arrays.fill(emptyStrings, "");
+                        emptyStrings[0] = "Y" + Integer.toString(counterY);
+                        pw.println(CSVUtil.convertToCSV(emptyStrings));
+                        counterY++;
+                        continue;
+                    }
+                    List<String> values = new ArrayList<>();
+                    values.add("Y" + Integer.toString(counterY));
+                    for (ScoringChunk item : items) {
+                        if (item == null) {
+                            values.add("");
+                        } else {
+                            DecimalFormat df = new DecimalFormat("#.####");
+                            String formatted = df.format(item.getComputedCosineSimilarity());
+                            formatted+="||cs"+item.getCandidateCharacterStartIndex();
+                            formatted+="||ss"+item.getSuspiciousCharacterStartIndex();
+                            values.add(formatted);
                         }
-                        List<String> values = new ArrayList<>();
-                        values.add("Y" + Integer.toString(counterY));
-                        for (ScoringChunk item : items) {
-                            if (item == null) {
-                                values.add("");
-                            } else {
-                                DecimalFormat df = new DecimalFormat("#.####");
-                                String formatted = df.format(item.getComputedCosineSimilarity());
-                                formatted+="||cs"+item.getCandidateCharacterStartIndex();
-                                formatted+="||ss"+item.getSuspiciousCharacterStartIndex();
-                                values.add(formatted);
-                            }
-                        }
+                    }
                     /*
                     Double[] values = (Double[]) Arrays.stream(items).map(ScoringChunk::getComputedCosineSimilarity).toArray();
                     String[] strings = (String[]) Arrays.stream(values).map(String::valueOf).toArray();
@@ -485,17 +485,18 @@ public class ScoringChunksCombined {
                             .toArray(String[]::new);
                     */
 
-                        String returnVal = CSVUtil.convertToCSV(values.toArray(new String[0]));
-                        pw.println(returnVal);
-                        counterY++;
-                    }catch(NullPointerException nex){
-                        System.out.println("Exception during writing data to csv:"+ nex);
+                    String returnVal = CSVUtil.convertToCSV(values.toArray(new String[0]));
+                    pw.println(returnVal);
+                    counterY++;
 
-                    } finally {
-                        pw.close();
-                    }
                 }
+                // this doesnt seem necessary
+                // pw.close();
+
+            }catch(NullPointerException nex){
+                System.out.println("Exception during writing data to csv:"+ nex);
             }
+
         } catch(Exception ex){
             System.out.println("Exception during writing data to csv:"+ ex);
         }
