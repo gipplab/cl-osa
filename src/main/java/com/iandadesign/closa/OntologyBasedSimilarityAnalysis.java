@@ -433,6 +433,8 @@ public class OntologyBasedSimilarityAnalysis {
         Map<String, Map<String, Double>> fragmentScoresMapN = performCosineSimilarityAnalysis(suspiciousEntitiesAll,
                 candidateEntitiesAll);
         // Perform the analysis
+        // TODO fragmentScoresMapN.keySet().stream().filter(key contains suspfilename)
+
 
         // Create Scoring Chunk Matrix
 

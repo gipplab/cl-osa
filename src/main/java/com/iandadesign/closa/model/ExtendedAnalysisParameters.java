@@ -31,20 +31,20 @@ public class ExtendedAnalysisParameters {
         // Token forming before making Wikidata query
         //LENGTH_SUBLIST_TOKENS = 3; // This is not used atm, but the parameter in config.properties dung refactoring reasons
         // Sliding window parameters (atm only possible increment == num_sentences)
-        NUM_SENTENCES_IN_SLIDING_WINDOW = 2; //2
-        NUM_SENTENCE_INCREMENT_SLIDINGW = 1; //1
+        NUM_SENTENCES_IN_SLIDING_WINDOW = 20; //2
+        NUM_SENTENCE_INCREMENT_SLIDINGW = 10; //1
         // Sliding window comparison thresholds
-        ADJACENT_THRESH = 0.3;   //0,1
-        SINGLE_THRESH = 0.7 ; //0.8; //0.45act; //0.7;     //0,6
-        USE_ADAPTIVE_CLUSTERING_TRESH = false;
-        ADAPTIVE_FORM_FACTOR = 5.7; // 6 still false positive, rec ok
-        CLIPPING_MARGING = 300;
+        ADJACENT_THRESH = 0.09;   //0,3; 0,1
+        SINGLE_THRESH = 0.125;// 0,7; 0.8; //0.45act; //0.7;     //0,6
+        USE_ADAPTIVE_CLUSTERING_TRESH = true; // false
+        ADAPTIVE_FORM_FACTOR = 5.2; // 6 still false positive, rec ok
+        CLIPPING_MARGING = 3000;
         // Candidate retrieval settings
         MAX_NUM_CANDIDATES_SELECTED = 20;
         CR_PRINT_LIMIT = 10;
         CANDIDATE_SELECTION_TRESH = 0; //0.2;
         //Settings for Logging etc
-        LOG_TO_CSV= false;
+        LOG_TO_CSV= true;
         LOG_PREPROCESSING_RESULTS= true;
         LOG_STANDARD_TO_FILE= false;
         LOG_ERROR_TO_FILE=false;

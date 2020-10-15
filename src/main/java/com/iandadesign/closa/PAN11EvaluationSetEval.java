@@ -291,7 +291,6 @@ public class PAN11EvaluationSetEval {
                         }
                     }
                 }
-
             }
 
 
@@ -300,9 +299,13 @@ public class PAN11EvaluationSetEval {
                 usedSuspicious.add(suspId);
                 if(testCandidateRetrieval) {
                     resultSelectedCandidates.put(suspFileXML.getName(), selectedCandidateForFile);
+                    break; //TODO remove this This is causing 1/1 size
                 }
                 int a = 1 ;
             }
+
+
+
         }
 
         // Salvador differentiates in mechanism of selection on de/es
@@ -320,6 +323,7 @@ public class PAN11EvaluationSetEval {
             }
         }
         // Checking if selection is ok (these are the numbers stated in Salador2016, only if no caselength filtering)
+        /*
         if(allowedCaseLengths.size()==3 && language.equals("es")){
             if(usedCandidates.size()!=202 || usedSuspicious.size()!=304){
                 System.err.println("Wrong file numbers");
@@ -331,7 +335,7 @@ public class PAN11EvaluationSetEval {
                 return;
             }
         }
-
+        */
 
 
         // Overwrite the file filter
@@ -590,14 +594,39 @@ public class PAN11EvaluationSetEval {
         logUtil.closeStreams();
     }
 
+    static int getSourceIdOfFile(File file){
+        return Integer.parseInt(file.getName().replaceAll("\\D+", ""));
 
+    }
     static void evalPAN2011MockCandidates(ExtendedAnalysisParameters params, String tag, String comment,
                                           Map<String, List<String>> mockSuspToSelectedCandidates)  {
         // Route the complete output to a logfile here.
         String toplevelPathSuspicious = pathPrefix.concat("/suspicious-document/");
         String toplevelPathCandidates = pathPrefix.concat("/source-document/");
 
+        // Adapt filtering for eval here:
+        boolean onlySelectFew = true;
+        if(onlySelectFew) {
+            params.USE_FILE_FILTER = true;
+            // This selects only a view candidates and also creates a filter for selective evaluation.
+            Map<String, List<String>> mockSuspToSelectedCandidatesF = new HashMap<>();
+            int fewStartIndex = 1;
+            int fewStopIndex = 2;
+            params.panFileFilter = new PANFileFilter();
+            for (String suspStr : mockSuspToSelectedCandidates.keySet()) {
+                int suspId = getSourceIdOfFile(new File(suspStr));
+                params.panFileFilter.addToWhiteList(suspId, false);
+                for (String candStr : mockSuspToSelectedCandidates.get(suspStr)) {
+                    int candId = getSourceIdOfFile(new File(candStr));
+                    params.panFileFilter.addToWhiteList(candId, true);
+                    break;
+                }
+                mockSuspToSelectedCandidatesF.put(suspStr, mockSuspToSelectedCandidates.get(suspStr));
+                break;
+            }
 
+            mockSuspToSelectedCandidates = mockSuspToSelectedCandidatesF;
+        }
         //  (26939 - (9506/2)) / 2 = 11093 is the number of files in each directory;
 
         // Do all preprocessing and cache it first (if already cached this will validate preprocessed number)
@@ -617,6 +646,26 @@ public class PAN11EvaluationSetEval {
         int parsedFiles = 0;
         int parsedErrors = 0;
         String baseResultsPath = "";
+
+        // TODO remove the test
+        /*
+        for(String suspiciousTest: mockSuspToSelectedCandidates.keySet()){
+            List<File> suspTestCand = new ArrayList<>();
+            suspTestCand.add(new File(suspiciousTest));
+            List<File> candidateFiles = new ArrayList<>();
+            for(String candidateEntry: mockSuspToSelectedCandidates.get(suspiciousTest)){
+                candidateFiles.add(new File(candidateEntry));
+            }
+            try {
+                osa.executeAlgorithmForAllfiles(suspTestCand, candidateFiles, params, logUtil.getDateString());
+            } catch (Exception ex){
+                logUtil.logAndWriteStandard(false, "Error during parse");
+                ex.printStackTrace();
+            }
+        }
+        */
+
+        // End test
 
 
         // Multi Thread Execution
@@ -638,15 +687,16 @@ public class PAN11EvaluationSetEval {
         try {
 
             forkJoinPool = new ForkJoinPool(parallelism);
-            forkJoinPool.submit(() -> mockSuspToSelectedCandidates.keySet().parallelStream().forEach((suspiciousFilePath) -> {
+            Map<String, List<String>> finalMockSuspToSelectedCandidates = mockSuspToSelectedCandidates;
+            forkJoinPool.submit(() -> finalMockSuspToSelectedCandidates.keySet().parallelStream().forEach((suspiciousFilePath) -> {
                 String suspPath = suspiciousFilePath;
                 String suspFileName = new File(suspiciousFilePath).getName();
                 List<File> candidateFiles = new ArrayList<>();
-                for(String candidateEntry: mockSuspToSelectedCandidates.get(suspiciousFilePath)){
+                for(String candidateEntry: finalMockSuspToSelectedCandidates.get(suspiciousFilePath)){
                     candidateFiles.add(new File(candidateEntry));
                 }
                 try {
-                    logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", indexP.get() + 1, "/", mockSuspToSelectedCandidates.keySet().size(), "Filename:", suspFileName, " and its", candidateFiles.size(), "candidates");
+                    logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", indexP.get() + 1, "/", finalMockSuspToSelectedCandidates.keySet().size(), "Filename:", suspFileName, " and its", candidateFiles.size(), "candidates");
                     parsedFilesP.getAndIncrement();
                     indexP.getAndIncrement();
                     OntologyBasedSimilarityAnalysis osaT = new OntologyBasedSimilarityAnalysis(null, null);
