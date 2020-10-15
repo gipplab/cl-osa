@@ -367,11 +367,13 @@ public class OntologyBasedSimilarityAnalysis {
             candidateIdTokensMapExt.put(candidateDocumentFile.getPath(), preprocessedCandExt);
         }
 
+        Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap;
         // Perform similarity analysis for candidate retrieval.
-
-        Map<String,Map <String, Double>> suspiciousIdCandidateScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
-        //Map<String,Map <String, Double>> suspiciousIdCandidateScoresMap = performEnhancedCosineSimilarityAnalysisP(suspiciousIdTokensMap, candidateIdTokensMap);
-
+        if(!params.USE_ENHANCHED_COSINE_ANALYSIS) {
+            suspiciousIdCandidateScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
+        }else {
+            suspiciousIdCandidateScoresMap = performEnhancedCosineSimilarityAnalysisP(suspiciousIdTokensMap, candidateIdTokensMap);
+        }
         //Map<String, Double> candidateScoresMap = performEnhancedCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
 
 

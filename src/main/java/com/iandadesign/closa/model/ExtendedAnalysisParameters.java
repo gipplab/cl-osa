@@ -24,6 +24,7 @@ public class ExtendedAnalysisParameters {
     public boolean USE_LANGUAGE_WHITELISTING;               // Only finds plagiarism in whitelisted languages.
     public boolean RUN_EVALUATION_AFTER_PROCESSING;   // Run evaluation python script after processing the plagiarism files
     public int PARALLELISM_THREAD_DIF;
+    public final boolean USE_ENHANCHED_COSINE_ANALYSIS; // if enhanched taxomony
     public PANFileFilter panFileFilter;
 
 
@@ -39,6 +40,7 @@ public class ExtendedAnalysisParameters {
         USE_ADAPTIVE_CLUSTERING_TRESH = true; // false
         ADAPTIVE_FORM_FACTOR = 5.2; // 6 still false positive, rec ok
         CLIPPING_MARGING = 3000;
+        USE_ENHANCHED_COSINE_ANALYSIS  = true;
         // Candidate retrieval settings
         MAX_NUM_CANDIDATES_SELECTED = 20;
         CR_PRINT_LIMIT = 10;
