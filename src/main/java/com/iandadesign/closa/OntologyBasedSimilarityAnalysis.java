@@ -344,7 +344,7 @@ public class OntologyBasedSimilarityAnalysis {
                                                                 Map<String, List<SavedEntity>>  suspiciousIdTokensMapExt) throws Exception{
         // Comparing one suspicious document to  a list of candidate documents
 
-
+        String language = "de";
         // Maps used for detailed comparison
         Map<String, List<SavedEntity>> candidateIdTokensMapExt = new HashMap<>();
         // Maps used for candidate retrieval
@@ -957,6 +957,9 @@ public class OntologyBasedSimilarityAnalysis {
             in.close();
             fileIn.close();
         } else {
+            if(documentLanguage == null){
+                documentLanguage = languageDetector.detectLanguage(documentText);
+            }
             Category documentCategory = textClassifier.classifyText(documentText, documentLanguage);
             // pre-process the file
             documentEntities = preProcessExtendedInfo(documentPath, documentText, documentLanguage, documentCategory);

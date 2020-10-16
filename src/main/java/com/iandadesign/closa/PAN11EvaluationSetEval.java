@@ -236,7 +236,7 @@ public class PAN11EvaluationSetEval {
     static void evalPAN2011EnEs(String languageIn, Boolean smallTest, Boolean testCandidateRetrieval){
         // This evaluates the specific English/Espanol-Partition from Franco Salvador
         String tag = "evalPAN2011En-DeEs"; // Identifier for logs ...
-        String language = "es"; //state "es" or "de" here
+        String language = "de"; //state "es" or "de" here
         if(languageIn!=null){
             language=languageIn;
         }
@@ -300,8 +300,8 @@ public class PAN11EvaluationSetEval {
                 if(testCandidateRetrieval) {
                     resultSelectedCandidates.put(suspFileXML.getName(), selectedCandidateForFile);
                     ctr++;
-                    if(ctr>=50){
-                        //break;      // TODO remove this limitation
+                    if(ctr>=10){
+                        break;      // TODO remove this limitation
                     }
                 }
                 int a = 1 ;
