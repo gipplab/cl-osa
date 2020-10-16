@@ -263,7 +263,7 @@ public class PAN11EvaluationSetEval {
         List<Integer> usedSuspicious = new ArrayList<>();
 
         HashMap<String, List<String>> resultSelectedCandidates = new HashMap<>();
-
+        int ctr = 0;
         for(File suspFileXML: suspiciousFilesLangXML){
             boolean hasValidLanguagePair = false;
             // Read XML File
@@ -299,7 +299,10 @@ public class PAN11EvaluationSetEval {
                 usedSuspicious.add(suspId);
                 if(testCandidateRetrieval) {
                     resultSelectedCandidates.put(suspFileXML.getName(), selectedCandidateForFile);
-                    break; //TODO remove this This is causing 1/1 size
+                    ctr++;
+                    if(ctr>=50){
+                        //break;      // TODO remove this limitation
+                    }
                 }
                 int a = 1 ;
             }
@@ -605,7 +608,7 @@ public class PAN11EvaluationSetEval {
         String toplevelPathCandidates = pathPrefix.concat("/source-document/");
 
         // Adapt filtering for eval here:
-        boolean onlySelectFew = true;
+        boolean onlySelectFew = false;
         if(onlySelectFew) {
             params.USE_FILE_FILTER = true;
             // This selects only a view candidates and also creates a filter for selective evaluation.

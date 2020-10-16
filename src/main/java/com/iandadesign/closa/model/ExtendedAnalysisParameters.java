@@ -40,7 +40,7 @@ public class ExtendedAnalysisParameters {
         USE_ADAPTIVE_CLUSTERING_TRESH = true; // false
         ADAPTIVE_FORM_FACTOR = 5.2; // 6 still false positive, rec ok
         CLIPPING_MARGING = 3000;
-        USE_ENHANCHED_COSINE_ANALYSIS  = true;
+        USE_ENHANCHED_COSINE_ANALYSIS  = false;
         // Candidate retrieval settings
         MAX_NUM_CANDIDATES_SELECTED = 20;
         CR_PRINT_LIMIT = 10;
