@@ -21,7 +21,7 @@ public class ScoringChunk {
     private final int suspiciousCharacterEndIndex;
 
 
-    public final double computedCosineSimilarity;
+    private double computedCosineSimilarity;
     // Clustering algorithm related properties.
     private int suspiciousMatrixIndex;
     private int candidateMatrixIndex;
@@ -110,6 +110,13 @@ public class ScoringChunk {
 
     public int getSuspiciousStartSentence() {
         return suspiciousStartSentence;
+    }
+
+    public int getAverageLength(){
+        return (suspiciousCharacterEndIndex - suspiciousCharacterStartIndex) + (candidateCharacterEndIndex - candidateCharacterStartIndex) / 2;
+    }
+    public void setComputedCosineSimilarity(double similarity){
+        this.computedCosineSimilarity = similarity;
     }
 
 }

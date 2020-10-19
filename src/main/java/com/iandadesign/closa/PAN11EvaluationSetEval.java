@@ -236,7 +236,7 @@ public class PAN11EvaluationSetEval {
     static void evalPAN2011EnEs(String languageIn, Boolean smallTest, Boolean testCandidateRetrieval){
         // This evaluates the specific English/Espanol-Partition from Franco Salvador
         String tag = "evalPAN2011En-DeEs"; // Identifier for logs ...
-        String language = "de"; //state "es" or "de" here
+        String language = "es"; //state "es" or "de" here
         if(languageIn!=null){
             language=languageIn;
         }
@@ -301,9 +301,10 @@ public class PAN11EvaluationSetEval {
                     resultSelectedCandidates.put(suspFileXML.getName(), selectedCandidateForFile);
                     ctr++;
                     if(ctr>=10){
-                       // break;      // TODO remove this limitation
+                       break;      // TODO remove this limitation
                     }
                 }
+
                 int a = 1 ;
             }
 
@@ -326,7 +327,7 @@ public class PAN11EvaluationSetEval {
             }
         }
         // Checking if selection is ok (these are the numbers stated in Salador2016, only if no caselength filtering)
-
+        /*
         if(allowedCaseLengths.size()==3 && language.equals("es")){
             if(usedCandidates.size()!=202 || usedSuspicious.size()!=304){
                 System.err.println("Wrong file numbers");
@@ -338,7 +339,7 @@ public class PAN11EvaluationSetEval {
                 return;
             }
         }
-
+        */
 
 
         // Overwrite the file filter

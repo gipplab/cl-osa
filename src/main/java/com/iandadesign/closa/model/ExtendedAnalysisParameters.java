@@ -11,6 +11,9 @@ public class ExtendedAnalysisParameters {
     public final double SINGLE_THRESH;
     public final boolean USE_ADAPTIVE_CLUSTERING_TRESH;     // Creates a clustering thresh based on the median of 2D-Matrix scores (!Takes longer because median calculation!)
     public final double ADAPTIVE_FORM_FACTOR;               // Form factor for adaptive clustering (Thresh = Median * FormFactor)
+    public final boolean DESKEW_WINDOW_SIZE;                // The bigger Window  Content Size, the lower the score, this calculates score with a form factor.
+    public final double DESKEW_FORM_FACTOR;
+    public final int DESKEW_MAX_WINDOW_CONTENT;             // In characters Window Content ( susp: endindex-startindex cand endindex-startindex / 2 )
     public final int CLIPPING_MARGING;                      // Number of characters in squashing clusters when a cluster still is considered clipping
     public int MAX_NUM_CANDIDATES_SELECTED;           // The number of candidates per suspicious file which get selected for detailed comparison
     public final int CR_PRINT_LIMIT;                        // Candidate number which is results are printed to files and log.
@@ -40,7 +43,11 @@ public class ExtendedAnalysisParameters {
         USE_ADAPTIVE_CLUSTERING_TRESH = true; // false
         ADAPTIVE_FORM_FACTOR = 5.2; // 6 still false positive, rec ok
         CLIPPING_MARGING = 3000;
+
         USE_ENHANCHED_COSINE_ANALYSIS  = false;
+        DESKEW_WINDOW_SIZE = true;
+        DESKEW_FORM_FACTOR = 0.2;
+        DESKEW_MAX_WINDOW_CONTENT = 6500;       // Just leave this COnstant at 6500 atm.
         // Candidate retrieval settings
         MAX_NUM_CANDIDATES_SELECTED = 20;
         CR_PRINT_LIMIT = 10;

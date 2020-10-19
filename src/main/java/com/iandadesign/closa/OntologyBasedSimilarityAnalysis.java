@@ -10,9 +10,11 @@ import com.iandadesign.closa.util.ExtendedLogUtil;
 import com.iandadesign.closa.util.wikidata.WikidataDumpUtil;
 import com.iandadesign.closa.util.wikidata.WikidataEntityExtractor;
 import com.iandadesign.closa.util.wikidata.WikidataSimilarityUtil;
+import edu.stanford.nlp.util.ArrayUtils;
 import me.tongfei.progressbar.ProgressBar;
 import me.tongfei.progressbar.ProgressBarStyle;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -630,6 +632,8 @@ public class OntologyBasedSimilarityAnalysis {
             logUtil.writeStandardReport(false, "No candidates selected, continuing");
             return;
         }
+        List<Double> averageLengths =  new ArrayList<>();
+        List<Double> fragmentScores = new ArrayList<>();
 
         logUtil.logAndWriteStandard(false, logUtil.dashes(100));
         logUtil.logAndWriteStandard(false, "Starting with detailed analysis ...");
@@ -710,6 +714,7 @@ public class OntologyBasedSimilarityAnalysis {
                                     currentCandidateIdTokensMap).get(suspiciousIdTokenExt.getKey());
 
                             Double fragmentScore = fragmentScoresMap.get(selectedCandidatePath);
+
                             // TODO if using a window-bordersize buffering remove this later
                             if (fragmentScore == null || fragmentScore <= 0.0) {
                                 fragmentIndex++; // Just increase the fragment index for absolute indexing.
@@ -722,6 +727,13 @@ public class OntologyBasedSimilarityAnalysis {
                                     fragmentScore,
                                     fragmentIndex);
                             swiCandidate.deinitialize();
+                            averageLengths.add((double) currentScoringChunk.getAverageLength());
+                            fragmentScores.add(currentScoringChunk.getComputedCosineSimilarity());
+
+                            if(params.DESKEW_WINDOW_SIZE){
+                                fragmentScore = fragmentScore * (1 +  (params.DESKEW_FORM_FACTOR * currentScoringChunk.getAverageLength()/params.DESKEW_MAX_WINDOW_CONTENT));
+                                currentScoringChunk.setComputedCosineSimilarity(fragmentScore);
+                            }
 
                             if (params.LOG_VERBOSE) {
                                 logUtil.logAndWriteStandard(false, logUtil.dashes(50));
@@ -770,6 +782,16 @@ public class OntologyBasedSimilarityAnalysis {
                     logUtil.logAndWriteStandard(true, "done processing file combination", suspFilename, "with", candFilename);
                     logUtil.logAndWriteStandard(false, logUtil.dashes(100));
 
+
+                    Double [] averageLengthsArray = new Double[averageLengths.size()];
+                    averageLengths.toArray(averageLengthsArray);
+                    Double [] fragmentScoresArray = new Double[fragmentScores.size()];
+                    fragmentScores.toArray(fragmentScoresArray);
+
+                    double corr = new PearsonsCorrelation().correlation(
+                            ArrayUtils.toPrimitive(averageLengthsArray),
+                            ArrayUtils.toPrimitive(fragmentScoresArray));
+                    this.logUtil.logAndWriteStandard(false, "Correlation is: "+corr);
                     // MEMORY: Clear candidate entities from memory.
                     candidateEntities.clear();
                 } catch (Exception ex) {
