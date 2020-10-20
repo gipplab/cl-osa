@@ -101,7 +101,9 @@ public class ScoringChunksCombined {
     }
 
 
-    public void calculateMatrixClusters(boolean useAdaptiveThresh, double adaptiveFormFactor){
+    public void calculateMatrixClusters(boolean useAdaptiveThresh, double adaptiveFormFactor,
+                                        boolean useBigClusterInclusion, double bigClusterDiffSingle,
+                                        double bigClusterDiffAdjacent, int bigClusterMinSize ){
 
         double usedSingleThresh;
         if(!useAdaptiveThresh){
@@ -120,14 +122,32 @@ public class ScoringChunksCombined {
         List<ResultInfo> clusteringResults = new ArrayList<>();
         // Sort the list to get the highest score chunks.
         this.scoringChunksList.sort(Comparator.comparing(ScoringChunk::getComputedCosineSimilarity).reversed());
+
         for(ScoringChunk currentScoringChunk:this.scoringChunksList) {
-            if(!currentScoringChunk.isProcessedByClusteringAlgo()
-               && currentScoringChunk.getComputedCosineSimilarity() >= usedSingleThresh){
+            if (!currentScoringChunk.isProcessedByClusteringAlgo()
+                    && currentScoringChunk.getComputedCosineSimilarity() >= usedSingleThresh) {
                 List<ScoringChunk> clusterChunks = new ArrayList<>();
                 currentScoringChunk.setProcessedByClusteringAlgo(true);
                 clusterChunks.add(currentScoringChunk);
                 clusterChunks = processMatrixHV(currentScoringChunk, clusterChunks);
                 clusteringResults.add(getClusterEdgeCoordinates(clusterChunks));
+            }
+
+        }
+
+        for(ScoringChunk currentScoringChunk:this.scoringChunksList){
+            if(useBigClusterInclusion) {
+                if (!currentScoringChunk.isProcessedByClusteringAlgo()
+                        && currentScoringChunk.getComputedCosineSimilarity() < usedSingleThresh
+                        && currentScoringChunk.getComputedCosineSimilarity() >= (usedSingleThresh-bigClusterDiffSingle)) {
+                    List<ScoringChunk> clusterChunks = new ArrayList<>();
+                    currentScoringChunk.setProcessedByClusteringAlgo(true);
+                    clusterChunks.add(currentScoringChunk);
+                    clusterChunks = processMatrixHVBigCluster(currentScoringChunk, clusterChunks, bigClusterDiffAdjacent);
+                    if(clusterChunks.size() >= bigClusterMinSize){
+                        clusteringResults.add(getClusterEdgeCoordinates(clusterChunks));
+                    }
+                }
             }
         }
 
@@ -316,6 +336,26 @@ public class ScoringChunksCombined {
         return clusterChunks;
     }
 
+
+    public List<ScoringChunk> processMatrixHVBigCluster(ScoringChunk currentHVScoringChunk, List<ScoringChunk> clusterChunks, double bigClusterAdjacentDiff){
+        // Get the adjacent neighbors
+        int yIndex = currentHVScoringChunk.getSuspiciousMatrixIndex();
+        int xIndex = currentHVScoringChunk.getCandidateMatrixIndex();
+        // Get Adjacent chunks
+        List<ScoringChunk> adjacentChunks = getAdjacentChunks(yIndex, xIndex);
+        for(ScoringChunk currentAdjacentChunk:adjacentChunks){
+            if(currentAdjacentChunk!= null
+                    && currentAdjacentChunk.getComputedCosineSimilarity() >= (this.adjacentTresh - bigClusterAdjacentDiff)
+                    && !currentAdjacentChunk.isProcessedByClusteringAlgo()){
+
+                currentAdjacentChunk.setProcessedByClusteringAlgo(true);
+                clusterChunks.add(currentAdjacentChunk);
+                clusterChunks = processMatrixHV(currentAdjacentChunk, clusterChunks);
+            }
+        }
+        return clusterChunks;
+    }
+
     private boolean isADiscardedColumnOrRowItem(final int yIndex, final int xIndex){
         ScoringChunk relatedChunk = getChunkOrNull(yIndex, xIndex);
         if(relatedChunk==null){
@@ -418,7 +458,7 @@ public class ScoringChunksCombined {
             this.writeResultAsXML(cosineResultsPath);
             this.prettifyXML(cosineResultsPath);
         } catch(Exception ex){
-            System.out.println("Exception during printiing results: "+ex.toString());
+            System.out.println("Exception during printing results: "+ex.toString());
             ex.printStackTrace();
         }
         return xmlResultsFolderPath;

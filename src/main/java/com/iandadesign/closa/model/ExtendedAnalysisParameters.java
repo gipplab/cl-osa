@@ -11,6 +11,10 @@ public class ExtendedAnalysisParameters {
     public final double SINGLE_THRESH;
     public final boolean USE_ADAPTIVE_CLUSTERING_TRESH;     // Creates a clustering thresh based on the median of 2D-Matrix scores (!Takes longer because median calculation!)
     public final double ADAPTIVE_FORM_FACTOR;               // Form factor for adaptive clustering (Thresh = Median * FormFactor)
+    public final boolean USE_BIG_CLUSTER_INCLUSION;         // Include bigger clusters to plagiarism, although they have a lower threshold
+    public final double BIG_CLUSTER_SINGLE_THRESH_DIFF;            // This is a diff to the calculated or constant single tresh, in which values below get included.
+    public final double BIG_CLUSTER_ADJACENT_THRESH_DIFF;
+    public final int BIG_CLUSTER_MIN_SIZE;                  // Minimum size for a cluster to be recognized as 'big' in number of adjacent score values
     public final boolean DESKEW_WINDOW_SIZE;                // The bigger Window  Content Size, the lower the score, this calculates score with a form factor.
     public final double DESKEW_FORM_FACTOR;
     public final int DESKEW_MAX_WINDOW_CONTENT;             // In characters Window Content ( susp: endindex-startindex cand endindex-startindex / 2 )
@@ -45,6 +49,14 @@ public class ExtendedAnalysisParameters {
         CLIPPING_MARGING = 3000;
 
         USE_ENHANCHED_COSINE_ANALYSIS  = false;
+
+        // Big cluster inclusion settings.
+        USE_BIG_CLUSTER_INCLUSION = false;
+        BIG_CLUSTER_SINGLE_THRESH_DIFF = 0.060;  // 0.125; // 0.09;        // THESE PARAMETERS SEEM NOT RELEVANT
+        BIG_CLUSTER_ADJACENT_THRESH_DIFF = 0.050; // 0.09; // 0.08;       // THESE PARAMETERS SEEM NOT RELEVANT
+        BIG_CLUSTER_MIN_SIZE = 8;  // 9 too many detections, 10 ok better results, 11 no change (at 10)
+
+        // Deskew settings.
         DESKEW_WINDOW_SIZE = true;
         DESKEW_FORM_FACTOR = 0.2;
         DESKEW_MAX_WINDOW_CONTENT = 6500;       // Just leave this COnstant at 6500 atm.
