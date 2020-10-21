@@ -5,6 +5,7 @@ import com.iandadesign.closa.classification.TextClassifier;
 import com.iandadesign.closa.language.LanguageDetector;
 import com.iandadesign.closa.model.*;
 import com.iandadesign.closa.model.Dictionary;
+import com.iandadesign.closa.model.DictionaryDetailed;
 import com.iandadesign.closa.util.ExtendedAnalytics;
 import com.iandadesign.closa.util.ExtendedLogUtil;
 import com.iandadesign.closa.util.wikidata.WikidataDumpUtil;
@@ -627,8 +628,10 @@ public class OntologyBasedSimilarityAnalysis {
 
         // This hashmap is populated by candidateRetrieval.
         WeakHashMap<String, List<SavedEntity>> suspiciousIdTokensMapExt = new WeakHashMap<>();
-        Set<String> selectedCandidateKeys = doCandidateRetrievalExtendedInfo(suspiciousDocumentPath,
-                candidateDocumentFiles, params, initialDateString, suspiciousIdTokensMapExt).keySet();
+        Map<String, Double> candidateIdTokensMap = doCandidateRetrievalExtendedInfo(suspiciousDocumentPath,
+                candidateDocumentFiles, params, initialDateString, suspiciousIdTokensMapExt);
+        Set<String> selectedCandidateKeys = candidateIdTokensMap.keySet();
+
         if(selectedCandidateKeys==null){
             logUtil.writeStandardReport(false, "No candidates selected, continuing");
             return;
@@ -649,6 +652,8 @@ public class OntologyBasedSimilarityAnalysis {
             logUtil.logAndWriteStandard(true, "DA selected Susp-File:",suspFilename);
             logUtil.logAndWriteStandard(true,"Suspicious file sentences:", numSentencesSusp);
 
+            // Implement later
+            //DictionaryDetailed<String> dictionary = new DictionaryDetailed(candidateIdTokensMap);
 
 
             for(String selectedCandidatePath: selectedCandidateKeys) {
@@ -710,11 +715,17 @@ public class OntologyBasedSimilarityAnalysis {
                                 swiCandidate.deinitialize();
                                 continue;  // Skip without increasing 2D indices (all window comparisons would be 0 score)
                             }
-
-                            Map<String, Double> fragmentScoresMap = performCosineSimilarityAnalysis(currentSuspiciousIdTokensMap,
-                                    currentCandidateIdTokensMap).get(suspiciousIdTokenExt.getKey());
-
-                            Double fragmentScore = fragmentScoresMap.get(selectedCandidatePath);
+                            Double fragmentScore = 0.0;
+                            if (!params.USE_ABSOLUTE_MATCHES_COUNT){
+                                // Atm the regular way: Normalization based on number of entities for the score.
+                                Map<String, Double> fragmentScoresMap = performCosineSimilarityAnalysis(currentSuspiciousIdTokensMap,
+                                        currentCandidateIdTokensMap).get(suspiciousIdTokenExt.getKey());
+                                fragmentScoresMap.get(selectedCandidatePath);
+                            }else{
+                                // Not use normalization.
+                                 fragmentScore = performCosineSimilarityAnalysisExtendedInfo(suspiciousIdTokensMapExt.get(suspiciousDocumentPath),
+                                        candidateEntities, currentSuspiciousIdTokensMap, currentCandidateIdTokensMap, suspiciousDocumentPath, swiCandidate.getFileName());
+                            }
 
                             // TODO if using a window-bordersize buffering remove this later
                             if (fragmentScore == null || fragmentScore <= 0.0) {
@@ -764,7 +775,7 @@ public class OntologyBasedSimilarityAnalysis {
 
                             // Clear memory (ok?)
                             currentCandidateIdTokensMap.clear();
-                            fragmentScoresMap.clear();
+                            //fragmentScoresMap.clear();
                         }
                         swiSuspicious.deinitialize();
                         suspiciousSlidingWindowY++;
@@ -1056,41 +1067,67 @@ public class OntologyBasedSimilarityAnalysis {
      * TODO is this used anywhere ?
      * @param suspiciousIdTokensMap map: suspicious id to tokens list
      * @param candidateIdTokensMap  map: candidate id to tokens list
-     * @return retrieved candidates.
+     * @return retrieved candidates. old ret: Map<String, Map<String, Double>>
      */
-    public Map<String, Map<String, Double>> performCosineSimilarityAnalysisExtendedInfo(
-            Map<String, List<SavedEntity>> suspiciousIdTokensMap,
-            Map<String, List<SavedEntity>> candidateIdTokensMap
+    public double performCosineSimilarityAnalysisExtendedInfo(
+            List<SavedEntity> suspEntities,
+            List<SavedEntity> candEntities,
+            Map<String, List<String>> suspiciousIdTokensMap,
+            Map<String, List<String>> candidateIdTokensMap,
+            String suspFile,
+            String candFile
     ) {
+        final boolean showProgress = false;
+
         // create dictionary
-        logger.info("Create dictionary");
-        Dictionary<SavedEntity> dictionary = new Dictionary<SavedEntity>(candidateIdTokensMap);
+        //logger.info("Create dictionary");
+        DictionaryDetailed<String> dictionary = new DictionaryDetailed(candidateIdTokensMap);
 
         // perform detailed analysis
-        logger.info("Perform detailed analysis");
+        //logger.info("Perform detailed analysis");
 
         // progress bar
-        ProgressBar progressBar = new ProgressBar("Perform cosine similarity analysis", suspiciousIdTokensMap.entrySet().size(), ProgressBarStyle.ASCII);
-        progressBar.start();
+        ProgressBar progressBar = null;
+        if(showProgress) {
+            progressBar = new ProgressBar("Perform cosine similarity analysis", suspiciousIdTokensMap.entrySet().size(), ProgressBarStyle.ASCII);
+
+            progressBar.start();
+        }
 
         AtomicInteger progress = new AtomicInteger(0);
+        ProgressBar finalProgressBar = progressBar;
 
         // iterate the suspicious documents
+        /*
+        ProgressBar finalProgressBar = progressBar;
         Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap = suspiciousIdTokensMap.entrySet()
                 .stream()
                 .collect(Collectors.toMap(entry -> entry.getKey(),
                         entry -> {
-                            progressBar.stepTo(progress.incrementAndGet());
+                            if (showProgress){
+                                finalProgressBar.stepTo(progress.incrementAndGet());
+                            }
+                            // Just a quick remapping, will be changed
+
                             List<SavedEntity> linkedEntities = entry.getValue();
+                            List<String> linkedStrings =  linkedEntities.stream()
+                                    .map(SavedEntity::getWikidataEntityId)
+                                    .collect(Collectors.toList());
+
                             Map<String, Double> queryResult =  dictionary.query(entry.getValue());
                             // look in dictionary
                             return queryResult;
                         }
                 ));
+        */
+        if(showProgress){
+            progressBar.stop();
+            finalProgressBar.stop();
+        }
 
-        progressBar.stop();
-
-        return suspiciousIdCandidateScoresMap;
+        // Perform a seemingly more simple check
+        double matchesCount = dictionary.getMatchesCount(suspiciousIdTokensMap.get(suspFile), candidateIdTokensMap.get(candFile));
+        return matchesCount;
     }
     /**
      * Ontology-enhanced cosine similarity analysis.

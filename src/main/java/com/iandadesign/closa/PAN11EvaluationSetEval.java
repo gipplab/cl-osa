@@ -300,8 +300,8 @@ public class PAN11EvaluationSetEval {
                 if(testCandidateRetrieval) {
                     resultSelectedCandidates.put(suspFileXML.getName(), selectedCandidateForFile);
                     ctr++;
-                    if(ctr>=50){
-                       break;      // TODO remove this limitation
+                    if(ctr>=10){
+                       //break;      // TODO remove this limitation
                     }
                 }
 

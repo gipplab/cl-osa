@@ -112,10 +112,12 @@ public class ScoringChunksCombined {
         }else{
             double medianValue = ExtendedAnalytics.calculateMedian(scoreMatrix, null, null );
             usedSingleThresh = adaptiveFormFactor * medianValue;
+
             if(usedSingleThresh<=this.singleTresh){
                 // In this mode single thresh is the absolute minimum thresh
                 usedSingleThresh = this.singleTresh;
             }
+
             System.out.println("Used Single Thresh is: " + usedSingleThresh);
         }
 

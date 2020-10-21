@@ -7,9 +7,11 @@ import org.apache.commons.math3.linear.SparseRealVector;
 import java.util.*;
 
 /**
- * Created by Fabian Marquart on 2017/07/15/
+ *  This is the same like dictionary, but modified for detailed analysis with some additional features.
+ *  created modified by Johannes Stegmüller 21.10.2020
+ *
  */
-public class Dictionary<T> {
+public class DictionaryDetailed<T> {
 
     private static UnivariateFunction booleanWeighing = v -> {
         if (v > 0.0) return 1.0;
@@ -20,7 +22,7 @@ public class Dictionary<T> {
     private Map<T, Map<String, Integer>> dictionary;
 
 
-    public Dictionary(Map<String, List<T>> documentIdTokensMap) {
+    public DictionaryDetailed(Map<String, List<String>> documentIdTokensMap) {
         terms = new HashSet<>();
         dictionary = createDictionary(documentIdTokensMap);
     }
@@ -38,6 +40,17 @@ public class Dictionary<T> {
         return cosineSimilarity(vectors.get(0), vectors.get(1));
     }
 
+    public static <T> double getMatchesCount(List<T> tokens1, List<T> tokens2){
+        List<SparseRealVector> vectors = createVectorsFromDocuments(tokens1, tokens2);
+        SparseRealVector vector1 = vectors.get(0);
+        SparseRealVector vector2 = vectors.get(1);
+        if (vector1.getDimension() != vector2.getDimension()) {
+            throw new IllegalArgumentException("Vector dimensions need to agree.");
+        }
+        double matches = vector1.dotProduct(vector2);
+        return matches;
+
+    }
     /**
      * Builds vectors from variable number of token lists.
      *
@@ -80,9 +93,10 @@ public class Dictionary<T> {
         if (vector1.getDimension() != vector2.getDimension()) {
             throw new IllegalArgumentException("Vector dimensions need to agree.");
         }
-
+        double matches = vector1.dotProduct(vector2);
         return vector1.dotProduct(vector2) / (vector1.getNorm() * vector2.getNorm());
     }
+
 
     /**
      * Creates an inverted index dictionary.
@@ -90,10 +104,11 @@ public class Dictionary<T> {
      * @param documentIdTokensMap document ids mapped to list of tokens.
      * @return the dictionary.
      */
-    private Map<T, Map<String, Integer>> createDictionary(Map<String, List<T>> documentIdTokensMap) {
+    private Map<T, Map<String, Integer>> createDictionary(Map<String, List<String>> documentIdTokensMap) {
         Map<T, Map<String, Integer>> dictionary = new HashMap<>();
 
         documentIdTokensMap.forEach((id, tokenList) -> tokenList.forEach(token -> {
+            //String wikidataId = token.getWikidataEntityId();
             if (dictionary.containsKey(token)) {
                 if (dictionary.get(token).containsKey(id)) {
                     Integer oldCount = dictionary.get(token).get(id);
@@ -104,8 +119,8 @@ public class Dictionary<T> {
             } else {
                 Map<String, Integer> documentCountMap = new HashMap<>();
                 documentCountMap.put(id, 1);
-                dictionary.put(token, documentCountMap);
-                terms.add(token);
+                dictionary.put((T) token, documentCountMap);
+                terms.add((T) token);
             }
         }));
 
@@ -158,7 +173,7 @@ public class Dictionary<T> {
         // 2   weighing
 
         // 2.2   get and weigh the document frequencies
-        // 2.2.1 binary frequencie
+        // 2.2.1 binary frequencies TODO: can the frequency of a concept be used to determine its importance?
         SparseRealVector documentFrequencyVector = new OpenMapRealVector(dimension);
         for (SparseRealVector vector : docIdVectorMap.values()) {
             documentFrequencyVector = (OpenMapRealVector)
@@ -184,7 +199,7 @@ public class Dictionary<T> {
             String docId = docIdVectorEntry.getKey();
             SparseRealVector documentVector = docIdVectorEntry.getValue();
 
-            // 3.1 get queryVector and documentVector length
+            // 3.1 get queryVector and documentVector length (Explanation: vectorlengths represent scaling to 1 each score is counting less in 100 compared to 10 entites)
             double queryVectorLength = 0.0;
             double documentVectorLength = 0.0;
             for (int i = 0; i < dimension; i++) {
@@ -196,9 +211,18 @@ public class Dictionary<T> {
 
             // 3.3 calculate the score
             double score = 0.0;
+            int matches = 0;
             for (int i = 0; i < dimension; i++) {
-                score += (queryVector.getEntry(i) / queryVectorLength)
-                        * (documentVector.getEntry(i) / documentVectorLength);
+                double queryEntry = queryVector.getEntry(i);
+                double vectorEntry = documentVector.getEntry(i);
+
+                if(queryEntry*vectorEntry >=1.0){
+                    // It is a match,get corresponding dictionary entries.
+                    matches++;
+                }
+                score += (queryEntry/ queryVectorLength)
+                        * (vectorEntry/ documentVectorLength);
+                //TODO: for index adaptions here would be the match. Reverse get entity here. Get SavedEntity from entity. Set min/max index.
             }
 
             // 3.4 put the score

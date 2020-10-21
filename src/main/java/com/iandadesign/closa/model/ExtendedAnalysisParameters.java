@@ -7,8 +7,9 @@ public class ExtendedAnalysisParameters {
     //public final int LENGTH_SUBLIST_TOKENS;
     public final int NUM_SENTENCES_IN_SLIDING_WINDOW;
     public final int NUM_SENTENCE_INCREMENT_SLIDINGW;
+    public final boolean USE_ABSOLUTE_MATCHES_COUNT;        // De-normalized scores, just use the absolute matches, requires to change thresholds
     public final double ADJACENT_THRESH;
-    public final double SINGLE_THRESH;
+    public final double SINGLE_THRESH;                      // CARE: THis is used as minimum thresh with adaptive clustering thresh
     public final boolean USE_ADAPTIVE_CLUSTERING_TRESH;     // Creates a clustering thresh based on the median of 2D-Matrix scores (!Takes longer because median calculation!)
     public final double ADAPTIVE_FORM_FACTOR;               // Form factor for adaptive clustering (Thresh = Median * FormFactor)
     public final boolean USE_BIG_CLUSTER_INCLUSION;         // Include bigger clusters to plagiarism, although they have a lower threshold
@@ -39,25 +40,26 @@ public class ExtendedAnalysisParameters {
         // Token forming before making Wikidata query
         //LENGTH_SUBLIST_TOKENS = 3; // This is not used atm, but the parameter in config.properties dung refactoring reasons
         // Sliding window parameters (atm only possible increment == num_sentences)
+        USE_ABSOLUTE_MATCHES_COUNT = true;
         NUM_SENTENCES_IN_SLIDING_WINDOW = 20; //2
         NUM_SENTENCE_INCREMENT_SLIDINGW = 10; //1
         // Sliding window comparison thresholds
-        ADJACENT_THRESH = 0.09;   //0,3; 0,1
-        SINGLE_THRESH = 0.125;// 0,7; 0.8; //0.45act; //0.7;     //0,6
-        USE_ADAPTIVE_CLUSTERING_TRESH = true; // false
-        ADAPTIVE_FORM_FACTOR = 5.2; // 6 still false positive, rec ok
+        ADJACENT_THRESH = 0.9; //0.09;   //0,3; 0,1
+        SINGLE_THRESH = 8; //0.125;// 0,7; 0.8; //0.45act; //0.7;     //0,6
+        USE_ADAPTIVE_CLUSTERING_TRESH = false; // false
+        ADAPTIVE_FORM_FACTOR = 5.1; //5.2; // 6 still false positive, rec ok
         CLIPPING_MARGING = 3000;
 
         USE_ENHANCHED_COSINE_ANALYSIS  = false;
 
         // Big cluster inclusion settings.
         USE_BIG_CLUSTER_INCLUSION = false;
-        BIG_CLUSTER_SINGLE_THRESH_DIFF = 0.060;  // 0.125; // 0.09;        // THESE PARAMETERS SEEM NOT RELEVANT
-        BIG_CLUSTER_ADJACENT_THRESH_DIFF = 0.050; // 0.09; // 0.08;       // THESE PARAMETERS SEEM NOT RELEVANT
-        BIG_CLUSTER_MIN_SIZE = 8;  // 9 too many detections, 10 ok better results, 11 no change (at 10)
+        BIG_CLUSTER_SINGLE_THRESH_DIFF = 2.0; //0.060;  // 0.125; // 0.09;        // THESE PARAMETERS SEEM NOT RELEVANT
+        BIG_CLUSTER_ADJACENT_THRESH_DIFF = 0.0; // 0.050; // 0.09; // 0.08;       // THESE PARAMETERS SEEM NOT RELEVANT
+        BIG_CLUSTER_MIN_SIZE = 10;  // 9 too many detections, 10 ok better results, 11 no change (at 10)
 
         // Deskew settings.
-        DESKEW_WINDOW_SIZE = true;
+        DESKEW_WINDOW_SIZE = false;
         DESKEW_FORM_FACTOR = 0.2;
         DESKEW_MAX_WINDOW_CONTENT = 6500;       // Just leave this COnstant at 6500 atm.
         // Candidate retrieval settings
