@@ -20,6 +20,7 @@ public class ScoringChunk {
     private final int suspiciousCharacterStartIndex;
     private final int suspiciousCharacterEndIndex;
 
+    private final StartStopInfo startStopInfo; // This is storing start stop indices of matches if used.
 
     private double computedCosineSimilarity;
     // Clustering algorithm related properties.
@@ -30,7 +31,8 @@ public class ScoringChunk {
     public ScoringChunk(SlidingWindowInfo suspiciousWindow,
                         SlidingWindowInfo candidateWindow,
                         double computedCosineSimilarity,
-                        long fragmentIndex) {
+                        long fragmentIndex,
+                        StartStopInfo startStopInfo) {
 
         this.suspiciousStartSentence = suspiciousWindow.getStartSentence();
         this.suspiciousEndSentence = suspiciousWindow.getEndSentence();
@@ -41,7 +43,7 @@ public class ScoringChunk {
         this.candidateEndSentence = candidateWindow.getEndSentence();
         this.candidateCharacterStartIndex = candidateWindow.getCharacterStartIndex();
         this.candidateCharacterEndIndex = candidateWindow.getCharacterEndIndex();
-
+        this.startStopInfo = startStopInfo;
 
         this.computedCosineSimilarity = computedCosineSimilarity;
         //this.fragmentIndex = fragmentIndex;
@@ -119,4 +121,7 @@ public class ScoringChunk {
         this.computedCosineSimilarity = similarity;
     }
 
+    public StartStopInfo getStartStopInfo() {
+        return startStopInfo;
+    }
 }

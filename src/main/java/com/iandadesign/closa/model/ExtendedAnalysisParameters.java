@@ -8,6 +8,7 @@ public class ExtendedAnalysisParameters {
     public final int NUM_SENTENCES_IN_SLIDING_WINDOW;
     public final int NUM_SENTENCE_INCREMENT_SLIDINGW;
     public final boolean USE_ABSOLUTE_MATCHES_COUNT;        // De-normalized scores, just use the absolute matches, requires to change thresholds
+    public final boolean ACCURATE_FIRST_LAST_INDICES;       // Gets the character indices of first match within and last match (only works with absolute match atm)
     public final double ADJACENT_THRESH;
     public final double SINGLE_THRESH;                      // CARE: THis is used as minimum thresh with adaptive clustering thresh
     public final boolean USE_ADAPTIVE_CLUSTERING_TRESH;     // Creates a clustering thresh based on the median of 2D-Matrix scores (!Takes longer because median calculation!)
@@ -41,6 +42,7 @@ public class ExtendedAnalysisParameters {
         //LENGTH_SUBLIST_TOKENS = 3; // This is not used atm, but the parameter in config.properties dung refactoring reasons
         // Sliding window parameters (atm only possible increment == num_sentences)
         USE_ABSOLUTE_MATCHES_COUNT = true;
+        ACCURATE_FIRST_LAST_INDICES = false;
         NUM_SENTENCES_IN_SLIDING_WINDOW = 20; //2
         NUM_SENTENCE_INCREMENT_SLIDINGW = 10; //1
         // Sliding window comparison thresholds

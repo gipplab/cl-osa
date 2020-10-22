@@ -6,7 +6,6 @@ import com.iandadesign.closa.language.LanguageDetector;
 import com.iandadesign.closa.model.*;
 import com.iandadesign.closa.model.Dictionary;
 import com.iandadesign.closa.model.DictionaryDetailed;
-import com.iandadesign.closa.util.ExtendedAnalytics;
 import com.iandadesign.closa.util.ExtendedLogUtil;
 import com.iandadesign.closa.util.wikidata.WikidataDumpUtil;
 import com.iandadesign.closa.util.wikidata.WikidataEntityExtractor;
@@ -16,7 +15,6 @@ import me.tongfei.progressbar.ProgressBar;
 import me.tongfei.progressbar.ProgressBarStyle;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,6 +26,8 @@ import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static java.util.stream.Collectors.groupingBy;
 
 
 public class OntologyBasedSimilarityAnalysis {
@@ -411,7 +411,7 @@ public class OntologyBasedSimilarityAnalysis {
                         suspicousEntities,
                         currentSuspWindowStartSentence,
                         params.NUM_SENTENCES_IN_SLIDING_WINDOW,
-                       fileS.getName());
+                       fileS.getName(), params);
                 slidingWindowInfosSusp.add(swiSuspicious);
 
                 suspiciousEntitiesAll.put(fileS.getName()+currentSuspWindowStartSentence, swiSuspicious.getFilenameToEntities().get(fileS.getName()));
@@ -427,7 +427,7 @@ public class OntologyBasedSimilarityAnalysis {
                         candEntities,
                         currentCandWindowStartSentence,
                         params.NUM_SENTENCES_IN_SLIDING_WINDOW,
-                        fileC.getName());
+                        fileC.getName(), params);
                 slidingWindowInfosCand.add(swiCand);
 
                 candidateEntitiesAll.put(fileC.getName()+currentCandWindowStartSentence, swiCand.getFilenameToEntities().get(fileC.getName()));
@@ -481,7 +481,8 @@ public class OntologyBasedSimilarityAnalysis {
                         params.SINGLE_THRESH,
                         params.NUM_SENTENCES_IN_SLIDING_WINDOW,
                         params.NUM_SENTENCE_INCREMENT_SLIDINGW,
-                        params.CLIPPING_MARGING);
+                        params.CLIPPING_MARGING,
+                        params.ACCURATE_FIRST_LAST_INDICES);
                 try {
 
                     // MEMORY: Getting the Saved entities for the current candidate.
@@ -502,7 +503,7 @@ public class OntologyBasedSimilarityAnalysis {
                                 suspiciousIdTokenExt.getValue(),
                                 currentSuspWindowStartSentence,
                                 params.NUM_SENTENCES_IN_SLIDING_WINDOW,
-                                suspiciousIdTokenExt.getKey());
+                                suspiciousIdTokenExt.getKey(), params);
 
                         WeakHashMap<String, List<String>> currentSuspiciousIdTokensMap = swiSuspicious.getFilenameToEntities();
                         int candSlidingWindowX = 0; // specific index for 2D Matrix positioning
@@ -511,7 +512,7 @@ public class OntologyBasedSimilarityAnalysis {
                                     candidateEntities,
                                     currentCandWindowStartSentence,
                                     params.NUM_SENTENCES_IN_SLIDING_WINDOW,
-                                    selectedCandidatePath);
+                                    selectedCandidatePath, params);
 
                             WeakHashMap<String, List<String>> currentCandidateIdTokensMap = swiCandidate.getFilenameToEntities();
 
@@ -523,7 +524,7 @@ public class OntologyBasedSimilarityAnalysis {
                                 ScoringChunk mockScoringChunk = new ScoringChunk(swiSuspicious,
                                         swiCandidate,
                                         -1, // mock entry value
-                                        fragmentIndex);
+                                        fragmentIndex, null);
                                 scoringChunksCombined.storeScoringChunkToScoringMatrix(mockScoringChunk,
                                         suspiciousSlidingWindowY,
                                         candSlidingWindowX);
@@ -547,7 +548,7 @@ public class OntologyBasedSimilarityAnalysis {
                             ScoringChunk currentScoringChunk = new ScoringChunk(swiSuspicious,
                                     swiCandidate,
                                     fragmentScore,
-                                    fragmentIndex);
+                                    fragmentIndex, null);
                             swiCandidate.deinitialize();
 
                             if (params.LOG_VERBOSE) {
@@ -588,7 +589,8 @@ public class OntologyBasedSimilarityAnalysis {
                     // After each candidate and suspicious file combination
                     // ... calculate the plagiarism sections from windows
                     scoringChunksCombined.calculateMatrixClusters(params.USE_ADAPTIVE_CLUSTERING_TRESH, params.ADAPTIVE_FORM_FACTOR,
-                                    params.USE_BIG_CLUSTER_INCLUSION, params.BIG_CLUSTER_SINGLE_THRESH_DIFF, params.BIG_CLUSTER_ADJACENT_THRESH_DIFF, params.BIG_CLUSTER_MIN_SIZE);
+                                    params.USE_BIG_CLUSTER_INCLUSION, params.BIG_CLUSTER_SINGLE_THRESH_DIFF, params.BIG_CLUSTER_ADJACENT_THRESH_DIFF, params.BIG_CLUSTER_MIN_SIZE,
+                                    params.ACCURATE_FIRST_LAST_INDICES);
                     // ... write down results
                     // TODO solve this in multithreading context
                     this.extendedXmlResultsPath = scoringChunksCombined.writeDownXMLResults(tag, initialDateString, preprocessedCachingDirectory);
@@ -664,7 +666,8 @@ public class OntologyBasedSimilarityAnalysis {
                         params.SINGLE_THRESH,
                         params.NUM_SENTENCES_IN_SLIDING_WINDOW,
                         params.NUM_SENTENCE_INCREMENT_SLIDINGW,
-                        params.CLIPPING_MARGING);
+                        params.CLIPPING_MARGING,
+                        params.ACCURATE_FIRST_LAST_INDICES);
                 try {
 
                     // MEMORY: Getting the Saved entities for the current candidate.
@@ -685,7 +688,7 @@ public class OntologyBasedSimilarityAnalysis {
                                 suspiciousIdTokenExt.getValue(),
                                 currentSuspWindowStartSentence,
                                 params.NUM_SENTENCES_IN_SLIDING_WINDOW,
-                                suspiciousIdTokenExt.getKey());
+                                suspiciousIdTokenExt.getKey(), params);
 
                         WeakHashMap<String, List<String>> currentSuspiciousIdTokensMap = swiSuspicious.getFilenameToEntities();
                         int candSlidingWindowX = 0; // specific index for 2D Matrix positioning
@@ -694,7 +697,7 @@ public class OntologyBasedSimilarityAnalysis {
                                     candidateEntities,
                                     currentCandWindowStartSentence,
                                     params.NUM_SENTENCES_IN_SLIDING_WINDOW,
-                                    selectedCandidatePath);
+                                    selectedCandidatePath, params);
 
                             WeakHashMap<String, List<String>> currentCandidateIdTokensMap = swiCandidate.getFilenameToEntities();
 
@@ -706,7 +709,8 @@ public class OntologyBasedSimilarityAnalysis {
                                 ScoringChunk mockScoringChunk = new ScoringChunk(swiSuspicious,
                                         swiCandidate,
                                         -1, // mock entry value
-                                        fragmentIndex);
+                                        fragmentIndex,
+                                        null);
                                 scoringChunksCombined.storeScoringChunkToScoringMatrix(mockScoringChunk,
                                         suspiciousSlidingWindowY,
                                         candSlidingWindowX);
@@ -716,6 +720,7 @@ public class OntologyBasedSimilarityAnalysis {
                                 continue;  // Skip without increasing 2D indices (all window comparisons would be 0 score)
                             }
                             Double fragmentScore = 0.0;
+                            StartStopInfo startStopInfo = null;
                             if (!params.USE_ABSOLUTE_MATCHES_COUNT){
                                 // Atm the regular way: Normalization based on number of entities for the score.
                                 Map<String, Double> fragmentScoresMap = performCosineSimilarityAnalysis(currentSuspiciousIdTokensMap,
@@ -723,8 +728,12 @@ public class OntologyBasedSimilarityAnalysis {
                                 fragmentScoresMap.get(selectedCandidatePath);
                             }else{
                                 // Not use normalization.
-                                 fragmentScore = performCosineSimilarityAnalysisExtendedInfo(suspiciousIdTokensMapExt.get(suspiciousDocumentPath),
-                                        candidateEntities, currentSuspiciousIdTokensMap, currentCandidateIdTokensMap, suspiciousDocumentPath, swiCandidate.getFileName());
+                                Map<Double, StartStopInfo > csResult = performCosineSimilarityAnalysisExtendedInfo(swiSuspicious.getAdditionalEntities(),
+                                        swiCandidate.getAdditionalEntities(), currentSuspiciousIdTokensMap, currentCandidateIdTokensMap, suspiciousDocumentPath, swiCandidate.getFileName(),
+                                         params);
+                                fragmentScore = (Double) csResult.keySet().toArray()[0];
+                                startStopInfo = (StartStopInfo) csResult.values().toArray()[0];
+
                             }
 
                             // TODO if using a window-bordersize buffering remove this later
@@ -737,7 +746,8 @@ public class OntologyBasedSimilarityAnalysis {
                             ScoringChunk currentScoringChunk = new ScoringChunk(swiSuspicious,
                                     swiCandidate,
                                     fragmentScore,
-                                    fragmentIndex);
+                                    fragmentIndex,
+                                    startStopInfo);
                             swiCandidate.deinitialize();
                             averageLengths.add((double) currentScoringChunk.getAverageLength());
                             fragmentScores.add(currentScoringChunk.getComputedCosineSimilarity());
@@ -785,7 +795,8 @@ public class OntologyBasedSimilarityAnalysis {
                     // After each candidate and suspicious file combination
                     // ... calculate the plagiarism sections from windows
                     scoringChunksCombined.calculateMatrixClusters(params.USE_ADAPTIVE_CLUSTERING_TRESH, params.ADAPTIVE_FORM_FACTOR,
-                            params.USE_BIG_CLUSTER_INCLUSION, params.BIG_CLUSTER_SINGLE_THRESH_DIFF, params.BIG_CLUSTER_ADJACENT_THRESH_DIFF, params.BIG_CLUSTER_MIN_SIZE);
+                            params.USE_BIG_CLUSTER_INCLUSION, params.BIG_CLUSTER_SINGLE_THRESH_DIFF, params.BIG_CLUSTER_ADJACENT_THRESH_DIFF, params.BIG_CLUSTER_MIN_SIZE,
+                            params.ACCURATE_FIRST_LAST_INDICES);
                     // ... write down results
                     // TODO solve this in multithreading context
                     this.extendedXmlResultsPath = scoringChunksCombined.writeDownXMLResults(tag, initialDateString, preprocessedCachingDirectory);
@@ -826,7 +837,7 @@ public class OntologyBasedSimilarityAnalysis {
     }
 
     SlidingWindowInfo getWikiEntityStringsForSlidingWindow(
-            List<SavedEntity> savedEntities, int startSentenceIndex, int windowSize, String filename){
+            List<SavedEntity> savedEntities, int startSentenceIndex, int windowSize, String filename, ExtendedAnalysisParameters params){
         // Obtaining the entities which are within the window
         int endSentenceIndex = startSentenceIndex + windowSize;
         List<SavedEntity> windowEntitysSusp = savedEntities.stream()
@@ -861,10 +872,15 @@ public class OntologyBasedSimilarityAnalysis {
                 .stream()
                 .map(SavedEntity::getWikidataEntityId)
                 .collect(Collectors.toList());
-        windowEntitysSusp.clear();
         // Return everything in a compound object
-        return new SlidingWindowInfo(filename, entityIdsForWindow, firstStartChar, lastEndChar,
-                startSentenceIndex, endSentenceIndex);
+        if(!params.ACCURATE_FIRST_LAST_INDICES){
+            windowEntitysSusp.clear();
+            return new SlidingWindowInfo(filename, entityIdsForWindow, firstStartChar, lastEndChar,
+                    startSentenceIndex, endSentenceIndex, null);
+        }else{
+            return new SlidingWindowInfo(filename, entityIdsForWindow, firstStartChar, lastEndChar,
+                    startSentenceIndex, endSentenceIndex, windowEntitysSusp);
+        }
     }
 
     Integer getMaxSentenceNumber(Map.Entry<String, List<SavedEntity>> inputMap){
@@ -1069,15 +1085,23 @@ public class OntologyBasedSimilarityAnalysis {
      * @param candidateIdTokensMap  map: candidate id to tokens list
      * @return retrieved candidates. old ret: Map<String, Map<String, Double>>
      */
-    public double performCosineSimilarityAnalysisExtendedInfo(
+    public Map<Double, StartStopInfo >performCosineSimilarityAnalysisExtendedInfo(
             List<SavedEntity> suspEntities,
             List<SavedEntity> candEntities,
             Map<String, List<String>> suspiciousIdTokensMap,
             Map<String, List<String>> candidateIdTokensMap,
             String suspFile,
-            String candFile
+            String candFile,
+            ExtendedAnalysisParameters params
     ) {
         final boolean showProgress = false;
+
+        // Create Mapping for finding first last indices.
+        Map<Double, StartStopInfo > returnMap = new HashMap<>();
+
+
+        // Collectors.toMap(SavedEntity::getWikidataEntityId, x -> x));
+
 
         // create dictionary
         //logger.info("Create dictionary");
@@ -1126,9 +1150,63 @@ public class OntologyBasedSimilarityAnalysis {
         }
 
         // Perform a seemingly more simple check
-        double matchesCount = dictionary.getMatchesCount(suspiciousIdTokensMap.get(suspFile), candidateIdTokensMap.get(candFile));
-        return matchesCount;
-    }
+        Map<Double, List<String>> returnVal = dictionary.getMatchesCount(suspiciousIdTokensMap.get(suspFile), candidateIdTokensMap.get(candFile),true);
+        Double score = (Double) returnVal.keySet().toArray()[0];
+
+        if(!params.ACCURATE_FIRST_LAST_INDICES || score <= 0.0  ){
+            returnMap.put(score,null);
+            return returnMap;
+        }
+        Map<String, List<SavedEntity>> suspEntityMap = suspEntities.stream().collect(
+                groupingBy(d  -> d.getWikidataEntityId()));
+        Map<String, List<SavedEntity>> candEntityMap = candEntities.stream().collect(
+                groupingBy(d  -> d.getWikidataEntityId()));
+
+        // Only do this on match score bigger 0 and if activated the stuff:
+        StartStopInfo startStopInfo = new StartStopInfo();
+        AtomicInteger minSuspStartIndex = new AtomicInteger(-1);
+        AtomicInteger maxSuspEndIndex = new AtomicInteger(0);
+        AtomicInteger minCandStartIndex = new AtomicInteger(-1);
+        AtomicInteger maxCandStopIndex =  new AtomicInteger(0);
+
+        returnVal.entrySet().forEach(matchingEntity -> {
+            // outer loop is just one entry, might be more elegant possible
+            matchingEntity.getValue().forEach(value -> {
+                List<SavedEntity> suspEntitiesMatch= suspEntityMap.get(value);
+                List<SavedEntity>  candEntitiesMatch = candEntityMap.get(value);
+
+                // TODO atm just taking the first entity in ambiguous matches, find more accurate way here.
+                int startCharSusp = suspEntitiesMatch.get(0).getToken().getStartCharacter();
+                int endCharSusp = suspEntitiesMatch.get(0).getToken().getEndCharacter();
+                if(startCharSusp < minSuspStartIndex.get() || minSuspStartIndex.get() == -1){
+                    minSuspStartIndex.set(startCharSusp);
+                }
+                if(endCharSusp > maxSuspEndIndex.get()){
+                    maxSuspEndIndex.set(endCharSusp);
+                }
+
+                int startCharCand = candEntitiesMatch.get(0).getToken().getStartCharacter();
+                int endCharCand = candEntitiesMatch.get(0).getToken().getEndCharacter();
+                if(startCharCand < minCandStartIndex.get() || minCandStartIndex.get() == -1){
+                    minCandStartIndex.set(startCharCand);
+                }
+                if(endCharCand > maxCandStopIndex.get()){
+                    maxCandStopIndex.set(endCharCand);
+                }
+
+            });
+            // Get the corrsponding SavedEntities;
+            // Adapt the min max character coordinates accordingly
+
+        });
+
+        startStopInfo.setMinMatchSuspIndex(minSuspStartIndex.get());
+        startStopInfo.setMaxMatchSuspIndex(maxSuspEndIndex.get());
+        startStopInfo.setMinMatchCandIndex(minCandStartIndex.get());
+        startStopInfo.setMaxMatchCandIndex(maxCandStopIndex.get());
+        returnMap.put(score, startStopInfo);
+        return returnMap;
+     }
     /**
      * Ontology-enhanced cosine similarity analysis.
      *

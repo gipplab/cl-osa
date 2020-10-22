@@ -17,8 +17,9 @@ public class ResultInfo{
     private final int suspLength;
     private boolean discardedByCombinationAlgo;
     private List<Integer> combinationMarkers;
+    private StartStopInfo startStopInfo; // min/max indices regarding matches
 
-    public ResultInfo(int candStartCharIndex, int candEndCharIndex, int suspStartCharIndex, int suspEndCharIndex){
+    public ResultInfo(int candStartCharIndex, int candEndCharIndex, int suspStartCharIndex, int suspEndCharIndex, StartStopInfo startStopInfo){
         this.candStartCharIndex = candStartCharIndex;
         this.candEndCharIndex = candEndCharIndex;
         this.suspStartCharIndex = suspStartCharIndex;
@@ -27,6 +28,7 @@ public class ResultInfo{
         this.suspLength = suspEndCharIndex - suspStartCharIndex;
         this.discardedByCombinationAlgo = false;
         this.combinationMarkers = new ArrayList<>();
+        this.startStopInfo = startStopInfo;
     }
 
     public void addCombinationMarker(int combinationMarker){
@@ -105,5 +107,9 @@ public class ResultInfo{
         }else{
             return suspIndex >= getSuspStartCharIndex() && suspIndex <= getSuspEndCharIndex();
         }
+    }
+
+    public StartStopInfo getStartStopInfo(){
+        return startStopInfo;
     }
 }

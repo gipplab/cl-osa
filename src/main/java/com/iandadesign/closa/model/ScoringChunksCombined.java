@@ -50,8 +50,9 @@ public class ScoringChunksCombined {
     private String suspiciousDocumentName;
     private String candidateDocumentName;
     private List<ResultInfo> clusteringResults;
+    private boolean useAccurateResults;
 
-    public ScoringChunksCombined(double adjacentTresh, double singleTresh, int slidingWindowLength, int slidingWindowIncrement, int clippingMargin){
+    public ScoringChunksCombined(double adjacentTresh, double singleTresh, int slidingWindowLength, int slidingWindowIncrement, int clippingMargin, boolean useAccurateResults){
         this.adjacentTresh = adjacentTresh;
         this.singleTresh = singleTresh;
         this.slidingWindowLength = slidingWindowLength;
@@ -59,6 +60,7 @@ public class ScoringChunksCombined {
         this.clippingMarging = clippingMargin;
         this.calculateSearchLength();
         this.scoringChunksList  = new ArrayList<>();
+        this.useAccurateResults = useAccurateResults;
     }
     private void calculateSearchLength(){
         // TODO adapt this for other cases (this is for swl 1 and swi 1)
@@ -103,7 +105,8 @@ public class ScoringChunksCombined {
 
     public void calculateMatrixClusters(boolean useAdaptiveThresh, double adaptiveFormFactor,
                                         boolean useBigClusterInclusion, double bigClusterDiffSingle,
-                                        double bigClusterDiffAdjacent, int bigClusterMinSize ){
+                                        double bigClusterDiffAdjacent, int bigClusterMinSize,
+                                        boolean useAccurateStartStop){
 
         double usedSingleThresh;
         if(!useAdaptiveThresh){
@@ -132,22 +135,21 @@ public class ScoringChunksCombined {
                 currentScoringChunk.setProcessedByClusteringAlgo(true);
                 clusterChunks.add(currentScoringChunk);
                 clusterChunks = processMatrixHV(currentScoringChunk, clusterChunks);
-                clusteringResults.add(getClusterEdgeCoordinates(clusterChunks));
+                clusteringResults.add(getClusterEdgeCoordinates(clusterChunks, useAccurateStartStop));
             }
-
         }
+        if(useBigClusterInclusion) {
+            for(ScoringChunk currentScoringChunk:this.scoringChunksList) {
 
-        for(ScoringChunk currentScoringChunk:this.scoringChunksList){
-            if(useBigClusterInclusion) {
                 if (!currentScoringChunk.isProcessedByClusteringAlgo()
                         && currentScoringChunk.getComputedCosineSimilarity() < usedSingleThresh
-                        && currentScoringChunk.getComputedCosineSimilarity() >= (usedSingleThresh-bigClusterDiffSingle)) {
+                        && currentScoringChunk.getComputedCosineSimilarity() >= (usedSingleThresh - bigClusterDiffSingle)) {
                     List<ScoringChunk> clusterChunks = new ArrayList<>();
                     currentScoringChunk.setProcessedByClusteringAlgo(true);
                     clusterChunks.add(currentScoringChunk);
                     clusterChunks = processMatrixHVBigCluster(currentScoringChunk, clusterChunks, bigClusterDiffAdjacent);
-                    if(clusterChunks.size() >= bigClusterMinSize){
-                        clusteringResults.add(getClusterEdgeCoordinates(clusterChunks));
+                    if (clusterChunks.size() >= bigClusterMinSize) {
+                        clusteringResults.add(getClusterEdgeCoordinates(clusterChunks, useAccurateStartStop));
                     }
                 }
             }
@@ -206,9 +208,19 @@ public class ScoringChunksCombined {
         int candEndCharIndex = max(resultInfo1.getCandEndCharIndex(), resultInfo2.getCandEndCharIndex());
         int suspStartCharIndex = min(resultInfo1.getSuspStartCharIndex(), resultInfo2.getSuspStartCharIndex());
         int suspEndCharIndex = max(resultInfo1.getSuspEndCharIndex(),resultInfo2.getSuspEndCharIndex());
+        StartStopInfo startStopInfo1 = resultInfo1.getStartStopInfo();
+        StartStopInfo startStopInfo2 = resultInfo2.getStartStopInfo();
+        StartStopInfo startStopInfoCombined = null;
+        if(startStopInfo1 != null && startStopInfo2!= null){
+            startStopInfoCombined = new StartStopInfo();
+            startStopInfoCombined.setMinMatchSuspIndex(min(startStopInfo1.getMinMatchSuspIndex(), startStopInfo2.getMinMatchSuspIndex()));
+            startStopInfoCombined.setMaxMatchSuspIndex(max(startStopInfo1.getMaxMatchSuspIndex(), startStopInfo2.getMaxMatchSuspIndex()));
+            startStopInfoCombined.setMinMatchCandIndex(min(startStopInfo1.getMinMatchCandIndex(), startStopInfo2.getMinMatchCandIndex()));
+            startStopInfoCombined.setMaxMatchCandIndex(max(startStopInfo1.getMaxMatchCandIndex(), startStopInfo2.getMaxMatchCandIndex()));
+        }
 
         // Add combination markers except the processed one, prevent combination marker redundancy in combined item
-        ResultInfo combinedResult = new ResultInfo(candStartCharIndex, candEndCharIndex, suspStartCharIndex, suspEndCharIndex);
+        ResultInfo combinedResult = new ResultInfo(candStartCharIndex, candEndCharIndex, suspStartCharIndex, suspEndCharIndex, startStopInfoCombined);
         combinedResult.addCombinationMarkers(resultInfo1.getCombinationMarkers(), markerForCombo);
         combinedResult.addCombinationMarkers(resultInfo2.getCombinationMarkers(), markerForCombo);
         return combinedResult;
@@ -292,12 +304,19 @@ public class ScoringChunksCombined {
         return true;
     }
 
-    public ResultInfo getClusterEdgeCoordinates(List<ScoringChunk> clusterChunks){
+    public ResultInfo getClusterEdgeCoordinates(List<ScoringChunk> clusterChunks, boolean useAccurateStartStop){
         // Get the relevant edge indices in one iteration
         int suspStartChar = MAX_VALUE;
         int suspEndChar = -1;
         int candStartChar = MAX_VALUE;
         int candEndChar = -1;
+
+
+        int matchSuspStartChar = MAX_VALUE;
+        int matchSuspEndChar = -1;
+        int matchCandStartChar = MAX_VALUE;
+        int matchCandEndChar = -1;
+
         for(ScoringChunk clusterChunk:clusterChunks){
 
             int cCandStart = clusterChunk.getCandidateCharacterStartIndex();
@@ -316,8 +335,26 @@ public class ScoringChunksCombined {
             if(cSuspEnd>suspEndChar){
                 suspEndChar = cSuspEnd;
             }
+            if(!useAccurateStartStop){
+                continue;
+            }
+            // More accuracy related steps.
+            StartStopInfo startStopInfo = clusterChunk.getStartStopInfo();
+            matchCandEndChar = max(startStopInfo.getMaxMatchCandIndex(), matchCandEndChar);
+            matchSuspEndChar = max(startStopInfo.getMaxMatchSuspIndex(), matchSuspEndChar);
+            matchCandStartChar = min(startStopInfo.getMinMatchCandIndex(), matchCandStartChar);
+            matchSuspStartChar = min(startStopInfo.getMinMatchSuspIndex(), matchSuspStartChar);
         }
-        return new ResultInfo(candStartChar, candEndChar, suspStartChar, suspEndChar);
+        if(!useAccurateStartStop) {
+            return new ResultInfo(candStartChar, candEndChar, suspStartChar, suspEndChar, null);
+        }else{
+            StartStopInfo startStopInfo  = new StartStopInfo();
+            startStopInfo.setMaxMatchCandIndex(matchCandEndChar);
+            startStopInfo.setMinMatchCandIndex(matchCandStartChar);
+            startStopInfo.setMaxMatchSuspIndex(matchSuspEndChar);
+            startStopInfo.setMinMatchSuspIndex(matchSuspStartChar);
+            return new ResultInfo(candStartChar, candEndChar, suspStartChar, suspEndChar, startStopInfo);
+        }
     }
     public List<ScoringChunk> processMatrixHV(ScoringChunk currentHVScoringChunk, List<ScoringChunk> clusterChunks){
         // Get the adjacent neighbors
@@ -598,11 +635,24 @@ public class ScoringChunksCombined {
         eventWriter.add(event);
         // Adding all results to file.
         for (ResultInfo plagiarismCluster : this.clusteringResults) {
-            int suspiciousLength = plagiarismCluster.getSuspEndCharIndex() - plagiarismCluster.getSuspStartCharIndex();
-            int candidateLength =  plagiarismCluster.getCandEndCharIndex() - plagiarismCluster.getCandStartCharIndex();
-            createPlagiarismNode(eventWriter, candidateDocumentName,
-                                plagiarismCluster.getCandStartCharIndex(), candidateLength,
-                                plagiarismCluster.getSuspStartCharIndex(), suspiciousLength);
+            if(!this.useAccurateResults) {
+                int suspiciousLength = plagiarismCluster.getSuspEndCharIndex() - plagiarismCluster.getSuspStartCharIndex();
+                int candidateLength = plagiarismCluster.getCandEndCharIndex() - plagiarismCluster.getCandStartCharIndex();
+
+
+
+                createPlagiarismNode(eventWriter, candidateDocumentName,
+                        plagiarismCluster.getCandStartCharIndex(), candidateLength,
+                        plagiarismCluster.getSuspStartCharIndex(), suspiciousLength);
+            }else {
+                StartStopInfo startStopInfo = plagiarismCluster.getStartStopInfo();
+                int suspiciousLengthAccurate = startStopInfo.getMaxMatchSuspIndex() - startStopInfo.getMinMatchSuspIndex();
+                int candidateLengthAccurate = startStopInfo.getMaxMatchCandIndex() - startStopInfo.getMinMatchCandIndex();
+                createPlagiarismNode(eventWriter, candidateDocumentName,
+                        startStopInfo.getMinMatchCandIndex(), candidateLengthAccurate,
+                        startStopInfo.getMinMatchSuspIndex(), suspiciousLengthAccurate);
+            }
+
         }
 
         eventWriter.add(end);

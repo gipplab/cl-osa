@@ -1,7 +1,9 @@
 package com.iandadesign.closa.model;
 
 import org.apache.commons.math3.analysis.UnivariateFunction;
+import org.apache.commons.math3.exception.DimensionMismatchException;
 import org.apache.commons.math3.linear.OpenMapRealVector;
+import org.apache.commons.math3.linear.RealVector;
 import org.apache.commons.math3.linear.SparseRealVector;
 
 import java.util.*;
@@ -35,20 +37,51 @@ public class DictionaryDetailed<T> {
      * @param <T>     type parameter
      * @return similarity value.
      */
-    public static <T> double cosineSimilarity(List<T> tokens1, List<T> tokens2) {
-        List<SparseRealVector> vectors = createVectorsFromDocuments(tokens1, tokens2);
+    public static <T> double cosineSimilarity(List<String> tokens1, List<String> tokens2) {
+        List allTokensList = new ArrayList<>();
+
+        List<SparseRealVector> vectors = createVectorsFromDocuments(allTokensList, tokens1, tokens2);
         return cosineSimilarity(vectors.get(0), vectors.get(1));
     }
 
-    public static <T> double getMatchesCount(List<T> tokens1, List<T> tokens2){
-        List<SparseRealVector> vectors = createVectorsFromDocuments(tokens1, tokens2);
+
+    public static double dotProduct(List matchingIndices, RealVector vector1, RealVector vector2) {
+
+        double d = 0.0D;
+        int n = vector1.getDimension();
+
+        for(int i = 0; i < n; ++i) {
+            double increment = vector1.getEntry(i) * vector2.getEntry(i);
+            if(increment > 0){
+                matchingIndices.add(i);
+            }
+            d += increment;
+        }
+
+        return d;
+    }
+
+    public static Map<Double, List<String>> getMatchesCount(List<String> tokens1, List<String> tokens2, boolean getAccurateStartStop){
+        List allTokensList = new ArrayList<>(); // this is passed by ref for remapping
+        List matchingIndices = new ArrayList();
+
+        List<SparseRealVector> vectors = createVectorsFromDocuments(allTokensList, tokens1, tokens2);
         SparseRealVector vector1 = vectors.get(0);
         SparseRealVector vector2 = vectors.get(1);
         if (vector1.getDimension() != vector2.getDimension()) {
             throw new IllegalArgumentException("Vector dimensions need to agree.");
         }
-        double matches = vector1.dotProduct(vector2);
-        return matches;
+
+        double matches = dotProduct(matchingIndices, vector1,vector2);
+
+        List matchingTokens = new ArrayList();
+        matchingIndices.stream().forEach(index -> {
+            matchingTokens.add(allTokensList.get((Integer) index));
+        });
+
+        Map<Double, List<String>> retMap = new HashMap<>();
+        retMap.put(matches, matchingTokens);
+        return retMap;
 
     }
     /**
@@ -59,11 +92,11 @@ public class DictionaryDetailed<T> {
      * @return vectors
      */
     @SafeVarargs
-    public static <T> List<SparseRealVector> createVectorsFromDocuments(List<T>... tokenLists) {
-        Set<T> allTokens = new HashSet<>();
+    public static <T> List<SparseRealVector> createVectorsFromDocuments(List<T> allTokensList, List<String>... tokenLists) {
+        Set<String> allTokens = new HashSet<>();
         Arrays.stream(tokenLists).forEach(allTokens::addAll);
         int dimension = allTokens.size();
-        List<T> allTokensList = new ArrayList<>(allTokens);
+        List allTokensListIn = new ArrayList<>(allTokens);
 
         List<SparseRealVector> vectors = new ArrayList<>();
 
@@ -71,13 +104,13 @@ public class DictionaryDetailed<T> {
             SparseRealVector vector = new OpenMapRealVector(dimension);
 
             tokenList.forEach(token -> {
-                int index = allTokensList.indexOf(token);
+                int index = allTokensListIn.indexOf(token);
                 vector.addToEntry(index, 1.0);
             });
 
             vectors.add(vector);
         });
-
+        allTokensList.addAll(allTokensListIn);
         return vectors;
     }
 

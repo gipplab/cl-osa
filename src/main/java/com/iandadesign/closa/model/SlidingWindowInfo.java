@@ -19,17 +19,19 @@ public class SlidingWindowInfo {
     private final int startSentence;
     private final int endSentence;
     private final boolean noEntitiesInWindow;
+    private final List<SavedEntity> additionalEntities;
 
     public SlidingWindowInfo(String fileName,
                              List<String> entityIdsForWindow,
                              int characterStartIndex,
                              int characterEndIndex,
                              int startSentence,
-                             int endSentence) {
+                             int endSentence,
+                             List<SavedEntity>entitiesAdditional) {
         // Create a reusable map for comparison
         WeakHashMap <String, List<String>> filenameToEntities = new WeakHashMap<>();
         filenameToEntities.put(fileName, entityIdsForWindow);
-
+        this.additionalEntities = entitiesAdditional;
         this.fileName = fileName;
         this.filenameToEntities = filenameToEntities;
         this.characterStartIndex = characterStartIndex;
@@ -54,7 +56,9 @@ public class SlidingWindowInfo {
     }
     public int getStartSentence(){ return startSentence;}
     public int getEndSentence() { return endSentence; }
-
+    public List<SavedEntity> getAdditionalEntities(){
+        return this.additionalEntities;
+    }
     public boolean isNoEntitiesInWindow() {
         return noEntitiesInWindow;
     }
