@@ -42,7 +42,7 @@ public class ExtendedAnalysisParameters {
         //LENGTH_SUBLIST_TOKENS = 3; // This is not used atm, but the parameter in config.properties dung refactoring reasons
         // Sliding window parameters (atm only possible increment == num_sentences)
         USE_ABSOLUTE_MATCHES_COUNT = true;
-        ACCURATE_FIRST_LAST_INDICES = false;
+        ACCURATE_FIRST_LAST_INDICES = true;
         NUM_SENTENCES_IN_SLIDING_WINDOW = 20; //2
         NUM_SENTENCE_INCREMENT_SLIDINGW = 10; //1
         // Sliding window comparison thresholds
