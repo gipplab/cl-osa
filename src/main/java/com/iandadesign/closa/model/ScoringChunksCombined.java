@@ -648,6 +648,28 @@ public class ScoringChunksCombined {
                 StartStopInfo startStopInfo = plagiarismCluster.getStartStopInfo();
                 int suspiciousLengthAccurate = startStopInfo.getMaxMatchSuspIndex() - startStopInfo.getMinMatchSuspIndex();
                 int candidateLengthAccurate = startStopInfo.getMaxMatchCandIndex() - startStopInfo.getMinMatchCandIndex();
+
+                // Validity checker
+                boolean validityCheck = false;
+                if(validityCheck){
+                    if(startStopInfo.getMinMatchCandIndex() < plagiarismCluster.getCandStartCharIndex() ){
+                        int a=1;
+                    }
+
+                    if(startStopInfo.getMaxMatchCandIndex() > plagiarismCluster.getCandEndCharIndex() ){
+                        int a=1;
+                    }
+                    if(startStopInfo.getMinMatchSuspIndex() < plagiarismCluster.getSuspStartCharIndex() ){
+                        int a=1;
+                    }
+
+                    if(startStopInfo.getMaxMatchSuspIndex() > plagiarismCluster.getSuspEndCharIndex() ){
+                        int a=1;
+                    }
+                }
+
+
+
                 createPlagiarismNode(eventWriter, candidateDocumentName,
                         startStopInfo.getMinMatchCandIndex(), candidateLengthAccurate,
                         startStopInfo.getMinMatchSuspIndex(), suspiciousLengthAccurate);
