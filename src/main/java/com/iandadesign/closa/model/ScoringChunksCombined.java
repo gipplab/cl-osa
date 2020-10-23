@@ -51,8 +51,9 @@ public class ScoringChunksCombined {
     private String candidateDocumentName;
     private List<ResultInfo> clusteringResults;
     private boolean useAccurateResults;
+    private boolean doResultsAnalysis;
 
-    public ScoringChunksCombined(double adjacentTresh, double singleTresh, int slidingWindowLength, int slidingWindowIncrement, int clippingMargin, boolean useAccurateResults){
+    public ScoringChunksCombined(double adjacentTresh, double singleTresh, int slidingWindowLength, int slidingWindowIncrement, int clippingMargin, boolean useAccurateResults, boolean doResultsAnalysis){
         this.adjacentTresh = adjacentTresh;
         this.singleTresh = singleTresh;
         this.slidingWindowLength = slidingWindowLength;
@@ -61,6 +62,7 @@ public class ScoringChunksCombined {
         this.calculateSearchLength();
         this.scoringChunksList  = new ArrayList<>();
         this.useAccurateResults = useAccurateResults;
+        this.doResultsAnalysis = doResultsAnalysis;
     }
     private void calculateSearchLength(){
         // TODO adapt this for other cases (this is for swl 1 and swi 1)
@@ -135,6 +137,10 @@ public class ScoringChunksCombined {
                 currentScoringChunk.setProcessedByClusteringAlgo(true);
                 clusterChunks.add(currentScoringChunk);
                 clusterChunks = processMatrixHV(currentScoringChunk, clusterChunks);
+                if(this.doResultsAnalysis){
+                    // Mark the scoring chunks as result
+                    clusterChunks.forEach(scoringChunk -> scoringChunk.setDetectedAsPlagiarism(true));
+                }
                 clusteringResults.add(getClusterEdgeCoordinates(clusterChunks, useAccurateStartStop));
             }
         }
@@ -149,6 +155,10 @@ public class ScoringChunksCombined {
                     clusterChunks.add(currentScoringChunk);
                     clusterChunks = processMatrixHVBigCluster(currentScoringChunk, clusterChunks, bigClusterDiffAdjacent);
                     if (clusterChunks.size() >= bigClusterMinSize) {
+                        if(this.doResultsAnalysis){
+                            // Mark the scoring chunks as result
+                            clusterChunks.forEach(scoringChunk -> scoringChunk.setDetectedAsPlagiarism(true));
+                        }
                         clusteringResults.add(getClusterEdgeCoordinates(clusterChunks, useAccurateStartStop));
                     }
                 }
@@ -549,6 +559,17 @@ public class ScoringChunksCombined {
                         } else {
                             DecimalFormat df = new DecimalFormat("#.####");
                             String formatted = df.format(item.getComputedCosineSimilarity());
+                            if(this.doResultsAnalysis){
+                                if(item.isPlagiarism()){
+                                    formatted+="||P";
+                                }
+                                if(item.isDetectedAsPlagiarism()){
+                                    if(!item.isPlagiarism()){
+                                        formatted+="||";
+                                    }
+                                    formatted+="D";
+                                }
+                            }
                             formatted+="||cs"+item.getCandidateCharacterStartIndex();
                             formatted+="||ss"+item.getSuspiciousCharacterStartIndex();
                             values.add(formatted);

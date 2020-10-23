@@ -7,6 +7,7 @@ public class ExtendedAnalysisParameters {
     //public final int LENGTH_SUBLIST_TOKENS;
     public final int NUM_SENTENCES_IN_SLIDING_WINDOW;
     public final int NUM_SENTENCE_INCREMENT_SLIDINGW;
+    public final boolean DO_RESULTS_ANALYSIS;               // Map actual plagiarism in CSV info, also calculate statistics, can take more CPU/RAM.
     public final boolean USE_ABSOLUTE_MATCHES_COUNT;        // De-normalized scores, just use the absolute matches, requires to change thresholds
     public final boolean ACCURATE_FIRST_LAST_INDICES;       // Gets the character indices of first match within and last match (only works with absolute match atm)
     public final double ADJACENT_THRESH;
@@ -41,6 +42,7 @@ public class ExtendedAnalysisParameters {
         // Token forming before making Wikidata query
         //LENGTH_SUBLIST_TOKENS = 3; // This is not used atm, but the parameter in config.properties dung refactoring reasons
         // Sliding window parameters (atm only possible increment == num_sentences)
+        DO_RESULTS_ANALYSIS = true;
         USE_ABSOLUTE_MATCHES_COUNT = true;
         ACCURATE_FIRST_LAST_INDICES = true;
         NUM_SENTENCES_IN_SLIDING_WINDOW = 20; //2

@@ -122,7 +122,7 @@ public class SuperMain {
         ExtendedAnalysisParameters params = new ExtendedAnalysisParameters();
         OntologyBasedSimilarityAnalysis osa = new OntologyBasedSimilarityAnalysis();
         try {
-            osa.executeAlgorithmAndComputeScoresExtendedInfo(suspiciousPath, candidateFiles, params, osa.getExtendedLogUtil().getDateString());
+            osa.executeAlgorithmAndComputeScoresExtendedInfo(suspiciousPath, candidateFiles, params, osa.getExtendedLogUtil().getDateString(), null);
         }catch(Exception ex){
             System.err.println(ex.toString());
         }
@@ -141,7 +141,7 @@ public class SuperMain {
         ExtendedAnalysisParameters params = new ExtendedAnalysisParameters();
         OntologyBasedSimilarityAnalysis osa = new OntologyBasedSimilarityAnalysis();
         try {
-            osa.executeAlgorithmAndComputeScoresExtendedInfo(suspiciousPath, candidateFiles, params, osa.getExtendedLogUtil().getDateString());
+            osa.executeAlgorithmAndComputeScoresExtendedInfo(suspiciousPath, candidateFiles, params, osa.getExtendedLogUtil().getDateString(),null);
         }catch(Exception ex){
             System.err.println(ex.toString());
         }
@@ -181,7 +181,7 @@ public class SuperMain {
            String cosineResultsPath = Paths.get("D:\\CL_OSA_caching", "preprocessed_extended",
                    "results_comparison", "PAN2011Test".concat("_").concat(dateString).concat(".xml"))
                    .toAbsolutePath().toString();
-           ScoringChunksCombined scoringChunksCombined = new ScoringChunksCombined(0.2, 0.5, 2, 2, 50, false);
+           ScoringChunksCombined scoringChunksCombined = new ScoringChunksCombined(0.2, 0.5, 2, 2, 50, false, false);
            scoringChunksCombined.setCurrentDocuments("mySuspiciousDocument.txt","myCandidateDocument.txt");
            scoringChunksCombined.writeResultAsXML(cosineResultsPath);
            scoringChunksCombined.prettifyXML(cosineResultsPath);

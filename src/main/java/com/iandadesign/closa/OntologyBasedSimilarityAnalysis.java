@@ -7,6 +7,7 @@ import com.iandadesign.closa.model.*;
 import com.iandadesign.closa.model.Dictionary;
 import com.iandadesign.closa.model.DictionaryDetailed;
 import com.iandadesign.closa.util.ExtendedLogUtil;
+import com.iandadesign.closa.util.PAN11PlagiarismInfo;
 import com.iandadesign.closa.util.wikidata.WikidataDumpUtil;
 import com.iandadesign.closa.util.wikidata.WikidataEntityExtractor;
 import com.iandadesign.closa.util.wikidata.WikidataSimilarityUtil;
@@ -482,7 +483,8 @@ public class OntologyBasedSimilarityAnalysis {
                         params.NUM_SENTENCES_IN_SLIDING_WINDOW,
                         params.NUM_SENTENCE_INCREMENT_SLIDINGW,
                         params.CLIPPING_MARGING,
-                        params.ACCURATE_FIRST_LAST_INDICES);
+                        params.ACCURATE_FIRST_LAST_INDICES,
+                        params.DO_RESULTS_ANALYSIS);
                 try {
 
                     // MEMORY: Getting the Saved entities for the current candidate.
@@ -524,7 +526,7 @@ public class OntologyBasedSimilarityAnalysis {
                                 ScoringChunk mockScoringChunk = new ScoringChunk(swiSuspicious,
                                         swiCandidate,
                                         -1, // mock entry value
-                                        fragmentIndex, null);
+                                        fragmentIndex, null, false);
                                 scoringChunksCombined.storeScoringChunkToScoringMatrix(mockScoringChunk,
                                         suspiciousSlidingWindowY,
                                         candSlidingWindowX);
@@ -548,7 +550,7 @@ public class OntologyBasedSimilarityAnalysis {
                             ScoringChunk currentScoringChunk = new ScoringChunk(swiSuspicious,
                                     swiCandidate,
                                     fragmentScore,
-                                    fragmentIndex, null);
+                                    fragmentIndex, null, false);
                             swiCandidate.deinitialize();
 
                             if (params.LOG_VERBOSE) {
@@ -623,9 +625,10 @@ public class OntologyBasedSimilarityAnalysis {
 
 
     public void executeAlgorithmAndComputeScoresExtendedInfo(String suspiciousDocumentPath,
-                                                                            List<File> candidateDocumentFiles,
-                                                                            ExtendedAnalysisParameters params,
-                                                                            String initialDateString)
+                                                             List<File> candidateDocumentFiles,
+                                                             ExtendedAnalysisParameters params,
+                                                             String initialDateString,
+                                                             List<PAN11PlagiarismInfo> plagiarismInfos)
                                                                             throws Exception{
 
         // This hashmap is populated by candidateRetrieval.
@@ -659,6 +662,10 @@ public class OntologyBasedSimilarityAnalysis {
 
 
             for(String selectedCandidatePath: selectedCandidateKeys) {
+                // If analysis is enabled, get the corresponding results for this candidate here:
+                List<PAN11PlagiarismInfo> currentPCInfos = null;
+
+
 
                 // Storage for combined window entities.
                 ScoringChunksCombined scoringChunksCombined = new ScoringChunksCombined(
@@ -667,7 +674,8 @@ public class OntologyBasedSimilarityAnalysis {
                         params.NUM_SENTENCES_IN_SLIDING_WINDOW,
                         params.NUM_SENTENCE_INCREMENT_SLIDINGW,
                         params.CLIPPING_MARGING,
-                        params.ACCURATE_FIRST_LAST_INDICES);
+                        params.ACCURATE_FIRST_LAST_INDICES,
+                        params.DO_RESULTS_ANALYSIS);
                 try {
 
                     // MEMORY: Getting the Saved entities for the current candidate.
@@ -675,6 +683,11 @@ public class OntologyBasedSimilarityAnalysis {
 
                     int numSentencesCand = getMaxSentenceNumber(candidateEntities) + 1; //TODO fix redundant Operation
                     String candFilename = new File(selectedCandidatePath).getName();
+                    if(params.DO_RESULTS_ANALYSIS){
+                        currentPCInfos = plagiarismInfos
+                                .stream().filter(item -> candFilename.equals(item.getSourceReference()))
+                                .collect(Collectors.toList());
+                    }
                     logUtil.logAndWriteStandard(true, "DA selected Cand-File:", candFilename);
                     logUtil.logAndWriteStandard(true, "Candidate file sentences:", numSentencesCand);
                     scoringChunksCombined.setCurrentDocuments(suspiciousIdTokenExt.getKey(), selectedCandidatePath);
@@ -710,7 +723,7 @@ public class OntologyBasedSimilarityAnalysis {
                                         swiCandidate,
                                         -1, // mock entry value
                                         fragmentIndex,
-                                        null);
+                                        null, false);
                                 scoringChunksCombined.storeScoringChunkToScoringMatrix(mockScoringChunk,
                                         suspiciousSlidingWindowY,
                                         candSlidingWindowX);
@@ -735,19 +748,23 @@ public class OntologyBasedSimilarityAnalysis {
                                 startStopInfo = (StartStopInfo) csResult.values().toArray()[0];
 
                             }
+                            // Checking if the current chunk is plagiarism according to the results, only works when DO_RESULTS_ANALYSIS is enabled.
+                            boolean isPlagiarism = isThisPlagiarism(params, currentPCInfos, swiSuspicious, swiCandidate);
 
                             // TODO if using a window-bordersize buffering remove this later
-                            if (fragmentScore == null || fragmentScore <= 0.0) {
-                                fragmentIndex++; // Just increase the fragment index for absolute indexing.
-                                candSlidingWindowX++;
-                                continue;
+                            if(!isPlagiarism) { // TODO nicen this condition
+                                if (fragmentScore == null || fragmentScore <= 0.0) {
+                                    fragmentIndex++; // Just increase the fragment index for absolute indexing.
+                                    candSlidingWindowX++;
+                                    continue;
+                                }
                             }
-
                             ScoringChunk currentScoringChunk = new ScoringChunk(swiSuspicious,
                                     swiCandidate,
                                     fragmentScore,
                                     fragmentIndex,
-                                    startStopInfo);
+                                    startStopInfo,
+                                    isPlagiarism);
                             swiCandidate.deinitialize();
                             averageLengths.add((double) currentScoringChunk.getAverageLength());
                             fragmentScores.add(currentScoringChunk.getComputedCosineSimilarity());
@@ -834,6 +851,56 @@ public class OntologyBasedSimilarityAnalysis {
         selectedCandidateKeys.clear();
         suspiciousIdTokensMapExt.clear();
         logUtil.writeStandardReport(false, "Whats going on here?");
+    }
+    private boolean isWindowRelatedToPlagiarism(SlidingWindowInfo slidingWindowInfo, int plagiarismStart, int plagiarismEnd){
+        // Overlap
+        if(slidingWindowInfo.getCharacterStartIndex() >= plagiarismStart && slidingWindowInfo.getCharacterStartIndex() < plagiarismEnd ){
+            return true;
+        }
+        // Overlap
+        if(slidingWindowInfo.getCharacterEndIndex() >= plagiarismStart && slidingWindowInfo.getCharacterEndIndex() < plagiarismEnd ){
+            return true;
+        }
+
+        // Plagiarism is within plagiarism
+        if(plagiarismStart  >= slidingWindowInfo.getCharacterStartIndex() && plagiarismEnd <= slidingWindowInfo.getCharacterEndIndex()){
+            return true;
+        }
+
+        return false;
+    }
+    private boolean isThisPlagiarism(ExtendedAnalysisParameters params, List<PAN11PlagiarismInfo> currentPCInfos, SlidingWindowInfo swiSuspicious, SlidingWindowInfo swiCandidate) {
+        if(params.DO_RESULTS_ANALYSIS){
+
+            for(PAN11PlagiarismInfo currentInfo: currentPCInfos) {
+                int currentPlagiarismStartCand = currentInfo.getSourceOffset();
+                int currentPlagiarismEndCand = currentInfo.getSourceOffset() + currentInfo.getSourceLength();
+                int currentPlagiarismStartSusp = currentInfo.getThisOffset();
+                int currentPlagiarismEndSusp = currentInfo.getThisOffset() + currentInfo.getThisLength();
+                boolean candPlagiarism = isWindowRelatedToPlagiarism(swiCandidate, currentPlagiarismStartCand, currentPlagiarismEndCand);
+                boolean suspPlagiarism = isWindowRelatedToPlagiarism(swiSuspicious, currentPlagiarismStartSusp, currentPlagiarismEndSusp);
+                if(candPlagiarism && suspPlagiarism){
+                    return true;
+                }
+
+            }
+
+                // For the analysis a scoring chunk twill be stored if it is within parameters
+            /*
+            for(PAN11PlagiarismInfo currentInfo: currentPCInfos){
+                if(swiSuspicious.getCharacterStartIndex() >= currentInfo.getThisOffset()
+                    && swiSuspicious.getCharacterStartIndex() < (currentInfo.getThisOffset()+currentInfo.getThisLength())) {
+                    // is plagiated
+                    if (swiCandidate.getCharacterStartIndex() >= currentInfo.getSourceOffset()
+                            && swiCandidate.getCharacterStartIndex() < (currentInfo.getSourceOffset() + currentInfo.getSourceLength())) {
+                        // is plagiated
+                        return true;
+                    }
+                }
+            }
+            */
+        }
+        return false;
     }
 
     SlidingWindowInfo getWikiEntityStringsForSlidingWindow(

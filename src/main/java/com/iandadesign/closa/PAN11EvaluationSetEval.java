@@ -263,14 +263,17 @@ public class PAN11EvaluationSetEval {
         List<Integer> usedSuspicious = new ArrayList<>();
 
         HashMap<String, List<String>> resultSelectedCandidates = new HashMap<>();
+        HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation = new HashMap<>();
+
         int ctr = 0;
         for(File suspFileXML: suspiciousFilesLangXML){
             boolean hasValidLanguagePair = false;
             // Read XML File
             PAN11XMLInfo xmlInfo = pan11XMLParser.parseXMLfile(suspFileXML);
             List <String> selectedCandidateForFile = new ArrayList<>();
+            List<PAN11PlagiarismInfo> plaginfosCurrent = new ArrayList<>();
             for(PAN11PlagiarismInfo plaginfo:xmlInfo.plagiarismInfos) {
-
+                plaginfosCurrent.add(plaginfo);
                 if (plaginfo.getSourceLanguage().equals(language)) {//|| plaginfo.getSourceLanguage().equals("de")){ //"es" //"de""
                     if(!allowedCaseLengths.contains(plaginfo.getCaseLengthThis())) {
                         continue; // Filter non-matching case-lengths
@@ -282,6 +285,7 @@ public class PAN11EvaluationSetEval {
                     if(testCandidateRetrieval){
                         if(!selectedCandidateForFile.contains(plaginfo.getSourceReference())){
                             selectedCandidateForFile.add(plaginfo.getSourceReference());
+
                         }
                     }
                     if(language.equals("de")) {
@@ -291,17 +295,19 @@ public class PAN11EvaluationSetEval {
                         }
                     }
                 }
-            }
 
+            }
 
             if(hasValidLanguagePair){
                 Integer suspId = Integer.parseInt(suspFileXML.getName().replaceAll("\\D+",""));
                 usedSuspicious.add(suspId);
                 if(testCandidateRetrieval) {
+                    plagiarismInformation.put(suspFileXML.getName(), plaginfosCurrent);
+
                     resultSelectedCandidates.put(suspFileXML.getName(), selectedCandidateForFile);
                     ctr++;
                     if(ctr>=10){
-                       //break;      // TODO remove this limitation
+                       break;      // TODO remove this limitation
                     }
                 }
 
@@ -376,7 +382,7 @@ public class PAN11EvaluationSetEval {
             );
         }else {
             Map<String, List<String>> mockCRResults = doCREvaluationNew(params, tag, "CREval", resultSelectedCandidates);
-            evalPAN2011MockCandidates(params, tag,"Parsing En-" + language + " with mock preselected CR candidates", mockCRResults);
+            evalPAN2011MockCandidates(params, tag,"Parsing En-" + language + " with mock preselected CR candidates", mockCRResults, plagiarismInformation);
         }
     }
 
@@ -480,7 +486,7 @@ public class PAN11EvaluationSetEval {
                     logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", index + 1, "/", suspiciousFiles.size(), "Filename:", suspFileName, " and its", candidateFiles.size(), "candidates");
                     OntologyBasedSimilarityAnalysis osaT = new OntologyBasedSimilarityAnalysis();
                     osaT.initializeLogger(tag, params); // this has to be done immediately after constructor
-                    osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                    osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString(),null);
                     baseResultsPath = osaT.getExtendedXmlResultsPath();
                     parsedFiles++;
                 } catch (Exception ex) {
@@ -518,7 +524,7 @@ public class PAN11EvaluationSetEval {
                         indexP.getAndIncrement();
                         OntologyBasedSimilarityAnalysis osaT = new OntologyBasedSimilarityAnalysis(null, null);
                         osaT.setLogger(osa.getExtendedLogUtil(), osa.getTag()); // this has to be done immediately after constructor
-                        osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                        osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString(),null);
                         osaT = null;
                         System.gc(); // Excplicit call to garbage collector.
                     } catch (Exception ex) {
@@ -603,7 +609,7 @@ public class PAN11EvaluationSetEval {
 
     }
     static void evalPAN2011MockCandidates(ExtendedAnalysisParameters params, String tag, String comment,
-                                          Map<String, List<String>> mockSuspToSelectedCandidates)  {
+                                          Map<String, List<String>> mockSuspToSelectedCandidates, Map<String, List<PAN11PlagiarismInfo>> plagiarismInfo)  {
         // Route the complete output to a logfile here.
         String toplevelPathSuspicious = pathPrefix.concat("/suspicious-document/");
         String toplevelPathCandidates = pathPrefix.concat("/source-document/");
@@ -703,9 +709,10 @@ public class PAN11EvaluationSetEval {
                     logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", indexP.get() + 1, "/", finalMockSuspToSelectedCandidates.keySet().size(), "Filename:", suspFileName, " and its", candidateFiles.size(), "candidates");
                     parsedFilesP.getAndIncrement();
                     indexP.getAndIncrement();
+                    List<PAN11PlagiarismInfo>  currentPlaginfoList = plagiarismInfo.get(suspFileName.replace(".txt",".xml"));
                     OntologyBasedSimilarityAnalysis osaT = new OntologyBasedSimilarityAnalysis(null, null);
                     osaT.setLogger(osa.getExtendedLogUtil(), osa.getTag()); // this has to be done immediately after constructor
-                    osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                    osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString(), currentPlaginfoList);
                     osaT = null;
                     System.gc(); // Excplicit call to garbage collector.
                 } catch (Exception ex) {
@@ -814,7 +821,7 @@ public class PAN11EvaluationSetEval {
                     logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", index + 1, "/", suspiciousFiles.size(), "Filename:", suspFileName, " and its", candidateFiles.size(), "candidates");
                     OntologyBasedSimilarityAnalysis osaT = new OntologyBasedSimilarityAnalysis();
                     osaT.initializeLogger(tag, params); // this has to be done immediately after constructor
-                    osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                    osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString(), null);
                     baseResultsPath = osaT.getExtendedXmlResultsPath();
                     parsedFiles++;
                 } catch (Exception ex) {
@@ -852,7 +859,7 @@ public class PAN11EvaluationSetEval {
                         indexP.getAndIncrement();
                         OntologyBasedSimilarityAnalysis osaT = new OntologyBasedSimilarityAnalysis(null, null);
                         osaT.setLogger(osa.getExtendedLogUtil(), osa.getTag()); // this has to be done immediately after constructor
-                        osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                        osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString(), null);
                         osaT = null;
                         System.gc(); // Excplicit call to garbage collector.
                     } catch (Exception ex) {

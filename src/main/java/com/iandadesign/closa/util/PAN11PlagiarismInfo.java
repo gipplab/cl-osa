@@ -65,6 +65,22 @@ public class PAN11PlagiarismInfo {
         public static String MEDIUM = "MEDIUM";
         public static String SHORT = "SHORT";
     }
+
+    public int getThisLength() {
+        return thisLength;
+    }
+
+    public int getThisOffset() {
+        return thisOffset;
+    }
+
+    public int getSourceLength() {
+        return sourceLength;
+    }
+
+    public int getSourceOffset() {
+        return sourceOffset;
+    }
 }
 
 /**

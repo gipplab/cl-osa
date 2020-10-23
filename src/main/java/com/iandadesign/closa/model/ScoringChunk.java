@@ -27,12 +27,14 @@ public class ScoringChunk {
     private int suspiciousMatrixIndex;
     private int candidateMatrixIndex;
     private boolean processedByClusteringAlgo;
+    private boolean isPlagiarism;
+    private boolean isDetectedAsPlagiarism;
 
     public ScoringChunk(SlidingWindowInfo suspiciousWindow,
                         SlidingWindowInfo candidateWindow,
                         double computedCosineSimilarity,
                         long fragmentIndex,
-                        StartStopInfo startStopInfo) {
+                        StartStopInfo startStopInfo, boolean isPlagiarism) {
 
         this.suspiciousStartSentence = suspiciousWindow.getStartSentence();
         this.suspiciousEndSentence = suspiciousWindow.getEndSentence();
@@ -44,10 +46,12 @@ public class ScoringChunk {
         this.candidateCharacterStartIndex = candidateWindow.getCharacterStartIndex();
         this.candidateCharacterEndIndex = candidateWindow.getCharacterEndIndex();
         this.startStopInfo = startStopInfo;
-
+        this.isPlagiarism = isPlagiarism; // only can be true in analysis mode
+        this.isDetectedAsPlagiarism = false; // only can be true in analysis mode
         this.computedCosineSimilarity = computedCosineSimilarity;
         //this.fragmentIndex = fragmentIndex;
         this.processedByClusteringAlgo = false;
+
     }
 
     public void printMe(String printFormat, List<String> suspiciousTokens, List<String> candidateTokens){
@@ -123,5 +127,17 @@ public class ScoringChunk {
 
     public StartStopInfo getStartStopInfo() {
         return startStopInfo;
+    }
+
+    public boolean isPlagiarism() {
+        return isPlagiarism;
+    }
+
+    public void setDetectedAsPlagiarism(boolean detectedAsPlagiarism) {
+        isDetectedAsPlagiarism = detectedAsPlagiarism;
+    }
+
+    public boolean isDetectedAsPlagiarism() {
+        return isDetectedAsPlagiarism;
     }
 }
