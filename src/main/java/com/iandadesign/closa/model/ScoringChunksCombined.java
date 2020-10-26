@@ -4,6 +4,8 @@ import com.iandadesign.closa.util.CSVUtil;
 import com.iandadesign.closa.util.ExtendedAnalytics;
 import com.iandadesign.closa.util.XmlFormatter;
 import edu.stanford.nlp.util.ArrayMap;
+import org.apache.commons.math3.stat.descriptive.moment.Mean;
+import org.apache.commons.math3.stat.descriptive.rank.Median;
 import org.apache.http.annotation.Obsolete;
 
 import javax.xml.stream.XMLEventFactory;
@@ -46,12 +48,14 @@ public class ScoringChunksCombined {
     private int windowXsearchLength;
     private int windowYsearchLength;
     private int windowDiagsearchLength;
+    private Double documentScoreMedian;
 
     private String suspiciousDocumentName;
     private String candidateDocumentName;
     private List<ResultInfo> clusteringResults;
     private boolean useAccurateResults;
     private boolean doResultsAnalysis;
+    private boolean doNewClusteringApproach;
 
     public ScoringChunksCombined(double adjacentTresh, double singleTresh, int slidingWindowLength, int slidingWindowIncrement, int clippingMargin, boolean useAccurateResults, boolean doResultsAnalysis){
         this.adjacentTresh = adjacentTresh;
@@ -63,6 +67,8 @@ public class ScoringChunksCombined {
         this.scoringChunksList  = new ArrayList<>();
         this.useAccurateResults = useAccurateResults;
         this.doResultsAnalysis = doResultsAnalysis;
+        this.doNewClusteringApproach = true; // TODO add this to params if good
+        this.documentScoreMedian = null;
     }
     private void calculateSearchLength(){
         // TODO adapt this for other cases (this is for swl 1 and swi 1)
@@ -111,11 +117,19 @@ public class ScoringChunksCombined {
                                         boolean useAccurateStartStop){
 
         double usedSingleThresh;
+
+        if(useAdaptiveThresh  || this.doNewClusteringApproach){
+            // this.documentScoreMedian = ExtendedAnalytics.calculateMedian(scoreMatrix, null, null );
+            this.documentScoreMedian  = ExtendedAnalytics.calculateMean(scoreMatrix, null, null );
+            //double median2 = ExtendedAnalytics.calculateMedian(scoreMatrix, null, null);
+
+
+        }
         if(!useAdaptiveThresh){
-            // default mode, just use the single Thresh set
+            // default mode, just use the single Thresh set ||
             usedSingleThresh = this.singleTresh;
         }else{
-            double medianValue = ExtendedAnalytics.calculateMedian(scoreMatrix, null, null );
+            double medianValue =this.documentScoreMedian;
             usedSingleThresh = adaptiveFormFactor * medianValue;
 
             if(usedSingleThresh<=this.singleTresh){
@@ -131,8 +145,11 @@ public class ScoringChunksCombined {
         this.scoringChunksList.sort(Comparator.comparing(ScoringChunk::getComputedCosineSimilarity).reversed());
 
         for(ScoringChunk currentScoringChunk:this.scoringChunksList) {
-            if (!currentScoringChunk.isProcessedByClusteringAlgo()
-                    && currentScoringChunk.getComputedCosineSimilarity() >= usedSingleThresh) {
+            int yIndex = currentScoringChunk.getSuspiciousMatrixIndex();
+            int xIndex = currentScoringChunk.getCandidateMatrixIndex();
+            if(!currentScoringChunk.isProcessedByClusteringAlgo() && this.doNewClusteringApproach && isClusterAboveMedian(currentScoringChunk, getAdjacentChunks(yIndex,xIndex),
+                    5.3)) { // 5.3
+            //if (!currentScoringChunk.isProcessedByClusteringAlgo() && currentScoringChunk.getComputedCosineSimilarity() >= usedSingleThresh) {
                 List<ScoringChunk> clusterChunks = new ArrayList<>();
                 currentScoringChunk.setProcessedByClusteringAlgo(true);
                 clusterChunks.add(currentScoringChunk);
@@ -349,7 +366,11 @@ public class ScoringChunksCombined {
                 continue;
             }
             // More accuracy related steps.
+
             StartStopInfo startStopInfo = clusterChunk.getStartStopInfo();
+            if(startStopInfo==null){
+                continue;       // TODO find reason for null values
+            }
             matchCandEndChar = max(startStopInfo.getMaxMatchCandIndex(), matchCandEndChar);
             matchSuspEndChar = max(startStopInfo.getMaxMatchSuspIndex(), matchSuspEndChar);
             matchCandStartChar = min(startStopInfo.getMinMatchCandIndex(), matchCandStartChar);
@@ -372,6 +393,16 @@ public class ScoringChunksCombined {
         int xIndex = currentHVScoringChunk.getCandidateMatrixIndex();
         // Get Adjacent chunks
         List<ScoringChunk> adjacentChunks = getAdjacentChunks(yIndex, xIndex);
+
+        /*
+        if(this.doNewClusteringApproach && adjacentChunks.size() >= 1 ){
+            if (isClusterAboveMedian(currentHVScoringChunk, adjacentChunks, 1.0)) {
+                currentHVScoringChunk.setProcessedByClusteringAlgo(true);
+                return clusterChunks;
+            }
+        }
+        */
+
         for(ScoringChunk currentAdjacentChunk:adjacentChunks){
             if(currentAdjacentChunk!= null
                 && currentAdjacentChunk.getComputedCosineSimilarity() >= this.adjacentTresh
@@ -383,6 +414,36 @@ public class ScoringChunksCombined {
             }
         }
         return clusterChunks;
+    }
+
+    private boolean isClusterAboveMedian(ScoringChunk currentHVScoringChunk, List<ScoringChunk> adjacentChunks, double medianThresh) {
+        try {
+            // this.documentScoreMedian
+            List<Double> scoresForAdjacent = adjacentChunks.stream().filter(Objects::nonNull).map(ScoringChunk::getComputedCosineSimilarity).collect(Collectors.toList());
+            scoresForAdjacent.add(currentHVScoringChunk.getComputedCosineSimilarity());
+            // TODO ADD zeros to up 9
+            if(scoresForAdjacent.size()!=9){
+                for(int i=scoresForAdjacent.size();i<9;i++){
+                    scoresForAdjacent.add(0.0); // Adding mock zero elements, what with corners here ?
+                }
+            }
+            double[] arr = scoresForAdjacent.stream().mapToDouble(Double::doubleValue).toArray(); //via method reference
+            Median median = new Median();
+            Mean mean = new Mean();
+
+            if(currentHVScoringChunk.getComputedCosineSimilarity() == 8.0){
+                int a = 2;
+            }
+            // calculate median
+            double medianAdjacent = mean.evaluate(arr); // toggle median/mean here
+            if (medianAdjacent <= medianThresh) {
+                return false;
+            }
+            // Calculating the median of the current chunk
+        }catch(Exception exception){
+            exception.printStackTrace();
+        }
+        return true;
     }
 
 

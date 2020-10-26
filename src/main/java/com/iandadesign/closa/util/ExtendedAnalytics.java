@@ -1,6 +1,8 @@
 package com.iandadesign.closa.util;
 
 import com.iandadesign.closa.model.ScoringChunk;
+import org.apache.commons.math3.stat.descriptive.moment.Mean;
+import org.apache.commons.math3.stat.descriptive.rank.Median;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,6 +18,51 @@ import java.util.List;
  * @author Johannes Stegmüller (02.07.2020)
  */
 public  class ExtendedAnalytics {
+
+
+    public static double calculateMean(ScoringChunk[][] scoreMatrix, ExtendedLogUtil logUtil, String extraInfo){
+        List<Double> myValues = new ArrayList<>();
+
+        for(ScoringChunk[] scoreRow: scoreMatrix){
+            for(ScoringChunk scoreItem:scoreRow){
+                if(scoreItem==null){
+                    // myValues.add(0.0);
+                    continue;
+                }else{
+                    double value = scoreItem.getComputedCosineSimilarity();
+                    if(value==-1) continue;
+                    myValues.add(value);
+                }
+            }
+        }
+
+        double[] arr = myValues.stream().mapToDouble(Double::doubleValue).toArray(); //via method reference
+        Mean mean = new Mean();
+        return mean.evaluate(arr);
+
+    }
+
+    public static double calculateMedianNew(ScoringChunk[][] scoreMatrix, ExtendedLogUtil logUtil, String extraInfo){
+        List<Double> myValues = new ArrayList<>();
+
+        for(ScoringChunk[] scoreRow: scoreMatrix){
+            for(ScoringChunk scoreItem:scoreRow){
+                if(scoreItem==null){
+                    // myValues.add(0.0);
+                    continue;
+                }else{
+                    double value = scoreItem.getComputedCosineSimilarity();
+                    if(value==-1) continue;
+                    myValues.add(value);
+                }
+            }
+        }
+
+        double[] arr = myValues.stream().mapToDouble(Double::doubleValue).toArray(); //via method reference
+        Median median = new Median();
+        return median.evaluate(arr);
+
+    }
     public static double calculateMedian(ScoringChunk[][] scoreMatrix, ExtendedLogUtil logUtil, String extraInfo){
         //System.out.println("Calculating median");
         List<Double> myValues = new ArrayList<>();
@@ -31,6 +78,7 @@ public  class ExtendedAnalytics {
                 }
             }
         }
+
         Collections.sort(myValues);
         double medianValue;
         float medianPos = (myValues.size() + 1) / (float) 2;
