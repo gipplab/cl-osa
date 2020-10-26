@@ -6,6 +6,7 @@ import com.iandadesign.closa.language.LanguageDetector;
 import com.iandadesign.closa.model.*;
 import com.iandadesign.closa.model.Dictionary;
 import com.iandadesign.closa.model.DictionaryDetailed;
+import com.iandadesign.closa.util.ExtendedAnalytics;
 import com.iandadesign.closa.util.ExtendedLogUtil;
 import com.iandadesign.closa.util.PAN11PlagiarismInfo;
 import com.iandadesign.closa.util.wikidata.WikidataDumpUtil;
@@ -625,7 +626,7 @@ public class OntologyBasedSimilarityAnalysis {
 
 
 
-    public void executeAlgorithmAndComputeScoresExtendedInfo(String suspiciousDocumentPath,
+    public List<StatisticsInfo>  executeAlgorithmAndComputeScoresExtendedInfo(String suspiciousDocumentPath,
                                                              List<File> candidateDocumentFiles,
                                                              ExtendedAnalysisParameters params,
                                                              String initialDateString,
@@ -637,10 +638,10 @@ public class OntologyBasedSimilarityAnalysis {
         Map<String, Double> candidateIdTokensMap = doCandidateRetrievalExtendedInfo(suspiciousDocumentPath,
                 candidateDocumentFiles, params, initialDateString, suspiciousIdTokensMapExt);
         Set<String> selectedCandidateKeys = candidateIdTokensMap.keySet();
-
+        List<StatisticsInfo> statisticsInfos = new ArrayList<>(); // only used if stats activated.
         if(selectedCandidateKeys==null){
             logUtil.writeStandardReport(false, "No candidates selected, continuing");
-            return;
+            return null;
         }
         List<Double> averageLengths =  new ArrayList<>();
         List<Double> fragmentScores = new ArrayList<>();
@@ -825,16 +826,12 @@ public class OntologyBasedSimilarityAnalysis {
                     logUtil.logAndWriteStandard(true, "done processing file combination", suspFilename, "with", candFilename);
                     logUtil.logAndWriteStandard(false, logUtil.dashes(100));
 
-
-                    Double [] averageLengthsArray = new Double[averageLengths.size()];
-                    averageLengths.toArray(averageLengthsArray);
-                    Double [] fragmentScoresArray = new Double[fragmentScores.size()];
-                    fragmentScores.toArray(fragmentScoresArray);
-
-                    double corr = new PearsonsCorrelation().correlation(
-                            ArrayUtils.toPrimitive(averageLengthsArray),
-                            ArrayUtils.toPrimitive(fragmentScoresArray));
-                    this.logUtil.logAndWriteStandard(false, "Correlation is: "+corr);
+                    if(params.DO_RESULTS_ANALYSIS){
+                        calculateCorrelation(averageLengths, fragmentScores);
+                        StatisticsInfo statisticsInfo = ExtendedAnalytics.createAnalyticsScores(scoringChunksCombined);
+                        statisticsInfo.candidateFilename = candFilename;
+                        statisticsInfos.add(statisticsInfo);
+                    }
                     // MEMORY: Clear candidate entities from memory.
                     candidateEntities.clear();
                 } catch (Exception ex) {
@@ -853,7 +850,22 @@ public class OntologyBasedSimilarityAnalysis {
         selectedCandidateKeys.clear();
         suspiciousIdTokensMapExt.clear();
         logUtil.writeStandardReport(false, "Whats going on here?");
+
+        return statisticsInfos;
     }
+
+    private void calculateCorrelation(List<Double> averageLengths, List<Double> fragmentScores) {
+        Double [] averageLengthsArray = new Double[averageLengths.size()];
+        averageLengths.toArray(averageLengthsArray);
+        Double [] fragmentScoresArray = new Double[fragmentScores.size()];
+        fragmentScores.toArray(fragmentScoresArray);
+
+        double corr = new PearsonsCorrelation().correlation(
+                ArrayUtils.toPrimitive(averageLengthsArray),
+                ArrayUtils.toPrimitive(fragmentScoresArray));
+        this.logUtil.logAndWriteStandard(false, "Correlation is: "+corr);
+    }
+
     private boolean isWindowRelatedToPlagiarism(SlidingWindowInfo slidingWindowInfo, int plagiarismStart, int plagiarismEnd){
         // Overlap
         if(slidingWindowInfo.getCharacterStartIndex() >= plagiarismStart && slidingWindowInfo.getCharacterStartIndex() < plagiarismEnd ){

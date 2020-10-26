@@ -43,7 +43,7 @@ public class ExtendedAnalysisParameters {
         // Token forming before making Wikidata query
         //LENGTH_SUBLIST_TOKENS = 3; // This is not used atm, but the parameter in config.properties dung refactoring reasons
         // Sliding window parameters (atm only possible increment == num_sentences)
-        DO_RESULTS_ANALYSIS = true;
+        DO_RESULTS_ANALYSIS = true; // Marks results in CSV and does Statistical result analysis.
         USE_ABSOLUTE_MATCHES_COUNT = true; //TODO perfomance adaptions, false calculates the score twice
         ACCURATE_FIRST_LAST_INDICES = true;
         NUM_SENTENCES_IN_SLIDING_WINDOW = 20; //2  // 20

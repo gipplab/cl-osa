@@ -823,7 +823,9 @@ public class ScoringChunksCombined {
 
     }
 
-
+    public List<ScoringChunk> getScoringChunksList() {
+        return scoringChunksList;
+    }
     /**
      * <document reference="suspicious-documentXYZ.txt">
      *   <feature name="detected-plagiarism"

@@ -3,6 +3,7 @@ package com.iandadesign.closa;
 import com.iandadesign.closa.language.LanguageDetector;
 import com.iandadesign.closa.model.ExtendedAnalysisParameters;
 import com.iandadesign.closa.model.SavedEntity;
+import com.iandadesign.closa.model.StatisticsInfo;
 import com.iandadesign.closa.util.*;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
@@ -698,6 +699,8 @@ public class PAN11EvaluationSetEval {
 
             forkJoinPool = new ForkJoinPool(parallelism);
             Map<String, List<String>> finalMockSuspToSelectedCandidates = mockSuspToSelectedCandidates;
+            Map<String, List<StatisticsInfo>> allStatisticsInfos = new HashMap<>();
+
             forkJoinPool.submit(() -> finalMockSuspToSelectedCandidates.keySet().parallelStream().forEach((suspiciousFilePath) -> {
                 String suspPath = suspiciousFilePath;
                 String suspFileName = new File(suspiciousFilePath).getName();
@@ -712,7 +715,8 @@ public class PAN11EvaluationSetEval {
                     List<PAN11PlagiarismInfo>  currentPlaginfoList = plagiarismInfo.get(suspFileName.replace(".txt",".xml"));
                     OntologyBasedSimilarityAnalysis osaT = new OntologyBasedSimilarityAnalysis(null, null);
                     osaT.setLogger(osa.getExtendedLogUtil(), osa.getTag()); // this has to be done immediately after constructor
-                    osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString(), currentPlaginfoList);
+                    List<StatisticsInfo> statisticsInfos = osaT.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString(), currentPlaginfoList);
+                    allStatisticsInfos.put(suspFileName, statisticsInfos); // ok in multithreading?
                     osaT = null;
                     System.gc(); // Excplicit call to garbage collector.
                 } catch (Exception ex) {
@@ -723,6 +727,11 @@ public class PAN11EvaluationSetEval {
                 }
             })).get();
 
+            // Combining statistics information
+            if(params.DO_RESULTS_ANALYSIS){
+                StatisticsInfo combinedInfo = ExtendedAnalytics.createCombinedStatistics(allStatisticsInfos);
+                ExtendedAnalytics.printStatisticsInfo(combinedInfo, logUtil);
+            }
         }catch(Exception e) {//SecurityException | RejectedExecutionException e){
             logUtil.logAndWriteError(false, "Exception with with thread execution:", e);
         } finally {
