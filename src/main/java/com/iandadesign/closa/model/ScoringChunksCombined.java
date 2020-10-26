@@ -148,7 +148,7 @@ public class ScoringChunksCombined {
             int yIndex = currentScoringChunk.getSuspiciousMatrixIndex();
             int xIndex = currentScoringChunk.getCandidateMatrixIndex();
             if(!currentScoringChunk.isProcessedByClusteringAlgo() && this.doNewClusteringApproach && isClusterAboveMedian(currentScoringChunk, getAdjacentChunks(yIndex,xIndex),
-                    5.3)) { // 5.3
+                        3.7)) { // 5.3 @10/20 3.7 @5/10     documentScoreMedian*2.53424657534
             //if (!currentScoringChunk.isProcessedByClusteringAlgo() && currentScoringChunk.getComputedCosineSimilarity() >= usedSingleThresh) {
                 List<ScoringChunk> clusterChunks = new ArrayList<>();
                 currentScoringChunk.setProcessedByClusteringAlgo(true);

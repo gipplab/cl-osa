@@ -45,8 +45,8 @@ public class ExtendedAnalysisParameters {
         DO_RESULTS_ANALYSIS = true;
         USE_ABSOLUTE_MATCHES_COUNT = true;
         ACCURATE_FIRST_LAST_INDICES = true;
-        NUM_SENTENCES_IN_SLIDING_WINDOW = 20; //2  // 20
-        NUM_SENTENCE_INCREMENT_SLIDINGW = 10; //1  // 10
+        NUM_SENTENCES_IN_SLIDING_WINDOW = 10; //2  // 20
+        NUM_SENTENCE_INCREMENT_SLIDINGW = 5; //1  // 10
         // Sliding window comparison thresholds
         ADJACENT_THRESH = 0.9; //0.09;   //0,3; 0,1
         SINGLE_THRESH = 6.0; //0.125;// 0,7; 0.8; //0.45act; //0.7;     //0,6 8 for abs
