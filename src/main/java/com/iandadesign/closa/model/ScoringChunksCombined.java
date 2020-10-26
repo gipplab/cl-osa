@@ -57,7 +57,7 @@ public class ScoringChunksCombined {
     private boolean doResultsAnalysis;
     private boolean doNewClusteringApproach;
 
-    public ScoringChunksCombined(double adjacentTresh, double singleTresh, int slidingWindowLength, int slidingWindowIncrement, int clippingMargin, boolean useAccurateResults, boolean doResultsAnalysis){
+    public ScoringChunksCombined(double adjacentTresh, double singleTresh, int slidingWindowLength, int slidingWindowIncrement, int clippingMargin, boolean useAccurateResults, boolean doResultsAnalysis, boolean localMedianBasedThresh){
         this.adjacentTresh = adjacentTresh;
         this.singleTresh = singleTresh;
         this.slidingWindowLength = slidingWindowLength;
@@ -67,7 +67,7 @@ public class ScoringChunksCombined {
         this.scoringChunksList  = new ArrayList<>();
         this.useAccurateResults = useAccurateResults;
         this.doResultsAnalysis = doResultsAnalysis;
-        this.doNewClusteringApproach = true; // TODO add this to params if good
+        this.doNewClusteringApproach = localMedianBasedThresh; // TODO add this to params if good
         this.documentScoreMedian = null;
     }
     private void calculateSearchLength(){
@@ -145,11 +145,21 @@ public class ScoringChunksCombined {
         this.scoringChunksList.sort(Comparator.comparing(ScoringChunk::getComputedCosineSimilarity).reversed());
 
         for(ScoringChunk currentScoringChunk:this.scoringChunksList) {
-            int yIndex = currentScoringChunk.getSuspiciousMatrixIndex();
-            int xIndex = currentScoringChunk.getCandidateMatrixIndex();
-            if(!currentScoringChunk.isProcessedByClusteringAlgo() && this.doNewClusteringApproach && isClusterAboveMedian(currentScoringChunk, getAdjacentChunks(yIndex,xIndex),
-                        3.7)) { // 5.3 @10/20 3.7 @5/10     documentScoreMedian*2.53424657534
-            //if (!currentScoringChunk.isProcessedByClusteringAlgo() && currentScoringChunk.getComputedCosineSimilarity() >= usedSingleThresh) {
+            if(!currentScoringChunk.isProcessedByClusteringAlgo()){
+                boolean condition = false;
+                if(this.doNewClusteringApproach){
+                    // Check if neightborhood acbove median or mean
+                    // 5.3 @10/20 3.7 @5/10     documentScoreMedian*2.53424657534
+                    int yIndex = currentScoringChunk.getSuspiciousMatrixIndex();
+                    int xIndex = currentScoringChunk.getCandidateMatrixIndex();
+                    condition = isClusterAboveMedian(currentScoringChunk, getAdjacentChunks(yIndex,xIndex), 0.068); // 0.019 tooo many detections
+
+                }else {
+                    condition = currentScoringChunk.getComputedCosineSimilarity() >= usedSingleThresh;
+                }
+                if(!condition){
+                    continue;
+                }
                 List<ScoringChunk> clusterChunks = new ArrayList<>();
                 currentScoringChunk.setProcessedByClusteringAlgo(true);
                 clusterChunks.add(currentScoringChunk);

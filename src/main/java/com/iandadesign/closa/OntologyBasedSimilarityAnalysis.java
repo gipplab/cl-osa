@@ -484,7 +484,8 @@ public class OntologyBasedSimilarityAnalysis {
                         params.NUM_SENTENCE_INCREMENT_SLIDINGW,
                         params.CLIPPING_MARGING,
                         params.ACCURATE_FIRST_LAST_INDICES,
-                        params.DO_RESULTS_ANALYSIS);
+                        params.DO_RESULTS_ANALYSIS,
+                        params.USE_LOCAL_MEDIAN_BASED_THRESH);
                 try {
 
                     // MEMORY: Getting the Saved entities for the current candidate.
@@ -675,7 +676,8 @@ public class OntologyBasedSimilarityAnalysis {
                         params.NUM_SENTENCE_INCREMENT_SLIDINGW,
                         params.CLIPPING_MARGING,
                         params.ACCURATE_FIRST_LAST_INDICES,
-                        params.DO_RESULTS_ANALYSIS);
+                        params.DO_RESULTS_ANALYSIS,
+                        params.USE_LOCAL_MEDIAN_BASED_THRESH);
                 try {
 
                     // MEMORY: Getting the Saved entities for the current candidate.
@@ -734,7 +736,7 @@ public class OntologyBasedSimilarityAnalysis {
                             }
                             Double fragmentScore = 0.0;
                             StartStopInfo startStopInfo = null;
-                            if (!params.USE_ABSOLUTE_MATCHES_COUNT){
+                            if (false && !params.USE_ABSOLUTE_MATCHES_COUNT){ // THis might be obsolete
                                 // Atm the regular way: Normalization based on number of entities for the score.
                                 Map<String, Double> fragmentScoresMap = performCosineSimilarityAnalysis(currentSuspiciousIdTokensMap,
                                         currentCandidateIdTokensMap).get(suspiciousIdTokenExt.getKey());
@@ -1215,10 +1217,24 @@ public class OntologyBasedSimilarityAnalysis {
             progressBar.stop();
             finalProgressBar.stop();
         }
+        // Comparatively do the normalized cosine similarity score
+        Double score = 0.0;
 
-        // Perform a seemingly more simple check
         Map<Double, List<String>> returnVal = dictionary.getMatchesCount(suspiciousIdTokensMap.get(suspFile), candidateIdTokensMap.get(candFile),true);
-        Double score = (Double) returnVal.keySet().toArray()[0];
+        score = (Double) returnVal.keySet().toArray()[0];
+
+        if(!params.USE_ABSOLUTE_MATCHES_COUNT) {
+            // Recalculation of score here not really efficitent just for testing
+
+            // This one gives strange results
+            //score = dictionary.cosineSimilarity(suspiciousIdTokensMap.get(suspFile), candidateIdTokensMap.get(candFile));
+
+            Map<String, Double> fragmentScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap,
+                    candidateIdTokensMap).get(suspFile);
+            score = fragmentScoresMap.get(candFile);
+        }
+
+        // Perform a seemingly more simple check TODO move in for absolute score
 
         if(!params.ACCURATE_FIRST_LAST_INDICES || score <= 0.0  ){
             returnMap.put(score,null);

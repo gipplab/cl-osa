@@ -13,6 +13,7 @@ public class ExtendedAnalysisParameters {
     public final double ADJACENT_THRESH;
     public final double SINGLE_THRESH;                      // CARE: THis is used as minimum thresh with adaptive clustering thresh
     public final boolean USE_ADAPTIVE_CLUSTERING_TRESH;     // Creates a clustering thresh based on the median of 2D-Matrix scores (!Takes longer because median calculation!)
+    public final boolean USE_LOCAL_MEDIAN_BASED_THRESH;     // SINGLE_THRESH is replaced by median or mean (see code config) of the 9-sized window
     public final double ADAPTIVE_FORM_FACTOR;               // Form factor for adaptive clustering (Thresh = Median * FormFactor)
     public final boolean USE_BIG_CLUSTER_INCLUSION;         // Include bigger clusters to plagiarism, although they have a lower threshold
     public final double BIG_CLUSTER_SINGLE_THRESH_DIFF;            // This is a diff to the calculated or constant single tresh, in which values below get included.
@@ -43,13 +44,14 @@ public class ExtendedAnalysisParameters {
         //LENGTH_SUBLIST_TOKENS = 3; // This is not used atm, but the parameter in config.properties dung refactoring reasons
         // Sliding window parameters (atm only possible increment == num_sentences)
         DO_RESULTS_ANALYSIS = true;
-        USE_ABSOLUTE_MATCHES_COUNT = true;
+        USE_ABSOLUTE_MATCHES_COUNT = true; //TODO perfomance adaptions, false calculates the score twice
         ACCURATE_FIRST_LAST_INDICES = true;
-        NUM_SENTENCES_IN_SLIDING_WINDOW = 10; //2  // 20
-        NUM_SENTENCE_INCREMENT_SLIDINGW = 5; //1  // 10
+        NUM_SENTENCES_IN_SLIDING_WINDOW = 20; //2  // 20
+        NUM_SENTENCE_INCREMENT_SLIDINGW = 10; //1  // 10
         // Sliding window comparison thresholds
-        ADJACENT_THRESH = 0.9; //0.09;   //0,3; 0,1
-        SINGLE_THRESH = 6.0; //0.125;// 0,7; 0.8; //0.45act; //0.7;     //0,6 8 for abs
+        ADJACENT_THRESH = 1.0; //0.09;//0.9; //0.09;   //0,3; 0,1
+        SINGLE_THRESH =  8.0;//0.125; //0.0125; //0.125; //6.0; //0.125;// 0,7; 0.8; //0.45act; //0.7;     //0,6 8 for abs
+        USE_LOCAL_MEDIAN_BASED_THRESH = false;
         USE_ADAPTIVE_CLUSTERING_TRESH = false; // false
         ADAPTIVE_FORM_FACTOR = 5.1; //5.2; // 6 still false positive, rec ok
         CLIPPING_MARGING = 3000;
