@@ -1,12 +1,12 @@
 package com.iandadesign.closa.model;
 
 import org.apache.commons.math3.analysis.UnivariateFunction;
-import org.apache.commons.math3.exception.DimensionMismatchException;
 import org.apache.commons.math3.linear.OpenMapRealVector;
 import org.apache.commons.math3.linear.RealVector;
 import org.apache.commons.math3.linear.SparseRealVector;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  *  This is the same like dictionary, but modified for detailed analysis with some additional features.
@@ -22,7 +22,6 @@ public class DictionaryDetailed<T> {
 
     private Set<T> terms;
     private Map<T, Map<String, Integer>> dictionary;
-
 
     public DictionaryDetailed(Map<String, List<String>> documentIdTokensMap) {
         terms = new HashSet<>();
@@ -158,6 +157,26 @@ public class DictionaryDetailed<T> {
         }));
 
         return dictionary;
+    }
+    public Integer getOverallOccurenceByTokenId(String tokenId){
+        return dictionary.get(tokenId).size();
+    }
+    public Integer getOccurenceForSpecificFile(String tokenId, String filepath){
+        AtomicInteger overallFreq = new AtomicInteger();
+        dictionary.forEach((term, value) -> {
+            if(term.equals(tokenId)) {
+                value.forEach((docId, freq) -> {
+                    if(docId.equals(filepath)){
+                        overallFreq.addAndGet(freq);
+                    }
+                });
+            }
+        });
+        int finalVal = overallFreq.get();
+        return finalVal;
+    }
+    public Map<String, Integer> getOccurenceMapForOneFile(String filepath){
+        return null;
     }
 
     /**

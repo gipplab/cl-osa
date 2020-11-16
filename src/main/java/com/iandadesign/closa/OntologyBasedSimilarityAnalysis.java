@@ -625,7 +625,29 @@ public class OntologyBasedSimilarityAnalysis {
     }
 
 
+    public void createOverallDictionary(ExtendedAnalysisParameters params, Map<String, List<String>> mockSuspToSelectedCandidates) throws Exception {
+        if(!params.CONCEPT_OCCURENCE_WEIGHTING){
+            return;
+        }
 
+        // Not correct - iterate over list of all files, save filename - entities
+        Map<String, List<String>> mockSuspToCandidateConcepts = new HashMap<>();
+        for(String suspiciousDocumentPath:mockSuspToSelectedCandidates.keySet()){
+            for(String candidateDocumentPath:mockSuspToSelectedCandidates.get(suspiciousDocumentPath)){
+                List<SavedEntity> preprocessedCandExt = preProcessExtendedInfo(candidateDocumentPath,null );
+                List<String> preprocessedCand = preprocessedCandExt.stream().map(SavedEntity::getWikidataEntityId).collect(Collectors.toList());
+                mockSuspToCandidateConcepts.put(candidateDocumentPath, preprocessedCand);
+
+            }
+        }
+
+
+        DictionaryDetailed dictionaryDetailed = new DictionaryDetailed(mockSuspToCandidateConcepts);
+        Integer shouldBeFive = dictionaryDetailed.getOverallOccurenceByTokenId("Q674067");
+        Integer shouldBeTwo = dictionaryDetailed.getOccurenceForSpecificFile("Q13211738", "/data/pan-plagiarism-corpus-2011/external-detection-corpus/source-document/part12/source-document05828.txt");
+
+
+    }
     public List<StatisticsInfo>  executeAlgorithmAndComputeScoresExtendedInfo(String suspiciousDocumentPath,
                                                              List<File> candidateDocumentFiles,
                                                              ExtendedAnalysisParameters params,
