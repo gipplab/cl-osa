@@ -7,6 +7,7 @@ public class ExtendedAnalysisParameters {
     //public final int LENGTH_SUBLIST_TOKENS;
     public final int NUM_SENTENCES_IN_SLIDING_WINDOW;
     public final int NUM_SENTENCE_INCREMENT_SLIDINGW;
+    public final boolean CONCEPT_OCCURENCE_WEIGHTING;       // Creates dictionaries over all entities and for file combinations, weights concepts by their occurence.
     public final boolean DO_RESULTS_ANALYSIS;               // Map actual plagiarism in CSV info, also calculate statistics, can take more CPU/RAM.
     public final boolean USE_ABSOLUTE_MATCHES_COUNT;        // De-normalized scores, just use the absolute matches, requires to change thresholds
     public final boolean ACCURATE_FIRST_LAST_INDICES;       // Gets the character indices of first match within and last match (only works with absolute match atm)
@@ -49,13 +50,13 @@ public class ExtendedAnalysisParameters {
         NUM_SENTENCES_IN_SLIDING_WINDOW = 20; //2  // 20
         NUM_SENTENCE_INCREMENT_SLIDINGW = 10; //1  // 10
         // Sliding window comparison thresholds
-        ADJACENT_THRESH = 1.0; //0.09;//0.9; //0.09;   //0,3; 0,1
+        ADJACENT_THRESH = 3.0; //0.09;//0.9; //0.09;   //0,3; 0,1
         SINGLE_THRESH =  8.0;//0.125; //0.0125; //0.125; //6.0; //0.125;// 0,7; 0.8; //0.45act; //0.7;     //0,6 8 for abs
         USE_LOCAL_MEDIAN_BASED_THRESH = false;
         USE_ADAPTIVE_CLUSTERING_TRESH = false; // false
         ADAPTIVE_FORM_FACTOR = 5.1; //5.2; // 6 still false positive, rec ok
-        CLIPPING_MARGING = 3000;
-
+        CLIPPING_MARGING = 6000;
+        CONCEPT_OCCURENCE_WEIGHTING = true;
         USE_ENHANCHED_COSINE_ANALYSIS  = false;
 
         // Big cluster inclusion settings.
