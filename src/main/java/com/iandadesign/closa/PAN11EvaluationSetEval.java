@@ -32,6 +32,7 @@ public class PAN11EvaluationSetEval {
         Boolean smallTest = false;
         Boolean testCandidateRetrieval = true;
         //JS: since tests not work cause of local dependency missing, heres a workaround to make evaluations executable
+        //JS: since tests not work cause of local dependency missing, heres a workaround to make evaluations executable
         //evalPAN2011All();
         //verifyNumberNonEnglishSusp();
         if(args!=null && args.length>=1){
