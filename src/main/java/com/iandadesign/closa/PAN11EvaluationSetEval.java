@@ -45,6 +45,66 @@ public class PAN11EvaluationSetEval {
     //static String pathPrefix = "/media/johannes/Elements SE/CLOSA/pan-plagiarism-corpus-2011/external-detection-corpus";
     static String pathPrefix = "/data/pan-plagiarism-corpus-2011/external-detection-corpus";
 
+
+
+    static void doCREvaluationRecall(ExtendedAnalysisParameters params, String tag, String comment,
+                                                       HashMap<String, List<String>> resultSelectedCandidates){
+        // Route the complete output to a logfile here.
+        String toplevelPathSuspicious = pathPrefix.concat("/suspicious-document/");
+        String toplevelPathCandidates = pathPrefix.concat("/source-document/");
+
+
+        //  (26939 - (9506/2)) / 2 = 11093 is the number of files in each directory;
+
+        // Do all preprocessing and cache it first (if already cached this will validate preprocessed number)
+        OntologyBasedSimilarityAnalysis osa = new OntologyBasedSimilarityAnalysis();
+        osa.initializeLogger(tag, params); // this has to be done immediately after constructor
+        ExtendedLogUtil logUtil = osa.getExtendedLogUtil();
+        logUtil.logAndWriteStandard(false, comment);
+
+        logUtil.writeStandardReport(false, "Assuming the preprpocessing has been done here. ");
+        params.MAX_NUM_CANDIDATES_SELECTED = 5000;
+        //params.CANDIDATE_SELECTION_TRESH = 0;
+        logParams(logUtil, tag, params, osa);
+
+
+        logUtil.logAndWriteStandard(false, "Starting file comparisons...");
+        List<File> candidateFiles = getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true, ".txt");
+        List<File> suspiciousFiles  = getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".txt");
+
+
+        WeakHashMap<String, List<SavedEntity>> suspiciousIdTokensMapExt = new WeakHashMap<>();
+        try {
+            Map<String, Map <String, Double>> suspiciousIdCandidateScoresMap =  osa.doCandidateRetrievalExtendedInfo2(suspiciousFiles, candidateFiles, params, logUtil.getDateString(), suspiciousIdTokensMapExt);
+            // Evaluate results
+
+            Double recallAt1 = PAN11RankingEvaluator.calculateRecallAtK(suspiciousIdCandidateScoresMap, resultSelectedCandidates, 1, logUtil);
+            Double recallAt5 = PAN11RankingEvaluator.calculateRecallAtK(suspiciousIdCandidateScoresMap, resultSelectedCandidates, 5, logUtil);
+            Double recallAt10 = PAN11RankingEvaluator.calculateRecallAtK(suspiciousIdCandidateScoresMap, resultSelectedCandidates, 10, logUtil);
+            Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtK(suspiciousIdCandidateScoresMap, resultSelectedCandidates, 20, logUtil);
+            Double recallAt50 = PAN11RankingEvaluator.calculateRecallAtK(suspiciousIdCandidateScoresMap, resultSelectedCandidates, 50, logUtil);
+            Double recallAt100 = PAN11RankingEvaluator.calculateRecallAtK(suspiciousIdCandidateScoresMap, resultSelectedCandidates, 100, logUtil);
+
+
+            Double recallAt1S = PAN11RankingEvaluator.calculateRecallAtKStandard(suspiciousIdCandidateScoresMap, resultSelectedCandidates, 1, logUtil);
+            Double recallAt5S = PAN11RankingEvaluator.calculateRecallAtKStandard(suspiciousIdCandidateScoresMap, resultSelectedCandidates, 5, logUtil);
+            Double recallAt10S = PAN11RankingEvaluator.calculateRecallAtKStandard(suspiciousIdCandidateScoresMap, resultSelectedCandidates, 10, logUtil);
+            Double recallAt20S = PAN11RankingEvaluator.calculateRecallAtKStandard(suspiciousIdCandidateScoresMap, resultSelectedCandidates, 20, logUtil);
+            Double recallAt50S = PAN11RankingEvaluator.calculateRecallAtKStandard(suspiciousIdCandidateScoresMap, resultSelectedCandidates, 50, logUtil);
+            Double recallAt100S = PAN11RankingEvaluator.calculateRecallAtKStandard(suspiciousIdCandidateScoresMap, resultSelectedCandidates, 100, logUtil);
+
+
+
+
+            logUtil.logAndWriteStandard(false, "Recall calculation done");
+
+        } catch (Exception ex){
+            logUtil.logAndWriteError(false, "Exception during parse of suspicious files ");
+            ex.printStackTrace();
+        }
+    }
+
+
     static Map<String, List<String>> doCREvaluationNew(ExtendedAnalysisParameters params, String tag, String comment,
                                                            HashMap<String, List<String>> resultSelectedCandidates){
         // Route the complete output to a logfile here.
@@ -307,8 +367,8 @@ public class PAN11EvaluationSetEval {
 
                     resultSelectedCandidates.put(suspFileXML.getName(), selectedCandidateForFile);
                     ctr++;
-                    if(ctr>=10){
-                      break;      // TODO remove this limitation
+                    if(ctr>=30){
+                      //break;      // TODO remove this limitation
                     }
                 }
 
@@ -382,8 +442,9 @@ public class PAN11EvaluationSetEval {
                     "\nUsed Suspicious Files: " + usedSuspicious.size()
             );
         }else {
-            Map<String, List<String>> mockCRResults = doCREvaluationNew(params, tag, "CREval", resultSelectedCandidates);
-            evalPAN2011MockCandidates(params, tag,"Parsing En-" + language + " with mock preselected CR candidates", mockCRResults, plagiarismInformation);
+            doCREvaluationRecall(params, tag, "CREvalRecall", resultSelectedCandidates);
+            //Map<String, List<String>> mockCRResults = doCREvaluationNew(params, tag, "CREval", resultSelectedCandidates);
+            //evalPAN2011MockCandidates(params, tag,"Parsing En-" + language + " with mock preselected CR candidates", mockCRResults, plagiarismInformation);
         }
     }
 
@@ -696,7 +757,7 @@ public class PAN11EvaluationSetEval {
         ForkJoinPool forkJoinPool = null;
 
         try {
-
+            osa.createOverallDictionary(params, mockSuspToSelectedCandidates);
             forkJoinPool = new ForkJoinPool(parallelism);
             Map<String, List<String>> finalMockSuspToSelectedCandidates = mockSuspToSelectedCandidates;
             Map<String, List<StatisticsInfo>> allStatisticsInfos = new HashMap<>();
