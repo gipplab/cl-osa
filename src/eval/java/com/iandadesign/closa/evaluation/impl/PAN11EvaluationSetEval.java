@@ -226,7 +226,7 @@ public class PAN11EvaluationSetEval {
             String suspFileName = suspiciousFiles.get(index).getName();
             try {
                 logUtil.logAndWriteStandard(true, logUtil.getDateString(), "Parsing Suspicious file ", index+1, "/", suspiciousFiles.size(),"Filename:", suspFileName," and its",candidateFiles.size() ,"candidates");
-                osa.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString());
+                osa.executeAlgorithmAndComputeScoresExtendedInfo(suspPath, candidateFiles, params, logUtil.getDateString(), null);
                 baseResultsPath = osa.getExtendedXmlResultsPath();
                 parsedFiles++;
             }catch(Exception ex){
