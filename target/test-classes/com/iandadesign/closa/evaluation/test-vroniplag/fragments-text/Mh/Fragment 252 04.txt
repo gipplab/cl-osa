@@ -1,7 +1,0 @@
-Ein weiterer Punkt betrifft die Anzahl der zur Verfügung stehenden handelbaren Finanzmarktprodukte. In den meisten Modellen können die Agenten lediglich zwischen einer risikolosen und einer risikobehafteten Anlage wählen. [FN 316] Auch zu diesem Punkt kann ein Framework, dass die prinzipielle Verarbeitung mehrerer Assets zur Verfügung stellt, einen entsprechenden Mehrwert liefern. 
-
-Die überwiegende Mehrzahl der vorgestellten Ansätze gehen in der Modellierung des Entscheidungsverhaltens der Agenten induktiv vor, d.h. es werden anhand der vergangenen Performance Regeln vorgeschlagen und adjustiert in der Hoffnung, dass diese in der Zukunft bessere Performance zeigen. Formen des deduktiven Schließens der Agenten werden fast gar nicht betrachtet. „Can they be allowed to do some form of deductive reasoning? Can they learn commonly held theories in finance, such as present value analysis, or the Black-Scholes option pricing formula? An interesting question is whether an agent-based model can be constructed that allows for a little deductive reasoning while keeping the general inductive spirit of simple rules of thumb." [FN 317] 
-
-[FN 316] Ausnahmen sind etwa Chiarella, Dieci und Gardini (2004) sowie Westerhoff (2004). Auch Levy et al. (2000) experimentieren mit mehreren Anlagemöglichkeiten. 
-
-[FN 317] LeBaron (2006a), S. 1225. 

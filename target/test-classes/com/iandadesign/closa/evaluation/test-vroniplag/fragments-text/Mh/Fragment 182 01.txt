@@ -1,1 +1,0 @@
-[Dies soll nun nach und nach verfeinert wer]den, indem das abstrakte Modell des Agenten, ähnlich dem Software Engineering, nach und nach in Subsysteme zerlegt wird, die insbesondere die Daten- und Kontrollstrukturen behandeln.

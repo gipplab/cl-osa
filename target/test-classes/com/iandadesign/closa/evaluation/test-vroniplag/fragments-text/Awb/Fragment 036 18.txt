@@ -1,3 +1,0 @@
-2.4 Statistische Auswertung 
-
-Die Ergebnisse werden - soweit nicht anders ausdrücklich erwähnt - in Mittelwert &amp;plusmn; mittlerer Fehler des Mittelwertes ( Mean &amp;plusmn; SEM ) dargestellt. Um eine Signifikanz zwischen zwei verschiedenen Gruppen zu sichern, wurde die Varianzanalyse in Verbindung mit dem Student's t - Test durchgeführt. Ein Wert von p&lt;0.05 wurde als statistisch signifikanter Unterschied angenommen. 

@@ -1,5 +1,0 @@
-viert===viert;
-o===o;
-dritt===dritt;
-zweit===zweit;
-oder===oder;

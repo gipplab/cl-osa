@@ -1,5 +1,0 @@
-Diese Architektur weist zwei wesentliche Charakteristika auf. Zum einen wird die Entscheidung eines Agenten realisiert durch eine Menge von Verhaltensmodulen, in denen die Verhaltensweisen eines Agenten abgespeichert sind. [FN 110] Einzelne Verhaltensweisen werden durch Regeln der Form Situation -&gt; action beschrieben, die schlicht Umweltzustände auf Aktionen abbilden. Zum anderen können mehrere Verhaltensweisen gleichzeitig 'feuern' [FN 111]. Daher muss es notwendigerweise einen Mechanismus geben, der zwischen den gefeuerten Verhaltensweisen auswählt. Dazu wird eine Subsumptions-Hierarchie angegeben, die die Verhaltensweisen nach ihrer Priorität in Schichten aufteilt. 
-
-[FN 110] In der Implementierung von Brooks sind diese Verhaltensmodule als finite Zustandsmaschinen umgesetzt. 
-
-[FN 111] Diese Ausdrucksweise findet sich insbesondere im Kontext regelbasierter Systeme häufig und bedeutet, dass die entsprechende Regel aktiviert wird; vgl. etwa Grolik und Schwind (2003), S. 342. 

@@ -1,5 +1,0 @@
- 
-
-2.6. Analysis of the histology 
-
-These slices were examined with a light-optical microscope (Microscope BX51TF, Olympus, Tokyo, Japan) and evaluated semiquantitatively. Magnification of 100 and 200 times was used regularly. The evaluation of the histological slices of lung, liver, spleen and kidney is based on an evaluation scale, which uses a score from 0 to 2 to assign the following statements about the degree of the variances of the examined characteristics: “without noticeable results” (0), “minimal change” (1), or “middle to high degree of change” (2). The features which are only grouped in two categories, are assigned the score of 0 or 1. They are either categorized using the assessment of the spleen’s white to red pulp [“yes” (0, classifiable), or “no” (1, not classifiable)], or by the assessment of the abundance of the spleen’s white pulp and the kidney’s glomerulas “normal filled” (0) or “sparsely filled” (1). The assigned number could then be used for statistical evaluation. 

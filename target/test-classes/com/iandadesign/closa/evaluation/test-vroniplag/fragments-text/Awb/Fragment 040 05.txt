@@ -1,5 +1,0 @@
-Tabelle 6: Zusammenfassung der kontraktilen Parameter von gehäuteten Papillarmuskelstreifen von verschiedenen Mitralklappenerkrankungen, gemessen unter isometrischen Bedingungen mittels der "Force - clamping - Technik" 
-
-[TABELLE -- bis auf Übersetzung und Zeilenvertauschung identisch zur Quelle, siehe hier] 
-
-KMV = Kombiniertes Mitralvitium, MKS = Mitralklappenstenose, MKI = Mitralklappeninsuffizienz, t = Zeitkonstante des Kraftanstieges nach Vibration in Sekunden, F = isometrische Kraftentwicklung vor Vibration, F-clamp = Kraftentwicklung während der Vibration, Fss = Kraftentwicklung nach Beendigung der Vibration , F/mm^2 = Kraft pro Querschnitt nach Ende der Vibration. Daten ± SEM 

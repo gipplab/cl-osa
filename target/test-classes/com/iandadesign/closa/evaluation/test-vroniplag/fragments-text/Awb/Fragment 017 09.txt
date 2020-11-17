@@ -1,7 +1,0 @@
-2.1.4.1 Aktivierungs- und Relaxationslösung 
-
-Um den isolierten kontraktilen Apparat des Myokards zu aktivieren bzw. wieder zu relaxieren, wurden Lösungen mit unterschiedlichen Calciumkonzentrationen verwendet: 
-
-Als Relaxationslösung wurde verwendet: 10 mM ATP, 12.5 mM MgCl2, 5 mM EGTA, 20 mM Imidazol, 5 mM NaN3, 1O mM Phosphocreatin, 400 U/ml CPK. 
-
-Die Aktivierungslösung entspricht in ihrer Zusammensetzung der Relaxationslösung, wobei das EGTA durch entsprechende Konzentrationen CaEGTA ersetzt wurde. Die Calciumionenkonzentration in der Badlösung wurde als negativer dekadischer Logarithmus angegeben (pCa). Eine freie Calciumionenkonzentration von 10 nmol entspricht damit einem berechneten pCa von 8, die supramaximale Aktivierungslösung einem pCa von 4.3. Die Berechnungen erfolgten nach der Formel von Fabiato und Fabiato (1979). 
