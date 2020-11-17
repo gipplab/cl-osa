@@ -308,8 +308,7 @@ public class OntologyBasedSimilarityAnalysis {
         // Print a representative selection of the scores
         printCandidateRetrievalResults(logUtil, candidatesForDetailedComparisonS, params);
 
-        //TODO MEMORY MARK 3
-        //candidateIdTokensMap.clear();
+         //candidateIdTokensMap.clear();
         //suspiciousIdTokensMap.clear(); // this deletes suspicious id tokens ext
         // preprocessedExt.clear(); // this deletes suspciious id tokens ext saved entities
         //preprocessed.clear();
@@ -775,6 +774,10 @@ public class OntologyBasedSimilarityAnalysis {
                             }
                             // Checking if the current chunk is plagiarism according to the results, only works when DO_RESULTS_ANALYSIS is enabled.
                             boolean isPlagiarism = isThisPlagiarism(params, currentPCInfos, swiSuspicious, swiCandidate);
+                            if(params.DO_REGRESSION_ANALYSIS){
+                                // TODO Kay: Add feature observations for findings with no score to observations here.
+                            }
+
 
                             // TODO if using a window-bordersize buffering remove this later
                             if(!isPlagiarism) { // TODO nicen this condition
@@ -793,7 +796,9 @@ public class OntologyBasedSimilarityAnalysis {
                             swiCandidate.deinitialize();
                             averageLengths.add((double) currentScoringChunk.getAverageLength());
                             fragmentScores.add(currentScoringChunk.getComputedCosineSimilarity());
-
+                            if(params.DO_REGRESSION_ANALYSIS){
+                                // TODO Kay: Add feature observations for findings with score to observations here.
+                            }
                             if(params.DESKEW_WINDOW_SIZE){
                                 fragmentScore = fragmentScore * (1 +  (params.DESKEW_FORM_FACTOR * currentScoringChunk.getAverageLength()/params.DESKEW_MAX_WINDOW_CONTENT));
                                 currentScoringChunk.setComputedCosineSimilarity(fragmentScore);
@@ -853,7 +858,13 @@ public class OntologyBasedSimilarityAnalysis {
                         StatisticsInfo statisticsInfo = ExtendedAnalytics.createAnalyticsScores(scoringChunksCombined);
                         statisticsInfo.candidateFilename = candFilename;
                         statisticsInfos.add(statisticsInfo);
+
+                        if(params.DO_REGRESSION_ANALYSIS){
+                            // TODO Kay: Calculate Regression Matrix from Observations here.
+                            // TODO Kay: Store Matrix to statistics infos + number of Observations
+                        }
                     }
+
                     // MEMORY: Clear candidate entities from memory.
                     candidateEntities.clear();
                 } catch (Exception ex) {
@@ -873,6 +884,9 @@ public class OntologyBasedSimilarityAnalysis {
         suspiciousIdTokensMapExt.clear();
         logUtil.writeStandardReport(false, "Whats going on here?");
 
+        if(params.DO_REGRESSION_ANALYSIS){
+            // TODO Kay: Test merging Matrices here.
+         }
         return statisticsInfos;
     }
 
