@@ -1,6 +1,32 @@
 CL-OSA (cross-language ontology-based similarity analysis) readme
 =================================================================
+This is an extended version for CL-OSA which can do a detailed analysis 
+for finding plagiarism on document level. It contains possibilities for evaluation 
+with the original PAN-PC11 Dataset for Candidate Retrieval and Detailed analysis. 
 
+
+
+## Entry Points / Configuration 
+- Entry Point is:  com.iandadesign.closa.PAN11EvaluationSetEval, just configure the header of this class to run the wished functionality
+- model/ExtendedAnalysisParameters contains global settings for the most operations in PAN-PC11 related comparisons
+- Some basic settings are still found in config.properties in the resources. 
+
+## PAN11EvaluationSetEval functionalities 
+There are some settings regarding evaluation process in beginning of the file.
+
+        Boolean smallTest = false;                  // Just select few suspicious files for the complete process
+        Boolean evaluateCandidateRetrieval = false; // This triggers only the CR evaluation (Which gives recall based scores) 
+        Boolean mockCRResults = true;               // This will test detailed analysis with mocked CR results
+        Integer maxMockSuspCandiates = 30;          // This is a delimeter for the maximum of suspicious files locked in mockCR Evaluation, set over 304 to check all susp files. 
+
+
+If all booleans are false, the regular process is triggered: 
+- All files for  are considered for CR and detailed analysis is done based on the CR 
+- For a technical test of this complete evaluation smallTest can be set to true. Just few suspicious files are checked then. 
+
+
+
+#Old Readme: 
 Plagiarism detection for Java
 -----------------------------
 
