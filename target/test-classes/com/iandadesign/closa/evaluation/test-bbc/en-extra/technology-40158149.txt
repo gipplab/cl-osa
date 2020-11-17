@@ -1,0 +1,30 @@
+London attack: Politicians v the internet
+
+Prime Minister Theresa May has said more must be done to tackle terror online.
+In a speech on Sunday, following the terrorist attack in London, she said the internet provided a "safe space" for extremist ideology to breed.
+But technology companies and cyber-security experts have warned that tighter regulation of the internet will not solve this problem.
+Messages sent online can be scrambled as they leave one device and they remain scrambled until they are deciphered by the recipient's device.
+This is end-to-end encryption, and it stops messages being read by third parties - be it criminals or law enforcement - if they are intercepted.
+This adds valuable security to the messages we send online, which could contain private information, bank details and personal photographs.
+Some apps such as WhatsApp already add end-to-end encryption to messages automatically.
+However, this does mean that theoretically messages can be sent that police or other authorities cannot read if they intercept them.
+On Sunday, Mrs May said there should be no messages that law enforcement "cannot read", while Home Secretary Amber Rudd said she wanted tech companies to "limit the use of end-to-end encryption".
+Critics say disabling encryption in popular apps will not deter criminals - they could simply switch from one app to another, or create their own messaging apps.
+Meanwhile, messages sent by law-abiding citizens would become "easy for criminals, voyeurs and foreign spies to intercept", journalist and former digital rights activist Cory Doctorow wrote in a blog.
+Cyber-security experts are particularly critical of the notion that messaging apps should have a "back door" in their systems, to let authorities read users' messages.
+"It's impossible to overstate how bonkers the idea of sabotaging cryptography is to people who understand information security," said Mr Doctorow.
+"Use deliberately compromised cryptography, that has a back door that only the 'good guys' are supposed to have the keys to, and you have effectively no security."
+Even if app-makers were ordered to stop using encryption, it would be very difficult to stop criminals encrypting their messages manually, or writing them in code.
+On Sunday, Mrs May said large internet companies provided a "safe space" for extremist ideology to breed.
+Earlier this year, a Home Affairs Select Committee report said social networks were "shamefully far" from tackling illegal and dangerous content and took too long to remove offending posts.
+The volume of material uploaded to Facebook, Twitter, YouTube and other social networks is astonishing, making it difficult to moderate.
+YouTube says 400 hours worth of video are uploaded to its platform every minute, making it impossible to review every clip a user posts.
+The Open Rights Group, which campaigns for online freedoms, said governments and companies should "take sensible measures to stop abuse" but warned that "attempts to control the internet" would be difficult to enforce.
+Technology companies have defended their handling of extremist content following the London terror attack.
+YouTube told the BBC that it received 200,000 reports of inappropriate content a day, but managed to review 98% of them within 24 hours.
+It said hate speech made up a small proportion of the "tens of millions" of videos it removed every year.
+Facebook said: "Using a combination of technology and human review, we work aggressively to remove terrorist content from our platform as soon as we become aware of it - and if we become aware of an emergency involving imminent harm to someone's safety, we notify law enforcement."
+It said it actively worked to identify extremist accounts and worked with rivals Microsoft, Twitter and YouTube to help identify such content.
+Both Facebook and Google have stated that extremist content has no place on their websites.
+Germany has tried to further motivate internet giants, by threatening them with fines of up to 50m euros (£43.5m) if they fail to remove hate speech quickly.
+However, the Open Rights Group warned that tough regulation by governments "could push these vile networks into even darker corners of the web, where they will be even harder to observe".

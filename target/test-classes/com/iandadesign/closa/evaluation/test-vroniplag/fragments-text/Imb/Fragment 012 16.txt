@@ -1,0 +1,9 @@
+2.1.4 Virulenzfaktoren 
+
+Virulenzfaktoren sind als bakterielle Produkte definiert, die direkt eine Schädigung der Wirtszellen verursachen. Virulenzassoziierte Faktoren ermöglichen das Wachstum oder Überleben des Erregers im Wirt und tragen damit zu Infektion und Krankheit bei (MAHAN et al. 1996; MEKALANOS 1992). Virulenzassoziierte Faktoren können Stoffwechselenzyme oder Transportproteine sein. 
+
+2.1.4.1 Adhäsion 
+
+Adhäsion ist die Fähigkeit eines Krankheitserregers, an Wirtszelloberflächen zu haften; dies ist häufig eine Voraussetzung für die Vermehrung innerhalb des Wirtes und somit eine Grundlage für den Ausbruch der klinischen Erkrankung. Bei der Anheftung können Fimbrien, LPS und Kapselpolysaccharide eine Rolle spielen (HACKER und HEESEMANN 2000). 
+
+Die Rolle von Fimbriae für die Anheftung ist für eine Vielzahl von Krankheitserregern gut definiert (SAUER et al. 2000).  

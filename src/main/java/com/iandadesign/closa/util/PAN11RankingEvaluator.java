@@ -6,7 +6,36 @@ import java.util.stream.Collectors;
 
 import static java.lang.Integer.min;
 
+/**
+ * Candidate Retrieval Evaluation for R@k for comparisons
+ * @author Johannes Stegmüller
+ */
 public class PAN11RankingEvaluator {
+    
+    public static double calculateRecallAtkFragmentCharacterLevel(){
+        /* atm as pseudocode, supposedly how F.Salvador Evaluates Recall
+        k=1
+        overallFindings = 0;
+        overallPossibleFindings=0;
+
+        for each suspFragment in PlagiarizedSuspFragments:
+        numCurrentFindings = 0;
+        numPossibleFindings =0;
+        List my_ranked_fragments = getRankedFragments(suspFragment).sort(by Score).getFirst(k);
+        overall_char_count_possible = my_ranked_fragments.getAll.getSize();
+        overall_char_count_plagiarism = results.getPossiblePlagiarismCount();
+
+        for each fragment in my_ranked_fragments:
+        charcount_detected_plagiarism = getCharcountPlagiarism(fragment);
+        numCurrentFindings += charcount_detected_plagiarism
+        overallFindings+=numCurrentFindings
+        overallPossibleFindings+=min(overall_char_count_possible, overall_char_count_plagiarism)
+
+
+        R@k = overallFindings/overallPossibleFindings * 100;
+        */
+        return 0.0;
+    }
 
     public static double calculateRecallAtK(Map<String, Map <String, Double>> suspiciousIdCandidateScoresMap,
                                             HashMap<String, List<String>> resultSelectedCandidates,

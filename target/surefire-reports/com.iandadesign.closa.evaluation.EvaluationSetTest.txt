@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.iandadesign.closa.evaluation.EvaluationSetTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.556 s <<< FAILURE! - in com.iandadesign.closa.evaluation.EvaluationSetTest
+testFileHandling  Time elapsed: 0.545 s  <<< ERROR!
+java.lang.IllegalArgumentException: Parameter 'directory' is not a directory: src/test/resources/com/iandadesign/closa/evaluation/test-bbc/en
+	at com.iandadesign.closa.evaluation.EvaluationSetTest.testFileHandling(EvaluationSetTest.java:13)
+

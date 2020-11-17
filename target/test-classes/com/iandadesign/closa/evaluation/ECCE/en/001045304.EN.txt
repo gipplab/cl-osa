@@ -1,0 +1,24 @@
+Hardly a week goes by these days without some startling new development in the fields of cyberwarfare and cyberespionage.
+This month senior US officials let it be known that President Barack Obama had personally authorised the deployment of the Stuxnet computer worm against Iran's nuclear programme.
+At about the same time, stories emerged about Flame, an even more sophisticated virus that in May 2012 penetrated the computers of high-ranking Iranian officials.
+This week the head of Britain's security service MI5 sounded the alarm about growing cyberespionage by Russia and China against western governments and companies.
+In his view the amount of activity being undertaken by these states – and by other actors – is “astonishing”.
+These developments can only add to the perception many have had for some time: that aggressive cyberactivity – whether it involves espionage or the destruction of infrastructure – is now becoming one of the world's biggest security threats.
+Military chiefs today describe cyber as the fifth domain of warfare after land, sea, air and space.
+The idea that a nation could one day cripple another state's infrastructure through cyberwarfare is not inconceivable.
+But what can the world do to stop this new arms race spinning out of control before it is too late?
+The instinctive response of many is that world powers must club together and agree some rules of the cybergame.
+The world clearly needs such rules, mirroring those that have for decades governed the use and development of nuclear and conventional arms.
+In recent years, several attempts at writing international cyberlaws have been made. But there has been little success.
+In part, this is because China and Russia want to use such norms to control the flow of information over the web, an idea the US rightly abhors.
+But the biggest difficulty establishing any rules is that the source of most cyberattacks is anonymous.
+The Stuxnet story provides the only example we have of a nation bragging about its cyberwarfare operations.
+These obstacles do not mean nations should stop trying to establish rules.
+They could, for example, start defining some critical infrastructures that they would vow never to attack.
+But for now, the only hope for governments and businesses is to continue boosting resilience against the unknown.
+Companies, in particular, need to know just how much intellectual property is being lost to Chinese and Russian espionage.
+What is also needed, however, is some honesty.
+In his speech this week, Jonathan Evans, the MI5 chief, lamented the way “vulnerabilities in the internet are being exploited aggressively by . . . states”.
+He was clearly pointing the finger at Russia and China.
+But after Stuxnet, such criticism could just as easily be directed at the US, Britain's chief ally.
+Until governments start to address these tricky questions – and be more open about their capabilities – the struggle to agree the terms of engagement in cyberspace will not advance very far.

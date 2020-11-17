@@ -1,0 +1,19 @@
+Amazon unveils plans for grocery shop with no checkouts
+
+Amazon has revealed plans for a grocery shop without a checkout process, where customers will instead pay for the goods they have selected via an app.
+The Just Walk Out shopping experience uses the same types of technologies found in self-driving cars.
+The system detects when items are taken or returned to shelves and tracks them in a virtual shopping trolley.
+Once the shopper leaves the store, their Amazon account will be charged and receipt sent to them.
+The first shop is expected to open to the public in Seattle in the US in early 2017.
+"Grocery retail is a crowded sector, and customers have incredibly high expectations of the Amazon brand," said Natalie Berg, an analyst at Planet Retail.
+"If they're going to differentiate, they'll need to translate the fantastic customer experience that they have created online in a physical store setting. This is no easy feat. Removing the traditional checkout process does exactly that."
+Customers will swipe into the store using the Go app. It will use computer vision, sensors and deep learning algorithms to keep track of what customers are picking up off the shelves.
+Amazon has spent four years developing the shop.
+"Despite significant investment in store technology, the checkout experience has been largely ignored," said Ms Berg.
+"Retailers have made a lot of progress on mobile payments as a standalone option; however, very few have been successful in moving towards a comprehensive mobile wallet and thereby addressing the problem of long queues. This is where Amazon comes in."
+The shop will offer ready-to-eat breakfast, lunch, dinner, and snack options made fresh every day by on-site chefs or by local kitchens and bakeries.
+Grocery essentials such as bread and milk will also be on sale alongside Amazon Meal Kits, with all the ingredients needed to make a meal for two in about 30 minutes.
+This is not the first time a grocery retailer has attempted innovation in the US.
+Tesco disposed of its Fresh &amp; Easy shops in 2013 after the small convenience stores focused on healthy foods proved unpopular with US shoppers more used to extensive choice.
+Amazon already has physical book shops in the US.
+But some users feel the company has not quite got the retail experience right, saying it feels more like an "annex to a website".

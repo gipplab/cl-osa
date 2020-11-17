@@ -1,0 +1,12 @@
+Russian jailed for hijacking thousands of PCs
+
+A Russian man is facing 46 months in an American jail for running a network of hijacked computers.
+Maxim Senakh was sentenced in Minnesota for running the Ebury botnet that was used to steal login names and passwords from computers running Linux.
+He was arrested in Finland in 2015 and extradited to the US to face computer fraud and abuse charges.
+Senakh is believed to have infected thousands of computers that were used in a variety of scams.
+"As society becomes more reliant on computers, cybercriminals like Senakh pose a serious threat," said acting US attorney Gregory Brooker in a statement.
+The US Department of Justice indictment against him says the computers he and his accomplices hijacked were used to "generate and redirect" net traffic to help with click fraud schemes. These use bogus clicks on web ads to generate cash.
+The computers taken over by Senakh were also used to generate and distribute junk email or spam. Running the spam and click fraud scams netted Senakh and others millions of dollars, said the DoJ.
+Senakh pleaded guilty at a hearing in March to being part of the gang that ran the Ebury botnet. The court case was heard in Minnesota because some of the computers hijacked to form the botnet were located in the state.
+Senakh will be deported from the US after he has served his sentence.
+Russian authorities condemned Senakh's arrest and extradition when he was first detained in mid-2016, saying it was part of a "systematic witch-hunt" against its citizens.

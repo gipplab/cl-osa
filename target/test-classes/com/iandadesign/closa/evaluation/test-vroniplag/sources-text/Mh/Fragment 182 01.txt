@@ -1,0 +1,1 @@
+For this reason, we will now begin to refine our abstract model of agents, by breaking it down into sub-systems in exactly the way that one does in standard software engineering. As we refine our view of agents, we find ourselves making design choices that mostly relate to the subsystems that go to make up an agent - what data and control structures will be present.

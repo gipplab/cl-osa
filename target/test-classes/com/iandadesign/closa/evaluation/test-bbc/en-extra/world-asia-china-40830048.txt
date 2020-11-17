@@ -1,0 +1,18 @@
+China holds drill to shut down 'harmful' websites
+
+China has carried out an internet drill to practise closing down websites the authorities consider to be harmful.
+State run media said Thursday's exercise was also aimed at forcing internet data centres to hand over contact details of website owners.
+China already operates a strict internet censorship regime.
+Analysts say it appears to be tightening controls ahead of an important political meeting later this year.
+Beijing also recently began cracking down on VPNs (virtual private networks) which allow internet users to circumvent censorship and surveillance.
+Thursday's exercise involved officers from the internet surveillance department at the public security ministry contacting internet data centres and asking them to target websites that host content deemed harmful, state media said.
+The centres were asked to practise shutting down targeted web pages quickly and to report details of their owners to the police.
+The BBC's John Sudworth in Beijing says that over a two-and-a-half hour period the drill reportedly shut down a number of sites.
+At least four participants confirmed the drill, including the operator of Microsoft's cloud service in China, Reuters reported.
+A document circulating online and attributed to a cyber police unit said the drill had been held "in order to step up online security for the 19th Party Congress and tackle the problem of smaller websites illegally disseminating harmful information".
+The Communist Party Congress, a key political gathering held once every five years, is to be held in the autumn.
+China has a rapidly growing online population and many users have found ways to poke holes in the country's infamous "great firewall".
+Apple recently removed several VPNs from its app store in China, saying it was legally required to do so because they did not comply with new regulations.
+VPNs allow users to funnel internet access through another computer - often one in a different country - hiding their IP (internet protocol) addresses and allowing them to access websites censored or blocked by their service providers.
+Beijing blocks some social media sites and apps, including Facebook, Instagram and Twitter.
+Search engines such as Google are also blocked and access to many foreign media outlets, including the BBC, is restricted.

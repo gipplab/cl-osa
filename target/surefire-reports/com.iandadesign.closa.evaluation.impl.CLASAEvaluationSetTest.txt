@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.iandadesign.closa.evaluation.impl.CLASAEvaluationSetTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 30.509 s <<< FAILURE! - in com.iandadesign.closa.evaluation.impl.CLASAEvaluationSetTest
+extractTranslationProbabilitiesAndStore  Time elapsed: 30.492 s  <<< ERROR!
+com.mongodb.MongoTimeoutException: Timed out after 30000 ms while waiting to connect. Client view of cluster state is {type=UNKNOWN, servers=[{address=fabian_clpd_mongo:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketException: fabian_clpd_mongo}, caused by {java.net.UnknownHostException: fabian_clpd_mongo}}]
+	at com.iandadesign.closa.evaluation.impl.CLASAEvaluationSetTest.extractTranslationProbabilitiesAndStore(CLASAEvaluationSetTest.java:25)
+

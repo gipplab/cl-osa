@@ -1,0 +1,10 @@
+[Weiter sei $ \mathcal{L} $ die Menge der Aussagen ] 
+
+in Form der Prädikatenlogik erster Ordnung, die der Agent kennt, und $ \mathcal{D} = \phi(\mathcal{L}) $ die Potenzmenge von $ \mathcal{L} $. Damit entspricht der Zustand eines Agenten einem Element dieser Potenzmenge, d.h. $ \Delta \in \mathcal{D} $. Der Zustand eines Agenten wird damit durch die Menge der ihm zu einem bestimmtem Zeitpunkt zur Verfügung stehenden Aussagen beschrieben. Der Entscheidungsprozess des Agenten wird dann modelliert mittels einer Menge p von Deduktionsregeln, die die Inferenz der Logik repräsentieren.[FN 107] Bettet man dies in den Kontext der abstrakten Architekturen ein, so bleibt die Funktion $ see&nbsp;: \mathcal{S} \rightarrow \mathcal{P} $ erhalten, die Funktion zur Änderung des Zustandes des Agenten ergibt sich zu $ next&nbsp;: \mathcal{D} \times \mathcal{P} \rightarrow \mathcal{D} $ die Funktion zur Bestimmung der auszuführenden Handlung lautet nun $ action&nbsp;: \mathcal{D} \rightarrow \mathcal{A} $. Mit Hilfe der Nomenklatur $ \Delta \vdash_\rho \phi $, die besagt, dass die Aussage $ \phi $ aus der Datenbasis $ \Delta $ mittels der Deduktionsregeln $ \rho $ bewiesen werden kann, kann nun die Funktion action in Pseudocode angegeben werden: [FN 108]  
+
+ 
+ 
+
+[FN 107] Dieses Vorgehen weist starke Ähnlichkeiten zu regelbasierten Systemen auf, die sowohl eine Wissensbasis mit Faktenwissen als auch einen (davon getrennten) Inferenzmechanismus beinhalten, wie man sie etwa im Kontext von Expertensystemen findet; vgl. dazu ausführlich Wooldridge (2002), S. 27f. sowie Wooldridge (2000), S. 36. 
+
+[FN 108] Vgl. Wooldridge (2002), S. 50; Wooldridge (2000), S. 44 sowie Grolik und Schwind (2003), S. 341. 

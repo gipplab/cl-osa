@@ -1,0 +1,45 @@
+Watchdog probes £4.50 premium rate texts
+
+A watchdog has revealed it is investigating a premium-rate texting campaign, following complaints from recipients that they have been charged fees even though many believe they never opted into the service.
+One expert claimed the messages look like spam, which could cause phone owners to ignore them.
+There is also concern about conflicting advice being given to the public.
+The two companies involved in the campaign deny any wrongdoing.
+The BBC became aware of the campaign when one of its reporters received a text in June.
+It said: "FreeMsg: U have subscribed to Comp House competition for £4.50 per month until you send stop to 82225. SP Pro Money HELLO? 08001577502?T&amp;C".
+A shortened Bit.ly link was sent as a follow-up message, and a third communication stated that this "text cost £1.50".
+The company behind the campaign is called Pro Money Holdings, which is registered to an Ilford, London address.
+It makes use of a second service, called Veoo - a St Albans-headquartered business that provides billing and messaging platforms to mobile-related companies.
+The industry's regulator, the Phone-paid Services Authority (PSA), later told the BBC it was "informally" investigating complaints about the Pro Money Holdings service and had "recently" opened a probe into Veoo.
+"Under our code of practice, consumers must not be charged for phone-paid services without their consent," said a spokesman.
+"We are currently looking into complaints regarding the service operating on 82225 and separately have an ongoing investigation into Veoo."
+Members of the public have posted concerns about the 82225's operation over the past two months, with several saying they could not recall subscribing to anything that would account for the fees.
+But Pro Money Holdings told the BBC it only charged people who had "pushed a key" in an online competition or in response to a phone message.
+"There's a lot of compliance that goes into everything that's done with anything we do," customer care manager David Marshall said.
+"Prior to anything starting, there's a lot of testing done to make sure that everything from our end is correct.
+"From our own perspective, if there's something not 100% at our end, we would get it adjusted."
+To prove the point, Mr Marshall offered to provide details about how the BBC journalist came to be subscribed.
+But more than a month after making the promise, Pro Money Holdings has not shared the details, despite repeated follow-up requests, beyond saying the journalist had opted in and this had been "verified by an independent third party".
+It did, however, refund the £1.50 fee that had been charged.
+For its part, Veoo said it was no longer supporting the campaign.
+"Following on-going compliance checks with the service... run by Pro Money Holdings, Veoo suspended the Pro Comp service and will not be reinstating that service via our messaging platform," said spokeswoman Vanessa D'Souza.
+"We take our responsibilities very seriously."
+One cyber-security consultant said he had concerns that the messages could be mistaken as spam, in part because of their odd punctuation and use of "u" rather than "you".
+"It's exactly the sort of message that you might delete assuming it's spam only to realise, perhaps months later when checking your bill, that you've been paying," said Alan Woodward.
+Mobile owners seeking advice about how to handle such demands are given contradictory advice online.
+The PSA states that users should reply to rather than ignore Stop messages.
+But the popular Money Saving Expert site, among others, says not to do so if the texts look suspicious.
+"The golden rule is do not reply, at all, ever - do not text 'Stop'!" it states.
+"These texts want any response to confirm you are a real person.
+"Any numbers that are confirmed are likely to be sold on to... unscrupulous marketeers who may further spam you with unsolicited calls and texts.
+"Ensure you don't click on any links within the text either."
+For its part, Pro Money Holdings denies deliberately designing its texts to look odd and defended its use of "slang".
+"The size of an SMS is a maximum of 160 characters as you are aware," it told the BBC.
+"In order to fit the customer care telephone number on the message, it is necessary to shorten some words where applicable."
+Mobile networks say customers who receive unsolicited texts can contact their support teams to confirm whether the messages are legitimate and if a Stop response should be sent.
+"I have seen people ignoring these messages and being charged a lot," said one Vodafone call centre employee.
+"Blocking doesn't stop these as customers are charged irrespective of whether they receive these messages or not, even if the phone is off."
+The PSA said it could not comment further about Pro Money Holding's case.
+But Mr Woodward urged it to review its guidance.
+"If the regulator is expecting us to reply, 'Stop', there is a danger that it causes those heeding such advice to play into the hands of scammers," he said.
+"Either way, the regulator is the one who needs to 'stop' this, not unsuspecting recipients."
+The PSA issued more than £5m in fines in the past financial year against companies that had breached its rules.

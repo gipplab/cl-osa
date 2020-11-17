@@ -1,0 +1,25 @@
+Das Marktgleichgewicht benötigt die Gleichheit von Angebot und Nachfrage, normalisiert zu Eins, und führt zu dem Gleichgewichtspreis 
+
+$ P_t = \frac{1}{1+r} \left[ r + E_t [ p_{t+1} ] - 2 \gamma (\sigma^2_{p_{t+1}} + \sigma^2_\epsilon ) + \mu\rho_t ] \right] (4.11) $ 
+
+
+ De Long et al. (1990a) betrachten lediglich den stabilen Gleichgewichtspreis gemäß 
+
+$ P_t = 1+\frac{\mu\rho^*}{r} + \frac{\mu(\rho_t-\rho^*)}{1+r}-\frac{2\gamma}{r}\left[\sigma^2_\epsilon+\frac{\mu^2\sigma^2_\rho}{(1+r)^2} \right] (4.12) $ 
+
+
+ Falls die Verteilung der Fehleinschätzung $ \rho_t $ der Noise Trader gegen ein Punktmaß bei $ \rho^*=0 $ konvergiert, so konvergiert der Preis der unsicheren Anlage gegen seinen fundamentalen Wert $ 1 - ( 2\gamma\sigma^2_\epsilon/r ) $. 
+
+Hinsichtlich der Fragestellung, welcher Agententyp relativ größere Gewinne (Returns) erwirtschaftet, kann die (unbedingte) erwartete Differenz der Gewinne zwischen Noise Tradern und rationalen Händlern berechnet werden gemäß 
+
+$ E[\Delta R_t]=\rho^*-\frac{(\rho^*)^2+\sigma^2_\rho}{2\gamma\left[\frac{\mu\sigma^2_\rho}{(1+r)^2} + \frac{\sigma^2_\epsilon}{\mu} \right]} (4.13) $ 
+
+Damit die Noise Trader höhere erwartete Gewinne verdienen, muss $ \rho^* $ positiv sein. Für genügend große Werte von $ \rho^* $ wird die erwartete Differenz negativ werden. Für dazwischen liegende durchschnittlich bullische $ \rho^* $ werden Noise Trader tendenziell höhere erwartete Gewinne realisieren als rationale Händler. Je größer der Wert von $ \gamma $ , d.h. je risikoaverser die Anleger sind, desto größer ist der Bereich von Werten für $ \rho^* $, für den Noise Trader höhere erwartete Gewinne verdienen und damit auch auf lange Sicht nicht vom Markt verdrängt werden. 
+
+Ausgehend von den vorgestellten Ergebnissen entwickeln die Autoren eine dynamische Erweiterung des obigen Modells, bei dem der Anteil der Noise Trader nicht mehr statisch ist, sondern sich im Laufe der Zeit verändert. Dabei handelt es sich um eine Strategieselektion in Form einer Imitationsregel, bei der die in einer Periode erfolgreichere Strategie in der nächsten Periode mehr Agenten attrahiert. Sei $ \mu_t $ der Anteil der Noise Trader in Periode $ t $ und seien $ R^N_t $ bzw. $ R^R_t $ die realisierten Gewinne (Returns) der Noise Trader [bzw. der rationalen Händler in Periode $ t $, so ergibt sich der neue Anteil der Noise Trader in der Folgeperiode zu 
+
+$ \mu_{t+1} = \max\{0, \min\{1,\mu_t + \alpha (R^N_t - R^R_t)\}\} (4.14) $ 
+
+wobei $ \alpha &gt; 0 $ die Rate angibt, mit der Agenten zu Noise Tradern werden.[FN 241]] 
+
+[FN 241] Es bleibt anzumerken, dass die weiteren Überlegungen lediglich für genügend kleines $ \alpha $ gelten, da die Agenten ihre Erwartungen aufgrund analytischer Beschränkungen unter der Prämisse $ \mu_{t+1} =\mu_{t} $ berechnen. 

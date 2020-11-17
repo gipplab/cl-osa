@@ -1,0 +1,16 @@
+Will BT's Openreach deal mean faster broadband?
+
+Ofcom, the telecoms regulator, said on Friday that BT had agreed to "legally separate" Openreach - the division that owns and operates the UK's broadband network.
+But what will this mean for consumers - particularly those who are suffering from slow broadband - or none at all?
+Rival telecoms companies have long argued that Openreach - the firm providing most of the UK's broadband infrastructure - should not be part of the same group as BT, which has a third of the country's broadband market.
+The likes of Sky and TalkTalk say this structure has been bad for competition and consumers.
+Ofcom agreed - as did the Department for Culture, Media and Sport. To avoid a protracted legal battle, BT has now fallen into line.
+The jury is still out. BT will still control Openreach's budget, even though the newly separated company will have its own boss and decide how to spend its cash.
+Really fast broadband requires running fibre optic cable into every home, which is very expensive. As a result, most UK broadband connections still rely on the elderly copper wires used for telephone calls.
+Andrew Ferguson, of the news website ThinkBroadband, said it is unclear whether separating BT and Openreach will deliver this faster option.
+Most observers agree that the split alone will not solve the UK's broadband problems.
+Slow and non-existent broadband is still an issue in some rural areas and Openreach has been criticised for its failure to address the issue. However, very few other operators appear willing to fix the problem, which is expensive and technically challenging.
+You have a broadband fault but it is taking weeks to fix. Sound familiar?
+Critics say Openreach just failed to provide adequate levels of customer service because complaints come through a customer's internet service provider, giving it no incentive to undertake repairs more quickly.
+Gavin Patterson, BT chief executive, admitted on Friday that Openreach's service has "not been where it needed to be" and said the separation would improve the situation.
+It remains to be seen how long that will take to deliver - and to remove the BT logo from thousands of BT white vans.

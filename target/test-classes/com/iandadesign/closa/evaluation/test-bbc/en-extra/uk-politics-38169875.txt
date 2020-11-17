@@ -1,0 +1,17 @@
+Reality Check: Is migration at record levels?
+
+Reading Thursday morning's headlines, you'd be forgiven for thinking that immigration to the UK had risen sharply. That is not the case.
+The Office for National Statistics (ONS) has released its latest figures on long-term international migration, which are based mainly on the international passenger survey (IPS).
+If you've ever seen a desk at a UK port with the ONS logo on the front of it, then you will have seen people collecting the IPS.
+In the IPS, between 700,000 and 800,000 people a year are interviewed at airports, sea ports and the Channel Tunnel and asked if they are planning either to enter the UK to stay for at least a year or leave for at least a year, which would make them long-term migrants.
+About 4,000 people interviewed a year are long-term migrants. The rest are passengers travelling for shorter periods, such as tourists and business travellers.
+From speaking to these 4,000 people, the ONS extrapolates the total numbers of people entering or leaving the UK for at least year.
+Lots of the UK's most important statistics come from surveys such as this - the unemployment figures are another one.
+What it means is that the figures are just estimates and there is a margin of error on them.
+So, for example, the ONS's central estimate for the number of people migrating to the UK in the year to the end of June 2016 was 650,000.
+It is 95% confident that the actual number of people migrating to the UK was within plus or minus 34,000 of that figure.
+The estimate is up 11,000 from the year to the end of June 2015, which is considerably less than the 34,000 confidence interval, so we describe that change as not being statistically significant.
+The estimate for the number of people leaving was 315,000, up 12,000 from the previous year (also not a statistically significant change).
+It means that net migration, which is what you get when you subtract the number of people leaving for at least a year from the number arriving to stay for more than a year, was 335,000 for the year to the end of June, barely changed from 336,000 the previous year, which was the highest recorded estimate.
+So what can we conclude? Both net migration and migration to the UK remain at historically high levels, but we do not have good enough data to be able to say that either figure has risen.
+Find other Reality Checks here

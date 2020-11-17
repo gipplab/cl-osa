@@ -1,0 +1,20 @@
+Chapecoense air crash: What will investigators look for?
+
+A team of British accident investigators is in Colombia to help understand why this aircraft crashed. But what will they be looking for?
+I've just been speaking to a former investigator at the Air Accident Investigation Branch (AAIB), Stephen Moss, who spent 35 years on crash scenes including Lockerbie and the Manchester runway fire in 1985.
+He told me there were three AAIB people in Colombia, one with a pilot background, an engineer and an expert in flight-data recorders (black boxes).
+Investigations have strict rules. One of the team will be picked as the official liaison, dealing with the Colombians. Every decision and statement will be run past them because the crash happened on their soil, so they take the lead.
+One of the first things they will try to establish is how the plane hit the ground. Whether it was falling hard, climbing, had a wing tipped over, whether the wheels were down, the flaps extended for landing, and so on. Some of that will be obvious just from looking at the wreckage.
+Investigators have dug out both flight-data recorders (black boxes), but they will need very careful handling.
+"If they are wet, they might not work and it can cause problems trying to plug them in," Mr Moss told me. Black boxes aren't water proof, for good engineering reasons. They go through constant pressure changes and that doesn't sit well with being sealed up.
+If they have become wet, and the weather was terrible, they will need drying out in heated cabinets. You then need specialised kit to get at the data.
+The AAIB has a room specifically designed for the job. I've been there.
+They will offer the room to the Colombians but they may choose to send the recorders elsewhere, perhaps to the US, which is closer. It's unlikely Colombia has the right equipment to download the data: there are only three of these rooms in the whole of Europe.
+But not all vital electronic information comes from the recorders. Mr Moss told me about something called "non-volatile-memory".
+Put simply, various pieces of equipment on the aircraft contain electronics that can remember what it was doing, even after the power gets shut off. He gave me an example.
+The ground proximity warning system, which is like a sat-nav that tells you if you're too close to the ground, even in the dark or fog, should contain circuits that can tell investigators if the warning was going off.
+It might have speed and height information too.
+These GPWS systems have saved countless lives since they became more common a couple of decades ago. Before that, hitting ground the pilots couldn't see was aviation's biggest killer.
+Now, these circuits aren't designed to survive a big crash.
+They're often in boxes under the cockpit. But if they've survived, they could offer vital clues. Mr Moss thinks the engines might have similar memory chips that they could tap into.
+"You can't rely on flight recorders to tell you everything you need to know," Mr Moss told me. "They might not have been working".

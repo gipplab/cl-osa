@@ -1,0 +1,12 @@
+ 
+
+4.1.2.5.1.3 Perzeptionierende Agenten 
+
+Für die Klasse der perzeptionierenden Agenten werden zunächst die beiden Subsysteme Perzeption und Aktion gebildet. [FN 100] Der Agent besitzt dazu die beiden Funktionen see und action. Die Funktion see erlaubt es dem Agenten, seine Umwelt wahrzunehmen, und die Funktion action beinhaltet den auf diesen Perzeptionen aufbauenden Entscheidungsprozess des Agenten. Sei $ \mathcal{P} $ die (nicht leere) Menge aller Perzeptionen, so gilt für die beiden Funktionen: $ see&nbsp;: \mathcal{S} \rightarrow \mathcal{P} $ und $ action&nbsp;: \mathcal{P}^* \rightarrow \mathcal{A} $ [FN 101] Damit lässt sich etwa der Informationsgehalt von Umweltzuständen für einen Agenten modellieren. Sind etwa $ s_1, s_2 \in \mathcal(S) $ mit $ s_1 
+eq s_2, $ aber $ see(s_1) = see(s_2) $, so perzipiert der Agent aus unterschiedlichen Umweltzuständen dieselbe Information, so dass diese Umweltzustände aus Sicht des Agenten nicht zu unterscheiden sind. Dies wird durch die Schreibweise $ s_1 \equiv s_2 $ verdeutlicht. Dabei bildet der Operator $ \equiv $ eine Äquivalenzrelation auf der Menge der Umweltzustände, die diese Menge $ \mathcal{S} $ in disjunkte Teilmengen, d.h. Äquivalenzklassen, von ununterscheidbaren Zuständen partitioniert. Je gröber diese Äquivalenzklassen, desto ineffektiver ist die Perzeption des Agenten. Die beiden Extremfälle sind damit gegeben durch $ card(\equiv) = card(\mathcal{S}) $ bzw. $ card(\equiv) = 1 $. [FN 102] Im ersten Fall kann der Agent alle Zustände unterscheiden, wohingegen im zweiten Fall die Umwelt, unabhängig von ihrem tatsächlichen Zustand, aus Sicht des Agenten immer gleich erscheint. 
+
+[FN 100] Das Konzept der Perzeption führte in der theoretischen Informatik zur 'knowledge theory'; vgl. dazu etwa die Arbeit von Fagin, Halpern, Moses und Vardi (1995) sowie die dort zitierte Literatur. Einen frühen Überblick gibt etwa Halpern (1987). 
+
+[FN 101] Dabei bezeichne $ \mathcal{P}^* $ wieder die Menge aller Sequenzen von Perzeptionen von $ \mathcal{P} $ 
+
+[FN 102] Die Funktion $ card(\cdot) $ gibt wieder die Mächtigkeit an; vgl. S. 13. 

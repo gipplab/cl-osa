@@ -1,0 +1,22 @@
+'Russia hacking code' found on Vermont utility computer
+
+An electrical company in the US state of Vermont says it has found malware code allegedly used by Russian hackers on one of its company laptops.
+The Burlington Electric Department said it had taken "immediate action to isolate" the computer, which was not connected to the electrical grid.
+The government alerted them to the "Grizzly Steppe" code on Thursday.
+The same day, the US expelled 35 Russian diplomats over alleged Russian interference in November's election.
+Moscow has denied any involvement in the hacking of the Democratic party and Hillary Clinton's presidential campaign.
+On Friday, US President-elect Donald Trump praised Russian President Vladimir Putin for not expelling American diplomats in a tit-for-tat response.
+Diplomatic spat goes undiplomatic
+Can the hack be traced to Russia?
+The Burlington company said it was "working with federal officials to trace this malware and prevent any other attempts to infiltrate utility systems".
+It has also briefed state officials and vowed to fully support the investigation.
+The statement followed a Washington Post report, citing unnamed US officials, that Russian hackers had penetrated the electrical facility, underlining the vulnerability of America's national grid.
+The newspaper later retracted the claim that hackers had accessed the grid, saying the computer hacked was not attached to the system.
+According to the news website: "The incursion may have been designed to disrupt the utility's operations or as a test to see whether they could penetrate a portion of the grid."
+Politicians in Vermont, including the Democrat Governor, Peter Shumlin, are calling for a full investigation into the incident.
+"Vermonters and all Americans should be both alarmed and outraged that one of the world's leading thugs, [Russian President] Vladimir Putin, has been attempting to hack our electric grid, which we rely upon to support our quality-of-life, economy, health, and safety," he said in a statement.
+Democratic congressman Peter Welch said the discovery showed "how rampant Russian hacking is".
+"It's systemic, relentless, predatory," he added.
+US officials believe Russia was behind the hacking of Ukraine's electrical grid in December 2015, which plunged parts of the country into darkness and left about 225,000 people without power.
+Experts said it was the first known power outage caused by a cyber attack.
+Update 25 January 2017: This story has been updated to make clear that the Washington Post has since retracted the claim in its article that hackers had accessed the US national grid.

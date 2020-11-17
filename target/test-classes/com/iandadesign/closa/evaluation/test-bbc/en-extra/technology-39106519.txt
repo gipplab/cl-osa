@@ -1,0 +1,33 @@
+MWC 2017: 5G - who wants it, who’ll pay?
+
+The hot topic at Mobile World Congress this year is not a new phone - apart from the Nokia 3310, they all look the same.
+Nor is it a new technology like virtual reality - compared with last year, there seem to be fewer VR headsets around.
+No, the biggest thing in Barcelona is something invisible that doesn't yet exist, 5G.
+The hype about the potential of the next generation of mobile networks has reached new heights, with every major company exhibiting here eager to explain how it will be at the cutting edge of the coming 5G revolution.
+Governments too have decided it is now technologically correct (can I coin the term TC?) to rave about the importance to the economy of being 5G-ready.
+On the UK stand, the Trade Minister, Greg Hands, told me funds would continue to pour into 5G research post-Brexit.
+Over at the Intel stand, they had gone as far as to build a prototype 5G network to give us a feel of what this new connected paradise would be like.
+There was an autonomous car, a connected home, and a smart lamppost all talking to the network at breakneck speed.
+Visitors were invited to don a Microsoft HoloLens headset for an augmented reality display of seas of data flowing round the stand and up into the sky.
+It was easy to forget there was still no agreement on exactly what constitutes 5G, and most countries still had to work out what spectrum would be needed and how they would allocate it.
+More important, perhaps, there is no sense that consumers know anything about it or have any sense that they want it - in fact my sense is that most would prefer to see a bit more of the 4G vision realised before the next revolution comes along.
+Giant drone works in rain and winds
+Wikipedia goes data-free in Iraq
+Google's UK launch plan for Home speaker
+Sony launches super-slow-mo phone
+Nokia 3310 mobile phone resurrected
+Samsung unveils tablets but no phones
+LG G6 phone is made for split-screen apps
+But Intel's Aicha Evans did a good job explaining why we should be excited about the promise of 5G.
+She told me: "Think about what was life like without smartphones - start there," and then explained that just as that revolution had connected people, so this next one would allow everything else to get connected, enabling all sorts of advances in the way we live.
+Now, Intel is a hardware company that stands to benefit as the telecoms industry has to retool for 5G, but I came away from the exhibit almost convinced.
+But then I ran into two 5G sceptics.
+The first was a senior executive at one of the world's biggest mobile operators, who took a very cynical view of his industry's current state.
+"Who's going to pay for it?" he asked me, adding operators were already seeing their margins squeezed, as they battled with nimble newcomers such as WhatsApp, and had little appetite to pour money into 5G without seeing much of a return.
+The second was a chief technologist at a major networking equipment company - one that could stand to benefit from the 5G rollout.
+But he described the hype around the technology as "irrational exuberance" - the same term used by an economist warning in the late 1990s about the dot-com bubble.
+He believed that current advances in 4G - what's known as Gigabit LTE, which enables much faster data rates over existing networks - offered a more practical and affordable solution.
+Nevertheless, he said, there was such a head of steam behind 5G that it was likely to happen, just as the dot-com bubble had led to vast and unaffordable investments in fibre networks.
+But the result was likely to be another radical reshaping of the telecoms industry,
+So the 5G revolution is coming.
+But who will benefit and who will end up going bust as a result of it is far from clear.

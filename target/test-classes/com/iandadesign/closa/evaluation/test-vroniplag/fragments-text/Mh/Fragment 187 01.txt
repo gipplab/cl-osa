@@ -1,0 +1,14 @@
+[Eine Verhaltens]regel wird dann aktiviert, wenn die Bedingung erfüllt ist, d.h. die Umwelt befindet sich in einem durch die Bedingung erfassten Zustand $ s\in \mathcal{S} $; es muss somit $ \mathcal{}see(s)\in c $ gelten, damit die Regel feuert. Es bezeichne $ \mathcal{}Beh = \{(c, a) | c \subset P\ \hbox{und}\ a \in A\} $ die Menge aller möglichen Verhaltensweisen. Zur Umsetzung der Subsumptions-Hierarchie wird auf einer Teilmenge $ \mathcal{}R \subset Beh $, die die Regeln eines Agenten repräsentiert, eine binäre Inhibitionsrelation $ \prec \subset R \times R $ benötigt. So bedeutet beispielsweise $ (c_1,a_1) \prec (c_2,a_2) $, dass die Verhaltensregel $ \mathcal{}(c_1,a_1) $ eine andere Verhaltensregel $ \mathcal{}(c_2,a_2) $ sperrt, d.h. $ \mathcal{}(c_1,a_1) $ besitzt eine höhere Priorität als $ \mathcal{}(c_2,a_2) $.[FN 112] Damit kann die Funktion action folgendermaßen definiert werden:[FN 113] 
+
+ 
+
+Zunächst wird die Menge $ \mathcal{}fired $ aller derjenigen Verhaltensweisen ermittelt, die feuern (Zeile 4). Anschließend wird für jede (Zeile 5) dieser Verhaltensweisen überprüft, ob eine andere Verhaltensweise existiert, die ebenfalls feuert, aber eine höhere Priorität besitzt (Zeile 6). Ist dies nicht der Fall, wird die aktuelle Aktion zurückgeliefert (Zeile 7). Falls keine Verhaltensweise aktiviert wird, so wird der Wert $ \mathcal{}null $ zurückgeliefert, der besagt, dass keine Aktion ausgewählt wurde (Zeile 10).[FN 114] 
+
+
+ [FN 112] Vorausgesetzt, es gilt $ ((c1_a1), (c_2,a_2))\in\prec. $ [sic!] 
+
+
+ [FN 113] Bei Wooldridge (2002), S. 91 sowie bei Wooldridge (2000), S. 50 findet sich zwischen Zeile 2 und Zeile 3 noch eine Zeile „$ \mathbf{var}\ selected&nbsp;: \mathcal{A} $", die vermutlich aus einer spezifischen Implementierung stammt, hier jedoch keine Bedeutung besitzt, da die Variable selected im Algorithmus selbst nicht mehr auftaucht, und daher hier ausgelassen wurde. 
+
+
+ [FN 114] Ein illustratives Beispiel findet sich etwa bei Steels (1990). 

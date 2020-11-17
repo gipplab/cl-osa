@@ -1,0 +1,26 @@
+WannaCry ransomware bitcoins move from online wallets
+
+More than $140,000 (£105,000) worth of bitcoins paid by victims of the WannaCry ransomware outbreak have been removed from their online wallets.
+It has been nearly three months since infections struck organisations worldwide, including the NHS, which faced days of disruption as a result.
+The bitcoin activity was noticed by a Twitter bot set up by Quartz journalist Keith Collins.
+The balance of all wallets known to be associated with WannaCry is now zero.
+The ransomware hit many businesses hard, quickly infecting multiple computers on corporate networks and encrypting them so they became useless.
+Victims were asked to pay between $300 and $600 to get their systems back.
+Back in May, many cyber-security experts and law enforcement agencies advised victims that paying the ransom would probably only encourage other cyber-criminals and not result in restored access to computers.
+However, many clearly decided to take a chance.
+According to bitcoin-monitoring company Elliptic, an initial portion of the WannaCry funds were moved in late July.
+And at about 04:10 BST on Thursday, the vast majority were finally withdrawn in entirety.
+Many watchers expect that the WannaCry bitcoins will be put through a "mixer" - in which the currency is transferred and mixed into a larger series of payments that make it much harder to track where it ends up.
+But the incident has left some cyber-security experts confused.
+"I have no idea why they would move that money to be honest," said Andy Patel at F-Secure.
+"I wouldn't imagine that they are going to try and turn those bitcoins into real money. If they do, it's going to give someone a way to track them to an actual person."
+Instead, Mr Patel told the BBC the funds could be used to pay for dark web services that might leave less of a digital paper trail.
+In July, bitcoins paid as ransom following a separate attack - NotPetya - were moved from their online wallets.
+Many people assume Bitcoin is anonymous: the online equivalent of cash. However, every transaction is completely visible to anyone who cares to look.
+There are even online sites that allow you to view what is happening in the blockchain - the distributed ledger that records all bitcoin movements.
+The blockchain is more like a Swiss bank account: you know the account number and which account transfers money to which other accounts, but you don't necessarily know who stands behind that account number.
+A technique called "cluster analysis" looks across all of these bitcoin addresses and attempts to find addresses that are being used by the same people.
+Then, some of the other transactions in that cluster, which were not intended to be anonymous, can provide evidence of who owns those addresses.
+Law enforcement agencies often use this classic approach to track criminals - the idea, of course, is: "Follow the money."
+Alan Woodward is professor of cyber-security at the University of Surrey.
+Get news from the BBC in your inbox, each weekday morning

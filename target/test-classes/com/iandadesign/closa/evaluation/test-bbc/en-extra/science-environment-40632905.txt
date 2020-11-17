@@ -1,0 +1,38 @@
+Bloodhound Diary: Newquay is go!
+
+A British team is developing a car that will be capable of reaching 1,000mph (1,610km/h). Powered by a rocket bolted to a Eurofighter-Typhoon jet engine, the vehicle will first mount an assault on the world land speed record (763mph; 1,228km/h). Bloodhound should start running on Hakskeen Pan in Northern Cape, South Africa, in 2018.
+Bloodhound is Go! That's the phrase we've been waiting for and now the dates are confirmed: we'll be blasting the car down the runway at Newquay in Cornwall at the end of October.
+We've picked three separate events to show off the car. The best day (if you can make it) is 26 October, which will be the car's first-ever public runs.
+This is the VIP and media day, and we're giving all our 1K Club Gold Members the chance to join our other VIPs, to say thank you for their support (if you want to come and you're not a member already, then fear not, there's still time to sign up here).
+The public day is 28 October, which will give everyone the chance to come along and see the fantastic support we're getting from Cornwall Airport Newquay, as we run the world's most advanced straight-line racing car along their runway.
+Finally (and perhaps most importantly), we're having a schools' day on 30 October, as we bring Bloodhound's "Engineering Adventure" to life for future engineers in the most exciting way possible.
+If your school wants to come along, then keep an eye on the Bloodhound website, as tickets will be released shortly.
+At the Bloodhound Technical Centre right now, there's a lot of work going on to get the car ready for its first test runs and our first public "show". To keep it simple, the car will be running with the jet engine only, as the rocket system isn't ready yet (we don't need it for runway testing).
+There's still a long list of work to get the car ready for Newquay.
+The task list is a logical one, starting with lower-chassis assembly, then fitting the front and rear suspension, and the final installation of the cockpit and systems will be completed while the upper-chassis is being assembled.  
+The lower-chassis is already being finished off, with the installation of the "rocket tunnel" as the last major piece of structural work on the car.
+But hang on a minute, I've just said that we won't be using the rocket this year, so why are we fitting the titanium "tunnel" that the rocket sits in? There's a simple explanation.
+The tunnel is a structural part of the car, adding torsional stiffness (in other words, reducing the tendency to twist) in the lower-chassis. After a lot of folding, drilling and riveting, the tunnel is now fully installed, some two weeks ahead of schedule - a great start by the workshop team.
+While the chassis is being built up, the car's systems (electrics, electronics, sensors and so on) are being tested off the car before installation.
+Let's not underestimate the scale of the task involved. With all of the power, control and sensor connections included, there is an estimated 50km of wiring in the car.
+Given that the longest cable in the vehicle is less than 10m long, that's over 5,000 (and probably more like 10,000) individual wires, all of which need connecting to the right places at both ends, and all of which need testing.
+I'm in awe of the fact that the systems team is on top of all this work.
+We've got a few weeks' more work to do before starting the in-car systems testing and "integration". Essentially, integration means checking that all the parts are playing nicely together, including making sure that they are all talking to the cockpit, of course: my job as driver is critically dependent on getting all of this right.
+Once the car is fully assembled and "workshop-tested", we'll aim to move down to Newquay by the start of October.
+So what's going to happen when we get to Newquay and how fast will the car go when you come to see it run?
+The peak speed on the runway will depend on several things that we need to find out during our October test sessions, before the high-speed public runs at the end of the month.
+The first thing we need to know is how the jet engine performs at slow speed.
+Bloodhound's jet air intake (the big upside-down mouth that sits just behind the cockpit) is optimised (i.e. it is the right size) for around 850mph, while jet aircraft like the Typhoon have a complex "variable geometry" intake, which opens wide at low speed and reduces size as the jet accelerates to supersonic speeds.
+For simplicity, Bloodhound has a fixed intake, designed to give maximum power (and minimum drag) at supersonic speeds, so it is deliberately made fairly small.
+This means that at very slow speeds, the intake will not be able to feed the EJ200 jet engine with all the air it needs, so we are likely to be power-limited until the car is well over 100mph.
+Thanks to Rolls-Royce, we've got a very detailed model of the airflow into the jet intake, but with complex real-world factors like turbulence, which is nearly impossible to model precisely, we need to do some testing to get exact numbers.
+Once we've tested the intake, we'll know how quickly we can accelerate the car.
+That's only half the challenge though, as we have to stop the car again before reaching the other end of Newquay's 1.7-mile runway. That means measuring the precise grip of the high-speed aircraft tyres (which were not designed for a 5-tonne, jet-powered car) and measuring how much energy the brakes can absorb.
+AP Racing bench-tested the brakes for us some time ago, but now we need to know how they perform in the real world, with aerodynamic drag and brake cooling effects added in.
+When we add together the engine intake limits, the acceleration distance, braking distance, brake energy limit, and so on, we'll come up with a maximum speed for runway runs. We've announced an intention to do "up to 200mph". How fast do I think we can go? Here's the bit where I risk embarrassment by taking a guess. With a bit of luck, I think we'll be able to reach just over 200mph on the runway at Newquay. Want to find out? Come and watch!
+Another key part of Newquay testing will be the data logging and analysis, making sure it's all working before we go to South Africa next year. Our aerodynamics guru, Dr Ben Evans, is already busy at Swansea University getting his analysis tools ready to crunch the data from nearly 200 pressure sensors fitted to Bloodhound.
+Talking of data, we had some more very good news this month, with the signing of a deal that will allow us to stream the car's video and data to a global audience. Our new partner is aiming to announce the partnership in a few weeks' time, so watch this space.
+This is an exciting announcement for us, as it is a key part of our global "Engineering Adventure". It means that we can now interact with the largest audience in history for a live science experiment, as we develop the technology of the world's fastest car.
+In the meantime, we already have tens of thousands of young (and not-so-young) students involved in our model rocket car competitions across the UK. The national finals occurred at the end of June.
+If building and launching their own rocket cars wasn't exciting (and challenging) enough, the rules require each car to contain a BBC micro:bit data logger, which the students have to programme themselves.
+By the time they see Bloodhound running in the desert, they'll all be experts - which is of course the whole idea.

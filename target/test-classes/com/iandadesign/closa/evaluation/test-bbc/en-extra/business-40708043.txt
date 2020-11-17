@@ -1,0 +1,35 @@
+Better drugs, faster: The potential of AI-powered humans
+
+Scientists working in tandem with artificial intelligence (AI) could slash the time it takes to develop new drugs - and, crucially, the cost - say tech companies.
+Developing pharmaceutical drugs is a very expensive and time-consuming business. And as AstraZeneca found out last week, disappointing drug trials can knock millions off your stock market value in a flash.
+So the faster we can identify promising molecules that could be turned into viable drugs, the better.
+This is why pharmaceutical companies, such as GlaxoSmithKline (GSK), Merck, Sanofi and Johnson &amp; Johnson, are now turning to artificial intelligence (AI) to help them.
+Prof Andrew Hopkins is chief executive of Exscientia, an AI-based drug discovery firm that has recently signed a £33m deal with GSK.
+He claims that AI and human beings working together in so-called "centaur teams" can help identify candidate molecules in a quarter of the usual time and at a quarter of the cost.
+In Greek mythology, the centaur was half human, half horse - and very powerful and fast as a result. AI is giving scientists such extra powers, Prof Hopkins believes.
+Successful drug discovery relies on precise understanding of how a disease affects our biological systems, says Pamela Spence, global life sciences industry leader at consultancy firm EY.
+"Once that is known, scientists then search for molecules that can selectively interact with this 'target' and reverse that disruption or slow its impact - a 'hit' molecule," she explains.
+Scientists often talk of a disease as the target and the molecule as a weapon being fired a it.
+But this process of drug discovery - traditionally carried out by small teams of scientists painstakingly testing each potential target and hit molecule in the hope of finding a winner - is an enormously time-consuming approach that also has a very high failure rate.
+So bringing in AI is like having a research assistant who can solve problems by systematic and relentless search at incredible speeds, she says.
+"What might work - and equally importantly what might not work - can be identified first by the AI supercomputer 'in silico'," she says.
+This is the medical term for research carried out by computer, as opposed to "in vitro" - think test tubes - and "in vivo" - testing on animals and humans.
+As carrying out human clinical trials accounts for the vast bulk of drug discovery cost, the sooner we can identify when something isn't going to work, the less money will be wasted.
+"Then the physical testing can be done on a smaller number of potential new medicines... and a much higher success rate can be achieved," says Ms Spence.
+Exscientia's AI algorithm crunches masses of data, from the structure of diseases to the efficacy of existing drugs, from peer-reviewed studies to observations of slides under a microscope.
+And all these possibilities are narrowed down in a process Prof Hopkins likens to natural selection.
+"We're not trying to rule out the uncertainty - this is messy, dirty data," he says. "There are very interesting analogies between how human creativity works and evolution."
+The aim is to come up with small molecules as candidates for up to 10 disease-related targets that can then be put through clinical tests.
+"Every pill you make might cost pence to manufacture, but it's actually a precision-engineered product," says Prof Hopkins, who is also chair of medicinal informatics at the UK's Dundee University.
+"There's an almost infinite number of other molecules it could have been. You have to make decisions as to what one might be safe and efficacious," he says. "Most don't lead to anything."
+This AI-driven approach also makes it easier to come up with molecules that can have two distinct targets. For example, a cancer drug could also improve the immune system as well as tackle the disease.
+GSK is getting behind the idea and has recently set up a discovery performance unit focused on enhancing drug discovery through the use of "in silico" technology - including AI, machine learning and deep learning.
+The drive is being led by John Baldoni, GSK's head of R&amp;D.
+"We have a number of these deals that we are putting in place; the one with Exscientia is probably the one that's furthest along, but we have a few others in flow and a few internal projects ourselves," he says.
+"The cost of discovery from target to launch is roughly $1.7bn [£1.3bn]. The cost of what we're talking about here, from target to clinic, is about 33% of that, and it takes about five-and-a-half years.
+"Our goal is to reduce that to one year, and reduce the cost commensurate with that."
+AI is also finding its way into other aspects of the drug discovery process.
+Benevolent AI, for example, uses natural language processing to sift through published literature, such as chemical libraries, medical databases and scientific papers, to draw conclusions about possible new drug candidates.
+Earlier this year, one of its candidates for a drug to treat motor neurone disease - also known as ALS (Amyotrophic Lateral Sclerosis) - was found to prevent the death of motor neurones in cells taken from real patients, and delayed the onset of the disease in animals.
+"We are incredibly encouraged by these findings," says Benevolent AI founder and chairman Ken Mulvaney.
+Patients should be encouraged, too. AI-based drug discovery promises to bring more effective, cheaper drugs on to the market much more quickly.

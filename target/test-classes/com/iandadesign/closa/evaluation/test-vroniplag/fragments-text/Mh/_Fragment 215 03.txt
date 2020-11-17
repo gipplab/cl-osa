@@ -1,0 +1,19 @@
+In dem hier ausgewählten Modell des Noise Trader-Ansatzes existieren zwei Typen von Agenten: [FN 236] Rationale Anleger [FN 237] und Noise Trader. Weiter gibt es zwei Anlagemöglichkeiten, eine sichere Anlage, die in jeder Periode einen festen Zins r zahlt und eine unsichere Anlage, die in jeder Periode t eine unsichere Dividende $ r + \epsilon_t $ zahlt mit unabhängigen $ \epsilon_t \sim{} N( 0,\sigma_{\epsilon}^2 ) $.[FN 238] Der Preis der unsicheren Anlage in Periode t wird mit $ p_t $ bezeichnet. 
+
+Die Noise Trader glauben, dass sie besondere Informationen über den zukünftigen Preis der unsicheren Anlage besitzen, z. B. Signale aus der technischen Analyse etc., und treffen ihre Entscheidungen aufgrund dieser (inkorrekten) Informationen. Die rationalen Anleger antizipieren die Fehleinschätzung und kaufen bzw. verkaufen, wenn die Noise Trader den Preis drücken bzw. anheben, so dass der Preis tendenziell zum fundamentalen Preis zurückkehrt. 
+
+Für beide Typen von Agenten wird die Nachfrage nach der unsicheren Anlage bestimmt durch Maximierung des erwarteten Nutzens bei Vorliegen konstanter absoluter Risikoaversion (CARA) bezüglich des Vermögens der nächsten Periode gemäß [FN 239] 
+
+$ \lambda_t^R = \frac{r+E_t[p_{t+1}]-(1+r)p_t}{2\gamma(\sigma^2_p{t+1}+\sigma_\epsilon^2)}, $ 
+
+$ \lambda_t^N = \frac{r+E_t[p_{t+1}]-(1+r)p_t}{2\gamma(\sigma^2_p{t+1}+\sigma_\epsilon^2)} + \frac{p_t}{2\gamma(\sigma^2_p{t+1}+\sigma^2_\epsilon)} $ 
+
+dabei ist $ \gamma $ der Koeffizient der absoluten Risikoaversion, $ E_t[p_{t+1}] $ der erwartete Preis in Periode t + 1 basierend auf den Informationen von Periode t, $ \sigma^2_{p_{t+1}} $ die erwartete Varianz über eine Periode des Preises $ p_{t+1} $ und die $ p_{t} $ sind exogen vorgegebene Maße für die Fehleinschätzung der Noise Trader, die iid Zufallsvariablen darstellen mit $ p_t \sim N(\rho^*,\sigma^2_\rho) $. 
+
+[FN 236] Vgl. zu diesem Ansatz insbesondere De Long et al. (1990a). 
+
+[FN 237] Diese werden in diesem Kontext auch als 'sophisticated, rational traders' bezeichnet. 
+
+[FN 238] Das bedeutet, die Störterme $ \epsilon_t $ sind, wie üblich, iid Zufallsvariablen, d.h. unabhängig und identisch verteilt (independent identically distributed). 
+
+[FN 239] Vgl. zu CARA auch die Ausführungen in Abschnitt 2.2.2 auf S. 36 dieser Arbeit. 

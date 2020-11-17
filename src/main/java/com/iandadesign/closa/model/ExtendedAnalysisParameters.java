@@ -2,6 +2,10 @@ package com.iandadesign.closa.model;
 
 import com.iandadesign.closa.util.PANFileFilter;
 
+/**
+ * Contains the basic settings for PAN-PC Detailed Plagiarism Evaluation.
+ * @author Johannes Stegmüller
+ */
 public class ExtendedAnalysisParameters {
 
     //public final int LENGTH_SUBLIST_TOKENS;

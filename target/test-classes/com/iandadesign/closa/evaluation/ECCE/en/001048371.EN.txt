@@ -1,0 +1,22 @@
+The bone thrown by the Basel committee to the banks in relaxing the new “liquidity coverage ratio” at the weekend was largely what the industry had wanted.
+It was also a capitulation to good sense as much as one to sectoral interests.
+The LCR requires banks to hold liquid assets at least equal to the amount of capital clients might be expected to withdraw over a 30-day period in a crisis.
+The collapse of Lehman Brothers – when the global financial system was brought to its knees by one bank running out of funds – showed why such a requirement is necessary.
+But the draft LCR's original definition of high-quality liquid assets was ill-designed.
+By treating government debt as the most liquid of assets, it echoed the earlier Basel error of treating it as risk-free.
+The painful lesson of the eurozone crisis is that sovereign debt need be neither.
+The banks were right, therefore, to push for a wider definition of liquid assets including blue-chip stocks and corporate bonds.
+If trading in such securities can remain liquid even when some sovereign debt markets freeze, including them – subject to proper haircuts – encourages more diversified and robust liquidity buffers.
+The Basel committee accepted this.
+It also added sensible guidance to make clear that a bank may run down its liquidity stockpile in a crisis with the permission of its supervisor.
+A liquidity buffer is a powder to be kept dry so that it can be used when needed, not held on to in all circumstances.
+Other goodies the banking sector asked for and obtained are less easily justifiable.
+Basel gave more than banks had dared to expect on how bad a liquidity squeeze they must be prepared for.
+The assumed outflow rates have been cut, sometimes by a lot.
+We have learnt, however, that historical experience is a poor guide to how bad things can become.
+Retaining a more conservative approach would have been wiser, especially as a broadened class of eligible assets already makes the LCR less onerous.
+Important as the LCR is, it must not overshadow the importance of bank solvency.
+Central banks can always provide liquidity, and while their facilities should not be a first resort for banks, the Basel committee is right to signal it will incorporate access to them in its rules.
+Insolvent banks, in contrast, must not be rescued by money presses.
+Similarly, the Bank of England's Mervyn King underlined that there is no way an LCR can deal with a solvency crisis.
+A decent liquidity rule does not compensate for Basel III's pusillanimous and overly-delayed capital adequacy rules.

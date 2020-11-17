@@ -1,0 +1,46 @@
+Cashing in on the drone revolution
+
+A tiny unmanned aircraft is hovering quietly above a green field in Buckinghamshire, offering its owner, Joby Stephens, an "eye in the sky".
+The drone is kitted out with a tiny high-definition camera that sends crisp images via wi-fi to a phone clipped to the drone's remote control unit.
+"The ability to film with a drone adds another string to my bow," the professional cameraman and producer says as he pilots the aircraft towards some nearby trees.
+"Being able to legally and safely deliver drone footage should be a great addition to many projects."
+Mr Stephens runs production company Jam96, which specialises in making behind-the-scenes videos on movie sets - places where there will invariably be lots of people.
+"In the environments I operate in, I need to be 100% safe," he says.
+So he has completed a training course for commercial drone operators.
+The course was run by Whispercam's Alistair Johnson, a former Royal Air Force pilot with a degree in aeronautical engineering and a day job as a commercial pilot with British Airways.
+"At the moment, anybody can buy a drone online or from a retailer and use it as part of a hobby or for fun," he says.
+"But if you want to do it in any commercial capacity, or in a congested area, you'll have to get a Permission for Commercial Operations licence from the Civil Aviation Authority (CAA)."
+This requirement is not universally understood, and neither are the risks posed by drones, Mr Johnson explains as he goes through safety procedures before take-off.
+Whispercam's training field on the outskirts of High Wycombe in Buckinghamshire might seem safe to an amateur, but Mr Johnson is quick to point out risks. There's a private air field to the south and a military helipad to the north, as well as kites being flown overhead and curious people entering the field.
+"It's all about situational awareness," Mr Johnson says, as he checks a "Notice to Airmen" app on his phone, which contains alerts from the aviation authorities about potential hazards in the area.
+Flying a drone can be both surprisingly easy and extremely complicated, depending on the circumstances. Controlling its pitch, roll and yaw is simple even for the uninitiated, but knowing what to do if something goes wrong is another matter altogether.
+"There's very much more to commercial drone operations than flying the aircraft," says Mr Johnson.
+"In aviation, things can go wrong very quickly."
+Pilots cannot simply rely on the automated safety systems included in some drones, such as GPS controls that prevent the aircraft from drifting with the wind, he explains.
+"There's always a risk of what we call 'automation-induced complacency'," he says.
+Having passed his flight test, film maker Mr Stephens is determined not to fall into that trap.
+More stories from the BBC's Business Brain series looking at quirky or unusual business topics from around the world:
+The businesses capitalising on 24-hour sunlight
+Do you have to avoid huggers at work?
+The homeowners hiring out their houses as film sets
+Is humour the way to keep an office happy?
+Putting the fun back into dance classes
+"The larger and more complex drones get, there will be situations where it goes wrong, and you really don't want to be the fall guy," he says.
+Beyond safety, there are also growing concerns about invasions of privacy by drone users, which the Information Commissioner's Office says could be covered by the Data Protection Act.
+According to Mr Johnson, there are basically three types of drone user: commercial pilots with proper qualifications; hobbyists that do it for fun but who are facing tougher government scrutiny; and those with criminal intent.
+This latter group may use drones with wilful negligence, for intrusive photography, to smuggle drugs into prisons, or even to carry out terror attacks using "weaponised" drones.
+Whispercam was founded four years ago as a part-time enterprise by a couple of entrepreneurial colleagues at British Airways.
+"We were one of the first companies to offer commercial drone pilot training, but a lot of others have sprung up since so there's a lot of competition," says Mr Johnson.
+Whispercam's course, which costs £1,140, includes both theory and practical exams and culminates in an application for a CAA licence.
+Demand for the course has risen dramatically in recent years as drones are increasingly used, not just by photographers and film makers, but by a growing range of professions.
+"Organisations that do surveying, whether of buildings or pipelines, power lines or railway lines, are increasingly using drones, which are much cheaper than helicopters," says Mr Johnson.
+"Archaeologists use them to get a bird's eye view to decide where to dig; farmers use them to heat-map fields, and identify hot spots that are doing well, and cold spots that require more fertilisation.
+"They are also used for search and rescue by the emergency services, or to deliver food, blood or medicines. Local authorities use them to monitor flooding, and they are used in emergency relief operations."
+The main benefit, he says, is that drones save time and money, and the opportunities to use them seem "almost endless".
+There are indeed so many ways in which entrepreneurs can make money from drones that Waypoint, a drone website, has created its own "Dronepreneurs" section to profile some of them.
+One of the most ambitious operators is Germany's Volocopter, which has built a drone so large and powerful that it can carry two passengers.
+Volocopter's aircraft, a drone with 18 independent electric motors that power one propeller each, is capable of autonomous flight.
+This makes them ideal air taxis, according to co-founder Alexander Zosel, who has just signed an agreement with Dubai's Roads and Transport Authority to launch a five-year test programme later this year.
+For now, autonomous drones are illegal in the UK and many other countries, whether they carry people or not, hence it could take time before an aircraft like the Volocopter catches on.
+But consultations on unmanned aircraft regulations are underway in both Westminster and Brussels, so that could change over time.
+"We see Dubai as the pioneer for a huge evolving market," says Mr Zosel.
