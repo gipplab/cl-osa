@@ -6,8 +6,14 @@
 
 
 **Changes**:
-(summarize your changes)
+(basic changes)
 - 
+
+**Core Changes**:
+(changes to core CL_OSA functionality which can affect scores)
+- default:none
+
+
 
 **Instructions for PR review**:
 (to be checked by reviewer)
