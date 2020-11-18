@@ -157,7 +157,7 @@ public class PAN11EvaluationSetEval {
                         hasValidLanguagePair = true;
                     }
                     // Fill hashmap with for testcandidate evaluation
-                    if(testCandidateRetrieval){
+                    if(mockCRResults){
                         if(!selectedCandidateForFile.contains(plaginfo.getSourceReference())){
                             selectedCandidateForFile.add(plaginfo.getSourceReference());
 
@@ -582,14 +582,11 @@ public class PAN11EvaluationSetEval {
         try {
             osa.executeAlgorithmForAllfiles(suspiciousFiles, candidateFiles, params, logUtil.getDateString());
         } catch (Exception ex) {
-
             logUtil.logAndWriteError(false, "Exception during parse of all files Exception:", ex);
             ex.printStackTrace();
         }
 
-        if(true) {
-            return;
-        }
+
         int parsedFiles = 0;
         int parsedErrors = 0;
         String baseResultsPath = "";
