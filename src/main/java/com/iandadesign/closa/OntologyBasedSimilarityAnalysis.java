@@ -389,6 +389,14 @@ public class OntologyBasedSimilarityAnalysis {
 
     }
 
+    /**
+     * This is rather an experiment to rate everything at once.
+     * @param suspiciousDocumentFiles
+     * @param candidateDocumentFiles
+     * @param params
+     * @param initialDateString
+     * @throws Exception
+     */
     public void executeAlgorithmForAllfiles(List<File> suspiciousDocumentFiles,
                                                              List<File> candidateDocumentFiles,
                                                              ExtendedAnalysisParameters params,
