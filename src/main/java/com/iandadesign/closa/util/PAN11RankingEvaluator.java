@@ -1,5 +1,7 @@
 package com.iandadesign.closa.util;
 
+import com.iandadesign.closa.model.SavedEntity;
+
 import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -12,7 +14,10 @@ import static java.lang.Integer.min;
  */
 public class PAN11RankingEvaluator {
     
-    public static double calculateRecallAtkFragmentCharacterLevel(){
+    public static double calculateRecallAtkFragmentCharacterLevel(Map<String, Map<String, Double>>  suspiciousIdCandidateScoresMap,
+                                                                  Map<String, List<SavedEntity>> candidateEntities,
+                                                                  Map<String, List<SavedEntity>> suspiciousEntities,
+                                                                  int k){
         /* atm as pseudocode, supposedly how F.Salvador Evaluates Recall
         k=1
         overallFindings = 0;
