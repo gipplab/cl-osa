@@ -235,7 +235,7 @@ public class SalvadorFragmentLevelEval {
         Map<String, Map<String, Double>>  scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment));
 
         // Calculate the recall for the scores map (character based)
-        Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment, 20);
+        Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, 20);
 
     }
 
@@ -253,7 +253,7 @@ public class SalvadorFragmentLevelEval {
             return true;
         }
 
-        // entitiy is within plagiarism (seems redundant)
+        // entitiy is within plagiarism
         if(plagiarismStart  >= entityStart && plagiarismEnd <= entityEnd){
             return true;
         }
@@ -335,9 +335,11 @@ public class SalvadorFragmentLevelEval {
     private static String getFragmentName(File candidateFile, int index, boolean candOrSusp) {
         int sourceIdOfFile = PAN11FileUtil.getSourceIdOfFile(candidateFile);
         if(candOrSusp){
-            return "candidate-"+sourceIdOfFile+"-"+ index;
+            return "candidate-document"+String.format("%05d", sourceIdOfFile)+"~"+ index;
+
         }else{
-            return "suspicious-"+sourceIdOfFile+"-"+ index;
+
+            return "suspicious-document"+String.format("%05d", sourceIdOfFile)+"~"+ index;
         }
     }
 }
