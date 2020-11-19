@@ -9,6 +9,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.iandadesign.closa.PAN11EvaluationSetEval.logParams;
+import static java.lang.Integer.max;
+import static java.lang.Integer.min;
 
 public class SalvadorFragmentLevelEval {
 
@@ -190,6 +192,11 @@ public class SalvadorFragmentLevelEval {
                 .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().stream().map(SavedEntity::getWikidataEntityId).collect(Collectors.toList())));
     }
 
+    static Map<String, List<String>> simplifyEntitiesMapSalvador(Map<SalvadorTextFragment, List<SavedEntity>> extendedEntitiesMap )   {
+        return extendedEntitiesMap.entrySet().stream()
+                .collect(Collectors.toMap(entry-> entry.getKey().getFragmentID() , entry -> entry.getValue().stream().map(SavedEntity::getWikidataEntityId).collect(Collectors.toList())));
+    }
+
     static void doCREvaluationRecallFragmentsSalvador(ExtendedAnalysisParameters params, String tag, String comment,
                                      HashMap<String, List<String>> resultSelectedCandidates,
                                       HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation) throws Exception {
@@ -218,8 +225,8 @@ public class SalvadorFragmentLevelEval {
 
         int THRESH1 = 1500;
         int THRESH2 = 2;
-        int FRAGMENT_SENTENCES = 5; // In Sentences
-        int FRAGMENT_INCREMENT = 2; // In Sentences
+        int FRAGMENT_SENTENCES = 30; //5; // In Sentences
+        int FRAGMENT_INCREMENT = 15; //2; // In Sentences
 
         // Create a list of candidate fragments (all)
         Map<String, List<SavedEntity>> candidateEntitiesFragment = getFragments(osa, candidateFiles, FRAGMENT_SENTENCES, FRAGMENT_INCREMENT, false, null, true);
@@ -284,8 +291,8 @@ public class SalvadorFragmentLevelEval {
         }
         return false;
     }
-    private static Map<String, List<SavedEntity>> getFragments(OntologyBasedSimilarityAnalysis osa, List<File> inputFiles,
-                                     int FRAGMENT_SENTENCES, int FRAGMENT_INCREMENT, boolean filterByResults, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, boolean candOrSusp) throws Exception {
+    private static Map<String, List<SavedEntity>>getFragments(OntologyBasedSimilarityAnalysis osa, List<File> inputFiles,
+                                                                                                         int FRAGMENT_SENTENCES, int FRAGMENT_INCREMENT, boolean filterByResults, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, boolean candOrSusp) throws Exception {
         Map<String, List<SavedEntity>> entitiesMap = new HashMap<>();
         for (File currentFile: inputFiles) {
             List<SavedEntity> candidateSavedEntities = osa.preProcessExtendedInfo(currentFile.getPath(),null );
@@ -298,6 +305,7 @@ public class SalvadorFragmentLevelEval {
                 currentPlagiarismInfos = plagiarismInformation.get(key);
             }
             for(int currentSentencePosition=0; currentSentencePosition < maximumPosition; currentSentencePosition+= FRAGMENT_INCREMENT){
+
                 int finalCurrentSentencePosition = currentSentencePosition;
                 List<SavedEntity> fragmentEntities = candidateSavedEntities.stream()
                         .filter(currentEntity ->
@@ -320,16 +328,19 @@ public class SalvadorFragmentLevelEval {
                     // Only take fragmentEntities which are results.
                     //System.out.println("------------");
                 }
-                if(fragmentEntities.size() > 0 ){
-                    //List<String> fragmentEntitiesS = fragmentEntities.stream().map(SavedEntity::getWikidataEntityId).collect(Collectors.toList());
-                    String fragmentName = getFragmentName(currentFile, index, candOrSusp);
-                    entitiesMap.put(fragmentName, fragmentEntities);
-                }
+                //if(fragmentEntities.size() > 0 ){
+                // For evaluation reasons also zero entity fragments have to be added.
+                String fragmentName = getFragmentName(currentFile, index, candOrSusp);
+                //SalvadorTextFragment fragment = createTextFragment(fragmentEntities, fragmentName);
+
+                entitiesMap.put(fragmentName,fragmentEntities);
+                //}
                 index++;
             }
         }
         return entitiesMap;
     }
+
 
     @NotNull
     private static String getFragmentName(File candidateFile, int index, boolean candOrSusp) {
