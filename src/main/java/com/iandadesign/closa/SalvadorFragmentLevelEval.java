@@ -21,14 +21,14 @@ public class SalvadorFragmentLevelEval {
         Boolean smallTest = false;                  // Just select few suspicious files for the complete process
         Boolean evaluateCandidateRetrieval = true; // This triggers only the CR evaluation.
         Boolean addCRResultInfo = true;              // This will test detailed analysis with mocked CR results
-        Integer maxMockSuspCandiates = 30;          // This is a delimeter for the maximum of suspicious files locked in mockCR Evaluation, set over 304 to check all susp files.
+        Integer maxMockSuspCandiates = 5000;          // This is a delimeter for the maximum of suspicious files locked in mockCR Evaluation, set over 304 to check all susp files.
 
         //evalPAN2011All();
 
         if(args!=null && args.length >= 1){
-            evalPAN2011EnEs(args[0], smallTest, evaluateCandidateRetrieval, addCRResultInfo, 30 );
+            evalPAN2011EnEs(args[0], smallTest, evaluateCandidateRetrieval, addCRResultInfo, maxMockSuspCandiates );
         }else{
-            evalPAN2011EnEs(null, smallTest, evaluateCandidateRetrieval, addCRResultInfo, 30 );
+            evalPAN2011EnEs(null, smallTest, evaluateCandidateRetrieval, addCRResultInfo, maxMockSuspCandiates );
         }
     }
 
@@ -226,17 +226,36 @@ public class SalvadorFragmentLevelEval {
         int THRESH1 = 1500;
         int THRESH2 = 2;
         int FRAGMENT_SENTENCES = 30; //5; // In Sentences
-        int FRAGMENT_INCREMENT = 15; //2; // In Sentences
+        int FRAGMENT_INCREMENT = 30; //2; // In Sentences
 
         // Create a list of candidate fragments (all)
         Map<String, List<SavedEntity>> candidateEntitiesFragment = getFragments(osa, candidateFiles, FRAGMENT_SENTENCES, FRAGMENT_INCREMENT, false, null, true);
 
+        // For testing use just one basic file
+        boolean DO_FILE_PREFILTERING = true;
+        if(DO_FILE_PREFILTERING) {
+            int fileLimit = 1;
+            suspiciousFiles = suspiciousFiles.stream().limit(fileLimit).collect(Collectors.toList());// Just take one basic file.
+            List<String> usedPlagiarismInfos  = suspiciousFiles.stream().map(entry->entry.getName().replace(".txt",".xml")).collect(Collectors.toList());
+            plagiarismInformation.keySet().retainAll(usedPlagiarismInfos);
+        }
 
-         // Create a list of suspicious fragments (only plagiarism involved fragments)
+        // Create a list of suspicious fragments (only plagiarism involved fragments)
         Map<String, List<SavedEntity>> suspiciousEntitiesFragment = getFragments(osa, suspiciousFiles, FRAGMENT_SENTENCES, FRAGMENT_INCREMENT, true, plagiarismInformation, false);
 
-        // For testing take a smaller suspicious map
-        suspiciousEntitiesFragment = suspiciousEntitiesFragment.entrySet().stream().limit(2).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        // For testing take a smaller suspicious map and the corresponding results.
+        boolean DO_PREFILTERING = false;
+        if(DO_PREFILTERING) {
+            int limitCorpus = 2;
+            suspiciousEntitiesFragment = suspiciousEntitiesFragment.entrySet().stream().limit(limitCorpus).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+            List<String> usedPlagiarismInfos = new ArrayList<>();
+            for (String suspFragmentID : suspiciousEntitiesFragment.keySet()) {
+                String relatedInfoName = PAN11RankingEvaluator.getBaseName(suspFragmentID, ".xml");
+                usedPlagiarismInfos.add(relatedInfoName);
+            }
+            List<String> usedPlagiarismInfosDedup = new ArrayList<String>(new HashSet<String>(usedPlagiarismInfos));
+            plagiarismInformation.keySet().retainAll(usedPlagiarismInfosDedup);
+        }
 
         // Do the comparison
         Map<String, Map<String, Double>>  scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment));

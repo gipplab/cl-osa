@@ -15,7 +15,7 @@ import static java.lang.Integer.min;
  * @author Johannes Stegmüller
  */
 public class PAN11RankingEvaluator {
-    public static boolean isCandidateInPlagiarismArea(String candidateName, List<SavedEntity> savedEntities, List<PAN11PlagiarismInfo> plagiarismInfos){
+    public static int sizeOfFoundPlagiarism(String candidateName, SalvadorTextFragment fragment, List<SavedEntity> savedEntities, List<PAN11PlagiarismInfo> plagiarismInfos){
         //
         int startCharacter = Integer.MAX_VALUE;
         int endCharacter = 0;
@@ -23,7 +23,9 @@ public class PAN11RankingEvaluator {
             startCharacter =  min(savedEntity.getToken().getStartCharacter(), startCharacter);
             endCharacter = max(savedEntity.getToken().getEndCharacter(), endCharacter);
         }
+
         candidateName = candidateName.replace("candidate","source");
+        int foundPlagiarism = 0;
         for(PAN11PlagiarismInfo plagiarismInfo:plagiarismInfos){
             if(!candidateName.equals(plagiarismInfo.sourceReference)){
                 continue;
@@ -31,10 +33,20 @@ public class PAN11RankingEvaluator {
             int plagiarismStart = plagiarismInfo.getSourceOffset();
             int plagiarismEnd = plagiarismStart + plagiarismInfo.getSourceLength();
 
-            if (isAreaPlagiarism(startCharacter, endCharacter, plagiarismStart, plagiarismEnd)) return true;
+            int foundChars =  plagiarismAreaSize(startCharacter, endCharacter, plagiarismStart, plagiarismEnd);
+            foundPlagiarism +=foundChars;
         }
 
-        return false;
+        return foundPlagiarism;
+    }
+
+    private static int plagiarismAreaSize(int startCharacter, int endCharacter, int plagiarismStart, int plagiarismEnd) {
+        // find the overlapping area
+        int findingStart = max(startCharacter, plagiarismStart);
+        int findingStop = min(endCharacter, plagiarismEnd);
+        // Cap finding negative score by 0
+        int plagiarismArea = max(findingStop-findingStart,0);
+        return plagiarismArea;
     }
 
     private static boolean isAreaPlagiarism(int startCharacter, int endCharacter, int plagiarismStart, int plagiarismEnd) {
@@ -112,15 +124,32 @@ public class PAN11RankingEvaluator {
                                                                   Map<String, List<SavedEntity>> suspiciousEntitiesMap,
                                                                   HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation,
                                                                   int k){
-
+        // Found character counts.
         int overallFindings = 0;
         int overallPossibleFindings=0;
+        int overallPossibleFindingsSimple = 0;
+
+        // Calculate overall possible findings
+        for(String suspiciousFile:plagiarismInformation.keySet()){
+            List<PAN11PlagiarismInfo> susPlagiarismInfo = plagiarismInformation.get(suspiciousFile);
+            for(PAN11PlagiarismInfo currentPlagiarismInfo:susPlagiarismInfo){
+
+                overallPossibleFindingsSimple+= currentPlagiarismInfo.getSourceLength();
+
+                //With overlaps: get the related fragment for each candidate plagiarism area
+
+                // Get the area the fragments cover
+            }
+        }
+        System.out.println("Overall possible characters to find: "+overallPossibleFindingsSimple);
+        // Calculate Overall Findings
 
         for(String suspiciousFragmentID:suspiciousEntitiesMap.keySet()) {
             List<SavedEntity> suspiciousEntities = suspiciousEntitiesMap.get(suspiciousFragmentID);
             SalvadorTextFragment currentSuspFragment =  createTextFragment(suspiciousEntities, suspiciousFragmentID);
             String baseSuspFileName = getBaseName(suspiciousFragmentID, ".xml");
             List<PAN11PlagiarismInfo> relatedPlagiarism = getPlagiarismCasesRelatedToSuspFragment(currentSuspFragment, suspiciousEntities, plagiarismInformation.get(baseSuspFileName));
+
 
 
             int currentFindings = 0;
@@ -136,15 +165,12 @@ public class PAN11RankingEvaluator {
                 String baseCandFileName = getBaseName(candidateFragmentID, ".txt");
                 // perfomance: if the no current plagiarism points to candidate this can be skipped (or filter plagiarism again by candidates here!)
                 List<SavedEntity> candidateEntites = candidateEntitiesMap.get(candidateFragmentID);
+                SalvadorTextFragment currentCandFragment =  createTextFragment(candidateEntites, candidateFragmentID);
 
-                boolean isPlagiarism = isCandidateInPlagiarismArea(baseCandFileName, candidateEntites, relatedPlagiarism);
-                if(isPlagiarism){
-                    currentFindings++;
-                }
-                System.out.println("test");
+                int foundArea = sizeOfFoundPlagiarism(baseCandFileName, currentCandFragment,candidateEntites, relatedPlagiarism);
+                currentFindings +=foundArea;
             }
             overallFindings += currentFindings;
-            overallPossibleFindings += k;
         }
         /* atm as pseudocode, supposedly how F.Salvador Evaluates Recall
         k=1
@@ -168,7 +194,7 @@ public class PAN11RankingEvaluator {
         R@k = overallFindings/overallPossibleFindings * 100;
         */
 
-        double recallAtK = (double) overallFindings / overallPossibleFindings * 100;
+        double recallAtK = (double) overallFindings / overallPossibleFindingsSimple * 100;
         return recallAtK;
     }
 
