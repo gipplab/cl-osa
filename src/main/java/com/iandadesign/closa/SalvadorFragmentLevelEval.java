@@ -225,28 +225,50 @@ public class SalvadorFragmentLevelEval {
 
         int THRESH1 = 1500;
         int THRESH2 = 2;
-        int FRAGMENT_SENTENCES = 30; //5; // In Sentences
-        int FRAGMENT_INCREMENT = 30; //2; // In Sentences
+        int FRAGMENT_SENTENCES = 15; //5; // In Sentences
+        int FRAGMENT_INCREMENT = 15; //2; // In Sentences
 
         // Create a list of candidate fragments (all)
         Map<String, List<SavedEntity>> candidateEntitiesFragment = getFragments(osa, candidateFiles, FRAGMENT_SENTENCES, FRAGMENT_INCREMENT, false, null, true);
 
-        // For testing use just one basic file
+        // For testing use just one basic file (and also just the corresponding results)
         boolean DO_FILE_PREFILTERING = true;
+        int SUSP_FILE_LIMIT = 1;
+        suspiciousFiles = filterBySuspFileLimit(plagiarismInformation, suspiciousFiles, DO_FILE_PREFILTERING, SUSP_FILE_LIMIT);
+
+        Map<String, List<SavedEntity>> suspiciousEntitiesFragment;
+        // Create a list of suspicious fragments (only plagiarism involved fragments)
+        boolean GET_PLAGSIZED_FRAGMENTS = true; // Get fragments exactly the plagiarism size
+        if(GET_PLAGSIZED_FRAGMENTS){
+            suspiciousEntitiesFragment = getPlagsizedFragments(osa, suspiciousFiles, plagiarismInformation, false);
+
+        }else{
+            suspiciousEntitiesFragment = getFragments(osa, suspiciousFiles, FRAGMENT_SENTENCES, FRAGMENT_INCREMENT, true, plagiarismInformation, false);
+        }
+
+        // For testing take a smaller suspicious map and the corresponding results.
+        boolean DO_OBSOLETE_PREFILTERING = false; // usually file filter above is more practical
+        suspiciousEntitiesFragment = obsoletePreselectionFilter(plagiarismInformation, suspiciousEntitiesFragment, DO_OBSOLETE_PREFILTERING, 2);
+
+        // Do the comparison
+        Map<String, Map<String, Double>>  scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment));
+
+        // Calculate the recall for the scores map (character based)
+        Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, 20);
+
+    }
+
+    private static List<File> filterBySuspFileLimit(HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, List<File> suspiciousFiles, boolean DO_FILE_PREFILTERING, int SUSP_FILE_LIMIT) {
         if(DO_FILE_PREFILTERING) {
-            int fileLimit = 1;
-            suspiciousFiles = suspiciousFiles.stream().limit(fileLimit).collect(Collectors.toList());// Just take one basic file.
+            suspiciousFiles = suspiciousFiles.stream().limit(SUSP_FILE_LIMIT).collect(Collectors.toList());// Just take one basic file.
             List<String> usedPlagiarismInfos  = suspiciousFiles.stream().map(entry->entry.getName().replace(".txt",".xml")).collect(Collectors.toList());
             plagiarismInformation.keySet().retainAll(usedPlagiarismInfos);
         }
+        return suspiciousFiles;
+    }
 
-        // Create a list of suspicious fragments (only plagiarism involved fragments)
-        Map<String, List<SavedEntity>> suspiciousEntitiesFragment = getFragments(osa, suspiciousFiles, FRAGMENT_SENTENCES, FRAGMENT_INCREMENT, true, plagiarismInformation, false);
-
-        // For testing take a smaller suspicious map and the corresponding results.
-        boolean DO_PREFILTERING = false;
+    private static Map<String, List<SavedEntity>> obsoletePreselectionFilter(HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, Map<String, List<SavedEntity>> suspiciousEntitiesFragment, boolean DO_PREFILTERING, int limitCorpus) {
         if(DO_PREFILTERING) {
-            int limitCorpus = 2;
             suspiciousEntitiesFragment = suspiciousEntitiesFragment.entrySet().stream().limit(limitCorpus).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
             List<String> usedPlagiarismInfos = new ArrayList<>();
             for (String suspFragmentID : suspiciousEntitiesFragment.keySet()) {
@@ -256,13 +278,7 @@ public class SalvadorFragmentLevelEval {
             List<String> usedPlagiarismInfosDedup = new ArrayList<String>(new HashSet<String>(usedPlagiarismInfos));
             plagiarismInformation.keySet().retainAll(usedPlagiarismInfosDedup);
         }
-
-        // Do the comparison
-        Map<String, Map<String, Double>>  scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment));
-
-        // Calculate the recall for the scores map (character based)
-        Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, 20);
-
+        return suspiciousEntitiesFragment;
     }
 
 
@@ -310,6 +326,29 @@ public class SalvadorFragmentLevelEval {
         }
         return false;
     }
+
+
+    private static Map<String, List<SavedEntity>>getPlagsizedFragments(OntologyBasedSimilarityAnalysis osa, List<File> inputFiles,
+                                                                HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, boolean candOrSusp) throws Exception {
+        Map<String, List<SavedEntity>> entitiesMap = new HashMap<>();
+        for (File currentFile: inputFiles) {
+            List<SavedEntity> savedEntities = osa.preProcessExtendedInfo(currentFile.getPath(),null );
+            Optional<Integer> maxpos = savedEntities.stream().map(SavedEntity::getToken).max(Comparator.comparing(Token::getSentenceNumber)).map(Token::getSentenceNumber);
+            List<PAN11PlagiarismInfo>  currentPlagiarismInfos = plagiarismInformation.get(currentFile.getName().replace(".txt",".xml"));
+            int index = 0;
+            for(PAN11PlagiarismInfo plagiarismInfo:currentPlagiarismInfos){
+                int plagSuspStart = candOrSusp ? plagiarismInfo.getSourceOffset() : plagiarismInfo.getThisOffset();
+                int plagSuspEnd = candOrSusp ? (plagiarismInfo.getSourceOffset() + plagiarismInfo.getSourceLength()) : (plagiarismInfo.getThisOffset() + plagiarismInfo.getThisLength());
+
+                List<SavedEntity>  plagiarismInfoEntities = savedEntities.stream().filter(savedEntity -> isEntityRelatedToPlagiarism(savedEntity.getToken().getStartCharacter(),savedEntity.getToken().getStartCharacter(),plagSuspStart,plagSuspEnd)).collect(Collectors.toList());
+                String fragmentName = getFragmentName(currentFile, index, candOrSusp);
+                entitiesMap.put(fragmentName,plagiarismInfoEntities);
+                index++;
+            }
+        }
+        return entitiesMap;
+    }
+
     private static Map<String, List<SavedEntity>>getFragments(OntologyBasedSimilarityAnalysis osa, List<File> inputFiles,
                                                                                                          int FRAGMENT_SENTENCES, int FRAGMENT_INCREMENT, boolean filterByResults, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, boolean candOrSusp) throws Exception {
         Map<String, List<SavedEntity>> entitiesMap = new HashMap<>();
