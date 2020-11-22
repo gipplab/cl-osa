@@ -225,7 +225,7 @@ public class SalvadorFragmentLevelEval {
 
         int THRESH1 = 1500;
         int THRESH2 = 2;
-        int FRAGMENT_SENTENCES = 15; //5; // In Sentences
+        int FRAGMENT_SENTENCES = 30; //5; // In Sentences
         int FRAGMENT_INCREMENT = 15; //2; // In Sentences
 
         // Create a list of candidate fragments (all)
@@ -238,11 +238,13 @@ public class SalvadorFragmentLevelEval {
 
         Map<String, List<SavedEntity>> suspiciousEntitiesFragment;
         // Create a list of suspicious fragments (only plagiarism involved fragments)
-        boolean GET_PLAGSIZED_FRAGMENTS = true; // Get fragments exactly the plagiarism size
+        boolean GET_PLAGSIZED_FRAGMENTS = true;
         if(GET_PLAGSIZED_FRAGMENTS){
+            // Get fragments exactly the plagiarism size
             suspiciousEntitiesFragment = getPlagsizedFragments(osa, suspiciousFiles, plagiarismInformation, false);
 
         }else{
+            // Get fragments with plagiarism involved, size of FRAGMENT_SENTENCES
             suspiciousEntitiesFragment = getFragments(osa, suspiciousFiles, FRAGMENT_SENTENCES, FRAGMENT_INCREMENT, true, plagiarismInformation, false);
         }
 
@@ -254,7 +256,37 @@ public class SalvadorFragmentLevelEval {
         Map<String, Map<String, Double>>  scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment));
 
         // Calculate the recall for the scores map (character based)
-        Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, 20);
+        Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,20);
+
+
+
+        // Detailed Comparison
+
+        // Do document preselection (not clear atm, which documents)
+            // Variations:
+            // all documents
+            // documents containing the k-next candidates
+            // documents containing plagiarism
+
+
+
+        // Get all fragments for Suspicious document X.
+        // Get all fragments for Candidate document Y.
+
+        // Iterate Fragments of Supicious Document X
+            // Get best 5 fragments from Candidate document Y
+
+            // Merge the 5 fragments with each other if they are near in distance (THRESHOLD_1)
+
+            // Store the merged and non merged fragments in - selected fragments
+                //  (also add the corresponding suspicius fragments in results)
+                // (also add the scores)
+
+
+
+
+        // For all fragments with key of selected candidate fragments, select the ones over THRESHOLD_2 as plagiarism
+
 
     }
 
@@ -282,7 +314,7 @@ public class SalvadorFragmentLevelEval {
     }
 
 
-    private static boolean isEntityRelatedToPlagiarism(int entityStart, int entityEnd, int plagiarismStart, int plagiarismEnd){
+    public static boolean isEntityRelatedToPlagiarism(int entityStart, int entityEnd, int plagiarismStart, int plagiarismEnd){
         // similar to isWindowRelatedToPlagiarism in OntologyBasedSimilarityAnalysis
         // TODO maybe require minimum overlap otherwise prob
 

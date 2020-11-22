@@ -1,5 +1,6 @@
 package com.iandadesign.closa.util;
 
+import com.iandadesign.closa.SalvadorFragmentLevelEval;
 import com.iandadesign.closa.model.SalvadorTextFragment;
 import com.iandadesign.closa.model.SavedEntity;
 
@@ -7,6 +8,7 @@ import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.iandadesign.closa.SalvadorFragmentLevelEval.isEntityRelatedToPlagiarism;
 import static java.lang.Integer.max;
 import static java.lang.Integer.min;
 
@@ -104,14 +106,7 @@ public class PAN11RankingEvaluator {
         return areaSizeAcc;
     }
     /**
-     *
-     How did you compute the R@k metric for query documents that contain fewer than k plagiarized segments? For example, if dq contains 40 plagiarized sentences, chances are that fewer than 20 fragments of 5 sentences with 2 sentences overlap will contain plagiarized content and thus can be assigned a true positive fragment from the source document. Did you limit the score computation to the maximum number of possible detections or did you always consider k results although this might reduce the recall for short cases?
-
-     The recall was computed at character level! and the value of k doesn’t affect to documents with fewer than k cases.
-     Consider that regardless of how many cases a document has, it will have a lot of text fragments in the compared space.
-     So even if you have a single case in the document, you will compare the fragment involving that case vs many text fragments.
-     In addition, R@10 could be done even with a single case, and a target space smaller than 10.
-     Basically, your R@10 would be the same as with the maximum existing k.
+     * Calculate R@k on character level.
      * @param suspiciousIdCandidateScoresMap
      * @param candidateEntitiesMap
      * @param suspiciousEntitiesMap
@@ -123,6 +118,7 @@ public class PAN11RankingEvaluator {
                                                                   Map<String, List<SavedEntity>> candidateEntitiesMap,
                                                                   Map<String, List<SavedEntity>> suspiciousEntitiesMap,
                                                                   HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation,
+                                                                  ExtendedLogUtil logUtil,
                                                                   int k){
         // Found character counts.
         int overallFindings = 0;
@@ -137,8 +133,29 @@ public class PAN11RankingEvaluator {
                 overallPossibleFindingsSimple+= currentPlagiarismInfo.getSourceLength();
 
                 //With overlaps: get the related fragment for each candidate plagiarism area
+                String sourceFilename = currentPlagiarismInfo.getSourceReference();
+                int plagCandStart = currentPlagiarismInfo.getSourceOffset();
+                int plagCandEnd = currentPlagiarismInfo.getSourceOffset() + currentPlagiarismInfo.getSourceLength();
+                List<SavedEntity> selectedSourceEntities = new ArrayList<>();
+                for(Map.Entry<String, List<SavedEntity>> mapEntry: candidateEntitiesMap.entrySet() ){
+                    String basename = getBaseName(mapEntry.getKey(), ".txt").replace("candidate","source");
+                    if(!basename.equals(sourceFilename)){
+                        continue;
+                    }
+                    //selectedSourceEntities.addAll(mapEntry.getValue());
+                    // TODO continue here Probably no double entries
+                    List<SavedEntity>  candidateFindingEntities = mapEntry.getValue().stream().filter(savedEntity -> isEntityRelatedToPlagiarism(savedEntity.getToken().getStartCharacter(),savedEntity.getToken().getStartCharacter(),plagCandStart,plagCandEnd)).collect(Collectors.toList());
+                    int startCharacter = Integer.MAX_VALUE;
+                    int endCharacter = 0;
+                    for(SavedEntity savedEntity:candidateFindingEntities){
+                        startCharacter =  min(savedEntity.getToken().getStartCharacter(), startCharacter);
+                        endCharacter = max(savedEntity.getToken().getEndCharacter(), endCharacter);
+                    }
+                    // Get the area the fragments cover
+                    int findingSize = max(0, endCharacter - startCharacter);
+                    overallPossibleFindings+=findingSize;
 
-                // Get the area the fragments cover
+                }
             }
         }
         System.out.println("Overall possible characters to find: "+overallPossibleFindingsSimple);
@@ -194,7 +211,13 @@ public class PAN11RankingEvaluator {
         R@k = overallFindings/overallPossibleFindings * 100;
         */
 
-        double recallAtK = (double) overallFindings / overallPossibleFindingsSimple * 100;
+        double recallAtKS = (double) overallFindings / overallPossibleFindingsSimple * 100;
+        logUtil.logAndWriteStandard(false, "RecallS at ", k, " is: ", recallAtKS, "Findings/PossibleFindings (",overallFindings,"/", overallPossibleFindingsSimple,")");
+
+        double recallAtK = (double) overallFindings / overallPossibleFindings * 100;
+        logUtil.logAndWriteStandard(false, "RecallS at ", k, " is: ", recallAtK, "Findings/PossibleFindings (",overallFindings,"/", overallPossibleFindings,")");
+
+
         return recallAtK;
     }
 
