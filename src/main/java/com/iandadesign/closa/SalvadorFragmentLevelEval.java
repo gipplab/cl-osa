@@ -2,12 +2,14 @@ package com.iandadesign.closa;
 
 import com.iandadesign.closa.model.*;
 import com.iandadesign.closa.util.*;
+import edu.stanford.nlp.util.ArrayMap;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.iandadesign.closa.PAN11EvaluationSetEval.evalPAN2011AllNew;
 import static com.iandadesign.closa.PAN11EvaluationSetEval.logParams;
 import static java.lang.Integer.max;
 import static java.lang.Integer.min;
@@ -256,38 +258,152 @@ public class SalvadorFragmentLevelEval {
         Map<String, Map<String, Double>>  scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment));
 
         // Calculate the recall for the scores map (character based)
-        Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,20);
+        //Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,20);
 
 
+        // DA implementation:
 
-        // Detailed Comparison
+        // Create a document fragment map for (SuspFragments/CandFragments)
+        Map<String, List<String>> suspDocFragmentMap = getDocumentFragmentMap(suspiciousEntitiesFragment);
+        Map<String, List<String>> candDocFragmentMap = getDocumentFragmentMap(candidateEntitiesFragment);
 
-        // Do document preselection (not clear atm, which documents)
+
+        // Detailed Comparison ...
+
+        // TBD: Do document preselection (not clear atm, which documents)
             // Variations:
-            // all documents
-            // documents containing the k-next candidates
-            // documents containing plagiarism
+            //- all documents
+            //- documents containing the k-next candidates
+            //- documents containing plagiarism
+
+        // Compare each preselected suspicious document to candidate document.
+        for(String suspiciousDocument:suspDocFragmentMap.keySet()){
+            for(String candidateDocument:candDocFragmentMap.keySet()){
+                doDetailedAnalysis(
+                        suspDocFragmentMap.get(suspiciousDocument),
+                        candDocFragmentMap.get(candidateDocument),
+                        candidateEntitiesFragment,
+                        scoresMap,
+                        THRESH1,
+                        THRESH2
+                );
+            }
+        }
 
 
 
-        // Get all fragments for Suspicious document X.
-        // Get all fragments for Candidate document Y.
 
+
+
+
+
+    }
+    public static void doDetailedAnalysis(List<String> suspiciousFragments, List<String> candidateFragments,Map<String, List<SavedEntity>> candidateEntitiesFragment,  Map<String, Map<String, Double>>  scoresMap, int THRESHOLD_1, int THRESHOLD_2){
+        // Get selected suspicious fragments from results
+        Map<String, Map<String, Double>> scoresMapSelected = new HashMap<>(scoresMap);
+        scoresMapSelected.keySet().retainAll(suspiciousFragments);
+
+
+        for(String suspiciousFragmentID:scoresMapSelected.keySet()){
+            // Get selected candidate fragments from results
+           Map<String, Double> candidateScores = new HashMap<>(scoresMapSelected.get(suspiciousFragmentID));
+            candidateScores.keySet().retainAll(candidateFragments);
+
+           // Get best scoring 5 fragments
+            Map<String, Double> candidateScoresMapSelected = candidateScores.entrySet().stream()
+                    .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                    .limit(5)
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
+            // Get the start stop coordinates for the fragments.
+            Map<String, SalvadorTextFragment> fragmentInfos = new ArrayMap<>();
+            for(String candidateFragmentID: candidateScoresMapSelected.keySet()){
+                fragmentInfos.put(candidateFragmentID, PAN11RankingEvaluator.createTextFragment(candidateEntitiesFragment.get(candidateFragmentID),candidateFragmentID));
+            }
+
+           // Merge the 5 fragments with each other if they are near in distance (THRESHOLD_1)
+            boolean convergent = false;
+            while (!convergent){
+                boolean mergeHappened = false;
+                Map<String, SalvadorTextFragment> newFragmentInfos = new ArrayMap<>();
+
+                for(String fragmentIDSelected1:fragmentInfos.keySet()){
+                    for(String fragmentIDSelected2:fragmentInfos.keySet()){
+                        if(fragmentIDSelected1.equals(fragmentIDSelected2))continue;
+                        SalvadorTextFragment fragment1 = fragmentInfos.get(fragmentIDSelected1);
+                        SalvadorTextFragment fragment2= fragmentInfos.get(fragmentIDSelected2);
+                        double distance = calculateDistanceFragments(fragment1, fragment2);
+                        if(distance < THRESHOLD_1){
+                            System.out.println("Merge fragments");
+                            SalvadorTextFragment mergedFragment = mergeFragments(fragment1,fragment2);
+                            newFragmentInfos.put("merge", mergedFragment);
+                            // Somehow remove
+                            mergeHappened = true;
+
+                        }
+                    }
+                }
+                // TBD Add unmerged Stuff also to newFragments here.
+                fragmentInfos = newFragmentInfos;
+                if(!mergeHappened) {
+                    convergent = true;
+                }
+            }
+
+
+
+        }
         // Iterate Fragments of Supicious Document X
-            // Get best 5 fragments from Candidate document Y
+        // Get best 5 fragments from Candidate document Y
 
-            // Merge the 5 fragments with each other if they are near in distance (THRESHOLD_1)
 
-            // Store the merged and non merged fragments in - selected fragments
-                //  (also add the corresponding suspicius fragments in results)
-                // (also add the scores)
+        // Store the merged and non merged fragments in - selected fragments
+        //  (also add the corresponding suspicius fragments in results)
+        // (also add the scores)
 
 
 
 
         // For all fragments with key of selected candidate fragments, select the ones over THRESHOLD_2 as plagiarism
 
+    }
 
+    public static SalvadorTextFragment mergeFragments(SalvadorTextFragment fragment1, SalvadorTextFragment fragment2){
+        SalvadorTextFragment mergedFragment = new SalvadorTextFragment();
+        mergedFragment.setSentencesStartChar(min(fragment1.getSentencesStartChar(),fragment2.getSentencesStartChar()));
+        mergedFragment.setSentencesEndChar(max(fragment1.getSentencesEndChar(),fragment2.getSentencesEndChar()));
+        mergedFragment.setCharLengthBySentences(mergedFragment.getSentencesEndChar()-mergedFragment.getSentencesStartChar());
+        return mergedFragment;
+    }
+
+    public static int calculateDistanceFragments(SalvadorTextFragment fragment1, SalvadorTextFragment fragment2){
+        // TODO fix and check this
+        int d1 = fragment2.getSentencesStartChar()-fragment1.getSentencesEndChar();
+        int d2 = fragment1.getSentencesStartChar()-fragment2.getSentencesEndChar();
+        int distance = min(d1,d2);
+        return distance;
+    }
+    /**
+     * Suspicious or Candidate entityFragment Map,
+     * fragmentIDs get mapped to corresponding document IDs
+     * @param fragmentEntityMap
+     * @return
+     */
+    private static Map<String, List<String>>  getDocumentFragmentMap(Map<String, List<SavedEntity>> fragmentEntityMap) {
+        Map<String, List<String>> documentFragmentsMap = new ArrayMap<>();
+        for(String fragmentID: fragmentEntityMap.keySet()){
+            String baseName = PAN11RankingEvaluator.getBaseName(fragmentID,".txt");
+            List<String> fragmentIDs = documentFragmentsMap.get(baseName);
+            if(fragmentIDs == null){
+                fragmentIDs = new ArrayList<>();
+                fragmentIDs.add(fragmentID);
+                documentFragmentsMap.put(baseName, fragmentIDs);
+                continue;
+            }
+            fragmentIDs.add(fragmentID);
+
+        }
+        return documentFragmentsMap;
     }
 
     private static List<File> filterBySuspFileLimit(HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, List<File> suspiciousFiles, boolean DO_FILE_PREFILTERING, int SUSP_FILE_LIMIT) {
