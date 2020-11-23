@@ -282,6 +282,7 @@ public class SalvadorFragmentLevelEval {
                 doDetailedAnalysis(
                         suspDocFragmentMap.get(suspiciousDocument),
                         candDocFragmentMap.get(candidateDocument),
+                        suspiciousEntitiesFragment,
                         candidateEntitiesFragment,
                         scoresMap,
                         THRESH1,
@@ -298,13 +299,18 @@ public class SalvadorFragmentLevelEval {
 
 
     }
-    public static void doDetailedAnalysis(List<String> suspiciousFragments, List<String> candidateFragments,Map<String, List<SavedEntity>> candidateEntitiesFragment,  Map<String, Map<String, Double>>  scoresMap, int THRESHOLD_1, int THRESHOLD_2){
+    public static void doDetailedAnalysis(List<String> suspiciousFragments, List<String> candidateFragments,
+                                          Map<String, List<SavedEntity>> suspiciousEntitiesFragment,
+                                          Map<String, List<SavedEntity>> candidateEntitiesFragment,
+                                          Map<String, Map<String, Double>>  scoresMap, int THRESHOLD_1, int THRESHOLD_2){
         // Get selected suspicious fragments from results
         Map<String, Map<String, Double>> scoresMapSelected = new HashMap<>(scoresMap);
         scoresMapSelected.keySet().retainAll(suspiciousFragments);
+        Map<String, SalvadorTextFragment> overallFragmentInfos = new ArrayMap<>();
 
 
         for(String suspiciousFragmentID:scoresMapSelected.keySet()){
+            SalvadorTextFragment suspiciousFragment = PAN11RankingEvaluator.createTextFragment(suspiciousEntitiesFragment.get(suspiciousFragmentID), suspiciousFragmentID);
             // Get selected candidate fragments from results
            Map<String, Double> candidateScores = new HashMap<>(scoresMapSelected.get(suspiciousFragmentID));
             candidateScores.keySet().retainAll(candidateFragments);
@@ -318,38 +324,27 @@ public class SalvadorFragmentLevelEval {
             // Get the start stop coordinates for the fragments.
             Map<String, SalvadorTextFragment> fragmentInfos = new ArrayMap<>();
             for(String candidateFragmentID: candidateScoresMapSelected.keySet()){
-                fragmentInfos.put(candidateFragmentID, PAN11RankingEvaluator.createTextFragment(candidateEntitiesFragment.get(candidateFragmentID),candidateFragmentID));
+                SalvadorTextFragment fragmentToAdd =  PAN11RankingEvaluator.createTextFragment(candidateEntitiesFragment.get(candidateFragmentID),candidateFragmentID);
+                fragmentToAdd.setComputedScore(candidateScoresMapSelected.get(candidateFragmentID));
+
+                fragmentInfos.put(candidateFragmentID, fragmentToAdd);
             }
 
-           // Merge the 5 fragments with each other if they are near in distance (THRESHOLD_1)
-            boolean convergent = false;
-            while (!convergent){
-                boolean mergeHappened = false;
-                Map<String, SalvadorTextFragment> newFragmentInfos = new ArrayMap<>();
+            // Merge the fragments
+            fragmentInfos = mergeFragments(THRESHOLD_1, fragmentInfos);
 
-                for(String fragmentIDSelected1:fragmentInfos.keySet()){
-                    for(String fragmentIDSelected2:fragmentInfos.keySet()){
-                        if(fragmentIDSelected1.equals(fragmentIDSelected2))continue;
-                        SalvadorTextFragment fragment1 = fragmentInfos.get(fragmentIDSelected1);
-                        SalvadorTextFragment fragment2= fragmentInfos.get(fragmentIDSelected2);
-                        double distance = calculateDistanceFragments(fragment1, fragment2);
-                        if(distance < THRESHOLD_1){
-                            System.out.println("Merge fragments");
-                            SalvadorTextFragment mergedFragment = mergeFragments(fragment1,fragment2);
-                            newFragmentInfos.put("merge", mergedFragment);
-                            // Somehow remove
-                            mergeHappened = true;
 
-                        }
-                    }
-                }
-                // TBD Add unmerged Stuff also to newFragments here.
-                fragmentInfos = newFragmentInfos;
-                if(!mergeHappened) {
-                    convergent = true;
+            // Rate the new fragment infos as plagiarism or not
+            for(String clusteredFragmentID: fragmentInfos.keySet()){
+                SalvadorTextFragment clusteredFragment = fragmentInfos.get(clusteredFragmentID);
+                if(clusteredFragment.getComputedScore()>THRESHOLD_2){
+                    int thisStart = suspiciousFragment.getSentencesStartChar();
+                    int thisLength = suspiciousFragment.getCharLengthBySentences();
+                    int sourceStart = clusteredFragment.getSentencesStartChar();
+                    int sourcLength = clusteredFragment.getCharLengthBySentences();
+                    // Not this down ?
                 }
             }
-
 
 
         }
@@ -368,19 +363,112 @@ public class SalvadorFragmentLevelEval {
 
     }
 
-    public static SalvadorTextFragment mergeFragments(SalvadorTextFragment fragment1, SalvadorTextFragment fragment2){
+    @NotNull
+    private static Map<String, SalvadorTextFragment> mergeFragments(int THRESHOLD_1, Map<String, SalvadorTextFragment> fragmentInfos) {
+        // Merge the 5 fragments with each other if they are near in distance (THRESHOLD_1)
+        boolean convergent = false;
+        int convergenceIndex=0;
+        while (!convergent){
+            boolean mergeHappened = false;
+            Map<String, SalvadorTextFragment> newFragmentInfos = new ArrayMap<>(fragmentInfos);
+
+
+            int outerIndex = 0;
+            for(String fragmentIDSelected1: fragmentInfos.keySet()){
+                SalvadorTextFragment fragment1 = fragmentInfos.get(fragmentIDSelected1);
+
+                int innerIndex = 0;
+                for(String fragmentIDSelected2: fragmentInfos.keySet()){
+                    // Only compare same IDs once
+                    if(innerIndex<=outerIndex){
+                        innerIndex++;
+                        continue;
+                    }
+
+                    SalvadorTextFragment fragment2 = fragmentInfos.get(fragmentIDSelected2);
+                    double distance = calculateDistanceFragments(fragment1, fragment2);
+                    if(distance < THRESHOLD_1){
+                        System.out.println("Merge fragments");
+                        String mergeFragmentID = "merge"+outerIndex+"_"+innerIndex+"_"+convergenceIndex;
+                        SalvadorTextFragment mergedFragment = mergeFragments(fragment1, fragment2, mergeFragmentID);
+                        // Remove IDs from unmerged List
+                        newFragmentInfos.remove(fragmentIDSelected1);
+                        newFragmentInfos.remove(fragmentIDSelected2);
+                        newFragmentInfos.put(mergeFragmentID, mergedFragment);
+                        mergeHappened = true;
+                        if(mergeHappened) break;
+                    }
+                    if(mergeHappened)break;
+                    innerIndex++;
+                }
+                outerIndex++;
+            }
+
+            fragmentInfos = newFragmentInfos;
+            if(!mergeHappened) {
+                convergent = true;
+            }
+            convergenceIndex++;
+        }
+        return fragmentInfos;
+    }
+
+    public static SalvadorTextFragment mergeFragments(SalvadorTextFragment fragment1, SalvadorTextFragment fragment2, String mergeFragmentID){
+
         SalvadorTextFragment mergedFragment = new SalvadorTextFragment();
+        mergedFragment.setMerged(true);
         mergedFragment.setSentencesStartChar(min(fragment1.getSentencesStartChar(),fragment2.getSentencesStartChar()));
         mergedFragment.setSentencesEndChar(max(fragment1.getSentencesEndChar(),fragment2.getSentencesEndChar()));
         mergedFragment.setCharLengthBySentences(mergedFragment.getSentencesEndChar()-mergedFragment.getSentencesStartChar());
+        mergedFragment.setFragmentID(mergeFragmentID);
+
+        // Merge Score (TBD: Score eval)
+        int  lengthAdded = fragment1.getCharLengthBySentences()+fragment2.getCharLengthBySentences();
+        Double mergedScore =
+                ((fragment1.getComputedScore() * fragment1.getCharLengthBySentences()) +
+                        (fragment2.getComputedScore() * fragment2.getCharLengthBySentences()))
+                / lengthAdded;
+        mergedFragment.setComputedScore(mergedScore);
+
+
+
+        // Add additional info
+        /*
+        List<String> fragmentIDs = new ArrayList<>();
+        if(fragment1.getMergedIDs()!=null){
+            fragmentIDs.addAll(fragment1.getMergedIDs());
+        }
+        if(fragment2.getMergedIDs()!=null){
+            fragmentIDs.addAll(fragment2.getMergedIDs());
+        }
+        if(!fragmentIDs.contains(fragment1.getFragmentID())){
+            fragmentIDs.add(fragment1.getFragmentID());
+        }
+        if(!fragmentIDs.contains(fragment2.getFragmentID())){
+            fragmentIDs.add(fragment2.getFragmentID());
+        }
+        mergedFragment.setMergedIDs(fragmentIDs);
+        */
         return mergedFragment;
     }
 
     public static int calculateDistanceFragments(SalvadorTextFragment fragment1, SalvadorTextFragment fragment2){
-        // TODO fix and check this
-        int d1 = fragment2.getSentencesStartChar()-fragment1.getSentencesEndChar();
-        int d2 = fragment1.getSentencesStartChar()-fragment2.getSentencesEndChar();
-        int distance = min(d1,d2);
+        int f1start = fragment1.getSentencesStartChar();
+        int f1end = fragment1.getSentencesEndChar();
+        int f2start = fragment2.getSentencesStartChar();
+        int f2end = fragment2.getSentencesEndChar();
+        int distance = 0;
+        if(f1start<f2start){
+            // Fragment one is first
+            distance = f2start-f1end;
+        }else{
+            // Fragment two is first
+            distance = f1start-f2end;
+        }
+         // TODO fix and check this
+        //int d1 = fragment2.getSentencesStartChar()-fragment1.getSentencesEndChar();
+        //int d2 = fragment1.getSentencesStartChar()-fragment2.getSentencesEndChar();
+        //int distance = min(d1,d2);
         return distance;
     }
     /**

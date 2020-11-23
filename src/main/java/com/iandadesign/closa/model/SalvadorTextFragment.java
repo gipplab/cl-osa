@@ -1,6 +1,8 @@
 package com.iandadesign.closa.model;
 
+import javax.swing.*;
 import java.io.File;
+import java.util.List;
 
 public class SalvadorTextFragment {
 
@@ -11,7 +13,33 @@ public class SalvadorTextFragment {
     int sentencesEndChar;
     int charLengthBySentences;
     int charLengthByEntities;
+    boolean isMerged = false;
+    List<String> mergedIDs;
+    Double computedScore;
 
+    public Double getComputedScore() {
+        return computedScore;
+    }
+
+    public void setComputedScore(Double computedScore) {
+        this.computedScore = computedScore;
+    }
+
+    public boolean isMerged() {
+        return isMerged;
+    }
+
+    public List<String> getMergedIDs() {
+        return mergedIDs;
+    }
+
+    public void setMerged(boolean merged) {
+        isMerged = merged;
+    }
+
+    public void setMergedIDs(List<String> mergedIDs) {
+        this.mergedIDs = mergedIDs;
+    }
 
     public String getFragmentID() {
         return fragmentID;
