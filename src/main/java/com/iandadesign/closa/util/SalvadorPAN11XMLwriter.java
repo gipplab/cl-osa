@@ -22,13 +22,13 @@ public class SalvadorPAN11XMLwriter {
                                              String preprocessedCachingDirectory,
                                              Map<String, Map<String, Map<SalvadorTextFragment, SalvadorTextFragment>>> allResults){
         String xmlResultsFolderPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
-                "results_comparisonSalvador", tag.concat("_").concat(dateString)).toAbsolutePath().toString();
+                "results_comparison_salvador", tag.concat("_").concat(dateString)).toAbsolutePath().toString();
         // Do writing for each corresponding
         for(String suspiciousDocument:allResults.keySet()){
             for(String candidateDocument:allResults.get(suspiciousDocument).keySet()){
                 String cosineResultsPath = Paths.get(xmlResultsFolderPath,
                         suspiciousDocument.replace(".txt",""),
-                        candidateDocument.concat(".xml"))
+                        candidateDocument.replace(".txt","").concat(".xml"))
                         .toAbsolutePath().toString();
                 // Writing the results to xml file
                 try {
@@ -38,7 +38,7 @@ public class SalvadorPAN11XMLwriter {
                     writeResultAsXML(cosineResultsPath,suspiciousDocument, candidateDocument, currentCases);
                     prettifyXML(cosineResultsPath);
                 } catch(Exception ex){
-                    System.out.println("Exception during printing results: "+ex.toString());
+                    System.out.println("Exception during writing results: "+ex.toString());
                     ex.printStackTrace();
                 }
             }
@@ -70,7 +70,8 @@ public class SalvadorPAN11XMLwriter {
         eventWriter.add(startDocument);
 
         // Writing the xml input to file.
-        createDocumentNode(eventWriter, suspiciousDocument, candidateDocument, plagiarismCases); //this.suspiciousDocumentName);
+        String candidateDocumentName = candidateDocument.replace("candidate-","source-");
+        createDocumentNode(eventWriter, suspiciousDocument, candidateDocumentName, plagiarismCases); //this.suspiciousDocumentName);
 
         eventWriter.close();
         fos.close();

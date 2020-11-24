@@ -317,7 +317,7 @@ public class SalvadorFragmentLevelEval {
         //String baseResultsPath = "/data/CLOSA_data/preprocessed/preprocessed_extended/results_comparison/evalPAN2011Salvador"; // TODO adapt
         File cachingDir= new File(xmlResultsFolderPath +"/file_selection_cache");
         PAN11FileUtil.removeDirectory(cachingDir);
-        List<File> suspiciousXML  =  PAN11FileUtil.getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".xml");
+        List<File> suspiciousXML  =  suspiciousFiles.stream().map(file -> new File(file.getAbsolutePath().replace(".txt",".xml"))).collect(Collectors.toList()); //PAN11FileUtil.getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".xml");
         PAN11FileUtil.writeFileListToDirectory(suspiciousXML, cachingDir.getPath(), logUtil);
         PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath());
         PAN11FileUtil.removeDirectory(cachingDir);
