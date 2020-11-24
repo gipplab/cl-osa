@@ -4,8 +4,10 @@ import com.iandadesign.closa.model.*;
 import com.iandadesign.closa.util.*;
 import edu.stanford.nlp.util.ArrayMap;
 import org.jetbrains.annotations.NotNull;
+import org.joda.time.DateTime;
 
 import java.io.File;
+import java.time.DateTimeException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -17,7 +19,7 @@ import static java.lang.Integer.min;
 public class SalvadorFragmentLevelEval {
 
     public static String pathPrefix = "/data/pan-plagiarism-corpus-2011/external-detection-corpus";
-
+    public static String preprocessedCachingDir = "/data/CLOSA_data/preprocessed";
 
     public static void main(String[] args) {
         Boolean smallTest = false;                  // Just select few suspicious files for the complete process
@@ -226,7 +228,7 @@ public class SalvadorFragmentLevelEval {
         List<File> suspiciousFiles  = PAN11FileUtil.getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".txt");
 
         int THRESH1 = 1500;
-        int THRESH2 = 2;
+        double THRESH2 = 0.086;
         int FRAGMENT_SENTENCES = 30; //5; // In Sentences
         int FRAGMENT_INCREMENT = 15; //2; // In Sentences
 
@@ -275,38 +277,61 @@ public class SalvadorFragmentLevelEval {
             //- all documents
             //- documents containing the k-next candidates
             //- documents containing plagiarism
-
         // Compare each preselected suspicious document to candidate document.
+        Map<String, Map<String, Map<SalvadorTextFragment, SalvadorTextFragment>>> allResults = new HashMap<>();
         for(String suspiciousDocument:suspDocFragmentMap.keySet()){
+            Map<String, Map<SalvadorTextFragment, SalvadorTextFragment>> supFilePlagiarism = new HashMap<>();
+
             for(String candidateDocument:candDocFragmentMap.keySet()){
-                doDetailedAnalysis(
+                // Calculate DA-Clustering for current file combination.
+                Map<SalvadorTextFragment, SalvadorTextFragment> detailedAnalysisResultsD2D = doDetailedAnalysis(
                         suspDocFragmentMap.get(suspiciousDocument),
                         candDocFragmentMap.get(candidateDocument),
                         suspiciousEntitiesFragment,
                         candidateEntitiesFragment,
                         scoresMap,
                         THRESH1,
-                        THRESH2
+                        THRESH2,
+                        5
                 );
+
+                if(detailedAnalysisResultsD2D.size() > 1){
+                    Map<SalvadorTextFragment, SalvadorTextFragment> currentMap = supFilePlagiarism.get(candidateDocument);
+                    if(currentMap==null) {
+                        supFilePlagiarism.put(candidateDocument, detailedAnalysisResultsD2D);
+                    }else{
+                        // TBD validate if ok
+                        currentMap.putAll(detailedAnalysisResultsD2D);
+                    }
+                    // Note results to
+
+                }
             }
+
+            allResults.put(suspiciousDocument, supFilePlagiarism);
+
         }
-
-
-
-
-
-
-
+        // Write down all xml Results
+        String xmlResultsFolderPath = SalvadorPAN11XMLwriter.writeDownAllXMLResults(tag,logUtil.getDateString(), preprocessedCachingDir,allResults);
+        // Do evaluation with the current set filters
+        //String baseResultsPath = "/data/CLOSA_data/preprocessed/preprocessed_extended/results_comparison/evalPAN2011Salvador"; // TODO adapt
+        File cachingDir= new File(xmlResultsFolderPath +"/file_selection_cache");
+        PAN11FileUtil.removeDirectory(cachingDir);
+        List<File> suspiciousXML  =  PAN11FileUtil.getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".xml");
+        PAN11FileUtil.writeFileListToDirectory(suspiciousXML, cachingDir.getPath(), logUtil);
+        PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath());
+        PAN11FileUtil.removeDirectory(cachingDir);
 
     }
-    public static void doDetailedAnalysis(List<String> suspiciousFragments, List<String> candidateFragments,
+
+    public static Map<SalvadorTextFragment, SalvadorTextFragment>  doDetailedAnalysis(List<String> suspiciousFragments, List<String> candidateFragments,
                                           Map<String, List<SavedEntity>> suspiciousEntitiesFragment,
                                           Map<String, List<SavedEntity>> candidateEntitiesFragment,
-                                          Map<String, Map<String, Double>>  scoresMap, int THRESHOLD_1, int THRESHOLD_2){
+                                          Map<String, Map<String, Double>>  scoresMap, int THRESHOLD_1, double THRESHOLD_2, int RANKLIMIT){
         // Get selected suspicious fragments from results
         Map<String, Map<String, Double>> scoresMapSelected = new HashMap<>(scoresMap);
         scoresMapSelected.keySet().retainAll(suspiciousFragments);
-        Map<String, SalvadorTextFragment> overallFragmentInfos = new ArrayMap<>();
+        Map<SalvadorTextFragment, SalvadorTextFragment> fragmentInfosSelected = new ArrayMap<>();
 
 
         for(String suspiciousFragmentID:scoresMapSelected.keySet()){
@@ -318,7 +343,7 @@ public class SalvadorFragmentLevelEval {
            // Get best scoring 5 fragments
             Map<String, Double> candidateScoresMapSelected = candidateScores.entrySet().stream()
                     .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-                    .limit(5)
+                    .limit(RANKLIMIT)
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
             // Get the start stop coordinates for the fragments.
@@ -337,30 +362,15 @@ public class SalvadorFragmentLevelEval {
             // Rate the new fragment infos as plagiarism or not
             for(String clusteredFragmentID: fragmentInfos.keySet()){
                 SalvadorTextFragment clusteredFragment = fragmentInfos.get(clusteredFragmentID);
+                System.out.println(suspiciousFragmentID+"/"+candidateFragments.get(0)+":"+clusteredFragment.getComputedScore());
                 if(clusteredFragment.getComputedScore()>THRESHOLD_2){
-                    int thisStart = suspiciousFragment.getSentencesStartChar();
-                    int thisLength = suspiciousFragment.getCharLengthBySentences();
-                    int sourceStart = clusteredFragment.getSentencesStartChar();
-                    int sourcLength = clusteredFragment.getCharLengthBySentences();
-                    // Not this down ?
+                    fragmentInfosSelected.put(suspiciousFragment, clusteredFragment);
                 }
             }
 
 
         }
-        // Iterate Fragments of Supicious Document X
-        // Get best 5 fragments from Candidate document Y
-
-
-        // Store the merged and non merged fragments in - selected fragments
-        //  (also add the corresponding suspicius fragments in results)
-        // (also add the scores)
-
-
-
-
-        // For all fragments with key of selected candidate fragments, select the ones over THRESHOLD_2 as plagiarism
-
+        return fragmentInfosSelected;
     }
 
     @NotNull
@@ -388,7 +398,7 @@ public class SalvadorFragmentLevelEval {
                     SalvadorTextFragment fragment2 = fragmentInfos.get(fragmentIDSelected2);
                     double distance = calculateDistanceFragments(fragment1, fragment2);
                     if(distance < THRESHOLD_1){
-                        System.out.println("Merge fragments");
+                        //System.out.println("Merge fragments");
                         String mergeFragmentID = "merge"+outerIndex+"_"+innerIndex+"_"+convergenceIndex;
                         SalvadorTextFragment mergedFragment = mergeFragments(fragment1, fragment2, mergeFragmentID);
                         // Remove IDs from unmerged List
