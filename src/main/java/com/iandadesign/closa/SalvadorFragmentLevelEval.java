@@ -18,7 +18,7 @@ public class SalvadorFragmentLevelEval {
 
 
     public static void main(String[] args) {
-        Boolean smallTest = false;                  // Just select few suspicious files for the complete process
+        Boolean smallTest = true;                  // Just select few suspicious files for the complete process
         Boolean evaluateCandidateRetrieval = true; // This triggers only the CR evaluation.
         Boolean addCRResultInfo = true;              // This will test detailed analysis with mocked CR results
         Integer maxMockSuspCandiates = 30;          // This is a delimeter for the maximum of suspicious files locked in mockCR Evaluation, set over 304 to check all susp files.
@@ -26,9 +26,9 @@ public class SalvadorFragmentLevelEval {
         //evalPAN2011All();
 
         if(args!=null && args.length >= 1){
-            evalPAN2011EnEs(args[0], smallTest, evaluateCandidateRetrieval, addCRResultInfo, 30 );
+            evalPAN2011EnEs(args[0], smallTest, evaluateCandidateRetrieval, addCRResultInfo, maxMockSuspCandiates );
         }else{
-            evalPAN2011EnEs(null, smallTest, evaluateCandidateRetrieval, addCRResultInfo, 30 );
+            evalPAN2011EnEs(null, smallTest, evaluateCandidateRetrieval, addCRResultInfo, maxMockSuspCandiates );
         }
     }
 

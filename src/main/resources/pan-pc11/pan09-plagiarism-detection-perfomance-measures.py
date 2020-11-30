@@ -276,7 +276,7 @@ def index_annotations(annotations, xref=TREF):
 def extract_annotations_from_files(path, tagname):
     """Returns a set of plagiarism annotations from XML files below path."""
     if not os.path.exists(path):
-        print "Path not accessible:", path
+        print("Path not accessible:", path)
         sys.exit(2)
     annotations = set()
     xmlfiles = glob.glob(os.path.join(path, '*.xml'))
@@ -419,7 +419,7 @@ class TestPerfMeasures(unittest.TestCase):
 
 def usage():
     """Prints command line usage manual."""
-    print """\
+    print("""\
 Usage: perfmeasures.py [options]
 
 Options:
@@ -432,7 +432,7 @@ Options:
       --det-tag    Tag name of the detection annotations,
                    default: 'detected-plagiarism'
   -h, --help       Show this message
-"""
+""")
 
 
 def parse_options():
@@ -441,8 +441,8 @@ def parse_options():
         long_options = ["micro", "plag-path=", "plag-tag=", "det-path=",
                         "det-tag=", "help"]
         opts, _ = getopt.getopt(sys.argv[1:], "p:d:h", long_options)
-    except getopt.GetoptError, err:
-        print str(err)
+    except getopt.GetoptError as err:
+        print(str(err))
         usage()
         sys.exit(2)
     micro_averaged = False
@@ -465,33 +465,33 @@ def parse_options():
         else:
             assert False, "Unknown option."
     if plag_path == "undefined":
-        print "Plagiarism path undefined. Use option -p or --plag-path."
+        print("Plagiarism path undefined. Use option -p or --plag-path.")
         sys.exit()
     if det_path == "undefined":
-        print "Detections path undefined. Use option -d or --det-path."
+        print("Detections path undefined. Use option -d or --det-path.")
         sys.exit()
     return (micro_averaged, plag_path, plag_tag_name, det_path, det_tag_name)
 
 
 def main(micro_averaged, plag_path, plag_tag_name, det_path, det_tag_name):
     """Main method of this module."""
-    print 'Reading', plag_path
+    print('Reading', plag_path)
     cases = extract_annotations_from_files(plag_path, plag_tag_name)
-    print 'Reading', det_path
+    print('Reading', det_path)
     detections = extract_annotations_from_files(det_path, det_tag_name)
-    print 'Number of cases: ' + str(len(cases))
-    print 'Number of detections: ' + str(len(detections))
-    print 'Processing... (this may take a while)'
+    print('Number of cases: ' + str(len(cases)))
+    print('Number of detections: ' + str(len(detections)))
+    print('Processing... (this may take a while)')
     rec, prec = 0, 0
     if micro_averaged:
         rec, prec = micro_avg_recall_and_precision(cases, detections)
     else:
         rec, prec = macro_avg_recall_and_precision(cases, detections)
     gran = granularity(cases, detections)
-    print 'Plagdet Score', plagdet_score(rec, prec, gran)
-    print 'Recall', rec
-    print 'Precision', prec
-    print 'Granularity', gran
+    print('Plagdet Score', plagdet_score(rec, prec, gran))
+    print('Recall', rec)
+    print('Precision', prec)
+    print('Granularity', gran)
 
 
 if __name__ == '__main__':

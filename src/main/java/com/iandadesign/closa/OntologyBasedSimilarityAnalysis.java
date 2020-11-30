@@ -2,6 +2,10 @@ package com.iandadesign.closa;
 
 import com.iandadesign.closa.classification.Category;
 import com.iandadesign.closa.classification.TextClassifier;
+import com.iandadesign.closa.evaluation.featurama.matrix.CorrelationMatrix;
+import com.iandadesign.closa.evaluation.featurama.matrix.Matrix;
+import com.iandadesign.closa.evaluation.featurama.observation.Observation;
+import com.iandadesign.closa.evaluation.featurama.observation.ObservationHolder;
 import com.iandadesign.closa.language.LanguageDetector;
 import com.iandadesign.closa.model.*;
 import com.iandadesign.closa.model.Dictionary;
@@ -660,7 +664,8 @@ public class OntologyBasedSimilarityAnalysis {
                                                              ExtendedAnalysisParameters params,
                                                              String initialDateString,
                                                              List<PAN11PlagiarismInfo> plagiarismInfos)
-                                                                            throws Exception{
+                                                                            throws Exception
+    {
 
         // This hashmap is populated by candidateRetrieval.
         WeakHashMap<String, List<SavedEntity>> suspiciousIdTokensMapExt = new WeakHashMap<>();
@@ -715,25 +720,37 @@ public class OntologyBasedSimilarityAnalysis {
 
                     int numSentencesCand = getMaxSentenceNumber(candidateEntities) + 1; //TODO fix redundant Operation
                     String candFilename = new File(selectedCandidatePath).getName();
+
                     if(params.DO_RESULTS_ANALYSIS){
                         currentPCInfos = plagiarismInfos
                                 .stream().filter(item -> candFilename.equals(item.getSourceReference()))
                                 .collect(Collectors.toList());
                     }
+
                     logUtil.logAndWriteStandard(true, "DA selected Cand-File:", candFilename);
                     logUtil.logAndWriteStandard(true, "Candidate file sentences:", numSentencesCand);
                     scoringChunksCombined.setCurrentDocuments(suspiciousIdTokenExt.getKey(), selectedCandidatePath);
                     scoringChunksCombined.createScoreMatrix(numSentencesSusp, numSentencesCand);
                     int suspiciousSlidingWindowY = 0; // specific index for 2D Matrix positioning
 
+                    ObservationHolder observationsList = new ObservationHolder();
+                    // Initialise Observation Holder and reserve memory
+                    if(params.DO_REGRESSION_ANALYSIS)
+                    {
+                        // TODO Kay: Add feature observations for findings with no score to observations here.
+                        observationsList.reserve(numSentencesSusp*numSentencesCand);
+                    }
+
                     // Documents have been specified here->start to slide the window.
-                    for (int currentSuspWindowStartSentence = 0; currentSuspWindowStartSentence < numSentencesSusp; currentSuspWindowStartSentence += params.NUM_SENTENCE_INCREMENT_SLIDINGW) {
+                    for (int currentSuspWindowStartSentence = 0; currentSuspWindowStartSentence < numSentencesSusp; currentSuspWindowStartSentence += params.NUM_SENTENCE_INCREMENT_SLIDINGW)
+                    {
                         // Content in this loop is causing the memory problem ....
                         SlidingWindowInfo swiSuspicious = getWikiEntityStringsForSlidingWindow(
                                 suspiciousIdTokenExt.getValue(),
                                 currentSuspWindowStartSentence,
                                 params.NUM_SENTENCES_IN_SLIDING_WINDOW,
-                                suspiciousIdTokenExt.getKey(), params);
+                                suspiciousIdTokenExt.getKey(),
+                                params);
 
                         WeakHashMap<String, List<String>> currentSuspiciousIdTokensMap = swiSuspicious.getFilenameToEntities();
                         int candSlidingWindowX = 0; // specific index for 2D Matrix positioning
@@ -742,7 +759,8 @@ public class OntologyBasedSimilarityAnalysis {
                                     candidateEntities,
                                     currentCandWindowStartSentence,
                                     params.NUM_SENTENCES_IN_SLIDING_WINDOW,
-                                    selectedCandidatePath, params);
+                                    selectedCandidatePath,
+                                    params);
 
                             WeakHashMap<String, List<String>> currentCandidateIdTokensMap = swiCandidate.getFilenameToEntities();
 
@@ -750,7 +768,8 @@ public class OntologyBasedSimilarityAnalysis {
                             // logUtil.logAndWriteStandard(false,"Cand Sentence: "+candidateIdTokenExt.getKey());
 
                             // Create a specific mock entry if there is an empty row or column item in matrix.
-                            if (swiSuspicious.isNoEntitiesInWindow() || swiCandidate.isNoEntitiesInWindow()) {
+                            if (swiSuspicious.isNoEntitiesInWindow() || swiCandidate.isNoEntitiesInWindow())
+                            {
                                 ScoringChunk mockScoringChunk = new ScoringChunk(swiSuspicious,
                                         swiCandidate,
                                         -1, // mock entry value
@@ -766,24 +785,37 @@ public class OntologyBasedSimilarityAnalysis {
                             }
                             Double fragmentScore = 0.0;
                             StartStopInfo startStopInfo = null;
-                            if (false && !params.USE_ABSOLUTE_MATCHES_COUNT){ // THis might be obsolete
+                            if (false && !params.USE_ABSOLUTE_MATCHES_COUNT)
+                            { // THis might be obsolete
                                 // Atm the regular way: Normalization based on number of entities for the score.
                                 Map<String, Double> fragmentScoresMap = performCosineSimilarityAnalysis(currentSuspiciousIdTokensMap,
                                         currentCandidateIdTokensMap).get(suspiciousIdTokenExt.getKey());
                                 fragmentScoresMap.get(selectedCandidatePath);
-                            }else{
+                            }
+                            else {
                                 // Not use normalization.
-                                Map<Double, StartStopInfo > csResult = performCosineSimilarityAnalysisExtendedInfo(swiSuspicious.getAdditionalEntities(),
-                                        swiCandidate.getAdditionalEntities(), currentSuspiciousIdTokensMap, currentCandidateIdTokensMap, suspiciousDocumentPath, swiCandidate.getFileName(),
-                                         params);
+                                Map<Double, StartStopInfo > csResult = performCosineSimilarityAnalysisExtendedInfo(
+                                        swiSuspicious.getAdditionalEntities(),
+                                        swiCandidate.getAdditionalEntities(),
+                                        currentSuspiciousIdTokensMap,
+                                        currentCandidateIdTokensMap,
+                                        suspiciousDocumentPath,
+                                        swiCandidate.getFileName(),
+                                        params);
                                 fragmentScore = (Double) csResult.keySet().toArray()[0];
                                 startStopInfo = (StartStopInfo) csResult.values().toArray()[0];
 
                             }
                             // Checking if the current chunk is plagiarism according to the results, only works when DO_RESULTS_ANALYSIS is enabled.
                             boolean isPlagiarism = isThisPlagiarism(params, currentPCInfos, swiSuspicious, swiCandidate);
-                            if(params.DO_REGRESSION_ANALYSIS){
+
+                            if(params.DO_REGRESSION_ANALYSIS)
+                            {
                                 // TODO Kay: Add feature observations for findings with no score to observations here.
+                                Observation currentSuspWindow = new Observation(
+                                        isPlagiarism,
+                                        fragmentScore);
+                                observationsList.add(currentSuspWindow);
                             }
 
 
@@ -805,7 +837,9 @@ public class OntologyBasedSimilarityAnalysis {
                             averageLengths.add((double) currentScoringChunk.getAverageLength());
                             fragmentScores.add(currentScoringChunk.getComputedCosineSimilarity());
                             if(params.DO_REGRESSION_ANALYSIS){
-                                // TODO Kay: Add feature observations for findings with score to observations here.
+                                Observation currentSuspWindow = new Observation(
+                                        isPlagiarism,
+                                        fragmentScore);
                             }
                             if(params.DESKEW_WINDOW_SIZE){
                                 fragmentScore = fragmentScore * (1 +  (params.DESKEW_FORM_FACTOR * currentScoringChunk.getAverageLength()/params.DESKEW_MAX_WINDOW_CONTENT));
@@ -870,6 +904,9 @@ public class OntologyBasedSimilarityAnalysis {
                         if(params.DO_REGRESSION_ANALYSIS){
                             // TODO Kay: Calculate Regression Matrix from Observations here.
                             // TODO Kay: Store Matrix to statistics infos + number of Observations
+                            Matrix ObservationData = new Matrix(observationsList);
+                            CorrelationMatrix correlation = new CorrelationMatrix(ObservationData);
+                            statisticsInfo.correlation = correlation;
                         }
                     }
 

@@ -1,5 +1,7 @@
 package com.iandadesign.closa.model;
 
+import com.iandadesign.closa.evaluation.featurama.matrix.CorrelationMatrix;
+
 public class StatisticsInfo {
     public String candidateFilename;
     public InfoHolder infoOverall;
@@ -10,4 +12,6 @@ public class StatisticsInfo {
     public InfoHolder infoTrueNegatives;
     public InfoHolder infoFalsePositives;
     public InfoHolder infoFalseNegatives;
+
+    public CorrelationMatrix correlation;
 }
