@@ -2,6 +2,7 @@ package com.iandadesign.closa.evaluation.featurama.matrix;
 
 import com.iandadesign.closa.evaluation.featurama.observation.Observation;
 import com.iandadesign.closa.evaluation.featurama.observation.ObservationHolder;
+import com.iandadesign.closa.util.CSVUtil;
 
 import java.util.*;
 import java.util.stream.IntStream;
@@ -11,6 +12,8 @@ public class Matrix {
     private int rows = 0;
     private int cols = 0;
     private Boolean empty;
+    public ArrayList<String> columnNames = new ArrayList<>();
+
 
     public Matrix(int rows, int cols) {
         this.data = new double[rows][cols];
@@ -32,9 +35,15 @@ public class Matrix {
         this.data = new double[rows][cols];
         for(int i = 0; i < this.rows; i++)
         {
-            this.data[i] = observations.observations.get(i).returnObservationData();
+            this.data[i] = observations.observations.get(i).returnObservationData(observations.dataNames);
         }
+        setColumnNames(observations.dataNames);
         this.empty = false;
+    }
+
+    public void setColumnNames(ArrayList<String> columnNames)
+    {
+        this.columnNames = columnNames;
     }
 
     public int getRowDimension()
@@ -103,5 +112,12 @@ public class Matrix {
 
             System.out.println();
         }
+    }
+
+    public void saveMatrix()
+    {
+        // TODO throw exception if matrix empty
+
+        
     }
 }

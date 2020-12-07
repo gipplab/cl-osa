@@ -740,7 +740,6 @@ public class OntologyBasedSimilarityAnalysis {
                         // TODO Kay: Add feature observations for findings with no score to observations here.
                         observationsList.reserve(numSentencesSusp*numSentencesCand);
                     }
-
                     // Documents have been specified here->start to slide the window.
                     for (int currentSuspWindowStartSentence = 0; currentSuspWindowStartSentence < numSentencesSusp; currentSuspWindowStartSentence += params.NUM_SENTENCE_INCREMENT_SLIDINGW)
                     {
@@ -774,7 +773,8 @@ public class OntologyBasedSimilarityAnalysis {
                                         swiCandidate,
                                         -1, // mock entry value
                                         fragmentIndex,
-                                        null, false);
+                                        null,
+                                        false);
                                 scoringChunksCombined.storeScoringChunkToScoringMatrix(mockScoringChunk,
                                         suspiciousSlidingWindowY,
                                         candSlidingWindowX);
@@ -812,10 +812,23 @@ public class OntologyBasedSimilarityAnalysis {
                             if(params.DO_REGRESSION_ANALYSIS)
                             {
                                 // TODO Kay: Add feature observations for findings with no score to observations here.
-                                Observation currentSuspWindow = new Observation(
-                                        isPlagiarism,
-                                        fragmentScore);
-                                observationsList.add(currentSuspWindow);
+                                Observation currentSuspObservation = new Observation();
+                                LinkedHashMap<String, Object> hashMap = new LinkedHashMap<String, Object>();
+                                if(fragmentScore > 0)
+                                {
+                                    Double finalFragmentScore = fragmentScore;
+                                    hashMap.put("fragmentScore", finalFragmentScore);
+                                }
+
+                                hashMap.put("isPlagiarism", isPlagiarism);
+                                hashMap.put("currentSuspiciousIdTokensMap", currentSuspiciousIdTokensMap.size());
+                                hashMap.put("currentCandidateIdTokensMap", currentCandidateIdTokensMap.size());
+                                hashMap.put("AverageLength", 0);
+                                currentSuspObservation.addData(hashMap);
+                                currentSuspObservation.addData(startStopInfo);
+                                currentSuspObservation.addData(swiSuspicious, "swiSuspicious");
+                                currentSuspObservation.addData(swiCandidate, "swiCandidate");
+                                observationsList.add(currentSuspObservation);
                             }
 
 
@@ -827,7 +840,8 @@ public class OntologyBasedSimilarityAnalysis {
                                     continue;
                                 }
                             }
-                            ScoringChunk currentScoringChunk = new ScoringChunk(swiSuspicious,
+                            ScoringChunk currentScoringChunk = new ScoringChunk(
+                                    swiSuspicious,
                                     swiCandidate,
                                     fragmentScore,
                                     fragmentIndex,
@@ -835,11 +849,25 @@ public class OntologyBasedSimilarityAnalysis {
                                     isPlagiarism);
                             swiCandidate.deinitialize();
                             averageLengths.add((double) currentScoringChunk.getAverageLength());
-                            fragmentScores.add(currentScoringChunk.getComputedCosineSimilarity());
+                            fragmentScores.add(currentScoringChunk.getComputedCosineSimilarity()); // etwas verwirrend, da currentScoringChunk.getComputedCosineSimilarity() = fragmentScore
+
                             if(params.DO_REGRESSION_ANALYSIS){
-                                Observation currentSuspWindow = new Observation(
-                                        isPlagiarism,
-                                        fragmentScore);
+                                Observation currentSuspObservation = new Observation();
+
+                                Double finalFragmentScore = fragmentScore;
+                                StartStopInfo finalStartStopInfo = startStopInfo;
+                                LinkedHashMap<String, Object> hashMap = new LinkedHashMap<String, Object>() {{
+                                    put("fragmentScore", finalFragmentScore);
+                                    put("isPlagiarism", isPlagiarism);
+                                    put("currentSuspiciousIdTokensMap", currentSuspiciousIdTokensMap.size());
+                                    put("currentCandidateIdTokensMap", currentCandidateIdTokensMap.size());
+                                    put("AverageLength", currentScoringChunk.getAverageLength());
+                                }};
+                                currentSuspObservation.addData(hashMap);
+                                currentSuspObservation.addData(startStopInfo);
+                                currentSuspObservation.addData(swiSuspicious, "swiSuspicious");
+                                currentSuspObservation.addData(swiCandidate, "swiCandidate");
+                                observationsList.add(currentSuspObservation);
                             }
                             if(params.DESKEW_WINDOW_SIZE){
                                 fragmentScore = fragmentScore * (1 +  (params.DESKEW_FORM_FACTOR * currentScoringChunk.getAverageLength()/params.DESKEW_MAX_WINDOW_CONTENT));
@@ -906,6 +934,8 @@ public class OntologyBasedSimilarityAnalysis {
                             // TODO Kay: Store Matrix to statistics infos + number of Observations
                             Matrix ObservationData = new Matrix(observationsList);
                             CorrelationMatrix correlation = new CorrelationMatrix(ObservationData);
+                            System.out.println(observationsList.dataNames.toString());
+                            correlation.correlationMatrix.display();
                             statisticsInfo.correlation = correlation;
                         }
                     }

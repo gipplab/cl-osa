@@ -31,30 +31,37 @@ public class CorrelationMatrix {
 
     public double correlation(final double[] xArray, final double[] yArray) {
         // TODO: enforce xArray length == yArray length
+        // TODO: enforce xArray length == num.observations && yArray length == num.observations
 
-        double xMean = 0.0, yMean = 0.0, s_x = 0.0, s_y = 0.0, tmpCorrelation = 0.0;
+        double sx = 0.0, sy = 0.0, sxx = 0.0, syy = 0.0, sxy = 0.0;
 
-        for(int i=0; i<xArray.length; i++) {
-            xMean += xArray[i];
-            yMean += yArray[i];
+        // TODO: eigentlich ist n = num_observations und n^2 könnte abgespeichert werden
+        int n = xArray.length;
+        int n_2 = n*n;
+
+        for(int i = 0; i < n; i++)
+        {
+            double x = xArray[i];
+            double y = yArray[i];
+
+            sx += x;
+            sy += y;
+            sxx += x * x;
+            syy += y * y;
+            sxy += x * y;
         }
-        xMean = xMean/xArray.length;
-        yMean = yMean/yArray.length;
 
-        for(int i=0; i<xArray.length; i++) {
-            s_x += Math.pow((xArray[i]-xMean), 2);
-            s_y += Math.pow((yArray[i]-yMean), 2);
+
+
+        // Todo hier könnte angeknüpft werden für eine Kovarianzmatrix (evtl. Correlationsklasse)
+        double kovarianz = sxy / n - sx * sy /(n_2);
+        if(Math.abs(kovarianz) < 2 * Double.MIN_VALUE)
+        {
+            return 0.0;
         }
-
-        s_x = Math.sqrt(s_x/(xArray.length-1));
-        s_y = Math.sqrt(s_y/(yArray.length-1));
-
-        for(int i=0; i<xArray.length; i++) {
-            for(int j=0; j<xArray.length; j++) {
-                tmpCorrelation = (xArray[i]-xMean)*(yArray[j]-yMean);
-            }
-        }
-        return (1.0/(this.num_observations-1))*(tmpCorrelation/s_x*s_y);
+        double sigma_x = Math.sqrt(sxx / n -  sx * sx /(n_2));
+        double sigma_y = Math.sqrt(syy / n -  sy * sy /(n_2));
+        return kovarianz / (sigma_x * sigma_y);
     }
 
 }
