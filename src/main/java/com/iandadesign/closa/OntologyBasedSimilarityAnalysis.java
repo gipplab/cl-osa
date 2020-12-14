@@ -855,7 +855,6 @@ public class OntologyBasedSimilarityAnalysis {
                                 Observation currentSuspObservation = new Observation();
 
                                 Double finalFragmentScore = fragmentScore;
-                                StartStopInfo finalStartStopInfo = startStopInfo;
                                 LinkedHashMap<String, Object> hashMap = new LinkedHashMap<String, Object>() {{
                                     put("fragmentScore", finalFragmentScore);
                                     put("isPlagiarism", isPlagiarism);
@@ -935,7 +934,9 @@ public class OntologyBasedSimilarityAnalysis {
                             Matrix ObservationData = new Matrix(observationsList);
                             CorrelationMatrix correlation = new CorrelationMatrix(ObservationData);
                             System.out.println(observationsList.dataNames.toString());
-                            correlation.correlationMatrix.display();
+                            correlation.setColumnNames(observationsList.dataNames);
+                            correlation.display();
+                            correlation.saveMatrixToFile("Testing");
                             statisticsInfo.correlation = correlation;
                         }
                     }

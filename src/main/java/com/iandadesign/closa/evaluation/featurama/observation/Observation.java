@@ -1,56 +1,55 @@
 package com.iandadesign.closa.evaluation.featurama.observation;
 
-import com.iandadesign.closa.util.ExtendedLogUtil;
 import java.util.*;
 import java.lang.reflect.*;
 
 public class Observation {
 
-    public LinkedHashMap<String, Object> observations;
+    public LinkedHashMap<String, Object> features;
 
     public Observation()
     {
-        observations = new LinkedHashMap<>();
+        this.features = new LinkedHashMap<>();
     }
 
-    public Observation(LinkedHashMap<String, Object> observations)
+    public Observation(LinkedHashMap<String, Object> features)
     {
-        this.observations = observations;
+        this.features = features;
     }
 
-    public void addData(LinkedHashMap<String, Object> observations)
+    public void addData(LinkedHashMap<String, Object> features)
     {
-        this.observations = observations;
+        this.features = features;
     }
 
-    public void addData(Object ...observations)
+    public void addData(Object ...features)
     {
-        for (Object observation : observations)
+        for (Object feature : features)
         {
-            if (Objects.isNull(observation)) {
+            if (Objects.isNull(feature)) {
                 continue;
             }
-            process(observation, "");
+            process(feature, "");
         }
     }
 
-    public void addData(Object observation, String prefix)
+    public void addData(Object feature, String prefix)
     {
-        if (Objects.isNull(observation)) {
+        if (Objects.isNull(feature)) {
             return;
         }
-        process(observation, prefix);
+        process(feature, prefix);
     }
 
-    private void process(Object observation, String prefix)
+    private void process(Object feature, String prefix)
     {
-        for (Field field : observation.getClass().getDeclaredFields()) {
+        for (Field field : feature.getClass().getDeclaredFields()) {
             field.setAccessible(true); // You might want to set modifier to public first.
             Object value = null;
             String type = "";
             try
             {
-                value = field.get(observation);
+                value = field.get(feature);
                 type = field.getType().toString();
             }
             catch (IllegalAccessException e)
@@ -67,14 +66,14 @@ public class Observation {
     {
         if ((value instanceof Number) || (value instanceof Boolean))
         {
-            observations.put(prefix + name, value);
+            this.features.put(prefix + name, value);
         }
 
     }
 
     public int returnObservationDim()
     {
-        return this.observations.size();
+        return this.features.size();
     }
 
     public double[] returnObservationData(ArrayList<String> dataNames)
@@ -82,9 +81,9 @@ public class Observation {
         double[] returnArray = new double[dataNames.size()];
         for(int i = 0; i< dataNames.size(); i++)
         {
-            if(this.observations.containsKey(dataNames.get(i)))
+            if(this.features.containsKey(dataNames.get(i)))
             {
-                returnArray[i] = transformtodouble(this.observations.get(dataNames.get(i)));
+                returnArray[i] = transformtodouble(this.features.get(dataNames.get(i)));
             }
             else
             {

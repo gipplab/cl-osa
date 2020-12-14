@@ -4,25 +4,31 @@ import com.iandadesign.closa.evaluation.featurama.observation.Observation;
 import com.iandadesign.closa.evaluation.featurama.observation.ObservationHolder;
 import com.iandadesign.closa.util.CSVUtil;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.IntStream;
 
 public class Matrix {
-    private double[][] data = null;
+
+    protected double[][] data = null;
     private int rows = 0;
     private int cols = 0;
     private Boolean empty;
     public ArrayList<String> columnNames = new ArrayList<>();
 
 
-    public Matrix(int rows, int cols) {
+    public Matrix(int rows, int cols)
+    {
         this.data = new double[rows][cols];
         this.rows = rows;
         this.cols = cols;
         this.empty = true;
     }
 
-    public Matrix(double[][] data) {
+    public Matrix(double[][] data)
+    {
         this.data = data.clone();
         rows = this.data.length;
         cols = this.data[0].length;
@@ -63,6 +69,15 @@ public class Matrix {
             column[i] = this.data[i][column_num];
         }
         return column;
+    }
+
+    public double[] returnRow(int row_num)
+    {
+        double[] row = new double[this.cols];
+        for(int i=0; i<this.rows; i++){
+            row[i] = this.data[row_num][i];
+        }
+        return row;
     }
 
     public static Matrix identity(int N) {
@@ -114,10 +129,57 @@ public class Matrix {
         }
     }
 
-    public void saveMatrix()
+    private static String[] getStrings(double[] a) {
+        String[] output = new String[a.length];
+        int i = 0;
+        for (double d : a)
+        {
+            output[i++] = Double.toString(d);
+        }
+        return output;
+    }
+
+    private String[] writeMatrixToStringArray()
     {
         // TODO throw exception if matrix empty
 
-        
+        String[] matrix_string_values = new String[this.rows]; // TODO Array -> ArrayList :)
+        int offset = 0;
+
+        if ((this.columnNames != null) && !this.columnNames.isEmpty())
+        {
+            matrix_string_values = new String[this.rows + 1];
+            matrix_string_values[0] = CSVUtil.convertToCSV(this.columnNames.toArray(new String[this.columnNames.size()]));
+            offset = 1;
+        }
+
+        String[] string_array;
+        for(int i = 0; i < this.rows; i++)
+        {
+            string_array = getStrings(returnRow(i));
+            matrix_string_values[i+offset] = CSVUtil.convertToCSV(string_array);
+        }
+
+        return matrix_string_values;
+    }
+
+    public void saveMatrixToFile(String filename) throws IOException
+    {
+        // TODO anpassen
+        String home = System.getProperty("user.home");
+        String final_filename = home + '/' + filename + ".csv";
+
+        String[] file_content = writeMatrixToStringArray();
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(final_filename));
+
+        for (String line : file_content)
+        {
+            writer.write(line);
+            writer.write("\n");
+        }
+
+        writer.flush();
+        writer.close();
     }
 }

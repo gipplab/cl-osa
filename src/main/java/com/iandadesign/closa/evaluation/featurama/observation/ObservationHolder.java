@@ -29,7 +29,7 @@ public class ObservationHolder {
     {
         this.observations.add(obs);
         // update List Names
-        List<String> obsKeys = new ArrayList<>(obs.observations.keySet());
+        List<String> obsKeys = new ArrayList<>(obs.features.keySet());
         obsKeys.removeAll(this.dataNames);
         this.dataNames.addAll(obsKeys);
     }
