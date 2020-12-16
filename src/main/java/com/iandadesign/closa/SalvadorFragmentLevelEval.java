@@ -227,10 +227,12 @@ public class SalvadorFragmentLevelEval {
         List<File> candidateFiles = PAN11FileUtil.getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true, ".txt");
         List<File> suspiciousFiles  = PAN11FileUtil.getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".txt");
 
-        int THRESH1 = 1500;
-        double THRESH2 = 0.086;
-        int FRAGMENT_SENTENCES = 30; //5; // In Sentences
-        int FRAGMENT_INCREMENT = 15; //2; // In Sentences
+        int THRESH1 = 1500;         // Fragment distance merging thresh
+        double THRESH2 = 0.38;      //0.086; // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
+        int FRAGMENT_SENTENCES = 14; //5; // In Sentences
+        int FRAGMENT_INCREMENT = 7; //2; // In Sentences
+        int TOPMOST = 5;            // topmost fetched suspicious for one plagiarism node
+        boolean GET_PLAGSIZED_FRAGMENTS = true;             // Get fragments exactly the plagiarism size
 
         // Create a list of candidate fragments (all)
         Map<String, List<SavedEntity>> candidateEntitiesFragment = getFragments(osa, candidateFiles, FRAGMENT_SENTENCES, FRAGMENT_INCREMENT, false, null, true);
@@ -242,7 +244,7 @@ public class SalvadorFragmentLevelEval {
 
         Map<String, List<SavedEntity>> suspiciousEntitiesFragment;
         // Create a list of suspicious fragments (only plagiarism involved fragments)
-        boolean GET_PLAGSIZED_FRAGMENTS = true;
+
         if(GET_PLAGSIZED_FRAGMENTS){
             // Get fragments exactly the plagiarism size
             suspiciousEntitiesFragment = getPlagsizedFragments(osa, suspiciousFiles, plagiarismInformation, false);
@@ -260,7 +262,9 @@ public class SalvadorFragmentLevelEval {
         Map<String, Map<String, Double>>  scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment));
 
         // Calculate the recall for the scores map (character based)
-        //Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,20);
+        Double recallAt10 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,10);
+        Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,20);
+        Double recallAt50 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,50);
 
 
         // DA implementation:
@@ -283,6 +287,9 @@ public class SalvadorFragmentLevelEval {
             Map<String, Map<SalvadorTextFragment, SalvadorTextFragment>> supFilePlagiarism = new HashMap<>();
 
             for(String candidateDocument:candDocFragmentMap.keySet()){
+                if(candidateDocument.contains("04647")){
+                    System.out.println("asd");
+                }
                 // Calculate DA-Clustering for current file combination.
                 Map<SalvadorTextFragment, SalvadorTextFragment> detailedAnalysisResultsD2D = doDetailedAnalysis(
                         suspDocFragmentMap.get(suspiciousDocument),
@@ -292,7 +299,7 @@ public class SalvadorFragmentLevelEval {
                         scoresMap,
                         THRESH1,
                         THRESH2,
-                        5
+                        TOPMOST
                 );
 
                 if(detailedAnalysisResultsD2D.size() > 1){
@@ -325,10 +332,14 @@ public class SalvadorFragmentLevelEval {
 
     }
 
-    public static Map<SalvadorTextFragment, SalvadorTextFragment>  doDetailedAnalysis(List<String> suspiciousFragments, List<String> candidateFragments,
+    public static Map<SalvadorTextFragment, SalvadorTextFragment>  doDetailedAnalysis(List<String> suspiciousFragments,
+                                                                                      List<String> candidateFragments,
                                           Map<String, List<SavedEntity>> suspiciousEntitiesFragment,
                                           Map<String, List<SavedEntity>> candidateEntitiesFragment,
-                                          Map<String, Map<String, Double>>  scoresMap, int THRESHOLD_1, double THRESHOLD_2, int RANKLIMIT){
+                                          Map<String, Map<String, Double>>  scoresMap,
+                                          int THRESHOLD_1,
+                                          double THRESHOLD_2,
+                                          int RANKLIMIT) {
         // Get selected suspicious fragments from results
         Map<String, Map<String, Double>> scoresMapSelected = new HashMap<>(scoresMap);
         scoresMapSelected.keySet().retainAll(suspiciousFragments);
@@ -363,7 +374,7 @@ public class SalvadorFragmentLevelEval {
             // Rate the new fragment infos as plagiarism or not
             for(String clusteredFragmentID: fragmentInfos.keySet()){
                 SalvadorTextFragment clusteredFragment = fragmentInfos.get(clusteredFragmentID);
-                System.out.println(suspiciousFragmentID+"/"+candidateFragments.get(0)+":"+clusteredFragment.getComputedScore());
+                //System.out.println(suspiciousFragmentID+"/"+candidateFragments.get(0)+":"+clusteredFragment.getComputedScore());
                 if(clusteredFragment.getComputedScore()>THRESHOLD_2){
                     fragmentInfosSelected.put(suspiciousFragment, clusteredFragment);
                 }
@@ -401,7 +412,7 @@ public class SalvadorFragmentLevelEval {
                     if(distance < THRESHOLD_1){
                         //System.out.println("Merge fragments");
                         String mergeFragmentID = "merge"+outerIndex+"_"+innerIndex+"_"+convergenceIndex;
-                        SalvadorTextFragment mergedFragment = mergeFragments(fragment1, fragment2, mergeFragmentID);
+                        SalvadorTextFragment mergedFragment = mergeTextFragments(fragment1, fragment2, mergeFragmentID);
                         // Remove IDs from unmerged List
                         newFragmentInfos.remove(fragmentIDSelected1);
                         newFragmentInfos.remove(fragmentIDSelected2);
@@ -424,7 +435,7 @@ public class SalvadorFragmentLevelEval {
         return fragmentInfos;
     }
 
-    public static SalvadorTextFragment mergeFragments(SalvadorTextFragment fragment1, SalvadorTextFragment fragment2, String mergeFragmentID){
+    public static SalvadorTextFragment mergeTextFragments(SalvadorTextFragment fragment1, SalvadorTextFragment fragment2, String mergeFragmentID){
 
         SalvadorTextFragment mergedFragment = new SalvadorTextFragment();
         mergedFragment.setMerged(true);
@@ -434,14 +445,22 @@ public class SalvadorFragmentLevelEval {
         mergedFragment.setFragmentID(mergeFragmentID);
 
         // Merge Score (TBD: Score eval)
-        int  lengthAdded = fragment1.getCharLengthBySentences()+fragment2.getCharLengthBySentences();
-        Double mergedScore =
-                ((fragment1.getComputedScore() * fragment1.getCharLengthBySentences()) +
-                        (fragment2.getComputedScore() * fragment2.getCharLengthBySentences()))
-                / lengthAdded;
-        mergedFragment.setComputedScore(mergedScore);
-
-
+        boolean simpleMode = false;
+        if(!simpleMode) {
+            // Weighting the scores by character lengths
+            double lengthAdded = fragment1.getCharLengthBySentences() + fragment2.getCharLengthBySentences();
+            double weightingConstant = 0.5;
+            int padding = 10000; // This padding shall prevent below 1 multiplication
+            double factor1 = weightingConstant + (fragment1.getCharLengthBySentences() / lengthAdded);
+            double factor2 = weightingConstant + (fragment2.getCharLengthBySentences() / lengthAdded);
+            double preMergedScore = (factor1 * (fragment1.getComputedScore() * padding)) + (factor2 * (fragment2.getComputedScore() * padding));
+            Double mergedScore = preMergedScore / padding;
+            mergedFragment.setComputedScore(mergedScore);
+        } else {
+            // Just adding up the scores
+            Double fragmentScore = fragment1.getComputedScore() + fragment2.getComputedScore();
+            mergedFragment.setComputedScore(fragmentScore);
+        }
 
         // Add additional info
         /*
