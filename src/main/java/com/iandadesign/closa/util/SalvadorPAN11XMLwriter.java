@@ -28,7 +28,7 @@ public class SalvadorPAN11XMLwriter {
             for(String candidateDocument:allResults.get(suspiciousDocument).keySet()){
                 String cosineResultsPath = Paths.get(xmlResultsFolderPath,
                         suspiciousDocument.replace(".txt",""),
-                        candidateDocument.replace(".txt","").concat(".xml"))
+                        candidateDocument.replace("candidate-","source-").replace(".txt","").concat(".xml"))
                         .toAbsolutePath().toString();
                 // Writing the results to xml file
                 try {
