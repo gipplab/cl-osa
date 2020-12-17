@@ -229,10 +229,10 @@ public class SalvadorFragmentLevelEval {
         List<File> suspiciousFiles  = PAN11FileUtil.getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".txt");
 
         int THRESH1 = 1500;         // Fragment distance merging thresh
-        double THRESH2 = 0.55;      //0.086; // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
+        double THRESH2 = 0.686;      //0.086; // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
         int FRAGMENT_SENTENCES = 14; //5; // In Sentences
         int FRAGMENT_INCREMENT = 7; //2; // In Sentences
-        int TOPMOST = 5;            // topmost fetched suspicious for one plagiarism node
+        int TOPMOST = 10;            // topmost fetched suspicious for one plagiarism node
         boolean GET_PLAGSIZED_FRAGMENTS = true;             // Get fragments exactly the plagiarism size
         boolean DO_ANALYSIS = true;             // Do additional analysis steps
 
@@ -264,9 +264,9 @@ public class SalvadorFragmentLevelEval {
         Map<String, Map<String, Double>>  scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment));
 
         // Calculate the recall for the scores map (character based)
-        Double recallAt10 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,10);
-        Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,20);
-        Double recallAt50 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,50);
+        //Double recallAt10 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,10);
+        //Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,20);
+        //Double recallAt50 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,50);
 
 
         // DA implementation:
@@ -313,7 +313,7 @@ public class SalvadorFragmentLevelEval {
                         relatedPlagiarismInfoCandFiltered
                 );
 
-                if(detailedAnalysisResultsD2D.size() > 1){
+                if(detailedAnalysisResultsD2D.size() >= 1){
                     Map<SalvadorTextFragment, SalvadorTextFragment> currentMap = supFilePlagiarism.get(candidateDocument);
                     if(currentMap==null) {
                         supFilePlagiarism.put(candidateDocument, detailedAnalysisResultsD2D);
