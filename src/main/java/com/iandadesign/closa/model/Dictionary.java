@@ -197,8 +197,17 @@ public class Dictionary<T> {
             // 3.3 calculate the score
             double score = 0.0;
             for (int i = 0; i < dimension; i++) {
-                score += (queryVector.getEntry(i) / queryVectorLength)
-                        * (documentVector.getEntry(i) / documentVectorLength);
+               if(!absoluteScoring){
+                   score += (queryVector.getEntry(i) / queryVectorLength)
+                           * (documentVector.getEntry(i) / documentVectorLength);
+               }else{
+                   score += (queryVector.getEntry(i))
+                           * (documentVector.getEntry(i));
+               }
+                /*
+                score += (queryVector.getEntry(i))
+                        * (documentVector.getEntry(i));
+                */
             }
 
             // 3.4 put the score
