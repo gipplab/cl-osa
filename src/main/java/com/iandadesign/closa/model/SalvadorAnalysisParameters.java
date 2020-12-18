@@ -11,7 +11,7 @@ public class SalvadorAnalysisParameters {
     public static int SUSP_FILE_LIMIT = 1;                        // Only take XX supicicious files with all candidates
 
     // Basic score calculation
-    public static boolean USE_ABSOLUTE_SCORES = false;            // If false: use default normalized cosine-score for each
+    public static boolean USE_ABSOLUTE_SCORES = true;            // If false: use default normalized cosine-score for each
 
     // Fragmentation
     public static int FRAGMENT_SENTENCES = 14; //5;               // In Sentences
@@ -20,7 +20,8 @@ public class SalvadorAnalysisParameters {
 
     // Clustering
     public static int THRESH1 = 1500;                             // Fragment distance merging thresh
-    public static double THRESH2 = 0.33; //0.686;      //0.086;   // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
+    public static double THRESH2 = 6.1; //0.686;      //0.086;    // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
+    public static double PRESELECTION_THRESH = 0.0;               // From the topmost candidates only the ones above this thresh get considered for merge
     public static int TOPMOST = 5;                                // topmost fetched suspicious for one plagiarism node
     // Clustering - Fragment Merge
     public static String FRAGMENT_MERGE_MODE = "weightedAverage"; // "weightedAdd", "weightedAverage", "simpleAdd"

@@ -50,7 +50,7 @@ public class CLCSAEvaluationSet extends EvaluationSet<String> {
         suspiciousIdTokensMap.forEach((suspiciousId, suspiciousConcepts) -> {
 
             // look in dictionary
-            Map<String, Double> candidateScoreMap = dictionary.query(suspiciousConcepts);
+            Map<String, Double> candidateScoreMap = dictionary.query(suspiciousConcepts, false);
 
             if (candidateScoreMap.isEmpty()) {
                 System.out.println("False negative. Did not detect");

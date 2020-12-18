@@ -224,10 +224,8 @@ public class SalvadorFragmentLevelEval {
         //params.CANDIDATE_SELECTION_TRESH = 0;
         logParams(logUtil, tag, params, osa);
 
-        logUtil.logAndWriteStandard(false, "Settings for Salvador Evaluation:---------------------");
+        // Print the current parametrization for Salvador
         SalvadorAnalysisParameters.printSalvadorMembers(logUtil);
-        logUtil.logAndWriteStandard(false, "------------------------------------------------------");
-
 
         logUtil.logAndWriteStandard(false, "Starting file comparisons...");
         List<File> candidateFiles = PAN11FileUtil.getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true, ".txt");
@@ -259,7 +257,7 @@ public class SalvadorFragmentLevelEval {
         // suspiciousEntitiesFragment = obsoletePreselectionFilter(plagiarismInformation, suspiciousEntitiesFragment, DO_OBSOLETE_PREFILTERING, 2);
 
         // Do the comparison
-        Map<String, Map<String, Double>>  scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment));
+        Map<String, Map<String, Double>>  scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES);
 
         // Calculate the recall for the scores map (character based)
         //Double recallAt10 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,10);
@@ -353,7 +351,7 @@ public class SalvadorFragmentLevelEval {
                                           boolean DO_ANALYSIS,
                                           List<PAN11PlagiarismInfo> candidatePlagiarismInfos) {
 
-        double THRESH_TOPMOST = 0.03685;
+        double THRESH_TOPMOST = SalvadorAnalysisParameters.PRESELECTION_THRESH;
 
         // Get selected suspicious fragments from results
         Map<String, Map<String, Double>> scoresMapSelected = new HashMap<>(scoresMap);
@@ -376,7 +374,7 @@ public class SalvadorFragmentLevelEval {
             Map<String, Double> candidateScoresMapSelected = candidateScores.entrySet().stream()
                     .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                     .limit(RANKLIMIT)
-                    .filter(value -> value.getValue() > THRESH_TOPMOST)
+                    .filter(value -> value.getValue() >= THRESH_TOPMOST)
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
             // Get the start stop coordinates for the fragments.
@@ -442,8 +440,10 @@ public class SalvadorFragmentLevelEval {
             if(candidatePlagiarismInfos.size()>0){
                 System.out.println("Overall Stats----------------");
                 getStats(fragmentInfosAll);
-                System.out.println("Merged Stats----------------");
+                System.out.println("Merged Stats-----------------");
                 getStats(fragmentInfosAllmerged);
+                System.out.println("-----------------------------");
+
             }
         }
         return fragmentInfosSelected;

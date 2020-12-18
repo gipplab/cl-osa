@@ -86,9 +86,12 @@ public class PAN11RankingEvaluator {
             }
         }
 
+        /*
         if(relatedPlagiarismInfos.size() > 1 ){
             System.out.println("Jackpot");
         }
+        */
+
         return relatedPlagiarismInfos;
      }
     public static String getBaseName(String fragmentID, String ending){
@@ -122,7 +125,7 @@ public class PAN11RankingEvaluator {
                                                                   int k){
         // Found character counts.
         int overallFindings = 0;
-        int overallPossibleFindings=0;
+        int overallPossibleFindings = 0;
         int overallPossibleFindingsSimple = 0;
 
         // Calculate overall possible findings
@@ -130,7 +133,7 @@ public class PAN11RankingEvaluator {
             List<PAN11PlagiarismInfo> susPlagiarismInfo = plagiarismInformation.get(suspiciousFile);
             for(PAN11PlagiarismInfo currentPlagiarismInfo:susPlagiarismInfo){
 
-                overallPossibleFindingsSimple+= currentPlagiarismInfo.getSourceLength();
+                overallPossibleFindingsSimple += currentPlagiarismInfo.getSourceLength();
 
                 //With overlaps: get the related fragment for each candidate plagiarism area
                 String sourceFilename = currentPlagiarismInfo.getSourceReference();
@@ -182,10 +185,10 @@ public class PAN11RankingEvaluator {
                 String baseCandFileName = getBaseName(candidateFragmentID, ".txt");
                 // perfomance: if the no current plagiarism points to candidate this can be skipped (or filter plagiarism again by candidates here!)
                 List<SavedEntity> candidateEntites = candidateEntitiesMap.get(candidateFragmentID);
-                SalvadorTextFragment currentCandFragment =  createTextFragment(candidateEntites, candidateFragmentID);
+                SalvadorTextFragment currentCandFragment = createTextFragment(candidateEntites, candidateFragmentID);
 
                 int foundArea = sizeOfFoundPlagiarism(baseCandFileName, currentCandFragment,candidateEntites, relatedPlagiarism);
-                currentFindings +=foundArea;
+                currentFindings += foundArea;
             }
             overallFindings += currentFindings;
         }
@@ -215,7 +218,7 @@ public class PAN11RankingEvaluator {
         logUtil.logAndWriteStandard(false, "RecallS at ", k, " is: ", recallAtKS, "Findings/PossibleFindings (",overallFindings,"/", overallPossibleFindingsSimple,")");
 
         double recallAtK = (double) overallFindings / overallPossibleFindings * 100;
-        logUtil.logAndWriteStandard(false, "RecallS at ", k, " is: ", recallAtK, "Findings/PossibleFindings (",overallFindings,"/", overallPossibleFindings,")");
+        logUtil.logAndWriteStandard(false, "Recall at ", k, " is: ", recallAtK, "Findings/PossibleFindings (",overallFindings,"/", overallPossibleFindings,")");
 
 
         return recallAtK;

@@ -514,7 +514,9 @@ public class PAN11EvaluationSetEval {
 
 
         if(parsedErrors>=1 || parsedFiles==0){
-            return;
+            logUtil.writeErrorReport(false, "There have been problems during detecting plagiarism: ");
+            logUtil.writeErrorReport(false, "Parsing errors:  ", parsedErrors);
+            logUtil.writeErrorReport(false, "Parsed files:  ", parsedFiles);
         }
 
 

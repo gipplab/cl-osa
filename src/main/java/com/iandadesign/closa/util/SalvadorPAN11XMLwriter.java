@@ -34,7 +34,7 @@ public class SalvadorPAN11XMLwriter {
                 try {
                     Map<SalvadorTextFragment, SalvadorTextFragment> currentCases = allResults.get(suspiciousDocument).get(candidateDocument);
 
-                    System.out.println("RESULTS writing result to: "+cosineResultsPath+ " Results length: "+ currentCases.size());
+                    //System.out.println("RESULTS writing result to: "+cosineResultsPath+ " Results length: "+ currentCases.size());
                     writeResultAsXML(cosineResultsPath,suspiciousDocument, candidateDocument, currentCases);
                     prettifyXML(cosineResultsPath);
                 } catch(Exception ex){

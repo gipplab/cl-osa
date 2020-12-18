@@ -118,7 +118,7 @@ public class Dictionary<T> {
      * @param queryTerms sendQuery
      * @return the document ids - score map.
      */
-    public Map<String, Double> query(final List<T> queryTerms) {
+    public Map<String, Double> query(final List<T> queryTerms, boolean absoluteScoring) {
 
         if (queryTerms.isEmpty()) {
             return new HashMap<>();
