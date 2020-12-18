@@ -472,7 +472,11 @@ public class SalvadorFragmentLevelEval {
 
 
 
-        double minPositive = scoresPositve.stream().mapToDouble(Double::doubleValue).min().getAsDouble();
+        double minPositive =  -1.0;
+        OptionalDouble minPositiveOpt = scoresPositve.stream().mapToDouble(Double::doubleValue).min();
+        if(minPositiveOpt.isPresent()){
+            minPositive = minPositiveOpt.getAsDouble();
+        }
         // Probably use the InfoHolders to create overall stats
 
         OptionalDouble meanNegativeOpt = scoresNegative.stream().mapToDouble(a -> a).average();
@@ -486,7 +490,11 @@ public class SalvadorFragmentLevelEval {
         if(maxNegativeOpt.isPresent()){
             maxNegative = maxNegativeOpt.getAsDouble();
         }
-        double minNegative = scoresNegative.stream().mapToDouble(Double::doubleValue).min().getAsDouble();
+        double minNegative = -1.0;
+        OptionalDouble minNegativeOpt = scoresNegative.stream().mapToDouble(Double::doubleValue).min();
+        if(minNegativeOpt.isPresent()){
+            minNegative = minNegativeOpt.getAsDouble();
+        }
 
 
 
