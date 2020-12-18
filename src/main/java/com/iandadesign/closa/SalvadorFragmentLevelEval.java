@@ -235,6 +235,7 @@ public class SalvadorFragmentLevelEval {
 
         suspiciousFiles = filterBySuspFileLimit(plagiarismInformation, suspiciousFiles, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, SalvadorAnalysisParameters.SUSP_FILE_LIMIT);
 
+        System.out.println("My First SuspFile: "+ suspiciousFiles.get(0).toString());
         Map<String, List<SavedEntity>> suspiciousEntitiesFragment;
         // Create a list of suspicious fragments (only plagiarism involved fragments)
 
@@ -458,13 +459,38 @@ public class SalvadorFragmentLevelEval {
                 }
             }
         }
-        double meanPositive  = scoresPositve.stream().mapToDouble(a -> a).average().getAsDouble();
-        double maxPositive = scoresPositve.stream().mapToDouble(Double::doubleValue).max().getAsDouble();
+        OptionalDouble meanPositiveOpt = scoresPositve.stream().mapToDouble(a -> a).average();
+        double meanPositive  = -1.0;
+        if(meanPositiveOpt.isPresent()){
+            meanPositive = meanPositiveOpt.getAsDouble();
+        }
+        OptionalDouble maxPositiveOpt = scoresPositve.stream().mapToDouble(Double::doubleValue).max();
+        double maxPositive = -1.0;
+        if(maxPositiveOpt.isPresent()){
+            maxPositive = maxPositiveOpt.getAsDouble();
+        }
+
+
+
         double minPositive = scoresPositve.stream().mapToDouble(Double::doubleValue).min().getAsDouble();
         // Probably use the InfoHolders to create overall stats
-        double meanNegative = scoresNegative.stream().mapToDouble(a -> a).average().getAsDouble();
-        double maxNegative= scoresNegative.stream().mapToDouble(Double::doubleValue).max().getAsDouble();
+
+        OptionalDouble meanNegativeOpt = scoresNegative.stream().mapToDouble(a -> a).average();
+        double meanNegative  = -1.0;
+        if(meanNegativeOpt.isPresent()){
+            meanNegative = meanNegativeOpt.getAsDouble();
+        }
+
+        OptionalDouble maxNegativeOpt = scoresNegative.stream().mapToDouble(Double::doubleValue).max();
+        double maxNegative = -1.0;
+        if(maxNegativeOpt.isPresent()){
+            maxNegative = maxNegativeOpt.getAsDouble();
+        }
         double minNegative = scoresNegative.stream().mapToDouble(Double::doubleValue).min().getAsDouble();
+
+
+
+
         System.out.println("meanPositive: "+meanPositive);
         System.out.println("maxPositive: "+maxPositive);
         System.out.println("minPositive: "+minPositive);
@@ -633,7 +659,7 @@ public class SalvadorFragmentLevelEval {
 
     private static List<File> filterBySuspFileLimit(HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, List<File> suspiciousFiles, boolean DO_FILE_PREFILTERING, int SUSP_FILE_LIMIT) {
         if(DO_FILE_PREFILTERING) {
-            suspiciousFiles = suspiciousFiles.stream().limit(SUSP_FILE_LIMIT).collect(Collectors.toList());// Just take one basic file.
+            suspiciousFiles = suspiciousFiles.stream().sorted().limit(SUSP_FILE_LIMIT).collect(Collectors.toList());// Just take one basic file.
             List<String> usedPlagiarismInfos  = suspiciousFiles.stream().map(entry->entry.getName().replace(".txt",".xml")).collect(Collectors.toList());
             plagiarismInformation.keySet().retainAll(usedPlagiarismInfos);
         }
