@@ -602,6 +602,11 @@ public class SalvadorFragmentLevelEval {
             someModeFound = true;
 
         }
+        if(MODE.equals("keepingMax")){
+            // Keeping the maximum of merged fragments as a score
+            mergedFragment.setComputedScore(Double.max(fragment1.getComputedScore(),fragment2.getComputedScore()));
+            someModeFound = true;
+        }
         if(!someModeFound){
             System.err.println("INCORRECT FRAGMENT_MERGE_MODE IN CLUSTERING SETTINGS: "+MODE);
         }
