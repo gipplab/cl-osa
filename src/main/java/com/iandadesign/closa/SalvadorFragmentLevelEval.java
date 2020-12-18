@@ -354,8 +354,8 @@ public class SalvadorFragmentLevelEval {
         scoresMapSelected.keySet().retainAll(suspiciousFragments);
         Map<SalvadorTextFragment, SalvadorTextFragment> fragmentInfosSelected = new ArrayMap<>();
         // Analysis related stuff
-        Map<SalvadorTextFragment , Map<SalvadorTextFragment, Double>> fragmentInfosAll = new ArrayMap<>();
-        Map<SalvadorTextFragment , Map<SalvadorTextFragment, Double>> fragmentInfosAllmerged = new ArrayMap<>();
+        Map<SalvadorTextFragment , Map<SalvadorTextFragment, Integer>> fragmentInfosAll = new ArrayMap<>();
+        Map<SalvadorTextFragment , Map<SalvadorTextFragment, Integer>> fragmentInfosAllmerged = new ArrayMap<>();
 
 
 
@@ -408,25 +408,23 @@ public class SalvadorFragmentLevelEval {
                 for(String clusteredFragmentID: fragmentInfos.keySet()){
                     SalvadorTextFragment fragment = fragmentInfos.get(clusteredFragmentID);
                     int plagiarizedArea = getPlagiarismAreaAccumulated(fragment.getSentencesStartChar(), fragment.getSentencesEndChar(),nodePlagiarismInfos,true);
-                    double plagiarismIndicator = (double) plagiarizedArea / fragment.getCharLengthBySentences();
-                    Map<SalvadorTextFragment, Double> currentMap = fragmentInfosAll.get(suspiciousFragment);
+                    Map<SalvadorTextFragment, Integer> currentMap = fragmentInfosAll.get(suspiciousFragment);
                     if(currentMap==null){
                         currentMap = new ArrayMap<>();
                         fragmentInfosAll.put(suspiciousFragment, currentMap);
                     }
-                    fragmentInfosAll.get(suspiciousFragment).put(fragment, plagiarismIndicator);
+                    fragmentInfosAll.get(suspiciousFragment).put(fragment, plagiarizedArea);
                 }
                 for(String clusteredFragmentID: fragmentInfosMerged.keySet()){
                     SalvadorTextFragment fragment = fragmentInfosMerged.get(clusteredFragmentID);
                     int plagiarizedArea =  getPlagiarismAreaAccumulated(fragment.getSentencesStartChar(), fragment.getSentencesEndChar(),nodePlagiarismInfos,true);
-                    double plagiarismIndicator = (double) plagiarizedArea / fragment.getCharLengthBySentences();
 
-                    Map<SalvadorTextFragment, Double> currentMap = fragmentInfosAllmerged.get(suspiciousFragment);
+                    Map<SalvadorTextFragment, Integer> currentMap = fragmentInfosAllmerged.get(suspiciousFragment);
                     if(currentMap==null){
                         currentMap = new ArrayMap<>();
                         fragmentInfosAllmerged.put(suspiciousFragment, currentMap);
                     }
-                    fragmentInfosAllmerged.get(suspiciousFragment).put(fragment, plagiarismIndicator);
+                    fragmentInfosAllmerged.get(suspiciousFragment).put(fragment, plagiarizedArea);
                 }
             }
 
@@ -444,15 +442,18 @@ public class SalvadorFragmentLevelEval {
         }
         return fragmentInfosSelected;
     }
-    private static void getStats(Map<SalvadorTextFragment , Map<SalvadorTextFragment, Double>> currentMap){
+    private static void getStats(Map<SalvadorTextFragment , Map<SalvadorTextFragment, Integer>> currentMap){
         List<Double> scoresPositve = new ArrayList<>();
         List<Double> scoresNegative = new ArrayList<>();
+        int possiblePlagiarizedArea = 0;
         for(SalvadorTextFragment suspiciousTextFragment: currentMap.keySet()){
-            Map<SalvadorTextFragment, Double> relatedDetections = currentMap.get(suspiciousTextFragment);
+            Map<SalvadorTextFragment, Integer> relatedDetections = currentMap.get(suspiciousTextFragment);
             for(SalvadorTextFragment candidateTextFragment:relatedDetections.keySet()){
-                double relevance = relatedDetections.get(candidateTextFragment);
+                int plagiarizedArea = relatedDetections.get(candidateTextFragment);
+                double relevance = plagiarizedArea / (double)candidateTextFragment.getCharLengthBySentences();
                 double score = candidateTextFragment.getComputedScore();
-                if(relevance> 0.3){
+                if(relevance > SalvadorAnalysisParameters.ANALYSIS_RELEVANCE_THRESH){
+                    possiblePlagiarizedArea += plagiarizedArea;
                     scoresPositve.add(score);
                 }else{
                     scoresNegative.add(score);
@@ -496,12 +497,13 @@ public class SalvadorFragmentLevelEval {
             minNegative = minNegativeOpt.getAsDouble();
         }
 
-
-
-
+        System.out.println("plagiarizedAreaPositive: " + possiblePlagiarizedArea);
+        System.out.println("numPositive: "+scoresPositve.size());
         System.out.println("meanPositive: "+meanPositive);
         System.out.println("maxPositive: "+maxPositive);
         System.out.println("minPositive: "+minPositive);
+        System.out.println("---");
+        System.out.println("numNegative: "+scoresNegative.size());
         System.out.println("meanNegative: "+meanNegative);
         System.out.println("maxNegative: "+maxNegative);
         System.out.println("minNegative: "+minNegative);
