@@ -347,7 +347,7 @@ public class SalvadorFragmentLevelEval {
 
         if(SalvadorAnalysisParameters.DO_ANALYSIS){
             SalvadorStatisticsInfo salvadorStatisticsInfoAllCombined = SalvadorExtendedAnalytics.createCombinedStatistics(allStatistics);
-            logUtil.logAndWriteStandard(false, "All Statistics (atm scoring selects only candidate files plagiarism):");
+            logUtil.logAndWriteStandard(false, "All Statistics (scoring selects only candidate files plagiarism:",SalvadorAnalysisParameters.ONLY_PLAGFILES_IN_STATS,")");
 
             printStatisticsInfo(logUtil, salvadorStatisticsInfoAllCombined.overallInfoPositives,"overallPositives");
             printStatisticsInfo(logUtil, salvadorStatisticsInfoAllCombined.overallInfoNegatives,"overallNegatives");
@@ -373,8 +373,8 @@ public class SalvadorFragmentLevelEval {
         logUtil.logAndWriteStandard(false, "Printing Statistics Infos for", name+"----------------");
         logUtil.logAndWriteStandard(true, "plagiarizedAreaPositive:", salvadorInfoHolder.possiblePlagiarizedArea);
         logUtil.logAndWriteStandard(true, "numFindings:", salvadorInfoHolder.numFindings);
-        logUtil.logAndWriteStandard(true, "mean:", salvadorInfoHolder.mean);
         logUtil.logAndWriteStandard(true, "max(average):", salvadorInfoHolder.max);
+        logUtil.logAndWriteStandard(true, "mean:", salvadorInfoHolder.mean);
         logUtil.logAndWriteStandard(true,"min(average):", salvadorInfoHolder.min);
         logUtil.logAndWriteStandard(true, "---");
 
@@ -478,7 +478,7 @@ public class SalvadorFragmentLevelEval {
         myResult.resultMap = fragmentInfosSelected;
         // Holder for analysis stuff
         if(DO_ANALYSIS){
-            if(candidatePlagiarismInfos.size()>0){
+            if(!SalvadorAnalysisParameters.ONLY_PLAGFILES_IN_STATS || candidatePlagiarismInfos.size()>0){
                 // myStatisticsD2D is filled by reference by both functions
                 SalvadorStatisticsInfo myStatisticsD2D = new SalvadorStatisticsInfo();
                 getStats(fragmentInfosAll, true, myStatisticsD2D, "Overall", logUtil);
