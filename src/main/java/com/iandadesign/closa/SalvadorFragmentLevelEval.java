@@ -4,7 +4,10 @@ import com.iandadesign.closa.model.*;
 import com.iandadesign.closa.util.*;
 import edu.stanford.nlp.util.ArrayMap;
 import org.jetbrains.annotations.NotNull;
+
+import javax.management.remote.rmi._RMIConnection_Stub;
 import java.io.File;
+import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -255,6 +258,17 @@ public class SalvadorFragmentLevelEval {
         // Do the comparison
         Map<String, Map<String, Double>>  scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES);
 
+
+        if(SalvadorAnalysisParameters.DO_REGRESSION_ANALYSIS){
+            // scoresMap -> entities -> results
+            // suspicious is always plagiarism
+            // my candidate fragment is 200/2000 characters plagiasm
+            // linearer score für plagiarism
+            // linearized , feature1 , feature2, ....
+            // Oberservartion(lineerize, scoreAbsolute, scoreNormalized, scores)
+        }
+
+
         // Calculate the recall for the scores map (character based)
         //Double recallAt10 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,10);
         //Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,20);
@@ -277,8 +291,13 @@ public class SalvadorFragmentLevelEval {
             //- documents containing plagiarism
         // Compare each preselected suspicious document to candidate document.
         Map<String, Map<String, Map<SalvadorTextFragment, SalvadorTextFragment>>> allResults = new HashMap<>();
+        Map<String, Map<String, SalvadorStatisticsInfo>> allStatistics = new HashMap<>();
+
+
+
         for(String suspiciousDocument:suspDocFragmentMap.keySet()){
             Map<String, Map<SalvadorTextFragment, SalvadorTextFragment>> supFilePlagiarism = new HashMap<>();
+            Map<String, SalvadorStatisticsInfo> suspDocumentStats = new HashMap<>();
             List<PAN11PlagiarismInfo> relatedPlagiarismInfo = null;
             if(SalvadorAnalysisParameters.DO_ANALYSIS) {
                 relatedPlagiarismInfo = plagiarismInformation.get(suspiciousDocument.replace(".txt", ".xml"));
@@ -292,7 +311,7 @@ public class SalvadorFragmentLevelEval {
                 }
 
                 // Calculate DA-Clustering for current file combination.
-                Map<SalvadorTextFragment, SalvadorTextFragment> detailedAnalysisResultsD2D = doDetailedAnalysis(
+                SalvadorDetailedAnalysisResult daResult = doDetailedAnalysis(
                         suspDocFragmentMap.get(suspiciousDocument),
                         candDocFragmentMap.get(candidateDocument),
                         suspiciousEntitiesFragment,
@@ -302,9 +321,15 @@ public class SalvadorFragmentLevelEval {
                         SalvadorAnalysisParameters.THRESH2,
                         SalvadorAnalysisParameters.TOPMOST,
                         SalvadorAnalysisParameters.DO_ANALYSIS,
-                        relatedPlagiarismInfoCandFiltered
+                        relatedPlagiarismInfoCandFiltered,
+                        logUtil
                 );
-
+                Map<SalvadorTextFragment, SalvadorTextFragment> detailedAnalysisResultsD2D = daResult.resultMap;
+                if(SalvadorAnalysisParameters.DO_ANALYSIS){
+                    if(daResult.salvadorStatisticsInfo!=null){
+                        suspDocumentStats.put(candidateDocument, daResult.salvadorStatisticsInfo);
+                    }
+                }
                 if(detailedAnalysisResultsD2D.size() >= 1){
                     Map<SalvadorTextFragment, SalvadorTextFragment> currentMap = supFilePlagiarism.get(candidateDocument);
                     if(currentMap==null) {
@@ -319,8 +344,21 @@ public class SalvadorFragmentLevelEval {
             }
 
             allResults.put(suspiciousDocument, supFilePlagiarism);
+            if(SalvadorAnalysisParameters.DO_ANALYSIS){
+                allStatistics.put(suspiciousDocument, suspDocumentStats);
+            }
 
         }
+        if(SalvadorAnalysisParameters.DO_ANALYSIS){
+            SalvadorStatisticsInfo salvadorStatisticsInfoAllCombined = SalvadorExtendedAnalytics.createCombinedStatistics(allStatistics);
+            logUtil.logAndWriteStandard(false, "All Statistics (atm scoring selects only candidate files plagiarism):");
+
+            printStatisticsInfo(logUtil, salvadorStatisticsInfoAllCombined.overallInfoPositives,"overallPositives");
+            printStatisticsInfo(logUtil, salvadorStatisticsInfoAllCombined.overallInfoNegatives,"overallNegatives");
+            printStatisticsInfo(logUtil, salvadorStatisticsInfoAllCombined.mergedInfoPositives,"mergedPositives");
+            printStatisticsInfo(logUtil, salvadorStatisticsInfoAllCombined.mergedInfoNegatives,"mergedNegatives");
+        }
+
         // Write down all xml Results
         String xmlResultsFolderPath = SalvadorPAN11XMLwriter.writeDownAllXMLResults(tag, logUtil.getDateString(), preprocessedCachingDir,allResults);
         // Do evaluation with the current set filters
@@ -335,8 +373,18 @@ public class SalvadorFragmentLevelEval {
 
     }
 
+    public static void printStatisticsInfo(ExtendedLogUtil logUtil, SalvadorInfoHolder salvadorInfoHolder, String name) {
+        logUtil.logAndWriteStandard(false, "Printing Statistics Infos for", name+"----------------");
+        logUtil.logAndWriteStandard(true, "plagiarizedAreaPositive:", salvadorInfoHolder.possiblePlagiarizedArea);
+        logUtil.logAndWriteStandard(true, "numFindings:", salvadorInfoHolder.numFindings);
+        logUtil.logAndWriteStandard(true, "mean:", salvadorInfoHolder.mean);
+        logUtil.logAndWriteStandard(true, "max(average):", salvadorInfoHolder.max);
+        logUtil.logAndWriteStandard(true,"min(average):", salvadorInfoHolder.min);
+        logUtil.logAndWriteStandard(true, "---");
 
-    public static Map<SalvadorTextFragment, SalvadorTextFragment>  doDetailedAnalysis(List<String> suspiciousFragments,
+    }
+
+    public static SalvadorDetailedAnalysisResult doDetailedAnalysis(List<String> suspiciousFragments,
                                                                                       List<String> candidateFragments,
                                           Map<String, List<SavedEntity>> suspiciousEntitiesFragment,
                                           Map<String, List<SavedEntity>> candidateEntitiesFragment,
@@ -345,7 +393,8 @@ public class SalvadorFragmentLevelEval {
                                           double THRESHOLD_2,
                                           int RANKLIMIT,
                                           boolean DO_ANALYSIS,
-                                          List<PAN11PlagiarismInfo> candidatePlagiarismInfos) {
+                                          List<PAN11PlagiarismInfo> candidatePlagiarismInfos,
+                                          ExtendedLogUtil logUtil) {
 
         double THRESH_TOPMOST = SalvadorAnalysisParameters.PRESELECTION_THRESH;
 
@@ -390,7 +439,7 @@ public class SalvadorFragmentLevelEval {
             for(String clusteredFragmentID: fragmentInfosMerged.keySet()){
                 SalvadorTextFragment clusteredFragment = fragmentInfosMerged.get(clusteredFragmentID);
                 //System.out.println(suspiciousFragmentID+"/"+candidateFragments.get(0)+":"+clusteredFragment.getComputedScore());
-                if(clusteredFragment.getComputedScore()>THRESHOLD_2){
+                if(clusteredFragment.getComputedScore() > THRESHOLD_2){
                     fragmentInfosSelected.put(suspiciousFragment, clusteredFragment);
                 }
             }
@@ -429,22 +478,25 @@ public class SalvadorFragmentLevelEval {
             }
 
         }
+        SalvadorDetailedAnalysisResult myResult = new SalvadorDetailedAnalysisResult();
+        myResult.resultMap = fragmentInfosSelected;
         // Holder for analysis stuff
         if(DO_ANALYSIS){
             if(candidatePlagiarismInfos.size()>0){
-                System.out.println("Overall Stats----------------");
-                getStats(fragmentInfosAll);
-                System.out.println("Merged Stats-----------------");
-                getStats(fragmentInfosAllmerged);
-                System.out.println("-----------------------------");
-
+                // myStatisticsD2D is filled by reference by both functions
+                SalvadorStatisticsInfo myStatisticsD2D = new SalvadorStatisticsInfo();
+                getStats(fragmentInfosAll, true, myStatisticsD2D, "Overall", logUtil);
+                getStats(fragmentInfosAllmerged, false, myStatisticsD2D, "Merged", logUtil);
+                myResult.salvadorStatisticsInfo = myStatisticsD2D;
             }
         }
-        return fragmentInfosSelected;
+        return myResult;
     }
-    private static void getStats(Map<SalvadorTextFragment , Map<SalvadorTextFragment, Integer>> currentMap){
+    private static void getStats(Map<SalvadorTextFragment , Map<SalvadorTextFragment, Integer>> currentMap, boolean overallOrMerge, SalvadorStatisticsInfo statisticsInfo, String name, ExtendedLogUtil logUtil){
         List<Double> scoresPositve = new ArrayList<>();
         List<Double> scoresNegative = new ArrayList<>();
+        long overallCharLengthPositive = 0;
+        long overallCharLengthNegative = 0;
         int possiblePlagiarizedArea = 0;
         for(SalvadorTextFragment suspiciousTextFragment: currentMap.keySet()){
             Map<SalvadorTextFragment, Integer> relatedDetections = currentMap.get(suspiciousTextFragment);
@@ -455,8 +507,11 @@ public class SalvadorFragmentLevelEval {
                 if(relevance > SalvadorAnalysisParameters.ANALYSIS_RELEVANCE_THRESH){
                     possiblePlagiarizedArea += plagiarizedArea;
                     scoresPositve.add(score);
+                    overallCharLengthPositive += candidateTextFragment.getCharLengthBySentences();
+
                 }else{
                     scoresNegative.add(score);
+                    overallCharLengthNegative += candidateTextFragment.getCharLengthBySentences();
                 }
             }
         }
@@ -496,17 +551,36 @@ public class SalvadorFragmentLevelEval {
         if(minNegativeOpt.isPresent()){
             minNegative = minNegativeOpt.getAsDouble();
         }
+        boolean printMe = false;
 
-        System.out.println("plagiarizedAreaPositive: " + possiblePlagiarizedArea);
-        System.out.println("numPositive: "+scoresPositve.size());
-        System.out.println("meanPositive: "+meanPositive);
-        System.out.println("maxPositive: "+maxPositive);
-        System.out.println("minPositive: "+minPositive);
-        System.out.println("---");
-        System.out.println("numNegative: "+scoresNegative.size());
-        System.out.println("meanNegative: "+meanNegative);
-        System.out.println("maxNegative: "+maxNegative);
-        System.out.println("minNegative: "+minNegative);
+        // Add stuffs to info holder
+        SalvadorInfoHolder salvadorInfoHolderPositives = new SalvadorInfoHolder();
+        SalvadorInfoHolder salvadorInfoHolderNegatives = new SalvadorInfoHolder();
+        salvadorInfoHolderPositives.possiblePlagiarizedArea = possiblePlagiarizedArea;
+        salvadorInfoHolderPositives.numFindings = scoresPositve.size();
+        salvadorInfoHolderPositives.max = maxPositive;
+        salvadorInfoHolderPositives.min = minPositive;
+        salvadorInfoHolderPositives.mean = meanPositive;
+        salvadorInfoHolderPositives.sizeChars = overallCharLengthPositive;
+
+        salvadorInfoHolderNegatives.numFindings = scoresNegative.size();
+        salvadorInfoHolderNegatives.max = maxNegative;
+        salvadorInfoHolderNegatives.min = minNegative;
+        salvadorInfoHolderNegatives.mean = meanNegative;
+        salvadorInfoHolderPositives.sizeChars = overallCharLengthNegative;
+        if(printMe) {
+            printStatisticsInfo(logUtil,salvadorInfoHolderPositives, name+"Positives");
+            printStatisticsInfo(logUtil,salvadorInfoHolderNegatives, name+"Negatives");
+
+        }
+        if(overallOrMerge){
+            statisticsInfo.overallInfoPositives = salvadorInfoHolderPositives;
+            statisticsInfo.overallInfoNegatives = salvadorInfoHolderNegatives;
+
+        }else{
+            statisticsInfo.mergedInfoPositives = salvadorInfoHolderPositives;
+            statisticsInfo.mergedInfoNegatives = salvadorInfoHolderNegatives;
+        }
 
     }
     @NotNull
