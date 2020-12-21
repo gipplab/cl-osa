@@ -291,8 +291,7 @@ public class SalvadorFragmentLevelEval {
         Map<String, Map<String, SalvadorStatisticsInfo>> allStatistics = new HashMap<>();
 
 
-
-        for(String suspiciousDocument:suspDocFragmentMap.keySet()){
+        suspDocFragmentMap.keySet().parallelStream().forEach(suspiciousDocument -> {
             Map<String, Map<SalvadorTextFragment, SalvadorTextFragment>> supFilePlagiarism = new HashMap<>();
             Map<String, SalvadorStatisticsInfo> suspDocumentStats = new HashMap<>();
             List<PAN11PlagiarismInfo> relatedPlagiarismInfo = null;
@@ -302,7 +301,7 @@ public class SalvadorFragmentLevelEval {
             for(String candidateDocument:candDocFragmentMap.keySet()){
                 List<PAN11PlagiarismInfo> relatedPlagiarismInfoCandFiltered = null;
                 if(SalvadorAnalysisParameters.DO_ANALYSIS){
-                     relatedPlagiarismInfoCandFiltered = relatedPlagiarismInfo.stream().filter( value -> {
+                    relatedPlagiarismInfoCandFiltered = relatedPlagiarismInfo.stream().filter( value -> {
                         return value.getSourceReference().equals(candidateDocument.replace("candidate-", "source-"));
                     }).collect(Collectors.toList());
                 }
@@ -344,8 +343,8 @@ public class SalvadorFragmentLevelEval {
             if(SalvadorAnalysisParameters.DO_ANALYSIS){
                 allStatistics.put(suspiciousDocument, suspDocumentStats);
             }
+        });
 
-        }
         if(SalvadorAnalysisParameters.DO_ANALYSIS){
             SalvadorStatisticsInfo salvadorStatisticsInfoAllCombined = SalvadorExtendedAnalytics.createCombinedStatistics(allStatistics);
             logUtil.logAndWriteStandard(false, "All Statistics (atm scoring selects only candidate files plagiarism):");
