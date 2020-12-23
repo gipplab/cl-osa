@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static com.google.common.primitives.Doubles.min;
+
 public class SalvadorExtendedAnalytics {
     public static SalvadorStatisticsInfo createCombinedStatistics(Map<String, Map<String, SalvadorStatisticsInfo>> allStatisticsInfosMap){
         List<SalvadorStatisticsInfo> suspCombined = new ArrayList<>();
@@ -54,9 +56,17 @@ public class SalvadorExtendedAnalytics {
             numFindingsAcc += infoHolder.numFindings;
             possiblePlagiarizedArea += infoHolder.possiblePlagiarizedArea;
         }
-        finalInfoHolder.mean = meanAcc / ( numFindingsAcc);
-        finalInfoHolder.max = maxAcc / (numFindingsAcc);
-        finalInfoHolder.min = minAcc / (numFindingsAcc);
+
+        if(numFindingsAcc>0){
+            finalInfoHolder.mean = meanAcc / ( numFindingsAcc);
+            finalInfoHolder.max = maxAcc / (numFindingsAcc);
+            finalInfoHolder.min = minAcc / (numFindingsAcc);
+        }else{
+            System.out.println("NO FINDINGS FOR INFO HOLDERS");
+            finalInfoHolder.mean = 0;
+            finalInfoHolder.max = 0;
+            finalInfoHolder.min = 0;
+        }
         finalInfoHolder.sizeChars = sizeCharsAcc;
         finalInfoHolder.numFindings = numFindingsAcc;
         finalInfoHolder.possiblePlagiarizedArea = possiblePlagiarizedArea;
