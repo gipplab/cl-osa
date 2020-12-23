@@ -8,7 +8,6 @@ import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.iandadesign.closa.PAN11EvaluationSetEval.evalPAN2011AllNew;
 import static com.iandadesign.closa.PAN11EvaluationSetEval.logParams;
 import static java.lang.Integer.max;
 import static java.lang.Integer.min;
@@ -248,7 +247,7 @@ public class SalvadorFragmentLevelEval {
             suspiciousEntitiesFragment = getFragments(osa, suspiciousFiles, SalvadorAnalysisParameters.FRAGMENT_SENTENCES, SalvadorAnalysisParameters.FRAGMENT_INCREMENT, true, plagiarismInformation, false);
         }
 
-        if(SalvadorAnalysisParameters.SIMPLE_TF_IDF){
+        if(SalvadorAnalysisParameters.DO_STATISTICAL_WEIGHTING){
             // Required:
             // Corpus (Susp / Candidate) Level occurences per entitiy
             // Document Level Occurences
@@ -256,11 +255,9 @@ public class SalvadorFragmentLevelEval {
             // Definition TF/IDF
             // TF(t) = (Number of times term t appears in a document) / (Total number of terms in the document).
             // IDF(t) = log_e(Total number of documents / Number of documents with term t in it).
-            tfidfMapHolder mapHolder = new tfidfMapHolder();
-
             // Getting fragments, but without overlap TBD: mind susp pre-selection somehow.
-            mapHolder.createRelevantMaps(plagiarismInformation, osa, candidateFiles, suspiciousFiles);
-
+            tfidfMapHolder.createRelevantMaps(plagiarismInformation, osa, candidateFiles, suspiciousFiles);
+            tfidfMapHolder.calculateWeightingScores();
 
             // combining
             /* tbd sort by occurences
@@ -277,7 +274,7 @@ public class SalvadorFragmentLevelEval {
         // suspiciousEntitiesFragment = obsoletePreselectionFilter(plagiarismInformation, suspiciousEntitiesFragment, DO_OBSOLETE_PREFILTERING, 2);
 
         // Do the comparison
-        Map<String, Map<String, Double>>  scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES);
+        Map<String, Map<String, Double>>  scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_STATISTICAL_WEIGHTING);
 
 
         if(SalvadorAnalysisParameters.DO_REGRESSION_ANALYSIS){

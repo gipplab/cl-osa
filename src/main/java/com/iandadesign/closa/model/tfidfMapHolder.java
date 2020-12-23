@@ -11,12 +11,19 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class tfidfMapHolder {
-    Map<String, Map<String, tfidfTokenInfo>> suspFiles2TermsMap;
-    Map<String, Map<String, tfidfTokenInfo>> candFiles2TermsMap;
-    Map<String, tfidfTokenInfo> suspOverallTermsMap;
-    Map<String, tfidfTokenInfo> candOverallTermsMap;
+    static Map<String, Map<String, tfidfTokenInfo>> suspFiles2TermsMap;
+    static Map<String, Map<String, tfidfTokenInfo>> candFiles2TermsMap;
+    static Map<String, tfidfTokenInfo> suspOverallTermsMap;
+    static Map<String, tfidfTokenInfo> candOverallTermsMap;
 
-    public void createRelevantMaps(HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, OntologyBasedSimilarityAnalysis osa, List<File> candidateFiles, List<File> suspiciousFiles) throws Exception {
+    public static double getWeightFor(String wikidataID){
+        //System.out.println("TODO implement");
+        return 0.0;
+    }
+    public static void calculateWeightingScores(){
+        //System.out.println("TODO implement");
+    }
+    public static void createRelevantMaps(HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, OntologyBasedSimilarityAnalysis osa, List<File> candidateFiles, List<File> suspiciousFiles) throws Exception {
         Map<String, List<SavedEntity>> tfSuspFragmentEntities = tfidfMapHolder.tfidfGetSavedEntities2Files(osa, suspiciousFiles, true, plagiarismInformation);
         Map<String, List<SavedEntity>> tfCandFragmentEntities = tfidfGetSavedEntities2Files(osa, candidateFiles, false, null);
 

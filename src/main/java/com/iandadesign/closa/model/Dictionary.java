@@ -118,8 +118,8 @@ public class Dictionary<T> {
      * @param queryTerms sendQuery
      * @return the document ids - score map.
      */
-    public Map<String, Double> query(final List<T> queryTerms, boolean absoluteScoring) {
-
+    public Map<String, Double> query(final List<T> queryTerms, boolean absoluteScoring, boolean doStatsweighting) {
+        // TF/IDF etc query terms are list of wikidata entities, calculate the corresponding weights before, get them here
         if (queryTerms.isEmpty()) {
             return new HashMap<>();
         }
@@ -135,7 +135,13 @@ public class Dictionary<T> {
         //     to docId -> term vector
         dictionary.forEach((term, value) -> {
             int conceptIndex = termList.indexOf(term);
+            //TBD add the individual weighting factor here?! For simplicities sake write it to frequency
+            // TODO js add custom weighting here make triggerable
+            if(doStatsweighting) {
+                double myWeight = tfidfMapHolder.getWeightFor(term.toString());
+            }
             value.forEach((docId, freq) -> {
+
                 if (docIdVectorMap.containsKey(docId)) {
                     docIdVectorMap.get(docId).addToEntry(conceptIndex, freq);
                 } else {
