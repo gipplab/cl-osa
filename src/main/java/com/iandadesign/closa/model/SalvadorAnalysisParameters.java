@@ -32,6 +32,8 @@ public class SalvadorAnalysisParameters {
     public static double ANALYSIS_RELEVANCE_THRESH = 0.1;         // Fragments have to have at least XX percent overlap with plagiarism to go as positivies
     public static boolean DO_REGRESSION_ANALYSIS = true;
     public static boolean ONLY_PLAGFILES_IN_STATS = false;        // only consider candidate files which actually contain plagiarism for statistics calculation.
+    // Experimental Features (Features in Development)
+    public static boolean SIMPLE_TF_IDF = true;                  // weighting all found entities by tf/idf
 
 
 

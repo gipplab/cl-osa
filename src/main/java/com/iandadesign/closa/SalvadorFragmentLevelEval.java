@@ -248,6 +248,23 @@ public class SalvadorFragmentLevelEval {
             suspiciousEntitiesFragment = getFragments(osa, suspiciousFiles, SalvadorAnalysisParameters.FRAGMENT_SENTENCES, SalvadorAnalysisParameters.FRAGMENT_INCREMENT, true, plagiarismInformation, false);
         }
 
+        if(SalvadorAnalysisParameters.SIMPLE_TF_IDF){
+            // Getting fragments, but without overlap TBD: mind susp pre-selection somehow.
+            Map<String, List<SavedEntity>> tfSuspFragmentEntities = tfidfGetSavedEntities2Files(osa, suspiciousFiles, true, plagiarismInformation);
+            Map<String, List<SavedEntity>> tfCandFragmentEntities = tfidfGetSavedEntities2Files(osa, candidateFiles, false, null);
+            // do example mapping for all terms in susp
+            Map<String, tfidfTokenInfo> suspTermsMap = tfidfGetOccurencesForMultipleFiles(tfSuspFragmentEntities);
+            Map<String, tfidfTokenInfo> candTermsMap = tfidfGetOccurencesForMultipleFiles(tfCandFragmentEntities);
+            // combining
+            /* tbd sort by occurences
+            Map<String, tfidfTokenInfo> sortedTermsByOccurence =
+                    tfCandFragmentEntities.entrySet().stream()
+                            .sorted(Map.Entry::comparingByValue::(tfidfTokenInfo h1, tfidfTokenInfo h2) -> !(h1.getOccurences() <= h2.getOccurences()))
+                            .collect(Collectors.toMap(
+                                    Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+            */
+            System.out.println("reacher");
+        }
         // For testing take a smaller suspicious map and the corresponding results.
         // boolean DO_OBSOLETE_PREFILTERING = false; // usually file filter above is more practical
         // suspiciousEntitiesFragment = obsoletePreselectionFilter(plagiarismInformation, suspiciousEntitiesFragment, DO_OBSOLETE_PREFILTERING, 2);
@@ -367,6 +384,30 @@ public class SalvadorFragmentLevelEval {
         PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath());
         PAN11FileUtil.removeDirectory(cachingDir);
 
+    }
+
+    private static Map<String, tfidfTokenInfo> tfidfGetOccurencesForMultipleFiles(Map<String, List<SavedEntity>> tfCandFragmentEntities) {
+        Map<String, tfidfTokenInfo> termsMap = new HashMap<>();
+        for(String currentKey: tfCandFragmentEntities.keySet()){
+            List<SavedEntity> currentTerms = tfCandFragmentEntities.get(currentKey);
+            for(SavedEntity term:currentTerms){
+                String wikidataEntity = term.getWikidataEntityId();
+                tfidfTokenInfo tokenInfo = termsMap.get(wikidataEntity);
+                if(tokenInfo == null){
+                    tfidfTokenInfo myNewTokenInfo = new tfidfTokenInfo();
+                    myNewTokenInfo.occurences = 1;
+                    myNewTokenInfo.lemmas.add(term.getToken().getLemma());
+                    termsMap.put(wikidataEntity, myNewTokenInfo);
+                }else{
+                    tokenInfo.occurences += 1;
+                    if(!tokenInfo.lemmas.contains(term.getToken().getLemma())){
+                        tokenInfo.lemmas.add(term.getToken().getLemma());
+                    }
+                    termsMap.put(wikidataEntity,tokenInfo); //necessary?
+                }
+            }
+        }
+        return termsMap;
     }
 
     public static void printStatisticsInfo(ExtendedLogUtil logUtil, SalvadorInfoHolder salvadorInfoHolder, String name) {
@@ -856,6 +897,30 @@ public class SalvadorFragmentLevelEval {
         return entitiesMap;
     }
 
+    private static Map<String, List<SavedEntity>> tfidfGetSavedEntities2Files(OntologyBasedSimilarityAnalysis osa, List<File> inputFiles, boolean onlyPlagiarismRelated, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation) throws Exception{
+        Map<String, List<SavedEntity>> entitiesMap = new HashMap<>();
+        for(File currentFile: inputFiles){
+
+            List<SavedEntity> savedEntities = osa.preProcessExtendedInfo(currentFile.getPath(),null );
+            if(!onlyPlagiarismRelated){
+                entitiesMap.put(currentFile.getName(),savedEntities);
+
+            }else{
+                // Mind that this only works for susp files currently
+                String key = currentFile.getName().replace(".txt",".xml");
+                List<PAN11PlagiarismInfo> currentPlagiarismInfos = plagiarismInformation.get(key);
+
+                List<SavedEntity> savedEntitiesFiltered = new ArrayList<>();
+                for(SavedEntity currentEntity:savedEntities){
+                    if(isPlagiarismRelated(currentEntity.getToken().getStartCharacter(), currentEntity.getToken().getEndCharacter(),currentPlagiarismInfos, false)){
+                        savedEntitiesFiltered.add(currentEntity);
+                    }
+                }
+                entitiesMap.put(currentFile.getName(),savedEntitiesFiltered);
+            }
+        }
+        return entitiesMap;
+    }
     private static Map<String, List<SavedEntity>> getFragments(OntologyBasedSimilarityAnalysis osa, List<File> inputFiles,
                                                                                                          int FRAGMENT_SENTENCES, int FRAGMENT_INCREMENT, boolean filterByResults, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, boolean candOrSusp) throws Exception {
         Map<String, List<SavedEntity>> entitiesMap = new HashMap<>();
