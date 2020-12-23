@@ -11,4 +11,10 @@ public class tfidfTokenInfo {
     public long getOccurences() {
         return occurences;
     }
+    public String getLemmaAt(int position){
+        if(position<lemmas.size()){
+            return lemmas.get(position);
+        }
+        return "";
+    }
 }
