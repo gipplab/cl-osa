@@ -32,9 +32,10 @@ public class SalvadorAnalysisParameters {
     public static double ANALYSIS_RELEVANCE_THRESH = 0.1;         // Fragments have to have at least XX percent overlap with plagiarism to go as positivies
     public static boolean DO_REGRESSION_ANALYSIS = true;
     public static boolean ONLY_PLAGFILES_IN_STATS = false;        // only consider candidate files which actually contain plagiarism for statistics calculation.
-    // Experimental Features (Features in Development)
-    public static boolean DO_STATISTICAL_WEIGHTING = false;                  // weighting all found entities by tf/idf
 
+    // Experimental Features (Features in Development)
+    public static boolean DO_STATISTICAL_WEIGHTING = true;     // weighting all found entities by tf/idf
+    public static int WEIGHTING_SCHEME = 1;                     // See Wikipedia "Recommended Weighting Schemes: https://en.wikipedia.org/wiki/Tf%E2%80%93idf
 
 
     public static void printSalvadorMembers(ExtendedLogUtil logUtil) throws IllegalAccessException {
