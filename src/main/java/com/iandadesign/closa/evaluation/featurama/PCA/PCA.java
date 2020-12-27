@@ -2,7 +2,7 @@ package com.iandadesign.closa.evaluation.featurama.PCA;
 
 import com.iandadesign.closa.evaluation.featurama.matrix.Matrix;
 
-public class PrincipalComponentAnalysis {
+public class PCA {
 
     // principal component subspace is stored in the rows
     private Matrix V_t;
@@ -17,7 +17,11 @@ public class PrincipalComponentAnalysis {
     // mean values of each element across all the samples
     double mean[];
 
-    public PrincipalComponentAnalysis() {
+    public PCA() {
+    }
+
+    public PCA( int numSamples , int sampleSize ) {
+        setup( numSamples , sampleSize );
     }
 
     /**
@@ -28,7 +32,7 @@ public class PrincipalComponentAnalysis {
      */
     public void setup( int numSamples , int sampleSize ) {
         mean = new double[ sampleSize ];
-        A.reshape(numSamples,sampleSize,false);
+        A.reshape(numSamples, sampleSize, false);
         sampleIndex = 0;
         numComponents = -1;
     }
