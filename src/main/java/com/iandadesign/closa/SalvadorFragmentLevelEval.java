@@ -4,7 +4,8 @@ import com.iandadesign.closa.model.*;
 import com.iandadesign.closa.util.*;
 import edu.stanford.nlp.util.ArrayMap;
 import org.jetbrains.annotations.NotNull;
-import java.io.File;
+
+import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -273,8 +274,24 @@ public class SalvadorFragmentLevelEval {
         // boolean DO_OBSOLETE_PREFILTERING = false; // usually file filter above is more practical
         // suspiciousEntitiesFragment = obsoletePreselectionFilter(plagiarismInformation, suspiciousEntitiesFragment, DO_OBSOLETE_PREFILTERING, 2);
 
-        // Do the comparison
-        Map<String, Map<String, Double>>  scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_STATISTICAL_WEIGHTING);
+
+        // Get the scoring (wrapped by caching block)
+        final Map<String, Map<String, Double>>  scoresMap;
+        if(SalvadorAnalysisParameters.DO_SCORES_MAP_CACHING){
+            ScoresMapCache scoresMapCache = new ScoresMapCache();
+            // Generate key on base of used parameters
+            String keyPath = scoresMapCache.generateFileKey(preprocessedCachingDir+"/scoresmap_serialization/",SalvadorAnalysisParameters.FRAGMENT_SENTENCES,SalvadorAnalysisParameters.FRAGMENT_INCREMENT,SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, SalvadorAnalysisParameters.SUSP_FILE_LIMIT);
+            // Try to find a file
+            Map<String, Map<String, Double>>  scoresMapDes = scoresMapCache.deserializeScoresMap(keyPath);
+            if(scoresMapDes==null){
+                scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_STATISTICAL_WEIGHTING);
+                scoresMapCache.serializeScoresMap(keyPath, scoresMap);
+            }else{
+                scoresMap = scoresMapDes;
+            }
+        }else{
+            scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_STATISTICAL_WEIGHTING);
+        }
 
 
         if(SalvadorAnalysisParameters.DO_REGRESSION_ANALYSIS){
@@ -288,9 +305,9 @@ public class SalvadorFragmentLevelEval {
 
 
         // Calculate the recall for the scores map (character based)
-        //Double recallAt10 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,10);
-        //Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,20);
-        //Double recallAt50 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,50);
+        Double recallAt10 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,10);
+        Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,20);
+        Double recallAt50 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,50);
 
 
         // DA implementation:

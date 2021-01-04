@@ -118,6 +118,7 @@ public class PAN11RankingEvaluator {
      * @return
      */
     public static double calculateRecallAtkFragmentCharacterLevel(Map<String, Map<String, Double>>  suspiciousIdCandidateScoresMap,
+                                                                  List<File> suspiciousFiles,
                                                                   Map<String, List<SavedEntity>> candidateEntitiesMap,
                                                                   Map<String, List<SavedEntity>> suspiciousEntitiesMap,
                                                                   HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation,
@@ -129,8 +130,8 @@ public class PAN11RankingEvaluator {
         int overallPossibleFindingsSimple = 0;
 
         // Calculate overall possible findings
-        for(String suspiciousFile:plagiarismInformation.keySet()){
-            List<PAN11PlagiarismInfo> susPlagiarismInfo = plagiarismInformation.get(suspiciousFile);
+        for(File suspiciousFile:suspiciousFiles){
+            List<PAN11PlagiarismInfo> susPlagiarismInfo = plagiarismInformation.get(suspiciousFile.getName().replace(".txt",".xml"));
             for(PAN11PlagiarismInfo currentPlagiarismInfo:susPlagiarismInfo){
 
                 overallPossibleFindingsSimple += currentPlagiarismInfo.getSourceLength();
