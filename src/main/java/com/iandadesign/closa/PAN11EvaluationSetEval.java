@@ -30,14 +30,14 @@ public class PAN11EvaluationSetEval {
         Boolean smallTest = false;                  // Just select few suspicious files for the complete process
         Boolean evaluateCandidateRetrieval = false; // This triggers only the CR evaluation.
         Boolean mockCRResults = true;              // This will test detailed analysis with mocked CR results
-        Integer maxMockSuspCandiates = 30;          // This is a delimeter for the maximum of suspicious files locked in mockCR Evaluation, set over 304 to check all susp files.
+        Integer maxMockSuspCandiates = 3;          // This is a delimeter for the maximum of suspicious files locked in mockCR Evaluation, set over 304 to check all susp files.
 
         //evalPAN2011All();
 
         if(args!=null && args.length >= 1){
-            evalPAN2011EnEs(args[0], smallTest, evaluateCandidateRetrieval, mockCRResults, 30 );
+            evalPAN2011EnEs(args[0], smallTest, evaluateCandidateRetrieval, mockCRResults, maxMockSuspCandiates );
         }else{
-            evalPAN2011EnEs(null, smallTest, evaluateCandidateRetrieval, mockCRResults, 30 );
+            evalPAN2011EnEs(null, smallTest, evaluateCandidateRetrieval, mockCRResults, maxMockSuspCandiates );
         }
     }
 
@@ -459,7 +459,7 @@ public class PAN11EvaluationSetEval {
         ForkJoinPool forkJoinPool = null;
 
         try {
-            osa.createOverallDictionary(params, mockSuspToSelectedCandidates);
+            //osa.createOverallDictionary(params, mockSuspToSelectedCandidates);
             forkJoinPool = new ForkJoinPool(parallelism);
             Map<String, List<String>> finalMockSuspToSelectedCandidates = mockSuspToSelectedCandidates;
             Map<String, List<StatisticsInfo>> allStatisticsInfos = new HashMap<>();
@@ -497,6 +497,7 @@ public class PAN11EvaluationSetEval {
             }
         }catch(Exception e) {//SecurityException | RejectedExecutionException e){
             logUtil.logAndWriteError(false, "Exception with with thread execution:", e);
+            e.printStackTrace();
         } finally {
             if (forkJoinPool != null) {
                 forkJoinPool.shutdown(); //always remember to shutdown the pool
@@ -513,7 +514,9 @@ public class PAN11EvaluationSetEval {
 
 
         if(parsedErrors>=1 || parsedFiles==0){
-            return;
+            logUtil.writeErrorReport(false, "There have been problems during detecting plagiarism: ");
+            logUtil.writeErrorReport(false, "Parsing errors:  ", parsedErrors);
+            logUtil.writeErrorReport(false, "Parsed files:  ", parsedFiles);
         }
 
 
@@ -578,14 +581,14 @@ public class PAN11EvaluationSetEval {
         logUtil.logAndWriteStandard(false, "Starting file comparisons...");
         List<File> candidateFiles = PAN11FileUtil.getTextFilesFromTopLevelDir(toplevelPathCandidates, params, true, ".txt");
         List<File> suspiciousFiles  = PAN11FileUtil.getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".txt");
-
+        /*
         try {
             osa.executeAlgorithmForAllfiles(suspiciousFiles, candidateFiles, params, logUtil.getDateString());
         } catch (Exception ex) {
             logUtil.logAndWriteError(false, "Exception during parse of all files Exception:", ex);
             ex.printStackTrace();
         }
-
+        */
 
         int parsedFiles = 0;
         int parsedErrors = 0;

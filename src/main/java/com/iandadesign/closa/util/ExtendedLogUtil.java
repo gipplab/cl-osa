@@ -84,8 +84,6 @@ public class ExtendedLogUtil {
     }
 
 
-
-
     public void writeStandardReport(boolean useFormat, Object ... args) {
         if(!this.LOG_STANDARD_TO_FILE) return;
         if(args == null){

@@ -108,7 +108,7 @@ public class WikidataDisambiguator {
 
         List<String> queryTerms = textTokens.stream().map(Token::getToken).collect(Collectors.toList());
 
-        String matchingId = dictionary.query(queryTerms)
+        String matchingId = dictionary.query(queryTerms, false,false)
                 .entrySet()
                 .stream()
                 .max(Comparator.comparingDouble(Map.Entry::getValue))
