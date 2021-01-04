@@ -1,8 +1,10 @@
 package com.iandadesign.closa.evaluation.featurama.matrix;
 
+import com.iandadesign.closa.evaluation.featurama.PCA.EigenvalueDecomposition;
 import com.iandadesign.closa.evaluation.featurama.observation.Observation;
 import com.iandadesign.closa.evaluation.featurama.observation.ObservationHolder;
 import com.iandadesign.closa.util.CSVUtil;
+import org.apache.xpath.operations.Bool;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -18,6 +20,9 @@ public class Matrix {
     private Boolean empty;
     public ArrayList<String> columnNames = new ArrayList<>();
 
+/* ------------------------
+   Constructor
+ * ------------------------ */
 
     public Matrix(int rows, int cols)
     {
@@ -47,10 +52,9 @@ public class Matrix {
         this.empty = false;
     }
 
-    public void setColumnNames(ArrayList<String> columnNames)
-    {
-        this.columnNames = columnNames;
-    }
+/* ------------------------
+   Public Methods
+ * ------------------------ */
 
     public int getRowDimension()
     {
@@ -60,6 +64,15 @@ public class Matrix {
     public int getColumnDimension()
     {
         return this.cols;
+    }
+
+    public double returnValue(int column_num, int row_num)
+    {
+        return data[row_num][column_num];
+    }
+
+    public double[][] getArray() {
+        return data;
     }
 
     public double[] returnColumn(int column_num)
@@ -80,13 +93,6 @@ public class Matrix {
         return row;
     }
 
-    public static Matrix identity(int N) {
-        Matrix I = new Matrix(N, N);
-        for (int i = 0; i < N; i++)
-            I.data[i][i] = 1;
-        return I;
-    }
-
     public Boolean writeValue(int row, int col, Double value)
     {
         if(row > this.rows || col > this.cols)
@@ -96,6 +102,31 @@ public class Matrix {
         this.data[row][col] = value;
         this.empty = false;
         return true;
+    }
+
+    public void setColumnNames(ArrayList<String> columnNames)
+    {
+        this.columnNames = columnNames;
+    }
+
+    public Matrix transpose()
+    {
+        Matrix transposed = new Matrix(this.rows, this.cols);
+        for(int row = 0; row<this.rows; row++)
+        {
+            for(int col = 0; col<this.cols; col++)
+            {
+                transposed.writeValue(row, col, this.data[col][row]);
+            }
+        }
+        return transposed;
+    }
+
+    public static Matrix identity(int N) {
+        Matrix I = new Matrix(N, N);
+        for (int i = 0; i < N; i++)
+            I.data[i][i] = 1;
+        return I;
     }
 
     public void display() {
@@ -129,6 +160,35 @@ public class Matrix {
         }
     }
 
+    public void saveMatrixToFile(String filename) throws IOException
+    {
+        // TODO anpassen
+        String home = System.getProperty("user.home");
+        String final_filename = home + '/' + filename + ".csv";
+
+        String[] file_content = writeMatrixToStringArray();
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(final_filename));
+
+        for (String line : file_content)
+        {
+            writer.write(line);
+            writer.write("\n");
+        }
+
+        writer.flush();
+        writer.close();
+    }
+
+    public EigenvalueDecomposition eig()
+    {
+        return new EigenvalueDecomposition(this);
+    }
+
+/* ------------------------
+   Private Methods
+ * ------------------------ */
+
     private static String[] getStrings(double[] a) {
         String[] output = new String[a.length];
         int i = 0;
@@ -161,25 +221,5 @@ public class Matrix {
         }
 
         return matrix_string_values;
-    }
-
-    public void saveMatrixToFile(String filename) throws IOException
-    {
-        // TODO anpassen
-        String home = System.getProperty("user.home");
-        String final_filename = home + '/' + filename + ".csv";
-
-        String[] file_content = writeMatrixToStringArray();
-
-        BufferedWriter writer = new BufferedWriter(new FileWriter(final_filename));
-
-        for (String line : file_content)
-        {
-            writer.write(line);
-            writer.write("\n");
-        }
-
-        writer.flush();
-        writer.close();
     }
 }

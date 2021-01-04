@@ -3,6 +3,10 @@ package com.iandadesign.closa.evaluation.featurama.matrix;
 public class CorrelationMatrix extends Matrix
 {
 
+/* ------------------------
+   Constructor
+ * ------------------------ */
+
     public CorrelationMatrix(int numObservations)
     {
         super(numObservations, numObservations);
@@ -14,7 +18,12 @@ public class CorrelationMatrix extends Matrix
         computeCorrelationMatrix(matrix);
     }
 
-    public void computeCorrelationMatrix(Matrix matrix) {
+/* ------------------------
+   Public Methods
+ * ------------------------ */
+
+    public void computeCorrelationMatrix(Matrix matrix)
+    {
         int nVars = matrix.getColumnDimension();
 
         for (int i = 0; i < nVars; i++) {
@@ -37,6 +46,7 @@ public class CorrelationMatrix extends Matrix
         int n = xArray.length;
         int n_2 = n*n;
 
+        // Namenskonvention:
         // sx = summe über alle x_i
         // sxy = summe über alle x_i*y_i
         for(int i = 0; i < n; i++)

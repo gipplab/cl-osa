@@ -812,7 +812,7 @@ public class OntologyBasedSimilarityAnalysis {
                             if(params.DO_REGRESSION_ANALYSIS)
                             {
                                 // TODO Kay: Add feature observations for findings with no score to observations here.
-                                Observation currentSuspObservation = new Observation();
+                                Observation observationSuspWindow = new Observation();
                                 LinkedHashMap<String, Object> hashMap = new LinkedHashMap<String, Object>();
                                 if(fragmentScore > 0)
                                 {
@@ -824,11 +824,11 @@ public class OntologyBasedSimilarityAnalysis {
                                 hashMap.put("currentSuspiciousIdTokensMap", currentSuspiciousIdTokensMap.size());
                                 hashMap.put("currentCandidateIdTokensMap", currentCandidateIdTokensMap.size());
                                 hashMap.put("AverageLength", 0);
-                                currentSuspObservation.addData(hashMap);
-                                currentSuspObservation.addData(startStopInfo);
-                                currentSuspObservation.addData(swiSuspicious, "swiSuspicious");
-                                currentSuspObservation.addData(swiCandidate, "swiCandidate");
-                                observationsList.add(currentSuspObservation);
+                                observationSuspWindow.addData(hashMap);
+                                observationSuspWindow.addData(startStopInfo);
+                                observationSuspWindow.addData(swiSuspicious, "swiSuspicious");
+                                observationSuspWindow.addData(swiCandidate, "swiCandidate");
+                                observationsList.add(observationSuspWindow);
                             }
 
 
@@ -852,7 +852,7 @@ public class OntologyBasedSimilarityAnalysis {
                             fragmentScores.add(currentScoringChunk.getComputedCosineSimilarity()); // etwas verwirrend, da currentScoringChunk.getComputedCosineSimilarity() = fragmentScore
 
                             if(params.DO_REGRESSION_ANALYSIS){
-                                Observation currentSuspObservation = new Observation();
+                                Observation observationSuspWindow = new Observation();
 
                                 Double finalFragmentScore = fragmentScore;
                                 LinkedHashMap<String, Object> hashMap = new LinkedHashMap<String, Object>() {{
@@ -862,11 +862,11 @@ public class OntologyBasedSimilarityAnalysis {
                                     put("currentCandidateIdTokensMap", currentCandidateIdTokensMap.size());
                                     put("AverageLength", currentScoringChunk.getAverageLength());
                                 }};
-                                currentSuspObservation.addData(hashMap);
-                                currentSuspObservation.addData(startStopInfo);
-                                currentSuspObservation.addData(swiSuspicious, "swiSuspicious");
-                                currentSuspObservation.addData(swiCandidate, "swiCandidate");
-                                observationsList.add(currentSuspObservation);
+                                observationSuspWindow.addData(hashMap);
+                                observationSuspWindow.addData(startStopInfo);
+                                observationSuspWindow.addData(swiSuspicious, "swiSuspicious");
+                                observationSuspWindow.addData(swiCandidate, "swiCandidate");
+                                observationsList.add(observationSuspWindow);
                             }
                             if(params.DESKEW_WINDOW_SIZE){
                                 fragmentScore = fragmentScore * (1 +  (params.DESKEW_FORM_FACTOR * currentScoringChunk.getAverageLength()/params.DESKEW_MAX_WINDOW_CONTENT));
@@ -936,7 +936,7 @@ public class OntologyBasedSimilarityAnalysis {
                             System.out.println(observationsList.dataNames.toString());
                             correlation.setColumnNames(observationsList.dataNames);
                             correlation.display();
-                            correlation.saveMatrixToFile("Testing");
+                            correlation.saveMatrixToFile(suspFilename);
                             statisticsInfo.correlation = correlation;
                         }
                     }

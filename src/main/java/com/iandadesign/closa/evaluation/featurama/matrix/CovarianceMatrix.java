@@ -11,10 +11,10 @@ public class CovarianceMatrix extends Matrix
     public CovarianceMatrix(Matrix matrix)
     {
         super(matrix.getColumnDimension(), matrix.getColumnDimension());
-        computeCorrelationMatrix(matrix);
+        computeCovarianceMatrix(matrix);
     }
 
-    public void computeCorrelationMatrix(Matrix matrix) {
+    public void computeCovarianceMatrix(Matrix matrix) {
         int nVars = matrix.getColumnDimension();
 
         for (int i = 0; i < nVars; i++) {
@@ -27,7 +27,7 @@ public class CovarianceMatrix extends Matrix
         }
     }
 
-    public double covariance(final double[] xArray, final double[] yArray) {
+    private double covariance(final double[] xArray, final double[] yArray) {
         // TODO: enforce xArray length == yArray length
         // TODO: enforce xArray length == num.observations && yArray length == num.observations
 
@@ -49,7 +49,6 @@ public class CovarianceMatrix extends Matrix
             sxy += x * y;
         }
 
-        // Todo hier könnte angeknüpft werden für eine Kovarianzmatrix (evtl. Correlationsklasse)
         double kovarianz = sxy / n - sx * sy /(n_2);
 
         return kovarianz;
