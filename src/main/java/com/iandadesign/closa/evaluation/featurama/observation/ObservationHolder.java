@@ -6,9 +6,17 @@ public class ObservationHolder {
     public ArrayList<Observation> observations = new ArrayList<>();
     public ArrayList<String> dataNames = new ArrayList<>();
 
+/* ------------------------
+   Constructor
+ * ------------------------ */
+
     public ObservationHolder()
     {
     }
+    
+/* ------------------------
+   Public Methods
+ * ------------------------ */
 
     public ObservationHolder(int size)
     {

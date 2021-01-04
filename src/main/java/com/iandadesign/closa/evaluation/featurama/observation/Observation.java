@@ -7,6 +7,10 @@ public class Observation {
 
     public LinkedHashMap<String, Object> features;
 
+/* ------------------------
+   Constructor
+ * ------------------------ */
+
     public Observation()
     {
         this.features = new LinkedHashMap<>();
@@ -16,6 +20,10 @@ public class Observation {
     {
         this.features = features;
     }
+
+/* ------------------------
+   Public Methods
+ * ------------------------ */
 
     public void addData(LinkedHashMap<String, Object> features)
     {
@@ -39,36 +47,6 @@ public class Observation {
             return;
         }
         process(feature, prefix);
-    }
-
-    private void process(Object feature, String prefix)
-    {
-        for (Field field : feature.getClass().getDeclaredFields()) {
-            field.setAccessible(true); // You might want to set modifier to public first.
-            Object value = null;
-            String type = "";
-            try
-            {
-                value = field.get(feature);
-                type = field.getType().toString();
-            }
-            catch (IllegalAccessException e)
-            {
-                e.printStackTrace();
-            }
-            if (value != null) {
-                processFieldEntry(field.getName(), type, value, prefix);
-            }
-        }
-    }
-
-    private void processFieldEntry(String name, String type, Object value, String prefix)
-    {
-        if ((value instanceof Number) || (value instanceof Boolean))
-        {
-            this.features.put(prefix + name, value);
-        }
-
     }
 
     public int returnObservationDim()
@@ -101,6 +79,40 @@ public class Observation {
         }
         Double returnObject = new Double(input.toString());
         return returnObject.doubleValue();
+    }
+
+/* ------------------------
+   Private Methods
+ * ------------------------ */
+
+    private void process(Object feature, String prefix)
+    {
+        for (Field field : feature.getClass().getDeclaredFields()) {
+            field.setAccessible(true); // You might want to set modifier to public first.
+            Object value = null;
+            String type = "";
+            try
+            {
+                value = field.get(feature);
+                type = field.getType().toString();
+            }
+            catch (IllegalAccessException e)
+            {
+                e.printStackTrace();
+            }
+            if (value != null) {
+                processFieldEntry(field.getName(), type, value, prefix);
+            }
+        }
+    }
+
+    private void processFieldEntry(String name, String type, Object value, String prefix)
+    {
+        if ((value instanceof Number) || (value instanceof Boolean))
+        {
+            this.features.put(prefix + name, value);
+        }
+
     }
 }
 
