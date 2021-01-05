@@ -806,7 +806,10 @@ public class SalvadorFragmentLevelEval {
     }
 
     public static boolean isEntityRelatedToPlagiarism(int entityStart, int entityEnd, int plagiarismStart, int plagiarismEnd){
-        if(getPlagiarizedArea(entityStart,entityEnd,plagiarismStart,plagiarismEnd)>0) return true;
+        int plagiarizedArea = getPlagiarizedArea(entityStart, entityEnd, plagiarismStart, plagiarismEnd);
+        if(plagiarizedArea > 0){
+            return true;
+        }
         return false;
     }
     public static int getPlagiarizedArea(int entityStart, int entityEnd, int plagiarismStart, int plagiarismEnd){

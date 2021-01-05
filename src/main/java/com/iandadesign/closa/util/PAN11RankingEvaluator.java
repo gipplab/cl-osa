@@ -131,7 +131,8 @@ public class PAN11RankingEvaluator {
 
         // Calculate overall possible findings
         for(File suspiciousFile:suspiciousFiles){
-            List<PAN11PlagiarismInfo> susPlagiarismInfo = plagiarismInformation.get(suspiciousFile.getName().replace(".txt",".xml"));
+            String key = suspiciousFile.getName().replace(".txt",".xml");
+            List<PAN11PlagiarismInfo> susPlagiarismInfo = plagiarismInformation.get(key);
             for(PAN11PlagiarismInfo currentPlagiarismInfo:susPlagiarismInfo){
 
                 overallPossibleFindingsSimple += currentPlagiarismInfo.getSourceLength();
@@ -148,7 +149,10 @@ public class PAN11RankingEvaluator {
                     }
                     //selectedSourceEntities.addAll(mapEntry.getValue());
                     // TODO continue here Probably no double entries
-                    List<SavedEntity>  candidateFindingEntities = mapEntry.getValue().stream().filter(savedEntity -> isEntityRelatedToPlagiarism(savedEntity.getToken().getStartCharacter(),savedEntity.getToken().getStartCharacter(),plagCandStart,plagCandEnd)).collect(Collectors.toList());
+                    List<SavedEntity>  candidateFindingEntities = mapEntry.getValue().stream()
+                            .filter(savedEntity -> isEntityRelatedToPlagiarism(savedEntity.getToken().getStartCharacter(),savedEntity.getToken().getEndCharacter(),plagCandStart,plagCandEnd))
+                            .collect(Collectors.toList());
+
                     int startCharacter = Integer.MAX_VALUE;
                     int endCharacter = 0;
                     for(SavedEntity savedEntity:candidateFindingEntities){
