@@ -11,7 +11,7 @@ public class SalvadorAnalysisParameters {
     public static int SUSP_FILE_LIMIT = 1;                        // Only take XX supicicious files with all candidates
 
     // Basic score calculation
-    public static boolean USE_ABSOLUTE_SCORES = true;            // If false: use default normalized cosine-score for each
+    public static boolean USE_ABSOLUTE_SCORES = false;            // If false: use default normalized cosine-score for each
 
     // Fragmentation
     public static int FRAGMENT_SENTENCES = 14; //5;               // In Sentences

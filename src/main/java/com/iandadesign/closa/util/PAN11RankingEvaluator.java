@@ -187,13 +187,31 @@ public class PAN11RankingEvaluator {
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
             for(String candidateFragmentID:candidateScoresMapSorted.keySet()){
-                String baseCandFileName = getBaseName(candidateFragmentID, ".txt");
+                String baseCandFileName = getBaseName(candidateFragmentID, ".txt").replace("candidate","source");
                 // perfomance: if the no current plagiarism points to candidate this can be skipped (or filter plagiarism again by candidates here!)
                 List<SavedEntity> candidateEntites = candidateEntitiesMap.get(candidateFragmentID);
-                SalvadorTextFragment currentCandFragment = createTextFragment(candidateEntites, candidateFragmentID);
 
-                int foundArea = sizeOfFoundPlagiarism(baseCandFileName, currentCandFragment,candidateEntites, relatedPlagiarism);
-                currentFindings += foundArea;
+                for(PAN11PlagiarismInfo relatedPlagcase:relatedPlagiarism){
+                    if(!baseCandFileName.equals(relatedPlagcase.getSourceReference())){
+                        continue;
+                    }
+                    int plagCandStart = relatedPlagcase.getSourceOffset();
+                    int plagCandEnd = relatedPlagcase.getSourceOffset() + relatedPlagcase.getSourceLength();
+
+                    List<SavedEntity>  candidateFindingEntities = candidateEntites.stream()
+                            .filter(savedEntity -> isEntityRelatedToPlagiarism(savedEntity.getToken().getStartCharacter(),savedEntity.getToken().getEndCharacter(),plagCandStart,plagCandEnd))
+                            .collect(Collectors.toList());
+
+                    int startCharacter = Integer.MAX_VALUE;
+                    int endCharacter = 0;
+                    for(SavedEntity savedEntity:candidateFindingEntities){
+                        startCharacter =  min(savedEntity.getToken().getStartCharacter(), startCharacter);
+                        endCharacter = max(savedEntity.getToken().getEndCharacter(), endCharacter);
+                    }
+                    // Get the area the fragments cover
+                    int findingSize = max(0, endCharacter - startCharacter);
+                    currentFindings+=findingSize;
+                }
             }
             overallFindings += currentFindings;
         }
