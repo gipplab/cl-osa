@@ -20,7 +20,7 @@ public class ObservationHolder {
 
     public ObservationHolder(int size)
     {
-        this.observations.ensureCapacity(size);
+        this.reserve(size);
     }
 
     public void reserve(int size)

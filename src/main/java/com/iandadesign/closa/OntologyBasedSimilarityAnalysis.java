@@ -737,7 +737,6 @@ public class OntologyBasedSimilarityAnalysis {
                     // Initialise Observation Holder and reserve memory
                     if(params.DO_REGRESSION_ANALYSIS)
                     {
-                        // TODO Kay: Add feature observations for findings with no score to observations here.
                         observationsList.reserve(numSentencesSusp*numSentencesCand);
                     }
                     // Documents have been specified here->start to slide the window.
@@ -811,10 +810,13 @@ public class OntologyBasedSimilarityAnalysis {
 
                             if(params.DO_REGRESSION_ANALYSIS)
                             {
-                                // TODO Kay: Add feature observations for findings with no score to observations here.
                                 Observation observationSuspWindow = new Observation();
                                 LinkedHashMap<String, Object> hashMap = new LinkedHashMap<String, Object>();
-                                if(fragmentScore > 0)
+                                if(fragmentScore < 0)
+                                {
+                                    hashMap.put("fragmentScore", 0.0);
+                                }
+                                else
                                 {
                                     Double finalFragmentScore = fragmentScore;
                                     hashMap.put("fragmentScore", finalFragmentScore);
@@ -929,12 +931,11 @@ public class OntologyBasedSimilarityAnalysis {
                         statisticsInfos.add(statisticsInfo);
 
                         if(params.DO_REGRESSION_ANALYSIS){
-                            // TODO Kay: Calculate Regression Matrix from Observations here.
-                            // TODO Kay: Store Matrix to statistics infos + number of Observations
+                            // Save data gathered from observations in matrix format and comput correlation matrix
                             Matrix ObservationData = new Matrix(observationsList);
                             CorrelationMatrix correlation = new CorrelationMatrix(ObservationData);
                             correlation.setColumnNames(observationsList.dataNames);
-                            correlation.saveMatrixToFile(suspFilename);
+                            correlation.saveMatrixToFile(params.maxtrixStoreLocation , suspFilename);
                             statisticsInfo.correlation = correlation;
                         }
                     }

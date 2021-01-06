@@ -157,11 +157,9 @@ public class Matrix {
         }
     }
 
-    public void saveMatrixToFile(String filename) throws IOException
+    public void saveMatrixToFile(String dir,String filename) throws IOException
     {
-        // TODO anpassen
-        String home = System.getProperty("user.home");
-        String final_filename = home + '/' + filename + ".csv";
+        String final_filename = dir + '/' + filename + ".csv";
 
         String[] file_content = writeMatrixToStringArray();
 
