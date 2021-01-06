@@ -1,4 +1,4 @@
-package com.iandadesign.closa.evaluation.featurama.matrix;
+package com.iandadesign.closa.analysis.featurama.matrix;
 
 public class CovarianceMatrix extends Matrix
 {
@@ -37,13 +37,13 @@ public class CovarianceMatrix extends Matrix
         int n = xArray.length;
         int n_2 = n*n;
 
-        // sx = summe über alle x_i
-        // sxy = summe über alle x_i*y_i
         for(int i = 0; i < n; i++)
         {
             double x = xArray[i];
             double y = yArray[i];
 
+            // sx = sum over all x_i
+            // sxy = sum over all x_i*y_i
             sx += x;
             sy += y;
             sxy += x * y;

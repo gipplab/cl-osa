@@ -1,4 +1,4 @@
-package com.iandadesign.closa.evaluation.featurama.observation;
+package com.iandadesign.closa.analysis.featurama.observation;
 import java.util.*;
 
 public class ObservationHolder {
@@ -13,7 +13,7 @@ public class ObservationHolder {
     public ObservationHolder()
     {
     }
-    
+
 /* ------------------------
    Public Methods
  * ------------------------ */

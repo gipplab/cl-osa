@@ -1,6 +1,6 @@
-package com.iandadesign.closa.evaluation.featurama.PCA;
+package com.iandadesign.closa.analysis.featurama.PCA;
 
-import com.iandadesign.closa.evaluation.featurama.matrix.Matrix;
+import com.iandadesign.closa.analysis.featurama.matrix.Matrix;
 
 /** Eigenvalues and eigenvectors of a real matrix.
  <P>

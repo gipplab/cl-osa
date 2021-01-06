@@ -1,6 +1,6 @@
 package com.iandadesign.closa.model;
 
-import com.iandadesign.closa.evaluation.featurama.matrix.CorrelationMatrix;
+import com.iandadesign.closa.analysis.featurama.matrix.CorrelationMatrix;
 
 public class StatisticsInfo {
     public String candidateFilename;

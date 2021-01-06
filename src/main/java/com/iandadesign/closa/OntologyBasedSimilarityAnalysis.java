@@ -2,10 +2,10 @@ package com.iandadesign.closa;
 
 import com.iandadesign.closa.classification.Category;
 import com.iandadesign.closa.classification.TextClassifier;
-import com.iandadesign.closa.evaluation.featurama.matrix.CorrelationMatrix;
-import com.iandadesign.closa.evaluation.featurama.matrix.Matrix;
-import com.iandadesign.closa.evaluation.featurama.observation.Observation;
-import com.iandadesign.closa.evaluation.featurama.observation.ObservationHolder;
+import com.iandadesign.closa.analysis.featurama.matrix.CorrelationMatrix;
+import com.iandadesign.closa.analysis.featurama.matrix.Matrix;
+import com.iandadesign.closa.analysis.featurama.observation.Observation;
+import com.iandadesign.closa.analysis.featurama.observation.ObservationHolder;
 import com.iandadesign.closa.language.LanguageDetector;
 import com.iandadesign.closa.model.*;
 import com.iandadesign.closa.model.Dictionary;
@@ -821,8 +821,8 @@ public class OntologyBasedSimilarityAnalysis {
                                 }
 
                                 hashMap.put("isPlagiarism", isPlagiarism);
-                                hashMap.put("currentSuspiciousIdTokensMap", currentSuspiciousIdTokensMap.size());
-                                hashMap.put("currentCandidateIdTokensMap", currentCandidateIdTokensMap.size());
+                                hashMap.put("currentSuspiciousIdTokensMapSize", currentSuspiciousIdTokensMap.size());
+                                hashMap.put("currentCandidateIdTokensMapSize", currentCandidateIdTokensMap.size());
                                 hashMap.put("AverageLength", 0);
                                 observationSuspWindow.addData(hashMap);
                                 observationSuspWindow.addData(startStopInfo);
@@ -858,8 +858,8 @@ public class OntologyBasedSimilarityAnalysis {
                                 LinkedHashMap<String, Object> hashMap = new LinkedHashMap<String, Object>() {{
                                     put("fragmentScore", finalFragmentScore);
                                     put("isPlagiarism", isPlagiarism);
-                                    put("currentSuspiciousIdTokensMap", currentSuspiciousIdTokensMap.size());
-                                    put("currentCandidateIdTokensMap", currentCandidateIdTokensMap.size());
+                                    put("currentSuspiciousIdTokensMapSize", currentSuspiciousIdTokensMap.size());
+                                    put("currentCandidateIdTokensMapSize", currentCandidateIdTokensMap.size());
                                     put("AverageLength", currentScoringChunk.getAverageLength());
                                 }};
                                 observationSuspWindow.addData(hashMap);
@@ -933,9 +933,7 @@ public class OntologyBasedSimilarityAnalysis {
                             // TODO Kay: Store Matrix to statistics infos + number of Observations
                             Matrix ObservationData = new Matrix(observationsList);
                             CorrelationMatrix correlation = new CorrelationMatrix(ObservationData);
-                            System.out.println(observationsList.dataNames.toString());
                             correlation.setColumnNames(observationsList.dataNames);
-                            correlation.display();
                             correlation.saveMatrixToFile(suspFilename);
                             statisticsInfo.correlation = correlation;
                         }

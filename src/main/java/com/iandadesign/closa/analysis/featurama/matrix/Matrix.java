@@ -1,22 +1,19 @@
-package com.iandadesign.closa.evaluation.featurama.matrix;
+package com.iandadesign.closa.analysis.featurama.matrix;
 
-import com.iandadesign.closa.evaluation.featurama.PCA.EigenvalueDecomposition;
-import com.iandadesign.closa.evaluation.featurama.observation.Observation;
-import com.iandadesign.closa.evaluation.featurama.observation.ObservationHolder;
+import com.iandadesign.closa.analysis.featurama.PCA.EigenvalueDecomposition;
+import com.iandadesign.closa.analysis.featurama.observation.ObservationHolder;
 import com.iandadesign.closa.util.CSVUtil;
-import org.apache.xpath.operations.Bool;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.IntStream;
 
 public class Matrix {
 
     protected double[][] data = null;
-    private int rows = 0;
-    private int cols = 0;
+    private int rowsLength = 0;
+    private int colsLength = 0;
     private Boolean empty;
     public ArrayList<String> columnNames = new ArrayList<>();
 
@@ -27,24 +24,24 @@ public class Matrix {
     public Matrix(int rows, int cols)
     {
         this.data = new double[rows][cols];
-        this.rows = rows;
-        this.cols = cols;
+        this.rowsLength = rows;
+        this.colsLength = cols;
         this.empty = true;
     }
 
     public Matrix(double[][] data)
     {
         this.data = data.clone();
-        rows = this.data.length;
-        cols = this.data[0].length;
+        rowsLength = this.data.length;
+        colsLength = this.data[0].length;
         this.empty = false;
     }
 
     public Matrix(ObservationHolder observations) {
-        this.rows = observations.size();
-        this.cols = observations.observations.get(0).returnObservationDim();
-        this.data = new double[rows][cols];
-        for(int i = 0; i < this.rows; i++)
+        this.rowsLength = observations.size();
+        this.colsLength = observations.observations.get(0).returnObservationDim();
+        this.data = new double[rowsLength][colsLength];
+        for(int i = 0; i < this.rowsLength; i++)
         {
             this.data[i] = observations.observations.get(i).returnObservationData(observations.dataNames);
         }
@@ -58,12 +55,12 @@ public class Matrix {
 
     public int getRowDimension()
     {
-        return this.rows;
+        return this.rowsLength;
     }
 
     public int getColumnDimension()
     {
-        return this.cols;
+        return this.colsLength;
     }
 
     public double returnValue(int column_num, int row_num)
@@ -77,8 +74,8 @@ public class Matrix {
 
     public double[] returnColumn(int column_num)
     {
-        double[] column = new double[this.rows];
-        for(int i=0; i<this.rows; i++){
+        double[] column = new double[this.rowsLength];
+        for(int i=0; i<this.rowsLength; i++){
             column[i] = this.data[i][column_num];
         }
         return column;
@@ -86,8 +83,8 @@ public class Matrix {
 
     public double[] returnRow(int row_num)
     {
-        double[] row = new double[this.cols];
-        for(int i=0; i<this.rows; i++){
+        double[] row = new double[this.colsLength];
+        for(int i=0; i<this.rowsLength; i++){
             row[i] = this.data[row_num][i];
         }
         return row;
@@ -95,7 +92,7 @@ public class Matrix {
 
     public Boolean writeValue(int row, int col, Double value)
     {
-        if(row > this.rows || col > this.cols)
+        if(row > this.rowsLength || col > this.colsLength)
         {
             return false;
         }
@@ -111,10 +108,10 @@ public class Matrix {
 
     public Matrix transpose()
     {
-        Matrix transposed = new Matrix(this.rows, this.cols);
-        for(int row = 0; row<this.rows; row++)
+        Matrix transposed = new Matrix(this.rowsLength, this.colsLength);
+        for(int row = 0; row<this.rowsLength; row++)
         {
-            for(int col = 0; col<this.cols; col++)
+            for(int col = 0; col<this.colsLength; col++)
             {
                 transposed.writeValue(row, col, this.data[col][row]);
             }
@@ -135,24 +132,24 @@ public class Matrix {
             System.out.println("Matrix has no elements to display");
         }
         System.out.print("[");
-        for (int row = 0; row < rows; ++row) {
+        for (int row = 0; row < rowsLength; ++row) {
             if (row != 0) {
                 System.out.print(" ");
             }
 
             System.out.print("[");
 
-            for (int col = 0; col < cols; ++col) {
+            for (int col = 0; col < colsLength; ++col) {
                 System.out.printf("%8.3f", data[row][col]);
 
-                if (col != cols - 1) {
+                if (col != colsLength - 1) {
                     System.out.print(" ");
                 }
             }
 
             System.out.print("]");
 
-            if (row == rows - 1) {
+            if (row == rowsLength - 1) {
                 System.out.print("]");
             }
 
@@ -203,18 +200,18 @@ public class Matrix {
     {
         // TODO throw exception if matrix empty
 
-        String[] matrix_string_values = new String[this.rows]; // TODO Array -> ArrayList :)
+        String[] matrix_string_values = new String[this.rowsLength]; // TODO Array -> ArrayList :)
         int offset = 0;
 
         if ((this.columnNames != null) && !this.columnNames.isEmpty())
         {
-            matrix_string_values = new String[this.rows + 1];
+            matrix_string_values = new String[this.rowsLength + 1];
             matrix_string_values[0] = CSVUtil.convertToCSV(this.columnNames.toArray(new String[this.columnNames.size()]));
             offset = 1;
         }
 
         String[] string_array;
-        for(int i = 0; i < this.rows; i++)
+        for(int i = 0; i < this.rowsLength; i++)
         {
             string_array = getStrings(returnRow(i));
             matrix_string_values[i+offset] = CSVUtil.convertToCSV(string_array);

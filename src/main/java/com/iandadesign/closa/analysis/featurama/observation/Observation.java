@@ -1,4 +1,4 @@
-package com.iandadesign.closa.evaluation.featurama.observation;
+package com.iandadesign.closa.analysis.featurama.observation;
 
 import java.util.*;
 import java.lang.reflect.*;
@@ -65,6 +65,7 @@ public class Observation {
             }
             else
             {
+                // Key was not found, return value 0 in this case
                 returnArray[i] = 0.0;
             }
         }
