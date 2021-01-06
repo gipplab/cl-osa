@@ -3,12 +3,14 @@ package com.iandadesign.closa.util;
 import com.iandadesign.closa.SalvadorFragmentLevelEval;
 import com.iandadesign.closa.model.SalvadorTextFragment;
 import com.iandadesign.closa.model.SavedEntity;
+import edu.stanford.nlp.util.ArrayMap;
 
 import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.iandadesign.closa.SalvadorFragmentLevelEval.isEntityRelatedToPlagiarism;
+import static com.iandadesign.closa.SalvadorFragmentLevelEval.isPlagiarismRelated;
 import static java.lang.Integer.max;
 import static java.lang.Integer.min;
 
@@ -117,59 +119,125 @@ public class PAN11RankingEvaluator {
      * @param k
      * @return
      */
-    public static double calculateRecallAtkFragmentCharacterLevel(Map<String, Map<String, Double>>  suspiciousIdCandidateScoresMap,
+    public static double calculateRecallAtkFragmentCharacterLevel(boolean plagsizeFragments,
+                                                                  Map<String, Map<String, Double>>  suspiciousIdCandidateScoresMap,
                                                                   List<File> suspiciousFiles,
                                                                   Map<String, List<SavedEntity>> candidateEntitiesMap,
                                                                   Map<String, List<SavedEntity>> suspiciousEntitiesMap,
                                                                   HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation,
                                                                   ExtendedLogUtil logUtil,
                                                                   int k){
-        // Found character counts.
+        if(plagsizeFragments){
+            return getRecallAtKForPlagsize(suspiciousIdCandidateScoresMap, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k);
+        }else{
+            return getRecallAtKForNonPlagsize(suspiciousIdCandidateScoresMap, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k);
+        }
+    }
+    private static double getRecallAtKForNonPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k) {
+        int overallPossibleFindings = getOverallPossibleFindings(suspiciousFiles, candidateEntitiesMap, plagiarismInformation);
         int overallFindings = 0;
-        int overallPossibleFindings = 0;
-        int overallPossibleFindingsSimple = 0;
 
-        // Calculate overall possible findings
-        for(File suspiciousFile:suspiciousFiles){
-            String key = suspiciousFile.getName().replace(".txt",".xml");
+
+        for(File suspiciousFile: suspiciousFiles) {
+
+            String key = suspiciousFile.getName().replace(".txt", ".xml");
             List<PAN11PlagiarismInfo> susPlagiarismInfo = plagiarismInformation.get(key);
-            for(PAN11PlagiarismInfo currentPlagiarismInfo:susPlagiarismInfo){
-
-                overallPossibleFindingsSimple += currentPlagiarismInfo.getSourceLength();
-
-                //With overlaps: get the related fragment for each candidate plagiarism area
-                String sourceFilename = currentPlagiarismInfo.getSourceReference();
+            for (PAN11PlagiarismInfo currentPlagiarismInfo : susPlagiarismInfo) {
+                String plagSourceFilename = currentPlagiarismInfo.getSourceReference();
+                int plagSuspStart = currentPlagiarismInfo.getThisOffset();
+                int plagSuspEnd = currentPlagiarismInfo.getThisOffset() + currentPlagiarismInfo.getThisLength();
                 int plagCandStart = currentPlagiarismInfo.getSourceOffset();
                 int plagCandEnd = currentPlagiarismInfo.getSourceOffset() + currentPlagiarismInfo.getSourceLength();
-                List<SavedEntity> selectedSourceEntities = new ArrayList<>();
-                for(Map.Entry<String, List<SavedEntity>> mapEntry: candidateEntitiesMap.entrySet() ){
-                    String basename = getBaseName(mapEntry.getKey(), ".txt").replace("candidate","source");
-                    if(!basename.equals(sourceFilename)){
+                List<String> plagiarizedSuspiciousFragments = new ArrayList<>();
+                // Getting all related suspicious fragments to the case
+                for(Map.Entry<String, List<SavedEntity>> mapEntry: suspiciousEntitiesMap.entrySet() ) {
+                    String basename = getBaseName(mapEntry.getKey(), ".txt").replace("candidate", "source");
+                    if (!basename.equals(suspiciousFile.getName())) {
                         continue;
                     }
-                    //selectedSourceEntities.addAll(mapEntry.getValue());
-                    // TODO continue here Probably no double entries
-                    List<SavedEntity>  candidateFindingEntities = mapEntry.getValue().stream()
+                    List<SavedEntity> suspiciousFindingEntities = mapEntry.getValue().stream()
+                            .filter(savedEntity -> isEntityRelatedToPlagiarism(savedEntity.getToken().getStartCharacter(), savedEntity.getToken().getEndCharacter(), plagSuspStart, plagSuspEnd))
+                            .collect(Collectors.toList());
+                    if (suspiciousFindingEntities.size() >= 1) {
+                        plagiarizedSuspiciousFragments.add(mapEntry.getKey());
+                    }
+                }
+
+                Map<String, Double> compoundMap = new ArrayMap<>();
+
+                for(Map.Entry<String, Map<String, Double>> suspEntitiesMapEntry:suspiciousIdCandidateScoresMap.entrySet()){
+                    if(!plagiarizedSuspiciousFragments.contains(suspEntitiesMapEntry.getKey())) continue;
+                    Map<String, Double> premap = suspEntitiesMapEntry.getValue().entrySet().stream()
+                            .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                            .limit(50000) // For perfomance reasons take the best 1000 here per suspfile
+                            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
+                    String suspKey = suspEntitiesMapEntry.getKey();
+                    for(Map.Entry<String, Double> innerEntry:premap.entrySet()) {
+                        String compoundKey = suspKey + "_" + innerEntry.getKey();
+                        compoundMap.put(compoundKey, innerEntry.getValue());
+                    }
+                }
+                // Sort and limit the compound map by k
+                Map<String, Double> compoundMapFirst = compoundMap.entrySet().stream()
+                        .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                        .limit(k) // For perfomance reasons take the best 1000 here per suspfile
+                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+                List<String> foundCandkeys = new ArrayList<>();
+
+                // Get saved entities for every entry, check if they are plagiarism and denote size
+
+                for(String ckey:compoundMapFirst.keySet()){
+                    String[] csplit = ckey.split("_");
+                    String candKey = csplit[1];
+                    String baseCandFileName = getBaseName(candKey, ".txt").replace("candidate","source");
+
+                    if(foundCandkeys.contains(candKey)){
+                        continue; // Prevent double findings, which can happen
+                    }
+                    if(!baseCandFileName.equals(plagSourceFilename)){
+                        continue;
+                    }
+                    List<SavedEntity> relatedEntities = candidateEntitiesMap.get(candKey);
+                    List<SavedEntity>  candidateFindingEntities = relatedEntities.stream()
                             .filter(savedEntity -> isEntityRelatedToPlagiarism(savedEntity.getToken().getStartCharacter(),savedEntity.getToken().getEndCharacter(),plagCandStart,plagCandEnd))
                             .collect(Collectors.toList());
-
                     int startCharacter = Integer.MAX_VALUE;
                     int endCharacter = 0;
                     for(SavedEntity savedEntity:candidateFindingEntities){
                         startCharacter =  min(savedEntity.getToken().getStartCharacter(), startCharacter);
                         endCharacter = max(savedEntity.getToken().getEndCharacter(), endCharacter);
                     }
-                    // Get the area the fragments cover
-                    int findingSize = max(0, endCharacter - startCharacter);
-                    overallPossibleFindings+=findingSize;
 
+                    // Get the plagiarized area
+                    int findingSize = max(0, endCharacter - startCharacter);
+                    if(findingSize>0){
+                        foundCandkeys.add(candKey);
+                    }
+                    overallFindings+=findingSize;
                 }
+                logUtil.writeErrorReport(false,"asd");
+
             }
         }
-        System.out.println("Overall possible characters to find: "+overallPossibleFindingsSimple);
+
+
+        double recallAtK = (double) overallFindings / overallPossibleFindings * 100;
+        logUtil.logAndWriteStandard(false, "Recall at ", k, " is: ", recallAtK, "Findings/PossibleFindings (",overallFindings,"/", overallPossibleFindings,")");
+        return recallAtK;
+    }
+
+    private static double getRecallAtKForPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k) {
+        // Found character counts.
+        int overallFindings = 0;
+        int overallPossibleFindings = 0;
+        // int overallPossibleFindingsSimple = 0;
+
+        overallPossibleFindings = getOverallPossibleFindings(suspiciousFiles, candidateEntitiesMap, plagiarismInformation);
+        //System.out.println("Overall possible characters to find: "+overallPossibleFindingsSimple);
         // Calculate Overall Findings
 
-        for(String suspiciousFragmentID:suspiciousEntitiesMap.keySet()) {
+        for(String suspiciousFragmentID: suspiciousEntitiesMap.keySet()) {
             List<SavedEntity> suspiciousEntities = suspiciousEntitiesMap.get(suspiciousFragmentID);
             SalvadorTextFragment currentSuspFragment =  createTextFragment(suspiciousEntities, suspiciousFragmentID);
             String baseSuspFileName = getBaseName(suspiciousFragmentID, ".xml");
@@ -237,14 +305,54 @@ public class PAN11RankingEvaluator {
         R@k = overallFindings/overallPossibleFindings * 100;
         */
 
-        double recallAtKS = (double) overallFindings / overallPossibleFindingsSimple * 100;
-        logUtil.logAndWriteStandard(false, "RecallS at ", k, " is: ", recallAtKS, "Findings/PossibleFindings (",overallFindings,"/", overallPossibleFindingsSimple,")");
+        //double recallAtKS = (double) overallFindings / overallPossibleFindingsSimple * 100;
+        //logUtil.logAndWriteStandard(false, "RecallS at ", k, " is: ", recallAtKS, "Findings/PossibleFindings (",overallFindings,"/", overallPossibleFindingsSimple,")");
 
         double recallAtK = (double) overallFindings / overallPossibleFindings * 100;
         logUtil.logAndWriteStandard(false, "Recall at ", k, " is: ", recallAtK, "Findings/PossibleFindings (",overallFindings,"/", overallPossibleFindings,")");
-
-
         return recallAtK;
+    }
+
+    private static int getOverallPossibleFindings(List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation) {
+        int overallPossibleFindings = 0;
+        // Calculate overall possible findings
+        for(File suspiciousFile: suspiciousFiles){
+            String key = suspiciousFile.getName().replace(".txt",".xml");
+            List<PAN11PlagiarismInfo> susPlagiarismInfo = plagiarismInformation.get(key);
+            for(PAN11PlagiarismInfo currentPlagiarismInfo:susPlagiarismInfo){
+
+                //overallPossibleFindingsSimple += currentPlagiarismInfo.getSourceLength();
+
+                //With overlaps: get the related fragment for each candidate plagiarism area
+                String sourceFilename = currentPlagiarismInfo.getSourceReference();
+                int plagCandStart = currentPlagiarismInfo.getSourceOffset();
+                int plagCandEnd = currentPlagiarismInfo.getSourceOffset() + currentPlagiarismInfo.getSourceLength();
+                List<SavedEntity> selectedSourceEntities = new ArrayList<>();
+                for(Map.Entry<String, List<SavedEntity>> mapEntry: candidateEntitiesMap.entrySet() ){
+                    String basename = getBaseName(mapEntry.getKey(), ".txt").replace("candidate","source");
+                    if(!basename.equals(sourceFilename)){
+                        continue;
+                    }
+                    //selectedSourceEntities.addAll(mapEntry.getValue());
+                    // TODO continue here Probably no double entries
+                    List<SavedEntity>  candidateFindingEntities = mapEntry.getValue().stream()
+                            .filter(savedEntity -> isEntityRelatedToPlagiarism(savedEntity.getToken().getStartCharacter(),savedEntity.getToken().getEndCharacter(),plagCandStart,plagCandEnd))
+                            .collect(Collectors.toList());
+
+                    int startCharacter = Integer.MAX_VALUE;
+                    int endCharacter = 0;
+                    for(SavedEntity savedEntity:candidateFindingEntities){
+                        startCharacter =  min(savedEntity.getToken().getStartCharacter(), startCharacter);
+                        endCharacter = max(savedEntity.getToken().getEndCharacter(), endCharacter);
+                    }
+                    // Get the area the fragments cover
+                    int findingSize = max(0, endCharacter - startCharacter);
+                    overallPossibleFindings +=findingSize;
+
+                }
+            }
+        }
+        return overallPossibleFindings;
     }
 
     public static double calculateRecallAtK(Map<String, Map <String, Double>> suspiciousIdCandidateScoresMap,
