@@ -305,13 +305,16 @@ public class SalvadorFragmentLevelEval {
 
 
         // Calculate the recall for the scores map (character based)
-        Double recallAt10 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,10);
-        Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,20);
-        Double recallAt50 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,50);
-        Double recallAt100 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS,scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,100);
-        Double recallAt200 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,200);
-        Double recallAt25k = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,25000);
-        Double recallAt50k = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,500000);
+        // Experimental parameters
+        boolean relativeOverallScores = SalvadorAnalysisParameters.DO_RELATIVE_SCORING_R_AT_K; // Default: false
+        int minsizePlagfragments = SalvadorAnalysisParameters.MIN_FRAGMENT_SIZE_R_AT_K; // for filtering irrelevant edge cases, Default: 0
+        Double recallAt10 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS,relativeOverallScores, minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,10);
+        Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores, minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,20);
+        Double recallAt50 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores, minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,50);
+        Double recallAt100 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS,relativeOverallScores,minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,100);
+        Double recallAt200 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores,minsizePlagfragments,  scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,200);
+        Double recallAt25k = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores,minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,25000);
+        Double recallAt50k = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores,minsizePlagfragments,  scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,500000);
 
         // TBD: Why can there be higher scoring than 100%
 

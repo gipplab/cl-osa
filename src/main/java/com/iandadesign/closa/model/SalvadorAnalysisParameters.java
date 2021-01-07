@@ -14,9 +14,9 @@ public class SalvadorAnalysisParameters {
     public static boolean USE_ABSOLUTE_SCORES = false;            // If false: use default normalized cosine-score for each
 
     // Fragmentation
-    public static int FRAGMENT_SENTENCES = 14; //5;               // In Sentences
-    public static int FRAGMENT_INCREMENT = 7; //2;                // In Sentences
-    public static boolean GET_PLAGSIZED_FRAGMENTS = false;         // Get fragments exactly the plagiarism size
+    public static int FRAGMENT_SENTENCES = 8; //5;               // In Sentences
+    public static int FRAGMENT_INCREMENT = 4; //2;                // In Sentences
+    public static boolean GET_PLAGSIZED_FRAGMENTS = true;         // Get fragments exactly the plagiarism size
 
     // Clustering
     public static int THRESH1 = 800;                             // Fragment distance merging thresh
@@ -37,6 +37,8 @@ public class SalvadorAnalysisParameters {
     public static boolean DO_STATISTICAL_WEIGHTING = false;     // weighting all found entities by tf/idf
     public static int WEIGHTING_SCHEME = 1;                     // See Wikipedia "Recommended Weighting Schemes: https://en.wikipedia.org/wiki/Tf%E2%80%93idf
     public static boolean DO_SCORES_MAP_CACHING = true;         // Cache scoresmap on base of parameters
+    public static boolean DO_RELATIVE_SCORING_R_AT_K = false;   // default: false, relative scoring (how many characters of the found set are plagiarism, compared to the fetched chars)
+    public static int MIN_FRAGMENT_SIZE_R_AT_K = 0;             // default: 0, minimum plagiarism size in chars, that a fragment counts
 
     public static void printSalvadorMembers(ExtendedLogUtil logUtil) throws IllegalAccessException {
         logUtil.logAndWriteStandard(false, "Settings for Salvador Evaluation:---------------------");
