@@ -315,7 +315,7 @@ public class PAN11RankingEvaluator {
                 String baseCandFileName = getBaseName(candidateFragmentID, ".txt").replace("candidate","source");
                 // perfomance: if the no current plagiarism points to candidate this can be skipped (or filter plagiarism again by candidates here!)
                 List<SavedEntity> candidateEntites = candidateEntitiesMap.get(candidateFragmentID);
-                if(foundCandkeys.contains(candidateFragmentID.getKey())){
+                if(foundCandkeys.contains(candidateFragmentID)){
                     continue;
                 }
                 for(PAN11PlagiarismInfo relatedPlagcase:relatedPlagiarism){
