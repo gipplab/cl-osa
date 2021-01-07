@@ -138,7 +138,7 @@ public class Dictionary<T> {
             //TBD add the individual weighting factor here?! For simplicities sake write it to frequency
             // TODO js add custom weighting here make triggerable
             if(doStatsweighting) {
-                double myWeight = tfidfMapHolder.getWeightFor(term.toString());
+                // double myWeight = tfidfMapHolder.getWeightFor(term.toString());
             }
             value.forEach((docId, freq) -> {
 
