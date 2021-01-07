@@ -1,13 +1,16 @@
 package com.iandadesign.closa.util;
 
 import com.iandadesign.closa.SalvadorFragmentLevelEval;
+import com.iandadesign.closa.model.PremapEntryHolder;
 import com.iandadesign.closa.model.SalvadorTextFragment;
 import com.iandadesign.closa.model.SavedEntity;
 import edu.stanford.nlp.util.ArrayMap;
+import org.apache.commons.collections.comparators.ReverseComparator;
 
 import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.iandadesign.closa.SalvadorFragmentLevelEval.isEntityRelatedToPlagiarism;
 import static com.iandadesign.closa.SalvadorFragmentLevelEval.isPlagiarismRelated;
@@ -163,33 +166,57 @@ public class PAN11RankingEvaluator {
                     }
                 }
 
-                Map<String, Double> compoundMap = new ArrayMap<>();
-
+                Map<Long, Double> compoundMap = new ArrayMap<>();
+                long counter = 1;
+                List<PremapEntryHolder> premapEntries = new ArrayList<>();
+                Map<Long, String> myKeysCompound = new ArrayMap<>(); // Perfomance fix for compound map (string concat takes long)
                 for(Map.Entry<String, Map<String, Double>> suspEntitiesMapEntry:suspiciousIdCandidateScoresMap.entrySet()){
                     if(!plagiarizedSuspiciousFragments.contains(suspEntitiesMapEntry.getKey())) continue;
                     Map<String, Double> premap = suspEntitiesMapEntry.getValue().entrySet().stream()
                             .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-                            .limit(50000) // For perfomance reasons take the best 1000 here per suspfile
+                             // .filter(entry -> entry.getValue()>0.0)
+                            // .limit(50000) // For perfomance reasons take the best 1000 here per suspfile (only with 50k it reaches 100%)
                             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
+                    /*
                     String suspKey = suspEntitiesMapEntry.getKey();
+                    Map<Object, Object> flatmap = suspiciousIdCandidateScoresMap.entrySet().stream()
+                            .flatMap(PAN11RankingEvaluator::flatten)
+                            .collect(Collectors.toMap(entry->entry.getKey(), entry-> entry.getValue()));
+                    */
+                    premapEntries.addAll(premap.entrySet().stream().map(entry-> {
+                        PremapEntryHolder peh = new PremapEntryHolder();
+                        peh.key = entry.getKey();
+                        peh.value = entry.getValue();
+                        return peh;
+                    }).collect(Collectors.toList()));
+
+                    /*
                     for(Map.Entry<String, Double> innerEntry:premap.entrySet()) {
-                        String compoundKey = suspKey + "_" + innerEntry.getKey();
-                        compoundMap.put(compoundKey, innerEntry.getValue());
+                        // String compoundKey = suspKey + "_" + innerEntry.getKey();
+                        myKeysCompound.put(counter, innerEntry.getKey());
+                        compoundMap.put(counter, innerEntry.getValue());
+                        counter++;
                     }
+                     */
                 }
+
+                premapEntries.sort(Comparator.comparingDouble(entry->((PremapEntryHolder)entry).value).reversed());
+                premapEntries = premapEntries.stream().limit(k).collect(Collectors.toList());
+
                 // Sort and limit the compound map by k
-                Map<String, Double> compoundMapFirst = compoundMap.entrySet().stream()
+                /*
+                Map<Long, Double> compoundMapFirst = compoundMap.entrySet().stream()
                         .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                         .limit(k) // For perfomance reasons take the best 1000 here per suspfile
                         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+                */
                 List<String> foundCandkeys = new ArrayList<>();
 
                 // Get saved entities for every entry, check if they are plagiarism and denote size
 
-                for(String ckey:compoundMapFirst.keySet()){
-                    String[] csplit = ckey.split("_");
-                    String candKey = csplit[1];
+                for(PremapEntryHolder premapEntry:premapEntries){
+                    String candKey = premapEntry.key;
                     String baseCandFileName = getBaseName(candKey, ".txt").replace("candidate","source");
 
                     if(foundCandkeys.contains(candKey)){
@@ -205,7 +232,7 @@ public class PAN11RankingEvaluator {
                     int startCharacter = Integer.MAX_VALUE;
                     int endCharacter = 0;
                     for(SavedEntity savedEntity:candidateFindingEntities){
-                        startCharacter =  min(savedEntity.getToken().getStartCharacter(), startCharacter);
+                        startCharacter = min(savedEntity.getToken().getStartCharacter(), startCharacter);
                         endCharacter = max(savedEntity.getToken().getEndCharacter(), endCharacter);
                     }
 
@@ -225,6 +252,13 @@ public class PAN11RankingEvaluator {
         double recallAtK = (double) overallFindings / overallPossibleFindings * 100;
         logUtil.logAndWriteStandard(false, "Recall at ", k, " is: ", recallAtK, "Findings/PossibleFindings (",overallFindings,"/", overallPossibleFindings,")");
         return recallAtK;
+    }
+
+    private static Stream<Map.Entry<String, ?>> flatten(Map.Entry<String, ?> entry) {
+        if (entry.getValue() instanceof Map) {
+            return ((Map<String,?>) entry.getValue()).entrySet().stream().flatMap(PAN11RankingEvaluator::flatten);
+        }
+        return Stream.of(entry);
     }
 
     private static double getRecallAtKForPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k) {
