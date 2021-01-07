@@ -233,7 +233,7 @@ public class SalvadorFragmentLevelEval {
 
         // For testing use just one basic file (and also just the corresponding results)
 
-        suspiciousFiles = filterBySuspFileLimit(plagiarismInformation, suspiciousFiles, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, SalvadorAnalysisParameters.SUSP_FILE_LIMIT);
+        suspiciousFiles = filterBySuspFileLimit(plagiarismInformation, suspiciousFiles, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, SalvadorAnalysisParameters.SUSP_FILE_LIMIT, SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET);
 
         System.out.println("My First SuspFile: "+ suspiciousFiles.get(0).toString());
         Map<String, List<SavedEntity>> suspiciousEntitiesFragment;
@@ -280,7 +280,7 @@ public class SalvadorFragmentLevelEval {
         if(SalvadorAnalysisParameters.DO_SCORES_MAP_CACHING){
             ScoresMapCache scoresMapCache = new ScoresMapCache();
             // Generate key on base of used parameters
-            String keyPath = scoresMapCache.generateFileKey(preprocessedCachingDir+"/scoresmap_serialization/",SalvadorAnalysisParameters.FRAGMENT_SENTENCES,SalvadorAnalysisParameters.FRAGMENT_INCREMENT,SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, SalvadorAnalysisParameters.SUSP_FILE_LIMIT,SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS);
+            String keyPath = scoresMapCache.generateFileKey(preprocessedCachingDir+"/scoresmap_serialization/",SalvadorAnalysisParameters.FRAGMENT_SENTENCES,SalvadorAnalysisParameters.FRAGMENT_INCREMENT,SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, SalvadorAnalysisParameters.SUSP_FILE_LIMIT,SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET);
             // Try to find a file
             Map<String, Map<String, Double>>  scoresMapDes = scoresMapCache.deserializeScoresMap(keyPath);
             if(scoresMapDes==null){
@@ -315,8 +315,6 @@ public class SalvadorFragmentLevelEval {
         Double recallAt200 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores,minsizePlagfragments,  scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,200);
         Double recallAt25k = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores,minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,25000);
         Double recallAt50k = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores,minsizePlagfragments,  scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,500000);
-
-        // TBD: Why can there be higher scoring than 100%
 
         // DA implementation:
 
@@ -790,9 +788,9 @@ public class SalvadorFragmentLevelEval {
         return documentFragmentsMap;
     }
 
-    private static List<File> filterBySuspFileLimit(HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, List<File> suspiciousFiles, boolean DO_FILE_PREFILTERING, int SUSP_FILE_LIMIT) {
+    private static List<File> filterBySuspFileLimit(HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, List<File> suspiciousFiles, boolean DO_FILE_PREFILTERING, int SUSP_FILE_LIMIT, int SUSP_FILE_SELECTION_OFFSET) {
         if(DO_FILE_PREFILTERING) {
-            suspiciousFiles = suspiciousFiles.stream().sorted().limit(SUSP_FILE_LIMIT).collect(Collectors.toList());// Just take one basic file.
+            suspiciousFiles = suspiciousFiles.stream().sorted().skip(SUSP_FILE_SELECTION_OFFSET).limit(SUSP_FILE_LIMIT).collect(Collectors.toList());// Just take one basic file.
             List<String> usedPlagiarismInfos  = suspiciousFiles.stream().map(entry->entry.getName().replace(".txt",".xml")).collect(Collectors.toList());
             plagiarismInformation.keySet().retainAll(usedPlagiarismInfos);
         }

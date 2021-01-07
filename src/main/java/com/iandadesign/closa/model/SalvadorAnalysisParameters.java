@@ -8,14 +8,15 @@ import java.lang.reflect.Field;
 public class SalvadorAnalysisParameters {
     // Dataset settings
     public static boolean DO_FILE_PREFILTERING = true;            // Only take a limited amount of suspicious files
-    public static int SUSP_FILE_LIMIT = 1;                        // Only take XX supicicious files with all candidates
+    public static int SUSP_FILE_LIMIT = 3;                        // Only take XX supicicious files with all candidates
+    public static int SUSP_FILE_SELECTION_OFFSET = 0;             // Offset selection, default 0
 
     // Basic score calculation
     public static boolean USE_ABSOLUTE_SCORES = false;            // If false: use default normalized cosine-score for each
 
     // Fragmentation
-    public static int FRAGMENT_SENTENCES = 8; //5;               // In Sentences
-    public static int FRAGMENT_INCREMENT = 4; //2;                // In Sentences
+    public static int FRAGMENT_SENTENCES = 5; //5;               // In Sentences
+    public static int FRAGMENT_INCREMENT = 2; //2;                // In Sentences
     public static boolean GET_PLAGSIZED_FRAGMENTS = true;         // Get fragments exactly the plagiarism size
 
     // Clustering
@@ -39,6 +40,7 @@ public class SalvadorAnalysisParameters {
     public static boolean DO_SCORES_MAP_CACHING = true;         // Cache scoresmap on base of parameters
     public static boolean DO_RELATIVE_SCORING_R_AT_K = false;   // default: false, relative scoring (how many characters of the found set are plagiarism, compared to the fetched chars)
     public static int MIN_FRAGMENT_SIZE_R_AT_K = 0;             // default: 0, minimum plagiarism size in chars, that a fragment counts
+
 
     public static void printSalvadorMembers(ExtendedLogUtil logUtil) throws IllegalAccessException {
         logUtil.logAndWriteStandard(false, "Settings for Salvador Evaluation:---------------------");
