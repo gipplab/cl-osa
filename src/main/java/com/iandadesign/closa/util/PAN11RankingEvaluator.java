@@ -289,7 +289,7 @@ public class PAN11RankingEvaluator {
         int overallPossibleFindings = 0;
         // int overallPossibleFindingsSimple = 0;
 
-        overallPossibleFindings = getOverallPossibleFindings(suspiciousFiles, candidateEntitiesMap, plagiarismInformation, minsizeFragments, false);
+        overallPossibleFindings = getOverallPossibleFindings(suspiciousFiles, candidateEntitiesMap, plagiarismInformation, minsizeFragments, true);
         //System.out.println("Overall possible characters to find: "+overallPossibleFindingsSimple);
         // Calculate Overall Findings
 
@@ -299,6 +299,7 @@ public class PAN11RankingEvaluator {
             String baseSuspFileName = getBaseName(suspiciousFragmentID, ".xml");
             List<PAN11PlagiarismInfo> relatedPlagiarism = getPlagiarismCasesRelatedToSuspFragment(currentSuspFragment, suspiciousEntities, plagiarismInformation.get(baseSuspFileName));
 
+            List<String> foundCandkeys = new ArrayList<>();
 
 
             int currentFindings = 0;
@@ -314,7 +315,9 @@ public class PAN11RankingEvaluator {
                 String baseCandFileName = getBaseName(candidateFragmentID, ".txt").replace("candidate","source");
                 // perfomance: if the no current plagiarism points to candidate this can be skipped (or filter plagiarism again by candidates here!)
                 List<SavedEntity> candidateEntites = candidateEntitiesMap.get(candidateFragmentID);
-
+                if(foundCandkeys.contains(candidateFragmentID.getKey())){
+                    continue;
+                }
                 for(PAN11PlagiarismInfo relatedPlagcase:relatedPlagiarism){
                     if(!baseCandFileName.equals(relatedPlagcase.getSourceReference())){
                         continue;
@@ -337,7 +340,9 @@ public class PAN11RankingEvaluator {
                     if(findingSize < minsizeFragments){
                         continue;
                     }
-
+                    if(findingSize > 0){
+                        foundCandkeys.add(candidateFragmentID);
+                    }
                     currentFindings+=findingSize;
                 }
             }
@@ -417,7 +422,7 @@ public class PAN11RankingEvaluator {
                         continue;
                     }
 
-                    if(findingSize>0){
+                    if(noDoubleCounts && findingSize>0){
                         foundCandkeys.add(mapEntry.getKey());
                     }
                     overallPossibleFindings +=findingSize;
