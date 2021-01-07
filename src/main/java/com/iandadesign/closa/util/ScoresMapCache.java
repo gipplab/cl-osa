@@ -25,12 +25,12 @@ public class ScoresMapCache {
         fileInputStream.close();
         return scoresMapDes;
     }
-    public String generateFileKey(String basePath, int fragmentSize, int fragmentIncrement, boolean absoluteScoring, boolean file_prefiltering, int filter_limit){
+    public String generateFileKey(String basePath, int fragmentSize, int fragmentIncrement, boolean absoluteScoring, boolean filePrefiltering, int filterLimit,boolean plagsizedFragments){
 
-        if(!file_prefiltering){
-            filter_limit = 0;
+        if(!filePrefiltering){
+            filterLimit = 0;
         }
-        String generatedKey = basePath+"/scoresmap"+fragmentSize+"_"+fragmentIncrement+"_"+absoluteScoring+"_"+file_prefiltering+"_"+filter_limit+".ser";
+        String generatedKey = basePath+"/scoresmap"+fragmentSize+"_"+fragmentIncrement+"_"+absoluteScoring+"_"+filePrefiltering+"_"+filterLimit+"_"+plagsizedFragments+".ser";
         File tempFile = new File(generatedKey).getParentFile();
         if(!tempFile.exists()){
             boolean dirCreated = tempFile.mkdir();
