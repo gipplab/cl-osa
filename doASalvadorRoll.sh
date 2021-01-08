@@ -9,4 +9,4 @@ fi
 mkdir -p ./mylogs
 cd /cl-osa-tng && mvn package -DskipTests -Dmaven.javadoc.skip=true
 # ATM Not fetching the errors  to logs (2>&1 for that)
-java -cp /cl-osa-tng/target/closa-1.4.jar com.iandadesign.closa.SalvadorFragmentLevelEval 1>&1 | tee ./mylogs/$1
+java -Xmx100G -cp /cl-osa-tng/target/closa-1.4.jar com.iandadesign.closa.SalvadorFragmentLevelEval 1>&1 | tee ./mylogs/$1
