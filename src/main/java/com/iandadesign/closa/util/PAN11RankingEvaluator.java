@@ -139,13 +139,29 @@ public class PAN11RankingEvaluator {
         }
     }
     private static double getRecallAtKForNonPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, boolean relativeOverallScores, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k) {
-        int overallPossibleFindings = 0;
+
+        long overallFindings = getFindingsAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, false, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k);
+        long overallPossibleFindings;
         if(!relativeOverallScores){
+            int maxK = candidateEntitiesMap.size();
+            overallPossibleFindings = getFindingsAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, maxK);
+
+        }else{
+            // relative overallScores
             // This is just counting all chars interleaved which are plagiarism as overallPossible finding
-            overallPossibleFindings = getOverallPossibleFindings(suspiciousFiles, candidateEntitiesMap, plagiarismInformation, minsizeFragments, true);
+             overallPossibleFindings = getFindingsAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k);
+
         }
 
-        int overallFindings = 0;
+        double recallAtK = (double) overallFindings / overallPossibleFindings * 100;
+        logUtil.logAndWriteStandard(false, "Recall at ", k, " is: ", recallAtK, "Findings/PossibleFindings (",overallFindings,"/", overallPossibleFindings,")");
+        return recallAtK;
+    }
+
+    private static long getFindingsAtKForNonPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, boolean relativeOverallScores, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k) {
+
+        long overallFindings = 0;
+        long overallPossibleFindings = 0;
 
         for(File suspiciousFile: suspiciousFiles) {
 
@@ -176,7 +192,7 @@ public class PAN11RankingEvaluator {
                 long counter = 1;
                 List<PremapEntryHolder> premapEntries = new ArrayList<>();
                 Map<Long, String> myKeysCompound = new ArrayMap<>(); // Perfomance fix for compound map (string concat takes long)
-                for(Map.Entry<String, Map<String, Double>> suspEntitiesMapEntry:suspiciousIdCandidateScoresMap.entrySet()){
+                for(Map.Entry<String, Map<String, Double>> suspEntitiesMapEntry: suspiciousIdCandidateScoresMap.entrySet()){
                     if(!plagiarizedSuspiciousFragments.contains(suspEntitiesMapEntry.getKey())) continue;
                     Map<String, Double> premap = suspEntitiesMapEntry.getValue().entrySet().stream()
                             .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
@@ -206,9 +222,9 @@ public class PAN11RankingEvaluator {
                     }
                      */
                 }
-
+                int newK = plagiarizedSuspiciousFragments.size() * k;
                 premapEntries.sort(Comparator.comparingDouble(entry->((PremapEntryHolder)entry).value).reversed());
-                premapEntries = premapEntries.stream().limit(k).collect(Collectors.toList());
+                premapEntries = premapEntries.stream().limit(newK).collect(Collectors.toList());
 
                 // Sort and limit the compound map by k
                 /*
@@ -257,23 +273,20 @@ public class PAN11RankingEvaluator {
 
                     // Get the plagiarized area
                     int findingSize = max(0, endCharacter - startCharacter);
-                    if(findingSize<minsizeFragments){
+                    if(findingSize< minsizeFragments){
                         continue;
                     }
                     if(findingSize>0){
                         foundCandkeys.add(candKey);
                     }
-                    overallFindings+=findingSize;
+                    overallFindings +=findingSize;
                 }
                 logUtil.writeErrorReport(false,"asd");
 
             }
         }
-
-
-        double recallAtK = (double) overallFindings / overallPossibleFindings * 100;
-        logUtil.logAndWriteStandard(false, "Recall at ", k, " is: ", recallAtK, "Findings/PossibleFindings (",overallFindings,"/", overallPossibleFindings,")");
-        return recallAtK;
+        if(relativeOverallScores) return overallPossibleFindings;
+        return overallFindings;
     }
 
     private static Stream<Map.Entry<String, ?>> flatten(Map.Entry<String, ?> entry) {
