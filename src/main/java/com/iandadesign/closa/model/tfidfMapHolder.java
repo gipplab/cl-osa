@@ -66,6 +66,7 @@ public class tfidfMapHolder {
                     double division2 = ((double) N) / n_t;
                     tokenInfo.tf = (0.5 + (0.5 *  division)) * Math.log(division2);
                     tokenInfo.tfidf = idf * tokenInfo.tf;
+                    tokenInfo.idf = overallInfo.idf; // Just duplicating the idf here for plausibiltiy checks
                 }
             }
         }
@@ -106,6 +107,16 @@ public class tfidfMapHolder {
 
         suspFiles2TermsMap = tfidfGetOccurencesByFile(tfSuspFragmentEntities);
         candFiles2TermsMap = tfidfGetOccurencesByFile(tfCandFragmentEntities);
+
+        // Renaming to 'candidate' for later matching in Dictionary
+        /*
+        Map<String, Map<String, tfidfTokenInfo>> newMap = new ArrayMap<>();
+        for(Map.Entry<String, Map<String, tfidfTokenInfo>> entry:candFiles2TermsMap.entrySet()){
+            newMap.put(entry.getKey().replace("source","candidate"), entry.getValue());
+        }
+
+        candFiles2TermsMap = newMap;
+        */
 
         suspOverallTermsMap = tfidfGetOccurencesForMultipleFiles(tfSuspFragmentEntities);
         candOverallTermsMap = tfidfGetOccurencesForMultipleFiles(tfCandFragmentEntities);
@@ -185,7 +196,7 @@ public class tfidfMapHolder {
 
             List<SavedEntity> savedEntities = osa.preProcessExtendedInfo(currentFile.getPath(),null );
             if(!onlyPlagiarismRelated){
-                entitiesMap.put(currentFile.getName(),savedEntities);
+                entitiesMap.put(currentFile.getName().replace("source","candidate"),savedEntities);
 
             }else{
                 // Mind that this only works for susp files currently
@@ -198,7 +209,7 @@ public class tfidfMapHolder {
                         savedEntitiesFiltered.add(currentEntity);
                     }
                 }
-                entitiesMap.put(currentFile.getName(),savedEntitiesFiltered);
+                entitiesMap.put(currentFile.getName().replace("source","candidate"),savedEntitiesFiltered);
             }
         }
         return entitiesMap;

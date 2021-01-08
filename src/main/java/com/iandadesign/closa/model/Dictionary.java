@@ -1,5 +1,6 @@
 package com.iandadesign.closa.model;
 
+import com.iandadesign.closa.util.PAN11RankingEvaluator;
 import org.apache.commons.math3.analysis.UnivariateFunction;
 import org.apache.commons.math3.linear.OpenMapRealVector;
 import org.apache.commons.math3.linear.SparseRealVector;
@@ -15,6 +16,11 @@ public class Dictionary<T> {
         if (v > 0.0) return 1.0;
         return 0.0;
     };
+    private static UnivariateFunction unchangedWeighting = v -> {
+        return v;
+    };
+
+
 
     private Set<T> terms;
     private Map<T, Map<String, Integer>> dictionary;
@@ -137,11 +143,15 @@ public class Dictionary<T> {
             int conceptIndex = termList.indexOf(term);
             //TBD add the individual weighting factor here?! For simplicities sake write it to frequency
             // TODO js add custom weighting here make triggerable
-            if(doStatsweighting) {
-                // double myWeight = tfidfMapHolder.getWeightFor(term.toString());
-            }
+
             value.forEach((docId, freq) -> {
 
+                if(doStatsweighting) {
+                    double weight = 1.0;
+                    // double myWeight = tfidfMapHolder.getWeightFor(term.toString());
+                    String baseName = PAN11RankingEvaluator.getBaseName(docId,".txt");
+                    weight = tfidfMapHolder.getWeightFor(term.toString(), baseName);
+                }
                 if (docIdVectorMap.containsKey(docId)) {
                     docIdVectorMap.get(docId).addToEntry(conceptIndex, freq);
                 } else {
@@ -151,6 +161,11 @@ public class Dictionary<T> {
                 }
             });
         });
+        UnivariateFunction weighting = booleanWeighing;
+
+        if(doStatsweighting){
+            weighting = unchangedWeighting;
+        }
 
         // 1.2 map sendQuery to sendQuery vector (vector has dimension of terms)
         SparseRealVector queryVector = new OpenMapRealVector(dimension);
@@ -168,19 +183,19 @@ public class Dictionary<T> {
         SparseRealVector documentFrequencyVector = new OpenMapRealVector(dimension);
         for (SparseRealVector vector : docIdVectorMap.values()) {
             documentFrequencyVector = (OpenMapRealVector)
-                    documentFrequencyVector.add(vector.mapToSelf(booleanWeighing));
+                    documentFrequencyVector.add(vector.mapToSelf(weighting));
 
         }
 
         // 2.3 weigh the document vectors
         for (Map.Entry<String, SparseRealVector> entry : docIdVectorMap.entrySet()) {
             entry.setValue((SparseRealVector) entry.getValue()
-                    .map(booleanWeighing));
+                    .map(weighting));
         }
 
         // 2.4 weigh the sendQuery vector
         queryVector = (OpenMapRealVector) queryVector
-                .map(booleanWeighing);
+                .map(weighting);
 
 
         // 3 compare
