@@ -1170,9 +1170,17 @@ public class OntologyBasedSimilarityAnalysis {
     ) {
         final boolean showProgress = true;
         // create dictionary
-        //logger.info("Create dictionary");
+        logger.info("Create dictionary");
         Dictionary<String> dictionary = new Dictionary<>(candidateIdTokensMap);
 
+        /* WHY ARE THE LESS CANDIDATE FRAGMENTS IN FINAL SCORES MAP: reason -> zero entity elements are filtered.
+        for(String key:candidateIdTokensMap.keySet()){
+            List<String> entities = candidateIdTokensMap.get(key);
+            if(entities.size()==0){
+                System.out.println(key);
+            }
+        }
+        */
         // perform detailed analysis
         //logger.info("Perform detailed analysis");
 

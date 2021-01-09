@@ -2,6 +2,7 @@ package com.iandadesign.closa.util;
 
 import com.iandadesign.closa.SalvadorFragmentLevelEval;
 import com.iandadesign.closa.model.PremapEntryHolder;
+import com.iandadesign.closa.model.SalvadorFinding;
 import com.iandadesign.closa.model.SalvadorTextFragment;
 import com.iandadesign.closa.model.SavedEntity;
 import edu.stanford.nlp.util.ArrayMap;
@@ -124,6 +125,7 @@ public class PAN11RankingEvaluator {
      */
     public static double calculateRecallAtkFragmentCharacterLevel(boolean plagsizeFragments,
                                                                   boolean relativeOverallScores,
+                                                                  boolean dismissOverlaps,
                                                                   int minsizeFragments,
                                                                   Map<String, Map<String, Double>>  suspiciousIdCandidateScoresMap,
                                                                   List<File> suspiciousFiles,
@@ -135,21 +137,21 @@ public class PAN11RankingEvaluator {
         if(plagsizeFragments){
             return getRecallAtKForPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k);
         }else{
-            return getRecallAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k);
+            return getRecallAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores, dismissOverlaps, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k);
         }
     }
-    private static double getRecallAtKForNonPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, boolean relativeOverallScores, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k) {
+    private static double getRecallAtKForNonPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, boolean relativeOverallScores, boolean dismissOverlaps, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k) {
 
-        long overallFindings = getFindingsAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, false, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k);
+        long overallFindings = getFindingsAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, false, dismissOverlaps, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k);
         long overallPossibleFindings;
         if(!relativeOverallScores){
             int maxK = candidateEntitiesMap.size();
-            overallPossibleFindings = getFindingsAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, maxK);
+            overallPossibleFindings = getFindingsAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores,dismissOverlaps , suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, maxK);
 
         }else{
             // relative overallScores
             // This is just counting all chars interleaved which are plagiarism as overallPossible finding
-             overallPossibleFindings = getFindingsAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k);
+             overallPossibleFindings = getFindingsAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores, dismissOverlaps, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k);
 
         }
 
@@ -158,13 +160,14 @@ public class PAN11RankingEvaluator {
         return recallAtK;
     }
 
-    private static long getFindingsAtKForNonPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, boolean relativeOverallScores, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k) {
+    private static long getFindingsAtKForNonPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, boolean relativeOverallScores, boolean dismissOverlaps, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k) {
         // For each Plagcase
         // This gets a set of plagiarised susp fragments
         // Gets candidate fragments for each susp fragment limited by k
         // accumulate all plagiarism candidate fragments for the case (and calculate score once)
 
         long overallFindings = 0;
+        long overallFindingsWithoutOverlap = 0;
         long overallPossibleFindings = 0;
 
         for(File suspiciousFile: suspiciousFiles) {
@@ -193,7 +196,7 @@ public class PAN11RankingEvaluator {
                 }
 
                 List<String> foundCandFragmentsForThisPlagiarismCase = new ArrayList<>();
-
+                List<SalvadorFinding> findingsForThisPlagiarism = new ArrayList<>();
                 for(String plagiarizedSuspFragment:plagiarizedSuspiciousFragments){
                     Map<String, Double> topMostCandidateEntries = suspiciousIdCandidateScoresMap
                             .get(plagiarizedSuspFragment).entrySet().stream()
@@ -239,18 +242,116 @@ public class PAN11RankingEvaluator {
                         }
                         if(findingSize>0){
                             foundCandFragmentsForThisPlagiarismCase.add(foundCandidateFragmentID);
+                            findingsForThisPlagiarism.add(new SalvadorFinding(startCharacter,endCharacter));
                         }
                         overallFindings +=findingSize;
 
                     }
-
                 }
+                // Dismiss the overlaps
+                if(dismissOverlaps){
+                    overallFindingsWithoutOverlap += getNonOverlapFindings(findingsForThisPlagiarism);
+                }
+
             }
         }
+        if(dismissOverlaps) return overallFindingsWithoutOverlap;
         if(relativeOverallScores) return overallPossibleFindings;
+
+        //return overallFindings;
         return overallFindings;
     }
+    private static int getNonOverlapFindings(List<SalvadorFinding> findingsPerPlagCase){
+        if(findingsPerPlagCase.size()==0){
+            return 0;
+        }
+        boolean convergent = false;
+        List<SalvadorFinding> currentFindings = new ArrayList<>(findingsPerPlagCase);
+        List<SalvadorFinding> mergedFindings = new ArrayList<>();
+        while(!convergent){
+            mergedFindings = getMergedSalvadorFindings(currentFindings);
+            // mergedFindings.stream().forEach(finding -> finding.setMerged(false));
 
+            if(mergedFindings.size()==currentFindings.size()){
+                convergent = true;
+            }
+
+            if(mergedFindings.size()<currentFindings.size()){
+                currentFindings = mergedFindings;
+            }
+
+            if(mergedFindings.size()>currentFindings.size()){
+                System.out.println("error in merge");
+            }
+        }
+
+        int mergedSize = getSalvadorFindingsAccumulatedSize(mergedFindings);
+        //
+        // findingsPerPlagCase.stream().forEach(finding -> finding.setMerged(false));
+        // mergedFindings.stream().forEach(finding -> finding.setMerged(false));
+        //System.out.println("From "+findingsPerPlagCase.size()+" to "+ mergedFindings.size());
+        //if(mergedFindings.size()>1){
+            //System.out.println("test");
+        //}
+
+        return mergedSize;
+    }
+    private static List<SalvadorFinding> getMergedSalvadorFindings(List<SalvadorFinding> salvadorFindings){
+        /*
+        if(salvadorFindings.size()==10){
+            //System.out.println("checkmark");
+        }
+
+         */
+        List<SalvadorFinding> mergedFindings = new ArrayList<>();
+        for(SalvadorFinding salvadorFinding:salvadorFindings){
+            // check if the salvador fragment has been merged for this round
+            if(salvadorFinding.isMerged()) continue;
+            // get adjacent findings (with the actualFinding, sets merge markers)TODO check merge markers ok
+            List<SalvadorFinding> adjacentFindings = getAdjacentFindings(salvadorFindings,salvadorFinding);
+            // merge findings for next round (this also 'merges' single fragments and removes markers)
+            mergedFindings.add(mergeSalvadorFindings(adjacentFindings));
+        }
+
+        //remove merge markers
+        return mergedFindings;
+    }
+    private static SalvadorFinding mergeSalvadorFindings(List<SalvadorFinding> findingsToMerge){
+        int startPosition = Integer.MAX_VALUE;
+        int endPosition = 0;
+        for(SalvadorFinding salvadorFinding:findingsToMerge){
+            startPosition = min(startPosition,salvadorFinding.getCandStartPosition());
+            endPosition = max(endPosition, salvadorFinding.getCandStopPosition());
+        }
+        return new SalvadorFinding(startPosition,endPosition);
+    }
+    private static List<SalvadorFinding> getAdjacentFindings(List<SalvadorFinding> salvadorFindings, SalvadorFinding currentFinding){
+        List<SalvadorFinding> adjacentFindings = new ArrayList<>();
+        int currentStart = currentFinding.getCandStartPosition();
+        int currentEnd = currentFinding.getCandStopPosition();
+
+        for(SalvadorFinding salvadorFinding:salvadorFindings){
+            if(salvadorFinding.isMerged()){
+               continue;
+            }
+            int compareStart = salvadorFinding.getCandStartPosition();
+            int compareEnd = salvadorFinding.getCandStopPosition();
+            // Using isAreaPlagiarism to compare if findings overlap
+            boolean is = isAreaPlagiarism(currentStart,currentEnd,compareStart,compareEnd);
+            if(is){
+                salvadorFinding.setMerged(true);
+                adjacentFindings.add(salvadorFinding);
+            }
+        }
+        return adjacentFindings;
+    }
+    private static int getSalvadorFindingsAccumulatedSize(List<SalvadorFinding> salvadorFindings){
+        int accumulatedSize = 0;
+        for(SalvadorFinding finding:salvadorFindings){
+           accumulatedSize+=finding.getSize();
+        }
+        return accumulatedSize;
+    }
 
     private static long getFindingsAtKForNonPlagsizeOld(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, boolean relativeOverallScores, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k) {
         // For each Plagcase
