@@ -34,7 +34,8 @@ public class ScoringChunk {
                         SlidingWindowInfo candidateWindow,
                         double computedCosineSimilarity,
                         long fragmentIndex,
-                        StartStopInfo startStopInfo, boolean isPlagiarism) {
+                        StartStopInfo startStopInfo,
+                        boolean isPlagiarism) {
 
         this.suspiciousStartSentence = suspiciousWindow.getStartSentence();
         this.suspiciousEndSentence = suspiciousWindow.getEndSentence();

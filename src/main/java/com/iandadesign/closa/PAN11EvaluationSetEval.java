@@ -30,7 +30,8 @@ public class PAN11EvaluationSetEval {
         Boolean smallTest = false;                  // Just select few suspicious files for the complete process
         Boolean evaluateCandidateRetrieval = false; // This triggers only the CR evaluation.
         Boolean mockCRResults = true;              // This will test detailed analysis with mocked CR results
-        Integer maxMockSuspCandiates = 3;          // This is a delimeter for the maximum of suspicious files locked in mockCR Evaluation, set over 304 to check all susp files.
+        Integer maxMockSuspCandiates = 10;          // This is a delimeter for the maximum of suspicious files locked in mockCR Evaluation, set over 304 to check all susp files.
+
 
         //evalPAN2011All();
 
@@ -752,3 +753,15 @@ public class PAN11EvaluationSetEval {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
