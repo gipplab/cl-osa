@@ -218,7 +218,7 @@ public class OntologyBasedSimilarityAnalysis {
                                 languageDetector.detectLanguage(FileUtils.readFileToString(new File(candidateDocumentPath), StandardCharsets.UTF_8))));
             }
 
-            return performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
+            return performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap, false,false).get(suspiciousDocumentPath);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -228,7 +228,7 @@ public class OntologyBasedSimilarityAnalysis {
 
     private void printCandidateRetrievalResults(ExtendedLogUtil logUtil, Map<String, Double> candidateScoresMap, ExtendedAnalysisParameters params){
         int counter=0;
-
+        logUtil.writeStandardReport(false, "feature", "asdnjonajnfg", "asdnjsdfgjna", "asdkasnajofnfda");
         for(String key: candidateScoresMap.keySet()){
             if(counter>=params.CR_PRINT_LIMIT) break;
             Double value = candidateScoresMap.get(key);
@@ -279,7 +279,7 @@ public class OntologyBasedSimilarityAnalysis {
         }
 
         // Perform similarity analysis for candidate retrieval.
-        Map<String, Double> candidateScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
+        Map<String, Double> candidateScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap, false,false).get(suspiciousDocumentPath);
         //Map<String, Double> candidateScoresMap = performEnhancedCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
 
 
@@ -379,7 +379,7 @@ public class OntologyBasedSimilarityAnalysis {
         Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap;
         // Perform similarity analysis for candidate retrieval.
         if(!params.USE_ENHANCHED_COSINE_ANALYSIS) {
-            suspiciousIdCandidateScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
+            suspiciousIdCandidateScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap, false,false);
         }else {
             suspiciousIdCandidateScoresMap = performEnhancedCosineSimilarityAnalysisP(suspiciousIdTokensMap, candidateIdTokensMap);
         }
@@ -450,7 +450,7 @@ public class OntologyBasedSimilarityAnalysis {
         }
 
         Map<String, Map<String, Double>> fragmentScoresMapN = performCosineSimilarityAnalysis(suspiciousEntitiesAll,
-                candidateEntitiesAll);
+                candidateEntitiesAll, false,false);
         // Perform the analysis
         // TODO fragmentScoresMapN.keySet().stream().filter(key contains suspfilename)
 
@@ -551,7 +551,7 @@ public class OntologyBasedSimilarityAnalysis {
                             }
 
                             Map<String, Double> fragmentScoresMap = performCosineSimilarityAnalysis(currentSuspiciousIdTokensMap,
-                                    currentCandidateIdTokensMap).get(suspiciousIdTokenExt.getKey());
+                                    currentCandidateIdTokensMap, false,false).get(suspiciousIdTokenExt.getKey());
 
                             Double fragmentScore = fragmentScoresMap.get(selectedCandidatePath);
                             // TODO if using a window-bordersize buffering remove this later
@@ -789,7 +789,7 @@ public class OntologyBasedSimilarityAnalysis {
                             { // THis might be obsolete
                                 // Atm the regular way: Normalization based on number of entities for the score.
                                 Map<String, Double> fragmentScoresMap = performCosineSimilarityAnalysis(currentSuspiciousIdTokensMap,
-                                        currentCandidateIdTokensMap).get(suspiciousIdTokenExt.getKey());
+                                        currentCandidateIdTokensMap, false,false).get(suspiciousIdTokenExt.getKey());
                                 fragmentScoresMap.get(selectedCandidatePath);
                             }
                             else {
@@ -1220,17 +1220,28 @@ public class OntologyBasedSimilarityAnalysis {
      *
      * @param suspiciousIdTokensMap map: suspicious id to tokens list
      * @param candidateIdTokensMap  map: candidate id to tokens list
+     * @param useAbsoluteScores use absolute scoring if true, if false just used vector length normalization.
      * @return retrieved candidates.
      */
     public Map<String, Map<String, Double>> performCosineSimilarityAnalysis(
             Map<String, List<String>> suspiciousIdTokensMap,
-            Map<String, List<String>> candidateIdTokensMap
+            Map<String, List<String>> candidateIdTokensMap,
+            boolean useAbsoluteScores,
+            boolean statisticalWeighting
     ) {
-        final boolean showProgress = false;
+        final boolean showProgress = true;
         // create dictionary
-        //logger.info("Create dictionary");
+        logger.info("Create dictionary");
         Dictionary<String> dictionary = new Dictionary<>(candidateIdTokensMap);
 
+        /* WHY ARE THE LESS CANDIDATE FRAGMENTS IN FINAL SCORES MAP: reason -> zero entity elements are filtered.
+        for(String key:candidateIdTokensMap.keySet()){
+            List<String> entities = candidateIdTokensMap.get(key);
+            if(entities.size()==0){
+                System.out.println(key);
+            }
+        }
+        */
         // perform detailed analysis
         //logger.info("Perform detailed analysis");
 
@@ -1254,7 +1265,7 @@ public class OntologyBasedSimilarityAnalysis {
                                 finalProgressBar.stepTo(progress.incrementAndGet());
                             }
                             // look in dictionary
-                            return dictionary.query(entry.getValue());
+                            return dictionary.query(entry.getValue(), useAbsoluteScores,statisticalWeighting);
                         }
                 ));
         if(showProgress) {
@@ -1346,7 +1357,7 @@ public class OntologyBasedSimilarityAnalysis {
             //score = dictionary.cosineSimilarity(suspiciousIdTokensMap.get(suspFile), candidateIdTokensMap.get(candFile));
 
             Map<String, Double> fragmentScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap,
-                    candidateIdTokensMap).get(suspFile);
+                    candidateIdTokensMap, false,false).get(suspFile);
             score = fragmentScoresMap.get(candFile);
         }
 

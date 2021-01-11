@@ -69,7 +69,7 @@ public class CLOSAEvaluationSet extends EvaluationSet<String> {
         } else if (linkedDataBasedAnalysis) {
             suspiciousIdCandidateScoresMap = analysis.performPropertyCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
         } else {
-            suspiciousIdCandidateScoresMap = analysis.performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap);
+            suspiciousIdCandidateScoresMap = analysis.performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap, false,false);
         }
     }
 

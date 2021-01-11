@@ -32,6 +32,7 @@ public class PAN11EvaluationSetEval {
         Boolean mockCRResults = true;              // This will test detailed analysis with mocked CR results
         Integer maxMockSuspCandiates = 10;          // This is a delimeter for the maximum of suspicious files locked in mockCR Evaluation, set over 304 to check all susp files.
 
+
         //evalPAN2011All();
 
         if(args!=null && args.length >= 1){
@@ -514,7 +515,9 @@ public class PAN11EvaluationSetEval {
 
 
         if(parsedErrors>=1 || parsedFiles==0){
-            return;
+            logUtil.writeErrorReport(false, "There have been problems during detecting plagiarism: ");
+            logUtil.writeErrorReport(false, "Parsing errors:  ", parsedErrors);
+            logUtil.writeErrorReport(false, "Parsed files:  ", parsedFiles);
         }
 
 
