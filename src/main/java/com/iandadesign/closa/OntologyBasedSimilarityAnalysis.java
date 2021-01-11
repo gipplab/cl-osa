@@ -1,5 +1,6 @@
 package com.iandadesign.closa;
 
+import com.iandadesign.closa.analysis.featurama.PCA.PCA;
 import com.iandadesign.closa.classification.Category;
 import com.iandadesign.closa.classification.TextClassifier;
 import com.iandadesign.closa.analysis.featurama.matrix.CorrelationMatrix;
@@ -808,35 +809,24 @@ public class OntologyBasedSimilarityAnalysis {
                             // Checking if the current chunk is plagiarism according to the results, only works when DO_RESULTS_ANALYSIS is enabled.
                             boolean isPlagiarism = isThisPlagiarism(params, currentPCInfos, swiSuspicious, swiCandidate);
 
-                            if(params.DO_REGRESSION_ANALYSIS)
-                            {
-                                Observation observationSuspWindow = new Observation();
-                                LinkedHashMap<String, Object> hashMap = new LinkedHashMap<String, Object>();
-                                if(fragmentScore < 0)
-                                {
-                                    hashMap.put("fragmentScore", 0.0);
-                                }
-                                else
-                                {
-                                    Double finalFragmentScore = fragmentScore;
-                                    hashMap.put("fragmentScore", finalFragmentScore);
-                                }
-
-                                hashMap.put("isPlagiarism", isPlagiarism);
-                                hashMap.put("currentSuspiciousIdTokensMapSize", currentSuspiciousIdTokensMap.size());
-                                hashMap.put("currentCandidateIdTokensMapSize", currentCandidateIdTokensMap.size());
-                                hashMap.put("AverageLength", 0);
-                                observationSuspWindow.addData(hashMap);
-                                observationSuspWindow.addData(startStopInfo);
-                                observationSuspWindow.addData(swiSuspicious, "swiSuspicious");
-                                observationSuspWindow.addData(swiCandidate, "swiCandidate");
-                                observationsList.add(observationSuspWindow);
-                            }
-
-
                             // TODO if using a window-bordersize buffering remove this later
                             if(!isPlagiarism) { // TODO nicen this condition
                                 if (fragmentScore == null || fragmentScore <= 0.0) {
+                                    if(params.DO_REGRESSION_ANALYSIS)
+                                    {
+                                        Observation observationSuspWindow = new Observation();
+                                        LinkedHashMap<String, Object> hashMap = new LinkedHashMap<String, Object>();
+                                        hashMap.put("fragmentScore", 0.0);
+                                        hashMap.put("isPlagiarism", isPlagiarism);
+                                        hashMap.put("currentSuspiciousIdTokensMapSize", currentSuspiciousIdTokensMap.size());
+                                        hashMap.put("currentCandidateIdTokensMapSize", currentCandidateIdTokensMap.size());
+                                        hashMap.put("AverageLength", 0);
+                                        observationSuspWindow.addData(hashMap);
+                                        observationSuspWindow.addData(startStopInfo);
+                                        observationSuspWindow.addData(swiSuspicious, "swiSuspicious");
+                                        observationSuspWindow.addData(swiCandidate, "swiCandidate");
+                                        observationsList.add(observationSuspWindow);
+                                    }
                                     fragmentIndex++; // Just increase the fragment index for absolute indexing.
                                     candSlidingWindowX++;
                                     continue;
@@ -928,16 +918,19 @@ public class OntologyBasedSimilarityAnalysis {
                         calculateCorrelation(averageLengths, fragmentScores);
                         StatisticsInfo statisticsInfo = ExtendedAnalytics.createAnalyticsScores(scoringChunksCombined);
                         statisticsInfo.candidateFilename = candFilename;
-                        statisticsInfos.add(statisticsInfo);
 
                         if(params.DO_REGRESSION_ANALYSIS){
-                            // Save data gathered from observations in matrix format and comput correlation matrix
+                            // Save data gathered from observations in matrix format and compute correlation matrix
                             Matrix ObservationData = new Matrix(observationsList);
                             CorrelationMatrix correlation = new CorrelationMatrix(ObservationData);
                             correlation.setColumnNames(observationsList.dataNames);
                             correlation.saveMatrixToFile(params.maxtrixStoreLocation , suspFilename);
                             statisticsInfo.correlation = correlation;
+                            PCA testing = new PCA(ObservationData);
+                            testing = testing.compute();
+                            testing.printEigenVectorsSorted();
                         }
+                        statisticsInfos.add(statisticsInfo);
                     }
 
                     // MEMORY: Clear candidate entities from memory.

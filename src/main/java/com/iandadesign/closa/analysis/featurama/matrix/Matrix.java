@@ -63,7 +63,7 @@ public class Matrix {
         return this.colsLength;
     }
 
-    public double returnValue(int column_num, int row_num)
+    public double returnValue(int row_num, int column_num)
     {
         return data[row_num][column_num];
     }

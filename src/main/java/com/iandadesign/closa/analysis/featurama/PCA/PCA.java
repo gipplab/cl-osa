@@ -55,7 +55,7 @@ public class PCA {
    Public Methods
  * ------------------------ */
 
-    DwVector transformVector(DwVector vec) {
+    public DwVector transformVector(DwVector vec) {
         int cols = emat.getColumnDimension();
         int rows = emat.getRowDimension();
 
@@ -75,7 +75,7 @@ public class PCA {
         return new DwVector(vec_new);
     }
 
-    DwVector[] transformData(DwVector[] data, boolean transpose) {
+    public DwVector[] transformData(DwVector[] data, boolean transpose) {
         Matrix mat = emat;
         if (transpose) {
             mat = emat.transpose();
@@ -109,13 +109,20 @@ public class PCA {
         return data_new;
     }
 
-    void printEigenValuesSorted(){
+    public void printEigenValuesSorted(){
         System.out.println("sorted eigenvalues: "+evec.length);
-        for(int i = 0; i < evec.length; i++) System.out.println("["+i+"] "+evec[i].eval);
+        for(int i = 0; i < evec.length; i++)
+        {
+            System.out.println("["+i+"] "+evec[i].eval);
+        }
     }
-    void printEigenVectorsSorted(){
+
+    public void printEigenVectorsSorted(){
         System.out.println("sorted eigenvectors: "+evec.length);
-        for(int i = 0; i < evec.length; i++) evec[i].print();
+        for(int i = 0; i < evec.length; i++)
+        {
+            evec[i].print();
+        }
     }
 
     // can be used to reduce dimensions.
@@ -177,7 +184,8 @@ public class PCA {
         // create objects for sorting
         // columns are eigenvectors ... principal components
         evec = new DwEigenVector[eval.length];
-        for (int i = 0; i < evec.length; i++) {
+        for (int i = 0; i < evec.length; i++)
+        {
             evec[i] = new DwEigenVector(emat_dd[i], eval[i]);
         }
         Arrays.sort(evec);
@@ -196,17 +204,22 @@ class DwEigenVector implements Comparable<DwEigenVector>{
         this.eval = eval;
     }
     void print(){
-        System.out.printf(Locale.ENGLISH, "%+8.5f,     ", eval);
+        System.out.printf(Locale.ENGLISH, "EV: %+8.5f,     [", eval);
         for(int i = 0; i < evec.length; i++){
             System.out.printf(Locale.ENGLISH, "%+8.5f, ", evec[i]);
         }
-        System.out.printf(Locale.ENGLISH, "\n");
+        System.out.printf(Locale.ENGLISH, "]\n");
     }
 
     public int compareTo(DwEigenVector o) {
         if( eval < o.eval ) return +1;
         if( eval > o.eval ) return -1;
         return 0;
+    }
+
+    public void saveWithLabels(int[] labels, String directory, String filename)
+    {
+
     }
 }
 
