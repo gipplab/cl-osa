@@ -19,7 +19,7 @@ public class SalvadorFragmentLevelEval {
     public static String preprocessedCachingDir = "/data/CLOSA_data/preprocessed";
 
     public static void main(String[] args) {
-        Boolean smallTest = true;                  // Just select few suspicious files for the complete process
+        Boolean smallTest = false;                  // Just select few suspicious files for the complete process
         Boolean evaluateCandidateRetrieval = true; // This triggers only the CR evaluation.
         Boolean addCRResultInfo = true;              // This will test detailed analysis with mocked CR results
         Integer maxMockSuspCandiates = 5000;          // This is a delimeter for the maximum of suspicious files locked in mockCR Evaluation, set over 304 to check all susp files.
@@ -215,7 +215,11 @@ public class SalvadorFragmentLevelEval {
         logUtil.logAndWriteStandard(false, comment);
 
         logUtil.logAndWriteStandard(false, "Assuming the preprpocessing has been done here. ");
-        params.MAX_NUM_CANDIDATES_SELECTED = 5000;
+        params.MAX_NUM_CANDIDATES_SELECTED = 50000;
+        //params.USE_LANGUAGE_WHITELISTING = true;
+        //params.USE_FILE_FILTER = false;
+        //params.panFileFilter.addLanguageToWhitelist("en", "es");
+
         //params.CANDIDATE_SELECTION_TRESH = 0;
         logParams(logUtil, tag, params, osa);
 
