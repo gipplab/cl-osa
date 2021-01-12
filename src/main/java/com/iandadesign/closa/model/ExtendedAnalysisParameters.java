@@ -43,6 +43,7 @@ public class ExtendedAnalysisParameters {
     public int PARALLELISM_THREAD_DIF;
     public final boolean USE_ENHANCHED_COSINE_ANALYSIS; // if enhanched taxomony
     public PANFileFilter panFileFilter;
+    public final String maxtrixStoreLocation;
 
 
     public ExtendedAnalysisParameters() throws Exception{
@@ -105,6 +106,8 @@ public class ExtendedAnalysisParameters {
         // cand has only: "en", "de", "es"
         // susp has only: "en"
         panFileFilter.addLanguageToWhitelist("de", "es");
+
+        maxtrixStoreLocation = System.getProperty("user.home");
 
     }
 
