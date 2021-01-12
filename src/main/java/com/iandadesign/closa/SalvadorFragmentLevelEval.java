@@ -236,6 +236,8 @@ public class SalvadorFragmentLevelEval {
         suspiciousFiles = filterBySuspFileLimit(plagiarismInformation, suspiciousFiles, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, SalvadorAnalysisParameters.SUSP_FILE_LIMIT, SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET);
 
         System.out.println("My First SuspFile: "+ suspiciousFiles.get(0).toString());
+        System.out.println("Suspfile Count: "+ suspiciousFiles.size());
+
         Map<String, List<SavedEntity>> suspiciousEntitiesFragment;
         // Create a list of suspicious fragments (only plagiarism involved fragments)
 
@@ -247,6 +249,9 @@ public class SalvadorFragmentLevelEval {
             // Get fragments with plagiarism involved, size of FRAGMENT_SENTENCES
             suspiciousEntitiesFragment = getFragments(osa, suspiciousFiles, SalvadorAnalysisParameters.FRAGMENT_SENTENCES, SalvadorAnalysisParameters.FRAGMENT_INCREMENT, true, plagiarismInformation, false);
         }
+
+        System.out.println("Susp-enties count: "+ suspiciousEntitiesFragment.size());
+
 
         if(SalvadorAnalysisParameters.DO_STATISTICAL_WEIGHTING){
             // Required:
