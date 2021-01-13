@@ -126,6 +126,7 @@ public class PAN11RankingEvaluator {
     public static double calculateRecallAtkFragmentCharacterLevel(boolean plagsizeFragments,
                                                                   boolean relativeOverallScores,
                                                                   boolean dismissOverlaps,
+                                                                  boolean maxCap,
                                                                   int minsizeFragments,
                                                                   Map<String, Map<String, Double>>  suspiciousIdCandidateScoresMap,
                                                                   List<File> suspiciousFiles,
@@ -136,24 +137,24 @@ public class PAN11RankingEvaluator {
                                                                   int k){
         if(plagsizeFragments){
             // Should be ok, just a quick fix.
-            return getRecallAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores, dismissOverlaps, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k);
+            return getRecallAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores, dismissOverlaps, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k, maxCap);
             //return getRecallAtKForPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k);
         }else{
-            return getRecallAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores, dismissOverlaps, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k);
+            return getRecallAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores, dismissOverlaps, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k, maxCap);
         }
     }
-    private static double getRecallAtKForNonPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, boolean relativeOverallScores, boolean dismissOverlaps, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k) {
+    private static double getRecallAtKForNonPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, boolean relativeOverallScores, boolean dismissOverlaps, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k, boolean max_cap) {
 
-        long overallFindings = getFindingsAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, false, dismissOverlaps, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k);
+        long overallFindings = getFindingsAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, false, dismissOverlaps, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k,max_cap, k);
         long overallPossibleFindings;
         if(!relativeOverallScores){
             int maxK = candidateEntitiesMap.size();
-            overallPossibleFindings = getFindingsAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores,dismissOverlaps , suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, maxK);
+            overallPossibleFindings = getFindingsAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores,dismissOverlaps , suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, maxK, max_cap, k);
 
         }else{
             // relative overallScores
             // This is just counting all chars interleaved which are plagiarism as overallPossible finding
-             overallPossibleFindings = getFindingsAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores, dismissOverlaps, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k);
+             overallPossibleFindings = getFindingsAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores, dismissOverlaps, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k, max_cap, k);
 
         }
 
@@ -162,7 +163,7 @@ public class PAN11RankingEvaluator {
         return recallAtK;
     }
 
-    private static long getFindingsAtKForNonPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, boolean relativeOverallScores, boolean dismissOverlaps, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k) {
+    private static long getFindingsAtKForNonPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, boolean relativeOverallScores, boolean dismissOverlaps, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k, boolean max_cap, int max_k) {
         // For each Plagcase
         // This gets a set of plagiarised susp fragments
         // Gets candidate fragments for each susp fragment limited by k
@@ -252,6 +253,11 @@ public class PAN11RankingEvaluator {
                 }
                 // Dismiss the overlaps
                 if(dismissOverlaps){
+
+                    // plagiarizedSuspiciousFragments.size() * k_orig is maximum here with cap
+                    if(max_cap){
+                       findingsForThisPlagiarism = findingsForThisPlagiarism.stream().limit(plagiarizedSuspiciousFragments.size() * max_k).collect(Collectors.toList());
+                    }
                     overallFindingsWithoutOverlap += getNonOverlapFindings(findingsForThisPlagiarism);
                 }
 
@@ -563,7 +569,9 @@ public class PAN11RankingEvaluator {
                 String baseSuspFileName = getBaseName(suspiciousFragmentID, ".xml");
                 List<PAN11PlagiarismInfo> relatedPlagiarism = getPlagiarismCasesRelatedToSuspFragment(currentSuspFragment, suspiciousEntities, plagiarismInformation.get(baseSuspFileName));
 
-
+                if(suspiciousIdCandidateScoresMap.get(suspiciousFragmentID)==null){
+                    continue;
+                }
                 // Getting the first k candidates in the ranking
                 Map<String, Double> selectedCandidates = suspiciousIdCandidateScoresMap.get(suspiciousFragmentID);
                 Map<String, Double> candidateScoresMapSorted = selectedCandidates
