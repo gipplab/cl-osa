@@ -241,7 +241,29 @@ public class SalvadorFragmentLevelEval {
 
         System.out.println("My First SuspFile: "+ suspiciousFiles.get(0).toString());
         System.out.println("Suspfile Count: "+ suspiciousFiles.size());
+        if(!SalvadorAnalysisParameters.DO_BATCHED_PROCESSING){
+            // Just calculate all files at once
+            logUtil.logAndWriteStandard(true,"BATCHED_PROCESSING:", "is deactivated, just calculating all files in one step");
+            doScoresMapIteration(tag, plagiarismInformation, osa, logUtil, candidateFiles, suspiciousFiles, candidateEntitiesFragment, SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET, SalvadorAnalysisParameters.SUSP_FILE_LIMIT);
+        }else{
+            int batchCounter = 0;
+            // Do calculating in batches
+            for(int batchIndex = 0; batchIndex < suspiciousFiles.size(); batchIndex+=SalvadorAnalysisParameters.BATCHED_OFFSET_INCREMENT){
+                int maxBatchIndex = min(suspiciousFiles.size(), (batchIndex+SalvadorAnalysisParameters.BATCHED_OFFSET_INCREMENT));
+                if(maxBatchIndex < batchIndex) break;
+                int overallIndex = SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET + batchIndex;
+                List<File> currentSuspiciousFiles = suspiciousFiles.subList(batchIndex,maxBatchIndex);
+                logUtil.logAndWriteStandard(true,"BATCHED_PROCESSING:", "Doing batch from " + batchIndex + " to " + maxBatchIndex);
 
+                doScoresMapIteration(tag, plagiarismInformation, osa, logUtil, candidateFiles, currentSuspiciousFiles, candidateEntitiesFragment, overallIndex, currentSuspiciousFiles.size());
+                batchCounter++;
+            }
+            logUtil.logAndWriteStandard(true, "BATCHED_PROCESSING:", "Done with "+batchCounter+" batche/s." );
+        }
+
+    }
+
+    private static void doScoresMapIteration(String tag, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, OntologyBasedSimilarityAnalysis osa, ExtendedLogUtil logUtil, List<File> candidateFiles, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesFragment, int filesOffset, int filesNumber) throws Exception {
         Map<String, List<SavedEntity>> suspiciousEntitiesFragment;
         // Create a list of suspicious fragments (only plagiarism involved fragments)
 
@@ -289,7 +311,7 @@ public class SalvadorFragmentLevelEval {
         if(SalvadorAnalysisParameters.DO_SCORES_MAP_CACHING){
             ScoresMapCache scoresMapCache = new ScoresMapCache();
             // Generate key on base of used parameters
-            String keyPath = scoresMapCache.generateFileKey(preprocessedCachingDir+"/scoresmap_serialization/",SalvadorAnalysisParameters.FRAGMENT_SENTENCES,SalvadorAnalysisParameters.FRAGMENT_INCREMENT,SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, SalvadorAnalysisParameters.SUSP_FILE_LIMIT,SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET);
+            String keyPath = scoresMapCache.generateFileKey(preprocessedCachingDir+"/scoresmap_serialization/",SalvadorAnalysisParameters.FRAGMENT_SENTENCES,SalvadorAnalysisParameters.FRAGMENT_INCREMENT,SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, filesNumber, SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, filesOffset);
             // Try to find a file
             Map<String, Map<String, Double>>  scoresMapDes = scoresMapCache.deserializeScoresMap(keyPath);
             if(scoresMapDes==null){
@@ -316,15 +338,15 @@ public class SalvadorFragmentLevelEval {
         // Experimental parameters
         boolean relativeOverallScores = SalvadorAnalysisParameters.DO_RELATIVE_SCORING_R_AT_K; // Default: false
         int minsizePlagfragments = SalvadorAnalysisParameters.MIN_FRAGMENT_SIZE_R_AT_K; // for filtering irrelevant edge cases, Default: 0
-        Double recallAt1 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS,relativeOverallScores, SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,  minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,1);
-        Double recallAt5 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS,relativeOverallScores, SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,5);
-        Double recallAt10 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS,relativeOverallScores, SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,10);
-        Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores, SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,20);
-        Double recallAt50 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores, SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,50);
-        Double recallAt100 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS,relativeOverallScores,SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,100);
-        Double recallAt200 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores,SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,minsizePlagfragments,  scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,200);
-        Double recallAt25k = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores, SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,25000);
-        Double recallAt10B = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores, SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K,  SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,minsizePlagfragments,  scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment,plagiarismInformation, logUtil,10000000);
+        Double recallAt1 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS,relativeOverallScores, SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,  minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment, plagiarismInformation, logUtil,1);
+        Double recallAt5 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS,relativeOverallScores, SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment, plagiarismInformation, logUtil,5);
+        Double recallAt10 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS,relativeOverallScores, SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment, plagiarismInformation, logUtil,10);
+        Double recallAt20 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores, SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment, plagiarismInformation, logUtil,20);
+        Double recallAt50 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores, SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment, plagiarismInformation, logUtil,50);
+        Double recallAt100 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS,relativeOverallScores,SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment, plagiarismInformation, logUtil,100);
+        Double recallAt200 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores,SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,minsizePlagfragments,  scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment, plagiarismInformation, logUtil,200);
+        Double recallAt25k = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores, SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment, plagiarismInformation, logUtil,25000);
+        Double recallAt10B = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores, SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K,  SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K,minsizePlagfragments,  scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment, plagiarismInformation, logUtil,10000000);
 
         // DA implementation:
 
@@ -336,10 +358,10 @@ public class SalvadorFragmentLevelEval {
         // Detailed Comparison ...
 
         // TBD: Do document preselection (not clear atm, which documents)
-            // Variations:
-            //- all documents
-            //- documents containing the k-next candidates
-            //- documents containing plagiarism
+        // Variations:
+        //- all documents
+        //- documents containing the k-next candidates
+        //- documents containing plagiarism
         // Compare each preselected suspicious document to candidate document.
         Map<String, Map<String, Map<SalvadorTextFragment, SalvadorTextFragment>>> allResults = new HashMap<>();
         Map<String, Map<String, SalvadorStatisticsInfo>> allStatistics = new HashMap<>();
@@ -420,9 +442,7 @@ public class SalvadorFragmentLevelEval {
         PAN11FileUtil.writeFileListToDirectory(suspiciousXML, cachingDir.getPath(), logUtil);
         PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath());
         PAN11FileUtil.removeDirectory(cachingDir);
-
     }
-
 
 
     public static void printStatisticsInfo(ExtendedLogUtil logUtil, SalvadorInfoHolder salvadorInfoHolder, String name) {
