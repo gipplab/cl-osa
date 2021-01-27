@@ -239,8 +239,19 @@ public class SalvadorFragmentLevelEval {
 
         suspiciousFiles = filterBySuspFileLimit(plagiarismInformation, suspiciousFiles, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, SalvadorAnalysisParameters.SUSP_FILE_LIMIT, SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET);
 
+
+
+
         System.out.println("My First SuspFile: "+ suspiciousFiles.get(0).toString());
         System.out.println("Suspfile Count: "+ suspiciousFiles.size());
+
+        // Presteps for PAN11 Evaluation remove caching directory (if there is one)
+        String xmlResultsFolderPath = SalvadorPAN11XMLwriter.getXMLresultsFolderPath(tag, logUtil.getDateString(), preprocessedCachingDir);
+        File cachingDir= new File(xmlResultsFolderPath +"/file_selection_cache");
+        PAN11FileUtil.removeDirectory(cachingDir);
+        logUtil.logAndWriteStandard(true,"Caching dir start:", cachingDir.getPath());
+
+        // Do the actual processing
         if(!SalvadorAnalysisParameters.DO_BATCHED_PROCESSING){
             // Just calculate all files at once
             logUtil.logAndWriteStandard(true,"BATCHED_PROCESSING:", "is deactivated, just calculating all files in one step");
@@ -255,15 +266,21 @@ public class SalvadorFragmentLevelEval {
                 List<File> currentSuspiciousFiles = suspiciousFiles.subList(batchIndex,maxBatchIndex);
                 logUtil.logAndWriteStandard(true,"BATCHED_PROCESSING:", "Doing batch from " + batchIndex + " to " + maxBatchIndex);
 
-                doScoresMapIteration(tag, plagiarismInformation, osa, logUtil, candidateFiles, currentSuspiciousFiles, candidateEntitiesFragment, overallIndex, currentSuspiciousFiles.size());
+                // Actual scores calculation
+                String cachingDirL = doScoresMapIteration(tag, plagiarismInformation, osa, logUtil, candidateFiles, currentSuspiciousFiles, candidateEntitiesFragment, overallIndex, currentSuspiciousFiles.size());
+                logUtil.logAndWriteStandard(true,"Caching dir current:", cachingDir.getPath());
+
                 batchCounter++;
             }
             logUtil.logAndWriteStandard(true, "BATCHED_PROCESSING:", "Done with "+batchCounter+" batche/s." );
         }
 
+        PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath());
+        PAN11FileUtil.removeDirectory(cachingDir);
+
     }
 
-    private static void doScoresMapIteration(String tag, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, OntologyBasedSimilarityAnalysis osa, ExtendedLogUtil logUtil, List<File> candidateFiles, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesFragment, int filesOffset, int filesNumber) throws Exception {
+    private static String doScoresMapIteration(String tag, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, OntologyBasedSimilarityAnalysis osa, ExtendedLogUtil logUtil, List<File> candidateFiles, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesFragment, int filesOffset, int filesNumber) throws Exception {
         Map<String, List<SavedEntity>> suspiciousEntitiesFragment;
         // Create a list of suspicious fragments (only plagiarism involved fragments)
 
@@ -437,11 +454,11 @@ public class SalvadorFragmentLevelEval {
         //String baseResultsPath = "/data/CLOSA_data/preprocessed/preprocessed_extended/results_comparison/evalPAN2011Salvador"; // TODO adapt
         File cachingDir= new File(xmlResultsFolderPath +"/file_selection_cache");
         // Remove previous caching directory.
-        PAN11FileUtil.removeDirectory(cachingDir);
+        //PAN11FileUtil.removeDirectory(cachingDir);
         List<File> suspiciousXML  =  suspiciousFiles.stream().map(file -> new File(file.getAbsolutePath().replace(".txt",".xml"))).collect(Collectors.toList()); //PAN11FileUtil.getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".xml");
         PAN11FileUtil.writeFileListToDirectory(suspiciousXML, cachingDir.getPath(), logUtil);
-        PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath());
-        PAN11FileUtil.removeDirectory(cachingDir);
+
+        return cachingDir.getPath();
     }
 
 

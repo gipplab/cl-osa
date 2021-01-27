@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
 public class SalvadorAnalysisParameters {
     // Dataset settings
     public static boolean DO_FILE_PREFILTERING = true;            // Only take a limited amount of suspicious files
-    public static int SUSP_FILE_LIMIT = 4;                        // Only take XX supicicious files with all candidates
+    public static int SUSP_FILE_LIMIT = 2;                        // Only take XX supicicious files with all candidates
     public static int SUSP_FILE_SELECTION_OFFSET = 0;             // Offset selection, default 0
 
     // Basic score calculation
@@ -44,7 +44,7 @@ public class SalvadorAnalysisParameters {
     public static boolean LOWER_K_MAX_PLAG_CAP_R_AT_K = false;  // if for lower k's complete cases can't be fetched, cap plagiarism there
 
     // Perfomance
-    public static boolean DO_BATCHED_PROCESSING = true;         // if false calculates scoresmap and pan11 for all files at once, if not sequential
+    public static boolean DO_BATCHED_PROCESSING = false;         // if false calculates scoresmap and pan11 for all files at once, if not sequential
     public static int BATCHED_OFFSET_INCREMENT = 1;         // If DO_SEQUENTIAL_CALCULATAION is true, do batches of maximum size 20 suspicious files
 
 
