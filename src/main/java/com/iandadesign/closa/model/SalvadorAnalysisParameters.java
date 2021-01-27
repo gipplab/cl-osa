@@ -29,6 +29,7 @@ public class SalvadorAnalysisParameters {
     public static double WEIGHTED_ADD_CONSTANT = 0.3;             // The more, the higher scores have weightedAdd merged fragments
 
     // Analysis & MISC Parameters
+    public static boolean CALCULATE_RECALL_AT_K = true;              // Calculate Recall At K by own implementation
     public static boolean DO_ANALYSIS = true;                     // Do additional analysis steps (deactivate for perfomance)
     public static double ANALYSIS_RELEVANCE_THRESH = 0.1;         // Fragments have to have at least XX percent overlap with plagiarism to go as positivies
     public static boolean DO_REGRESSION_ANALYSIS = false;
@@ -44,7 +45,7 @@ public class SalvadorAnalysisParameters {
     public static boolean LOWER_K_MAX_PLAG_CAP_R_AT_K = false;  // if for lower k's complete cases can't be fetched, cap plagiarism there
 
     // Perfomance
-    public static boolean DO_BATCHED_PROCESSING = false;         // if false calculates scoresmap and pan11 for all files at once, if not sequential
+    public static boolean DO_BATCHED_PROCESSING = true;         // if false calculates scoresmap and pan11 for all files at once, if not sequential
     public static int BATCHED_OFFSET_INCREMENT = 1;         // If DO_SEQUENTIAL_CALCULATAION is true, do batches of maximum size 20 suspicious files
 
 
