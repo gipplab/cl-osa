@@ -269,7 +269,7 @@ public class SalvadorFragmentLevelEval {
                 if(maxBatchIndex < batchIndex) break;
                 int overallIndex = SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET + batchIndex;
                 List<File> currentSuspiciousFiles = suspiciousFiles.subList(batchIndex,maxBatchIndex);
-                logUtil.logAndWriteStandard(true,"BATCHED_PROCESSING:", "Doing batch from " + batchIndex + " to " + maxBatchIndex);
+                logUtil.logAndWriteStandard(true,"BATCHED_PROCESSING:", "Doing batch from " + overallIndex + " to " + (overallIndex+currentSuspiciousFiles.size()));
 
                 // Actual scores calculation
                 Map<Integer, SalvadorRatKResponse>  recallAtKResponses = doScoresMapIteration(tag, plagiarismInformation, osa, logUtil, candidateFiles, currentSuspiciousFiles, candidateEntitiesFragment, overallIndex, currentSuspiciousFiles.size());
@@ -369,12 +369,15 @@ public class SalvadorFragmentLevelEval {
             // Try to find a file
             Map<String, Map<String, Double>>  scoresMapDes = scoresMapCache.deserializeScoresMap(keyPath);
             if(scoresMapDes==null){
+                logUtil.logAndWriteStandard(false, "Creating new scoresmap and serialize it.");
                 scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_STATISTICAL_WEIGHTING);
                 scoresMapCache.serializeScoresMap(keyPath, scoresMap);
             }else{
+                logUtil.logAndWriteStandard(false, "Load scoresmap from cache");
                 scoresMap = scoresMapDes;
             }
         }else{
+            logUtil.logAndWriteStandard(false, "SCORESMAP CACHING IS DEACTIVATED");
             scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_STATISTICAL_WEIGHTING);
         }
 
@@ -513,7 +516,9 @@ public class SalvadorFragmentLevelEval {
         candidateEntitiesFragment.clear();
         scoresMap.clear();
         System.gc();
+
         return recallAtKResponses;
+
     }
 
 
@@ -535,7 +540,7 @@ public class SalvadorFragmentLevelEval {
                                           Map<String, Map<String, Double>>  scoresMap,
                                           int THRESHOLD_1,
                                           double THRESHOLD_2,
-                                          int RANKLIMIT,
+                                          int TOPMOST,
                                           boolean DO_ANALYSIS,
                                           List<PAN11PlagiarismInfo> candidatePlagiarismInfos,
                                           ExtendedLogUtil logUtil) {
@@ -562,7 +567,7 @@ public class SalvadorFragmentLevelEval {
            // Get best scoring <RANKLIMIT> fragments
             Map<String, Double> candidateScoresMapSelected = candidateScores.entrySet().stream()
                     .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-                    .limit(RANKLIMIT)
+                    .limit(TOPMOST)
                     .filter(value -> value.getValue() >= THRESH_TOPMOST)
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
@@ -577,7 +582,7 @@ public class SalvadorFragmentLevelEval {
 
             // Merge the fragments
             Map<String, SalvadorTextFragment>  fragmentInfosMerged = mergeFragments(THRESHOLD_1, fragmentInfos);
-
+            //Map<String, SalvadorTextFragment>  fragmentInfosMerged = fragmentInfos; // TODO eval bypass merge atm
 
             // Rate the new fragment infos as plagiarism or not
             for(String clusteredFragmentID: fragmentInfosMerged.keySet()){
