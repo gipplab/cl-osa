@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
 public class SalvadorAnalysisParameters {
     // Dataset settings
     public static boolean DO_FILE_PREFILTERING = true;            // Only take a limited amount of suspicious files
-    public static int SUSP_FILE_LIMIT = 2;                        // Only take XX supicicious files with all candidates
+    public static int SUSP_FILE_LIMIT = 20;                        // Only take XX supicicious files with all candidates
     public static int SUSP_FILE_SELECTION_OFFSET = 0;             // Offset selection, default 0
 
     // Basic score calculation
@@ -21,7 +21,7 @@ public class SalvadorAnalysisParameters {
 
     // Clustering
     public static int THRESH1 = 800;                             // Fragment distance merging thresh
-    public static double THRESH2 = 0.125; //0.686;      //0.086;    // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
+    public static double THRESH2 = 8; //0.686;      //0.086;    // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
     public static double PRESELECTION_THRESH = 0.0;               // From the topmost candidates only the ones above this thresh get considered for merge
     public static int TOPMOST = 5;                                // topmost fetched suspicious for one plagiarism node
     // Clustering - Fragment Merge
@@ -46,8 +46,8 @@ public class SalvadorAnalysisParameters {
 
     // Perfomance
     public static boolean DO_BATCHED_PROCESSING = true;         // if false calculates scoresmap and pan11 for all files at once, if not sequential
-    public static int BATCHED_OFFSET_INCREMENT = 1;         // If DO_SEQUENTIAL_CALCULATAION is true, do batches of maximum size 20 suspicious files
-
+    public static int BATCHED_OFFSET_INCREMENT = 5;         // If DO_SEQUENTIAL_CALCULATAION is true, do batches of maximum size 20 suspicious files
+    public static boolean SORT_SUSPICIOUS_FILES_BY_SIZE = false;     // Sort suspicious files by size, biggest first (DANGER: messes up old keys)
 
     public static void printSalvadorMembers(ExtendedLogUtil logUtil) throws IllegalAccessException {
         logUtil.logAndWriteStandard(false, "Settings for Salvador Evaluation:---------------------");
