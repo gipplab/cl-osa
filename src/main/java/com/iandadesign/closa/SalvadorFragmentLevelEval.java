@@ -236,14 +236,15 @@ public class SalvadorFragmentLevelEval {
 
         Map<String, List<SavedEntity>> candidateEntitiesFragment = getFragments(osa, candidateFiles, SalvadorAnalysisParameters.FRAGMENT_SENTENCES, SalvadorAnalysisParameters.FRAGMENT_INCREMENT, false, null, true);
 
-        // For testing use just one basic file (and also just the corresponding results)
-
-        suspiciousFiles = filterBySuspFileLimit(plagiarismInformation, suspiciousFiles, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, SalvadorAnalysisParameters.SUSP_FILE_LIMIT, SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET);
-
         if(SalvadorAnalysisParameters.SORT_SUSPICIOUS_FILES_BY_SIZE){
             // Biggest first
             suspiciousFiles = suspiciousFiles.stream().sorted(Comparator.comparingLong(file -> ((File)file).length()).reversed()).collect(Collectors.toList());
         }
+        // For testing use just one basic file (and also just the corresponding results)
+
+        suspiciousFiles = filterBySuspFileLimit(plagiarismInformation, suspiciousFiles, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, SalvadorAnalysisParameters.SUSP_FILE_LIMIT, SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET);
+
+
 
         System.out.println("My First SuspFile: "+ suspiciousFiles.get(0).toString());
         System.out.println("Suspfile Count: "+ suspiciousFiles.size());
