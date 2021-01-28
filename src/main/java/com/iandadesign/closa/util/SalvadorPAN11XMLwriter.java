@@ -21,8 +21,8 @@ public class SalvadorPAN11XMLwriter {
     public static String writeDownAllXMLResults(String tag, String dateString,
                                              String preprocessedCachingDirectory,
                                              Map<String, Map<String, Map<SalvadorTextFragment, SalvadorTextFragment>>> allResults){
-        String xmlResultsFolderPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
-                "results_comparison_salvador", tag.concat("_").concat(dateString)).toAbsolutePath().toString();
+        String xmlResultsFolderPath = getXMLresultsFolderPath(tag, dateString, preprocessedCachingDirectory);
+
         // Do writing for each corresponding
         for(String suspiciousDocument:allResults.keySet()){
             for(String candidateDocument:allResults.get(suspiciousDocument).keySet()){
@@ -47,6 +47,12 @@ public class SalvadorPAN11XMLwriter {
 
         }
 
+        return xmlResultsFolderPath;
+    }
+
+    public static String getXMLresultsFolderPath(String tag, String dateString, String preprocessedCachingDirectory) {
+        String xmlResultsFolderPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended",
+                "results_comparison_salvador", tag.concat("_").concat(dateString)).toAbsolutePath().toString();
         return xmlResultsFolderPath;
     }
 

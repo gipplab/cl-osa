@@ -1,12 +1,7 @@
 package com.iandadesign.closa.util;
 
-import com.iandadesign.closa.SalvadorFragmentLevelEval;
-import com.iandadesign.closa.model.PremapEntryHolder;
-import com.iandadesign.closa.model.SalvadorFinding;
-import com.iandadesign.closa.model.SalvadorTextFragment;
-import com.iandadesign.closa.model.SavedEntity;
+import com.iandadesign.closa.model.*;
 import edu.stanford.nlp.util.ArrayMap;
-import org.apache.commons.collections.comparators.ReverseComparator;
 
 import java.io.File;
 import java.util.*;
@@ -14,7 +9,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.iandadesign.closa.SalvadorFragmentLevelEval.isEntityRelatedToPlagiarism;
-import static com.iandadesign.closa.SalvadorFragmentLevelEval.isPlagiarismRelated;
 import static java.lang.Integer.max;
 import static java.lang.Integer.min;
 
@@ -123,18 +117,18 @@ public class PAN11RankingEvaluator {
      * @param k
      * @return
      */
-    public static double calculateRecallAtkFragmentCharacterLevel(boolean plagsizeFragments,
-                                                                  boolean relativeOverallScores,
-                                                                  boolean dismissOverlaps,
-                                                                  boolean maxCap,
-                                                                  int minsizeFragments,
-                                                                  Map<String, Map<String, Double>>  suspiciousIdCandidateScoresMap,
-                                                                  List<File> suspiciousFiles,
-                                                                  Map<String, List<SavedEntity>> candidateEntitiesMap,
-                                                                  Map<String, List<SavedEntity>> suspiciousEntitiesMap,
-                                                                  HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation,
-                                                                  ExtendedLogUtil logUtil,
-                                                                  int k){
+    public static SalvadorRatKResponse calculateRecallAtkFragmentCharacterLevel(boolean plagsizeFragments,
+                                                                                boolean relativeOverallScores,
+                                                                                boolean dismissOverlaps,
+                                                                                boolean maxCap,
+                                                                                int minsizeFragments,
+                                                                                Map<String, Map<String, Double>>  suspiciousIdCandidateScoresMap,
+                                                                                List<File> suspiciousFiles,
+                                                                                Map<String, List<SavedEntity>> candidateEntitiesMap,
+                                                                                Map<String, List<SavedEntity>> suspiciousEntitiesMap,
+                                                                                HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation,
+                                                                                ExtendedLogUtil logUtil,
+                                                                                int k){
         if(plagsizeFragments){
             // Should be ok, just a quick fix.
             return getRecallAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores, dismissOverlaps, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k, maxCap);
@@ -143,7 +137,7 @@ public class PAN11RankingEvaluator {
             return getRecallAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, relativeOverallScores, dismissOverlaps, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k, maxCap);
         }
     }
-    private static double getRecallAtKForNonPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, boolean relativeOverallScores, boolean dismissOverlaps, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k, boolean max_cap) {
+    private static SalvadorRatKResponse getRecallAtKForNonPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, boolean relativeOverallScores, boolean dismissOverlaps, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k, boolean max_cap) {
 
         long overallFindings = getFindingsAtKForNonPlagsize(suspiciousIdCandidateScoresMap, minsizeFragments, false, dismissOverlaps, suspiciousFiles, candidateEntitiesMap, suspiciousEntitiesMap, plagiarismInformation, logUtil, k,max_cap, k);
         long overallPossibleFindings;
@@ -160,7 +154,13 @@ public class PAN11RankingEvaluator {
 
         double recallAtK = (double) overallFindings / overallPossibleFindings * 100;
         logUtil.logAndWriteStandard(false, "Recall at ", k, " is: ", recallAtK, "Findings/PossibleFindings (",overallFindings,"/", overallPossibleFindings,")");
-        return recallAtK;
+
+        SalvadorRatKResponse response = new SalvadorRatKResponse();
+        response.k = k;
+        response.findings = overallFindings;
+        response.possibleFindings = overallPossibleFindings;
+        response.recallAtK = recallAtK;
+        return response;
     }
 
     private static long getFindingsAtKForNonPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, boolean relativeOverallScores, boolean dismissOverlaps, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k, boolean max_cap, int max_k) {

@@ -1229,9 +1229,9 @@ public class OntologyBasedSimilarityAnalysis {
             boolean useAbsoluteScores,
             boolean statisticalWeighting
     ) {
-        final boolean showProgress = true;
+        final boolean showProgress = false;
         // create dictionary
-        logger.info("Create dictionary");
+        //logger.info("Create dictionary");
         Dictionary<String> dictionary = new Dictionary<>(candidateIdTokensMap);
 
         /* WHY ARE THE LESS CANDIDATE FRAGMENTS IN FINAL SCORES MAP: reason -> zero entity elements are filtered.
