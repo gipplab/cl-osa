@@ -233,14 +233,17 @@ public class SalvadorFragmentLevelEval {
 
 
         // Create a list of candidate fragments (all)
+
         Map<String, List<SavedEntity>> candidateEntitiesFragment = getFragments(osa, candidateFiles, SalvadorAnalysisParameters.FRAGMENT_SENTENCES, SalvadorAnalysisParameters.FRAGMENT_INCREMENT, false, null, true);
 
         // For testing use just one basic file (and also just the corresponding results)
 
         suspiciousFiles = filterBySuspFileLimit(plagiarismInformation, suspiciousFiles, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, SalvadorAnalysisParameters.SUSP_FILE_LIMIT, SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET);
 
-
-
+        if(SalvadorAnalysisParameters.SORT_SUSPICIOUS_FILES_BY_SIZE){
+            // Biggest first
+            suspiciousFiles = suspiciousFiles.stream().sorted(Comparator.comparingLong(file -> ((File)file).length()).reversed()).collect(Collectors.toList());
+        }
 
         System.out.println("My First SuspFile: "+ suspiciousFiles.get(0).toString());
         System.out.println("Suspfile Count: "+ suspiciousFiles.size());
@@ -361,7 +364,7 @@ public class SalvadorFragmentLevelEval {
         if(SalvadorAnalysisParameters.DO_SCORES_MAP_CACHING){
             ScoresMapCache scoresMapCache = new ScoresMapCache();
             // Generate key on base of used parameters
-            String keyPath = scoresMapCache.generateFileKey(preprocessedCachingDir+"/scoresmap_serialization/",SalvadorAnalysisParameters.FRAGMENT_SENTENCES,SalvadorAnalysisParameters.FRAGMENT_INCREMENT,SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, filesNumber, SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, filesOffset);
+            String keyPath = scoresMapCache.generateFileKey(preprocessedCachingDir+"/scoresmap_serialization/",SalvadorAnalysisParameters.FRAGMENT_SENTENCES,SalvadorAnalysisParameters.FRAGMENT_INCREMENT,SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, filesNumber, SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, filesOffset, SalvadorAnalysisParameters.SORT_SUSPICIOUS_FILES_BY_SIZE);
             // Try to find a file
             Map<String, Map<String, Double>>  scoresMapDes = scoresMapCache.deserializeScoresMap(keyPath);
             if(scoresMapDes==null){
@@ -502,6 +505,13 @@ public class SalvadorFragmentLevelEval {
         List<File> suspiciousXML  =  suspiciousFiles.stream().map(file -> new File(file.getAbsolutePath().replace(".txt",".xml"))).collect(Collectors.toList()); //PAN11FileUtil.getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".xml");
         PAN11FileUtil.writeFileListToDirectory(suspiciousXML, cachingDir.getPath(), logUtil);
 
+        // Perfomance: Free memory manually after a batch.
+        suspDocFragmentMap.clear();
+        candDocFragmentMap.clear();
+        suspiciousEntitiesFragment.clear();
+        candidateEntitiesFragment.clear();
+        scoresMap.clear();
+        System.gc();
         return recallAtKResponses;
     }
 
