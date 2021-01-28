@@ -510,10 +510,10 @@ public class SalvadorFragmentLevelEval {
         PAN11FileUtil.writeFileListToDirectory(suspiciousXML, cachingDir.getPath(), logUtil);
 
         // Perfomance: Free memory manually after a batch.
-        suspDocFragmentMap.clear();
-        candDocFragmentMap.clear();
-        suspiciousEntitiesFragment.clear();
-        candidateEntitiesFragment.clear();
+        //suspDocFragmentMap.clear();
+        //candDocFragmentMap.clear();
+        //suspiciousEntitiesFragment.clear();
+        //candidateEntitiesFragment.clear();
         scoresMap.clear();
         System.gc();
 
