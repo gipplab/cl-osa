@@ -237,13 +237,15 @@ public class SalvadorFragmentLevelEval {
         Map<String, List<SavedEntity>> candidateEntitiesFragment = getFragments(osa, candidateFiles, SalvadorAnalysisParameters.FRAGMENT_SENTENCES, SalvadorAnalysisParameters.FRAGMENT_INCREMENT, false, null, true);
 
         if(SalvadorAnalysisParameters.SORT_SUSPICIOUS_FILES_BY_SIZE){
-            // Biggest first
+            // Biggest first to create deterministic cache
             suspiciousFiles = suspiciousFiles.stream().sorted(Comparator.comparingLong(file -> ((File)file).length()).reversed()).collect(Collectors.toList());
         }
         // For testing use just one basic file (and also just the corresponding results)
-
         suspiciousFiles = filterBySuspFileLimit(plagiarismInformation, suspiciousFiles, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, SalvadorAnalysisParameters.SUSP_FILE_LIMIT, SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET);
-
+        if(SalvadorAnalysisParameters.SORT_SUSPICIOUS_FILES_BY_SIZE){
+            // Biggest first (again) to create deterministic cache after filtering
+            suspiciousFiles = suspiciousFiles.stream().sorted(Comparator.comparingLong(file -> ((File)file).length()).reversed()).collect(Collectors.toList());
+        }
 
 
         System.out.println("My First SuspFile: "+ suspiciousFiles.get(0).toString());
@@ -366,6 +368,8 @@ public class SalvadorFragmentLevelEval {
             ScoresMapCache scoresMapCache = new ScoresMapCache();
             // Generate key on base of used parameters
             String keyPath = scoresMapCache.generateFileKey(preprocessedCachingDir+"/scoresmap_serialization/",SalvadorAnalysisParameters.FRAGMENT_SENTENCES,SalvadorAnalysisParameters.FRAGMENT_INCREMENT,SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, filesNumber, SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, filesOffset, SalvadorAnalysisParameters.SORT_SUSPICIOUS_FILES_BY_SIZE);
+            logUtil.logAndWriteStandard(true, "Caching key is:", keyPath);
+
             // Try to find a file
             Map<String, Map<String, Double>>  scoresMapDes = scoresMapCache.deserializeScoresMap(keyPath);
             if(scoresMapDes==null){
