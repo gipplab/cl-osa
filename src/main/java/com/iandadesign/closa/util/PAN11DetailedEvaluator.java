@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
  */
 public class PAN11DetailedEvaluator {
 
-    public static void triggerPAN11PythonEvaluation(ExtendedLogUtil logUtil, String baseResultsPath, String baseplagPath) {
+    public static void triggerPAN11PythonEvaluation(ExtendedLogUtil logUtil, String baseResultsPath, String baseplagPath, boolean microAveraging) {
         logUtil.logAndWriteStandard(true,logUtil.getDateString(),"Running evaluation tool for PAN11");
         //String pathToScript = "src/eval/resources/com/iandadesign/closa/evaluation/pan-pc11/pan09-plagiarism-detection-perfomance-measures.py";
         //TODO bring back resources and PAN11EvaluationSetEval to eval
@@ -24,8 +24,14 @@ public class PAN11DetailedEvaluator {
         try{
             ProcessBuilder builder = new ProcessBuilder();
             // builder.environment()
-            logUtil.logAndWriteStandard(false,"plag-path",plagPath,"det-path",detectedPlagiarismPath);
-            builder.command("python", pathToScript, "--plag-path",plagPath, "--det-path",detectedPlagiarismPath);
+            if(!microAveraging) {
+                logUtil.logAndWriteStandard(false, "plag-path", plagPath, "det-path", detectedPlagiarismPath);
+                builder.command("python", pathToScript, "--plag-path", plagPath, "--det-path", detectedPlagiarismPath);
+            }else{
+                logUtil.logAndWriteStandard(false, "plag-path", plagPath, "det-path", detectedPlagiarismPath, "--micro");
+                builder.command("python", pathToScript, "--plag-path", plagPath, "--det-path", detectedPlagiarismPath,"--micro");
+
+            }
             //builder.directory(new File(homeDir));
             //builder.command("dir");
             builder.redirectErrorStream(true);

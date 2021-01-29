@@ -233,14 +233,14 @@ public class LegacyCrap {
         if(params.RUN_EVALUATION_AFTER_PROCESSING){
             if(!params.USE_FILE_FILTER){
                 // No filter-> just do the regular evaluation with all files
-                PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, baseResultsPath, toplevelPathSuspicious);
+                PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, baseResultsPath, toplevelPathSuspicious,false);
             }else{
                 // Filter used, only compare with relevant files
                 File cachingDir= new File(baseResultsPath +"/file_selection_cache");
                 PAN11FileUtil.removeDirectory(cachingDir);
                 List<File> suspiciousXML  = PAN11FileUtil.getTextFilesFromTopLevelDir(toplevelPathSuspicious, params, false, ".xml");
                 PAN11FileUtil.writeFileListToDirectory(suspiciousXML, cachingDir.getPath(), logUtil);
-                PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, baseResultsPath, cachingDir.getPath());
+                PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, baseResultsPath, cachingDir.getPath(),false);
                 PAN11FileUtil.removeDirectory(cachingDir);
             }
             logUtil.logAndWriteStandard(true,logUtil.getDateString(), "done doing evaluation for PAN11");
