@@ -1159,6 +1159,23 @@ public class OntologyBasedSimilarityAnalysis {
         return null;
     }
 
+    public int getEntityCountByFile(String documentPath, ExtendedLogUtil logUtil) throws Exception{
+        // read in the file
+        File documentFile = new File(documentPath);
+        String documentEntitiesPath = Paths.get(preprocessedCachingDirectory, "preprocessed_extended", "serialized_entities",
+                documentFile.getName().concat(".ser"))
+                .toAbsolutePath().toString();
+
+        // if the file has already been pre-processed deserialize corresponding info
+        FileInputStream fileIn = new FileInputStream(documentEntitiesPath);
+        ObjectInputStream in = new ObjectInputStream(fileIn);
+        List<?> myIncomingObjects = (List<?>) in.readObject();
+
+        int size =   myIncomingObjects.size();
+        in.close();
+        fileIn.close();
+        return size;
+    }
     /**
      * Preprocess for returning serializable objects instead of lists of string.
      * @param documentPath     document path

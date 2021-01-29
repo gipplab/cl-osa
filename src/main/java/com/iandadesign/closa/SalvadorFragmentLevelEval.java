@@ -237,15 +237,15 @@ public class SalvadorFragmentLevelEval {
         Map<String, List<SavedEntity>> candidateEntitiesFragment = getFragments(osa, candidateFiles, SalvadorAnalysisParameters.FRAGMENT_SENTENCES, SalvadorAnalysisParameters.FRAGMENT_INCREMENT, false, null, true);
 
         if(SalvadorAnalysisParameters.SORT_SUSPICIOUS_FILES_BY_SIZE){
-            // Biggest first to create deterministic cache
-            suspiciousFiles = suspiciousFiles.stream().sorted(Comparator.comparingLong(file -> ((File)file).length()).reversed()).collect(Collectors.toList());
+            logUtil.logAndWriteStandard(false, "Sorting suspicious files by size");
+            // Most entitie first to create deterministic cache
+            suspiciousFiles = sortByPlagiarismSizeSusp(suspiciousFiles,plagiarismInformation);
         }
         // For testing use just one basic file (and also just the corresponding results)
-        suspiciousFiles = filterBySuspFileLimit(plagiarismInformation, suspiciousFiles, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, SalvadorAnalysisParameters.SUSP_FILE_LIMIT, SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET);
-        if(SalvadorAnalysisParameters.SORT_SUSPICIOUS_FILES_BY_SIZE){
-            // Biggest first (again) to create deterministic cache after filtering
-            suspiciousFiles = suspiciousFiles.stream().sorted(Comparator.comparingLong(file -> ((File)file).length()).reversed()).collect(Collectors.toList());
-        }
+        // Sorted alphabetically or sorted by size (by step before)
+        suspiciousFiles = filterBySuspFileLimit(plagiarismInformation, suspiciousFiles, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, SalvadorAnalysisParameters.SUSP_FILE_LIMIT, SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET, SalvadorAnalysisParameters.SORT_SUSPICIOUS_FILES_BY_SIZE);
+
+        //List<File> suspiciousFilesChecking = sortByPlagiarismSizeSusp(suspiciousFiles,plagiarismInformation);
 
 
         System.out.println("My First SuspFile: "+ suspiciousFiles.get(0).toString());
@@ -288,6 +288,24 @@ public class SalvadorFragmentLevelEval {
         PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath());
         PAN11FileUtil.removeDirectory(cachingDir);
 
+    }
+
+    @NotNull
+    private static List<File> sortByFileSize(List<File> suspiciousFiles) {
+        suspiciousFiles = suspiciousFiles.stream().sorted(Comparator.comparingLong(file -> ((File)file).length()).reversed()).collect(Collectors.toList());
+        return suspiciousFiles;
+    }
+
+    private static List<File> sortByEntityOccurence(OntologyBasedSimilarityAnalysis osa, ExtendedLogUtil logUtil, List<File> suspiciousFiles) {
+        suspiciousFiles = suspiciousFiles.parallelStream().sorted(Comparator.comparingLong(file -> {
+            try {
+                return (osa.getEntityCountByFile(((File)file).getPath(), logUtil));
+            } catch (Exception exception) {
+                logUtil.logAndWriteError(false, "Exception during sort",exception.getMessage());
+                return 0;
+            }
+        }).reversed()).collect(Collectors.toList());
+        return suspiciousFiles;
     }
 
     private static void logAccumulatedRecallAtK(ExtendedLogUtil logUtil, Map<Integer, SalvadorRatKResponse> overallRecallAtK) {
@@ -899,9 +917,14 @@ public class SalvadorFragmentLevelEval {
         return documentFragmentsMap;
     }
 
-    private static List<File> filterBySuspFileLimit(HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, List<File> suspiciousFiles, boolean DO_FILE_PREFILTERING, int SUSP_FILE_LIMIT, int SUSP_FILE_SELECTION_OFFSET) {
+    private static List<File> filterBySuspFileLimit(HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, List<File> suspiciousFiles, boolean DO_FILE_PREFILTERING, int SUSP_FILE_LIMIT, int SUSP_FILE_SELECTION_OFFSET, boolean SORT_BY_SIZE) {
         if(DO_FILE_PREFILTERING) {
-            suspiciousFiles = suspiciousFiles.stream().sorted().skip(SUSP_FILE_SELECTION_OFFSET).limit(SUSP_FILE_LIMIT).collect(Collectors.toList());// Just take one basic file.
+            if(SORT_BY_SIZE){
+                suspiciousFiles = suspiciousFiles.stream().skip(SUSP_FILE_SELECTION_OFFSET).limit(SUSP_FILE_LIMIT).collect(Collectors.toList());// Just take one basic file.
+
+            }else{
+                suspiciousFiles = suspiciousFiles.stream().sorted().skip(SUSP_FILE_SELECTION_OFFSET).limit(SUSP_FILE_LIMIT).collect(Collectors.toList());// Just take one basic file.
+            }
             List<String> usedPlagiarismInfos  = suspiciousFiles.stream().map(entry->entry.getName().replace(".txt",".xml")).collect(Collectors.toList());
             plagiarismInformation.keySet().retainAll(usedPlagiarismInfos);
         }
@@ -993,6 +1016,36 @@ public class SalvadorFragmentLevelEval {
         }
         return completePlagiarizedArea;
     }
+
+    private static List<File> sortByPlagiarismSizeSusp( List<File> inputFiles,
+                                                                        HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation
+                                                                        ) {
+        Map<File, Long> filesByPlagiarismSize = new HashMap<>();
+        long overallPlagiarismSize = 0;
+        //long overallPlagiarismSizeES = 0;
+        for (File currentFile: inputFiles) {
+            List<PAN11PlagiarismInfo>  currentPlagiarismInfos = plagiarismInformation.get(currentFile.getName().replace(".txt",".xml"));
+            long plagiarismLengthForFile = 0;
+            for(PAN11PlagiarismInfo plagiarismInfo:currentPlagiarismInfos){
+                //plagiarismInfo.getSourceLanguage()
+                int plagiarismLength = plagiarismInfo.getThisLength();
+                plagiarismLengthForFile+=plagiarismLength;
+                /*
+                if(plagiarismInfo.getSourceLanguage().equals("es")){
+                    overallPlagiarismSizeES+=plagiarismLength;
+                }
+                 */
+            }
+            filesByPlagiarismSize.put(currentFile,plagiarismLengthForFile);
+            overallPlagiarismSize+=plagiarismLengthForFile;
+        }
+        List<Map.Entry<File, Long>> filesByPlagiarismSizeSorted = filesByPlagiarismSize.entrySet().stream()
+                .sorted(Comparator.comparingLong(fileLongEntry -> ((Map.Entry<File,Long>)fileLongEntry).getValue()).reversed())
+                .collect(Collectors.toList());
+        List<File> sortedFiles = filesByPlagiarismSizeSorted.stream().map(fileLongEntry -> fileLongEntry.getKey()).collect(Collectors.toList());
+        return sortedFiles;
+    }
+
 
     private static Map<String, List<SavedEntity>> getPlagsizedFragments(OntologyBasedSimilarityAnalysis osa, List<File> inputFiles,
                                                                 HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation,
