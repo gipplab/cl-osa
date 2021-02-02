@@ -257,11 +257,13 @@ public class SalvadorFragmentLevelEval {
         PAN11FileUtil.removeDirectory(cachingDir);
         logUtil.logAndWriteStandard(true,"Caching dir start:", cachingDir.getPath());
 
+        Map<String, Map<String, SalvadorStatisticsInfo>> allStatistics = new HashMap<>();
+
         // Do the actual processing
         if(!SalvadorAnalysisParameters.DO_BATCHED_PROCESSING){
             // Just calculate all files at once
             logUtil.logAndWriteStandard(true,"BATCHED_PROCESSING:", "is deactivated, just calculating all files in one step");
-            doScoresMapIteration(tag, plagiarismInformation, osa, logUtil, candidateFiles, suspiciousFiles, candidateEntitiesFragment, SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET, SalvadorAnalysisParameters.SUSP_FILE_LIMIT);
+            doScoresMapIteration(tag, plagiarismInformation, osa, logUtil, candidateFiles, suspiciousFiles, candidateEntitiesFragment, SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET, SalvadorAnalysisParameters.SUSP_FILE_LIMIT, allStatistics);
         }else{
             int batchCounter = 0;
             Map<Integer, SalvadorRatKResponse>  overallRecallAtK = new ArrayMap<>();
@@ -274,7 +276,7 @@ public class SalvadorFragmentLevelEval {
                 logUtil.logAndWriteStandard(true,"BATCHED_PROCESSING:", "Doing batch from " + overallIndex + " to " + (overallIndex+currentSuspiciousFiles.size()));
 
                 // Actual scores calculation
-                Map<Integer, SalvadorRatKResponse>  recallAtKResponses = doScoresMapIteration(tag, plagiarismInformation, osa, logUtil, candidateFiles, currentSuspiciousFiles, candidateEntitiesFragment, overallIndex, currentSuspiciousFiles.size());
+                Map<Integer, SalvadorRatKResponse>  recallAtKResponses = doScoresMapIteration(tag, plagiarismInformation, osa, logUtil, candidateFiles, currentSuspiciousFiles, candidateEntitiesFragment, overallIndex, currentSuspiciousFiles.size(), allStatistics);
                 logUtil.logAndWriteStandard(true,"Caching dir current:", cachingDir.getPath());
 
                 // Accumulate to overall R at K responses
@@ -284,6 +286,17 @@ public class SalvadorFragmentLevelEval {
             logUtil.logAndWriteStandard(true, "BATCHED_PROCESSING:", "Done with "+batchCounter+" batche/s." );
             logAccumulatedRecallAtK(logUtil, overallRecallAtK);
         }
+
+        if(SalvadorAnalysisParameters.DO_ANALYSIS){
+            SalvadorStatisticsInfo salvadorStatisticsInfoAllCombined = SalvadorExtendedAnalytics.createCombinedStatistics(allStatistics);
+            logUtil.logAndWriteStandard(false, "All Statistics (scoring selects only candidate files plagiarism:",SalvadorAnalysisParameters.ONLY_PLAGFILES_IN_STATS,")");
+
+            printStatisticsInfo(logUtil, salvadorStatisticsInfoAllCombined.overallInfoPositives,"overallPositives");
+            printStatisticsInfo(logUtil, salvadorStatisticsInfoAllCombined.overallInfoNegatives,"overallNegatives");
+            printStatisticsInfo(logUtil, salvadorStatisticsInfoAllCombined.mergedInfoPositives,"mergedPositives");
+            printStatisticsInfo(logUtil, salvadorStatisticsInfoAllCombined.mergedInfoNegatives,"mergedNegatives");
+        }
+
         logUtil.logAndWriteStandard(false, "Doing PAN-PC11 Evaluation WITHOUT micro averaging...");
         PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath(), false);
         logUtil.logAndWriteStandard(false, "Doing PAN-PC11 Evaluation WITH micro averaging...");
@@ -340,7 +353,7 @@ public class SalvadorFragmentLevelEval {
     }
 
 
-    private static Map<Integer, SalvadorRatKResponse> doScoresMapIteration(String tag, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, OntologyBasedSimilarityAnalysis osa, ExtendedLogUtil logUtil, List<File> candidateFiles, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesFragment, int filesOffset, int filesNumber) throws Exception {
+    private static Map<Integer, SalvadorRatKResponse> doScoresMapIteration(String tag, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, OntologyBasedSimilarityAnalysis osa, ExtendedLogUtil logUtil, List<File> candidateFiles, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesFragment, int filesOffset, int filesNumber,         Map<String, Map<String, SalvadorStatisticsInfo>> allStatistics) throws Exception {
         Map<String, List<SavedEntity>> suspiciousEntitiesFragment;
         // Create a list of suspicious fragments (only plagiarism involved fragments)
 
@@ -457,7 +470,6 @@ public class SalvadorFragmentLevelEval {
         //- documents containing plagiarism
         // Compare each preselected suspicious document to candidate document.
         Map<String, Map<String, Map<SalvadorTextFragment, SalvadorTextFragment>>> allResults = new HashMap<>();
-        Map<String, Map<String, SalvadorStatisticsInfo>> allStatistics = new HashMap<>();
 
         logUtil.logAndWriteStandard(false, "Doing Detailed Analysis...");
         suspDocFragmentMap.keySet().parallelStream().forEach(suspiciousDocument -> {
@@ -530,15 +542,7 @@ public class SalvadorFragmentLevelEval {
             }
         });
 
-        if(SalvadorAnalysisParameters.DO_ANALYSIS){
-            SalvadorStatisticsInfo salvadorStatisticsInfoAllCombined = SalvadorExtendedAnalytics.createCombinedStatistics(allStatistics);
-            logUtil.logAndWriteStandard(false, "All Statistics (scoring selects only candidate files plagiarism:",SalvadorAnalysisParameters.ONLY_PLAGFILES_IN_STATS,")");
 
-            printStatisticsInfo(logUtil, salvadorStatisticsInfoAllCombined.overallInfoPositives,"overallPositives");
-            printStatisticsInfo(logUtil, salvadorStatisticsInfoAllCombined.overallInfoNegatives,"overallNegatives");
-            printStatisticsInfo(logUtil, salvadorStatisticsInfoAllCombined.mergedInfoPositives,"mergedPositives");
-            printStatisticsInfo(logUtil, salvadorStatisticsInfoAllCombined.mergedInfoNegatives,"mergedNegatives");
-        }
 
         // Write down all xml Results
         String xmlResultsFolderPath = SalvadorPAN11XMLwriter.writeDownAllXMLResults(tag, logUtil.getDateString(), preprocessedCachingDir,allResults);
