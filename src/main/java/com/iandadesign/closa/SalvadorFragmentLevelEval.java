@@ -706,10 +706,6 @@ public class SalvadorFragmentLevelEval {
         Map<SalvadorTextFragment , Map<SalvadorTextFragment, Integer>> fragmentInfosAll = new ArrayMap<>();
         Map<SalvadorTextFragment , Map<SalvadorTextFragment, Integer>> fragmentInfosAllmerged = new ArrayMap<>();
 
-
-        if(candidatePlagiarismInfos.size()>=1){
-            System.out.println("bp");
-        }
         for(PAN11PlagiarismInfo relatedPlagiarism:candidatePlagiarismInfos){
             int suspPlagiarismStart = relatedPlagiarism.getThisOffset();
             int suspPlagiarismEnd = relatedPlagiarism.getThisLength() + relatedPlagiarism.getThisOffset();
