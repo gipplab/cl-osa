@@ -10,6 +10,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.iandadesign.closa.PAN11EvaluationSetEval.logParams;
+import static com.iandadesign.closa.model.SalvadorAnalysisParameters.CLUSTERING_PARAM_BY_CASELENGTH;
 import static java.lang.Integer.max;
 import static java.lang.Integer.min;
 
@@ -716,7 +717,7 @@ public class SalvadorFragmentLevelEval {
             SalvadorTextFragment suspiciousFragmentByPlagInfo= new SalvadorTextFragment();
             suspiciousFragmentByPlagInfo.setSentencesStartChar(suspPlagiarismStart);
             suspiciousFragmentByPlagInfo.setSentencesEndChar(suspPlagiarismEnd);
-            suspiciousFragmentByPlagInfo.setCharLengthBySentences(relatedPlagiarism.getSourceOffset());
+            suspiciousFragmentByPlagInfo.setCharLengthBySentences(relatedPlagiarism.getThisLength());
 
             List<SalvadorTextFragment> relatedFragments = new ArrayList<>();
             // Group up susp fragments in related plagiarism groups
