@@ -827,11 +827,12 @@ public class SalvadorFragmentLevelEval {
             }
             //if(relatedPlagiarism.getCaseLengthThis() == PAN11PlagiarismInfo.CaseLength.LONG)
             if(CLUSTERING_PARAM_BY_CASELENGTH){
+
+                /*
                 long currentCaseEntitySize = 0;
                 for(String relFragmentID:relatedFragments.stream().map(SalvadorTextFragment::getFragmentID).collect(Collectors.toList())){
                     currentCaseEntitySize+=suspiciousEntitiesFragment.get(relFragmentID).size();
                 }
-                String caseLengthSusp = relatedPlagiarism.getCaseLengthThis();
                 System.out.println("current Case size is: "+currentCaseEntitySize);
                 System.out.println("current Case size is:"+caseLengthSusp);
                 // Seems good 5/2 configuration
@@ -845,7 +846,11 @@ public class SalvadorFragmentLevelEval {
                     TOPMOST = 15;
                     THRESHOLD_2 = 19;
                 }
+                */
+
+
                 // Other way
+                String caseLengthSusp = relatedPlagiarism.getCaseLengthThis();
                 if(caseLengthSusp.equals(PAN11PlagiarismInfo.CaseLength.SHORT)){
                     TOPMOST = 5;
                     THRESHOLD_2 = 4;
