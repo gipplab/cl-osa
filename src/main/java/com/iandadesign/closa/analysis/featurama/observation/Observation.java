@@ -27,7 +27,18 @@ public class Observation {
 
     public void addData(LinkedHashMap<String, Object> features)
     {
-        this.features = features;
+        if(this.features.isEmpty()) {
+            this.features = features;
+        }
+        else
+        {
+            this.features.putAll(features);
+        }
+    }
+
+    public void addData(String name, double value)
+    {
+        this.features.put(name, value);
     }
 
     public void addData(Object ...features)

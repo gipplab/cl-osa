@@ -1,6 +1,7 @@
 package com.iandadesign.closa;
 
 import com.iandadesign.closa.analysis.featurama.PCA.PCA;
+import com.iandadesign.closa.analysis.featurama.matrix.ScoreChunkConvolutionMatrix;
 import com.iandadesign.closa.classification.Category;
 import com.iandadesign.closa.classification.TextClassifier;
 import com.iandadesign.closa.analysis.featurama.matrix.CorrelationMatrix;
@@ -29,6 +30,8 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -683,6 +686,8 @@ public class OntologyBasedSimilarityAnalysis {
         logUtil.logAndWriteStandard(false, "Starting with detailed analysis ...");
         logUtil.logAndWriteStandard(false, logUtil.dashes(100));
 
+        Matrix MasterMatrix = new Matrix(0,0);
+
 
         long fragmentIndex=0; // Just a running index for adressing fragments.
         for (Map.Entry<String, List<SavedEntity>> suspiciousIdTokenExt : suspiciousIdTokensMapExt.entrySet()) {
@@ -815,14 +820,14 @@ public class OntologyBasedSimilarityAnalysis {
                                         Observation observationSuspWindow = new Observation();
                                         LinkedHashMap<String, Object> hashMap = new LinkedHashMap<String, Object>();
                                         hashMap.put("fragmentScore", 0.0);
-                                        hashMap.put("isPlagiarism", isPlagiarism);
+                                        hashMap.put("isPlagiarism", 0.0);
                                         hashMap.put("currentSuspiciousIdTokensMapSize", currentSuspiciousIdTokensMap.size());
                                         hashMap.put("currentCandidateIdTokensMapSize", currentCandidateIdTokensMap.size());
                                         hashMap.put("AverageLength", 0);
                                         observationSuspWindow.addData(hashMap);
-                                        observationSuspWindow.addData(startStopInfo);
+                                        /*observationSuspWindow.addData(startStopInfo);
                                         observationSuspWindow.addData(swiSuspicious, "swiSuspicious");
-                                        observationSuspWindow.addData(swiCandidate, "swiCandidate");
+                                        observationSuspWindow.addData(swiCandidate, "swiCandidate");*/
                                         observationsList.add(observationSuspWindow);
                                     }
                                     fragmentIndex++; // Just increase the fragment index for absolute indexing.
@@ -853,9 +858,9 @@ public class OntologyBasedSimilarityAnalysis {
                                     put("AverageLength", currentScoringChunk.getAverageLength());
                                 }};
                                 observationSuspWindow.addData(hashMap);
-                                observationSuspWindow.addData(startStopInfo);
+                                /*observationSuspWindow.addData(startStopInfo);
                                 observationSuspWindow.addData(swiSuspicious, "swiSuspicious");
-                                observationSuspWindow.addData(swiCandidate, "swiCandidate");
+                                observationSuspWindow.addData(swiCandidate, "swiCandidate");*/
                                 observationsList.add(observationSuspWindow);
                             }
                             if(params.DESKEW_WINDOW_SIZE){
@@ -918,15 +923,23 @@ public class OntologyBasedSimilarityAnalysis {
                         statisticsInfo.candidateFilename = candFilename;
 
                         if(params.DO_REGRESSION_ANALYSIS){
-                            // Save data gathered from observations in matrix format and compute correlation matrix
+                            // Save data gathered from observations in matrix format
+                            ScoreChunkConvolutionMatrix test = new ScoreChunkConvolutionMatrix(scoringChunksCombined.getScoreMatrix(), 3);
+                            test.computeConvolution();
+                            observationsList.dataNames.add("convolution");
+                            for(int i = 0; i<observationsList.size(); i++){
+                                observationsList.observations.get(i).addData("convolution", test.returnValue(i));
+                            }
                             Matrix ObservationData = new Matrix(observationsList);
+
+                            MasterMatrix.append(ObservationData);
+
+
+                            // Compute correlation and save to statisticsInfo
                             CorrelationMatrix correlation = new CorrelationMatrix(ObservationData);
                             correlation.setColumnNames(observationsList.dataNames);
-                            correlation.saveMatrixToFile(params.maxtrixStoreLocation , suspFilename);
+                            //correlation.saveMatrixToFile(params.maxtrixStoreLocation , suspFilename);
                             statisticsInfo.correlation = correlation;
-                            PCA testing = new PCA(ObservationData);
-                            testing = testing.compute();
-                            testing.printEigenVectorsSorted();
                         }
                         statisticsInfos.add(statisticsInfo);
                     }
@@ -951,8 +964,35 @@ public class OntologyBasedSimilarityAnalysis {
         logUtil.writeStandardReport(false, "Whats going on here?");
 
         if(params.DO_REGRESSION_ANALYSIS){
-            // TODO Kay: Test merging Matrices here.
-         }
+            // Get timestamp for file names
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            System.out.println(dtf.format(now));
+
+            MasterMatrix.saveMatrixToFile(params.maxtrixStoreLocation , dtf.format(now) + "rawData");
+            CorrelationMatrix correlation = new CorrelationMatrix(MasterMatrix);
+            correlation.display();
+            double[] Labels = MasterMatrix.returnColumnWithName("isPlagiarism");
+            MasterMatrix.removeColumn("isPlagiarism");
+
+            PCA rawDataPCA = new PCA(MasterMatrix);
+            rawDataPCA = rawDataPCA.compute();
+
+            Matrix transformedData = rawDataPCA.transformData(MasterMatrix, false);
+            transformedData.addColumn(Labels);
+            transformedData.addColumnNames(new String[]{"PC1", "PC2", "class"});
+
+            /*ProcessBuilder builder = new ProcessBuilder();
+            // builder.environment()
+            logUtil.logAndWriteStandard(false,"plag-path",plagPath,"det-path",detectedPlagiarismPath);
+            builder.command("python", pathToScript, "--plag-path",plagPath, "--det-path",detectedPlagiarismPath);
+            //builder.directory(new File(homeDir));
+            //builder.command("dir");
+            builder.redirectErrorStream(true);
+            Process process = builder.start();*/
+
+            transformedData.saveMatrixToFile(params.maxtrixStoreLocation , dtf.format(now) + "transformedData");
+        }
         return statisticsInfos;
     }
 
