@@ -316,24 +316,37 @@ def extract_annotation_from_node(xmlnode, t_ref, filter_mode, filter_on):
     if not (xmlnode.hasAttribute('this_offset') and \
             xmlnode.hasAttribute('this_length')):
         return False
-    print 'xmlnodeOWN:'+str(xmlnode)
-    if filter_on and filter_annotations == "onlyManualTranslation" or filter_annotations=="onlyAutomaticTranslation":
+    # print 'xmlnodeOWN:'+str(xmlnode)
+    if filter_on and (filter_annotations == "onlyManualTranslation" or filter_annotations=="onlyAutomaticTranslation"):
         if not (xmlnode.hasAttribute('type')):
-            print 'xmlnodeOWN: notype'
+            # print 'xmlnodeOWN: notype'
             return False
         if not (xmlnode.hasAttribute('manual_obfuscation')):
-            print 'xmlnodeOWN: no manual_obfuscation'
+            # print 'xmlnodeOWN: no manual_obfuscation'
             return False
         type = xmlnode.getAttribute('type')
         m_ob = xmlnode.getAttribute('manual_obfuscation')
-        print 'xmlnodeOWN: type: '+type+' m_ob '+m_ob
+        # print 'xmlnodeOWN: type: '+type+' m_ob '+m_ob
         if type != 'translation':
             return False
         if filter_annotations=='onlyManualTranslation' and m_ob != "true":
             return False
         if filter_annotations=='onlyAutomaticTranslation' and m_ob != "false":
             return False
+    if filter_on and (filter_annotations == "onlyLongCases" or filter_annotations=="onlyMediumCases" or filter_annotations=="onlyShortCases"):
+        t_len_for_caselength = int(xmlnode.getAttribute('this_length'))
+        print 't_len_for_caselength: '+str(t_len_for_caselength)
+        # F. Salvador 2016-2 p7. footnote:
+        # We followed the PAN-PC-11 setup and considered as short cases those with less than 700 characters.
+        # Long cases are those larger than 5000 characters (not clear if suspicious or candidate was taken for length
+        # classification, assumed suspicious)
 
+        if filter_annotations=="onlyShortCases" and t_len_for_caselength >= 700:
+            return False
+        if filter_annotations=="onlyMediumCases" and (t_len_for_caselength > 5000 or t_len_for_caselength<700):
+            return False
+        if filter_annotations=="onlyLongCases" and t_len_for_caselength<=5000:
+            return False
 
     t_off = int(xmlnode.getAttribute('this_offset'))
     t_len = int(xmlnode.getAttribute('this_length'))

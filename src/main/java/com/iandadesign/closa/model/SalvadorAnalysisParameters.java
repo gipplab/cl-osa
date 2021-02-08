@@ -8,8 +8,8 @@ import java.lang.reflect.Field;
 public class SalvadorAnalysisParameters {
     // Dataset settings
     public static boolean DO_FILE_PREFILTERING = true;            // Only take a limited amount of suspicious files
-    public static int SUSP_FILE_LIMIT = 304;                        // Only take XX supicicious files with all candidates
-    public static int SUSP_FILE_SELECTION_OFFSET = 0;             // Offset selection, default 0
+    public static int SUSP_FILE_LIMIT = 1;                        // Only take XX supicicious files with all candidates
+    public static int SUSP_FILE_SELECTION_OFFSET = 195;             // Offset selection, default 0
     public static boolean SORT_SUSPICIOUS_FILES_BY_SIZE = true;     // Sort suspicious files by size, biggest first (DANGER: messes up old keys)
 
     // Basic score calculation
@@ -17,21 +17,25 @@ public class SalvadorAnalysisParameters {
     public static final boolean USE_ENHANCHED_COSINE_ANALYSIS= false;     // if enhanched taxomony
 
 
-    // Fragmentation
-    public static int FRAGMENT_SENTENCES = 14; //5;               // In Sentences
-    public static int FRAGMENT_INCREMENT = 7; //2;                // In Sentences
+    // Fragmentation / Corpus
+    public static String LANGUAGE = "es";                         // "de" or "es" language of the comparison corpus
+    public static String PREFILTER = "NONE";                      // Filters evaluation to subset, default "NONE"
+                                                                  // others: "onlyManualTranslation", "onlyAutomaticTranslation"
+                                                                  // others: "onlyMediumCases", "onlyShortCases", "onlyLongCases"
+    public static int FRAGMENT_SENTENCES = 5; //5;               // In Sentences
+    public static int FRAGMENT_INCREMENT = 2; //2;                // In Sentences
     public static boolean GET_PLAGSIZED_FRAGMENTS = true;         // Get fragments exactly the plagiarism size
 
     // Clustering
     public static boolean CLUSTER_MULTIPLE_SUSP_FINDINGS = true; // This gets <TOPMOST> values * number related fragments for each susp case, then clusters them, if false, <TOPMOST> cases per related fragment are fetched and clustered fragment by fragment.
     public static int THRESH1 = 800;                             // Fragment distance merging thresh
-    public static double THRESH2 =  12; //0.686;      //0.086;    // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
+    public static double THRESH2 =  8; //0.686;      //0.086;    // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
     public static double PRESELECTION_THRESH = 0.0;               // From the topmost candidates only the ones above this thresh get considered for merge
     public static int TOPMOST = 5;                                // topmost fetched suspicious for one plagiarism node
     // Clustering - Fragment Merge
     public static String FRAGMENT_MERGE_MODE = "simpleAdd";        // "weightedAdd", "weightedAverage", "simpleAdd", "keepingMax"
     public static double WEIGHTED_ADD_CONSTANT = 0.3;             // The more, the higher scores have weightedAdd merged fragments
-    public static boolean CLUSTERING_PARAM_BY_CASELENGTH = false;    // Experimental clustering feature, overwrites threshs, look in code for threshs
+    public static boolean CLUSTERING_PARAM_BY_CASELENGTH = true;    // Experimental clustering feature, overwrites threshs, look in code for threshs
     // Analysis & MISC Parameters
     public static boolean CALCULATE_RECALL_AT_K = false;              // Calculate Recall At K by own implementation
     public static boolean DO_ANALYSIS = true;                     // Do additional analysis steps (deactivate for perfomance)

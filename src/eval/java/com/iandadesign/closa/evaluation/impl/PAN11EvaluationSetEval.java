@@ -393,9 +393,9 @@ public class PAN11EvaluationSetEval {
 
     private static void triggerPAN11PythonEvaluation(ExtendedLogUtil logUtil, String baseResultsPath, String baseplagPath) {
         logUtil.logAndWriteStandard(true,logUtil.getDateString(),"Running evaluation tool for PAN11");
-        String pathToScript = "src/eval/resources/com/iandadesign/closa/evaluation/pan-pc11/pan09-plagiarism-detection-perfomance-measures.py";
+        String pathToScript = "src/eval/resources/com/iandadesign/closa/evaluation/pan-pc11/pan09-plagiarism-detection-perfomance-measures-modified.py";
 
-        //String pathToScript = "D:\\AA_ScienceProject\\Wikidata_vs_CharacterNGram\\PAN2011Evaluator\\pan09-plagiarism-detection-perfomance-measures.py";
+        //String pathToScript = "D:\\AA_ScienceProject\\Wikidata_vs_CharacterNGram\\PAN2011Evaluator\\pan09-plagiarism-detection-perfomance-measures-modified.py";
         //String plagPath ="D:\\AA_ScienceProject\\Data\\pan-plagiarism-corpus-2011\\pan-plagiarism-corpus-2011\\external-detection-corpus\\suspicious-document";
         String plagPath = baseplagPath; // Path with the susp
         //String detectedPlagiarismPath="D:\\CL_OSA_caching\\preprocessed_extended\\results_comparison\\evalPAN2011All_2020_07_03_14_11_26";
