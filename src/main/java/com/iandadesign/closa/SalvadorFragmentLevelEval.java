@@ -823,7 +823,7 @@ public class SalvadorFragmentLevelEval {
                 }
             }
             if(relatedFragments.size()==0){
-                System.out.println("Error!");
+                System.out.println("WARN: Related Fragment size to plagiarism is zero!");
             }
             //if(relatedPlagiarism.getCaseLengthThis() == PAN11PlagiarismInfo.CaseLength.LONG)
             if(CLUSTERING_PARAM_BY_CASELENGTH){
@@ -854,13 +854,16 @@ public class SalvadorFragmentLevelEval {
                 if(caseLengthSusp.equals(PAN11PlagiarismInfo.CaseLength.SHORT)){
                     TOPMOST = 5;
                     THRESHOLD_2 = 4;
+                    THRESHOLD_1 = 800;
 
                 }else if(caseLengthSusp.equals(PAN11PlagiarismInfo.CaseLength.MEDIUM)){
                     TOPMOST = 10;
-                    THRESHOLD_2 = 13;
+                    THRESHOLD_2 = 11;
+                    THRESHOLD_1 = 1400;
                 }else{
                     TOPMOST = 15;
-                    THRESHOLD_2 = 19;
+                    THRESHOLD_2 = 16;
+                    THRESHOLD_1 = 2500;
                 }
             }
 
@@ -874,7 +877,7 @@ public class SalvadorFragmentLevelEval {
                 // Only use the corresponding candidates for the specified file
                 candidateScores.keySet().retainAll(candidateFragments);
                 if(candidateScores.keySet().size()==0){
-                    System.out.println("Error!");
+                    System.out.println("WARN: There is no candidate score for related fragment!");
                 }
                 // Get best scoring <RANKLIMIT> fragments
                 Map<String, Double> candidateScoresMapSelected = candidateScores.entrySet().stream()
@@ -896,7 +899,7 @@ public class SalvadorFragmentLevelEval {
                 }
             }
             if(bestCandidateFragmentInfos.size()==0){
-                System.out.println("error!");
+                System.out.println("WARN: No candidates have been selected!");
             }
             // Merge the fragments
             Map<String, SalvadorTextFragment>  fragmentInfosMerged = mergeFragments(THRESHOLD_1, bestCandidateFragmentInfos);
@@ -940,7 +943,7 @@ public class SalvadorFragmentLevelEval {
 
         }
         if(fragmentInfosSelected.size()!=candidatePlagiarismInfos.size()){
-            System.out.println("Error!");
+            System.out.println("WARN (PLAGDET-SIZE): fragments selected are not same size as plagiarism infos!");
         }
         SalvadorDetailedAnalysisResult myResult = new SalvadorDetailedAnalysisResult();
         myResult.resultMap = fragmentInfosSelected;
