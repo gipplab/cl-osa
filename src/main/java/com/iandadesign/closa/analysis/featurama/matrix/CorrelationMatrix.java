@@ -1,5 +1,13 @@
 package com.iandadesign.closa.analysis.featurama.matrix;
 
+/**
+ * This is a class for computing a correlation matrix
+ * and handling its utilities by extending it from the Matrix class
+ *
+ * @author Kay Herklotz
+ *
+ * TODO: Use parallelism to process large data quantities (streams)
+ */
 public class CorrelationMatrix extends Matrix
 {
 
