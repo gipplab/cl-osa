@@ -307,7 +307,12 @@ public class SalvadorFragmentLevelEval {
             logUtil.logAndWriteStandard(true, "BATCHED_PROCESSING:", "Done with "+batchCounter+" batche/s." );
             logAccumulatedRecallAtK(logUtil, overallRecallAtK);
         }
+        if(SalvadorAnalysisParameters.DO_REGRESSION_ANALYSIS){
+            //TODO Scoresmap evaluation
+            // Trigger end analysis here
+            // Scores evaluation
 
+        }
         if(SalvadorAnalysisParameters.DO_ANALYSIS){
             SalvadorStatisticsInfo salvadorStatisticsInfoAllCombined = SalvadorExtendedAnalytics.createCombinedStatistics(allStatistics);
             logUtil.logAndWriteStandard(false, "All Statistics (scoring selects only candidate files plagiarism:",SalvadorAnalysisParameters.ONLY_PLAGFILES_IN_STATS,")");
@@ -462,7 +467,7 @@ public class SalvadorFragmentLevelEval {
             // Required:
             // Corpus (Susp / Candidate) Level occurences per entitiy
             // Document Level Occurences
-
+            //TODO also possible improvement
             // Definition TF/IDF
             // TF(t) = (Number of times term t appears in a document) / (Total number of terms in the document).
             // IDF(t) = log_e(Total number of documents / Number of documents with term t in it).
@@ -904,6 +909,23 @@ public class SalvadorFragmentLevelEval {
             // Merge the fragments
             Map<String, SalvadorTextFragment>  fragmentInfosMerged = mergeFragments(THRESHOLD_1, bestCandidateFragmentInfos);
 
+            if(SalvadorAnalysisParameters.DO_REGRESSION_ANALYSIS){
+                // Do not use bestCandidateFragmentInfos, but all candidate infos by setting TOPMOST to maximum
+                // TODO collect all possible scores by observations matrix
+                // relative / absolute in 2 different implementations
+
+                SalvadorAnalysisParameters.FRAGMENT_MERGE_MODE ='simpleAdd'
+                Map<String, SalvadorTextFragment>  fragmentInfosMergedSimpleAdd = mergeFragments(THRESHOLD_1, bestCandidateFragmentInfos);
+                SalvadorAnalysisParameters.FRAGMENT_MERGE_MODE = 'keepingMax'
+                Map<String, SalvadorTextFragment>  fragmentInfosMergedKeepingMax = mergeFragments(THRESHOLD_1, bestCandidateFragmentInfos);
+                //...
+
+                // Pack scores in observationslist
+                //for fragmentInfosMergedSimpleAdd
+                    //isPlagiarism = get from candicandidatePlagiarismInfos
+                    //observationsList.add(isPlagiarism, score1)
+
+            }
             // Rate the new fragment infos as plagiarism or not
             for(String clusteredFragmentID: fragmentInfosMerged.keySet()){
                 SalvadorTextFragment clusteredFragment = fragmentInfosMerged.get(clusteredFragmentID);
