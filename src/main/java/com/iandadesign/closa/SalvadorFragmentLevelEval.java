@@ -858,11 +858,11 @@ public class SalvadorFragmentLevelEval {
 
                 }else if(caseLengthSusp.equals(PAN11PlagiarismInfo.CaseLength.MEDIUM)){
                     TOPMOST = 10;
-                    THRESHOLD_2 = 10;
+                    THRESHOLD_2 = 6;
                     THRESHOLD_1 = 1400;
                 }else{
                     TOPMOST = 15;
-                    THRESHOLD_2 = 12;
+                    THRESHOLD_2 = 9;
                     THRESHOLD_1 = 2500;
                 }
             }
