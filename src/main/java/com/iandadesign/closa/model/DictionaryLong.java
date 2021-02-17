@@ -124,7 +124,7 @@ public class DictionaryLong<T> {
      * @param queryTerms sendQuery
      * @return the document ids - score map.
      */
-    public Map<Long, Double> query(final List<T> queryTerms, boolean absoluteScoring, boolean doStatsweighting) {
+    public Map<Long, Float> query(final List<T> queryTerms, boolean absoluteScoring, boolean doStatsweighting) {
         // TF/IDF etc query terms are list of wikidata entities, calculate the corresponding weights before, get them here
         if (queryTerms.isEmpty()) {
             return new HashMap<>();
@@ -193,7 +193,7 @@ public class DictionaryLong<T> {
 
 
         // 3 compare
-        Map<Long, Double> documentIdScoreMap = new HashMap<>();
+        Map<Long, Float> documentIdScoreMap = new HashMap<>();
 
         for (Map.Entry<Long, SparseRealVector> docIdVectorEntry : docIdVectorMap.entrySet()) {
             Long docId = docIdVectorEntry.getKey();
@@ -226,7 +226,7 @@ public class DictionaryLong<T> {
             }
 
             // 3.4 put the score
-            documentIdScoreMap.put(docId, score);
+            documentIdScoreMap.put(docId, (float) score);
         }
 
         return documentIdScoreMap;

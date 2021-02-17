@@ -1290,7 +1290,7 @@ public class OntologyBasedSimilarityAnalysis {
     }
 
 
-    public Map<Long, Map<Long, Double>> performCosineSimilarityAnalysisLong(
+    public Map<Long, Map<Long, Float>> performCosineSimilarityAnalysisLong(
             Map<Long, List<String>> suspiciousIdTokensMap,
             Map<Long, List<String>> candidateIdTokensMap,
             boolean useAbsoluteScores,
@@ -1324,7 +1324,7 @@ public class OntologyBasedSimilarityAnalysis {
 
         // iterate the suspicious documents
         ProgressBar finalProgressBar = progressBar;
-        Map<Long, Map<Long, Double>> suspiciousIdCandidateScoresMap = suspiciousIdTokensMap.entrySet()
+        Map<Long, Map<Long, Float>> suspiciousIdCandidateScoresMap = suspiciousIdTokensMap.entrySet()
                 .parallelStream()
                 .collect(Collectors.toMap(Map.Entry::getKey,
                         entry -> {

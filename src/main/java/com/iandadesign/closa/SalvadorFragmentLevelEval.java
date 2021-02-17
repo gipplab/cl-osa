@@ -486,7 +486,7 @@ public class SalvadorFragmentLevelEval {
 
 
         // Get the scoring (wrapped by caching block)
-        final Map<Long, Map<Long, Double>>  scoresMap;
+        final Map<Long, Map<Long, Float>>  scoresMap;
         if(SalvadorAnalysisParameters.DO_SCORES_MAP_CACHING){
             ScoresMapCache scoresMapCache = new ScoresMapCache();
             // Generate key on base of used parameters
@@ -494,14 +494,17 @@ public class SalvadorFragmentLevelEval {
             logUtil.logAndWriteStandard(true, "Caching key is:", keyPath);
 
             // Try to find a file
-            Map<Long, Map<Long, Double>>  scoresMapDes = scoresMapCache.deserializeScoresMap(keyPath);
+            Map<Long, Map<Long, Float>>  scoresMapDes = scoresMapCache.deserializeScoresMap(keyPath);
             if(scoresMapDes==null){
                 logUtil.logAndWriteStandard(false, "Creating new scoresmap and serialize it.");
                 if(!SalvadorAnalysisParameters.USE_ENHANCHED_COSINE_ANALYSIS){
                     scoresMap = osa.performCosineSimilarityAnalysisLong(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_STATISTICAL_WEIGHTING);
 
                 }else{
-                    scoresMap = osa.performEnhancedCosineSimilarityAnalysisPLong(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment));
+                    // TODO CHANGE THIS PERFOMANCE RAM
+                    //scoresMap = osa.performEnhancedCosineSimilarityAnalysisPLong(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment));
+                    scoresMap = osa.performCosineSimilarityAnalysisLong(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_STATISTICAL_WEIGHTING);
+
                 }
                 scoresMapCache.serializeScoresMap(keyPath, scoresMap);
             }else{
@@ -687,7 +690,7 @@ public class SalvadorFragmentLevelEval {
                                                                                       List<Long> candidateFragments,
                                           Map<Long, List<SavedEntity>> suspiciousEntitiesFragment,
                                           Map<Long, List<SavedEntity>> candidateEntitiesFragment,
-                                          Map<Long, Map<Long, Double>>  scoresMap,
+                                          Map<Long, Map<Long, Float>>  scoresMap,
                                           int THRESHOLD_1,
                                           double THRESHOLD_2,
                                           int TOPMOST,
@@ -698,7 +701,7 @@ public class SalvadorFragmentLevelEval {
         double THRESH_TOPMOST = SalvadorAnalysisParameters.PRESELECTION_THRESH;
 
         // Get selected suspicious fragments from results
-        Map<Long, Map<Long, Double>> scoresMapSelected = new HashMap<>(scoresMap);
+        Map<Long, Map<Long, Float>> scoresMapSelected = new HashMap<>(scoresMap);
         scoresMapSelected.keySet().retainAll(suspiciousFragments);
         Map<SalvadorTextFragment, SalvadorTextFragment> fragmentInfosSelected = new ArrayMap<>();
         // Analysis related stuff
@@ -711,11 +714,11 @@ public class SalvadorFragmentLevelEval {
         for(Long suspiciousFragmentID:scoresMapSelected.keySet()){
             SalvadorTextFragment suspiciousFragment = PAN11RankingEvaluator.createTextFragment(suspiciousEntitiesFragment.get(suspiciousFragmentID), suspiciousFragmentID);
             // Get selected candidate fragments from results
-           Map<Long, Double> candidateScores = new HashMap<>(scoresMapSelected.get(suspiciousFragmentID));
+           Map<Long, Float> candidateScores = new HashMap<>(scoresMapSelected.get(suspiciousFragmentID));
             candidateScores.keySet().retainAll(candidateFragments);
 
            // Get best scoring <RANKLIMIT> fragments
-            Map<Long, Double> candidateScoresMapSelected = candidateScores.entrySet().stream()
+            Map<Long, Float> candidateScoresMapSelected = candidateScores.entrySet().stream()
                     .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                     .limit(TOPMOST)
                     .filter(value -> value.getValue() >= THRESH_TOPMOST)
@@ -796,7 +799,7 @@ public class SalvadorFragmentLevelEval {
                                                                     List<Long> candidateFragments,
                                                                     Map<Long, List<SavedEntity>> suspiciousEntitiesFragment,
                                                                     Map<Long, List<SavedEntity>> candidateEntitiesFragment,
-                                                                    Map<Long, Map<Long, Double>>  scoresMap,
+                                                                    Map<Long, Map<Long, Float>>  scoresMap,
                                                                     int THRESHOLD_1,
                                                                     double THRESHOLD_2,
                                                                     int TOPMOST,
@@ -805,10 +808,10 @@ public class SalvadorFragmentLevelEval {
                                                                     ExtendedLogUtil logUtil) {
         //DIFFERENCE instead of one suspicious enitities candidates are fetched for the clusting
         // for multiple suspicious entities of one case the candidates are fetched
-        double THRESH_TOPMOST = SalvadorAnalysisParameters.PRESELECTION_THRESH;
+        float THRESH_TOPMOST = (float) SalvadorAnalysisParameters.PRESELECTION_THRESH;
 
         // Get selected suspicious fragments from results
-        Map<Long, Map<Long, Double>> scoresMapSelected = new HashMap<>(scoresMap);
+        Map<Long, Map<Long, Float>> scoresMapSelected = new HashMap<>(scoresMap);
         scoresMapSelected.keySet().retainAll(suspiciousFragments);
         Map<SalvadorTextFragment, SalvadorTextFragment> fragmentInfosSelected = new ArrayMap<>();
         // Analysis related stuff
@@ -887,14 +890,14 @@ public class SalvadorFragmentLevelEval {
             Map<Long, SalvadorTextFragment> bestCandidateFragmentInfos = new ArrayMap<>();
 
             for(SalvadorTextFragment salvadorTextFragment:relatedFragments){
-                Map<Long, Double> candidateScores = new HashMap<>(scoresMapSelected.get(salvadorTextFragment.getFragmentID()));
+                Map<Long, Float> candidateScores = new HashMap<>(scoresMapSelected.get(salvadorTextFragment.getFragmentID()));
                 // Only use the corresponding candidates for the specified file
                 candidateScores.keySet().retainAll(candidateFragments);
                 if(candidateScores.keySet().size()==0){
                     System.out.println("WARN: There is no candidate score for related fragment!");
                 }
                 // Get best scoring <RANKLIMIT> fragments
-                Map<Long, Double> candidateScoresMapSelected = candidateScores.entrySet().stream()
+                Map<Long, Float> candidateScoresMapSelected = candidateScores.entrySet().stream()
                         .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                         .limit(TOPMOST)
                         .filter(value -> value.getValue() >= THRESH_TOPMOST)
@@ -907,7 +910,7 @@ public class SalvadorFragmentLevelEval {
                         bestCandidateFragmentInfos.put(candidateFragmentID, fragmentToAdd);
 
                     }else{
-                        fragmentToAdd.setComputedScore(Double.max(alreadyInFragment.getComputedScore(),fragmentToAdd.getComputedScore()));
+                        fragmentToAdd.setComputedScore(Float.max(alreadyInFragment.getComputedScore(),fragmentToAdd.getComputedScore()));
                         bestCandidateFragmentInfos.put(candidateFragmentID, fragmentToAdd);
                     }
                 }
@@ -1136,38 +1139,38 @@ public class SalvadorFragmentLevelEval {
         boolean someModeFound = false;
         if(MODE.equals("weightedAdd")) {
             // Weighting the scores by character lengths
-            double lengthAdded = fragment1.getCharLengthBySentences() + fragment2.getCharLengthBySentences();
-            double weightingConstant = SalvadorAnalysisParameters.WEIGHTED_ADD_CONSTANT;
+            float lengthAdded = fragment1.getCharLengthBySentences() + fragment2.getCharLengthBySentences();
+            float weightingConstant = (float) SalvadorAnalysisParameters.WEIGHTED_ADD_CONSTANT;
             int padding = 10000; // This padding shall prevent below 1 multiplication
-            double factor1 = weightingConstant + (fragment1.getCharLengthBySentences() / lengthAdded);
-            double factor2 = weightingConstant + (fragment2.getCharLengthBySentences() / lengthAdded);
-            double preMergedScore = (factor1 * (fragment1.getComputedScore() * padding)) + (factor2 * (fragment2.getComputedScore() * padding));
-            Double mergedScore = preMergedScore / padding;
+            float factor1 = weightingConstant + (fragment1.getCharLengthBySentences() / lengthAdded);
+            float factor2 = weightingConstant + (fragment2.getCharLengthBySentences() / lengthAdded);
+            float preMergedScore = (factor1 * (fragment1.getComputedScore() * padding)) + (factor2 * (fragment2.getComputedScore() * padding));
+            Float mergedScore = preMergedScore / padding;
             mergedFragment.setComputedScore(mergedScore);
             someModeFound = true;
         }
         if(MODE.equals("simpleAdd")){
             // Just adding up the scores
-            Double fragmentScore = fragment1.getComputedScore() + fragment2.getComputedScore();
+            float fragmentScore = fragment1.getComputedScore() + fragment2.getComputedScore();
             mergedFragment.setComputedScore(fragmentScore);
             someModeFound = true;
         }
         if(MODE.equals("weightedAverage")){
             // Weighting the scores by character lengths
-            double lengthAdded = fragment1.getCharLengthBySentences() + fragment2.getCharLengthBySentences();
+            float lengthAdded = fragment1.getCharLengthBySentences() + fragment2.getCharLengthBySentences();
 
             int padding = 10000; // This padding shall prevent below 1 multiplication
-            double factor1 = (fragment1.getCharLengthBySentences() / lengthAdded);
-            double factor2 = (fragment2.getCharLengthBySentences() / lengthAdded);
-            double preMergedScore = (factor1 * (fragment1.getComputedScore() * padding)) + (factor2 * (fragment2.getComputedScore() * padding));
-            Double mergedScore = preMergedScore / padding;
+            float factor1 = (fragment1.getCharLengthBySentences() / lengthAdded);
+            float factor2 = (fragment2.getCharLengthBySentences() / lengthAdded);
+            float preMergedScore = (factor1 * (fragment1.getComputedScore() * padding)) + (factor2 * (fragment2.getComputedScore() * padding));
+            float mergedScore = preMergedScore / padding;
             mergedFragment.setComputedScore(mergedScore);
             someModeFound = true;
 
         }
         if(MODE.equals("keepingMax")){
             // Keeping the maximum of merged fragments as a score
-            mergedFragment.setComputedScore(Double.max(fragment1.getComputedScore(),fragment2.getComputedScore()));
+            mergedFragment.setComputedScore(Float.max(fragment1.getComputedScore(),fragment2.getComputedScore()));
             someModeFound = true;
         }
         if(!someModeFound){

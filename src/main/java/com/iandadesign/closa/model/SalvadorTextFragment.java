@@ -15,13 +15,13 @@ public class SalvadorTextFragment {
     int charLengthByEntities;
     boolean isMerged = false;
     List<String> mergedIDs;
-    Double computedScore;
+    Float computedScore;
 
-    public Double getComputedScore() {
+    public Float getComputedScore() {
         return computedScore;
     }
 
-    public void setComputedScore(Double computedScore) {
+    public void setComputedScore(Float computedScore) {
         this.computedScore = computedScore;
     }
 
