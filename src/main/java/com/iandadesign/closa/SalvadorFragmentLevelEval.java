@@ -574,16 +574,16 @@ public class SalvadorFragmentLevelEval {
             Map<String, SalvadorStatisticsInfo> suspDocumentStats = new HashMap<>();
 
             List<PAN11PlagiarismInfo> relatedPlagiarismInfo = plagiarismInformation.get(PAN11FileUtil.getFilenameFromLongId(suspiciousDocument,".xml", false));
-
+            if(relatedPlagiarismInfo.size()==0){
+                return;
+            }
             for(Long candidateDocument:candDocFragmentMap.keySet()){
                 String candidateDocumentS = PAN11FileUtil.getFilenameFromLongId(candidateDocument,".txt", true);
                 List<PAN11PlagiarismInfo> relatedPlagiarismInfoCandFiltered = relatedPlagiarismInfo.stream().filter( value -> {
                         return value.getSourceReference().equals(candidateDocumentS);
                     }).collect(Collectors.toList());
 
-                if(relatedPlagiarismInfo.size()==0){
-                    continue; // OK ???? TODO POST RAM FIX
-                }
+
                 // Calculate DA-Clustering for current file combination.
                 SalvadorDetailedAnalysisResult daResult;
                 if(!SalvadorAnalysisParameters.CLUSTER_MULTIPLE_SUSP_FINDINGS){
