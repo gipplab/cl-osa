@@ -6,7 +6,7 @@ import java.util.List;
 
 public class SalvadorTextFragment {
 
-    String fragmentID;
+    Long fragmentID;
     int entitiesStartChar;
     int entitiesEndChar;
     int sentencesStartChar;
@@ -41,11 +41,11 @@ public class SalvadorTextFragment {
         this.mergedIDs = mergedIDs;
     }
 
-    public String getFragmentID() {
+    public Long getFragmentID() {
         return fragmentID;
     }
 
-    public void setFragmentID(String fragmentID) {
+    public void setFragmentID(Long fragmentID) {
         this.fragmentID = fragmentID;
     }
 

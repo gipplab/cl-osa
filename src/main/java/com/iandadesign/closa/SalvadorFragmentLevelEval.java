@@ -189,12 +189,12 @@ public class SalvadorFragmentLevelEval {
         }
     }
 
-    static Map<String, List<String>> simplifyEntitiesMap(Map<String, List<SavedEntity>> extendedEntitiesMap )   {
+    static Map<Long, List<String>> simplifyEntitiesMap(Map<Long, List<SavedEntity>> extendedEntitiesMap )   {
         return extendedEntitiesMap.entrySet().stream()
                 .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().stream().map(SavedEntity::getWikidataEntityId).collect(Collectors.toList())));
     }
 
-    static Map<String, List<String>> simplifyEntitiesMapSalvador(Map<SalvadorTextFragment, List<SavedEntity>> extendedEntitiesMap )   {
+    static Map<Long, List<String>> simplifyEntitiesMapSalvador(Map<SalvadorTextFragment, List<SavedEntity>> extendedEntitiesMap )   {
         return extendedEntitiesMap.entrySet().stream()
                 .collect(Collectors.toMap(entry-> entry.getKey().getFragmentID() , entry -> entry.getValue().stream().map(SavedEntity::getWikidataEntityId).collect(Collectors.toList())));
     }
@@ -235,7 +235,7 @@ public class SalvadorFragmentLevelEval {
 
         // Create a list of candidate fragments (all)
 
-        Map<String, List<SavedEntity>> candidateEntitiesFragment = getFragments(osa, candidateFiles, SalvadorAnalysisParameters.FRAGMENT_SENTENCES, SalvadorAnalysisParameters.FRAGMENT_INCREMENT, false, null, true);
+        Map<Long, List<SavedEntity>> candidateEntitiesFragment = getFragments(osa, candidateFiles, SalvadorAnalysisParameters.FRAGMENT_SENTENCES, SalvadorAnalysisParameters.FRAGMENT_INCREMENT, false, null, true);
 
         if(SalvadorAnalysisParameters.SORT_SUSPICIOUS_FILES_BY_SIZE){
             logUtil.logAndWriteStandard(false, "Sorting suspicious files by size");
@@ -429,8 +429,8 @@ public class SalvadorFragmentLevelEval {
     static int minCaseLength= 100000;
     static int maxCaseLength= 0;
 
-    private static Map<Integer, SalvadorRatKResponse> doScoresMapIteration(String tag, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, OntologyBasedSimilarityAnalysis osa, ExtendedLogUtil logUtil, List<File> candidateFiles, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesFragment, int filesOffset, int filesNumber,         Map<String, Map<String, SalvadorStatisticsInfo>> allStatistics, String language) throws Exception {
-        Map<String, List<SavedEntity>> suspiciousEntitiesFragment;
+    private static Map<Integer, SalvadorRatKResponse> doScoresMapIteration(String tag, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, OntologyBasedSimilarityAnalysis osa, ExtendedLogUtil logUtil, List<File> candidateFiles, List<File> suspiciousFiles, Map<Long, List<SavedEntity>> candidateEntitiesFragment, int filesOffset, int filesNumber,         Map<String, Map<String, SalvadorStatisticsInfo>> allStatistics, String language) throws Exception {
+        Map<Long, List<SavedEntity>> suspiciousEntitiesFragment;
         // Create a list of suspicious fragments (only plagiarism involved fragments)
 
         if(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS){
@@ -444,7 +444,7 @@ public class SalvadorFragmentLevelEval {
 
         System.out.println("Susp-enties count: "+ suspiciousEntitiesFragment.size());
 
-        for(String fragmentID:suspiciousEntitiesFragment.keySet()){
+        for(Long fragmentID:suspiciousEntitiesFragment.keySet()){
             int fragmentEntitiesNumber = suspiciousEntitiesFragment.get(fragmentID).size();
             minCaseLength = min(minCaseLength, fragmentEntitiesNumber);
             maxCaseLength = max(maxCaseLength, fragmentEntitiesNumber);
@@ -486,22 +486,22 @@ public class SalvadorFragmentLevelEval {
 
 
         // Get the scoring (wrapped by caching block)
-        final Map<String, Map<String, Double>>  scoresMap;
+        final Map<Long, Map<Long, Double>>  scoresMap;
         if(SalvadorAnalysisParameters.DO_SCORES_MAP_CACHING){
             ScoresMapCache scoresMapCache = new ScoresMapCache();
             // Generate key on base of used parameters
-            String keyPath = scoresMapCache.generateFileKey(language, preprocessedCachingDir+"/scoresmap_serialization/",SalvadorAnalysisParameters.FRAGMENT_SENTENCES,SalvadorAnalysisParameters.FRAGMENT_INCREMENT,SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, filesNumber, SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, filesOffset, SalvadorAnalysisParameters.SORT_SUSPICIOUS_FILES_BY_SIZE, SalvadorAnalysisParameters.USE_ENHANCHED_COSINE_ANALYSIS, SalvadorAnalysisParameters.PREFILTER);
+            String keyPath = scoresMapCache.generateFileKey(language, preprocessedCachingDir+"/scoresmap_serialization_postramfix/",SalvadorAnalysisParameters.FRAGMENT_SENTENCES,SalvadorAnalysisParameters.FRAGMENT_INCREMENT,SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, filesNumber, SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, filesOffset, SalvadorAnalysisParameters.SORT_SUSPICIOUS_FILES_BY_SIZE, SalvadorAnalysisParameters.USE_ENHANCHED_COSINE_ANALYSIS, SalvadorAnalysisParameters.PREFILTER);
             logUtil.logAndWriteStandard(true, "Caching key is:", keyPath);
 
             // Try to find a file
-            Map<String, Map<String, Double>>  scoresMapDes = scoresMapCache.deserializeScoresMap(keyPath);
+            Map<Long, Map<Long, Double>>  scoresMapDes = scoresMapCache.deserializeScoresMap(keyPath);
             if(scoresMapDes==null){
                 logUtil.logAndWriteStandard(false, "Creating new scoresmap and serialize it.");
                 if(!SalvadorAnalysisParameters.USE_ENHANCHED_COSINE_ANALYSIS){
-                    scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_STATISTICAL_WEIGHTING);
+                    scoresMap = osa.performCosineSimilarityAnalysisLong(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_STATISTICAL_WEIGHTING);
 
                 }else{
-                    scoresMap = osa.performEnhancedCosineSimilarityAnalysisP(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment));
+                    scoresMap = osa.performEnhancedCosineSimilarityAnalysisPLong(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment));
                 }
                 scoresMapCache.serializeScoresMap(keyPath, scoresMap);
             }else{
@@ -510,7 +510,7 @@ public class SalvadorFragmentLevelEval {
             }
         }else{
             logUtil.logAndWriteStandard(false, "SCORESMAP CACHING IS DEACTIVATED");
-            scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_STATISTICAL_WEIGHTING);
+            scoresMap = osa.performCosineSimilarityAnalysisLong(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_STATISTICAL_WEIGHTING);
         }
 
         if(SalvadorAnalysisParameters.DO_REGRESSION_ANALYSIS){
@@ -528,6 +528,7 @@ public class SalvadorFragmentLevelEval {
         Map<Integer, SalvadorRatKResponse> recallAtKResponses = new ArrayMap<>();
         if(SalvadorAnalysisParameters.CALCULATE_RECALL_AT_K) {
             boolean relativeOverallScores = SalvadorAnalysisParameters.DO_RELATIVE_SCORING_R_AT_K; // Default: false
+            /*
             int minsizePlagfragments = SalvadorAnalysisParameters.MIN_FRAGMENT_SIZE_R_AT_K; // for filtering irrelevant edge cases, Default: 0
             SalvadorRatKResponse recallAt1 = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores, SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K, minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment, plagiarismInformation, logUtil, 1);
             recallAtKResponses.put(1, recallAt1);
@@ -547,12 +548,13 @@ public class SalvadorFragmentLevelEval {
             recallAtKResponses.put(25000, recallAt25k);
             SalvadorRatKResponse recallAt10B = PAN11RankingEvaluator.calculateRecallAtkFragmentCharacterLevel(SalvadorAnalysisParameters.GET_PLAGSIZED_FRAGMENTS, relativeOverallScores, SalvadorAnalysisParameters.DISMISS_OVERLAPS_IN_R_AT_K, SalvadorAnalysisParameters.LOWER_K_MAX_PLAG_CAP_R_AT_K, minsizePlagfragments, scoresMap, suspiciousFiles, candidateEntitiesFragment, suspiciousEntitiesFragment, plagiarismInformation, logUtil, 10000000);
             recallAtKResponses.put(10000000, recallAt10B);
+            */
         }
         // DA implementation:
 
         // Create a document fragment map for (SuspFragments/CandFragments)
-        Map<String, List<String>> suspDocFragmentMap = getDocumentFragmentMap(suspiciousEntitiesFragment);
-        Map<String, List<String>> candDocFragmentMap = getDocumentFragmentMap(candidateEntitiesFragment);
+        Map<Long, List<Long>> suspDocFragmentMap = getDocumentFragmentMap(suspiciousEntitiesFragment);
+        Map<Long, List<Long>> candDocFragmentMap = getDocumentFragmentMap(candidateEntitiesFragment);
 
 
         // Detailed Comparison ...
@@ -567,20 +569,26 @@ public class SalvadorFragmentLevelEval {
 
         logUtil.logAndWriteStandard(false, "Doing Detailed Analysis...");
         suspDocFragmentMap.keySet().parallelStream().forEach(suspiciousDocument -> {
+            String suspiciousDocumentS = PAN11FileUtil.getFilenameFromLongId(suspiciousDocument,".txt", false);
             Map<String, Map<SalvadorTextFragment, SalvadorTextFragment>> supFilePlagiarism = new HashMap<>();
             Map<String, SalvadorStatisticsInfo> suspDocumentStats = new HashMap<>();
-            List<PAN11PlagiarismInfo> relatedPlagiarismInfo = plagiarismInformation.get(suspiciousDocument.replace(".txt", ".xml"));
 
-            for(String candidateDocument:candDocFragmentMap.keySet()){
+            List<PAN11PlagiarismInfo> relatedPlagiarismInfo = plagiarismInformation.get(PAN11FileUtil.getFilenameFromLongId(suspiciousDocument,".xml", false));
+
+            for(Long candidateDocument:candDocFragmentMap.keySet()){
+                String candidateDocumentS = PAN11FileUtil.getFilenameFromLongId(candidateDocument,".txt", true);
                 List<PAN11PlagiarismInfo> relatedPlagiarismInfoCandFiltered = relatedPlagiarismInfo.stream().filter( value -> {
-                        return value.getSourceReference().equals(candidateDocument.replace("candidate-", "source-"));
+                        return value.getSourceReference().equals(candidateDocumentS);
                     }).collect(Collectors.toList());
 
-
+                if(relatedPlagiarismInfo.size()==0){
+                    continue; // OK ???? TODO POST RAM FIX
+                }
                 // Calculate DA-Clustering for current file combination.
                 SalvadorDetailedAnalysisResult daResult;
                 if(!SalvadorAnalysisParameters.CLUSTER_MULTIPLE_SUSP_FINDINGS){
                     // Do detailed analysis exactly like described in Salvador Paper
+
                     daResult = doDetailedAnalysis(
                             suspDocFragmentMap.get(suspiciousDocument),
                             candDocFragmentMap.get(candidateDocument),
@@ -594,6 +602,8 @@ public class SalvadorFragmentLevelEval {
                             relatedPlagiarismInfoCandFiltered,
                             logUtil
                     );
+
+
                 }else{
                     // Gather fragments first and then do detailed analysis
                     daResult = doDetailedAnalysisMultipleSuspCluster(
@@ -609,18 +619,19 @@ public class SalvadorFragmentLevelEval {
                             relatedPlagiarismInfoCandFiltered,
                             logUtil
                     );
+
                 }
 
                 Map<SalvadorTextFragment, SalvadorTextFragment> detailedAnalysisResultsD2D = daResult.resultMap;
                 if(SalvadorAnalysisParameters.DO_ANALYSIS){
                     if(daResult.salvadorStatisticsInfo!=null){
-                        suspDocumentStats.put(candidateDocument, daResult.salvadorStatisticsInfo);
+                        suspDocumentStats.put(candidateDocumentS, daResult.salvadorStatisticsInfo);
                     }
                 }
                 if(detailedAnalysisResultsD2D.size() >= 1){
                     Map<SalvadorTextFragment, SalvadorTextFragment> currentMap = supFilePlagiarism.get(candidateDocument);
                     if(currentMap==null) {
-                        supFilePlagiarism.put(candidateDocument, detailedAnalysisResultsD2D);
+                        supFilePlagiarism.put(candidateDocumentS, detailedAnalysisResultsD2D);
                     }else{
                         // TBD validate if ok
                         currentMap.putAll(detailedAnalysisResultsD2D);
@@ -630,9 +641,9 @@ public class SalvadorFragmentLevelEval {
                 }
             }
 
-            allResults.put(suspiciousDocument, supFilePlagiarism);
+            allResults.put(suspiciousDocumentS, supFilePlagiarism);
             if(SalvadorAnalysisParameters.DO_ANALYSIS){
-                allStatistics.put(suspiciousDocument, suspDocumentStats);
+                allStatistics.put(suspiciousDocumentS, suspDocumentStats);
             }
         });
 
@@ -672,11 +683,11 @@ public class SalvadorFragmentLevelEval {
 
     }
 
-    public static SalvadorDetailedAnalysisResult doDetailedAnalysis(List<String> suspiciousFragments,
-                                                                                      List<String> candidateFragments,
-                                          Map<String, List<SavedEntity>> suspiciousEntitiesFragment,
-                                          Map<String, List<SavedEntity>> candidateEntitiesFragment,
-                                          Map<String, Map<String, Double>>  scoresMap,
+    public static SalvadorDetailedAnalysisResult doDetailedAnalysis(List<Long> suspiciousFragments,
+                                                                                      List<Long> candidateFragments,
+                                          Map<Long, List<SavedEntity>> suspiciousEntitiesFragment,
+                                          Map<Long, List<SavedEntity>> candidateEntitiesFragment,
+                                          Map<Long, Map<Long, Double>>  scoresMap,
                                           int THRESHOLD_1,
                                           double THRESHOLD_2,
                                           int TOPMOST,
@@ -687,7 +698,7 @@ public class SalvadorFragmentLevelEval {
         double THRESH_TOPMOST = SalvadorAnalysisParameters.PRESELECTION_THRESH;
 
         // Get selected suspicious fragments from results
-        Map<String, Map<String, Double>> scoresMapSelected = new HashMap<>(scoresMap);
+        Map<Long, Map<Long, Double>> scoresMapSelected = new HashMap<>(scoresMap);
         scoresMapSelected.keySet().retainAll(suspiciousFragments);
         Map<SalvadorTextFragment, SalvadorTextFragment> fragmentInfosSelected = new ArrayMap<>();
         // Analysis related stuff
@@ -697,22 +708,22 @@ public class SalvadorFragmentLevelEval {
 
 
 
-        for(String suspiciousFragmentID:scoresMapSelected.keySet()){
+        for(Long suspiciousFragmentID:scoresMapSelected.keySet()){
             SalvadorTextFragment suspiciousFragment = PAN11RankingEvaluator.createTextFragment(suspiciousEntitiesFragment.get(suspiciousFragmentID), suspiciousFragmentID);
             // Get selected candidate fragments from results
-           Map<String, Double> candidateScores = new HashMap<>(scoresMapSelected.get(suspiciousFragmentID));
+           Map<Long, Double> candidateScores = new HashMap<>(scoresMapSelected.get(suspiciousFragmentID));
             candidateScores.keySet().retainAll(candidateFragments);
 
            // Get best scoring <RANKLIMIT> fragments
-            Map<String, Double> candidateScoresMapSelected = candidateScores.entrySet().stream()
+            Map<Long, Double> candidateScoresMapSelected = candidateScores.entrySet().stream()
                     .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                     .limit(TOPMOST)
                     .filter(value -> value.getValue() >= THRESH_TOPMOST)
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
             // Get the start stop coordinates for the fragments.
-            Map<String, SalvadorTextFragment> fragmentInfos = new ArrayMap<>();
-            for(String candidateFragmentID: candidateScoresMapSelected.keySet()){
+            Map<Long, SalvadorTextFragment> fragmentInfos = new ArrayMap<>();
+            for(Long candidateFragmentID: candidateScoresMapSelected.keySet()){
                 SalvadorTextFragment fragmentToAdd =  PAN11RankingEvaluator.createTextFragment(candidateEntitiesFragment.get(candidateFragmentID),candidateFragmentID);
                 fragmentToAdd.setComputedScore(candidateScoresMapSelected.get(candidateFragmentID));
 
@@ -720,11 +731,11 @@ public class SalvadorFragmentLevelEval {
             }
 
             // Merge the fragments
-            Map<String, SalvadorTextFragment>  fragmentInfosMerged = mergeFragments(THRESHOLD_1, fragmentInfos);
+            Map<Long, SalvadorTextFragment>  fragmentInfosMerged = mergeFragments(THRESHOLD_1, fragmentInfos);
             //Map<String, SalvadorTextFragment>  fragmentInfosMerged = fragmentInfos; // TODO eval bypass merge atm
 
             // Rate the new fragment infos as plagiarism or not
-            for(String clusteredFragmentID: fragmentInfosMerged.keySet()){
+            for(Long clusteredFragmentID: fragmentInfosMerged.keySet()){
                 SalvadorTextFragment clusteredFragment = fragmentInfosMerged.get(clusteredFragmentID);
                 //System.out.println(suspiciousFragmentID+"/"+candidateFragments.get(0)+":"+clusteredFragment.getComputedScore());
                 if(clusteredFragment.getComputedScore() > THRESHOLD_2){
@@ -742,7 +753,7 @@ public class SalvadorFragmentLevelEval {
                         nodePlagiarismInfos.add(plagiarismInfo);
                     }
                 }
-                for(String clusteredFragmentID: fragmentInfos.keySet()){
+                for(Long clusteredFragmentID: fragmentInfos.keySet()){
                     SalvadorTextFragment fragment = fragmentInfos.get(clusteredFragmentID);
                     int plagiarizedArea = getPlagiarismAreaAccumulated(fragment.getSentencesStartChar(), fragment.getSentencesEndChar(),nodePlagiarismInfos,true);
                     Map<SalvadorTextFragment, Integer> currentMap = fragmentInfosAll.get(suspiciousFragment);
@@ -752,7 +763,7 @@ public class SalvadorFragmentLevelEval {
                     }
                     fragmentInfosAll.get(suspiciousFragment).put(fragment, plagiarizedArea);
                 }
-                for(String clusteredFragmentID: fragmentInfosMerged.keySet()){
+                for(Long clusteredFragmentID: fragmentInfosMerged.keySet()){
                     SalvadorTextFragment fragment = fragmentInfosMerged.get(clusteredFragmentID);
                     int plagiarizedArea =  getPlagiarismAreaAccumulated(fragment.getSentencesStartChar(), fragment.getSentencesEndChar(),nodePlagiarismInfos,true);
 
@@ -781,11 +792,11 @@ public class SalvadorFragmentLevelEval {
         return myResult;
     }
 
-    public static SalvadorDetailedAnalysisResult doDetailedAnalysisMultipleSuspCluster(List<String> suspiciousFragments,
-                                                                    List<String> candidateFragments,
-                                                                    Map<String, List<SavedEntity>> suspiciousEntitiesFragment,
-                                                                    Map<String, List<SavedEntity>> candidateEntitiesFragment,
-                                                                    Map<String, Map<String, Double>>  scoresMap,
+    public static SalvadorDetailedAnalysisResult doDetailedAnalysisMultipleSuspCluster(List<Long> suspiciousFragments,
+                                                                    List<Long> candidateFragments,
+                                                                    Map<Long, List<SavedEntity>> suspiciousEntitiesFragment,
+                                                                    Map<Long, List<SavedEntity>> candidateEntitiesFragment,
+                                                                    Map<Long, Map<Long, Double>>  scoresMap,
                                                                     int THRESHOLD_1,
                                                                     double THRESHOLD_2,
                                                                     int TOPMOST,
@@ -797,7 +808,7 @@ public class SalvadorFragmentLevelEval {
         double THRESH_TOPMOST = SalvadorAnalysisParameters.PRESELECTION_THRESH;
 
         // Get selected suspicious fragments from results
-        Map<String, Map<String, Double>> scoresMapSelected = new HashMap<>(scoresMap);
+        Map<Long, Map<Long, Double>> scoresMapSelected = new HashMap<>(scoresMap);
         scoresMapSelected.keySet().retainAll(suspiciousFragments);
         Map<SalvadorTextFragment, SalvadorTextFragment> fragmentInfosSelected = new ArrayMap<>();
         // Analysis related stuff
@@ -814,7 +825,7 @@ public class SalvadorFragmentLevelEval {
 
             List<SalvadorTextFragment> relatedFragments = new ArrayList<>();
             // Group up susp fragments in related plagiarism groups
-            for(String suspiciousFragmentID:scoresMapSelected.keySet()) {
+            for(Long suspiciousFragmentID:scoresMapSelected.keySet()) {
                 // ... if ...
                 SalvadorTextFragment suspiciousFragment = PAN11RankingEvaluator.createTextFragment(suspiciousEntitiesFragment.get(suspiciousFragmentID), suspiciousFragmentID);
                 boolean plagiarismRelated = isEntityRelatedToPlagiarism(suspiciousFragment.getSentencesStartChar(), suspiciousFragment.getSentencesEndChar(), suspPlagiarismStart,suspPlagiarismEnd);
@@ -866,26 +877,29 @@ public class SalvadorFragmentLevelEval {
                     THRESHOLD_1 = 2500;
                 }
             }
-
+            String caseLengthSusp = relatedPlagiarism.getCaseLengthThis();
+            if(caseLengthSusp.equals(PAN11PlagiarismInfo.CaseLength.SHORT)){
+                //continue;
+            }
             // Get the topmost scoring candidate fragments for each plagiarism case related group
             List<String> bestCandidateFragmentIDgroup = new ArrayList<>();
             // Get the start stop coordinates for the fragments.
-            Map<String, SalvadorTextFragment> bestCandidateFragmentInfos = new ArrayMap<>();
+            Map<Long, SalvadorTextFragment> bestCandidateFragmentInfos = new ArrayMap<>();
 
             for(SalvadorTextFragment salvadorTextFragment:relatedFragments){
-                Map<String, Double> candidateScores = new HashMap<>(scoresMapSelected.get(salvadorTextFragment.getFragmentID()));
+                Map<Long, Double> candidateScores = new HashMap<>(scoresMapSelected.get(salvadorTextFragment.getFragmentID()));
                 // Only use the corresponding candidates for the specified file
                 candidateScores.keySet().retainAll(candidateFragments);
                 if(candidateScores.keySet().size()==0){
                     System.out.println("WARN: There is no candidate score for related fragment!");
                 }
                 // Get best scoring <RANKLIMIT> fragments
-                Map<String, Double> candidateScoresMapSelected = candidateScores.entrySet().stream()
+                Map<Long, Double> candidateScoresMapSelected = candidateScores.entrySet().stream()
                         .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                         .limit(TOPMOST)
                         .filter(value -> value.getValue() >= THRESH_TOPMOST)
                         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-                for(String candidateFragmentID: candidateScoresMapSelected.keySet()){
+                for(Long candidateFragmentID: candidateScoresMapSelected.keySet()){
                     SalvadorTextFragment fragmentToAdd =  PAN11RankingEvaluator.createTextFragment(candidateEntitiesFragment.get(candidateFragmentID),candidateFragmentID);
                     fragmentToAdd.setComputedScore(candidateScoresMapSelected.get(candidateFragmentID));
                     SalvadorTextFragment alreadyInFragment = bestCandidateFragmentInfos.get(candidateFragmentID);
@@ -902,13 +916,17 @@ public class SalvadorFragmentLevelEval {
                 System.out.println("WARN: No candidates have been selected!");
             }
             // Merge the fragments
-            Map<String, SalvadorTextFragment>  fragmentInfosMerged = mergeFragments(THRESHOLD_1, bestCandidateFragmentInfos);
+            Map<Long, SalvadorTextFragment>  fragmentInfosMerged = mergeFragments(THRESHOLD_1, bestCandidateFragmentInfos);
 
             // Rate the new fragment infos as plagiarism or not
-            for(String clusteredFragmentID: fragmentInfosMerged.keySet()){
+            for(Long clusteredFragmentID: fragmentInfosMerged.keySet()){
                 SalvadorTextFragment clusteredFragment = fragmentInfosMerged.get(clusteredFragmentID);
+                double score = clusteredFragment.getComputedScore();
+                if(caseLengthSusp.equals(PAN11PlagiarismInfo.CaseLength.SHORT)){
+                   // score = score * 20;
+                }
                 //System.out.println(suspiciousFragmentID+"/"+candidateFragments.get(0)+":"+clusteredFragment.getComputedScore());
-                if(clusteredFragment.getComputedScore() > THRESHOLD_2){
+                if(score > THRESHOLD_2){
                     fragmentInfosSelected.put(suspiciousFragmentByPlagInfo, clusteredFragment);
                 }
             }
@@ -916,7 +934,7 @@ public class SalvadorFragmentLevelEval {
                 List<PAN11PlagiarismInfo> relatedPlagiarismsMocklist = new ArrayList<>();
                 relatedPlagiarismsMocklist.add(relatedPlagiarism);
 
-                for(String clusteredFragmentID: bestCandidateFragmentInfos.keySet()){
+                for(Long clusteredFragmentID: bestCandidateFragmentInfos.keySet()){
                     SalvadorTextFragment fragment = bestCandidateFragmentInfos.get(clusteredFragmentID);
                     int plagiarizedArea = getPlagiarismAreaAccumulated(fragment.getSentencesStartChar(), fragment.getSentencesEndChar(),relatedPlagiarismsMocklist,true);
                     Map<SalvadorTextFragment, Integer> currentMap = fragmentInfosAll.get(suspiciousFragmentByPlagInfo);
@@ -927,7 +945,7 @@ public class SalvadorFragmentLevelEval {
                     fragmentInfosAll.get(suspiciousFragmentByPlagInfo).put(fragment, plagiarizedArea);
                 }
 
-                for(String clusteredFragmentID: fragmentInfosMerged.keySet()){
+                for(Long clusteredFragmentID: fragmentInfosMerged.keySet()){
                     SalvadorTextFragment fragment = fragmentInfosMerged.get(clusteredFragmentID);
 
                     int plagiarizedArea =  getPlagiarismAreaAccumulated(fragment.getSentencesStartChar(), fragment.getSentencesEndChar(),relatedPlagiarismsMocklist,true);
@@ -1054,21 +1072,21 @@ public class SalvadorFragmentLevelEval {
 
     }
     @NotNull
-    private static Map<String, SalvadorTextFragment> mergeFragments(int THRESHOLD_1, Map<String, SalvadorTextFragment> fragmentInfos) {
+    private static Map<Long, SalvadorTextFragment> mergeFragments(int THRESHOLD_1, Map<Long, SalvadorTextFragment> fragmentInfos) {
         // Merge the 5 fragments with each other if they are near in distance (THRESHOLD_1)
         boolean convergent = false;
         int convergenceIndex=0;
         while (!convergent){
             boolean mergeHappened = false;
-            Map<String, SalvadorTextFragment> newFragmentInfos = new ArrayMap<>(fragmentInfos);
+            Map<Long, SalvadorTextFragment> newFragmentInfos = new ArrayMap<>(fragmentInfos);
 
 
             int outerIndex = 0;
-            for(String fragmentIDSelected1: fragmentInfos.keySet()){
+            for(Long fragmentIDSelected1: fragmentInfos.keySet()){
                 SalvadorTextFragment fragment1 = fragmentInfos.get(fragmentIDSelected1);
 
                 int innerIndex = 0;
-                for(String fragmentIDSelected2: fragmentInfos.keySet()){
+                for(Long fragmentIDSelected2: fragmentInfos.keySet()){
                     // Only compare same IDs once
                     if(innerIndex<=outerIndex){
                         innerIndex++;
@@ -1079,7 +1097,8 @@ public class SalvadorFragmentLevelEval {
                     double distance = calculateDistanceFragments(fragment1, fragment2);
                     if(distance < THRESHOLD_1){
                         //System.out.println("Merge fragments");
-                        String mergeFragmentID = "merge"+outerIndex+"_"+innerIndex+"_"+convergenceIndex;
+                        //TODO Post RAM fix, is this dezimal offset ok ? it shouldn't reach values in are of fragments
+                        Long mergeFragmentID = (long) ((outerIndex * 100000) + (innerIndex * 1000) + convergenceIndex);
                         SalvadorTextFragment mergedFragment = mergeTextFragments(fragment1, fragment2, mergeFragmentID);
                         // Remove IDs from unmerged List
                         newFragmentInfos.remove(fragmentIDSelected1);
@@ -1103,7 +1122,7 @@ public class SalvadorFragmentLevelEval {
         return fragmentInfos;
     }
 
-    public static SalvadorTextFragment mergeTextFragments(SalvadorTextFragment fragment1, SalvadorTextFragment fragment2, String mergeFragmentID){
+    public static SalvadorTextFragment mergeTextFragments(SalvadorTextFragment fragment1, SalvadorTextFragment fragment2, Long mergeFragmentID){
 
         SalvadorTextFragment mergedFragment = new SalvadorTextFragment();
         mergedFragment.setMerged(true);
@@ -1199,11 +1218,11 @@ public class SalvadorFragmentLevelEval {
      * @param fragmentEntityMap
      * @return
      */
-    private static Map<String, List<String>>  getDocumentFragmentMap(Map<String, List<SavedEntity>> fragmentEntityMap) {
-        Map<String, List<String>> documentFragmentsMap = new ArrayMap<>();
-        for(String fragmentID: fragmentEntityMap.keySet()){
-            String baseName = PAN11RankingEvaluator.getBaseName(fragmentID,".txt");
-            List<String> fragmentIDs = documentFragmentsMap.get(baseName);
+    private static Map<Long, List<Long>>  getDocumentFragmentMap(Map<Long, List<SavedEntity>> fragmentEntityMap) {
+        Map<Long, List<Long>> documentFragmentsMap = new ArrayMap<>();
+        for(Long fragmentID: fragmentEntityMap.keySet()){
+            Long baseName = PAN11FileUtil.getBaseNumberFromLong(fragmentID);
+            List<Long> fragmentIDs = documentFragmentsMap.get(baseName);
             if(fragmentIDs == null){
                 fragmentIDs = new ArrayList<>();
                 fragmentIDs.add(fragmentID);
@@ -1348,10 +1367,10 @@ public class SalvadorFragmentLevelEval {
     }
 
 
-    private static Map<String, List<SavedEntity>> getPlagsizedFragments(OntologyBasedSimilarityAnalysis osa, List<File> inputFiles,
+    private static Map<Long, List<SavedEntity>> getPlagsizedFragments(OntologyBasedSimilarityAnalysis osa, List<File> inputFiles,
                                                                 HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation,
                                                                  boolean candOrSusp) throws Exception {
-        Map<String, List<SavedEntity>> entitiesMap = new HashMap<>();
+        Map<Long, List<SavedEntity>> entitiesMap = new HashMap<>();
         for (File currentFile: inputFiles) {
             List<SavedEntity> savedEntities = osa.preProcessExtendedInfo(currentFile.getPath(),null );
             Optional<Integer> maxpos = savedEntities.stream().map(SavedEntity::getToken).max(Comparator.comparing(Token::getSentenceNumber)).map(Token::getSentenceNumber);
@@ -1362,7 +1381,7 @@ public class SalvadorFragmentLevelEval {
                 int plagSuspEnd = candOrSusp ? (plagiarismInfo.getSourceOffset() + plagiarismInfo.getSourceLength()) : (plagiarismInfo.getThisOffset() + plagiarismInfo.getThisLength());
 
                 List<SavedEntity>  plagiarismInfoEntities = savedEntities.stream().filter(savedEntity -> isEntityRelatedToPlagiarism(savedEntity.getToken().getStartCharacter(),savedEntity.getToken().getEndCharacter(),plagSuspStart,plagSuspEnd)).collect(Collectors.toList());
-                String fragmentName = getFragmentName(currentFile, index, candOrSusp);
+                Long fragmentName = PAN11FileUtil.getFragmentNameAsLong(currentFile, index, candOrSusp);
                 entitiesMap.put(fragmentName,plagiarismInfoEntities);
                 index++;
             }
@@ -1370,9 +1389,9 @@ public class SalvadorFragmentLevelEval {
         return entitiesMap;
     }
 
-    private static Map<String, List<SavedEntity>> getFragments(OntologyBasedSimilarityAnalysis osa, List<File> inputFiles,
-                                                                                                         int FRAGMENT_SENTENCES, int FRAGMENT_INCREMENT, boolean filterByResults, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, boolean candOrSusp) throws Exception {
-        Map<String, List<SavedEntity>> entitiesMap = new HashMap<>();
+    private static Map<Long, List<SavedEntity>> getFragments(OntologyBasedSimilarityAnalysis osa, List<File> inputFiles, int FRAGMENT_SENTENCES, int FRAGMENT_INCREMENT, boolean filterByResults, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, boolean candOrSusp) throws Exception {
+        Map<Long, List<SavedEntity>> entitiesMap = new HashMap<>();
+        int maxindex = 0;
         for (File currentFile: inputFiles) {
             List<SavedEntity> candidateSavedEntities = osa.preProcessExtendedInfo(currentFile.getPath(),null );
             Optional<Integer> maxpos = candidateSavedEntities.stream().map(SavedEntity::getToken).max(Comparator.comparing(Token::getSentenceNumber)).map(Token::getSentenceNumber);
@@ -1411,17 +1430,18 @@ public class SalvadorFragmentLevelEval {
                 }
                 //if(fragmentEntities.size() > 0 ){
                 // For evaluation reasons also zero entity fragments have to be added.
-                String fragmentName = getFragmentName(currentFile, index, candOrSusp);
+                Long fragmentName = PAN11FileUtil.getFragmentNameAsLong(currentFile, index, candOrSusp);
                 //SalvadorTextFragment fragment = createTextFragment(fragmentEntities, fragmentName);
 
                 entitiesMap.put(fragmentName,fragmentEntities);
                 //}
                 index++;
             }
+            maxindex = max(index, maxindex);
         }
+        System.out.println("Maxindex:"+ maxindex);
         return entitiesMap;
     }
-
 
     @NotNull
     private static String getFragmentName(File candidateFile, int index, boolean candOrSusp) {

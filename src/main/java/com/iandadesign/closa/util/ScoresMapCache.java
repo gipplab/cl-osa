@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class ScoresMapCache {
 
-    public void serializeScoresMap(String filekey, Map<String, Map<String, Double>> scoresMap) throws IOException {
+    public void serializeScoresMap(String filekey, Map<Long, Map<Long, Double>> scoresMap) throws IOException {
         // Serialization
         FileOutputStream fileOutputStream = new FileOutputStream(filekey);
         ObjectOutputStream objectOutputStream  = new ObjectOutputStream(fileOutputStream);
@@ -13,14 +13,14 @@ public class ScoresMapCache {
         objectOutputStream.flush();
         objectOutputStream.close();
     }
-    public Map<String, Map<String, Double>> deserializeScoresMap(String filekey) throws IOException, ClassNotFoundException {
+    public Map<Long, Map<Long, Double>> deserializeScoresMap(String filekey) throws IOException, ClassNotFoundException {
         File tempFile = new File(filekey);
         boolean exists = tempFile.exists();
         if(!exists) return null;
 
         FileInputStream fileInputStream = new FileInputStream(filekey);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-        Map<String, Map<String, Double>>  scoresMapDes = (Map<String, Map<String, Double>>) objectInputStream.readObject();
+        Map<Long, Map<Long, Double>>  scoresMapDes = (Map<Long, Map<Long, Double>>) objectInputStream.readObject();
         objectInputStream.close();
         fileInputStream.close();
         return scoresMapDes;

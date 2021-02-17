@@ -22,14 +22,14 @@ public class SalvadorAnalysisParameters {
     public static String PREFILTER = "NONE";                      // Filters evaluation to subset, default "NONE"
                                                                   // others: "onlyManualTranslation", "onlyAutomaticTranslation"
                                                                   // others: "onlyMediumCases", "onlyShortCases", "onlyLongCases"
-    public static int FRAGMENT_SENTENCES = 5; //5;               // In Sentences
-    public static int FRAGMENT_INCREMENT = 2; //2;                // In Sentences
-    public static boolean GET_PLAGSIZED_FRAGMENTS = true;         // Get fragments exactly the plagiarism size
+    public static int FRAGMENT_SENTENCES = 14; //5;               // In Sentences
+    public static int FRAGMENT_INCREMENT = 7; //2;                // In Sentences
+    public static boolean GET_PLAGSIZED_FRAGMENTS = false;         // Get fragments exactly the plagiarism size
 
     // Clustering
     public static boolean CLUSTER_MULTIPLE_SUSP_FINDINGS = true; // This gets <TOPMOST> values * number related fragments for each susp case, then clusters them, if false, <TOPMOST> cases per related fragment are fetched and clustered fragment by fragment.
-    public static int THRESH1 = 800;                             // Fragment distance merging thresh
-    public static double THRESH2 =  8; //0.686;      //0.086;    // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
+    public static int THRESH1 = 2000;                             // Fragment distance merging thresh
+    public static double THRESH2 =  6; //0.686;      //0.086;    // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
     public static double PRESELECTION_THRESH = 0.0;               // From the topmost candidates only the ones above this thresh get considered for merge
     public static int TOPMOST = 5;                                // topmost fetched suspicious for one plagiarism node
     // Clustering - Fragment Merge

@@ -143,4 +143,45 @@ public class PAN11FileUtil {
 
 
     }
+
+    public static String getFilenameFromLongId(Long longId, String ending, boolean candOrSusp){
+        String finalName = "";
+        String longAsString = longId.toString();
+        if(candOrSusp)
+        {
+            finalName += "source-document";
+        }else{
+            finalName += "suspicious-document";
+        }
+        // finalName += longAsString.substring(2,8);
+         finalName += String.format("0%04d", longId);
+
+        finalName += ending;
+
+        return finalName;
+    }
+
+    public static Long getBaseNumberFromLong(Long fragmentID){
+        //cand "10NNNNNN00IIIIII"
+        //susp "20NNNNNN00"
+
+        Long returnVal = Long.valueOf(fragmentID.toString().substring(2,8));
+        return returnVal;
+    }
+
+    public static Long getFragmentNameAsLong(File candidateFile, int index, boolean candOrSusp){
+        String finalNameAsString = "";
+        if(candOrSusp){
+            finalNameAsString +="1";
+        }else{
+            finalNameAsString +="2";
+        }
+        finalNameAsString += "0";
+
+        finalNameAsString += String.format("0%05d", getSourceIdOfFile(candidateFile));
+        finalNameAsString += "00";
+        finalNameAsString += String.format("0%06d", index);
+        Long finalRet = Long.valueOf(finalNameAsString);
+        return  finalRet;
+    }
 }

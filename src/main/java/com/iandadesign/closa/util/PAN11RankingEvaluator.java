@@ -101,6 +101,7 @@ public class PAN11RankingEvaluator {
             return fragmentID.split("~")[0];
         }
     }
+
     public static int getSuspPlagiarismAreaSize(List<PAN11PlagiarismInfo> plagiarismInfos){
         int areaSizeAcc = 0;
         for(PAN11PlagiarismInfo plagiarismInfo:plagiarismInfos){
@@ -506,7 +507,7 @@ public class PAN11RankingEvaluator {
         return Stream.of(entry);
     }
 
-    private static double getRecallAtKForPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k) {
+    private static double getRecallAtKForPlagsize(Map<Long, Map<Long, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, List<File> suspiciousFiles, Map<Long, List<SavedEntity>> candidateEntitiesMap, Map<Long, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, ExtendedLogUtil logUtil, int k) {
         // Found character counts.
 
         int maxK = candidateEntitiesMap.size();
@@ -555,33 +556,34 @@ public class PAN11RankingEvaluator {
         return recallAtK;
     }
 
-    private static long getFindingsAtKForPlagsize(Map<String, Map<String, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesMap, Map<String, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, int k) {
+    private static long getFindingsAtKForPlagsize(Map<Long, Map<Long, Double>> suspiciousIdCandidateScoresMap, int minsizeFragments, List<File> suspiciousFiles, Map<Long, List<SavedEntity>> candidateEntitiesMap, Map<Long, List<SavedEntity>> suspiciousEntitiesMap, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, int k) {
         long findingsAtK = 0;
         for(File suspiciousFile: suspiciousFiles) {
             String key = suspiciousFile.getName();
-            Map<String, List<SavedEntity>> suspiciousEntitiesForFile = suspiciousEntitiesMap.entrySet().stream().filter(stringListEntry -> getBaseName(stringListEntry.getKey(),".txt").equals(key)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+            Map<Long, List<SavedEntity>> suspiciousEntitiesForFile = suspiciousEntitiesMap.entrySet().stream().filter(stringListEntry -> PAN11FileUtil.getFilenameFromLongId(stringListEntry.getKey(),".txt", false).equals(key)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
             // List<PAN11PlagiarismInfo> relatedPlagiarism = plagiarismInformation.get(key.replace(".txt",".xml"));
 
 
-            for (String suspiciousFragmentID : suspiciousEntitiesForFile.keySet()) {
+            for (Long suspiciousFragmentID : suspiciousEntitiesForFile.keySet()) {
                 List<SavedEntity> suspiciousEntities = suspiciousEntitiesMap.get(suspiciousFragmentID);
                 SalvadorTextFragment currentSuspFragment = createTextFragment(suspiciousEntities, suspiciousFragmentID);
-                String baseSuspFileName = getBaseName(suspiciousFragmentID, ".xml");
+                String baseSuspFileName = PAN11FileUtil.getFilenameFromLongId(suspiciousFragmentID, ".xml",false);
+
                 List<PAN11PlagiarismInfo> relatedPlagiarism = getPlagiarismCasesRelatedToSuspFragment(currentSuspFragment, suspiciousEntities, plagiarismInformation.get(baseSuspFileName));
 
                 if(suspiciousIdCandidateScoresMap.get(suspiciousFragmentID)==null){
                     continue;
                 }
                 // Getting the first k candidates in the ranking
-                Map<String, Double> selectedCandidates = suspiciousIdCandidateScoresMap.get(suspiciousFragmentID);
-                Map<String, Double> candidateScoresMapSorted = selectedCandidates
+                Map<Long, Double> selectedCandidates = suspiciousIdCandidateScoresMap.get(suspiciousFragmentID);
+                Map<Long, Double> candidateScoresMapSorted = selectedCandidates
                         .entrySet().stream()
                         .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                         .limit(k)
                         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
-                for (String candidateFragmentID : candidateScoresMapSorted.keySet()) {
-                    String baseCandFileName = getBaseName(candidateFragmentID, ".txt").replace("candidate", "source");
+                for (Long candidateFragmentID : candidateScoresMapSorted.keySet()) {
+                    String baseCandFileName = PAN11FileUtil.getFilenameFromLongId(candidateFragmentID, ".txt",true).replace("candidate", "source");
                     // perfomance: if the no current plagiarism points to candidate this can be skipped (or filter plagiarism again by candidates here!)
                     List<SavedEntity> candidateEntites = candidateEntitiesMap.get(candidateFragmentID);
 
@@ -828,7 +830,7 @@ public class PAN11RankingEvaluator {
         logUtil.logAndWriteStandard(false, "Standard Recall at ", k, " is: ", recallAtK, "Findings/PossibleFindings (",overallFindings,"/", overallPossibleFindings,")");
         return recallAtK;
     }
-    public static SalvadorTextFragment createTextFragment(List<SavedEntity> savedEntities, String fragmentName){
+    public static SalvadorTextFragment createTextFragment(List<SavedEntity> savedEntities, Long fragmentName){
 
         SalvadorTextFragment currentFragment = new SalvadorTextFragment();
         currentFragment.setFragmentID(fragmentName);
