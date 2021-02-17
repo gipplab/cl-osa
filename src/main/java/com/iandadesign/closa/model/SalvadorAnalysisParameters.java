@@ -9,7 +9,7 @@ public class SalvadorAnalysisParameters {
     // Dataset settings
     public static boolean DO_FILE_PREFILTERING = true;            // Only take a limited amount of suspicious files
     public static int SUSP_FILE_LIMIT = 1;                        // Only take XX supicicious files with all candidates
-    public static int SUSP_FILE_SELECTION_OFFSET = 195;             // Offset selection, default 0
+    public static int SUSP_FILE_SELECTION_OFFSET = 200;             // Offset selection, default 0
     public static boolean SORT_SUSPICIOUS_FILES_BY_SIZE = true;     // Sort suspicious files by size, biggest first (DANGER: messes up old keys)
 
     // Basic score calculation
@@ -46,7 +46,7 @@ public class SalvadorAnalysisParameters {
     // Experimental Features (Features in Development)
     public static boolean DO_STATISTICAL_WEIGHTING = false;     // weighting all found entities by tf/idf
     public static int WEIGHTING_SCHEME = 1;                     // See Wikipedia "Recommended Weighting Schemes: https://en.wikipedia.org/wiki/Tf%E2%80%93idf
-    public static boolean DO_SCORES_MAP_CACHING = true;         // Cache scoresmap on base of parameters
+    public static boolean DO_SCORES_MAP_CACHING = false;         // Cache scoresmap on base of parameters
     public static boolean DO_RELATIVE_SCORING_R_AT_K = false;   // default: false, relative scoring (how many characters of the found set are plagiarism, compared to the fetched chars)
     public static int MIN_FRAGMENT_SIZE_R_AT_K = 0;             // default: 0, minimum plagiarism size in chars, that a fragment counts
     public static boolean DISMISS_OVERLAPS_IN_R_AT_K = true;   // default: true, though much hardware, calculates r@k for actual detected plagsize and not overlapping area.

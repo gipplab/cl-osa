@@ -28,7 +28,10 @@ public class DictionaryLong<T> {
 
     public DictionaryLong(Map<Long, List<T>> documentIdTokensMap) {
         terms = new HashSet<>();
+        System.out.println("RAM-Creating dictionary");
         dictionary = createDictionary(documentIdTokensMap);
+        System.out.println("RAM-Created dictionary");
+
     }
 
     /**
@@ -126,6 +129,8 @@ public class DictionaryLong<T> {
      */
     public Map<Long, Float> query(final List<T> queryTerms, boolean absoluteScoring, boolean doStatsweighting) {
         // TF/IDF etc query terms are list of wikidata entities, calculate the corresponding weights before, get them here
+        // TODO RAM is this really ok ?
+
         if (queryTerms.isEmpty()) {
             return new HashMap<>();
         }
@@ -156,10 +161,6 @@ public class DictionaryLong<T> {
             });
         });
         UnivariateFunction weighting = booleanWeighing;
-
-        if(doStatsweighting){
-            weighting = unchangedWeighting;
-        }
 
         // 1.2 map sendQuery to sendQuery vector (vector has dimension of terms)
         SparseRealVector queryVector = new OpenMapRealVector(dimension);
@@ -229,6 +230,7 @@ public class DictionaryLong<T> {
             documentIdScoreMap.put(docId, (float) score);
         }
 
+        docIdVectorMap.clear();
         return documentIdScoreMap;
     }
 
