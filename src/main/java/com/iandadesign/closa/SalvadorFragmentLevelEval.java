@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import static com.iandadesign.closa.PAN11EvaluationSetEval.logParams;
 import static com.iandadesign.closa.model.SalvadorAnalysisParameters.CLUSTERING_PARAM_BY_CASELENGTH;
+import static com.iandadesign.closa.model.SalvadorAnalysisParameters.LANGUAGE;
 import static java.lang.Integer.max;
 import static java.lang.Integer.min;
 
@@ -248,9 +249,17 @@ public class SalvadorFragmentLevelEval {
 
         //List<File> suspiciousFilesChecking = sortByPlagiarismSizeSusp(suspiciousFiles,plagiarismInformation);
 
+        // Filter only representative Test Files
+        if(SalvadorAnalysisParameters.SELECT_REPRESENTATIVE_TEST_FILES){
+            suspiciousFiles = PAN11FileUtil.getRepresentativeDataset(logUtil, suspiciousFiles);
+            if(suspiciousFiles==null){
+                return;
+            }
 
-        System.out.println("My First SuspFile: "+ suspiciousFiles.get(0).toString());
-        System.out.println("Suspfile Count: "+ suspiciousFiles.size());
+        }
+
+        System.out.println("My First Suspicious-File: "+ suspiciousFiles.get(0).toString());
+        System.out.println("Suspicious Files Count: "+ suspiciousFiles.size());
 
         // Presteps for PAN11 Evaluation remove caching directory (if there is one)
         String xmlResultsFolderPath = SalvadorPAN11XMLwriter.getXMLresultsFolderPath(tag, logUtil.getDateString(), preprocessedCachingDir);
@@ -259,6 +268,9 @@ public class SalvadorFragmentLevelEval {
         logUtil.logAndWriteStandard(true,"Caching dir start:", cachingDir.getPath());
 
         Map<String, Map<String, SalvadorStatisticsInfo>> allStatistics = new HashMap<>();
+
+
+
 
         // Filter plagiarism information by cases, obfuscation etc... if this is set.
         if(!SalvadorAnalysisParameters.PREFILTER.equals("NONE")){

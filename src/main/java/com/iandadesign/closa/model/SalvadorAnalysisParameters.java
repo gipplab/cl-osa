@@ -8,12 +8,14 @@ import java.lang.reflect.Field;
 public class SalvadorAnalysisParameters {
     // Dataset settings
     public static boolean DO_FILE_PREFILTERING = true;            // Only take a limited amount of suspicious files
-    public static int SUSP_FILE_LIMIT = 1;                        // Only take XX supicicious files with all candidates
-    public static int SUSP_FILE_SELECTION_OFFSET = 195;             // Offset selection, default 0
+    public static int SUSP_FILE_LIMIT = 304;                        // Only take XX supicicious files with all candidates 304 max (ES), 251 max (DE)
+    public static int SUSP_FILE_SELECTION_OFFSET = 0;             // Offset selection, default 0
     public static boolean SORT_SUSPICIOUS_FILES_BY_SIZE = true;     // Sort suspicious files by size, biggest first (DANGER: messes up old keys)
+    public static boolean SELECT_REPRESENTATIVE_TEST_FILES = true;                 // selects specific testfiles, default: false
+
 
     // Basic score calculation
-    public static boolean USE_ABSOLUTE_SCORES = true;            // If false: use default normalized cosine-score for each (only with Enhanched->False)
+    public static boolean USE_ABSOLUTE_SCORES = false;            // If false: use default normalized cosine-score for each (only with Enhanched->False)
     public static final boolean USE_ENHANCHED_COSINE_ANALYSIS= false;     // if enhanched taxomony
 
 
@@ -22,14 +24,14 @@ public class SalvadorAnalysisParameters {
     public static String PREFILTER = "NONE";                      // Filters evaluation to subset, default "NONE"
                                                                   // others: "onlyManualTranslation", "onlyAutomaticTranslation"
                                                                   // others: "onlyMediumCases", "onlyShortCases", "onlyLongCases"
-    public static int FRAGMENT_SENTENCES = 5; //5;               // In Sentences
-    public static int FRAGMENT_INCREMENT = 2; //2;                // In Sentences
-    public static boolean GET_PLAGSIZED_FRAGMENTS = true;         // Get fragments exactly the plagiarism size
+    public static int FRAGMENT_SENTENCES = 6; //5;               // In Sentences
+    public static int FRAGMENT_INCREMENT = 3; //2;                // In Sentences
+    public static boolean GET_PLAGSIZED_FRAGMENTS = false;         // Get fragments exactly the plagiarism size
 
     // Clustering
     public static boolean CLUSTER_MULTIPLE_SUSP_FINDINGS = true; // This gets <TOPMOST> values * number related fragments for each susp case, then clusters them, if false, <TOPMOST> cases per related fragment are fetched and clustered fragment by fragment.
     public static int THRESH1 = 800;                             // Fragment distance merging thresh
-    public static double THRESH2 =  8; //0.686;      //0.086;    // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
+    public static double THRESH2 =  0.686; //0.686;      //0.086;    // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
     public static double PRESELECTION_THRESH = 0.0;               // From the topmost candidates only the ones above this thresh get considered for merge
     public static int TOPMOST = 5;                                // topmost fetched suspicious for one plagiarism node
     // Clustering - Fragment Merge
@@ -54,7 +56,7 @@ public class SalvadorAnalysisParameters {
 
     // Perfomance
     public static boolean DO_BATCHED_PROCESSING = true;         // if false calculates scoresmap and pan11 for all files at once, if not sequential
-    public static int BATCHED_OFFSET_INCREMENT = 5;         // If DO_SEQUENTIAL_CALCULATION is true, do batches of maximum size 20 suspicious files
+    public static int BATCHED_OFFSET_INCREMENT = 1;         // If DO_SEQUENTIAL_CALCULATION is true, do batches of maximum size 20 suspicious files
 
     public static void printSalvadorMembers(ExtendedLogUtil logUtil) throws IllegalAccessException {
         logUtil.logAndWriteStandard(false, "Settings for Salvador Evaluation:---------------------");
