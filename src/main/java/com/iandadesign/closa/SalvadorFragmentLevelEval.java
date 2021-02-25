@@ -10,8 +10,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.iandadesign.closa.PAN11EvaluationSetEval.logParams;
-import static com.iandadesign.closa.model.SalvadorAnalysisParameters.CLUSTERING_PARAM_BY_CASELENGTH;
-import static com.iandadesign.closa.model.SalvadorAnalysisParameters.LANGUAGE;
+import static com.iandadesign.closa.model.SalvadorAnalysisParameters.*;
 import static java.lang.Integer.max;
 import static java.lang.Integer.min;
 
@@ -250,9 +249,10 @@ public class SalvadorFragmentLevelEval {
         //List<File> suspiciousFilesChecking = sortByPlagiarismSizeSusp(suspiciousFiles,plagiarismInformation);
 
         // Filter only representative Test Files
+        List<File> suspiciousFilesRepresentative = new ArrayList<>();
         if(SalvadorAnalysisParameters.SELECT_REPRESENTATIVE_TEST_FILES){
-            suspiciousFiles = PAN11FileUtil.getRepresentativeDataset(logUtil, suspiciousFiles);
-            if(suspiciousFiles==null){
+            suspiciousFilesRepresentative = PAN11FileUtil.getRepresentativeDataset(logUtil, suspiciousFiles);
+            if(suspiciousFilesRepresentative==null){
                 return;
             }
 
@@ -306,6 +306,13 @@ public class SalvadorFragmentLevelEval {
                 if(maxBatchIndex < batchIndex) break;
                 int overallIndex = SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET + batchIndex;
                 List<File> currentSuspiciousFiles = suspiciousFiles.subList(batchIndex,maxBatchIndex);
+                if(SELECT_REPRESENTATIVE_TEST_FILES){
+                    // Just skipping non-representative files if filter is on, for the sake of keeping caching this is implemented that way
+                    if(!suspiciousFilesRepresentative.contains(currentSuspiciousFiles.get(0))){
+                        batchCounter++;
+                        continue;
+                    }
+                }
                 logUtil.logAndWriteStandard(true,"BATCHED_PROCESSING:", "Doing batch from " + overallIndex + " to " + (overallIndex+currentSuspiciousFiles.size()));
 
                 // Actual scores calculation
@@ -578,12 +585,13 @@ public class SalvadorFragmentLevelEval {
         Map<String, Map<String, Map<SalvadorTextFragment, SalvadorTextFragment>>> allResults = new HashMap<>();
 
         logUtil.logAndWriteStandard(false, "Doing Detailed Analysis...");
-        suspDocFragmentMap.keySet().parallelStream().forEach(suspiciousDocument -> {
+        // Since suspDocFragmentMap is usually One
+        suspDocFragmentMap.keySet().stream().forEach(suspiciousDocument -> {
             Map<String, Map<SalvadorTextFragment, SalvadorTextFragment>> supFilePlagiarism = new HashMap<>();
             Map<String, SalvadorStatisticsInfo> suspDocumentStats = new HashMap<>();
             List<PAN11PlagiarismInfo> relatedPlagiarismInfo = plagiarismInformation.get(suspiciousDocument.replace(".txt", ".xml"));
 
-            for(String candidateDocument:candDocFragmentMap.keySet()){
+            candDocFragmentMap.keySet().parallelStream().forEach(candidateDocument -> {
                 List<PAN11PlagiarismInfo> relatedPlagiarismInfoCandFiltered = relatedPlagiarismInfo.stream().filter( value -> {
                         return value.getSourceReference().equals(candidateDocument.replace("candidate-", "source-"));
                     }).collect(Collectors.toList());
@@ -640,7 +648,7 @@ public class SalvadorFragmentLevelEval {
                     // Note results to
 
                 }
-            }
+            });
 
             allResults.put(suspiciousDocument, supFilePlagiarism);
             if(SalvadorAnalysisParameters.DO_ANALYSIS){
