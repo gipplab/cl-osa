@@ -31,13 +31,12 @@ public class SalvadorAnalysisParameters {
     // Clustering
     public static boolean CLUSTER_MULTIPLE_SUSP_FINDINGS = true; // This gets <TOPMOST> values * number related fragments for each susp case, then clusters them, if false, <TOPMOST> cases per related fragment are fetched and clustered fragment by fragment.
     public static int THRESH1 = 800;                             // Fragment distance merging thresh
-    public static double THRESH2 =  0.686; //0.686;      //0.086;    // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
+    public static double THRESH2 =  0.38; //0.686;      //0.086;    // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
     public static double PRESELECTION_THRESH = 0.0;               // From the topmost candidates only the ones above this thresh get considered for merge
     public static int TOPMOST = 5;                                // topmost fetched suspicious for one plagiarism node
     // Clustering - Fragment Merge
     public static String FRAGMENT_MERGE_MODE = "simpleAdd";        // "weightedAdd", "weightedAverage", "simpleAdd", "keepingMax"
     public static double WEIGHTED_ADD_CONSTANT = 0.3;             // The more, the higher scores have weightedAdd merged fragments
-    public static boolean CLUSTERING_PARAM_BY_CASELENGTH = true;    // Experimental clustering feature, overwrites threshs, look in code for threshs
     // Analysis & MISC Parameters
     public static boolean CALCULATE_RECALL_AT_K = false;              // Calculate Recall At K by own implementation
     public static boolean DO_ANALYSIS = true;                     // Do additional analysis steps (deactivate for perfomance)
@@ -53,6 +52,7 @@ public class SalvadorAnalysisParameters {
     public static int MIN_FRAGMENT_SIZE_R_AT_K = 0;             // default: 0, minimum plagiarism size in chars, that a fragment counts
     public static boolean DISMISS_OVERLAPS_IN_R_AT_K = true;   // default: true, though much hardware, calculates r@k for actual detected plagsize and not overlapping area.
     public static boolean LOWER_K_MAX_PLAG_CAP_R_AT_K = false;  // if for lower k's complete cases can't be fetched, cap plagiarism there
+    public static boolean CLUSTERING_PARAM_BY_CASELENGTH = false;    // default: false, Experimental clustering feature, overwrites threshs, look in code for threshs
 
     // Perfomance
     public static boolean DO_BATCHED_PROCESSING = true;         // if false calculates scoresmap and pan11 for all files at once, if not sequential
