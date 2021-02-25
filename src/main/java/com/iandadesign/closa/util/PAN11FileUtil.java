@@ -173,13 +173,17 @@ public class PAN11FileUtil {
             }
 
             List<File> newSuspiciousFiles = new ArrayList<>();
+            /*
             newSuspiciousFiles.add(suspiciousFiles.get(1));
             newSuspiciousFiles.add(suspiciousFiles.get(124));
             newSuspiciousFiles.add(suspiciousFiles.get(125));
             newSuspiciousFiles.add(suspiciousFiles.get(197));
             newSuspiciousFiles.add(suspiciousFiles.get(198));
+
+             */
             newSuspiciousFiles.add(suspiciousFiles.get(290));
             newSuspiciousFiles.add(suspiciousFiles.get(291));
+
             newSuspiciousFiles.add(suspiciousFiles.get(293));
             suspiciousFiles = newSuspiciousFiles;
 
@@ -192,6 +196,7 @@ public class PAN11FileUtil {
             }
             List<File> newSuspiciousFiles = new ArrayList<>();
             newSuspiciousFiles.add(suspiciousFiles.get(1));
+            newSuspiciousFiles.add(suspiciousFiles.get(70));
             newSuspiciousFiles.add(suspiciousFiles.get(90));
             newSuspiciousFiles.add(suspiciousFiles.get(91));
             newSuspiciousFiles.add(suspiciousFiles.get(170));

@@ -963,7 +963,7 @@ public class SalvadorFragmentLevelEval {
 
         }
         if(fragmentInfosSelected.size()!=candidatePlagiarismInfos.size()){
-            System.out.println("WARN (PLAGDET-SIZE): fragments selected are not same size as plagiarism infos!");
+            System.out.println("WARN (PLAGDET-SIZE): Found "+fragmentInfosSelected.size()+" Cases for "+candidatePlagiarismInfos.size()+" Case(s)");
         }
         SalvadorDetailedAnalysisResult myResult = new SalvadorDetailedAnalysisResult();
         myResult.resultMap = fragmentInfosSelected;
