@@ -1284,7 +1284,7 @@ public class OntologyBasedSimilarityAnalysis {
             boolean useAbsoluteScores,
             boolean statisticalWeighting
     ) {
-        final boolean showProgress = false;
+        final boolean showProgress = true;
         // create dictionary
         //logger.info("Create dictionary");
         Dictionary<String> dictionary = new Dictionary<>(candidateIdTokensMap);

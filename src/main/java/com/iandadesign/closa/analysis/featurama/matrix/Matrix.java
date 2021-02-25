@@ -161,22 +161,7 @@ public class Matrix {
     }
 
     public void append(Matrix newMatrix){
-        if(this.columnNames.isEmpty()){import pandas as pd
-import numpy as np
-import argparse
-from joblib import dump
-
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
-from sklearn.model_selection import GridSearchCV
-from sklearn.svm import SVC
-from sklearn.neighbors import KNeighborsClassifier
-
-class GridSearchTrainer:
-
+        if(this.columnNames.isEmpty()){
             this.columnNames = newMatrix.columnNames;
         }
         double[][] result = new double[this.getRowDimension() + newMatrix.getRowDimension()][];
