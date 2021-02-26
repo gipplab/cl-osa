@@ -1,43 +1,20 @@
 #!/bin/bash
+# find best THRESH1 with 6-3
+# find best mergemode + THRESH2 with 6-3
+# compare this with absolute scoring once
+# compare with other fragmentations 6-3 8-4? 10-5 14-7
+# maybe do de comparison check with best config
+# maybe do de
+
 
 # batchBaseName / USE_ABSOLUTE_SCORES / THRESH1 / THRESH2 / FRAGMENT_MERGE_MODE
 BATCH_BASE_NAME=batchTest
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 0.3  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 0.35 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 0.40 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 0.45 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 0.50 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 0.55 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 0.60 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 0.65 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 0.70 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 0.75 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 0.80 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 0.85 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 0.90 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 0.95 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 1.00 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 1.05 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 1.10 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 1.15 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 800 1.20 simpleAdd
-
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.3  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.35 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.40 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.45 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.50 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.55 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.60 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.65 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.70 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.75 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.80 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.85 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.90 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.95 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 1.00 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 1.05 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 1.10 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 1.15 simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 1.20 simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 1.15  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 1.20  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 1.25  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 1.30  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 1.35  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 1.40  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 1.50  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 1.55  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 1.60  simpleAdd
