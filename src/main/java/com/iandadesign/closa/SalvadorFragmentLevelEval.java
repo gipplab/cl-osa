@@ -943,7 +943,7 @@ public class SalvadorFragmentLevelEval {
                 for(String clusteredFragmentID: bestCandidateFragmentInfos.keySet()){
                     SalvadorTextFragment fragment = bestCandidateFragmentInfos.get(clusteredFragmentID);
                     int plagiarizedArea = getPlagiarismAreaAccumulated(fragment.getSentencesStartChar(), fragment.getSentencesEndChar(),relatedPlagiarismsMocklist,true);
-                    System.out.println("Area Covered: "+ plagiarizedArea+ " Plagiarism Size: "+relatedPlagiarism.getSourceLength()+" Fragment Size: "+fragment.getCharLengthBySentences());
+                    // System.out.println("Area Covered: "+ plagiarizedArea+ " Plagiarism Size: "+relatedPlagiarism.getSourceLength()+" Fragment Size: "+fragment.getCharLengthBySentences());
                     Map<SalvadorTextFragment, Integer> currentMap = fragmentInfosAll.get(suspiciousFragmentByPlagInfo);
                     if(currentMap==null){
                         currentMap = new ArrayMap<>();
