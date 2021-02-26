@@ -10,13 +10,14 @@
 
 # batchBaseName / USE_ABSOLUTE_SCORES / THRESH1 / THRESH2 / FRAGMENT_MERGE_MODE
 BATCH_BASE_NAME=batchTest
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 1.65  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 1.65  simpleAdd
+
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.05  keepingMax
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.08  keepingMax
 ./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.10  keepingMax
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.12  keepingMax
 ./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.20  keepingMax
 ./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.30  keepingMax
 ./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.40  keepingMax
 ./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.50  keepingMax
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.60  keepingMax
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.70  keepingMax
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.80  keepingMax
-
-
