@@ -26,12 +26,16 @@ public class SalvadorFragmentLevelEval {
         Integer maxMockSuspCandiates = 5000;          // This is a delimeter for the maximum of suspicious files locked in mockCR Evaluation, set over 304 to check all susp files.
 
         //evalPAN2011All();
+        if(args!=null && args.length >= 4){
+            USE_ABSOLUTE_SCORES = Boolean.valueOf(args[0]);
+            THRESH1 = Integer.valueOf(args[1]);
+            THRESH2 = Double.valueOf(args[2]);
+            FRAGMENT_MERGE_MODE = args[3];
 
-        if(args!=null && args.length >= 1){
-            evalPAN2011EnEs(args[0], smallTest, evaluateCandidateRetrieval, addCRResultInfo, maxMockSuspCandiates );
-        }else{
-            evalPAN2011EnEs(null, smallTest, evaluateCandidateRetrieval, addCRResultInfo, maxMockSuspCandiates );
         }
+
+        evalPAN2011EnEs(null, smallTest, evaluateCandidateRetrieval, addCRResultInfo, maxMockSuspCandiates );
+
     }
 
 
@@ -939,6 +943,7 @@ public class SalvadorFragmentLevelEval {
                 for(String clusteredFragmentID: bestCandidateFragmentInfos.keySet()){
                     SalvadorTextFragment fragment = bestCandidateFragmentInfos.get(clusteredFragmentID);
                     int plagiarizedArea = getPlagiarismAreaAccumulated(fragment.getSentencesStartChar(), fragment.getSentencesEndChar(),relatedPlagiarismsMocklist,true);
+                    System.out.println("Area Covered: "+ plagiarizedArea+ " Plagiarism Size: "+relatedPlagiarism.getSourceLength()+" Fragment Size: "+fragment.getCharLengthBySentences());
                     Map<SalvadorTextFragment, Integer> currentMap = fragmentInfosAll.get(suspiciousFragmentByPlagInfo);
                     if(currentMap==null){
                         currentMap = new ArrayMap<>();
@@ -951,7 +956,6 @@ public class SalvadorFragmentLevelEval {
                     SalvadorTextFragment fragment = fragmentInfosMerged.get(clusteredFragmentID);
 
                     int plagiarizedArea =  getPlagiarismAreaAccumulated(fragment.getSentencesStartChar(), fragment.getSentencesEndChar(),relatedPlagiarismsMocklist,true);
-
                     Map<SalvadorTextFragment, Integer> currentMap = fragmentInfosAllmerged.get(suspiciousFragmentByPlagInfo);
                     if(currentMap==null){
                         currentMap = new ArrayMap<>();
