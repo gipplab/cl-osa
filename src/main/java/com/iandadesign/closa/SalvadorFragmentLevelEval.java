@@ -7,6 +7,7 @@ import com.iandadesign.closa.analysis.featurama.observation.ObservationHolder;
 import com.iandadesign.closa.model.*;
 import com.iandadesign.closa.util.*;
 import edu.stanford.nlp.util.ArrayMap;
+import org.apache.commons.io.FilenameUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
@@ -331,8 +332,8 @@ public class SalvadorFragmentLevelEval {
                 DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy-HH:mm:ss");
 
                 String formattedDate = myDateObj.format(myFormatObj);
-                data.saveMatrixToFile("~/Documents/",  formattedDate + "dataMatrix.csv");
-                corr.saveMatrixToFile("~/Documents/",  formattedDate + "correlationMatrix.csv");
+                data.saveMatrixToFile("~/Documents/",  formattedDate + "dataMatrix");
+                corr.saveMatrixToFile("~/Documents/",  formattedDate + "correlationMatrix");
                 logUtil.logAndWriteStandard(false, "Saved data and correlation values.");
             } catch (IOException e) {
                 logUtil.logAndWriteError(false,"Error saving the correlation matrix!");
@@ -668,8 +669,8 @@ public class SalvadorFragmentLevelEval {
             corr.display();
             try {
 
-                data.saveMatrixToFile("~/Documents/", suspiciousDocument + "dataMatrix.csv");
-                corr.saveMatrixToFile("~/Documents/", suspiciousDocument + "correlationMatrix.csv");
+                data.saveMatrixToFile("~/Documents/", FilenameUtils.removeExtension(suspiciousDocument) + "dataMatrix");
+                corr.saveMatrixToFile("~/Documents/", FilenameUtils.removeExtension(suspiciousDocument) + "correlationMatrix");
                 logUtil.logAndWriteStandard(false, "Saved data and correlation values.");
             } catch (IOException e) {
                 logUtil.logAndWriteError(false,"Error saving the correlation matrix!");
@@ -978,16 +979,19 @@ public class SalvadorFragmentLevelEval {
                     logUtil.logAndWriteStandard(false, fragmentInfoMergedWeightedAverage.size());
                 }
                 else {
-                    for(String key : fragmentInfoMergedSimpleAdd.keySet()) {
+                    for(int i = 0; i < fragmentInfoMergedSimpleAdd.size(); i++) {
 
                         // TODO: features.put("isPlagiarismPercentage", candidatePlagiarismInfos.get(i).);
                         try {
                             LinkedHashMap<String, Object> features = new LinkedHashMap<>();
-                            features.put("isPlagiarism", returnPlagiarismValue(relatedPlagiarism, fragmentInfoMergedSimpleAdd.get(key)));
-                            features.put("simpleAdd", fragmentInfoMergedSimpleAdd.get(key).getComputedScore());
-                            features.put("keepingMax", fragmentInfoMergedKeepingMax.get(key).getComputedScore());
-                            features.put("weightedAdd", fragmentInfoMergedWeightedAdd.get(key).getComputedScore());
-                            features.put("weightedAverage", fragmentInfoMergedWeightedAverage.get(key).getComputedScore());
+                            features.put("isPlagiarismSimpleAdd", returnPlagiarismValue(relatedPlagiarism, (SalvadorTextFragment) fragmentInfoMergedSimpleAdd.values().toArray()[i]));
+                            features.put("simpleAdd", ((SalvadorTextFragment) fragmentInfoMergedSimpleAdd.values().toArray()[i]).getComputedScore());
+                            features.put("isPlagiarismKeepingMax", returnPlagiarismValue(relatedPlagiarism, (SalvadorTextFragment) fragmentInfoMergedKeepingMax.values().toArray()[i]));
+                            features.put("keepingMax", ((SalvadorTextFragment) fragmentInfoMergedKeepingMax.values().toArray()[i]).getComputedScore());
+                            features.put("isPlagiarismWeightedAdd", returnPlagiarismValue(relatedPlagiarism, (SalvadorTextFragment) fragmentInfoMergedWeightedAdd.values().toArray()[i]));
+                            features.put("weightedAdd", ((SalvadorTextFragment) fragmentInfoMergedWeightedAdd.values().toArray()[i]).getComputedScore());
+                            features.put("isPlagiarismWeightedAverage", returnPlagiarismValue(relatedPlagiarism, (SalvadorTextFragment) fragmentInfoMergedWeightedAverage.values().toArray()[i]));
+                            features.put("weightedAverage", ((SalvadorTextFragment) fragmentInfoMergedWeightedAverage.values().toArray()[i]).getComputedScore());
 
                             Observation obs = new Observation(features);
                             observationList.add(obs);
