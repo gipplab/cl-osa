@@ -379,7 +379,7 @@ public class OntologyBasedSimilarityAnalysis {
         if(!params.USE_ENHANCHED_COSINE_ANALYSIS) {
             suspiciousIdCandidateScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap, false,false);
         }else {
-            suspiciousIdCandidateScoresMap = performEnhancedCosineSimilarityAnalysisP(suspiciousIdTokensMap, candidateIdTokensMap);
+            suspiciousIdCandidateScoresMap = performEnhancedCosineSimilarityAnalysisP(suspiciousIdTokensMap, candidateIdTokensMap, logUtil);
         }
         //Map<String, Double> candidateScoresMap = performEnhancedCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
 
@@ -1511,9 +1511,10 @@ public class OntologyBasedSimilarityAnalysis {
 
     public Map<String, Map<String, Double>> performEnhancedCosineSimilarityAnalysisP(
             Map<String, List<String>> suspiciousIdTokensMap,
-            Map<String, List<String>> candidateIdTokensMap) {
+            Map<String, List<String>> candidateIdTokensMap,
+            ExtendedLogUtil logUtil) {
         Map<String, Map<String, Double>> suspiciousIdDetectedCandidateIdsMap = new HashMap<>();
-        System.out.println("call :  performEnhancedCosineSimilarityAnalysisP");
+        logUtil.logAndWriteStandard(false, "call :  performEnhancedCosineSimilarityAnalysisP");
 
         /*
         ProgressBar ontologyProgressBar = new ProgressBar("Enhancing vectors with ontology data",
@@ -1533,7 +1534,7 @@ public class OntologyBasedSimilarityAnalysis {
             //ontologyProgressBar.step();
         });
 
-        System.out.println("suspiciousIdTokenCountMap.size: "+ suspiciousIdTokenCountMap.size());
+        logUtil.logAndWriteStandard(false, "suspiciousIdTokenCountMap.size: "+ suspiciousIdTokenCountMap.size());
 
 
 
@@ -1545,7 +1546,7 @@ public class OntologyBasedSimilarityAnalysis {
             // ontologyProgressBar.step();
         });
 
-        System.out.println("candidateIdTokenCountMap.size: "+ candidateIdTokenCountMap.size());
+        logUtil.logAndWriteStandard(false,"candidateIdTokenCountMap.size: "+ candidateIdTokenCountMap.size());
 
         // ontologyProgressBar.stop();
 
