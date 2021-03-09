@@ -1558,14 +1558,16 @@ public class OntologyBasedSimilarityAnalysis {
         progressBar.start();
         */
         // iterate the suspicious documents
-
+        System.out.println("candidateIdTokenCountMap.size: "+ candidateIdTokenCountMap.size());
         suspiciousIdTokenCountMap.entrySet().parallelStream().forEach(((suspiciousEntry)-> {
             Map<String, Double> candidateSimilarities = new HashMap<>();
 
             for (Map.Entry<String, Map<String, Double>> candidateEntry : candidateIdTokenCountMap.entrySet()) {
 
                 double similarity = WikidataSimilarityUtil.cosineSimilarity(suspiciousEntry.getValue(), candidateEntry.getValue());
-
+                if(similarity>=0.0){
+                    System.out.println("Found similarity "+ similarity);
+                }
                 candidateSimilarities.put(candidateEntry.getKey(), similarity);
             }
 
