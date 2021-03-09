@@ -604,7 +604,6 @@ public class SalvadorFragmentLevelEval {
                         return value.getSourceReference().equals(candidateDocument.replace("candidate-", "source-"));
                     }).collect(Collectors.toList());
 
-
                 // Calculate DA-Clustering for current file combination.
                 SalvadorDetailedAnalysisResult daResult;
                 if(!SalvadorAnalysisParameters.CLUSTER_MULTIPLE_SUSP_FINDINGS){
@@ -909,10 +908,14 @@ public class SalvadorFragmentLevelEval {
                 }
                 // Get best scoring <RANKLIMIT> fragments
                 Map<String, Double> candidateScoresMapSelected = candidateScores.entrySet().stream()
+                        .filter(value -> !Double.isNaN(value.getValue()))
                         .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                         .limit(TOPMOST)
                         .filter(value -> value.getValue() >= THRESH_TOPMOST)
                         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+                if(candidateScoresMapSelected.size()!=0){
+                    System.out.println("halt");
+                }
                 for(String candidateFragmentID: candidateScoresMapSelected.keySet()){
                     SalvadorTextFragment fragmentToAdd =  PAN11RankingEvaluator.createTextFragment(candidateEntitiesFragment.get(candidateFragmentID),candidateFragmentID);
                     fragmentToAdd.setComputedScore(candidateScoresMapSelected.get(candidateFragmentID));
