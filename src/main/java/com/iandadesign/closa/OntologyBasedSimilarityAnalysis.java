@@ -1444,11 +1444,12 @@ public class OntologyBasedSimilarityAnalysis {
             Map<String, List<String>> candidateIdTokensMap) {
         Map<String, Map<String, Double>> suspiciousIdDetectedCandidateIdsMap = new HashMap<>();
 
+        /*
         ProgressBar ontologyProgressBar = new ProgressBar("Enhancing vectors with ontology data",
                 suspiciousIdTokensMap.size() + candidateIdTokensMap.size(),
                 ProgressBarStyle.ASCII);
         ontologyProgressBar.start();
-
+        */
         Map<String, Map<String, Double>> suspiciousIdTokenCountMap = new HashMap<>();
         Map<String, Map<String, Double>> candidateIdTokenCountMap = new HashMap<>();
 
@@ -1457,7 +1458,7 @@ public class OntologyBasedSimilarityAnalysis {
             List<String> tokens = suspiciousIdTokensMapEntry.getValue();
             Map<String, Double> countMap = getHierarchicalCountMap(tokens);
             suspiciousIdTokenCountMap.put(id, countMap);
-            ontologyProgressBar.step();
+            //ontologyProgressBar.step();
         }
 
         for (Map.Entry<String, List<String>> candidateIdTokensMapEntry : candidateIdTokensMap.entrySet()) {
@@ -1465,10 +1466,10 @@ public class OntologyBasedSimilarityAnalysis {
             List<String> tokens = candidateIdTokensMapEntry.getValue();
             Map<String, Double> countMap = getHierarchicalCountMap(tokens);
             candidateIdTokenCountMap.put(id, countMap);
-            ontologyProgressBar.step();
+            //ontologyProgressBar.step();
         }
 
-        ontologyProgressBar.stop();
+        // ontologyProgressBar.stop();
 
 
         // perform detailed analysis
@@ -1513,11 +1514,12 @@ public class OntologyBasedSimilarityAnalysis {
             Map<String, List<String>> candidateIdTokensMap) {
         Map<String, Map<String, Double>> suspiciousIdDetectedCandidateIdsMap = new HashMap<>();
 
+        /*
         ProgressBar ontologyProgressBar = new ProgressBar("Enhancing vectors with ontology data",
                 suspiciousIdTokensMap.size() + candidateIdTokensMap.size(),
                 ProgressBarStyle.ASCII);
         ontologyProgressBar.start();
-
+        */
         Map<String, Map<String, Double>> suspiciousIdTokenCountMap = new HashMap<>();
         Map<String, Map<String, Double>> candidateIdTokenCountMap = new HashMap<>();
 
@@ -1527,7 +1529,7 @@ public class OntologyBasedSimilarityAnalysis {
             List<String> tokens = suspiciousIdTokensMapEntry.getValue();
             Map<String, Double> countMap = getHierarchicalCountMap(tokens);
             suspiciousIdTokenCountMap.put(id, countMap);
-            ontologyProgressBar.step();
+            //ontologyProgressBar.step();
         });
 
 
@@ -1538,11 +1540,11 @@ public class OntologyBasedSimilarityAnalysis {
             List<String> tokens = candidateIdTokensMapEntry.getValue();
             Map<String, Double> countMap = getHierarchicalCountMap(tokens);
             candidateIdTokenCountMap.put(id, countMap);
-            ontologyProgressBar.step();
+            // ontologyProgressBar.step();
         });
 
 
-        ontologyProgressBar.stop();
+        // ontologyProgressBar.stop();
 
 
         // perform detailed analysis
