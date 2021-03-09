@@ -533,7 +533,11 @@ public class SalvadorFragmentLevelEval {
             }
         }else{
             logUtil.logAndWriteStandard(false, "SCORESMAP CACHING IS DEACTIVATED");
-            scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_STATISTICAL_WEIGHTING);
+            if(!USE_ENHANCHED_COSINE_ANALYSIS) {
+                scoresMap = osa.performCosineSimilarityAnalysis(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), SalvadorAnalysisParameters.USE_ABSOLUTE_SCORES, SalvadorAnalysisParameters.DO_STATISTICAL_WEIGHTING);
+            }else{
+                scoresMap = osa.performEnhancedCosineSimilarityAnalysisP(simplifyEntitiesMap(suspiciousEntitiesFragment), simplifyEntitiesMap(candidateEntitiesFragment), logUtil);
+            }
         }
 
         if(SalvadorAnalysisParameters.DO_REGRESSION_ANALYSIS){
