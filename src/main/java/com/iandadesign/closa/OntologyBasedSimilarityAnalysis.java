@@ -1514,7 +1514,7 @@ public class OntologyBasedSimilarityAnalysis {
             Map<String, List<String>> candidateIdTokensMap,
             ExtendedLogUtil logUtil) {
         Map<String, Map<String, Double>> suspiciousIdDetectedCandidateIdsMap = new HashMap<>();
-        logUtil.logAndWriteStandard(false, "call :  performEnhancedCosineSimilarityAnalysisP");
+        //logUtil.logAndWriteStandard(false, "call :  performEnhancedCosineSimilarityAnalysisP");
 
         /*
         ProgressBar ontologyProgressBar = new ProgressBar("Enhancing vectors with ontology data",
@@ -1534,7 +1534,7 @@ public class OntologyBasedSimilarityAnalysis {
             //ontologyProgressBar.step();
         });
 
-        logUtil.logAndWriteStandard(false, "suspiciousIdTokenCountMap.size: "+ suspiciousIdTokenCountMap.size());
+        //logUtil.logAndWriteStandard(false, "suspiciousIdTokenCountMap.size: "+ suspiciousIdTokenCountMap.size());
 
 
 
@@ -1546,13 +1546,12 @@ public class OntologyBasedSimilarityAnalysis {
             // ontologyProgressBar.step();
         });
 
-        logUtil.logAndWriteStandard(false,"candidateIdTokenCountMap.size: "+ candidateIdTokenCountMap.size());
+        //logUtil.logAndWriteStandard(false,"candidateIdTokenCountMap.size: "+ candidateIdTokenCountMap.size());
 
         // ontologyProgressBar.stop();
 
 
         // perform detailed analysis
-        logger.info("Perform detailed ENHANCHED analysis parallelized");
 
         // progress bar
         /*
@@ -1568,9 +1567,6 @@ public class OntologyBasedSimilarityAnalysis {
             for (Map.Entry<String, Map<String, Double>> candidateEntry : candidateIdTokenCountMap.entrySet()) {
 
                 double similarity = WikidataSimilarityUtil.cosineSimilarity(suspiciousEntry.getValue(), candidateEntry.getValue());
-                if(similarity>=0.0){
-                    System.out.println("Found similarity "+ similarity);
-                }
                 candidateSimilarities.put(candidateEntry.getKey(), similarity);
             }
 
