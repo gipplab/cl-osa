@@ -595,7 +595,7 @@ public class SalvadorFragmentLevelEval {
             Map<String, SalvadorStatisticsInfo> suspDocumentStats = new HashMap<>();
             List<PAN11PlagiarismInfo> relatedPlagiarismInfo = plagiarismInformation.get(suspiciousDocument.replace(".txt", ".xml"));
 
-            candDocFragmentMap.keySet().parallelStream().forEach(candidateDocument -> {
+            candDocFragmentMap.keySet().stream().forEach(candidateDocument -> {
                 List<PAN11PlagiarismInfo> relatedPlagiarismInfoCandFiltered = relatedPlagiarismInfo.stream().filter( value -> {
                         return value.getSourceReference().equals(candidateDocument.replace("candidate-", "source-"));
                     }).collect(Collectors.toList());
