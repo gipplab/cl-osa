@@ -1513,6 +1513,7 @@ public class OntologyBasedSimilarityAnalysis {
             Map<String, List<String>> suspiciousIdTokensMap,
             Map<String, List<String>> candidateIdTokensMap) {
         Map<String, Map<String, Double>> suspiciousIdDetectedCandidateIdsMap = new HashMap<>();
+        System.out.println("call :  performEnhancedCosineSimilarityAnalysisP");
 
         /*
         ProgressBar ontologyProgressBar = new ProgressBar("Enhancing vectors with ontology data",
@@ -1532,6 +1533,7 @@ public class OntologyBasedSimilarityAnalysis {
             //ontologyProgressBar.step();
         });
 
+        System.out.println("suspiciousIdTokenCountMap.size: "+ suspiciousIdTokenCountMap.size());
 
 
 
@@ -1543,6 +1545,7 @@ public class OntologyBasedSimilarityAnalysis {
             // ontologyProgressBar.step();
         });
 
+        System.out.println("candidateIdTokenCountMap.size: "+ candidateIdTokenCountMap.size());
 
         // ontologyProgressBar.stop();
 
@@ -1558,7 +1561,6 @@ public class OntologyBasedSimilarityAnalysis {
         progressBar.start();
         */
         // iterate the suspicious documents
-        System.out.println("candidateIdTokenCountMap.size: "+ candidateIdTokenCountMap.size());
         suspiciousIdTokenCountMap.entrySet().parallelStream().forEach(((suspiciousEntry)-> {
             Map<String, Double> candidateSimilarities = new HashMap<>();
 
