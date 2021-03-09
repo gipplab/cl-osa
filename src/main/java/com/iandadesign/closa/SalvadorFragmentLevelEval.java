@@ -913,9 +913,7 @@ public class SalvadorFragmentLevelEval {
                         .limit(TOPMOST)
                         .filter(value -> value.getValue() >= THRESH_TOPMOST)
                         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-                if(candidateScoresMapSelected.size()!=0){
-                    System.out.println("halt");
-                }
+
                 for(String candidateFragmentID: candidateScoresMapSelected.keySet()){
                     SalvadorTextFragment fragmentToAdd =  PAN11RankingEvaluator.createTextFragment(candidateEntitiesFragment.get(candidateFragmentID),candidateFragmentID);
                     fragmentToAdd.setComputedScore(candidateScoresMapSelected.get(candidateFragmentID));
