@@ -359,7 +359,7 @@ public class SalvadorFragmentLevelEval {
                 String caseLengthCand = plagiarismInfo.getCaseLengthSource();
                 if(!caseLengthSusp.equals(caseLengthCand)){
                     // TODO also filter caseLength in candidates???
-                    System.out.println("!caseLengthSusp.equals(caseLengthCand)");
+                    System.out.println("!caseLengthSusp.equals(caseLengthCand): "+caseLengthSusp + "/" + caseLengthCand);
                 }
                 if(caseLengthSusp.equals(caseLength)){
                     filteredPlaginfos.add(plagiarismInfo);
