@@ -880,17 +880,17 @@ public class SalvadorFragmentLevelEval {
                 String caseLengthSusp = relatedPlagiarism.getCaseLengthThis();
                 if(caseLengthSusp.equals(PAN11PlagiarismInfo.CaseLength.SHORT)){
                     TOPMOST = 5;
-                    THRESHOLD_2 = 3;
-                    THRESHOLD_1 = 800;
+                    THRESHOLD_2 = 0.2;
+                    THRESHOLD_1 = 1400;
 
                 }else if(caseLengthSusp.equals(PAN11PlagiarismInfo.CaseLength.MEDIUM)){
-                    TOPMOST = 7;
-                    THRESHOLD_2 = 10;
+                    TOPMOST = 5;
+                    THRESHOLD_2 = 0.45;
                     THRESHOLD_1 = 1400;
                 }else{
-                    TOPMOST = 10;
-                    THRESHOLD_2 = 10;
-                    THRESHOLD_1 = 2500;
+                    TOPMOST = 5;
+                    THRESHOLD_2 = 0.686;
+                    THRESHOLD_1 = 2400;
                 }
             }
 
