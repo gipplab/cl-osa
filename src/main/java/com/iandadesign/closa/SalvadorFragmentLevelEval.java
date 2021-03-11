@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 import static com.iandadesign.closa.PAN11EvaluationSetEval.logParams;
@@ -293,7 +294,19 @@ public class SalvadorFragmentLevelEval {
                 return;
             }
         }
-
+        int overallSize = 0;
+        for(List<PAN11PlagiarismInfo> plagiarismInfo:plagiarismInformation.values()){
+            int size = plagiarismInfo.size();
+            overallSize+=size;
+        }
+        //TODO check cases and read salvador
+        // All cases info: 2920
+        // Short cases info: 737
+        // Medium cases info: 1078
+        // Long cases info: 1105
+        // 737 + 1078 + 1105 = 2920
+        // Only Manual Translation: 227
+        // Only Automated Translation: 2693
 
 
         // Do the actual processing
@@ -381,7 +394,9 @@ public class SalvadorFragmentLevelEval {
                     filteredPlaginfos.add(plagiarismInfo);
                 }
             }
-            filteredPlagiarismInformation.put(fileID,filteredPlaginfos);
+            if(filteredPlaginfos.size()> 0){
+                filteredPlagiarismInformation.put(fileID,filteredPlaginfos);
+            }
         }
         return filteredPlagiarismInformation;
     }
@@ -396,7 +411,9 @@ public class SalvadorFragmentLevelEval {
                     filteredPlaginfos.add(plagiarismInfo);
                 }
             }
-            filteredPlagiarismInformation.put(fileID,filteredPlaginfos);
+            if(filteredPlaginfos.size()> 0){
+                filteredPlagiarismInformation.put(fileID,filteredPlaginfos);
+            }
         }
         return filteredPlagiarismInformation;
     }
@@ -593,16 +610,18 @@ public class SalvadorFragmentLevelEval {
         Map<String, Map<String, Map<SalvadorTextFragment, SalvadorTextFragment>>> allResults = new HashMap<>();
 
         logUtil.logAndWriteStandard(false, "Doing Detailed Analysis...");
+
+        AtomicLong allRelatedPlagiarismInfoCount = new AtomicLong();
         // Since suspDocFragmentMap is usually One
         suspDocFragmentMap.keySet().stream().forEach(suspiciousDocument -> {
             Map<String, Map<SalvadorTextFragment, SalvadorTextFragment>> supFilePlagiarism = new HashMap<>();
             Map<String, SalvadorStatisticsInfo> suspDocumentStats = new HashMap<>();
             List<PAN11PlagiarismInfo> relatedPlagiarismInfo = plagiarismInformation.get(suspiciousDocument.replace(".txt", ".xml"));
-
             candDocFragmentMap.keySet().stream().forEach(candidateDocument -> {
                 List<PAN11PlagiarismInfo> relatedPlagiarismInfoCandFiltered = relatedPlagiarismInfo.stream().filter( value -> {
                         return value.getSourceReference().equals(candidateDocument.replace("candidate-", "source-"));
                     }).collect(Collectors.toList());
+                allRelatedPlagiarismInfoCount.addAndGet(relatedPlagiarismInfoCandFiltered.size());
 
                 // Calculate DA-Clustering for current file combination.
                 SalvadorDetailedAnalysisResult daResult;
@@ -662,7 +681,7 @@ public class SalvadorFragmentLevelEval {
                 allStatistics.put(suspiciousDocument, suspDocumentStats);
             }
         });
-
+        System.out.println("Overall related plagiarism info: "+allRelatedPlagiarismInfoCount.get());
 
 
         // Write down all xml Results
