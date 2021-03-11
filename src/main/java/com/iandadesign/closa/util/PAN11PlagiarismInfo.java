@@ -11,6 +11,8 @@ package com.iandadesign.closa.util;
 public class PAN11PlagiarismInfo {
     String type;
     String obfuscation;
+    Boolean translation;
+    Boolean automatedObfuscation;
     Boolean manualObfuscation;
     String thisLanguage;
     int thisOffset;
