@@ -308,6 +308,12 @@ public class SalvadorFragmentLevelEval {
         // Only Manual Translation: 227
         // Only Automated Translation: 2693
 
+        // 288 to 290
+        // All cases 4
+        // Short cases:
+        // Medium Cases:
+        // Long cases:
+
 
         // Do the actual processing
         if(!SalvadorAnalysisParameters.DO_BATCHED_PROCESSING){
@@ -358,6 +364,18 @@ public class SalvadorFragmentLevelEval {
         PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath(), false, "NONE");
         logUtil.logAndWriteStandard(false, "Doing PAN-PC11 Evaluation WITH micro averaging...");
         PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath(), true, "NONE");
+        logUtil.logAndWriteStandard(false, "Doing PAN-PC11 Evaluation WITHOUT micro averaging: only SHORT CASES");
+        PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath(), false, "onlyShortCases");
+        logUtil.logAndWriteStandard(false, "Doing PAN-PC11 Evaluation WITHOUT micro averaging: only MEDIUM CASES");
+        PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath(), false, "onlyMediumCases");
+        logUtil.logAndWriteStandard(false, "Doing PAN-PC11 Evaluation WITHOUT micro averaging: only LONG CASES");
+        PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath(), false, "onlyLongCases");
+        logUtil.logAndWriteStandard(false, "Doing PAN-PC11 Evaluation WITHOUT micro averaging: only automated translation");
+        PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath(), false, "onlyAutomaticTranslation");
+        logUtil.logAndWriteStandard(false, "Doing PAN-PC11 Evaluation WITHOUT micro averaging: only automated translation");
+        PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath(), false, "onlyManualTranslation");
+
+
 
         PAN11FileUtil.removeDirectory(cachingDir);
 
