@@ -526,9 +526,9 @@ def main(micro_averaged, plag_path, plag_tag_name, det_path, det_tag_name, filte
     use_case_filter = False
     if filter_mode!='NONE':
         use_case_filter = True
-    cases = extract_annotations_from_files(plag_path, plag_tag_name, filter_mode, use_case_filter)
+    cases = extract_annotations_from_files(plag_path, plag_tag_name, filter_mode, False)
     print 'Reading', det_path
-    detections = extract_annotations_from_files(det_path, det_tag_name, filter_mode, False)
+    detections = extract_annotations_from_files(det_path, det_tag_name, filter_mode, use_case_filter)
     print 'Number of cases: ' + str(len(cases))
     print 'Number of detections: ' + str(len(detections))
     print 'Processing... (this may take a while)'
