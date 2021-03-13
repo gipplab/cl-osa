@@ -524,21 +524,35 @@ def main(micro_averaged, plag_path, plag_tag_name, det_path, det_tag_name, filte
     print 'Filter mode is: ' + filter_mode
     print 'Reading', plag_path
     use_case_filter = False
+    cases_filtered = {}
     if filter_mode!='NONE':
         use_case_filter = True
+        cases_filtered = extract_annotations_from_files(plag_path, plag_tag_name, filter_mode, True)
+
     cases = extract_annotations_from_files(plag_path, plag_tag_name, filter_mode, False)
+
     print 'Reading', det_path
     detections = extract_annotations_from_files(det_path, det_tag_name, filter_mode, use_case_filter)
+
     print 'Number of cases: ' + str(len(cases))
+    if use_case_filter:
+        print 'Number of cases(filtered): ' +  str(len(cases_filtered))
     print 'Number of detections: ' + str(len(detections))
     print 'Processing... (this may take a while)'
     rec, prec = 0, 0
     if micro_averaged:
         print 'OWN micro averaged is true'
         rec, prec = micro_avg_recall_and_precision(cases, detections)
+
     else:
         print 'OWN micro averaged is false'
         rec, prec = macro_avg_recall_and_precision(cases, detections)
+        print "prec1: "+str(prec)
+        if use_case_filter:
+            # overwrite precision values
+            recUN, prec = macro_avg_recall_and_precision(cases_filtered, detections)
+            print "prec2: "+str(prec)
+
     gran = granularity(cases, detections)
     print 'Plagdet Score', plagdet_score(rec, prec, gran)
     print 'Recall', rec
