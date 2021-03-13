@@ -269,7 +269,7 @@ public class SalvadorFragmentLevelEval {
         // Presteps for PAN11 Evaluation remove caching directory (if there is one)
         String xmlResultsFolderPath = SalvadorPAN11XMLwriter.getXMLresultsFolderPath(tag, logUtil.getDateString(), preprocessedCachingDir);
         File cachingDir= new File(xmlResultsFolderPath +"/file_selection_cache");
-        PAN11FileUtil.removeDirectory(cachingDir);
+        //PAN11FileUtil.removeDirectory(cachingDir);
         logUtil.logAndWriteStandard(true,"Caching dir start:", cachingDir.getPath());
 
         Map<String, Map<String, SalvadorStatisticsInfo>> allStatistics = new HashMap<>();
