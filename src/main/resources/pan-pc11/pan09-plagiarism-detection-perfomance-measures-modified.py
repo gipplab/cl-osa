@@ -533,6 +533,7 @@ def main(micro_averaged, plag_path, plag_tag_name, det_path, det_tag_name, filte
 
     print 'Reading', det_path
     detections = extract_annotations_from_files(det_path, det_tag_name, filter_mode, use_case_filter)
+    detections_unfiltered = extract_annotations_from_files(det_path, det_tag_name, filter_mode, False)
 
     print 'Number of cases: ' + str(len(cases))
     if use_case_filter:
@@ -550,7 +551,7 @@ def main(micro_averaged, plag_path, plag_tag_name, det_path, det_tag_name, filte
         print "prec1: "+str(prec)
         if use_case_filter:
             # overwrite precision values
-            recUN, prec = macro_avg_recall_and_precision(cases_filtered, detections)
+            recUN, prec = macro_avg_recall_and_precision(cases_filtered, detections_unfiltered)
             print "prec2: "+str(prec)
 
     gran = granularity(cases, detections)
