@@ -372,7 +372,7 @@ public class SalvadorFragmentLevelEval {
         PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath(), false, "onlyLongCases");
         logUtil.logAndWriteStandard(false, "Doing PAN-PC11 Evaluation WITHOUT micro averaging: only automated translation");
         PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath(), false, "onlyAutomaticTranslation");
-        logUtil.logAndWriteStandard(false, "Doing PAN-PC11 Evaluation WITHOUT micro averaging: only automated translation");
+        logUtil.logAndWriteStandard(false, "Doing PAN-PC11 Evaluation WITHOUT micro averaging: only manual translation");
         PAN11DetailedEvaluator.triggerPAN11PythonEvaluation(logUtil, xmlResultsFolderPath, cachingDir.getPath(), false, "onlyManualTranslation");
 
 
@@ -875,6 +875,10 @@ public class SalvadorFragmentLevelEval {
             suspiciousFragmentByPlagInfo.setSentencesStartChar(suspPlagiarismStart);
             suspiciousFragmentByPlagInfo.setSentencesEndChar(suspPlagiarismEnd);
             suspiciousFragmentByPlagInfo.setCharLengthBySentences(relatedPlagiarism.getThisLength());
+            if(relatedPlagiarism.getTranslation()){
+                suspiciousFragmentByPlagInfo.setTranslation(relatedPlagiarism.getTranslation());
+                suspiciousFragmentByPlagInfo.setManualTranslation(relatedPlagiarism.getManualObfuscation());
+            }
 
             List<SalvadorTextFragment> relatedFragments = new ArrayList<>();
             // Group up susp fragments in related plagiarism groups
@@ -996,7 +1000,17 @@ public class SalvadorFragmentLevelEval {
 
                 for(String clusteredFragmentID: fragmentInfosMerged.keySet()){
                     SalvadorTextFragment fragment = fragmentInfosMerged.get(clusteredFragmentID);
-
+                    /*
+                    if(relatedPlagiarism.getTranslation()){
+                        fragment.setTranslation(true);
+                        if(relatedPlagiarism.getManualObfuscation()){
+                            fragment.setManualTranslation(true);
+                        }
+                        if(relatedPlagiarism.getAutomatedObfuscation()){
+                            fragment.setAutomaticTranslation(true);
+                        }
+                    }
+                    */
                     int plagiarizedArea =  getPlagiarismAreaAccumulated(fragment.getSentencesStartChar(), fragment.getSentencesEndChar(),relatedPlagiarismsMocklist,true);
                     Map<SalvadorTextFragment, Integer> currentMap = fragmentInfosAllmerged.get(suspiciousFragmentByPlagInfo);
                     if(currentMap==null){

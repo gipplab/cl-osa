@@ -11,9 +11,9 @@ package com.iandadesign.closa.util;
 public class PAN11PlagiarismInfo {
     String type;
     String obfuscation;
-    Boolean translation;
-    Boolean automatedObfuscation;
-    Boolean manualObfuscation;
+    Boolean translation = false;
+    Boolean automatedObfuscation =false;
+    Boolean manualObfuscation = false;
     String thisLanguage;
     int thisOffset;
     int thisLength;
@@ -24,6 +24,13 @@ public class PAN11PlagiarismInfo {
     String caseLengthThis;
     String caseLengthSource;
 
+    public Boolean getTranslation() {
+        return translation;
+    }
+
+    public Boolean getAutomatedObfuscation() {
+        return automatedObfuscation;
+    }
     public String getType(){
         return type;
     }
