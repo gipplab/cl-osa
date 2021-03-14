@@ -9,7 +9,7 @@ public class SalvadorAnalysisParameters {
     // Dataset settings
     public static boolean DO_FILE_PREFILTERING = true;            // Only take a limited amount of suspicious files
     public static int SUSP_FILE_LIMIT = 0;                        // Only take XX supicicious files with all candidates
-    public static int SUSP_FILE_SELECTION_OFFSET = 324;             // Offset selection, default 0
+    public static int SUSP_FILE_SELECTION_OFFSET = 304;             // Offset selection, default 0
     public static boolean SORT_SUSPICIOUS_FILES_BY_SIZE = true;     // Sort suspicious files by size, biggest first (DANGER: messes up old keys)
 
     // Basic score calculation
@@ -22,8 +22,8 @@ public class SalvadorAnalysisParameters {
     public static String PREFILTER = "NONE";                      // Filters evaluation to subset, default "NONE"
                                                                   // others: "onlyManualTranslation", "onlyAutomaticTranslation"
                                                                   // others: "onlyMediumCases", "onlyShortCases", "onlyLongCases"
-    public static int FRAGMENT_SENTENCES = 20; //5;               // In Sentences
-    public static int FRAGMENT_INCREMENT = 10; //2;               // In Sentences
+    public static int FRAGMENT_SENTENCES = 14; //5;               // In Sentences
+    public static int FRAGMENT_INCREMENT = 7; //2;               // In Sentences
     public static boolean GET_PLAGSIZED_FRAGMENTS = true;         // Get fragments exactly the plagiarism size
 
     // Clustering
@@ -31,7 +31,7 @@ public class SalvadorAnalysisParameters {
     public static int THRESH1 = 2000;                             // Fragment distance merging thresh
     public static double THRESH2 =  9.0; //0.686;      //0.086;    // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
     public static double PRESELECTION_THRESH = 0.0;               // From the topmost candidates only the ones above this thresh get considered for merge
-    public static int TOPMOST = 13;                                // topmost fetched suspicious for one plagiarism node
+    public static int TOPMOST = 5;                                // topmost fetched suspicious for one plagiarism node
     // Clustering - Fragment Merge
     public static String FRAGMENT_MERGE_MODE = "simpleAdd";        // "weightedAdd", "weightedAverage", "simpleAdd", "keepingMax"
     public static double WEIGHTED_ADD_CONSTANT = 0.3;             // The more, the higher scores have weightedAdd merged fragments
@@ -40,7 +40,8 @@ public class SalvadorAnalysisParameters {
     public static boolean CALCULATE_RECALL_AT_K = false;              // Calculate Recall At K by own implementation
     public static boolean DO_ANALYSIS = true;                     // Do additional analysis steps (deactivate for perfomance)
     public static double ANALYSIS_RELEVANCE_THRESH = 0.1;         // Fragments have to have at least XX percent overlap with plagiarism to go as positivies
-    public static boolean DO_REGRESSION_ANALYSIS = false;
+    public static boolean DO_REGRESSION_ANALYSIS = true;
+    public static String SAVE_CSV_DIR = System.getProperty("user.home") + "/Documents";
     public static boolean ONLY_PLAGFILES_IN_STATS = false;        // only consider candidate files which actually contain plagiarism for statistics calculation.
 
     // Experimental Features (Features in Development)
@@ -54,7 +55,7 @@ public class SalvadorAnalysisParameters {
 
     // Perfomance
     public static boolean DO_BATCHED_PROCESSING = true;         // if false calculates scoresmap and pan11 for all files at once, if not sequential
-    public static int BATCHED_OFFSET_INCREMENT = 1;         // If DO_SEQUENTIAL_CALCULATION is true, do batches of maximum size 20 suspicious files
+    public static int BATCHED_OFFSET_INCREMENT = 20;         // If DO_SEQUENTIAL_CALCULATION is true, do batches of maximum size 20 suspicious files
 
     public static void printSalvadorMembers(ExtendedLogUtil logUtil) throws IllegalAccessException {
         logUtil.logAndWriteStandard(false, "Settings for Salvador Evaluation:---------------------");

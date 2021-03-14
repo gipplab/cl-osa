@@ -155,10 +155,6 @@ public class PCA {
                 mean_tmp[j] = Math.max(mean_tmp[j], Math.abs(this.data.returnValue(i,j)));
             }
         }
-        System.out.println(mean_tmp[0]);
-        System.out.println(mean_tmp[1]);
-        System.out.println(mean_tmp[2]);
-        System.out.println(mean_tmp[3]);
 
         for (int i = 0; i < num_data; i++) {
             for (int j = 0; j < dim_data; j++) {

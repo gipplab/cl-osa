@@ -4,9 +4,7 @@ import com.iandadesign.closa.analysis.featurama.PCA.EigenvalueDecomposition;
 import com.iandadesign.closa.analysis.featurama.observation.ObservationHolder;
 import com.iandadesign.closa.util.CSVUtil;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class Matrix {
@@ -253,7 +251,7 @@ public class Matrix {
 
         String[] file_content = writeMatrixToStringArray();
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter(final_filename));
+        PrintWriter writer = new PrintWriter(final_filename);
 
         for (String line : file_content)
         {

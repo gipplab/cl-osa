@@ -27,6 +27,7 @@ public class SalvadorFragmentLevelEval {
     public static String pathPrefix = "/data/pan-plagiarism-corpus-2011/external-detection-corpus";
     public static String preprocessedCachingDir = "/data/CLOSA_data/preprocessed";
     private static ObservationHolder observationList = new ObservationHolder();
+    private static SalvadorRegressionAnalysis RegressionAnalysis;
 
     public static void main(String[] args) {
         Boolean smallTest = false;                  // Just select few suspicious files for the complete process
@@ -224,6 +225,7 @@ public class SalvadorFragmentLevelEval {
         osa.initializeLogger(tag, params); // this has to be done immediately after constructor
         ExtendedLogUtil logUtil = osa.getExtendedLogUtil();
         logUtil.logAndWriteStandard(false, comment);
+        RegressionAnalysis = new SalvadorRegressionAnalysis(logUtil);
 
         logUtil.logAndWriteStandard(false, "Assuming the preprpocessing has been done here. ");
         params.MAX_NUM_CANDIDATES_SELECTED = 50000;
@@ -320,27 +322,12 @@ public class SalvadorFragmentLevelEval {
             logUtil.logAndWriteStandard(true, "BATCHED_PROCESSING:", "Done with "+batchCounter+" batche/s." );
             logAccumulatedRecallAtK(logUtil, overallRecallAtK);
         }
+
+        // Save entire collected data of all combinations of suspicious and candidate files
         if(SalvadorAnalysisParameters.DO_REGRESSION_ANALYSIS){
-            Matrix data = new Matrix(observationList);
-            CorrelationMatrix corr = new CorrelationMatrix(data);
-            corr.display();
-            try {
-
-
-                LocalDateTime myDateObj = LocalDateTime.now();
-                System.out.println("Before formatting: " + myDateObj);
-                DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy-HH:mm:ss");
-
-                String formattedDate = myDateObj.format(myFormatObj);
-                data.saveMatrixToFile("~/Documents/",  formattedDate + "dataMatrix");
-                corr.saveMatrixToFile("~/Documents/",  formattedDate + "correlationMatrix");
-                logUtil.logAndWriteStandard(false, "Saved data and correlation values.");
-            } catch (IOException e) {
-                logUtil.logAndWriteError(false,"Error saving the correlation matrix!");
-                logUtil.logAndWriteError(false,e.getMessage());
-            }
-
+            RegressionAnalysis.saveObservationsAsCsv(observationList);
         }
+
         if(SalvadorAnalysisParameters.DO_ANALYSIS){
             SalvadorStatisticsInfo salvadorStatisticsInfoAllCombined = SalvadorExtendedAnalytics.createCombinedStatistics(allStatistics);
             logUtil.logAndWriteStandard(false, "All Statistics (scoring selects only candidate files plagiarism:",SalvadorAnalysisParameters.ONLY_PLAGFILES_IN_STATS,")");
@@ -664,18 +651,9 @@ public class SalvadorFragmentLevelEval {
 
                 }
             }
-            Matrix data = new Matrix(observationList);
-            CorrelationMatrix corr = new CorrelationMatrix(data);
-            corr.display();
-            try {
 
-                data.saveMatrixToFile("~/Documents/", FilenameUtils.removeExtension(suspiciousDocument) + "dataMatrix");
-                corr.saveMatrixToFile("~/Documents/", FilenameUtils.removeExtension(suspiciousDocument) + "correlationMatrix");
-                logUtil.logAndWriteStandard(false, "Saved data and correlation values.");
-            } catch (IOException e) {
-                logUtil.logAndWriteError(false,"Error saving the correlation matrix!");
-                logUtil.logAndWriteError(false,e.getMessage());
-
+            if(SalvadorAnalysisParameters.DO_REGRESSION_ANALYSIS) {
+                RegressionAnalysis.saveCurrentObservationsAsCsv(observationList, suspiciousDocument);
             }
 
             allResults.put(suspiciousDocument, supFilePlagiarism);
@@ -830,16 +808,16 @@ public class SalvadorFragmentLevelEval {
     }
 
     public static SalvadorDetailedAnalysisResult doDetailedAnalysisMultipleSuspCluster(List<String> suspiciousFragments,
-                                                                    List<String> candidateFragments,
-                                                                    Map<String, List<SavedEntity>> suspiciousEntitiesFragment,
-                                                                    Map<String, List<SavedEntity>> candidateEntitiesFragment,
-                                                                    Map<String, Map<String, Double>>  scoresMap,
-                                                                    int THRESHOLD_1,
-                                                                    double THRESHOLD_2,
-                                                                    int TOPMOST,
-                                                                    boolean DO_ANALYSIS,
-                                                                    List<PAN11PlagiarismInfo> candidatePlagiarismInfos,
-                                                                    ExtendedLogUtil logUtil) {
+                                                                                       List<String> candidateFragments,
+                                                                                       Map<String, List<SavedEntity>> suspiciousEntitiesFragment,
+                                                                                       Map<String, List<SavedEntity>> candidateEntitiesFragment,
+                                                                                       Map<String, Map<String, Double>> scoresMap,
+                                                                                       int THRESHOLD_1,
+                                                                                       double THRESHOLD_2,
+                                                                                       int TOPMOST,
+                                                                                       boolean DO_ANALYSIS,
+                                                                                       List<PAN11PlagiarismInfo> candidatePlagiarismInfos,
+                                                                                       ExtendedLogUtil logUtil) {
         //DIFFERENCE instead of one suspicious enitities candidates are fetched for the clusting
         // for multiple suspicious entities of one case the candidates are fetched
         double THRESH_TOPMOST = SalvadorAnalysisParameters.PRESELECTION_THRESH;
@@ -952,57 +930,11 @@ public class SalvadorFragmentLevelEval {
             // Merge the fragments
             Map<String, SalvadorTextFragment>  fragmentInfosMerged = mergeFragments(THRESHOLD_1, bestCandidateFragmentInfos);
 
-            if(true){
-                // Do not use bestCandidateFragmentInfos, but all candidate infos by setting TOPMOST to maximum
-                // TODO Kay: collect all possible scores by observations matrix
-                // relative / absolute in 2 different implementations
-
-                SalvadorAnalysisParameters.FRAGMENT_MERGE_MODE = "simpleAdd";
-                Map<String, SalvadorTextFragment>  fragmentInfoMergedSimpleAdd = mergeFragments(THRESHOLD_1, bestCandidateFragmentInfos);
-                SalvadorAnalysisParameters.FRAGMENT_MERGE_MODE = "keepingMax";
-                Map<String, SalvadorTextFragment>  fragmentInfoMergedKeepingMax = mergeFragments(THRESHOLD_1, bestCandidateFragmentInfos);
-                SalvadorAnalysisParameters.FRAGMENT_MERGE_MODE = "weightedAdd";
-                Map<String, SalvadorTextFragment>  fragmentInfoMergedWeightedAdd = mergeFragments(THRESHOLD_1, bestCandidateFragmentInfos);
-                SalvadorAnalysisParameters.FRAGMENT_MERGE_MODE = "weightedAverage";
-                Map<String, SalvadorTextFragment>  fragmentInfoMergedWeightedAverage = mergeFragments(THRESHOLD_1, bestCandidateFragmentInfos);
-
-                // only add observation if feature length are the same
-                // TBD: a system when the length are not the same
-                if(fragmentInfoMergedSimpleAdd.size() != fragmentInfoMergedKeepingMax.size() ||
-                        fragmentInfoMergedSimpleAdd.size() != fragmentInfoMergedWeightedAdd.size() ||
-                        fragmentInfoMergedSimpleAdd.size() != fragmentInfoMergedWeightedAverage.size())
-                {
-                    logUtil.logAndWriteStandard(false, "Different sizes in merge. Not adding as observation!");
-                    logUtil.logAndWriteStandard(false, fragmentInfoMergedSimpleAdd.size());
-                    logUtil.logAndWriteStandard(false, fragmentInfoMergedKeepingMax.size());
-                    logUtil.logAndWriteStandard(false, fragmentInfoMergedWeightedAdd.size());
-                    logUtil.logAndWriteStandard(false, fragmentInfoMergedWeightedAverage.size());
-                }
-                else {
-                    for(int i = 0; i < fragmentInfoMergedSimpleAdd.size(); i++) {
-
-                        // TODO: features.put("isPlagiarismPercentage", candidatePlagiarismInfos.get(i).);
-                        try {
-                            LinkedHashMap<String, Object> features = new LinkedHashMap<>();
-                            features.put("isPlagiarismSimpleAdd", returnPlagiarismValue(relatedPlagiarism, (SalvadorTextFragment) fragmentInfoMergedSimpleAdd.values().toArray()[i]));
-                            features.put("simpleAdd", ((SalvadorTextFragment) fragmentInfoMergedSimpleAdd.values().toArray()[i]).getComputedScore());
-                            features.put("isPlagiarismKeepingMax", returnPlagiarismValue(relatedPlagiarism, (SalvadorTextFragment) fragmentInfoMergedKeepingMax.values().toArray()[i]));
-                            features.put("keepingMax", ((SalvadorTextFragment) fragmentInfoMergedKeepingMax.values().toArray()[i]).getComputedScore());
-                            features.put("isPlagiarismWeightedAdd", returnPlagiarismValue(relatedPlagiarism, (SalvadorTextFragment) fragmentInfoMergedWeightedAdd.values().toArray()[i]));
-                            features.put("weightedAdd", ((SalvadorTextFragment) fragmentInfoMergedWeightedAdd.values().toArray()[i]).getComputedScore());
-                            features.put("isPlagiarismWeightedAverage", returnPlagiarismValue(relatedPlagiarism, (SalvadorTextFragment) fragmentInfoMergedWeightedAverage.values().toArray()[i]));
-                            features.put("weightedAverage", ((SalvadorTextFragment) fragmentInfoMergedWeightedAverage.values().toArray()[i]).getComputedScore());
-
-                            Observation obs = new Observation(features);
-                            observationList.add(obs);
-                            logUtil.logAndWriteStandard(false, "Added Observation of merge function to plagiarism");
-                        }
-                        catch(Exception e) {
-                            logUtil.logAndWriteError(false,"Error saving observation!");
-                            logUtil.logAndWriteError(false,e.getMessage());
-                        }
-                    }
-                }
+            if(SalvadorAnalysisParameters.DO_REGRESSION_ANALYSIS){
+                RegressionAnalysis.storeInformationInObsevations(observationList,
+                        relatedPlagiarism,
+                        bestCandidateFragmentInfos,
+                        THRESHOLD_1);
             }
 
             // Rate the new fragment infos as plagiarism or not
@@ -1062,17 +994,7 @@ public class SalvadorFragmentLevelEval {
         return myResult;
     }
 
-    private static Integer returnPlagiarismValue(PAN11PlagiarismInfo relatedPlagiarism, SalvadorTextFragment fragmentInfoMerged)
-    {
-        List<PAN11PlagiarismInfo> relatedPlagiarismsMocklist = new ArrayList<>();
-        relatedPlagiarismsMocklist.add(relatedPlagiarism);
-        SalvadorTextFragment fragment = fragmentInfoMerged;
-        return getPlagiarismAreaAccumulated(
-                fragment.getSentencesStartChar(),
-                fragment.getSentencesEndChar(),
-                relatedPlagiarismsMocklist,
-                true);
-    }
+
 
 
     private static void getStats(Map<SalvadorTextFragment , Map<SalvadorTextFragment, Integer>> currentMap, boolean overallOrMerge, SalvadorStatisticsInfo statisticsInfo, String name, ExtendedLogUtil logUtil){
@@ -1167,7 +1089,7 @@ public class SalvadorFragmentLevelEval {
 
     }
     @NotNull
-    private static Map<String, SalvadorTextFragment> mergeFragments(int THRESHOLD_1, Map<String, SalvadorTextFragment> fragmentInfos) {
+    public static Map<String, SalvadorTextFragment> mergeFragments(int THRESHOLD_1, Map<String, SalvadorTextFragment> fragmentInfos) {
         // Merge the 5 fragments with each other if they are near in distance (THRESHOLD_1)
         boolean convergent = false;
         int convergenceIndex=0;
@@ -1409,7 +1331,7 @@ public class SalvadorFragmentLevelEval {
         return false;
     }
 
-    private static int getPlagiarismAreaAccumulated(int startCharacterEntity, int endCharacterEntity, List<PAN11PlagiarismInfo> currentPlagiarismInfos, Boolean candOrSusp){
+    public static int getPlagiarismAreaAccumulated(int startCharacterEntity, int endCharacterEntity, List<PAN11PlagiarismInfo> currentPlagiarismInfos, Boolean candOrSusp){
         int completePlagiarizedArea = 0;
         // Assuming Suspicious File here.
         for(PAN11PlagiarismInfo currentPlagiarismInfo:currentPlagiarismInfos){
