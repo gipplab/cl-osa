@@ -555,6 +555,11 @@ def main(micro_averaged, plag_path, plag_tag_name, det_path, det_tag_name, filte
             print "prec2: "+str(prec)
 
     gran = granularity(cases, detections)
+
+    if filter_mode=='onlyAutomaticTranslation' or filter_mode=='onlyManualTranslation':
+        rec, prec = macro_avg_recall_and_precision(cases_filtered, detections)
+        gran = granularity(cases_filtered, detections)
+
     print 'Plagdet Score', plagdet_score(rec, prec, gran)
     print 'Recall', rec
     print 'Precision', prec
