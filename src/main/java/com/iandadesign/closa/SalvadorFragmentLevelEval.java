@@ -857,7 +857,7 @@ public class SalvadorFragmentLevelEval {
             // Rate the new fragment infos as plagiarism or not
             for(String clusteredFragmentID: fragmentInfosMerged.keySet()){
                 SalvadorTextFragment clusteredFragment = fragmentInfosMerged.get(clusteredFragmentID);
-                String relatedCandidateDocument = "source-document"+padLeftZeros(String.valueOf(clusteredFragment.getRelatedCandidateDocument()),5);
+                String relatedCandidateDocument = "candidate-document"+padLeftZeros(String.valueOf(clusteredFragment.getRelatedCandidateDocument()),5)+".txt";
                 //System.out.println(suspiciousFragmentID+"/"+candidateFragments.get(0)+":"+clusteredFragment.getComputedScore());
                 if(clusteredFragment.getComputedScore() > THRESHOLD_2){
                     Map<SalvadorTextFragment, SalvadorTextFragment> currentFragmentMap = new ArrayMap<>();
