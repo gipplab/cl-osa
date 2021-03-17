@@ -565,7 +565,7 @@ public class PAN11RankingEvaluator {
 
             for (String suspiciousFragmentID : suspiciousEntitiesForFile.keySet()) {
                 List<SavedEntity> suspiciousEntities = suspiciousEntitiesMap.get(suspiciousFragmentID);
-                SalvadorTextFragment currentSuspFragment = createTextFragment(suspiciousEntities, suspiciousFragmentID);
+                SalvadorTextFragment currentSuspFragment = createTextFragment(suspiciousEntities, suspiciousFragmentID, false);
                 String baseSuspFileName = getBaseName(suspiciousFragmentID, ".xml");
                 List<PAN11PlagiarismInfo> relatedPlagiarism = getPlagiarismCasesRelatedToSuspFragment(currentSuspFragment, suspiciousEntities, plagiarismInformation.get(baseSuspFileName));
 
@@ -828,10 +828,15 @@ public class PAN11RankingEvaluator {
         logUtil.logAndWriteStandard(false, "Standard Recall at ", k, " is: ", recallAtK, "Findings/PossibleFindings (",overallFindings,"/", overallPossibleFindings,")");
         return recallAtK;
     }
-    public static SalvadorTextFragment createTextFragment(List<SavedEntity> savedEntities, String fragmentName){
+    public static SalvadorTextFragment createTextFragment(List<SavedEntity> savedEntities, String fragmentName, boolean fromCandidateDocument){
 
         SalvadorTextFragment currentFragment = new SalvadorTextFragment();
         currentFragment.setFragmentID(fragmentName);
+        if(fromCandidateDocument){
+            String number = fragmentName.split("~")[0].replaceAll("[^0-9]", "");
+
+            currentFragment.setRelatedCandidateDocument(Integer.valueOf(number));
+        }
         int startCharacter = Integer.MAX_VALUE;
         int endCharacter = 0;
         int startCharEntity = Integer.MAX_VALUE;

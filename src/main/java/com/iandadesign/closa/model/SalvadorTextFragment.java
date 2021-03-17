@@ -7,6 +7,7 @@ import java.util.List;
 public class SalvadorTextFragment {
 
     String fragmentID;
+    int relatedCandidateDocument = -1;
     int entitiesStartChar;
     int entitiesEndChar;
     int sentencesStartChar;
@@ -20,7 +21,12 @@ public class SalvadorTextFragment {
 
     List<String> mergedIDs;
     Double computedScore;
-
+    public int getRelatedCandidateDocument(){
+        return relatedCandidateDocument;
+    }
+    public void setRelatedCandidateDocument(int relatedCandidateDocument){
+        this.relatedCandidateDocument = relatedCandidateDocument;
+    }
     public boolean isAutomaticTranslation() {
         return automaticTranslation;
     }
