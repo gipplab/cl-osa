@@ -11,8 +11,8 @@ public class SalvadorAnalysisParameters {
     public static int SUSP_FILE_LIMIT = 304;                        // Only take XX supicicious files with all candidates 304 max (ES), 251 max (DE)
     public static int SUSP_FILE_SELECTION_OFFSET = 0;             // Offset selection, default 0
     public static boolean SORT_SUSPICIOUS_FILES_BY_SIZE = true;     // Sort suspicious files by size, biggest first (DANGER: messes up old keys)
-    public static boolean SELECT_REPRESENTATIVE_TEST_FILES = true;                 // selects specific testfiles, default: false
-
+    public static boolean SELECT_REPRESENTATIVE_TEST_FILES = false;                 // selects specific testfiles, default: false
+    public static boolean USE_FAST_SC = true;
 
     // Basic score calculation
     public static boolean USE_ABSOLUTE_SCORES = false;            // If false: use default normalized cosine-score for each (only with Enhanched->False)
@@ -28,10 +28,10 @@ public class SalvadorAnalysisParameters {
     public static int FRAGMENT_INCREMENT = 3; //2;                // In Sentences
     public static boolean GET_PLAGSIZED_FRAGMENTS = false;         // Get fragments exactly the plagiarism size
 
-    // Clustering
+    // Clustering6
     public static boolean CLUSTER_MULTIPLE_SUSP_FINDINGS = true; // This gets <TOPMOST> values * number related fragments for each susp case, then clusters them, if false, <TOPMOST> cases per related fragment are fetched and clustered fragment by fragment.
     public static int THRESH1 = 800;                             // Fragment distance merging thresh
-    public static double THRESH2 =  0.38; //0.686;      //0.086;    // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
+    public static double THRESH2 =  0.686; //0.686;      //0.086;    // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
     public static double PRESELECTION_THRESH = 0.0;               // From the topmost candidates only the ones above this thresh get considered for merge
     public static int TOPMOST = 5;                                // topmost fetched suspicious for one plagiarism node
     // Clustering - Fragment Merge
