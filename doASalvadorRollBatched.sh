@@ -10,31 +10,18 @@
 
 
 # batchBaseName / USE_ABSOLUTE_SCORES / THRESH1 / THRESH2 / FRAGMENT_MERGE_MODE
-BATCH_BASE_NAME=batch6-3-SP-Rel-
+BATCH_BASE_NAME=batch5-2-SP-Rel-
 
 
 
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.622  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.686  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.722  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.786  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.822  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.886  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.922  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.986  simpleAdd
-
-
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 0.622  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 0.686  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 0.722  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 0.786  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 0.822  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 0.886  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 0.922  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 0.986  simpleAdd
-
-
-
+./doASalvadorRoll.sh $BATCH_BASE_NAME true 2400 15  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME true 2400 16  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME true 2400 17  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME true 2400 18  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME true 2400 19  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME true 2400 20  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME true 3200 15  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME true 3200 18  simpleAdd
 
 
 # Best Thresh2
