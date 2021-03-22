@@ -13,21 +13,21 @@
 BATCH_BASE_NAME=batch6-3-SP-Rel-
 
 
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 1400 0.522  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 1400 0.586  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 1400 0.622  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 1400 0.686  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 1400 0.722  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 1400 0.786  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 1400 0.822  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.522  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.586  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.622  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.686  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.722  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.786  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 1400 0.822  simpleAdd
 
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 2400 0.522  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 2400 0.586  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 2400 0.622  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 2400 0.686  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 2400 0.722  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 2400 0.786  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 2400 0.822  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 0.522  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 0.586  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 0.622  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 0.686  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 0.722  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 0.786  simpleAdd
+./doASalvadorRoll.sh $BATCH_BASE_NAME false 2400 0.822  simpleAdd
 
 
 
