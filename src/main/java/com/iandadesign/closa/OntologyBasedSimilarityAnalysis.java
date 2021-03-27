@@ -1561,7 +1561,7 @@ public class OntologyBasedSimilarityAnalysis {
         progressBar.start();
         */
         // iterate the suspicious documents
-        suspiciousIdTokenCountMap.entrySet().parallelStream().forEach(((suspiciousEntry)-> {
+        suspiciousIdTokenCountMap.entrySet().forEach(((suspiciousEntry)-> {
             Map<String, Double> candidateSimilarities = new HashMap<>();
 
             for (Map.Entry<String, Map<String, Double>> candidateEntry : candidateIdTokenCountMap.entrySet()) {
