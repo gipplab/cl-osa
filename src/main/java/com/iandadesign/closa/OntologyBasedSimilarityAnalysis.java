@@ -1567,10 +1567,12 @@ public class OntologyBasedSimilarityAnalysis {
             for (Map.Entry<String, Map<String, Double>> candidateEntry : candidateIdTokenCountMap.entrySet()) {
 
                 double similarity = WikidataSimilarityUtil.cosineSimilarity(suspiciousEntry.getValue(), candidateEntry.getValue());
+                /*
                 if(Double.isNaN(similarity)){
                     System.out.println("similarity fix!");
                     similarity = 0.0;
                 }
+                 */
                 candidateSimilarities.put(candidateEntry.getKey(), similarity);
             }
 
