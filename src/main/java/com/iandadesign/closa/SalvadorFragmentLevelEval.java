@@ -860,7 +860,7 @@ public class SalvadorFragmentLevelEval {
                     String relatedCandidateDocument = "candidate-document"+padLeftZeros(String.valueOf(clusteredFragment.getRelatedCandidateDocument()),5)+".txt";
                     //System.out.println(suspiciousFragmentID+"/"+candidateFragments.get(0)+":"+clusteredFragment.getComputedScore());
                     if(clusteredFragment.getComputedScore() > THRESHOLD_2){
-                        fragmentInfosSelectedCases.put(clusteredFragmentID, clusteredFragment);
+                        fragmentInfosSelectedCases.put(clusteredFragmentID+salvadorTextFragment.getFragmentID(), clusteredFragment);
                     }
                 }
 
