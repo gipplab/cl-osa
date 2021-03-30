@@ -263,7 +263,7 @@ public class SalvadorFragmentLevelEval {
         //List<File> suspiciousFilesChecking = sortByPlagiarismSizeSusp(suspiciousFiles,plagiarismInformation);
 
 
-        System.out.println("My First SuspFile: "+ suspiciousFiles.get(0).toString());
+        System.out.println("My First SuspFile: "+ suspiciousFiles.get(SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET).toString());
         System.out.println("Suspfile Count: "+ suspiciousFiles.size());
 
         // Presteps for PAN11 Evaluation remove caching directory (if there is one)
@@ -303,15 +303,14 @@ public class SalvadorFragmentLevelEval {
             int batchCounter = 0;
             Map<Integer, SalvadorRatKResponse>  overallRecallAtK = new ArrayMap<>();
             // Do calculating in batches
-            for(int batchIndex = 0; batchIndex < suspiciousFiles.size(); batchIndex+=SalvadorAnalysisParameters.BATCHED_OFFSET_INCREMENT){
-                int maxBatchIndex = min(suspiciousFiles.size(), (batchIndex+SalvadorAnalysisParameters.BATCHED_OFFSET_INCREMENT));
+            for(int batchIndex = SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET; batchIndex < suspiciousFiles.size(); batchIndex+=SalvadorAnalysisParameters.BATCHED_OFFSET_INCREMENT){
+                int maxBatchIndex = min(suspiciousFiles.size(), batchIndex+SalvadorAnalysisParameters.BATCHED_OFFSET_INCREMENT);
                 if(maxBatchIndex < batchIndex) break;
-                int overallIndex = SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET + batchIndex;
-                List<File> currentSuspiciousFiles = suspiciousFiles.subList(batchIndex,maxBatchIndex);
-                logUtil.logAndWriteStandard(true,"BATCHED_PROCESSING:", "Doing batch from " + overallIndex + " to " + (overallIndex+currentSuspiciousFiles.size()));
+                List<File> currentSuspiciousFiles = suspiciousFiles.subList(batchIndex, maxBatchIndex);
+                logUtil.logAndWriteStandard(true,"BATCHED_PROCESSING:", "Doing batch from " + batchIndex + " to " + (batchIndex+currentSuspiciousFiles.size()));
 
                 // Actual scores calculation
-                Map<Integer, SalvadorRatKResponse>  recallAtKResponses = doScoresMapIteration(tag, plagiarismInformation, osa, logUtil, candidateFiles, currentSuspiciousFiles, candidateEntitiesFragment, overallIndex, currentSuspiciousFiles.size(), allStatistics, language);
+                Map<Integer, SalvadorRatKResponse>  recallAtKResponses = doScoresMapIteration(tag, plagiarismInformation, osa, logUtil, candidateFiles, currentSuspiciousFiles, candidateEntitiesFragment, batchIndex, currentSuspiciousFiles.size(), allStatistics, language);
                 logUtil.logAndWriteStandard(true,"Caching dir current:", cachingDir.getPath());
 
 
@@ -1372,13 +1371,17 @@ public class SalvadorFragmentLevelEval {
                 }
                  */
             }
+
             filesByPlagiarismSize.put(currentFile,plagiarismLengthForFile);
             overallPlagiarismSize+=plagiarismLengthForFile;
         }
+
         List<Map.Entry<File, Long>> filesByPlagiarismSizeSorted = filesByPlagiarismSize.entrySet().stream()
                 .sorted(Comparator.comparingLong(fileLongEntry -> ((Map.Entry<File,Long>)fileLongEntry).getValue()).reversed())
                 .collect(Collectors.toList());
+
         List<File> sortedFiles = filesByPlagiarismSizeSorted.stream().map(fileLongEntry -> fileLongEntry.getKey()).collect(Collectors.toList());
+
         return sortedFiles;
     }
 

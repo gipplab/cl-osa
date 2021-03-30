@@ -12,10 +12,8 @@ import org.apache.commons.io.FilenameUtils;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class SalvadorRegressionAnalysis {
     ExtendedLogUtil logUtil;
@@ -125,25 +123,37 @@ public class SalvadorRegressionAnalysis {
                                     Map<String, SalvadorTextFragment> fragmentInfoMergedWeightedAdd,
                                     Map<String, SalvadorTextFragment> fragmentInfoMergedWeightedAverage) {
         // TODO: features.put("isPlagiarismPercentage", candidatePlagiarismInfos.get(i).);
+
+        List< List<SalvadorTextFragment> > sortedTextFragmentsByMergeType = new ArrayList<>();
+        sortedTextFragmentsByMergeType.add(returnSortedTextFragments(fragmentInfoMergedSimpleAdd));
+        sortedTextFragmentsByMergeType.add(returnSortedTextFragments(fragmentInfoMergedKeepingMax));
+        sortedTextFragmentsByMergeType.add(returnSortedTextFragments(fragmentInfoMergedWeightedAdd));
+        sortedTextFragmentsByMergeType.add(returnSortedTextFragments(fragmentInfoMergedWeightedAverage));
+
+
         for(int i = 0; i < fragmentInfoMergedSimpleAdd.size(); i++) {
             try {
             LinkedHashMap<String, Object> features = new LinkedHashMap<>();
+
             features.put("isPlagiarismSimpleAdd", returnPlagiarismValue(relatedPlagiarism,
-                    (SalvadorTextFragment) fragmentInfoMergedSimpleAdd.values().toArray()[i]));
+                    sortedTextFragmentsByMergeType.get(0).get(i)));
             features.put("simpleAdd",
-                    ((SalvadorTextFragment) fragmentInfoMergedSimpleAdd.values().toArray()[i]).getComputedScore());
-            features.put("isPlagiarismKeepingMax", returnPlagiarismValue(relatedPlagiarism,
-                    (SalvadorTextFragment) fragmentInfoMergedKeepingMax.values().toArray()[i]));
+                    (sortedTextFragmentsByMergeType.get(0).get(i)).getComputedScore());
+
+            /*features.put("isPlagiarismKeepingMax", returnPlagiarismValue(relatedPlagiarism,
+                    sortedTextFragmentsByMergeType.get(1).get(i)));*/
             features.put("keepingMax",
-                    ((SalvadorTextFragment) fragmentInfoMergedKeepingMax.values().toArray()[i]).getComputedScore());
-            features.put("isPlagiarismWeightedAdd", returnPlagiarismValue(relatedPlagiarism,
-                    (SalvadorTextFragment) fragmentInfoMergedWeightedAdd.values().toArray()[i]));
+                    (sortedTextFragmentsByMergeType.get(1).get(i)).getComputedScore());
+
+            /*features.put("isPlagiarismWeightedAdd", returnPlagiarismValue(relatedPlagiarism,
+                    sortedTextFragmentsByMergeType.get(2).get(i)));*/
             features.put("weightedAdd",
-                    ((SalvadorTextFragment) fragmentInfoMergedWeightedAdd.values().toArray()[i]).getComputedScore());
-            features.put("isPlagiarismWeightedAverage", returnPlagiarismValue(relatedPlagiarism, (
-                    SalvadorTextFragment) fragmentInfoMergedWeightedAverage.values().toArray()[i]));
+                    (sortedTextFragmentsByMergeType.get(2).get(i)).getComputedScore());
+
+            /*features.put("isPlagiarismWeightedAverage", returnPlagiarismValue(relatedPlagiarism,
+                    sortedTextFragmentsByMergeType.get(3).get(i)));*/
             features.put("weightedAverage",
-                    ((SalvadorTextFragment) fragmentInfoMergedWeightedAverage.values().toArray()[i]).getComputedScore());
+                    (sortedTextFragmentsByMergeType.get(3).get(i)).getComputedScore());
 
             Observation obs = new Observation(features);
             observationList.add(obs);
@@ -154,6 +164,16 @@ public class SalvadorRegressionAnalysis {
                 logUtil.logAndWriteError(false,e.getMessage());
             }
         }
+    }
+
+    private List<SalvadorTextFragment> returnSortedTextFragments(Map<String, SalvadorTextFragment> fragmentInfo){
+        List<Map.Entry<String, SalvadorTextFragment>> sortedEntries = new ArrayList<>(fragmentInfo.entrySet());
+        Collections.sort(sortedEntries,
+                Map.Entry.comparingByValue(
+                        Comparator.comparingLong(SalvadorTextFragment::getSentencesStartChar)));
+
+        return sortedEntries.stream().map(fileLongEntry -> fileLongEntry.getValue()).collect(Collectors.toList());
+
     }
 
     public static Integer returnPlagiarismValue(PAN11PlagiarismInfo relatedPlagiarism, SalvadorTextFragment fragmentInfoMerged)
