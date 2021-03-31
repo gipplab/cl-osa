@@ -382,7 +382,7 @@ public class OntologyBasedSimilarityAnalysis {
         if(!params.USE_ENHANCHED_COSINE_ANALYSIS) {
             suspiciousIdCandidateScoresMap = performCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap, false,false);
         }else {
-            suspiciousIdCandidateScoresMap = performEnhancedCosineSimilarityAnalysisP(suspiciousIdTokensMap, candidateIdTokensMap);
+            suspiciousIdCandidateScoresMap = performEnhancedCosineSimilarityAnalysisP(suspiciousIdTokensMap, candidateIdTokensMap, logUtil);
         }
         //Map<String, Double> candidateScoresMap = performEnhancedCosineSimilarityAnalysis(suspiciousIdTokensMap, candidateIdTokensMap).get(suspiciousDocumentPath);
 
@@ -1484,11 +1484,12 @@ public class OntologyBasedSimilarityAnalysis {
             Map<String, List<String>> candidateIdTokensMap) {
         Map<String, Map<String, Double>> suspiciousIdDetectedCandidateIdsMap = new HashMap<>();
 
+        /*
         ProgressBar ontologyProgressBar = new ProgressBar("Enhancing vectors with ontology data",
                 suspiciousIdTokensMap.size() + candidateIdTokensMap.size(),
                 ProgressBarStyle.ASCII);
         ontologyProgressBar.start();
-
+        */
         Map<String, Map<String, Double>> suspiciousIdTokenCountMap = new HashMap<>();
         Map<String, Map<String, Double>> candidateIdTokenCountMap = new HashMap<>();
 
@@ -1497,7 +1498,7 @@ public class OntologyBasedSimilarityAnalysis {
             List<String> tokens = suspiciousIdTokensMapEntry.getValue();
             Map<String, Double> countMap = getHierarchicalCountMap(tokens);
             suspiciousIdTokenCountMap.put(id, countMap);
-            ontologyProgressBar.step();
+            //ontologyProgressBar.step();
         }
 
         for (Map.Entry<String, List<String>> candidateIdTokensMapEntry : candidateIdTokensMap.entrySet()) {
@@ -1505,10 +1506,10 @@ public class OntologyBasedSimilarityAnalysis {
             List<String> tokens = candidateIdTokensMapEntry.getValue();
             Map<String, Double> countMap = getHierarchicalCountMap(tokens);
             candidateIdTokenCountMap.put(id, countMap);
-            ontologyProgressBar.step();
+            //ontologyProgressBar.step();
         }
 
-        ontologyProgressBar.stop();
+        // ontologyProgressBar.stop();
 
 
         // perform detailed analysis
@@ -1550,14 +1551,17 @@ public class OntologyBasedSimilarityAnalysis {
 
     public Map<String, Map<String, Double>> performEnhancedCosineSimilarityAnalysisP(
             Map<String, List<String>> suspiciousIdTokensMap,
-            Map<String, List<String>> candidateIdTokensMap) {
+            Map<String, List<String>> candidateIdTokensMap,
+            ExtendedLogUtil logUtil) {
         Map<String, Map<String, Double>> suspiciousIdDetectedCandidateIdsMap = new HashMap<>();
+        //logUtil.logAndWriteStandard(false, "call :  performEnhancedCosineSimilarityAnalysisP");
 
+        /*
         ProgressBar ontologyProgressBar = new ProgressBar("Enhancing vectors with ontology data",
                 suspiciousIdTokensMap.size() + candidateIdTokensMap.size(),
                 ProgressBarStyle.ASCII);
         ontologyProgressBar.start();
-
+        */
         Map<String, Map<String, Double>> suspiciousIdTokenCountMap = new HashMap<>();
         Map<String, Map<String, Double>> candidateIdTokenCountMap = new HashMap<>();
 
@@ -1567,9 +1571,10 @@ public class OntologyBasedSimilarityAnalysis {
             List<String> tokens = suspiciousIdTokensMapEntry.getValue();
             Map<String, Double> countMap = getHierarchicalCountMap(tokens);
             suspiciousIdTokenCountMap.put(id, countMap);
-            ontologyProgressBar.step();
+            //ontologyProgressBar.step();
         });
 
+        //logUtil.logAndWriteStandard(false, "suspiciousIdTokenCountMap.size: "+ suspiciousIdTokenCountMap.size());
 
 
 
@@ -1578,15 +1583,15 @@ public class OntologyBasedSimilarityAnalysis {
             List<String> tokens = candidateIdTokensMapEntry.getValue();
             Map<String, Double> countMap = getHierarchicalCountMap(tokens);
             candidateIdTokenCountMap.put(id, countMap);
-            ontologyProgressBar.step();
+            // ontologyProgressBar.step();
         });
 
+        //logUtil.logAndWriteStandard(false,"candidateIdTokenCountMap.size: "+ candidateIdTokenCountMap.size());
 
-        ontologyProgressBar.stop();
+        // ontologyProgressBar.stop();
 
 
         // perform detailed analysis
-        logger.info("Perform detailed ENHANCHED analysis parallelized");
 
         // progress bar
         /*
@@ -1596,14 +1601,12 @@ public class OntologyBasedSimilarityAnalysis {
         progressBar.start();
         */
         // iterate the suspicious documents
-
         suspiciousIdTokenCountMap.entrySet().parallelStream().forEach(((suspiciousEntry)-> {
             Map<String, Double> candidateSimilarities = new HashMap<>();
 
             for (Map.Entry<String, Map<String, Double>> candidateEntry : candidateIdTokenCountMap.entrySet()) {
 
                 double similarity = WikidataSimilarityUtil.cosineSimilarity(suspiciousEntry.getValue(), candidateEntry.getValue());
-
                 candidateSimilarities.put(candidateEntry.getKey(), similarity);
             }
 

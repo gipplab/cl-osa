@@ -115,7 +115,8 @@ public class SalvadorPAN11XMLwriter {
             SalvadorTextFragment candidateResultFragment = plagiarismCases.get(suspiciousResultFragment);
             createPlagiarismNode(eventWriter, candidateDocumentName,
                     candidateResultFragment.getSentencesStartChar(), candidateResultFragment.getCharLengthBySentences(),
-                    suspiciousResultFragment.getSentencesStartChar(), suspiciousResultFragment.getCharLengthBySentences());
+                    suspiciousResultFragment.getSentencesStartChar(), suspiciousResultFragment.getCharLengthBySentences(),
+                    suspiciousResultFragment.isTranslation(), suspiciousResultFragment.isManualTranslation());
         }
 
         eventWriter.add(end);
@@ -126,7 +127,8 @@ public class SalvadorPAN11XMLwriter {
 
     public static void createPlagiarismNode(XMLEventWriter eventWriter, String candidateDocumentName,
                                       int candidateOffset, int candidateLength,
-                                      int sourceOffset, int sourceLength) throws XMLStreamException{
+                                      int sourceOffset, int sourceLength,
+                                      boolean isTranslation, boolean isManualObfuscation) throws XMLStreamException{
 
         XMLEventFactory eventFactory = XMLEventFactory.newInstance();
         XMLEvent end = eventFactory.createDTD("\n");
@@ -156,6 +158,14 @@ public class SalvadorPAN11XMLwriter {
         */
         event = eventFactory.createAttribute("name", "detected-plagiarism");
         eventWriter.add(event);
+
+        if(isTranslation){
+            event = eventFactory.createAttribute("type", "translation");
+            eventWriter.add(event);
+
+            event = eventFactory.createAttribute("manual_obfuscation", String.valueOf(isManualObfuscation));
+            eventWriter.add(event);
+        }
         // event = eventFactory.createCharacters("\n");
         // eventWriter.add(event);
         event = eventFactory.createAttribute("this_offset", Integer.toString(sourceOffset));

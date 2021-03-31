@@ -25,15 +25,17 @@ public class ScoresMapCache {
         fileInputStream.close();
         return scoresMapDes;
     }
-    public String generateFileKey(String language, String basePath, int fragmentSize, int fragmentIncrement, boolean absoluteScoring, boolean filePrefiltering, int filterLimit,boolean plagsizedFragments, int suspfileselectionoffset, boolean sortsuspbysize, boolean enchanched_analysis, String prefilter){
+    public String generateFileKey(String language, String basePath, int fragmentSize, int fragmentIncrement, boolean absoluteScoring, boolean filePrefiltering, int filterLimit,boolean plagsizedFragments, int suspfileselectionoffset, boolean sortsuspbysize, boolean enchanched_analysis){
         String addendum="";
         if(enchanched_analysis){
             absoluteScoring = false; // in misconfiguration case, set absolute scoring to false
             addendum += "enhanched";
         }
+        /*
         if(!prefilter.equals("NONE")){
             addendum += prefilter;
         }
+         */
         if(!filePrefiltering){
             filterLimit = 0;
         }

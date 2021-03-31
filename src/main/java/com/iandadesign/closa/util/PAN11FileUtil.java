@@ -2,6 +2,7 @@ package com.iandadesign.closa.util;
 
 import com.iandadesign.closa.language.LanguageDetector;
 import com.iandadesign.closa.model.ExtendedAnalysisParameters;
+import com.iandadesign.closa.model.SalvadorAnalysisParameters;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.iandadesign.closa.model.SalvadorAnalysisParameters.LANGUAGE;
 
 /**
  * Operations for Files, mostly for the PAN11-Plagiarism Contest.
@@ -142,5 +145,68 @@ public class PAN11FileUtil {
         }
 
 
+    }
+
+    public static List<File> getRepresentativeDataset(ExtendedLogUtil logUtil, List<File> suspiciousFiles){
+        logUtil.logAndWriteStandard(false, "Selecting Representative Test files,- not the complete corpus will be used");
+        if(!SalvadorAnalysisParameters.SORT_SUSPICIOUS_FILES_BY_SIZE){
+            logUtil.logAndWriteStandard(false, "For representative fileset files should be sorted!");
+            return null;
+        }
+        if(SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET!=0){
+            logUtil.logAndWriteStandard(false, "SUSP_FILE_SELECTION_OFFSET has to be 0!");
+            return null;
+        }
+        if(SalvadorAnalysisParameters.BATCHED_OFFSET_INCREMENT!=1){
+            logUtil.logAndWriteStandard(false, "BATCHED_OFFSET_INCREMENT has to be 1!");
+            return null;
+        }
+        if(!SalvadorAnalysisParameters.PREFILTER.equals("NONE")){
+            logUtil.logAndWriteStandard(false, "PREFILTER has to be NONE");
+            return null;
+        }
+        if(LANGUAGE.equals("es")){
+
+            if(SalvadorAnalysisParameters.SUSP_FILE_LIMIT!=304){
+                logUtil.logAndWriteStandard(false, "SUSP_FILE_LIMIT has to be 304!");
+                return null;
+            }
+
+            List<File> newSuspiciousFiles = new ArrayList<>();
+            /*
+            newSuspiciousFiles.add(suspiciousFiles.get(1));
+            newSuspiciousFiles.add(suspiciousFiles.get(70));
+            newSuspiciousFiles.add(suspiciousFiles.get(124));
+            newSuspiciousFiles.add(suspiciousFiles.get(125));
+            newSuspiciousFiles.add(suspiciousFiles.get(197));
+            newSuspiciousFiles.add(suspiciousFiles.get(198));
+            newSuspiciousFiles.add(suspiciousFiles.get(290));
+            */
+            newSuspiciousFiles.add(suspiciousFiles.get(291));
+
+
+            newSuspiciousFiles.add(suspiciousFiles.get(293));
+            suspiciousFiles = newSuspiciousFiles;
+
+
+        }
+        if(LANGUAGE.equals("de")){
+            if(SalvadorAnalysisParameters.SUSP_FILE_LIMIT!=251){
+                logUtil.logAndWriteStandard(false, "SUSP_FILE_LIMIT has to be 251!");
+                return null;
+            }
+            List<File> newSuspiciousFiles = new ArrayList<>();
+            newSuspiciousFiles.add(suspiciousFiles.get(1));
+            newSuspiciousFiles.add(suspiciousFiles.get(70));
+            newSuspiciousFiles.add(suspiciousFiles.get(90));
+            newSuspiciousFiles.add(suspiciousFiles.get(91));
+            newSuspiciousFiles.add(suspiciousFiles.get(170));
+            newSuspiciousFiles.add(suspiciousFiles.get(171));
+            newSuspiciousFiles.add(suspiciousFiles.get(172));
+            newSuspiciousFiles.add(suspiciousFiles.get(239));
+            newSuspiciousFiles.add(suspiciousFiles.get(240));
+            suspiciousFiles = newSuspiciousFiles;
+        }
+        return suspiciousFiles;
     }
 }

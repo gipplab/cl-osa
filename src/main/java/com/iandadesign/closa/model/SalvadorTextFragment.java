@@ -16,8 +16,36 @@ public class SalvadorTextFragment {
     int charLengthBySentences;
     int charLengthByEntities;
     boolean isMerged = false;
+    boolean isTranslation = false;
+    boolean manualTranslation = false;
+    boolean automaticTranslation = false;
+
     List<String> mergedIDs;
     Double computedScore;
+
+    public boolean isAutomaticTranslation() {
+        return automaticTranslation;
+    }
+
+    public boolean isTranslation() {
+        return isTranslation;
+    }
+
+    public boolean isManualTranslation() {
+        return manualTranslation;
+    }
+
+    public void setAutomaticTranslation(boolean automaticTranslation) {
+        this.automaticTranslation = automaticTranslation;
+    }
+
+    public void setManualTranslation(boolean manualTranslation) {
+        this.manualTranslation = manualTranslation;
+    }
+
+    public void setTranslation(boolean translation) {
+        isTranslation = translation;
+    }
 
     public Double getComputedScore() {
         return computedScore;
