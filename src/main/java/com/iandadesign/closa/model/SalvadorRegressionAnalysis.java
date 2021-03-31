@@ -135,7 +135,7 @@ public class SalvadorRegressionAnalysis {
             try {
             LinkedHashMap<String, Object> features = new LinkedHashMap<>();
 
-            features.put("isPlagiarismSimpleAdd", returnPlagiarismValue(relatedPlagiarism,
+            features.put("isPlagiarism", returnPlagiarismValue(relatedPlagiarism,
                     sortedTextFragmentsByMergeType.get(0).get(i)));
             features.put("simpleAdd",
                     (sortedTextFragmentsByMergeType.get(0).get(i)).getComputedScore());

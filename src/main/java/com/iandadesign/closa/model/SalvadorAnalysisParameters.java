@@ -9,7 +9,7 @@ public class SalvadorAnalysisParameters {
     // Dataset settings
     public static boolean DO_FILE_PREFILTERING = true;            // Only take a limited amount of suspicious files
     public static int SUSP_FILE_LIMIT = 0;                        // Only take XX supicicious files with all candidates
-    public static int SUSP_FILE_SELECTION_OFFSET = 284;             // Offset selection, default 0
+    public static int SUSP_FILE_SELECTION_OFFSET = 250;             // Offset selection, default 0
     public static boolean SORT_SUSPICIOUS_FILES_BY_SIZE = true;     // Sort suspicious files by size, biggest first (DANGER: messes up old keys)
 
     // Basic score calculation
