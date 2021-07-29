@@ -7,11 +7,11 @@ import java.lang.reflect.Field;
 // Dataset settings
 public class SalvadorAnalysisParameters {
     // Dataset settings
-    public static boolean DO_FILE_PREFILTERING = true;            // Only take a limited amount of suspicious files
+    public static boolean DO_FILE_PREFILTERING = false;            // Only take a limited amount of suspicious files
     public static int SUSP_FILE_LIMIT = 304;                        // Only take XX supicicious files with all candidates 304 max (ES), 251 max (DE)
     public static int SUSP_FILE_SELECTION_OFFSET = 0;             // Offset selection, default 0
     public static boolean SORT_SUSPICIOUS_FILES_BY_SIZE = true;     // Sort suspicious files by size, biggest first (DANGER: messes up old keys)
-    public static boolean SELECT_REPRESENTATIVE_TEST_FILES = true;                 // selects specific testfiles, default: false
+    public static boolean SELECT_REPRESENTATIVE_TEST_FILES = false;                 // selects specific testfiles, default: false
 
 
     // Basic score calculation
