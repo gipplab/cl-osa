@@ -1,6 +1,6 @@
 
 # Default workflow (28.01.2020)
-nohup /cl-osa-tng/doASalvadorRoll.sh purposeOfTest &
+nohup /cl-osa-tng/runDetailedEval.sh purposeOfTest &
 vim /cl-osa-tng/src/main/java/com/iandadesign/closa/model/SalvadorAnalysisParameters.java
 watch -n 1 tail -n 35 /cl-osa-tng/nohup.out
 
