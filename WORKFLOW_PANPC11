@@ -22,7 +22,7 @@ cd /closa && mvn package -DskipTests -Dmaven.javadoc.skip=true
 java -cp /closa/target/closa-1.4.jar com.iandadesign.closa.evaluation.impl.PAN11EvaluationSetEval
 or (atm)
 java -cp target/closa-1.4.jar com.iandadesign.closa.PAN11EvaluationSetEval
-java -Xmx100G -cp target/closa-1.4.jar com.iandadesign.closa.SuperMain
+# java -Xmx100G -cp target/closa-1.4.jar com.iandadesign.closa.SuperMain
 
 
 

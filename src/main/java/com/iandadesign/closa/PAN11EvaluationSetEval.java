@@ -1,14 +1,10 @@
 package com.iandadesign.closa;
-
-import com.iandadesign.closa.language.LanguageDetector;
 import com.iandadesign.closa.model.ExtendedAnalysisParameters;
 import com.iandadesign.closa.model.SavedEntity;
 import com.iandadesign.closa.model.StatisticsInfo;
 import com.iandadesign.closa.util.*;
 import org.apache.commons.io.FileUtils;
 import org.joda.time.DateTime;
-
-
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;

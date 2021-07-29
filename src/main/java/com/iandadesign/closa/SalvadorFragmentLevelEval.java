@@ -1,23 +1,13 @@
 package com.iandadesign.closa;
-
-import com.iandadesign.closa.analysis.featurama.matrix.CorrelationMatrix;
-import com.iandadesign.closa.analysis.featurama.matrix.Matrix;
-import com.iandadesign.closa.analysis.featurama.observation.Observation;
 import com.iandadesign.closa.analysis.featurama.observation.ObservationHolder;
 import com.iandadesign.closa.model.*;
 import com.iandadesign.closa.util.*;
 import edu.stanford.nlp.util.ArrayMap;
-import org.apache.commons.io.FilenameUtils;
 import org.jetbrains.annotations.NotNull;
-
 import java.io.*;
-import java.text.DecimalFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
-
 import static com.iandadesign.closa.PAN11EvaluationSetEval.logParams;
 import static com.iandadesign.closa.model.SalvadorAnalysisParameters.*;
 import static java.lang.Integer.max;
@@ -36,7 +26,6 @@ public class SalvadorFragmentLevelEval {
         Boolean addCRResultInfo = true;              // This will test detailed analysis with mocked CR results
         Integer maxMockSuspCandiates = 5000;          // This is a delimeter for the maximum of suspicious files locked in mockCR Evaluation, set over 304 to check all susp files.
 
-        //evalPAN2011All();
         if(args!=null && args.length >= 4){
             USE_ABSOLUTE_SCORES = Boolean.valueOf(args[0]);
             THRESH1 = Integer.valueOf(args[1]);
@@ -46,7 +35,6 @@ public class SalvadorFragmentLevelEval {
         }
 
         evalPAN2011EnEs(null, smallTest, evaluateCandidateRetrieval, addCRResultInfo, maxMockSuspCandiates );
-
     }
 
 

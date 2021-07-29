@@ -11,13 +11,13 @@
 
 # batchBaseName / USE_ABSOLUTE_SCORES / THRESH1 / THRESH2 / FRAGMENT_MERGE_MODE
 BATCH_BASE_NAME=batchTestAbsolute
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 1400 9  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 1400 8  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 1400 7  simpleAdd
+./runDetailedEval.sh $BATCH_BASE_NAME true 1400 9  simpleAdd
+./runDetailedEval.sh $BATCH_BASE_NAME true 1400 8  simpleAdd
+./runDetailedEval.sh $BATCH_BASE_NAME true 1400 7  simpleAdd
 
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 2400 13  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 2400 12  simpleAdd
-./doASalvadorRoll.sh $BATCH_BASE_NAME true 2400 10  simpleAdd
+./runDetailedEval.sh $BATCH_BASE_NAME true 2400 13  simpleAdd
+./runDetailedEval.sh $BATCH_BASE_NAME true 2400 12  simpleAdd
+./runDetailedEval.sh $BATCH_BASE_NAME true 2400 10  simpleAdd
 
 
 # Best Thresh2
