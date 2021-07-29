@@ -11,7 +11,9 @@ package com.iandadesign.closa.util;
 public class PAN11PlagiarismInfo {
     String type;
     String obfuscation;
-    Boolean manualObfuscation;
+    Boolean translation = false;
+    Boolean automatedObfuscation =false;
+    Boolean manualObfuscation = false;
     String thisLanguage;
     int thisOffset;
     int thisLength;
@@ -22,6 +24,13 @@ public class PAN11PlagiarismInfo {
     String caseLengthThis;
     String caseLengthSource;
 
+    public Boolean getTranslation() {
+        return translation;
+    }
+
+    public Boolean getAutomatedObfuscation() {
+        return automatedObfuscation;
+    }
     public String getType(){
         return type;
     }
@@ -35,7 +44,7 @@ public class PAN11PlagiarismInfo {
     public void calculateCaseLength(){
         if(thisLength < 700) {
             caseLengthThis = CaseLength.SHORT;
-        } else if(thisLength < 5000) {
+        } else if(thisLength <= 5000) {
             caseLengthThis = CaseLength.MEDIUM;
         } else {
             caseLengthThis = CaseLength.LONG;
@@ -43,7 +52,7 @@ public class PAN11PlagiarismInfo {
 
         if(sourceLength < 700) {
             caseLengthSource = CaseLength.SHORT;
-        } else if(sourceLength < 5000){
+        } else if(sourceLength <= 5000){
             caseLengthSource = CaseLength.MEDIUM;
         } else {
             caseLengthSource = CaseLength.LONG;
@@ -59,8 +68,8 @@ public class PAN11PlagiarismInfo {
     public static class CaseLength{
         // F. Salvador 2016-2 p7. footnote:
         // We followed the PAN-PC-11 setup and considered as short cases those with less than 700 characters.
-        // Long cases are those larger than 5000 characters (not clear if source or candidate was taken for length
-        // classification, assumed source)
+        // Long cases are those larger than 5000 characters (not clear if suspicious or candidate was taken for length
+        // classification, assumed suspicious)
         public static String LONG = "LONG";
         public static String MEDIUM = "MEDIUM";
         public static String SHORT = "SHORT";
