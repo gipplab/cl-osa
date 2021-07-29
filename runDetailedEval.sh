@@ -7,8 +7,7 @@ if [ -z "$1" ]
 fi
 
 mkdir -p ./mylogs
-BASE_FOLDER=""
-cd $BASE_FOLDER/cl-osa-tng && mvn package -DskipTests -Dmaven.javadoc.skip=true
+mvn package -DskipTests -Dmaven.javadoc.skip=true
 
 if [ -z "$2" ]
   then
@@ -19,4 +18,4 @@ fi
 
 
 # ATM Not fetching the errors  to logs (2>&1 for that)
-java -Xmx100G -cp $BASE_FOLDER/cl-osa-tng/target/closa-1.4.jar com.iandadesign.closa.SalvadorFragmentLevelEval $2 $3 $4 $5 1>&1 | tee ./mylogs/$1$NAME_SUFFIX
+java -Xmx100G -cp ./target/closa-1.4.jar com.iandadesign.closa.SalvadorFragmentLevelEval $2 $3 $4 $5 1>&1 | tee ./mylogs/$1$NAME_SUFFIX
