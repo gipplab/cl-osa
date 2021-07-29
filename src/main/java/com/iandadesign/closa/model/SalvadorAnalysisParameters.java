@@ -40,9 +40,9 @@ public class SalvadorAnalysisParameters {
 
     // Analysis & MISC Parameters
     public static boolean CALCULATE_RECALL_AT_K = false;              // Calculate Recall At K by own implementation
-    public static boolean DO_ANALYSIS = true;                     // Do additional analysis steps (deactivate for perfomance)
+    public static boolean DO_ANALYSIS = false;                     // Do additional analysis steps (deactivate for perfomance)
     public static double ANALYSIS_RELEVANCE_THRESH = 0.1;         // Fragments have to have at least XX percent overlap with plagiarism to go as positivies
-    public static boolean DO_REGRESSION_ANALYSIS = true;
+    public static boolean DO_REGRESSION_ANALYSIS = false;
     public static String SAVE_CSV_DIR = System.getProperty("user.home") + "/Documents";
     public static boolean ONLY_PLAGFILES_IN_STATS = false;        // only consider candidate files which actually contain plagiarism for statistics calculation.
 
