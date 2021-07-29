@@ -3,7 +3,7 @@
 ./.idea/*
 ./target.zip
 ./.DS_Store
-./.idea/*
+.idea/*
 ./settings.xml
 
 /target/*
