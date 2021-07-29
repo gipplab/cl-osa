@@ -37,17 +37,19 @@ public class SalvadorAnalysisParameters {
     // Clustering - Fragment Merge
     public static String FRAGMENT_MERGE_MODE = "simpleAdd";        // "weightedAdd", "weightedAverage", "simpleAdd", "keepingMax"
     public static double WEIGHTED_ADD_CONSTANT = 0.3;             // The more, the higher scores have weightedAdd merged fragments
+
     // Analysis & MISC Parameters
     public static boolean CALCULATE_RECALL_AT_K = false;              // Calculate Recall At K by own implementation
     public static boolean DO_ANALYSIS = true;                     // Do additional analysis steps (deactivate for perfomance)
     public static double ANALYSIS_RELEVANCE_THRESH = 0.1;         // Fragments have to have at least XX percent overlap with plagiarism to go as positivies
-    public static boolean DO_REGRESSION_ANALYSIS = false;
+    public static boolean DO_REGRESSION_ANALYSIS = true;
+    public static String SAVE_CSV_DIR = System.getProperty("user.home") + "/Documents";
     public static boolean ONLY_PLAGFILES_IN_STATS = false;        // only consider candidate files which actually contain plagiarism for statistics calculation.
 
     // Experimental Features (Features in Development)
     public static boolean DO_STATISTICAL_WEIGHTING = false;     // weighting all found entities by tf/idf
     public static int WEIGHTING_SCHEME = 1;                     // See Wikipedia "Recommended Weighting Schemes: https://en.wikipedia.org/wiki/Tf%E2%80%93idf
-    public static boolean DO_SCORES_MAP_CACHING = true;         // Cache scoresmap on base of parameters
+    public static boolean DO_SCORES_MAP_CACHING = false;         // Cache scoresmap on base of parameters
     public static boolean DO_RELATIVE_SCORING_R_AT_K = false;   // default: false, relative scoring (how many characters of the found set are plagiarism, compared to the fetched chars)
     public static int MIN_FRAGMENT_SIZE_R_AT_K = 0;             // default: 0, minimum plagiarism size in chars, that a fragment counts
     public static boolean DISMISS_OVERLAPS_IN_R_AT_K = true;   // default: true, though much hardware, calculates r@k for actual detected plagsize and not overlapping area.
