@@ -1,5 +1,7 @@
 package com.iandadesign.closa.model;
 
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+
 import javax.swing.*;
 import java.io.File;
 import java.util.List;
@@ -123,6 +125,10 @@ public class SalvadorTextFragment {
 
     public void setCharLengthByEntities(int charLengthByEntities) {
         this.charLengthByEntities = charLengthByEntities;
+    }
+
+    public String toString() {
+        return ReflectionToStringBuilder.toString(this);
     }
 
 }

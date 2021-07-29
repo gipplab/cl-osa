@@ -3,6 +3,8 @@ package com.iandadesign.closa.analysis.featurama.PCA;
 import com.iandadesign.closa.analysis.featurama.matrix.CovarianceMatrix;
 import com.iandadesign.closa.analysis.featurama.matrix.Matrix;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.Arrays;
 import java.util.Locale;
 
@@ -25,7 +27,7 @@ public class PCA {
     int num_data = 0;
     int dim_data = 0;
 
-    Matrix   data;  // input data-vectors
+    private Matrix data;  // input data-vectors
     DwVector mean;  // translation vector
     Matrix   cvmat; // (variance)-covariance-matrix
 
@@ -37,10 +39,10 @@ public class PCA {
    Constructor
  * ------------------------ */
 
-    public PCA(Matrix data) {
-        this.num_data = data.getRowDimension();
-        this.dim_data = data.getColumnDimension();
-        this.data = data;
+    public PCA(Matrix _data) {
+        this.num_data = _data.getRowDimension();
+        this.dim_data = _data.getColumnDimension();
+        this.data = new Matrix(_data);
     }
 
     public PCA compute() {
@@ -75,7 +77,7 @@ public class PCA {
         return new DwVector(vec_new);
     }
 
-    public DwVector[] transformData(DwVector[] data, boolean transpose) {
+    public Matrix transformData(Matrix data, boolean transpose) {
         Matrix mat = emat;
         if (transpose) {
             mat = emat.transpose();
@@ -85,21 +87,21 @@ public class PCA {
         final int rows = mat.getRowDimension();
 
         final double[][] emat_dd = mat.getArray();
-        final int num_data = data.length;
+        final int num_data = data.getRowDimension();
 
-        DwVector[] data_new = new DwVector[num_data];
+        Matrix data_new = new Matrix(num_data, rows);
         for (int i = 0; i < num_data; i++) {
-            DwVector vec = data[i];
+            double[] vec = data.returnRow(i);
 
-            float[] vec_new = new float[rows];
+            double[] vec_new = new double[rows];
             for (int r = 0; r < rows; r++) {
                 float val = 0;
                 for (int c = 0; c < cols; c++) {
-                    val += emat_dd[r][c] * vec.v[c];
+                    val += emat_dd[r][c] * vec[c];
                 }
                 vec_new[r] = val;
             }
-            data_new[i] = new DwVector(vec_new);
+            data_new.setRow(i, vec_new);
         }
 
         if (transpose) {
@@ -146,25 +148,19 @@ public class PCA {
 
     private void centerData() {
 
-        // compute mean
-        float[] mean_tmp = new float[dim_data];
+        double[] mean_tmp = new double[dim_data];
+
         for (int i = 0; i < num_data; i++) {
             for (int j = 0; j < dim_data; j++) {
-                mean_tmp[j] += data.returnValue(i,j);
+                mean_tmp[j] = Math.max(mean_tmp[j], Math.abs(this.data.returnValue(i,j)));
             }
         }
 
-        for (int j = 0; j < dim_data; j++) {
-            mean_tmp[j] /= (float) num_data;
-        }
-
-        // center data (subtract mean) -> mean is at origin now
         for (int i = 0; i < num_data; i++) {
             for (int j = 0; j < dim_data; j++) {
-                data.writeValue(i, j, data.returnValue(i,j) - mean_tmp[j]);
+                this.data.writeValue(i, j, this.data.returnValue(i,j) / mean_tmp[j]);
             }
         }
-        mean = new DwVector(mean_tmp);
     }
 
     private void computeCovarianceMatrix() {
@@ -217,10 +213,6 @@ class DwEigenVector implements Comparable<DwEigenVector>{
         return 0;
     }
 
-    public void saveWithLabels(int[] labels, String directory, String filename)
-    {
-
-    }
 }
 
 
@@ -241,8 +233,8 @@ class DwVector{
         }
     }
 
-    void print(){
-        for(int i = 0; i < v.length; i++){
+    void print() {
+        for (int i = 0; i < v.length; i++) {
             System.out.printf(Locale.ENGLISH, "%+8.5f, ", v[i]);
         }
         System.out.printf(Locale.ENGLISH, "\n");

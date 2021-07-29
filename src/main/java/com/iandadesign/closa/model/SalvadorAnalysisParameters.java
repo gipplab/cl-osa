@@ -28,10 +28,10 @@ public class SalvadorAnalysisParameters {
     public static int FRAGMENT_INCREMENT = 3; //2;                // In Sentences
     public static boolean GET_PLAGSIZED_FRAGMENTS = false;         // Get fragments exactly the plagiarism size
 
-    // Clustering6
+    // Clustering
     public static boolean CLUSTER_MULTIPLE_SUSP_FINDINGS = true; // This gets <TOPMOST> values * number related fragments for each susp case, then clusters them, if false, <TOPMOST> cases per related fragment are fetched and clustered fragment by fragment.
     public static int THRESH1 = 800;                             // Fragment distance merging thresh
-    public static double THRESH2 =  0.686; //0.686;      //0.086;    // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
+    public static double THRESH2 =  0.38; //0.686;      //0.086;    // Merged fragment selection thresh 0,1 too much (25) below too much 0.13
     public static double PRESELECTION_THRESH = 0.0;               // From the topmost candidates only the ones above this thresh get considered for merge
     public static int TOPMOST = 5;                                // topmost fetched suspicious for one plagiarism node
     // Clustering - Fragment Merge
@@ -42,6 +42,7 @@ public class SalvadorAnalysisParameters {
     public static boolean DO_ANALYSIS = true;                     // Do additional analysis steps (deactivate for perfomance)
     public static double ANALYSIS_RELEVANCE_THRESH = 0.1;         // Fragments have to have at least XX percent overlap with plagiarism to go as positivies
     public static boolean DO_REGRESSION_ANALYSIS = false;
+    public static String SAVE_CSV_DIR = System.getProperty("user.home") + "/Documents";
     public static boolean ONLY_PLAGFILES_IN_STATS = false;        // only consider candidate files which actually contain plagiarism for statistics calculation.
 
     // Experimental Features (Features in Development)

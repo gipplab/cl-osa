@@ -24,17 +24,16 @@ printverbose("verbosity turned on")
 data = pd.read_csv(args.file)
 if(data.empty):
   print("Error while reading file {}!".format(args.file))
-  return -1
+  exit -1
 
 printverbose("Read CSV from {}".format(args.file))
 
 try:
   corr = data.corr()
-  break
 except ValueError as err:
   print("error while calculating the correlation.")
   print(err)
-  return -1
+  exit -1
 
 printverbose("Calculated correlation")
 

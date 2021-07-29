@@ -1,14 +1,10 @@
 package com.iandadesign.closa;
-
-import com.iandadesign.closa.language.LanguageDetector;
 import com.iandadesign.closa.model.ExtendedAnalysisParameters;
 import com.iandadesign.closa.model.SavedEntity;
 import com.iandadesign.closa.model.StatisticsInfo;
 import com.iandadesign.closa.util.*;
 import org.apache.commons.io.FileUtils;
 import org.joda.time.DateTime;
-
-
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
@@ -30,7 +26,7 @@ public class PAN11EvaluationSetEval {
         Boolean smallTest = false;                  // Just select few suspicious files for the complete process
         Boolean evaluateCandidateRetrieval = false; // This triggers only the CR evaluation.
         Boolean mockCRResults = true;              // This will test detailed analysis with mocked CR results
-        Integer maxMockSuspCandiates = 10;          // This is a delimeter for the maximum of suspicious files locked in mockCR Evaluation, set over 304 to check all susp files.
+        Integer maxMockSuspCandiates = 3;          // This is a delimeter for the maximum of suspicious files locked in mockCR Evaluation, set over 304 to check all susp files.
 
 
         //evalPAN2011All();

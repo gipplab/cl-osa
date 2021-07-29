@@ -24,7 +24,9 @@ If all booleans are false, the regular process is triggered:
 - All files for  are considered for CR and detailed analysis is done based on the CR 
 - For a technical test of this complete evaluation smallTest can be set to true. Just few suspicious files are checked then. 
 
-
+## Featurama
+The Featurama project offers functionality to store and save observations during plagiarism detection. Each observation holds several features, which each have a name and numerical value. The observations are stored in an observation holder, which can be transformed into a matrix. For this matrix the correlation and covariance matrices can be calculated. Furthermore it is possible to perform a PCA on the data, which the option of reducing the dimension at the same time.
+To use featurama an observationHolder object must be initialised. For each observation a new observation object is created and the features added, by storing them in a hash map and adding this hash map to the obervation. This observation is added to the observationHolder, which in turn can be saved by converting it to a matrix and saving as CSV file. 
 
 #Old Readme: 
 Plagiarism detection for Java
