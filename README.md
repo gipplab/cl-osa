@@ -1,54 +1,10 @@
-CL-OSA (cross-language ontology-based similarity analysis) readme
+CL-OSA (cross-language ontology-based similarity analysis)
 =================================================================
 This is an extended version for CL-OSA which can do a detailed analysis 
 for finding plagiarism on document level. It contains possibilities for evaluation 
 with the original PAN-PC11 Dataset for Candidate Retrieval and Detailed analysis. 
+Also it contains the featurama-project for parameter optimization and scores analysis. 
 
-
-
-## Entry Points / Configuration 
-- Entry Point is:  com.iandadesign.closa.PAN11EvaluationSetEval, just configure the header of this class to run the wished functionality
-- model/ExtendedAnalysisParameters contains global settings for the most operations in PAN-PC11 related comparisons
-- Some basic settings are still found in config.properties in the resources. 
-
-## PAN-PC-11 Detailed evaluation
-
-For running the PAN-PC-11 detailed evaluation there are a  runDetailedEval.sh
-two bash scripts. A single run of the evaluation can be started like this: 
-
-    cd cl-osa-tng
-    # Modify the settings of the PAN-PC-11 detailed evaluation 
-    vim ./src/main/java/com/iandadesign/closa/model/SalvadorAnalysisParameters.java
-    # Run the evaluaton-script: this recompiles the java code and saves logs with <nameOfTest> prefix
-    # The nohup command is optional, but recommended when running longer tests 
-    # The output can be muted with '&' it is redirected to a file in './mylogs/<nameOfTest><params' prefix
-    nohup ./runDetailedEval.sh <nameOfTest> &
-    # Watch the current log (if nohup and & ist used) 
-    watch -n 1 tail -n 35 ./nohup.out
-
-For running more than one PAN-PC-11 detailed evaluation, i.e. for testing
-multiple sets of parameters, a script running batches of evaluations can be used.
-    
-    cd cl-osa-tng
-    # Modify the basic settings of the PAN-PC-11 detailed evaluation
-    vim ./src/main/java/com/iandadesign/closa/model/SalvadorAnalysisParameters.java
-    # Modify the batched script (especially <batch base name>) 
-    vim runDetailedEvalBatched.sh
-    # Run the batched script  
-    # The nohup command is optional, but recommended when running longer tests 
-    # The output can be muted with '&' it is redirected to a file in './mylogs/<batch base name><params' prefix
-    nohup ./runDetailedEvalBatched.sh &
-    # Watch the current log (if nohup and & ist used) 
-    watch -n 1 tail -n 35 ./nohup.out
-
-
-
-
-## Featurama
-The Featurama project offers functionality to store and save observations during plagiarism detection. Each observation holds several features, which each have a name and numerical value. The observations are stored in an observation holder, which can be transformed into a matrix. For this matrix the correlation and covariance matrices can be calculated. Furthermore it is possible to perform a PCA on the data, which the option of reducing the dimension at the same time.
-To use featurama an observationHolder object must be initialised. For each observation a new observation object is created and the features added, by storing them in a hash map and adding this hash map to the obervation. This observation is added to the observationHolder, which in turn can be saved by converting it to a matrix and saving as CSV file. 
-
-#Old Readme: 
 Plagiarism detection for Java
 -----------------------------
 
@@ -105,20 +61,23 @@ Use the code snippet and adjust the file paths
 ### What CL-OSA does
 
 CL-OSA takes documents as input and ranks them according to their semantic similarity.
-
+Also CL-OSA can compare documents on character-level. 
 
 ### What CL-OSA does not
+CL-OSA does not search the internet for possible sources. This is addressed in different algorithms.
 
-CL-OSA does not scan the documents for plagiarized passages, it only considers whole documents.
-If you care about smaller detection granularity,
-you can split up your documents and detect candidates for each chunk or sentence. 
-For this purpose, we recommend the script:
-[chunking.php and splitinsentences.php](https://github.com/FerreroJeremy/Cross-Language-Dataset/tree/master/scripts)
-by Jérémy Ferrero.
+## Extensions to CL-OSA in this project
+###  Featurama
 
-Also, CL-OSA does not search the internet
-for possible sources. This is addressed in different algorithms.
+The Featurama project is a analysis tool to find correlation
+between calculated similarity scores and plagirized document sections.
+When having the possibility to choose between a multitude of parameters
+and scoring metrics, it can be used to find optimal parametrization.
 
+The project offers functionality to store and save observations during plagiarism detection. Each observation holds several features, which each have a name and numerical value. The observations are stored in an observation holder, which can be transformed into a matrix. For this matrix the correlation and covariance matrices can be calculated. Furthermore it is possible to perform a PCA on the data, which the option of reducing the dimension at the same time.
+To use featurama an observationHolder object must be initialised. For each observation a new observation object is created and the features added, by storing them in a hash map and adding this hash map to the obervation. This observation is added to the observationHolder, which in turn can be saved by converting it to a matrix and saving as CSV file.
+### Detailed Analysis for PAN-PC-11
+See 'How it works section: Detailed Analysis Evaluation'
 
 
 Setting up the MongoDB database
@@ -137,7 +96,7 @@ to
 However, this alternative is only recommended for testing purposes as
 1. the number of queries is limited,
 2. Wikidata is updated so frequently such that results become non-deterministic, and
-3. querying a public web service is slow. 
+3. querying a public web service is slow.
 
 
 ### The setup process
@@ -149,13 +108,13 @@ Set up using docker-compose.yml
 
 #### Local MongoDB (not recommended)
 
-Launch a new MongoDB instance on your desired host and port. 
+Launch a new MongoDB instance on your desired host and port.
 
-The default is a MongoDB instance running on localhost, port 27017. 
+The default is a MongoDB instance running on localhost, port 27017.
 Then, run this [Python script](docker/mongo/wikidata-dump-mongo-import.py) to import the Wikidata dump.
 
 Usage is
-    
+
     python wikidata-dump-mongo-import.py -h <host> -p <port>
 
 If the current directory already contains a file named *latest-all.json.bz2*
@@ -210,8 +169,8 @@ and make sure you are inside the branch *clpd-merge-backup-new*.
 To get all dependencies running, run
 
     mvn install
-    
-inside the cloned repository directory. 
+
+inside the cloned repository directory.
 
 How to use
 ----------
@@ -233,7 +192,7 @@ and second argument is the candidate file path.
          .executeAlgorithmAndComputeScores(suspiciousPath, candidatePaths);
                                                             
     System.out.println(candidateScoreMap);
-    
+
 The output is a scored map of candidates.
 
 Pre-processing steps will be saved to a directory named *preprocessed* which will be created in your
@@ -271,15 +230,15 @@ methods "extractEntitiesFromText" or "annotateEntitiesInText".
 The -a flag switches from simple entity list output to entity annotations inside the text using xml-like tags, e.g.
 
     Scientists prove there is water on Mars
-    
+
 becomes
 
     Scientists<span token="Scientists" qid="Q901"/> prove there is water<span token="water" qid="Q283"/> on Mars<span token="Mars" qid="Q111"/>
 
-Evaluation
+Evaluation 
 ----------
-
-If you desire to evaluate CL-OSA's in terms of precision, recall and F1-score, instantiate the class
+## Candidate Retrieval Evaluation
+If you desire to evaluate CL-OSA's in terms of precision, recall and F1-score for the candidate retrieval, instantiate the class
 CLOSAEvaluationSet with the directory containing the suspicious files and the directory containing the
 candidate files.
 
@@ -296,10 +255,10 @@ candidate files.
     } catch (IOException e) {
         e.printStackTrace();
     }
-    
+
 Both folders need to contain the same amount of files because the evaluation method
- assumes a one-to-one mapping between suspicious and candidate files to use as a ground truth
- to evaluate against.
+assumes a one-to-one mapping between suspicious and candidate files to use as a ground truth
+to evaluate against.
 Because of this, the suspicious files and their respective candidate file have to be named the same.
 If the suspicious file name contains the language code, the candidate has to contain its own language code instead, i.e.
 
@@ -345,9 +304,49 @@ you can add a third directory parameter:
         e.printStackTrace();
     }
 
+## Detailed Analysis Evaluation
+CL-OSA-TNG offers a component which can compare documents on character level
+and find supposed plagiarism within the PAN-PC-11 dataset.
+
+As prerequisite it is required to download the PAN-PC-11 corpus and place it in the
+path defined in SalvadorFragmentLevelEval.java. Also to
+
+    public static String pathPrefix = "/data/pan-plagiarism-corpus-2011/external-detection-corpus";
+    public static String preprocessedCachingDir = "/data/CLOSA_data/preprocessed";
 
 
-    
+
+For running the PAN-PC-11 detailed evaluation there are a  runDetailedEval.sh
+two bash scripts. A single run of the evaluation can be started like this:
+
+    cd cl-osa-tng
+    # Modify the settings of the PAN-PC-11 detailed evaluation 
+    vim ./src/main/java/com/iandadesign/closa/model/SalvadorAnalysisParameters.java
+    # Run the evaluaton-script: this recompiles the java code and saves logs with <nameOfTest> prefix
+    # The nohup command is optional, but recommended when running longer tests 
+    # The output can be muted with '&' it is redirected to a file in './mylogs/<nameOfTest><params' prefix
+    nohup ./runDetailedEval.sh <nameOfTest> &
+    # Watch the current log (if nohup and & ist used) 
+    watch -n 1 tail -n 35 ./nohup.out
+
+For running more than one PAN-PC-11 detailed evaluation, i.e. for testing
+multiple sets of parameters, a script running batches of evaluations can be used.
+
+    cd cl-osa-tng
+    # Modify the basic settings of the PAN-PC-11 detailed evaluation
+    vim ./src/main/java/com/iandadesign/closa/model/SalvadorAnalysisParameters.java
+    # Modify the batched script (especially <batch base name>) 
+    vim runDetailedEvalBatched.sh
+    # Run the batched script  
+    # The nohup command is optional, but recommended when running longer tests 
+    # The output can be muted with '&' it is redirected to a file in './mylogs/<batch base name><params' prefix
+    nohup ./runDetailedEvalBatched.sh &
+    # Watch the current log (if nohup and & ist used) 
+    watch -n 1 tail -n 35 ./nohup.out
+
+
+
+
 How it works
 ------------
 
@@ -361,8 +360,9 @@ The CL-OSA pipeline consists of the following steps:
         2. Entity filtering by named entity type
     4. Entity disambiguation
 2. Analysis
-    1. Calculate cosine similarity between all document pairs
-    2. Return top ranked document
+    1. Calculate cosine similarity between all document pairs (or selected document fragments)
+    2. Return top ranked document (or fragments)
+    3. (in detailed analysis) Merge fragments on base of their proximity and scores
 
 
 Implementation details
@@ -409,23 +409,23 @@ The methods called, starting with the "main" method executeAlgorithmAndComputeSc
                 * WikidataEntity.ancestorCountDisambiguate
     * OntologyBasedSimilarityAnalysis.performCosineSimilarityAnalysis
         * Dictionary
-        
-        
+
+
 Issue management
 ----------------
 
 You can create issues here:
 
 https://bitbucket.org/iandadesign/closa/issues?status=new&status=open
-        
-        
+
+
 Contributing
 ------------
 
 If you wish to contribute, please create a feature branch named YYYY-MM-dd_name_of_feature.
 When your branch is ready to review, please create a pull request.
-        
-        
+
+
 DevOps
 ------
 
@@ -445,7 +445,7 @@ A new version is set like the following:
 Create a GPG key for signing.
 
     gpg --gen-key
-    
+
 The public key's last 8 characters are the key id:
 
     gpg --list-keys
@@ -477,14 +477,18 @@ Settings file ~/.m2/settings.xml should look like the following:
         </profile>
       </profiles>
     </settings>
-    
+
 Signing:
-    
+
     $ mvn verify -DskipTests=true -Denv=deploy
-    
+
 Deploying:
 
     $ mvn deploy -Denv=deploy
 
 Releasing is performed under [OSS Sonatype Nexus Repository Manager](https://oss.sonatype.org/#stagingRepositories).
 A repository called comiandadesign should be present with status open. Close it and wait for the tests to succeed.
+
+
+
+
