@@ -11,18 +11,38 @@ with the original PAN-PC11 Dataset for Candidate Retrieval and Detailed analysis
 - model/ExtendedAnalysisParameters contains global settings for the most operations in PAN-PC11 related comparisons
 - Some basic settings are still found in config.properties in the resources. 
 
-## PAN11EvaluationSetEval functionalities 
-There are some settings regarding evaluation process in beginning of the file.
+## PAN-PC-11 Detailed evaluation
 
-        Boolean smallTest = false;                  // Just select few suspicious files for the complete process
-        Boolean evaluateCandidateRetrieval = false; // This triggers only the CR evaluation (Which gives recall based scores) 
-        Boolean mockCRResults = true;               // This will test detailed analysis with mocked CR results
-        Integer maxMockSuspCandiates = 30;          // This is a delimeter for the maximum of suspicious files locked in mockCR Evaluation, set over 304 to check all susp files. 
+For running the PAN-PC-11 detailed evaluation there are a  runDetailedEval.sh
+two bash scripts. A single run of the evaluation can be started like this: 
+
+    cd cl-osa-tng
+    # Modify the settings of the PAN-PC-11 detailed evaluation 
+    vim ./src/main/java/com/iandadesign/closa/model/SalvadorAnalysisParameters.java
+    # Run the evaluaton-script: this recompiles the java code and saves logs with <nameOfTest> prefix
+    # The nohup command is optional, but recommended when running longer tests 
+    # The output can be muted with '&' it is redirected to a file in './mylogs/<nameOfTest><params' prefix
+    nohup ./runDetailedEval.sh <nameOfTest> &
+    # Watch the current log (if nohup and & ist used) 
+    watch -n 1 tail -n 35 ./nohup.out
+
+For running more than one PAN-PC-11 detailed evaluation, i.e. for testing
+multiple sets of parameters, a script running batches of evaluations can be used.
+    
+    cd cl-osa-tng
+    # Modify the basic settings of the PAN-PC-11 detailed evaluation
+    vim ./src/main/java/com/iandadesign/closa/model/SalvadorAnalysisParameters.java
+    # Modify the batched script (especially <batch base name>) 
+    vim runDetailedEvalBatched.sh
+    # Run the batched script  
+    # The nohup command is optional, but recommended when running longer tests 
+    # The output can be muted with '&' it is redirected to a file in './mylogs/<batch base name><params' prefix
+    nohup ./runDetailedEvalBatched.sh &
+    # Watch the current log (if nohup and & ist used) 
+    watch -n 1 tail -n 35 ./nohup.out
 
 
-If all booleans are false, the regular process is triggered: 
-- All files for  are considered for CR and detailed analysis is done based on the CR 
-- For a technical test of this complete evaluation smallTest can be set to true. Just few suspicious files are checked then. 
+
 
 ## Featurama
 The Featurama project offers functionality to store and save observations during plagiarism detection. Each observation holds several features, which each have a name and numerical value. The observations are stored in an observation holder, which can be transformed into a matrix. For this matrix the correlation and covariance matrices can be calculated. Furthermore it is possible to perform a PCA on the data, which the option of reducing the dimension at the same time.
