@@ -12,7 +12,7 @@ public class SalvadorAnalysisParameters {
     public static int SUSP_FILE_SELECTION_OFFSET = 0;             // Offset selection, default 0
     public static boolean SORT_SUSPICIOUS_FILES_BY_SIZE = true;     // Sort suspicious files by size, biggest first (DANGER: messes up old keys)
     public static boolean SELECT_REPRESENTATIVE_TEST_FILES = false;                 // selects specific testfiles, default: false
-    public static boolean USE_FAST_SC = true;
+    public static boolean USE_FAST_SC = false;
 
     // Basic score calculation
     public static boolean USE_ABSOLUTE_SCORES = false;            // If false: use default normalized cosine-score for each (only with Enhanched->False)

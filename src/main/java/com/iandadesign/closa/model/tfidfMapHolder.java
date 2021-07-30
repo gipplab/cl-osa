@@ -4,7 +4,6 @@ import com.iandadesign.closa.OntologyBasedSimilarityAnalysis;
 import com.iandadesign.closa.SalvadorFragmentLevelEval;
 import com.iandadesign.closa.util.PAN11PlagiarismInfo;
 import edu.stanford.nlp.util.ArrayMap;
-import org.apache.commons.collections4.comparators.ReverseComparator;
 
 import java.io.File;
 import java.util.*;
