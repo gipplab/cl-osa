@@ -68,6 +68,10 @@ public class PAN11XMLParser {
                         System.out.println("asd");
                     }
                     */
+
+                    if(plagInfo.type.equals("translation")){
+                        plagInfo.translation = true;
+                    }
                     Node obfItem = attributes.getNamedItem("obfuscation");
                     if(obfItem!=null){
                         // Obfuscation doesn't always exist (in type='simulated' it apparently doesn't)
@@ -78,7 +82,13 @@ public class PAN11XMLParser {
                         // Usually for 'translation' type plagiarism
                         plagInfo.manualObfuscation = Boolean.valueOf(manObfItem.getNodeValue());  // Boolean.valueOf
                     }
-
+                    /*
+                    Node manObfAutItem = attributes.getNamedItem("automated_obfuscation");
+                    if(manObfAutItem!=null){
+                        // Usually for 'translation' type plagiarism
+                        plagInfo.automatedObfuscation = Boolean.valueOf(manObfAutItem.getNodeValue());  // Boolean.valueOf
+                    }
+                    */
 
                     plagInfo.thisLanguage = attributes.getNamedItem("this_language").getNodeValue();
                     plagInfo.thisLength = Integer.parseInt(attributes.getNamedItem("this_length").getNodeValue());

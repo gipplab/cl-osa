@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.iandadesign.closa.SalvadorFragmentLevelEval.isEntityRelatedToPlagiarism;
+import static com.iandadesign.closa.PAN11CharacterLevelEval.isEntityRelatedToPlagiarism;
 import static java.lang.Integer.max;
 import static java.lang.Integer.min;
 

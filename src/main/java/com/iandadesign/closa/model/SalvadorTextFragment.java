@@ -1,9 +1,15 @@
 package com.iandadesign.closa.model;
 
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+
 import javax.swing.*;
 import java.io.File;
 import java.util.List;
 
+/**
+ * Text Fragment for the merging algorithm in detailed analysis.
+ * @author Johannes Stegmüller
+ */
 public class SalvadorTextFragment {
 
     String fragmentID;
@@ -14,8 +20,36 @@ public class SalvadorTextFragment {
     int charLengthBySentences;
     int charLengthByEntities;
     boolean isMerged = false;
+    boolean isTranslation = false;
+    boolean manualTranslation = false;
+    boolean automaticTranslation = false;
+
     List<String> mergedIDs;
     Double computedScore;
+
+    public boolean isAutomaticTranslation() {
+        return automaticTranslation;
+    }
+
+    public boolean isTranslation() {
+        return isTranslation;
+    }
+
+    public boolean isManualTranslation() {
+        return manualTranslation;
+    }
+
+    public void setAutomaticTranslation(boolean automaticTranslation) {
+        this.automaticTranslation = automaticTranslation;
+    }
+
+    public void setManualTranslation(boolean manualTranslation) {
+        this.manualTranslation = manualTranslation;
+    }
+
+    public void setTranslation(boolean translation) {
+        isTranslation = translation;
+    }
 
     public Double getComputedScore() {
         return computedScore;
@@ -95,6 +129,10 @@ public class SalvadorTextFragment {
 
     public void setCharLengthByEntities(int charLengthByEntities) {
         this.charLengthByEntities = charLengthByEntities;
+    }
+
+    public String toString() {
+        return ReflectionToStringBuilder.toString(this);
     }
 
 }

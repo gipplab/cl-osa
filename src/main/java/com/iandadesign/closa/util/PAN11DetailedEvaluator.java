@@ -11,12 +11,13 @@ import java.io.InputStreamReader;
  */
 public class PAN11DetailedEvaluator {
 
-    public static void triggerPAN11PythonEvaluation(ExtendedLogUtil logUtil, String baseResultsPath, String baseplagPath, boolean microAveraging) {
+    public static void triggerPAN11PythonEvaluation(ExtendedLogUtil logUtil, String baseResultsPath, String baseplagPath, boolean microAveraging, String filterMode) {
         logUtil.logAndWriteStandard(true,logUtil.getDateString(),"Running evaluation tool for PAN11");
-        //String pathToScript = "src/eval/resources/com/iandadesign/closa/evaluation/pan-pc11/pan09-plagiarism-detection-perfomance-measures.py";
+        //String pathToScript = "src/eval/resources/com/iandadesign/closa/evaluation/pan-pc11/pan09-plagiarism-detection-perfomance-measures-modified.py";
         //TODO bring back resources and PAN11EvaluationSetEval to eval
-        String pathToScript = "src/main/resources/pan-pc11/pan09-plagiarism-detection-perfomance-measures.py";
-        //String pathToScript = "D:\\AA_ScienceProject\\Wikidata_vs_CharacterNGram\\PAN2011Evaluator\\pan09-plagiarism-detection-perfomance-measures.py";
+        String pathToScript = "src/main/resources/pan-pc11/pan09-plagiarism-detection-perfomance-measures-modified.py";
+        String pathToScriptModified = "src/main/resources/pan-pc11/pan09-plagiarism-detection-perfomance-measures-modified.py";
+        //String pathToScript = "D:\\AA_ScienceProject\\Wikidata_vs_CharacterNGram\\PAN2011Evaluator\\pan09-plagiarism-detection-perfomance-measures-modified.py";
         //String plagPath ="D:\\AA_ScienceProject\\Data\\pan-plagiarism-corpus-2011\\pan-plagiarism-corpus-2011\\external-detection-corpus\\suspicious-document";
         String plagPath = baseplagPath; // Path with the susp
         //String detectedPlagiarismPath="D:\\CL_OSA_caching\\preprocessed_extended\\results_comparison\\evalPAN2011All_2020_07_03_14_11_26";
@@ -30,7 +31,16 @@ public class PAN11DetailedEvaluator {
             }else{
                 logUtil.logAndWriteStandard(false, "plag-path", plagPath, "det-path", detectedPlagiarismPath, "--micro");
                 builder.command("python", pathToScript, "--plag-path", plagPath, "--det-path", detectedPlagiarismPath,"--micro");
-
+            }
+            if(!filterMode.equals("NONE")){
+                // Calls a script which has modification to filter detections by case
+                if(!microAveraging) {
+                    logUtil.logAndWriteStandard(false, "plag-path", plagPath, "det-path", detectedPlagiarismPath);
+                    builder.command("python", pathToScriptModified, "--plag-path", plagPath, "--det-path", detectedPlagiarismPath, "--filter", filterMode);
+                }else{
+                    logUtil.logAndWriteStandard(false, "plag-path", plagPath, "det-path", detectedPlagiarismPath, "--micro");
+                    builder.command("python", pathToScriptModified, "--plag-path", plagPath, "--det-path", detectedPlagiarismPath,"--micro", "--filter", filterMode);
+                }
             }
             //builder.directory(new File(homeDir));
             //builder.command("dir");

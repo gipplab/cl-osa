@@ -2,6 +2,10 @@ package com.iandadesign.closa.model;
 
 import com.iandadesign.closa.util.ExtendedLogUtil;
 
+/**
+ * Information holder for recall at k calculation.
+ * @author Johannes Stegmüller
+ */
 public class SalvadorRatKResponse {
     public int k;
     public double recallAtK;

@@ -1,17 +1,16 @@
 package com.iandadesign.closa.util;
-
-
-import com.iandadesign.closa.model.InfoHolder;
 import com.iandadesign.closa.model.SalvadorInfoHolder;
 import com.iandadesign.closa.model.SalvadorStatisticsInfo;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.google.common.primitives.Doubles.min;
-
+/**
+ * Extended Analytics class which has merging functions when creating
+ * statistics.
+ * @author Johannes Stegmüller
+ */
 public class SalvadorExtendedAnalytics {
     public static SalvadorStatisticsInfo createCombinedStatistics(Map<String, Map<String, SalvadorStatisticsInfo>> allStatisticsInfosMap){
         List<SalvadorStatisticsInfo> suspCombined = new ArrayList<>();

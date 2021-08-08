@@ -1,5 +1,7 @@
 package com.iandadesign.closa.analysis.featurama.observation;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ObservationHolder {
 
@@ -37,9 +39,9 @@ public class ObservationHolder {
     {
         this.observations.add(obs);
         // update List Names
-        List<String> obsKeys = new ArrayList<>(obs.features.keySet());
+        ArrayList<String> obsKeys = new ArrayList<>(obs.features.keySet());
         obsKeys.removeAll(this.dataNames);
-        this.dataNames.addAll(obsKeys);
+        this.dataNames = (ArrayList<String>) Stream.of(this.dataNames, obsKeys).flatMap(x -> x.stream()).collect(Collectors.toList());
     }
 
 
