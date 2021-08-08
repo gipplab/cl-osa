@@ -2,6 +2,10 @@
 # Copyright (C) 2009 webis.de. All rights reserved.
 """Plagiarism detection performance measures.
 
+Slight modifications to the original scripts have been implemented here
+to get evaluation results by caselength and obfuscation type in
+the detailed evaluation of CL-OSA.
+
 This module implements the measures recall, precision, and granularity
 as described by the authors of [1]. The measures can be calculated
 macro-averaged and micro-averaged with the respective functions; each
@@ -549,10 +553,10 @@ def main(micro_averaged, plag_path, plag_tag_name, det_path, det_tag_name, filte
         print 'OWN micro averaged is false'
         rec, prec = macro_avg_recall_and_precision(cases, detections)
         print "prec1: "+str(prec)
-        if use_case_filter:
-            # overwrite precision values
-            recUN, prec = macro_avg_recall_and_precision(cases_filtered, detections_unfiltered)
-            print "prec2: "+str(prec)
+        #if use_case_filter:
+        #    # overwrite precision values
+        #    recUN, prec = macro_avg_recall_and_precision(cases_filtered, detections_unfiltered)
+        #    print "prec2: "+str(prec)
 
     gran = granularity(cases, detections)
 

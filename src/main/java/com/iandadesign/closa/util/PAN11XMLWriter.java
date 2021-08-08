@@ -16,7 +16,11 @@ import java.io.FileWriter;
 import java.nio.file.Paths;
 import java.util.Map;
 
-public class SalvadorPAN11XMLwriter {
+/**
+ * Writing xml-result files from result objects for PAN-PC-11-analysis.
+ * @author Johannes Stegmüller
+ */
+public class PAN11XMLWriter {
 
     public static String writeDownAllXMLResults(String tag, String dateString,
                                              String preprocessedCachingDirectory,

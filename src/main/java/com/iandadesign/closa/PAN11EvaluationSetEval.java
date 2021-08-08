@@ -4,7 +4,8 @@ import com.iandadesign.closa.model.SavedEntity;
 import com.iandadesign.closa.model.StatisticsInfo;
 import com.iandadesign.closa.util.*;
 import org.apache.commons.io.FileUtils;
-import org.joda.time.DateTime;
+import org.apache.http.annotation.Obsolete;
+
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
@@ -14,11 +15,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 /**
- * Complete Evaluation for PAN11 implementation (not extended from abstract class etc)
- * Since tests not work cause of local dependency missing, the placement of the class here
- * is a workaround to make evaluations executable.
+ * This is an obsolete implementation of the PAN_PC-11 evaluation,
+ * it is not used at the moment, but still in cause it is an alternative
+ * way to conduct detailed analysis.
  * @author Johannes Stegmüller (26.06.2020)
  */
+
+@Obsolete
 public class PAN11EvaluationSetEval {
     public static String pathPrefix = "/data/pan-plagiarism-corpus-2011/external-detection-corpus";
 
@@ -57,7 +60,7 @@ public class PAN11EvaluationSetEval {
         logUtil.writeStandardReport(false, "Assuming the preprpocessing has been done here. ");
         params.MAX_NUM_CANDIDATES_SELECTED = 5000;
         //params.CANDIDATE_SELECTION_TRESH = 0;
-        logParams(logUtil, tag, params, osa);
+        PAN11FileUtil.logParams(logUtil, tag, params, osa);
 
 
         logUtil.logAndWriteStandard(false, "Starting file comparisons...");
@@ -281,7 +284,7 @@ public class PAN11EvaluationSetEval {
         params.MAX_NUM_CANDIDATES_SELECTED = 202;
         params.CANDIDATE_SELECTION_TRESH = 0;
         int MOCK_CANDIDATES_PER_FILE = 20;
-        PAN11EvaluationSetEval.logParams(logUtil, tag, params, osa);
+        PAN11FileUtil.logParams(logUtil, tag, params, osa);
 
 
         logUtil.logAndWriteStandard(false, "Starting file comparisons...");
@@ -372,48 +375,6 @@ public class PAN11EvaluationSetEval {
         return mockCandidates;
     }
 
-    /**
-     * Logging the settings
-     * @param logUtil
-     * @param tag
-     * @param params
-     * @param osa
-     */
-    public static void logParams(ExtendedLogUtil logUtil, String tag, ExtendedAnalysisParameters params, OntologyBasedSimilarityAnalysis osa){
-        // Starting log
-        logUtil.logAndWriteStandard(false,logUtil.dashes(100));
-        logUtil.logAndWriteStandard(true,"Starting PAN2011 evaluation");
-        logUtil.logAndWriteStandard(true,"TAG:", tag);
-        logUtil.logAndWriteStandard(true,"Time:", DateTime.now());
-        logUtil.logAndWriteStandard(true,"Results and Caching directory:", osa.getPreprocessedCachingDirectory());
-        logUtil.logAndWriteStandard(true,"Standard-Logfiles Path:", osa.getStandardlogPath());
-        logUtil.logAndWriteStandard(true,"Error-Logfiles Path:", osa.getErrorlogPath());
-        logUtil.logAndWriteStandard(true,"Logging Standard.out to file activated:", params.LOG_STANDARD_TO_FILE);
-        logUtil.logAndWriteStandard(true,"Logging Error.out to file activated:", params.LOG_ERROR_TO_FILE);
-        logUtil.logAndWriteStandard(true,"Saving 2D-Matrix to .csv:", params.LOG_TO_CSV);
-        logUtil.logAndWriteStandard(true,"Logging verbosely activated:", params.LOG_VERBOSE);
-        logUtil.logAndWriteStandard(true,"Pre-Filter the complete dataset:", params.USE_FILE_FILTER);
-        logUtil.logAndWriteStandard(true,"Parallelism fetching Wikidata entries:", osa.getDoParallelRequests());
-        logUtil.logAndWriteStandard(true,"Sliding Window Length:", params.NUM_SENTENCES_IN_SLIDING_WINDOW);
-        logUtil.logAndWriteStandard(true,"Sliding Window Increment:", params.NUM_SENTENCE_INCREMENT_SLIDINGW);
-        logUtil.logAndWriteStandard(true,"Clustering Adjacent Threshold:", params.ADJACENT_THRESH);
-        logUtil.logAndWriteStandard(true,"Clustering Single Threshold:", params.SINGLE_THRESH);
-        logUtil.logAndWriteStandard(true,"Clustering Use adaptive Threshold (by median):", params.USE_ADAPTIVE_CLUSTERING_TRESH);
-        logUtil.logAndWriteStandard(true,"Adaptive Threshold form factor:", params.ADAPTIVE_FORM_FACTOR);
-        logUtil.logAndWriteStandard(true,"Clipping Margin Characters:", params.CLIPPING_MARGING);
-        logUtil.logAndWriteStandard(true,"Maximum selected candidates:", params.MAX_NUM_CANDIDATES_SELECTED);
-        logUtil.logAndWriteStandard(true,"Candidate Selection Threshold:", params.CANDIDATE_SELECTION_TRESH);
-        logUtil.logAndWriteStandard(true,"Sublist Token Length:", osa.getLenSublistTokens());
-        logUtil.logAndWriteStandard(true,"Run evaluation after processing:", params.RUN_EVALUATION_AFTER_PROCESSING);
-        logUtil.logAndWriteStandard(true,"Parallelism Thread Difference:", params.PARALLELISM_THREAD_DIF);
-
-        logUtil.logAndWriteStandard(false, logUtil.dashes(100));
-
-
-    }
-
-
-
 
     static void evalPAN2011MockCandidates(ExtendedAnalysisParameters params, String tag, String comment,
                                           Map<String, List<String>> mockSuspToSelectedCandidates, Map<String, List<PAN11PlagiarismInfo>> plagiarismInfo)  {
@@ -428,7 +389,7 @@ public class PAN11EvaluationSetEval {
         logUtil.logAndWriteStandard(false, comment);
         // ..
 
-        PAN11EvaluationSetEval.logParams(logUtil, tag, params, osa);
+        PAN11FileUtil.logParams(logUtil, tag, params, osa);
 
         logUtil.logAndWriteStandard(false, logUtil.dashes(100));
 
@@ -559,7 +520,7 @@ public class PAN11EvaluationSetEval {
         logUtil.logAndWriteStandard(false, comment);
         // ..
 
-        logParams(logUtil, tag, params, osa);
+        PAN11FileUtil.logParams(logUtil, tag, params, osa);
 
         if(doPreprocessing) {
             logUtil.logAndWriteStandard(false, "Preprocessing all candidate files...");

@@ -8,12 +8,17 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
-import static com.iandadesign.closa.PAN11EvaluationSetEval.logParams;
+import static com.iandadesign.closa.util.PAN11FileUtil.logParams;
 import static com.iandadesign.closa.model.SalvadorAnalysisParameters.*;
 import static java.lang.Integer.max;
 import static java.lang.Integer.min;
 
-public class SalvadorFragmentLevelEval {
+/**
+ * This is the current implementation for detailed Analysis evaluation with PAN-PC-11.
+ * A description how to use can be found in Readme.md
+ * @Author Johannes Stegmüller
+ */
+public class PAN11CharacterLevelEval {
 
     public static String pathPrefix = "/data/pan-plagiarism-corpus-2011/external-detection-corpus";
     public static String preprocessedCachingDir = "/data/CLOSA_data/preprocessed";
@@ -184,7 +189,7 @@ public class SalvadorFragmentLevelEval {
 
         if(testCandidateRetrieval){
             try {
-                doCREvaluationRecallFragmentsSalvador(params, tag, "CREvalRecall", resultSelectedCandidates, plagiarismInformation, language);
+                doCharacterLevelEval(params, tag, "CREvalRecall", resultSelectedCandidates, plagiarismInformation, language);
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
@@ -202,15 +207,13 @@ public class SalvadorFragmentLevelEval {
                 .collect(Collectors.toMap(entry-> entry.getKey().getFragmentID() , entry -> entry.getValue().stream().map(SavedEntity::getWikidataEntityId).collect(Collectors.toList())));
     }
 
-    static void doCREvaluationRecallFragmentsSalvador(ExtendedAnalysisParameters params, String tag, String comment,
+    static void doCharacterLevelEval(ExtendedAnalysisParameters params, String tag, String comment,
                                      HashMap<String, List<String>> resultSelectedCandidates,
-                                      HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, String language) throws Exception {
+                                     HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, String language) throws Exception {
         // Route the complete output to a logfile here.
         String toplevelPathSuspicious = pathPrefix.concat("/suspicious-document/");
         String toplevelPathCandidates = pathPrefix.concat("/source-document/");
         System.out.println(toplevelPathSuspicious);
-
-
         //  (26939 - (9506/2)) / 2 = 11093 is the number of files in each directory;
 
         // Do all preprocessing and cache it first (if already cached this will validate preprocessed number)
@@ -251,10 +254,6 @@ public class SalvadorFragmentLevelEval {
 
         // For testing use just one basic file (and also just the corresponding results)
         // Sorted alphabetically or sorted by size (by step before)
-        //suspiciousFiles = filterBySuspFileLimit(plagiarismInformation, suspiciousFiles, SalvadorAnalysisParameters.DO_FILE_PREFILTERING, SalvadorAnalysisParameters.SUSP_FILE_LIMIT, SalvadorAnalysisParameters.SUSP_FILE_SELECTION_OFFSET, SalvadorAnalysisParameters.SORT_SUSPICIOUS_FILES_BY_SIZE);
-
-        //List<File> suspiciousFilesChecking = sortByPlagiarismSizeSusp(suspiciousFiles,plagiarismInformation);
-
         // Filter only representative Test Files
         List<File> suspiciousFilesRepresentative = new ArrayList<>();
         if(SalvadorAnalysisParameters.SELECT_REPRESENTATIVE_TEST_FILES){
@@ -268,7 +267,7 @@ public class SalvadorFragmentLevelEval {
         System.out.println("Suspicious Files Count: "+ suspiciousFiles.size());
 
         // Presteps for PAN11 Evaluation remove caching directory (if there is one)
-        String xmlResultsFolderPath = SalvadorPAN11XMLwriter.getXMLresultsFolderPath(tag, logUtil.getDateString(), preprocessedCachingDir);
+        String xmlResultsFolderPath = PAN11XMLWriter.getXMLresultsFolderPath(tag, logUtil.getDateString(), preprocessedCachingDir);
         File cachingDir= new File(xmlResultsFolderPath +"/file_selection_cache");
         //PAN11FileUtil.removeDirectory(cachingDir);
         logUtil.logAndWriteStandard(true,"Caching dir start:", cachingDir.getPath());
@@ -300,7 +299,7 @@ public class SalvadorFragmentLevelEval {
             int size = plagiarismInfo.size();
             overallSize+=size;
         }
-        //TODO check cases and read salvador
+        // Stats about the PAN-PC-11 Salvador-Evaluation type datase
         // All cases info: 2920
         // Short cases info: 737
         // Medium cases info: 1078
@@ -308,13 +307,6 @@ public class SalvadorFragmentLevelEval {
         // 737 + 1078 + 1105 = 2920
         // Only Manual Translation: 227
         // Only Automated Translation: 2693
-
-        // 288 to 290
-        // All cases 4
-        // Short cases:
-        // Medium Cases:
-        // Long cases:
-
 
         // Do the actual processing
         if(!SalvadorAnalysisParameters.DO_BATCHED_PROCESSING){
@@ -493,7 +485,7 @@ public class SalvadorFragmentLevelEval {
     static int minCaseLength= 100000;
     static int maxCaseLength= 0;
 
-    private static Map<Integer, SalvadorRatKResponse> doScoresMapIteration(String tag, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, OntologyBasedSimilarityAnalysis osa, ExtendedLogUtil logUtil, List<File> candidateFiles, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesFragment, int filesOffset, int filesNumber,         Map<String, Map<String, SalvadorStatisticsInfo>> allStatistics, String language) throws Exception {
+    private static Map<Integer, SalvadorRatKResponse> doScoresMapIteration(String tag, HashMap<String, List<PAN11PlagiarismInfo>> plagiarismInformation, OntologyBasedSimilarityAnalysis osa, ExtendedLogUtil logUtil, List<File> candidateFiles, List<File> suspiciousFiles, Map<String, List<SavedEntity>> candidateEntitiesFragmentIn, int filesOffset, int filesNumber,         Map<String, Map<String, SalvadorStatisticsInfo>> allStatistics, String language) throws Exception {
         Map<String, List<SavedEntity>> suspiciousEntitiesFragment;
         // Create a list of suspicious fragments (only plagiarism involved fragments)
 
@@ -505,8 +497,17 @@ public class SalvadorFragmentLevelEval {
             // Get fragments with plagiarism involved, size of FRAGMENT_SENTENCES
             suspiciousEntitiesFragment = getFragments(osa, suspiciousFiles, SalvadorAnalysisParameters.FRAGMENT_SENTENCES, SalvadorAnalysisParameters.FRAGMENT_INCREMENT, true, plagiarismInformation, false);
         }
+        // Create a document fragment map for (SuspFragments/CandFragments)
+        Map<String, List<String>> suspDocFragmentMap = getDocumentFragmentMap(suspiciousEntitiesFragment);
+        Map<String, List<String>> candDocFragmentMapTemp = getDocumentFragmentMap(candidateEntitiesFragmentIn);
+        Map<String, List<String>> candDocFragmentMapSelected = null;
+        Map<String, List<SavedEntity>> selectedCandidateEntitiesFragmentSelected = null;
 
-        System.out.println("Susp-enties count: "+ suspiciousEntitiesFragment.size());
+
+        candDocFragmentMapSelected = getDocumentFragmentMap(candidateEntitiesFragmentIn);
+        final Map<String,List<SavedEntity>> candidateEntitiesFragment = candidateEntitiesFragmentIn;
+
+         System.out.println("Susp-enties count: "+ suspiciousEntitiesFragment.size());
 
         for(String fragmentID:suspiciousEntitiesFragment.keySet()){
             int fragmentEntitiesNumber = suspiciousEntitiesFragment.get(fragmentID).size();
@@ -620,9 +621,6 @@ public class SalvadorFragmentLevelEval {
         }
         // DA implementation:
 
-        // Create a document fragment map for (SuspFragments/CandFragments)
-        Map<String, List<String>> suspDocFragmentMap = getDocumentFragmentMap(suspiciousEntitiesFragment);
-        Map<String, List<String>> candDocFragmentMap = getDocumentFragmentMap(candidateEntitiesFragment);
 
 
         // Detailed Comparison ...
@@ -636,7 +634,7 @@ public class SalvadorFragmentLevelEval {
         Map<String, Map<String, Map<SalvadorTextFragment, SalvadorTextFragment>>> allResults = new HashMap<>();
 
         logUtil.logAndWriteStandard(false, "Doing Detailed Analysis...");
-
+        final Map<String,List<String>> candDocFragmentMap =  candDocFragmentMapSelected;
         AtomicLong allRelatedPlagiarismInfoCount = new AtomicLong();
         // Since suspDocFragmentMap is usually One
         suspDocFragmentMap.keySet().stream().forEach(suspiciousDocument -> {
@@ -715,7 +713,7 @@ public class SalvadorFragmentLevelEval {
 
 
         // Write down all xml Results
-        String xmlResultsFolderPath = SalvadorPAN11XMLwriter.writeDownAllXMLResults(tag, logUtil.getDateString(), preprocessedCachingDir, allResults);
+        String xmlResultsFolderPath = PAN11XMLWriter.writeDownAllXMLResults(tag, logUtil.getDateString(), preprocessedCachingDir, allResults);
         // Do evaluation with the current set filters
         //String baseResultsPath = "/data/CLOSA_data/preprocessed/preprocessed_extended/results_comparison/evalPAN2011Salvador"; // TODO adapt
         File cachingDir= new File(xmlResultsFolderPath +"/file_selection_cache");

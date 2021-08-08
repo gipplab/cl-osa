@@ -6,6 +6,10 @@ import javax.swing.*;
 import java.io.File;
 import java.util.List;
 
+/**
+ * Text Fragment for the merging algorithm in detailed analysis.
+ * @author Johannes Stegmüller
+ */
 public class SalvadorTextFragment {
 
     String fragmentID;

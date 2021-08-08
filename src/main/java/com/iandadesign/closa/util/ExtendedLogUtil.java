@@ -1,23 +1,21 @@
 package com.iandadesign.closa.util;
-
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.nio.CharBuffer;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
+/**
+ * Logging functionalities and extended features like logging to files
+ * with each log call etc.
+ * @author Johannes Stegmüller
+ */
 public class ExtendedLogUtil {
 
     private PrintStream errorLogStream;

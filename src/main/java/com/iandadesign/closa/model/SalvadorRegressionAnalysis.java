@@ -1,6 +1,5 @@
 package com.iandadesign.closa.model;
-
-import com.iandadesign.closa.SalvadorFragmentLevelEval;
+import com.iandadesign.closa.PAN11CharacterLevelEval;
 import com.iandadesign.closa.analysis.featurama.matrix.CorrelationMatrix;
 import com.iandadesign.closa.analysis.featurama.matrix.Matrix;
 import com.iandadesign.closa.analysis.featurama.observation.Observation;
@@ -15,9 +14,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Regression analysis functionalities for the Featurama Project
+ * @author Kay Herklotz
+ */
 public class SalvadorRegressionAnalysis {
     ExtendedLogUtil logUtil;
-    static SalvadorFragmentLevelEval evaluation;
+    static PAN11CharacterLevelEval evaluation;
 
     public SalvadorRegressionAnalysis(ExtendedLogUtil _logUtil){
         logUtil = _logUtil;

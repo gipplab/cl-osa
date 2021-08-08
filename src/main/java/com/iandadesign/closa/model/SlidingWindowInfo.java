@@ -1,5 +1,7 @@
 package com.iandadesign.closa.model;
 
+import org.apache.http.annotation.Obsolete;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +13,8 @@ import java.util.WeakHashMap;
  *
  * @author Johannes Stegmüller on 2020/05/29/
  */
+
+@Obsolete
 public class SlidingWindowInfo {
     private final String fileName;
     private final WeakHashMap<String, List<String>> filenameToEntities;

@@ -1,7 +1,8 @@
 package com.iandadesign.closa.model;
 
 /**
- * Information holder class for storing mininum and maximum indices information.
+ * Information holder class for storing minimum and maximum indices information.
+ * @author Johannes Stegmüller
  */
 public class StartStopInfo {
     int minMatchSuspIndex = -1;

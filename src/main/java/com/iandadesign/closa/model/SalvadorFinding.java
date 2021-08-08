@@ -1,7 +1,10 @@
 package com.iandadesign.closa.model;
-
 import static java.lang.Integer.max;
 
+/**
+ * Defines a finding in PAN-PC-11 detailed analysis.
+ * @author Johannes Stegmüller
+ */
 public class SalvadorFinding {
 
     int candStartPosition;

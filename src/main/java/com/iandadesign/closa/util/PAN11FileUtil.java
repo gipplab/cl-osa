@@ -1,10 +1,12 @@
 package com.iandadesign.closa.util;
 
+import com.iandadesign.closa.OntologyBasedSimilarityAnalysis;
 import com.iandadesign.closa.language.LanguageDetector;
 import com.iandadesign.closa.model.ExtendedAnalysisParameters;
 import com.iandadesign.closa.model.SalvadorAnalysisParameters;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
+import org.joda.time.DateTime;
 
 import java.io.File;
 import java.io.FileReader;
@@ -173,7 +175,7 @@ public class PAN11FileUtil {
             }
 
             List<File> newSuspiciousFiles = new ArrayList<>();
-            /*
+
             newSuspiciousFiles.add(suspiciousFiles.get(1));
             newSuspiciousFiles.add(suspiciousFiles.get(70));
             newSuspiciousFiles.add(suspiciousFiles.get(124));
@@ -181,7 +183,6 @@ public class PAN11FileUtil {
             newSuspiciousFiles.add(suspiciousFiles.get(197));
             newSuspiciousFiles.add(suspiciousFiles.get(198));
             newSuspiciousFiles.add(suspiciousFiles.get(290));
-            */
             newSuspiciousFiles.add(suspiciousFiles.get(291));
 
 
@@ -208,5 +209,45 @@ public class PAN11FileUtil {
             suspiciousFiles = newSuspiciousFiles;
         }
         return suspiciousFiles;
+    }
+
+    /**
+     * Logging the settings
+     * @param logUtil
+     * @param tag
+     * @param params
+     * @param osa
+     */
+    public static void logParams(ExtendedLogUtil logUtil, String tag, ExtendedAnalysisParameters params, OntologyBasedSimilarityAnalysis osa){
+        // Starting log
+        logUtil.logAndWriteStandard(false,logUtil.dashes(100));
+        logUtil.logAndWriteStandard(true,"Starting PAN2011 evaluation");
+        logUtil.logAndWriteStandard(true,"TAG:", tag);
+        logUtil.logAndWriteStandard(true,"Time:", DateTime.now());
+        logUtil.logAndWriteStandard(true,"Results and Caching directory:", osa.getPreprocessedCachingDirectory());
+        logUtil.logAndWriteStandard(true,"Standard-Logfiles Path:", osa.getStandardlogPath());
+        logUtil.logAndWriteStandard(true,"Error-Logfiles Path:", osa.getErrorlogPath());
+        logUtil.logAndWriteStandard(true,"Logging Standard.out to file activated:", params.LOG_STANDARD_TO_FILE);
+        logUtil.logAndWriteStandard(true,"Logging Error.out to file activated:", params.LOG_ERROR_TO_FILE);
+        logUtil.logAndWriteStandard(true,"Saving 2D-Matrix to .csv:", params.LOG_TO_CSV);
+        logUtil.logAndWriteStandard(true,"Logging verbosely activated:", params.LOG_VERBOSE);
+        logUtil.logAndWriteStandard(true,"Pre-Filter the complete dataset:", params.USE_FILE_FILTER);
+        logUtil.logAndWriteStandard(true,"Parallelism fetching Wikidata entries:", osa.getDoParallelRequests());
+        logUtil.logAndWriteStandard(true,"Sliding Window Length:", params.NUM_SENTENCES_IN_SLIDING_WINDOW);
+        logUtil.logAndWriteStandard(true,"Sliding Window Increment:", params.NUM_SENTENCE_INCREMENT_SLIDINGW);
+        logUtil.logAndWriteStandard(true,"Clustering Adjacent Threshold:", params.ADJACENT_THRESH);
+        logUtil.logAndWriteStandard(true,"Clustering Single Threshold:", params.SINGLE_THRESH);
+        logUtil.logAndWriteStandard(true,"Clustering Use adaptive Threshold (by median):", params.USE_ADAPTIVE_CLUSTERING_TRESH);
+        logUtil.logAndWriteStandard(true,"Adaptive Threshold form factor:", params.ADAPTIVE_FORM_FACTOR);
+        logUtil.logAndWriteStandard(true,"Clipping Margin Characters:", params.CLIPPING_MARGING);
+        logUtil.logAndWriteStandard(true,"Maximum selected candidates:", params.MAX_NUM_CANDIDATES_SELECTED);
+        logUtil.logAndWriteStandard(true,"Candidate Selection Threshold:", params.CANDIDATE_SELECTION_TRESH);
+        logUtil.logAndWriteStandard(true,"Sublist Token Length:", osa.getLenSublistTokens());
+        logUtil.logAndWriteStandard(true,"Run evaluation after processing:", params.RUN_EVALUATION_AFTER_PROCESSING);
+        logUtil.logAndWriteStandard(true,"Parallelism Thread Difference:", params.PARALLELISM_THREAD_DIF);
+
+        logUtil.logAndWriteStandard(false, logUtil.dashes(100));
+
+
     }
 }

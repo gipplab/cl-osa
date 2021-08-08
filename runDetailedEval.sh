@@ -1,4 +1,8 @@
 #!/bin/bash
+# Simple bash script to run the detailed evaluation of CL-OSA for PAN-PC-11
+# This is especially handy if running the evaluation on shell-only-computers.
+# See Readme.md for usage.
+# @author Johannes Stegmüller
 
 if [ -z "$1" ]
   then
@@ -18,4 +22,4 @@ fi
 
 
 # ATM Not fetching the errors  to logs (2>&1 for that)
-java -Xmx100G -cp ./target/closa-1.4.jar com.iandadesign.closa.SalvadorFragmentLevelEval $2 $3 $4 $5 1>&1 | tee ./mylogs/$1$NAME_SUFFIX
+java -Xmx100G -cp ./target/closa-1.4.jar com.iandadesign.closa.PAN11CharacterLevelEval $2 $3 $4 $5 1>&1 | tee ./mylogs/$1$NAME_SUFFIX

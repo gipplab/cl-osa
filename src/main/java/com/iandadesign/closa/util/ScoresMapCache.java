@@ -3,6 +3,10 @@ package com.iandadesign.closa.util;
 import java.io.*;
 import java.util.Map;
 
+/**
+ * Serialization and deserialization and filename-generation for cached scoresMap data.
+ * @author Johannes Stegmüller
+ */
 public class ScoresMapCache {
 
     public void serializeScoresMap(String filekey, Map<String, Map<String, Double>> scoresMap) throws IOException {

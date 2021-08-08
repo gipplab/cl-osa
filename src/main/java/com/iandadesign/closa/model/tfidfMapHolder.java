@@ -1,15 +1,18 @@
 package com.iandadesign.closa.model;
 
 import com.iandadesign.closa.OntologyBasedSimilarityAnalysis;
-import com.iandadesign.closa.SalvadorFragmentLevelEval;
+import com.iandadesign.closa.PAN11CharacterLevelEval;
 import com.iandadesign.closa.util.PAN11PlagiarismInfo;
 import edu.stanford.nlp.util.ArrayMap;
-import org.apache.commons.collections4.comparators.ReverseComparator;
 
 import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Rather experimental class for tf-idf weighting. Not completely implemented
+ * @author Johannes Stegmüller 2021
+ */
 public class tfidfMapHolder {
     static Map<String, Map<String, tfidfTokenInfo>> suspFiles2TermsMap;
     static Map<String, Map<String, tfidfTokenInfo>> candFiles2TermsMap;
@@ -205,7 +208,7 @@ public class tfidfMapHolder {
 
                 List<SavedEntity> savedEntitiesFiltered = new ArrayList<>();
                 for(SavedEntity currentEntity:savedEntities){
-                    if(SalvadorFragmentLevelEval.isPlagiarismRelated(currentEntity.getToken().getStartCharacter(), currentEntity.getToken().getEndCharacter(),currentPlagiarismInfos, false)){
+                    if(PAN11CharacterLevelEval.isPlagiarismRelated(currentEntity.getToken().getStartCharacter(), currentEntity.getToken().getEndCharacter(),currentPlagiarismInfos, false)){
                         savedEntitiesFiltered.add(currentEntity);
                     }
                 }
