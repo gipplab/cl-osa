@@ -70,7 +70,7 @@ PANPC11CharacterLevelEval.doCharacterLevelEval).
 ### What CL-OSA does not
 CL-OSA does not search the internet for possible sources. This is addressed in different algorithms.
 
-## Extensions to CL-OSA in this project
+## Extensions to CL-OSA
 ###  Featurama
 
 The Featurama project is an analysis tool to find correlations between variables during the detailed 
