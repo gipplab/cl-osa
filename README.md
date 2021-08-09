@@ -1,10 +1,8 @@
 CL-OSA (Cross-Language Ontology-based Similarity Analysis)
 =================================================================
 
-This is an extended version for the Cross-language plagiarism detection using Wikidata method CL-OSA.  
-It additionally can do detailed analysis on character-level. To evaluate the detailed analysis results,
-currently the PAN-PC-11 evaluation-corpus is used. Also the extended version contains possibilities 
-to cache intermediate results and analysis tools (i.e. "Featurama") for optimizing the parametrization of the used algorithms.
+This the source-repository of the Cross-language plagiarism detection using Wikidata method CL-OSA.  
+
  
 
 ![Overview CL-OSA](./closa-tng-diag.png?raw=true "Overview over CL-OSA")
@@ -82,8 +80,6 @@ and scoring metrics, it can be used to find optimal parametrization.
 
 The project offers functionality to store and save observations during plagiarism detection. Each observation holds several features, which each have a name and numerical value. The observations are stored in an observation holder, which can be transformed into a matrix. For this matrix the correlation and covariance matrices can be calculated. Furthermore it is possible to perform a PCA on the data, which the option of reducing the dimension at the same time.
 To use featurama an observationHolder object must be initialised. For each observation a new observation object is created and the features added, by storing them in a hash map and adding this hash map to the obervation. This observation is added to the observationHolder, which in turn can be saved by converting it to a matrix and saving as CSV file.
-### Detailed Analysis for PAN-PC-11
-See 'How it works section: Detailed Analysis Evaluation'
 
 
 Setting up the MongoDB database
